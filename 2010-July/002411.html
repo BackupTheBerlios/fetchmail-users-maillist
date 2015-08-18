@@ -1,0 +1,104 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Yahoo Plus SSL Issue
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2010-July/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Yahoo%20Plus%20SSL%20Issue&In-Reply-To=%3Cop.vfd3glbv1e62zd%40merlin.emma.line.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002410.html">
+   <LINK REL="Next"  HREF="002407.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Yahoo Plus SSL Issue</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Yahoo%20Plus%20SSL%20Issue&In-Reply-To=%3Cop.vfd3glbv1e62zd%40merlin.emma.line.org%3E"
+       TITLE="[fetchmail-users] Yahoo Plus SSL Issue">matthias.andree at gmx.de
+       </A><BR>
+    <I>Mon Jul  5 23:32:35 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002410.html">[fetchmail-users] Yahoo Plus SSL Issue
+</A></li>
+        <LI>Next message: <A HREF="002407.html">[fetchmail-users] Systemwide fetchmailrc
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2411">[ date ]</a>
+              <a href="thread.html#2411">[ thread ]</a>
+              <a href="subject.html#2411">[ subject ]</a>
+              <a href="author.html#2411">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Am 04.07.2010, 22:46 Uhr, schrieb Gerry LaMontagne:
+
+&gt;<i> I've just started using the sslfingerprint (as a result of this
+</I>&gt;<i> experience, actually) option and, since the original problem settled
+</I>&gt;<i> down, I've yet to see any errors related to invalid fingerprints.  I'm
+</I>&gt;<i> surprised to learn that a POP provider would issue different
+</I>&gt;<i> certificates with different fingerprints.  Even though there might be
+</I>&gt;<i> multiple IP's behind it, there's still only 1 &quot;plus.pop.mail.yahoo.com&quot;,
+</I>&gt;<i> right?  I figured a fingerprint error would alert me, at the best, to a
+</I>&gt;<i> new certificate so that I might take the time to verify it myself.
+</I>
+They can share (copy) the certificate across all servers, or they can use  
+an individual one. You don't usually care because clients are supposed to  
+use the certificate's signature chain back to a trusted root signer, to  
+establish validity -- and not fingerprints.
+
+Usually the certificate authority (CA) certificates (the ones that you  
+need to install into .../ssl/certs and that are trusted if you put them  
+there) are issued for 5 or 10 years, and the CA can re-issue server  
+certificates. These are often issued for 0.5 - 3 years only and frequently  
+changed. Each time, the fingerprint will change, but the same root CA  
+configuration can establish validity for the new certificate.
+
+&gt;<i> Obviously, at the worst, a MITM attack, but at least I'd have a heads
+</I>&gt;<i> up.
+</I>
+Yup.
+
+&gt;<i> I verified the certificate by comparing the results from here:
+</I>&gt;<i> <A HREF="http://www.digicert.com/help/.">http://www.digicert.com/help/.</A>
+</I>&gt;<i>
+</I>&gt;<i> with results from the openssl command.  I figured the above URL would
+</I>&gt;<i> use sufficiently different routing to get to the Yahoo servers that if I
+</I>&gt;<i> WAS seeing a MITM, I would get different results.  Perhaps I'm being  
+</I>&gt;<i> naive though.  I did look for a Yahoo page listing the fingerprints, but  
+</I>&gt;<i> was
+</I>&gt;<i> unsuccessful.
+</I>
+It's untypical. You'd usually only find fingerprints for root certificates  
+- but it's Equifax, not Yahoo, who holds the root certificate.
+
+-- 
+Matthias Andree
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002410.html">[fetchmail-users] Yahoo Plus SSL Issue
+</A></li>
+	<LI>Next message: <A HREF="002407.html">[fetchmail-users] Systemwide fetchmailrc
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2411">[ date ]</a>
+              <a href="thread.html#2411">[ thread ]</a>
+              <a href="subject.html#2411">[ subject ]</a>
+              <a href="author.html#2411">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,166 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] fetchmail hangs when querying IMAP serve
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2010-July/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%20hangs%20when%20querying%20IMAP%20serve&In-Reply-To=%3C1280482507.3253.5.camel%40stz42%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002430.html">
+   <LINK REL="Next"  HREF="002432.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] fetchmail hangs when querying IMAP serve</H1>
+    <B>Dominik Vogt</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%20hangs%20when%20querying%20IMAP%20serve&In-Reply-To=%3C1280482507.3253.5.camel%40stz42%3E"
+       TITLE="[fetchmail-users] fetchmail hangs when querying IMAP serve">Dominik.Vogt at external.thalesgroup.com
+       </A><BR>
+    <I>Fri Jul 30 11:35:07 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002430.html">[fetchmail-users] fetchmail hangs when querying IMAP serve
+</A></li>
+        <LI>Next message: <A HREF="002432.html">[fetchmail-users] fetchmail hangs when querying IMAP serve
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2431">[ date ]</a>
+              <a href="thread.html#2431">[ thread ]</a>
+              <a href="subject.html#2431">[ subject ]</a>
+              <a href="author.html#2431">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Fri, 2010-07-30 at 10:55 +0200, Sunil Shetye wrote:
+&gt;<i> Quoting from Dominik Vogt's mail on Thu, Jul 29, 2010:
+</I>&gt;<i> &gt; The patch you provided seems to work.  However, I had a very hard
+</I>&gt;<i> time
+</I>&gt;<i> &gt; applying the patch manually.  Please provide patches as attachments,
+</I>&gt;<i> not
+</I>&gt;<i> &gt; as text in html formatted email messages.  ;-)
+</I>&gt;<i> 
+</I>&gt;<i> Thank you for your feedback. Please send the output of 'fetchmail -v'
+</I>&gt;<i> after the patch. I will prepare the final version of the patch for
+</I>&gt;<i> inclusion in fetchmail.
+</I>
+Sure.  See attached file.
+&gt;<i> 
+</I>&gt;<i> Sorry to hear that you had trouble applying the patch. To apply the
+</I>&gt;<i> patch, you are expected to save the complete mail (including headers
+</I>&gt;<i> and signature) to a file and then directly send it to the patch
+</I>&gt;<i> program. Check if you have an option like 'save as mbox' to save the
+</I>&gt;<i> raw mail. To see why inline patches are preferred, please see this:
+</I>
+Actually, the problem was that the message was formatted as html, not
+that the patch was inlined.  :-)
+
+Ciao
+
+Dominik ^_^  ^_^
+
+-------------- next part --------------
+fetchmail: 6.3.17 querying MAILSERVER (protocol IMAP) at Fri 30 Jul 2010 11:24:39 AM CEST: poll started
+Trying to connect to 11.22.33.44.55/9999...connected.
+fetchmail: IMAP&lt; * OK [CAPABILITY IMAP4REV1 AUTH=LOGIN] IMAP4rev1 DavMail server ready
+fetchmail: IMAP&gt; A0001 CAPABILITY
+fetchmail: IMAP&lt; * CAPABILITY IMAP4REV1 AUTH=LOGIN
+fetchmail: IMAP&lt; A0001 OK CAPABILITY completed
+fetchmail: MAILSERVER: opportunistic upgrade to TLS failed, trying to continue
+fetchmail: IMAP&gt; A0002 NOOP
+fetchmail: IMAP&lt; A0002 BAD command authentication required
+Trying to connect to 11.22.33.44/9999...connected.
+fetchmail: IMAP&lt; * OK [CAPABILITY IMAP4REV1 AUTH=LOGIN] IMAP4rev1 DavMail server ready
+fetchmail: IMAP&gt; A0001 CAPABILITY
+fetchmail: IMAP&lt; * CAPABILITY IMAP4REV1 AUTH=LOGIN
+fetchmail: IMAP&lt; A0001 OK CAPABILITY completed
+fetchmail: IMAP&gt; A0002 LOGIN &quot;area06\\S0027769&quot; *
+fetchmail: IMAP&lt; A0002 OK Authenticated
+fetchmail: IMAP&gt; A0003 SELECT &quot;INBOX&quot;
+fetchmail: IMAP&lt; * 111 EXISTS
+fetchmail: IMAP&lt; * 111 RECENT
+fetchmail: IMAP&lt; * OK [UIDVALIDITY 1]
+fetchmail: IMAP&lt; * OK [UIDNEXT 138]
+fetchmail: IMAP&lt; * FLAGS (\Answered \Deleted \Draft \Flagged \Seen $Forwarded Junk)
+fetchmail: IMAP&lt; * OK [PERMANENTFLAGS (\Answered \Deleted \Draft \Flagged \Seen $Forwarded Junk \*)]
+fetchmail: IMAP&lt; A0003 OK [READ-WRITE] SELECT completed
+111 messages for USER\\NAME at MAILSERVER.
+fetchmail: IMAP&gt; A0004 FETCH 1:100 RFC822.SIZE
+fetchmail: IMAP&lt; * 1 FETCH (UID 2)
+
+...
+
+fetchmail: IMAP&lt; * 100 FETCH (UID 115)
+fetchmail: IMAP&lt; A0004 OK FETCH completed
+fetchmail: IMAP&gt; A0005 FETCH 1 RFC822.HEADER
+fetchmail: IMAP&lt; * 1 FETCH (UID 2 RFC822.SIZE 4029 RFC822.HEADER {1155}
+reading message USER\\<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">NAME at MAILSERVER</A>:1 of 111 (1155 header octets)Trying to connect to 127.0.0.1/25...connected.
+fetchmail: SMTP&lt; 220 MYMACHINE.localdomain ESMTP Postfix
+fetchmail: SMTP&gt; EHLO MYMACHINE
+fetchmail: SMTP&lt; 250-MYMACHINE.localdomain
+fetchmail: SMTP&lt; 250-PIPELINING
+fetchmail: SMTP&lt; 250-SIZE 10240000
+fetchmail: SMTP&lt; 250-VRFY
+fetchmail: SMTP&lt; 250-ETRN
+fetchmail: SMTP&lt; 250-ENHANCEDSTATUSCODES
+fetchmail: SMTP&lt; 250-8BITMIME
+fetchmail: SMTP&lt; 250 DSN
+fetchmail: SMTP&gt; MAIL FROM:...
+fetchmail: SMTP&lt; 250 2.1.0 Ok
+fetchmail: SMTP&gt; RCPT TO:...
+fetchmail: SMTP&lt; 250 2.1.5 Ok
+fetchmail: SMTP&gt; DATA
+fetchmail: SMTP&lt; 354 End data with &lt;CR&gt;&lt;LF&gt;.&lt;CR&gt;&lt;LF&gt;
+fetchmail: IMAP&lt; )
+fetchmail: IMAP&lt; A0005 OK FETCH completed
+fetchmail: IMAP&gt; A0006 FETCH 1 BODY.PEEK[TEXT]
+fetchmail: IMAP&lt; * 1 FETCH (UID 2 RFC822.SIZE 4029 BODY[TEXT] {2874}
+ (2874 body octets)fetchmail: IMAP&lt; )
+fetchmail: IMAP&lt; A0006 OK FETCH completed
+fetchmail: SMTP&gt;. (EOM)
+fetchmail: SMTP&lt; 250 2.0.0 Ok: queued as 6367525200F
+ not flushed
+fetchmail: IMAP&gt; A0007 STORE 1 +FLAGS (\Seen)
+fetchmail: IMAP&lt; * 1 FETCH (UID 2 FLAGS (\Seen))
+fetchmail: IMAP&lt; A0007 OK STORE completed
+
+...
+
+fetchmail: SMTP&lt; 250 2.0.0 Ok: queued as 1860225200F
+ not flushed
+fetchmail: IMAP&gt; A0338 STORE 111 +FLAGS (\Seen)
+fetchmail: IMAP&lt; * 111 FETCH (UID 137 FLAGS (\Seen))
+fetchmail: IMAP&lt; A0338 OK STORE completed
+fetchmail: IMAP&gt; A0339 LOGOUT
+fetchmail: IMAP&lt; * BYE Closing connection
+fetchmail: SMTP&gt; QUIT
+fetchmail: SMTP&lt; 221 2.0.0 Bye
+fetchmail: 6.3.17 querying MAILSERVER (protocol IMAP) at Fri 30 Jul 2010 11:27:45 AM CEST: poll completed
+fetchmail: Query status=2 (SOCKET)
+fetchmail: normal termination, status 2
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002430.html">[fetchmail-users] fetchmail hangs when querying IMAP serve
+</A></li>
+	<LI>Next message: <A HREF="002432.html">[fetchmail-users] fetchmail hangs when querying IMAP serve
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2431">[ date ]</a>
+              <a href="thread.html#2431">[ thread ]</a>
+              <a href="subject.html#2431">[ subject ]</a>
+              <a href="author.html#2431">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

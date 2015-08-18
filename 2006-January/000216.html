@@ -1,0 +1,126 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Re: broken POP3 servers - future fetchmail policy (IMPORTANT) (was: [fetchmail]comcast.net and attachments - workaround)
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2006-January/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Re%3A%20broken%20POP3%20servers%20-%20future%20fetchmail%20policy%20%28IMPORTANT%29%20%28was%3A%20%5Bfetchmail%5Dcomcast.net%20and%20attachments%20-%20workaround%29&In-Reply-To=%3C20060104122105.GA12659%40merlin.emma.line.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000215.html">
+   <LINK REL="Next"  HREF="000214.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Re: broken POP3 servers - future fetchmail policy (IMPORTANT) (was: [fetchmail]comcast.net and attachments - workaround)</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Re%3A%20broken%20POP3%20servers%20-%20future%20fetchmail%20policy%20%28IMPORTANT%29%20%28was%3A%20%5Bfetchmail%5Dcomcast.net%20and%20attachments%20-%20workaround%29&In-Reply-To=%3C20060104122105.GA12659%40merlin.emma.line.org%3E"
+       TITLE="[fetchmail-users] Re: broken POP3 servers - future fetchmail policy (IMPORTANT) (was: [fetchmail]comcast.net and attachments - workaround)">matthias.andree at gmx.de
+       </A><BR>
+    <I>Wed Jan  4 13:21:05 CET 2006</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000215.html">[fetchmail-users] Re: broken POP3 servers - future fetchmail policy (IMPORTANT) (was: [fetchmail]comcast.net and attachments - workaround)
+</A></li>
+        <LI>Next message: <A HREF="000214.html">[fetchmail-users] Re: [fetchmail]comcast.net and attachments - workaround
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#216">[ date ]</a>
+              <a href="thread.html#216">[ thread ]</a>
+              <a href="subject.html#216">[ subject ]</a>
+              <a href="author.html#216">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Jakob Hirsch schrieb am 2006-01-04:
+
+&gt;<i> Well, RFC 1939 says &quot;Such message deletions are outside the scope of the
+</I>&gt;<i> POP3 protocol and are not considered a protocol violation.&quot; (thanks for
+</I>&gt;<i> pointing me to this chapter, btw)
+</I>
+Right, but I took your report as though your server doesn't wait until
+QUIT, in which case it *is* a violation.
+
+&gt;<i> Site policies always override RFC-specified behaviour, there's not much
+</I>&gt;<i> you can do about that.
+</I>
+If these site policies aren't explicitly allowed by the RFC, they site
+is not in compliance, and all bets WRT client function are off.
+
+&gt;<i> &gt; If talking to the admins doesn't resolve their bad behavior, find a
+</I>&gt;<i> &gt; different server.
+</I>&gt;<i> 
+</I>&gt;<i> It's my university's server...
+</I>
+So unless it's in the AUP (&quot;Nutzungsbedingungen&quot;) or other relevant
+documents, they're trashing your mail without informed consent, and thus
+punishable according to German law.
+
+Check the paperworks and unless you (perhaps implicitly) agreed to such
+a policy, talk to them.
+
+Most sites refuse new messages if the mailbox size exceeds a quota, or
+delete old messages after a month or so.  That would solve the problem
+on either side: you can use several clients, they can limit the disk
+space consumption.
+
+&gt;<i> &gt; Loss scenario: What happens if the client crashes between the server's
+</I>&gt;<i> &gt; shipping CRLF.CRLF and storing the message? Whoops, the server deleted
+</I>&gt;<i> &gt; the message, and the client retry.
+</I>&gt;<i> 
+</I>&gt;<i> Not necessarily. Consider a normal POP3 server, only that he does an
+</I>&gt;<i> implicit DELE after each RETR. Of course, a client could still fail to
+</I>&gt;<i> store the message (or to forward it somewhere, like fetchmail) without the
+</I>&gt;<i> server noticing. But only if the client tries to behave nicely and sends
+</I>&gt;<i> QUIT even after something went wrong. In this case, nice behaviour does
+</I>&gt;<i> not pay off.
+</I>
+Will check.
+
+&gt;<i> &gt;&gt; What changes do you plan for the seen tracking? To do it on the client
+</I>&gt;<i> &gt;&gt; side is already possible with the UIDL option.
+</I>&gt;<i> &gt; UIDL is not an option, but a necessity.
+</I>&gt;<i> 
+</I>&gt;<i> For simply retrieving mail, delivering locally, retry in case of failure?
+</I>&gt;<i> I don't see why.
+</I>
+1. Because it is the only reliable alternative to &quot;fetchall nokeep&quot;,
+   independent of the current TOP-vs-RETR discussion.
+
+2. Because the assumption fetchmail were the only client doesn't hold in
+   many cases (such as yours) and isn't reasonable either.
+
+3. Because servers are often subjected to what I see as &quot;empirical
+   programming&quot; - write server code that appears to work with Outlook
+   Express at first glance, rather than writing standards compliant code
+   that is in compliance with RFC-1939.
+
+-- 
+Matthias Andree
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000215.html">[fetchmail-users] Re: broken POP3 servers - future fetchmail policy (IMPORTANT) (was: [fetchmail]comcast.net and attachments - workaround)
+</A></li>
+	<LI>Next message: <A HREF="000214.html">[fetchmail-users] Re: [fetchmail]comcast.net and attachments - workaround
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#216">[ date ]</a>
+              <a href="thread.html#216">[ thread ]</a>
+              <a href="subject.html#216">[ subject ]</a>
+              <a href="author.html#216">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

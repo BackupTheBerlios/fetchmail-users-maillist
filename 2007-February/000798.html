@@ -1,0 +1,140 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] message...was not the expected	length...not flushed
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2007-February/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20message...was%20not%20the%20expected%09length...not%0A%20flushed&In-Reply-To=%3C45C3D78C.1080101%40applied.com.sg%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000796.html">
+   <LINK REL="Next"  HREF="000800.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] message...was not the expected	length...not flushed</H1>
+    <B>Otto Rodusek (AP-SGP)</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20message...was%20not%20the%20expected%09length...not%0A%20flushed&In-Reply-To=%3C45C3D78C.1080101%40applied.com.sg%3E"
+       TITLE="[fetchmail-users] message...was not the expected	length...not flushed">otto at applied.com.sg
+       </A><BR>
+    <I>Sat Feb  3 01:30:04 CET 2007</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000796.html">[fetchmail-users] message...was not the expected	length...not	flushed
+</A></li>
+        <LI>Next message: <A HREF="000800.html">[fetchmail-users] message...was not the expected	length...not	flushed
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#798">[ date ]</a>
+              <a href="thread.html#798">[ thread ]</a>
+              <a href="subject.html#798">[ subject ]</a>
+              <a href="author.html#798">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Matthias,
+
+Thanks for your reply. From your reply, it would imply that fetchmail 
+would flush or delete these email - however it doesn't. After about a 
+month, I'll have quite a number of these mails on the ISP's server and 
+on each fetchmail run (it runs ever 10 minutes in cron) i would see a 
+lot of these SAME unflushed emails (as per the log on on first email). 
+Am I using the wrong parameter or am I missing a parameter? I am willing 
+to take the risk and consequences if there is a parameter in fetchmail 
+that will FORCE-DELETE or FLUSH these emails.
+
+I ran my fetchmail manually and it download 58 emails of which 9 were 
+faulty and not flushed (as per the log).
+I then ran fetchmail again within seconds of the first on finishing and 
+indeed there were only 9 messages on the server and again it did not flush.
+I then ran fetchmail again for a third time within seconds of the second 
+run, and the same 9 messages were still on the server - i just couldn't 
+get fetchmail to &quot;flush&quot; or delete these emails.
+
+Any help is much appreciated. Rgds. Otto.
+
+Matthias Andree wrote:
+&gt;<i> Otto Rodusek schrieb am 2007-02-02:
+</I>&gt;<i>
+</I>&gt;<i>   
+</I>&gt;&gt;<i> I am doing a fetchmail from my ISP to my local server with the following 
+</I>&gt;&gt;<i> command: 
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> fetchmail -K -F -f /menu/fetchmailrc  where fetchmailrc is 
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> poll mail.sg.gs protocol pop3 username <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">rootbag at aaa.com</A> password SECRET to 
+</I>&gt;&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">rootbag at aaa.com</A> 
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> My ISP's email server is using QMAIL. 
+</I>&gt;&gt;<i>     
+</I>&gt;<i>
+</I>&gt;<i> The qmail pop server has been known for a while to miscalculate message
+</I>&gt;<i> lenghts, violating RFC-1939, but you can't bother DJB to fix this...
+</I>&gt;<i> <A HREF="http://home.pages.de/~mandree/qmail-bugs.html">http://home.pages.de/~mandree/qmail-bugs.html</A> section 3.4
+</I>&gt;<i>
+</I>&gt;<i>   
+</I>&gt;&gt;<i> Fetchmail works just fine, however often times it DOES NOT delete the read 
+</I>&gt;&gt;<i> message on the ISP's side (in each case it is definitely a JUNK mails) as 
+</I>&gt;&gt;<i> per the log file below. I understand the problem and I have read the part 
+</I>&gt;&gt;<i> about fetchmail/qmail however - 
+</I>&gt;&gt;<i>     
+</I>&gt;<i>
+</I>&gt;<i> Tell the ISP not to accept junk mail.
+</I>&gt;<i>
+</I>&gt;<i>   
+</I>&gt;&gt;<i> IS ther ANY WAY for have fetchmail FORCE-DELETE these emails of the ISP 
+</I>&gt;&gt;<i> server?? 
+</I>&gt;&gt;<i>     
+</I>&gt;<i>
+</I>&gt;<i> Yes, but as Rob correctly states, that way would endanger your
+</I>&gt;<i> legitimate mail.
+</I>&gt;<i>
+</I>&gt;<i>   
+</I>&gt;&gt;<i> fetchmail: SMTP&gt; MAIL FROM:&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">egtvaluation at scicanada.com</A>&gt;
+</I>&gt;&gt;<i> fetchmail: SMTP&lt; 451 DNS temporary failure (#4.3.0)
+</I>&gt;&gt;<i>     
+</I>&gt;<i>
+</I>&gt;<i> DNS problem or the upstream should not accept messages from unresolvable
+</I>&gt;<i> domains. This prevents flushing your messages.
+</I>&gt;<i>
+</I>&gt;<i>   
+</I>&gt;&gt;<i> fetchmail: SMTP&gt; RSET
+</I>&gt;&gt;<i> fetchmail: SMTP&lt; 250 flushed
+</I>&gt;&gt;<i> fetchmail: message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">rootbag at aaa.com.</A>@mail.sg.gs:3 was not the expected length 
+</I>&gt;&gt;<i> (17967 actual != 17679 expected)
+</I>&gt;&gt;<i>     
+</I>&gt;<i>
+</I>&gt;<i> Not related to your problem (fetchmail only reports this for your
+</I>&gt;<i> information, but it's nothing more; fetchmail pretends this problem
+</I>&gt;<i> hadn't existed after it's reported it.)
+</I>&gt;<i>
+</I>&gt;<i>   
+</I>-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/fetchmail-users/attachments/20070203/212a5c40/attachment.html">https://lists.berlios.de/pipermail/fetchmail-users/attachments/20070203/212a5c40/attachment.html</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000796.html">[fetchmail-users] message...was not the expected	length...not	flushed
+</A></li>
+	<LI>Next message: <A HREF="000800.html">[fetchmail-users] message...was not the expected	length...not	flushed
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#798">[ date ]</a>
+              <a href="thread.html#798">[ thread ]</a>
+              <a href="subject.html#798">[ subject ]</a>
+              <a href="author.html#798">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

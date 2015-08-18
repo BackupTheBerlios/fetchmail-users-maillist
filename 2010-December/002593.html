@@ -1,0 +1,138 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] fetchmail 6.3.19 regression/bug fix release
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2010-December/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%206.3.19%20regression/bug%20fix%20release&In-Reply-To=%3C20101210170506.GA24605%40merlin.emma.line.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002594.html">
+   <LINK REL="Next"  HREF="002595.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] fetchmail 6.3.19 regression/bug fix release</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%206.3.19%20regression/bug%20fix%20release&In-Reply-To=%3C20101210170506.GA24605%40merlin.emma.line.org%3E"
+       TITLE="[fetchmail-users] fetchmail 6.3.19 regression/bug fix release">matthias.andree at gmx.de
+       </A><BR>
+    <I>Fri Dec 10 18:05:06 CET 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002594.html">[fetchmail-users] fetchmail stops when it gets an e-mail with no subject and body for yahoo
+</A></li>
+        <LI>Next message: <A HREF="002595.html">[fetchmail-users] md5.h: present but cannot be compiled
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2593">[ date ]</a>
+              <a href="thread.html#2593">[ thread ]</a>
+              <a href="subject.html#2593">[ subject ]</a>
+              <a href="author.html#2593">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>The 6.3.19 release of fetchmail is now available at the usual locations,
+including &lt;<A HREF="http://developer.berlios.de/projects/fetchmail">http://developer.berlios.de/projects/fetchmail</A>&gt;.
+
+The source archive is available at:
+&lt;<A HREF="http://developer.berlios.de/projects/fetchmail/fetchmail-6.3.19.tar.bz2">http://developer.berlios.de/projects/fetchmail/fetchmail-6.3.19.tar.bz2</A>&gt;
+
+Here are the release notes:
+
+fetchmail-6.3.19 (released 2010-12-10, 25945 LoC):
+
+# ERRATUM NOTICE ISSUED
+* fetchmail 6.3.18 contains several bug fixes that were considered sufficiently
+  grave to warrant the issue of an erratum notice, fetchmail-EN-2010-03.txt.
+
+# BUG FIXES
+* When specifying multiple local multidrop lists, do not lose wildcard flag.
+  (Affects &quot;user foo is bar baz * is joe here&quot;)
+* In multidrop configurations, an asterisk can now appear anywhere in the list
+  of local users, not just at the end.
+* In multidrop mode, header parsing is now more verbose in -vv mode, so that it
+  becomes possible to see which header is used.
+* Make --antispam work from command line (these used to work in rcfiles).
+  Reported by Kees Bakker, BerliOS Bug #17599. (Sunil Shetye)
+* Smoke test XHTML 1.1 validation, and if it fails, skip validating HTML
+  documents.  Skip validating Mailbox-Names-UTF7.html. Several systems have
+  broken XHTML 1.1 DTD installations that jeopardize the build.
+  Reported by Mihail Nechkin against FreeBSD port.
+  Workaround for 6.3.18: build in a separate directory, i. e:
+  mkdir build &amp;&amp; cd build &amp;&amp; ../configure --options-go-here
+* Send a NOOP only after a failed STARTTLS in IMAP. (Sunil Shetye)
+* Demote GSSAPI verbose/debug syslog to INFO severity. Requested by Carlos E. R.
+  and Derek Simkowiak via the fetchmail-users@ mailing list.
+* Do STARTTLS/STLS negotiation in IMAP/POP3 if it is mandatory even if the
+  server capabilities do not show support for upgradation to TLS.
+  To use this, configure --sslproto tls1. (Sunil Shetye)
+* IMAP: Understand empty strings as FETCH response, seen on Yahoo. Reported by
+  Yasin Malli to fetchmail-users@ 2010-12-10.
+  Note that fetchmail continues to expect literals as FETCH response for now.
+
+# DOCUMENTATION
+* The manual page now links to IANA for GSSAPI service names.
+
+# TRANSLATION UPDATES
+  [cs]    Czech (Petr Pisar)
+  [fr]    French (Fr&#195;&#169;d&#195;&#169;ric Marchal)
+  [de]    German
+  [it]    Italian (Vincenzo Campanella)
+  [pl]    Polish (Jakub Bogusz)
+
+# KNOWN BUGS AND WORKAROUNDS
+  (this section floats upwards through the NEWS file so it stays with the
+  current release information - however, it was stuck with 6.3.8 for a while)
+* fetchmail does not handle messages without Message-ID header well
+  (See sourceforge.net bug #780933)
+* BSMTP is mostly untested and errors can cause corrupt output.
+* Sun Workshop 6 (SPARC) is known to miscompile the configuration file lexer in
+  64-bit mode.  Either compile 32-bit code or use GCC to compile 64-bit
+  fetchmail.  Note that fetchmail doesn't take advantage of 64-bit code,
+  so compiling 32-bit SPARC code should not cause any difficulties.
+* fetchmail does not track pending deletes over crashes.
+* the command line interface is sometimes a bit stubborn, for instance,
+  fetchmail -s doesn't work with a daemon running.
+* Linux systems may return duplicates of an IP address in some circumstances if
+  no or no global IPv6 addresses are configured.
+  (No workaround. Ubuntu Bug#582585, Novell Bug#606980.)
+* Kerberos 5 may be broken, particularly on Heimdal, and provide bogus error
+  messages. This will not be fixed, because the maintainer has no Kerberos 5
+  server to test against. Use GSSAPI.
+
+
+By popular demand, diffs from the previous release have been omitted.
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: not available
+Type: application/pgp-signature
+Size: 198 bytes
+Desc: not available
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/fetchmail-users/attachments/20101210/dfb133b1/attachment.pgp">https://lists.berlios.de/pipermail/fetchmail-users/attachments/20101210/dfb133b1/attachment.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002594.html">[fetchmail-users] fetchmail stops when it gets an e-mail with no subject and body for yahoo
+</A></li>
+	<LI>Next message: <A HREF="002595.html">[fetchmail-users] md5.h: present but cannot be compiled
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2593">[ date ]</a>
+              <a href="thread.html#2593">[ thread ]</a>
+              <a href="subject.html#2593">[ subject ]</a>
+              <a href="author.html#2593">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

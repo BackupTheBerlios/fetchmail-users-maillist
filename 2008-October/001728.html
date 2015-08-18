@@ -1,0 +1,144 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Bug report: odd behavior with --quit
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2008-October/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Bug%20report%3A%20odd%20behavior%20with%20--quit&In-Reply-To=%3Cf8a02f3e0810161218l4e6af3e4v74ea288c88d63a41%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001726.html">
+   <LINK REL="Next"  HREF="001729.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Bug report: odd behavior with --quit</H1>
+    <B>Andy Theuninck</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Bug%20report%3A%20odd%20behavior%20with%20--quit&In-Reply-To=%3Cf8a02f3e0810161218l4e6af3e4v74ea288c88d63a41%40mail.gmail.com%3E"
+       TITLE="[fetchmail-users] Bug report: odd behavior with --quit">gohanman at gmail.com
+       </A><BR>
+    <I>Thu Oct 16 21:18:27 CEST 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001726.html">[fetchmail-users] Fetchmail, IMAP,	and client side UID/UIDL tracking
+</A></li>
+        <LI>Next message: <A HREF="001729.html">[fetchmail-users] Bug report: odd behavior with --quit
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1728">[ date ]</a>
+              <a href="thread.html#1728">[ thread ]</a>
+              <a href="subject.html#1728">[ subject ]</a>
+              <a href="author.html#1728">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Note: I'm omitting my POP/SMTP info since it seems irrelevant to the issue.
+
+OS: CentOS 5
+RPM name: fetchmail-6.3.6-1.1.el5 (from official repos)
+Fetchmail -V w/ options follows:
+This is fetchmail release 6.3.6+GSS+RPA+NTLM+SDPS+SSL+HESIOD+NLS+KRB4+KRB5.
+
+Copyright (C) 2002, 2003 Eric S. Raymond
+Copyright (C) 2004 Matthias Andree, Eric S. Raymond, Rob F. Funk, Graham Wilson
+Copyright (C) 2005-2006 Matthias Andree, Sunil Shetye
+Fetchmail comes with ABSOLUTELY NO WARRANTY. This is free software, and you
+are welcome to redistribute it under certain conditions. For details,
+please see the file COPYING in the source or documentation directory.
+
+Fallback MDA: (none)
+Linux key.wfco-op.store 2.6.18-53.1.19.el5.centos.plus #1 SMP Sat May
+10 11:10:58 EDT 2008 i686 athlon i386 GNU/Linux
+Taking options from command line and /etc/fetchmailrc
+Idfile is /var/lib/fetchmail/fetchmail.ids
+Progress messages will be logged via syslog
+Fetchmail will show progress dots even in logfiles.
+Fetchmail will forward misaddressed multidrop messages to andy.
+Fetchmail will direct error mail to the postmaster.
+Options for retrieving from <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">catchall+wholefoods.coop at mail.wholefoods.coop</A>:
+  True name of server is mail.wholefoods.coop.
+  Protocol is POP3.
+  All available authentication methods will be tried.
+  SSL encrypted sessions enabled.
+  Server nonresponse timeout is 300 seconds (default).
+  Default mailbox selected.
+  Only new messages will be retrieved (--all off).
+  Fetched messages will not be kept on the server (--keep off).
+  Old messages will not be flushed before message retrieval (--flush off).
+  Oversized messages will not be flushed before message retrieval
+(--limitflush off).
+  Rewrite of server-local addresses is enabled (--norewrite off).
+  Carriage-return stripping is disabled (stripcr off).
+  Carriage-return forcing is disabled (forcecr off).
+  Interpretation of Content-Transfer-Encoding is enabled (pass8bits off).
+  MIME decoding is disabled (mimedecode off).
+  Idle after poll is disabled (idle off).
+  Nonempty Status lines will be kept (dropstatus off)
+  Delivered-To lines will be kept (dropdelivered off)
+  Fetch message size limit is 100 (--fetchsizelimit 100).
+  Do binary search of UIDs during 3 out of 4 polls (--fastuidl 4).
+  Messages will be SMTP-forwarded to: localhost (default)
+  Multi-drop mode: 1 local name recognized.
+  DNS lookup for multidrop addresses is enabled.
+  Server aliases will be compared with multidrop addresses by name.
+  Envelope header is assumed to be: Received
+  Local domains: wholefoods.coop wfco-op.store
+  No UIDs saved from this host.
+
+Now, here's the issue I'm experiencing. I have two bash scripts set up
+to start and stop my fetchmail daemon. The first, fetchmail.start,
+contains this single command:
+/usr/bin/fetchmail -f /file/path/rc -i /file/path/ids --pidfile
+/file/path/pid -d 300
+The second, fetchmail.stop, contains this single command:
+/usr/bin/fetchmail -f /file/path/rc -i /file/path/ids --pidfile
+/file/path/pid --quit
+
+I've altered the actual paths for sane email line width, but the paths
+are the same in each command. I'm using sudo to run fetchmail as a
+non-root user, which may influence this behavior. Here's the behavior
+I get with these files:
+# sudo -u fetchmail fetchmail.start
+# ps -A | grep fetchmail
+11158 ?        00:00:00 fetchmail
+# sudo -u fetchmail fetchmail.stop
+# sudo -u fetchmail fetchmail.stop
+fetchmail: no other fetchmail is running
+
+Now, here's what's odd. If I add a verbose option to fetchmail.stop:
+/usr/bin/fetchmail -f /file/path/rc -i /file/path/ids --pidfile
+/file/path/pid --quit -v
+And re-run my command the same way, it works correctly.
+# sudo -u fetchmail fetchmail.stop
+fetchmail: background fetchmail at 11158 killed.
+
+Obviously this isn't a big deal; it does work, after all. It just
+isn't clear why the -v option is required. Thought someone might want
+to know about it.
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001726.html">[fetchmail-users] Fetchmail, IMAP,	and client side UID/UIDL tracking
+</A></li>
+	<LI>Next message: <A HREF="001729.html">[fetchmail-users] Bug report: odd behavior with --quit
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1728">[ date ]</a>
+              <a href="thread.html#1728">[ thread ]</a>
+              <a href="subject.html#1728">[ subject ]</a>
+              <a href="author.html#1728">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

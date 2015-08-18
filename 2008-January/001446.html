@@ -1,0 +1,125 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] fetchmail: Query status=2 (SOCKET) on Cygwin
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2008-January/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%3A%20Query%20status%3D2%20%28SOCKET%29%20on%20Cygwin&In-Reply-To=%3C20080129180447.GA2620%40tishler.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001443.html">
+   
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] fetchmail: Query status=2 (SOCKET) on Cygwin</H1>
+    <B>Jason Tishler</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%3A%20Query%20status%3D2%20%28SOCKET%29%20on%20Cygwin&In-Reply-To=%3C20080129180447.GA2620%40tishler.net%3E"
+       TITLE="[fetchmail-users] fetchmail: Query status=2 (SOCKET) on Cygwin">jason at tishler.net
+       </A><BR>
+    <I>Tue Jan 29 19:04:47 CET 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001443.html">[fetchmail-users] fetchmail: Query status=2 (SOCKET) on Cygwin
+</A></li>
+        
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1446">[ date ]</a>
+              <a href="thread.html#1446">[ thread ]</a>
+              <a href="subject.html#1446">[ subject ]</a>
+              <a href="author.html#1446">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Matthias,
+
+On Tue, Jan 29, 2008 at 10:35:45AM +0100, Matthias Andree wrote:
+&gt;<i> [CC:'ing Jason Tishler as the Cygwin fetchmail packager]
+</I>
+Thanks for waking me up. :,)
+
+&gt;<i> Jason, was there ever any feedback to your discussion (link below)?
+</I>&gt;<i> The list archives don't contain direct followups.
+</I>
+Yes, see the following:
+
+    <A HREF="http://cygwin.com/ml/cygwin/2002-03/msg00238.html">http://cygwin.com/ml/cygwin/2002-03/msg00238.html</A>
+
+&gt;<i> &gt; fetchmail: SMTP&lt; 354 Start mail input; end with &lt;CRLF&gt;.&lt;CRLF&gt;
+</I>&gt;<i> &gt; #******fetchmail: Cygwin socket read retry
+</I>&gt;<i> &gt; *******************.*****fetchmail: Cygwin socket read retry
+</I>
+The above indicates that my Cygwin (i.e., Windows) MSG_PEEK workaround
+is being triggered.
+
+&gt;<i> &gt; [snip]
+</I>&gt;<i> &gt; fetchmail: socket error while fetching from <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">main at rubinrid.co.il</A>@192.168.253.253
+</I>
+Avi, do you always get the error when the workaround is triggered?  Can
+you get the error without triggering the workaround.  Does the retrieval
+work sometimes even though the workaround is triggered?
+
+&gt;<i> &gt; [snip]
+</I>&gt;<i> 
+</I>&gt;<i> As far as I read the comments in the source code (socket.c, c. line 1026ff.):
+</I>&gt;<i> 
+</I>&gt;<i> | #ifdef __CYGWIN__
+</I>&gt;<i> | /*
+</I>&gt;<i> |  * Workaround Microsoft Winsock recv/WSARecv(..., MSG_PEEK) bug.
+</I>&gt;<i> |  * See <A HREF="http://sources.redhat.com/ml/cygwin/2001-08/msg00628.html">http://sources.redhat.com/ml/cygwin/2001-08/msg00628.html</A>
+</I>&gt;<i> |  * for more details.
+</I>&gt;<i> |  */
+</I>&gt;<i> | static ssize_t cygwin_read(int sock, void *buf, size_t count)
+</I>&gt;<i> [...]
+</I>&gt;<i> 
+</I>&gt;<i> And this pretty much looks like a severe Windows operating system bug.
+</I>
+Agreed!
+
+&gt;<i> [snip]
+</I>&gt;<i> 
+</I>&gt;<i> I need to think about this a bit and see if we can restructure socket.c
+</I>&gt;<i> and perhaps use external libraries or wrapper code to avoid peeking
+</I>&gt;<i> altogether,
+</I>
+This would be greatly appreciated.
+
+&gt;<i> but there's a strong inclination to shove this up to Cygwin and claim
+</I>&gt;<i> that Cygwin as the interfacing layer should work around Winsock/BSD
+</I>&gt;<i> socket incompatibilities.
+</I>
+Unfortunately, this Windows problem cannot be worked around in the
+Cygwin layer.
+
+Thanks,
+Jason
+
+-- 
+PGP/GPG Key: <A HREF="http://www.tishler.net/jason/pubkey.asc">http://www.tishler.net/jason/pubkey.asc</A> or key servers
+Fingerprint: 7A73 1405 7F2B E669 C19D  8784 1AFD E4CC ECF4 8EF6
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001443.html">[fetchmail-users] fetchmail: Query status=2 (SOCKET) on Cygwin
+</A></li>
+	
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1446">[ date ]</a>
+              <a href="thread.html#1446">[ thread ]</a>
+              <a href="subject.html#1446">[ subject ]</a>
+              <a href="author.html#1446">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

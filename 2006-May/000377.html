@@ -1,0 +1,117 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Re: fetchmail/qmail/-scanner/SpamAss. integration
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2006-May/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Re%3A%20fetchmail/qmail/-scanner/SpamAss.%20integration&In-Reply-To=%3Cm3ac9y175d.fsf%40merlin.emma.line.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000376.html">
+   <LINK REL="Next"  HREF="000378.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Re: fetchmail/qmail/-scanner/SpamAss. integration</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Re%3A%20fetchmail/qmail/-scanner/SpamAss.%20integration&In-Reply-To=%3Cm3ac9y175d.fsf%40merlin.emma.line.org%3E"
+       TITLE="[fetchmail-users] Re: fetchmail/qmail/-scanner/SpamAss. integration">matthias.andree at gmx.de
+       </A><BR>
+    <I>Thu May  4 11:17:02 CEST 2006</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000376.html">fetchmail/qmail/-scanner/SpamAss. integration (was: [fetchmail-users] Hello i have problem :()
+</A></li>
+        <LI>Next message: <A HREF="000378.html">[fetchmail-users] Re: fetchmail/qmail/-scanner/SpamAss. integration
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#377">[ date ]</a>
+              <a href="thread.html#377">[ thread ]</a>
+              <a href="subject.html#377">[ subject ]</a>
+              <a href="author.html#377">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>&quot;Ozgur YILMAZ&quot; &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">mrucan at gmail.com</A>&gt; writes:
+
+Please do not post HTML to mailing lists, see
+&lt;<A HREF="http://www.expita.com/nomime.html">http://www.expita.com/nomime.html</A>&gt;
+
+(Could someone with list admin privileges tell Mailman to strip
+text/html MIME parts please? Thanks)
+
+Also, please remember to reply to the list, not to me personally.
+
+&gt;<i>     firstly thanks for your answer.
+</I>&gt;<i>     i have not one user it is only my test user
+</I>&gt;<i>     if it works, i will add a lot of domains and user
+</I>&gt;<i>      
+</I>&gt;<i>     i use fetchmail ---&gt; fetch mail from external mail server
+</I>&gt;<i>     qmail ---&gt; mda and pop3 server
+</I>&gt;<i>     SA ---&gt; spam filter 
+</I>
+OK. You need to
+
+1 - find out how to integrate qmail-scanner with qmail
+    (that's in the qmail-scanner documentation)
+
+2 - test if qmail-scanner is working, before you proceed
+
+3 - if it works, integrate SpamAssassin into qmail-scanner.
+    We cannot help here, that should be in the qmail-scanner
+    documentation. Or ask on the qmail-scanner list.
+
+4 - find out if you can use a better POP3 server than qmail's. qmail's
+    POP3 server has security flaws and reports the wrong message sizes,
+    thus it confuses clients.
+
+My personal favorite setup would probably use Postfix + amavisd-new
+(which integrates Spamassassin) + Dovecot or Courier-IMAP or Cyrus - but
+vpopmail does not integrate well with these.
+
+<A HREF="http://www.postfix.org/addon.html#config">http://www.postfix.org/addon.html#config</A> lists a few pointers should you
+decide to switch.
+
+&gt;<i>     .fethmailrc use this settings
+</I>&gt;<i>      
+</I>&gt;<i>     poll 72.29.74.211 protocol pop3
+</I>&gt;<i>    
+</I>&gt;<i>     user '<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">ozgury at netelektronik.com</A>' there with password 'mypass' is
+</I>&gt;<i>     '<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">deneme at cocukozgur.com</A>' here
+</I>&gt;<i>      
+</I>&gt;<i>     my mail in my inbox but not scanning spamm :(
+</I>&gt;<i>      
+</I>&gt;<i>     what do i do ?
+</I>
+The fetchmailrc part looks fine, so it would be a problem in your
+qmail or qmail-scanner setup.
+
+-- 
+Matthias Andree
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000376.html">fetchmail/qmail/-scanner/SpamAss. integration (was: [fetchmail-users] Hello i have problem :()
+</A></li>
+	<LI>Next message: <A HREF="000378.html">[fetchmail-users] Re: fetchmail/qmail/-scanner/SpamAss. integration
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#377">[ date ]</a>
+              <a href="thread.html#377">[ thread ]</a>
+              <a href="subject.html#377">[ subject ]</a>
+              <a href="author.html#377">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

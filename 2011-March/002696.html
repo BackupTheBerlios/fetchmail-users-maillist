@@ -1,0 +1,105 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] server certificates (was: fetchmail gmail set up problem)
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2011-March/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20server%20certificates%20%28was%3A%20fetchmail%20gmail%20set%0A%20up%20problem%29&In-Reply-To=%3CALA-MAIL06H2HtlMprr0000ff62%40ala-mail06.corp.ad.wrs.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002695.html">
+   <LINK REL="Next"  HREF="002697.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] server certificates (was: fetchmail gmail set up problem)</H1>
+    <B>Perry Hutchison</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20server%20certificates%20%28was%3A%20fetchmail%20gmail%20set%0A%20up%20problem%29&In-Reply-To=%3CALA-MAIL06H2HtlMprr0000ff62%40ala-mail06.corp.ad.wrs.com%3E"
+       TITLE="[fetchmail-users] server certificates (was: fetchmail gmail set up problem)">phutchis at windriver.com
+       </A><BR>
+    <I>Thu Mar  3 05:20:44 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002695.html">[fetchmail-users] server certificates (was: fetchmail gmail set up	problem)
+</A></li>
+        <LI>Next message: <A HREF="002697.html">[fetchmail-users] server certificates
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2696">[ date ]</a>
+              <a href="thread.html#2696">[ thread ]</a>
+              <a href="subject.html#2696">[ subject ]</a>
+              <a href="author.html#2696">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>&lt;snip excellent explanation&gt;
+
+&gt;<i> Is that clear, or does that leave further questions open?  I'm
+</I>&gt;<i> happy to answer more questions and possibly refine the README.SSL
+</I>&gt;<i> and/or FAQ that ships with fetchmail.  This is really important.
+</I>
+Let me restate my understanding, to see if I have it right:
+
+----
+
+  The problem is not with trusting a server's certificate
+  (vs the root certificate which signed it) as such, but with
+  authenticating a certificate -- any certificate -- before
+  trusting it.  The authentication problem needs to be solved:
+
+  * Whenever the trusted certificate changes (e.g. due to
+    expiration).  This will typically happen more frequently
+    with server certificates than with root certificates.
+
+  * For each certificate that is to be trusted.  Authenticating
+    (and subsequently trusting) a single root certificate covers
+    any number of server certificates signed by that root.
+
+  Therefore there is a lot more authentication work involved, with
+  attendant opportunities for mistakes and/or use of insecure
+  shortcuts, when trusting server certificates than when trusting
+  only root certificates.
+
+----
+
+It's clear enough for me, but I'm not the one who needs to be
+convinced :(  (I use fetchmail only to retrieve my own mail
+from the Exchange server, and I am not the administrator of
+either the Exchange server or the machine where I run fetchmail.)
+
+I inquired about installing the signing certificate rather than
+directly trusting the server certificate, and haven't heard back
+yet.
+
+BTW this is all happening within an intranet, so we are probably
+relatively secure WRT MitM attacks.  OTOH they just recently
+required everyone to upgrade their authentication protocols to
+improve security, so there does seem to be some degree of concern
+for such matters.
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002695.html">[fetchmail-users] server certificates (was: fetchmail gmail set up	problem)
+</A></li>
+	<LI>Next message: <A HREF="002697.html">[fetchmail-users] server certificates
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2696">[ date ]</a>
+              <a href="thread.html#2696">[ thread ]</a>
+              <a href="subject.html#2696">[ subject ]</a>
+              <a href="author.html#2696">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

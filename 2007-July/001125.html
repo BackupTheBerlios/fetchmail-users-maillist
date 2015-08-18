@@ -1,0 +1,82 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Fetchmail retrieving message body of only &quot;OK FETCH completed&quot;?
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2007-July/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Fetchmail%20retrieving%20message%20body%20of%20only%20%22OK%0A%20FETCH%20completed%22%3F&In-Reply-To=%3C46A67498.1050807%40gmx.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001124.html">
+   <LINK REL="Next"  HREF="001126.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Fetchmail retrieving message body of only &quot;OK FETCH completed&quot;?</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Fetchmail%20retrieving%20message%20body%20of%20only%20%22OK%0A%20FETCH%20completed%22%3F&In-Reply-To=%3C46A67498.1050807%40gmx.de%3E"
+       TITLE="[fetchmail-users] Fetchmail retrieving message body of only &quot;OK FETCH completed&quot;?">matthias.andree at gmx.de
+       </A><BR>
+    <I>Tue Jul 24 23:52:24 CEST 2007</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001124.html">[fetchmail-users] Fetchmail retrieving message body of only &quot;OK	FETCH completed&quot;?
+</A></li>
+        <LI>Next message: <A HREF="001126.html">[fetchmail-users] Fetchmail retrieving message body of only &quot;OK	FETCH completed&quot;?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1125">[ date ]</a>
+              <a href="thread.html#1125">[ thread ]</a>
+              <a href="subject.html#1125">[ subject ]</a>
+              <a href="author.html#1125">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Beau James schrieb:
+&gt;<i> In the meantime, I downloaded and installed the source package, built
+</I>&gt;<i> it myself, and tried to run the version I had built.  I worked through
+</I>&gt;<i> a number of issues but then ran into SSL errors:
+</I>&gt;<i> 
+</I>&gt;<i> fetchmail: starting fetchmail 6.3.8 daemon
+</I>&gt;<i> 25839:error:140770FC:SSL routines:SSL23_GET_SERVER_HELLO:unknown protocol:s23_cl
+</I>&gt;<i> nt.c:567:
+</I>&gt;<i> fetchmail: SSL connection failed.
+</I>&gt;<i> fetchmail: socket error while fetching from <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">bjames at email.cisco.com</A>
+</I>&gt;<i> fetchmail: Query status=2 (SOCKET)
+</I>&gt;<i> fetchmail: sleeping at Sun Jul 22 21:24:36 2007 for 300 seconds
+</I>
+This looks like fetchmail talking SSL to a non-SSL port. Note that TLS is
+not the same as SSL; TLS starts in cleartext and negotiate SSL while there
+has been some protocol chit-chat, and SSL starts with the SSL negotiation
+right away. TLS and SSL also use separate ports. TLS uses the regular
+110/143 for POP3/IMAP, SSL uses 995/993 for POP3/IMAP.
+
+HTH
+Matthias
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001124.html">[fetchmail-users] Fetchmail retrieving message body of only &quot;OK	FETCH completed&quot;?
+</A></li>
+	<LI>Next message: <A HREF="001126.html">[fetchmail-users] Fetchmail retrieving message body of only &quot;OK	FETCH completed&quot;?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1125">[ date ]</a>
+              <a href="thread.html#1125">[ thread ]</a>
+              <a href="subject.html#1125">[ subject ]</a>
+              <a href="author.html#1125">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

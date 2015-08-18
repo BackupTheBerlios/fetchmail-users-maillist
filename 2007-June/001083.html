@@ -1,0 +1,96 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Local FQDN
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2007-June/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Local%20FQDN&In-Reply-To=%3C200706070337.19360.rfunk%40funknet.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001082.html">
+   <LINK REL="Next"  HREF="001087.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Local FQDN</H1>
+    <B>Rob Funk</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Local%20FQDN&In-Reply-To=%3C200706070337.19360.rfunk%40funknet.net%3E"
+       TITLE="[fetchmail-users] Local FQDN">rfunk at funknet.net
+       </A><BR>
+    <I>Thu Jun  7 09:37:18 CEST 2007</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001082.html">[fetchmail-users] Local FQDN
+</A></li>
+        <LI>Next message: <A HREF="001087.html">[fetchmail-users] Local FQDN
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1083">[ date ]</a>
+              <a href="thread.html#1083">[ thread ]</a>
+              <a href="subject.html#1083">[ subject ]</a>
+              <a href="author.html#1083">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Dave Coventry wrote:
+&gt;<i> Rob MacGregor wrote:
+</I>&gt;<i> &gt; Change the system's hostname, ie so that &quot;hostname&quot; provides
+</I>&gt;<i> &gt; &quot;myhostname.mydomain.de&quot; rather than just &quot;myhostname&quot;.
+</I>&gt;<i>
+</I>&gt;<i> I have never really understood how this works. Surely &quot;mydomain.de&quot;
+</I>&gt;<i> would have to be registered first?
+</I>
+Not if you pick one that can't be registered, e.g. mydomain.local.
+
+&gt;<i> If I arbitrarily select a domain for my internal network, say
+</I>&gt;<i> &quot;baynet.com&quot;, and there exists a registered URL on the web of the same
+</I>&gt;<i> name, isn't there scope for confusion?
+</I>
+Yes.  Don't do that.  Pick a name that *can't* match one of the 
+(relatively) few top-level domains (.org, .com, .net, .info, .museum, and 
+some others, plus the country codes like .de and .us).
+
+Or even better, register your own domain and make a local subdomain under 
+that.  :-)
+
+&gt;<i> In fact, I have a machine on my network just called &quot;Janus&quot; and if I
+</I>&gt;<i> put that into my browser I frequently get
+</I>&gt;<i> &quot;<A HREF="https://ww3.janus.com/Janus/Retail/HomePage">https://ww3.janus.com/Janus/Retail/HomePage</A>&quot;.
+</I>
+Yeah, browsers expect at least a fully-qualified domain name (e.g. 
+janus.com), and if you just type a bare machine name the browser will 
+start guessing top-level domains (.com, .org., .net).  If you want your 
+local machine you need to make that unambiguous by setting up a local 
+domain (and probably local DNS) and using that.
+
+-- 
+==============================|   &quot;A microscope locked in on one point
+ Rob Funk &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">rfunk at funknet.net</A>&gt; |Never sees what kind of room that it's in&quot;
+ <A HREF="http://www.funknet.net/rfunk">http://www.funknet.net/rfunk</A> |    -- Chris Mars, &quot;Stuck in Rewind&quot;
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001082.html">[fetchmail-users] Local FQDN
+</A></li>
+	<LI>Next message: <A HREF="001087.html">[fetchmail-users] Local FQDN
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1083">[ date ]</a>
+              <a href="thread.html#1083">[ thread ]</a>
+              <a href="subject.html#1083">[ subject ]</a>
+              <a href="author.html#1083">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

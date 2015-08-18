@@ -1,0 +1,90 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] fetchmail deletes imap messages
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2006-October/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%20deletes%20imap%20messages&In-Reply-To=%3C452DEC6C.1090305%40gmx.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000641.html">
+   <LINK REL="Next"  HREF="000643.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] fetchmail deletes imap messages</H1>
+    <B>longbow</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%20deletes%20imap%20messages&In-Reply-To=%3C452DEC6C.1090305%40gmx.de%3E"
+       TITLE="[fetchmail-users] fetchmail deletes imap messages">longbow at gmx.de
+       </A><BR>
+    <I>Thu Oct 12 09:19:08 CEST 2006</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000641.html">[fetchmail-users] patch for fetchmail 6.3.5 stable release
+</A></li>
+        <LI>Next message: <A HREF="000643.html">[fetchmail-users] fetchmail deletes imap messages
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#642">[ date ]</a>
+              <a href="thread.html#642">[ thread ]</a>
+              <a href="subject.html#642">[ subject ]</a>
+              <a href="author.html#642">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>hi all!
+
+i think i have a problem with my fetchmail (config). i use it to get all
+the email from my various accounts. in the .fetchmailrc in my home dir i
+put something like this:
+
+poll MAILSERVER   protocol IMAP   user &quot;MAILBOXUSERNAME&quot; password
+&quot;THESECRET&quot; is LOCALUSER  keep
+
+this runs perfect expect that the fetchmail daemon is deleting the
+messages in the remote server's inbox. i read in the manual that
+deleteing is the default action and adding &quot;keep&quot; should keep the
+messages on the remote side. i tried it and fetchmail recognizes that
+the config has changed by diplaying this:
+
+fetchmail: restarting fetchmail (/home/USER/.fetchmailrc changed)
+Both fetchall and keep on in daemon mode is a mistake!
+fetchmail: starting fetchmail 6.3.4 daemon
+
+and it still gets the messages and deletes them from remote server. i
+wonder about this behavoiur of fetchmail cause if i use IMAP than i want
+the messages to stay on the server, not getting them deleted! why cant i
+use daemon mode and the keep option?
+
+is there a possibility to fix this??
+
+thx in advance
+
+snIP3r
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000641.html">[fetchmail-users] patch for fetchmail 6.3.5 stable release
+</A></li>
+	<LI>Next message: <A HREF="000643.html">[fetchmail-users] fetchmail deletes imap messages
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#642">[ date ]</a>
+              <a href="thread.html#642">[ thread ]</a>
+              <a href="subject.html#642">[ subject ]</a>
+              <a href="author.html#642">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

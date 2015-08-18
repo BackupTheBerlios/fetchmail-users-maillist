@@ -1,0 +1,95 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] inactivity timeout when fetching mail from yahoo
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2012-March/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20inactivity%20timeout%20when%20fetching%20mail%20from%20yahoo&In-Reply-To=%3C1332597303.27941.8.camel%40localhost.localdomain%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003074.html">
+   <LINK REL="Next"  HREF="003084.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] inactivity timeout when fetching mail from yahoo</H1>
+    <B>Chris</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20inactivity%20timeout%20when%20fetching%20mail%20from%20yahoo&In-Reply-To=%3C1332597303.27941.8.camel%40localhost.localdomain%3E"
+       TITLE="[fetchmail-users] inactivity timeout when fetching mail from yahoo">cpollock at embarqmail.com
+       </A><BR>
+    <I>Sat Mar 24 14:55:03 CET 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003074.html">[fetchmail-users] anti - SPAM
+</A></li>
+        <LI>Next message: <A HREF="003084.html">[fetchmail-users] inactivity timeout when fetching mail from	yahoo
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3077">[ date ]</a>
+              <a href="thread.html#3077">[ thread ]</a>
+              <a href="subject.html#3077">[ subject ]</a>
+              <a href="author.html#3077">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>The software I usually use to poll my yahoo account has gotten a bug in
+it that hasn't been fixed yet so I've fallen back to fetchmail to poll
+my pop account. I noticed awhile ago that after so many messages that
+the fetchmail log is showing an inactivity timeout:
+
+fetchmail: about to deliver with: procmail
+fetchmail:  flushed
+fetchmail: POP3&gt; DELE 15
+fetchmail: POP3&lt; -ERR inactivity timeout
+fetchmail: inactivity timeout
+fetchmail: POP3&gt; QUIT
+fetchmail: 6.3.18 querying pop.mail.yahoo.com (protocol POP3) at Sat 24
+Mar 2012 08:46:24 AM CDT: poll completed
+
+fetchmail: discarding new UID list
+fetchmail: Query status=24
+fetchmail: Writing fetchids file.
+
+My cl is this:
+
+fetchmail -v -v -v --nokeep --nosyslog
+--logfile /home/chris/fetchmaillog --uidl -m procmail
+
+I have a 10Mbps dsl connection and according to a speed test I'm getting
+8.3Mbps. Is it just an issue at yahoo?
+
+-- 
+Chris
+KeyID 0xE372A7DA98E6705C
+31.11&#176;N 97.89&#176;W (Elev. 1092 ft)
+08:46:27 up 34 days, 15:15, 2 users, load average: 0.81, 0.72, 0.90
+
+
+</PRE>
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003074.html">[fetchmail-users] anti - SPAM
+</A></li>
+	<LI>Next message: <A HREF="003084.html">[fetchmail-users] inactivity timeout when fetching mail from	yahoo
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3077">[ date ]</a>
+              <a href="thread.html#3077">[ thread ]</a>
+              <a href="subject.html#3077">[ subject ]</a>
+              <a href="author.html#3077">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

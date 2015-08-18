@@ -1,0 +1,110 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] option -v not working...
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2006-June/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20option%20-v%20not%20working...&In-Reply-To=%3C20060626154915.GA5277%40davescrunch%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000455.html">
+   <LINK REL="Next"  HREF="000458.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] option -v not working...</H1>
+    <B>Dave Patterson</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20option%20-v%20not%20working...&In-Reply-To=%3C20060626154915.GA5277%40davescrunch%3E"
+       TITLE="[fetchmail-users] option -v not working...">sdpatt2 at gmail.com
+       </A><BR>
+    <I>Mon Jun 26 17:49:15 CEST 2006</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000455.html">[fetchmail-users] option -v not working...
+</A></li>
+        <LI>Next message: <A HREF="000458.html">[fetchmail-users] option -v not working...
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#457">[ date ]</a>
+              <a href="thread.html#457">[ thread ]</a>
+              <a href="subject.html#457">[ subject ]</a>
+              <a href="author.html#457">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>* Rob MacGregor &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">rob.macgregor at gmail.com</A>&gt; [2006-06-26 10:12:26 +0100]:
+
+ 
+&gt;<i> Version of fetchmail?
+</I>&gt;<i> 
+</I>Debian's fetchmail package # 6.3.4-1
+
+('fetchmail -V' or fetchmail --version' results in fetchmail retrieving mail and passing it to Procmail, but the version request is ignored - interesting)
+
+&gt;<i> 
+</I>&gt;<i> Any command line arguments passed to fetchmail (and what are they)?
+</I>&gt;<i> 
+</I>Command line arguments thus far have been '-V'  '--version' '--nodetach
+--nosyslog' '-v'
+
+Contents of .fetchmailrc :
+
+&lt;cut&gt;
+
+set syslog
+set logfile=~/.fetchmaillog
+
+poll pop.gmail.com with proto POP3 and options no dns 
+    user '<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">XXX at gmail.com</A>' with pass &quot;XXX&quot;  is 'dave' here options
+    ssl 
+    mda '/usr/bin/procmail -d %T'
+
+    poll pop.mail.yahoo.com with protocol pop3,
+    user XXX there is dave here,
+    with password XXX;
+    mda '/usr/bin/procmail -d %T'
+
+    poll net1.ji-net.com with protocol pop3,
+    user XXX there is dave here,
+    with password XXX;
+    mda '/usr/bin/procmail -d %T'
+
+    poll 127.0.0.1 port 110 with protocol pop3,
+    user 'XXX' with pass &quot;XXX&quot; is
+    'dave' here,
+    mda '/usr/bin/procmail -d %T
+
+&lt;cut&gt;
+
+
+Hmmm..
+
+Cheers, Dave
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000455.html">[fetchmail-users] option -v not working...
+</A></li>
+	<LI>Next message: <A HREF="000458.html">[fetchmail-users] option -v not working...
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#457">[ date ]</a>
+              <a href="thread.html#457">[ thread ]</a>
+              <a href="subject.html#457">[ subject ]</a>
+              <a href="author.html#457">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

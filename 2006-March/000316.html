@@ -1,0 +1,193 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] [PATCH] Re: Bug in imap_idle() with mail servers not supporting &quot;idle&quot;
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2006-March/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20%5BPATCH%5D%20Re%3A%20Bug%20in%20imap_idle%28%29%20with%20mail%20servers%0A%20not%20supporting%20%22idle%22&In-Reply-To=%3C4415B531.2080900%40aim.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000320.html">
+   <LINK REL="Next"  HREF="000317.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] [PATCH] Re: Bug in imap_idle() with mail servers not supporting &quot;idle&quot;</H1>
+    <B>Brendan Lynch</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20%5BPATCH%5D%20Re%3A%20Bug%20in%20imap_idle%28%29%20with%20mail%20servers%0A%20not%20supporting%20%22idle%22&In-Reply-To=%3C4415B531.2080900%40aim.com%3E"
+       TITLE="[fetchmail-users] [PATCH] Re: Bug in imap_idle() with mail servers not supporting &quot;idle&quot;">brendanplynch at aim.com
+       </A><BR>
+    <I>Mon Mar 13 19:08:49 CET 2006</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000320.html">[fetchmail-users] [PATCH-2] Re: Bug in imap_idle() with mail servers not supporting &quot;idle&quot;
+</A></li>
+        <LI>Next message: <A HREF="000317.html">[fetchmail-users] [PATCH] Re: Bug in imap_idle() with mail servers not supporting &quot;idle&quot;
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#316">[ date ]</a>
+              <a href="thread.html#316">[ thread ]</a>
+              <a href="subject.html#316">[ subject ]</a>
+              <a href="author.html#316">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>That seem to be intentional first-pass behaviour (i.e. not really the 
+general Idle polling case).  Look at these lines from imap_getrange():
+
+    732          * We should have an expunge here to
+    733          * a) avoid fetching deleted mails during 'fetchall'
+    734          * b) getting a wrong count of mails during 'no fetchall'
+    735          */
+    736         if (!check_only &amp;&amp; !ctl-&gt;keep &amp;&amp; count &gt; 0)
+    737         {
+    738             ok = internal_expunge(sock);
+    739             if (ok)
+
+This generates the EXPUNGE you see.  However this only happens for the 
+first message, since this is the &quot;else&quot; case of the if statement:
+
+    672     if (pass &gt; 1)
+    673     {
+    674         /* deleted mails have already been expunged by
+    675          * end_mailbox_poll().
+
+and will only be taken before the first message has been seen. After the 
+first message has been seen no EXPUNGE is sent (and the comment suggests 
+why the code does not do an EXPUNGE in this case).
+
+A trace shows exactly this behaviour:
+
+First time:
+
+    18:00:55 setitimer(ITIMER_REAL, {it_interval={0, 0}, it_value={0,
+    0}}, NULL) = 018:00:55 setitimer(ITIMER_REAL, {it_interval={0, 0},
+    it_value={28, 0}}, NULL) = 0
+    18:00:55 recv(4, 0xbfea66fb, 8192, MSG_PEEK) = ? ERESTARTSYS (To be
+    restarted)
+    18:01:23 --- SIGALRM (Alarm clock) @ 0 (0) ---
+    18:01:23 sigreturn()                    = ? (mask now [])
+    18:01:23 setitimer(ITIMER_REAL, {it_interval={0, 0}, it_value={0,
+    0}}, NULL) = 018:01:23 setitimer(ITIMER_REAL, {it_interval={0, 0},
+    it_value={0, 0}}, NULL) = 0
+    18:01:23 write(4, &quot;A0013 NOOP\r\n&quot;, 12) = 12
+    18:01:23 setitimer(ITIMER_REAL, {it_interval={0, 0}, it_value={300,
+    0}}, NULL) = 0
+    18:01:23 recv(4, &quot;A0013 OK NOOP completed\r\n&quot;, 8192, MSG_PEEK) = 25
+    18:01:23 read(4, &quot;A0013 OK NOOP completed\r\n&quot;, 25) = 25
+    18:01:23 setitimer(ITIMER_REAL, {it_interval={0, 0}, it_value={0,
+    0}}, NULL) = 018:01:23 setitimer(ITIMER_REAL, {it_interval={0, 0},
+    it_value={28, 0}}, NULL) = 0
+    18:01:23 recv(4, &quot;* 1 EXISTS\r\n&quot;, 8192, MSG_PEEK) = 12
+    18:01:47 read(4, &quot;* 1 EXISTS\r\n&quot;, 12)  = 12
+    18:01:47 setitimer(ITIMER_REAL, {it_interval={0, 0}, it_value={0,
+    0}}, NULL) = 018:01:47 setitimer(ITIMER_REAL, {it_interval={0, 0},
+    it_value={0, 0}}, NULL) = 0
+    18:01:47 write(4, &quot;A0014 EXPUNGE\r\n&quot;, 15) = 15
+    18:01:47 setitimer(ITIMER_REAL, {it_interval={0, 0}, it_value={300,
+    0}}, NULL) = 0
+    18:01:47 recv(4, &quot;* 1 RECENT\r\nA0014 OK EXPUNGE completed\r\n&quot;,
+    8192, MSG_PEEK) = 40
+    18:01:47 read(4, &quot;* 1 RECENT\r\n&quot;, 12)  = 12
+    18:01:47 setitimer(ITIMER_REAL, {it_interval={0, 0}, it_value={0,
+    0}}, NULL) = 018:01:47 setitimer(ITIMER_REAL, {it_interval={0, 0},
+    it_value={300, 0}}, NULL) = 0
+    18:01:47 recv(4, &quot;A0014 OK EXPUNGE completed\r\n&quot;, 8192, MSG_PEEK) = 28
+    18:01:47 read(4, &quot;A0014 OK EXPUNGE completed\r\n&quot;, 28) = 2818:01:47
+    setitimer(ITIMER_REAL, {it_interval={0, 0}, it_value={0, 0}}, NULL) = 0
+    18:01:47 write(4, &quot;A0015 FETCH 1 RFC822.SIZE\r\n&quot;, 27) = 27
+    18:01:47 setitimer(ITIMER_REAL, {it_interval={0, 0}, it_value={300,
+    0}}, NULL) = 0
+    18:01:47 recv(4, &quot;* 1 FETCH (RFC822.SIZE 7640)\r\n&quot;, 8192, MSG_PEEK)
+    = 30
+
+Later times:
+
+    18:03:12 setitimer(ITIMER_REAL, {it_interval={0, 0}, it_value={28,
+    0}}, NULL) = 0
+    18:03:12 recv(4, 0xbfea66fb, 8192, MSG_PEEK) = ? ERESTARTSYS (To be
+    restarted)
+    18:03:40 --- SIGALRM (Alarm clock) @ 0 (0) ---
+    18:03:40 sigreturn()                    = ? (mask now [])
+    18:03:40 setitimer(ITIMER_REAL, {it_interval={0, 0}, it_value={0,
+    0}}, NULL) = 018:03:40 setitimer(ITIMER_REAL, {it_interval={0, 0},
+    it_value={0, 0}}, NULL) = 0 18:03:40 write(4, &quot;A0024 NOOP\r\n&quot;, 12) = 12
+    18:03:40 setitimer(ITIMER_REAL, {it_interval={0, 0}, it_value={300,
+    0}}, NULL) = 0
+    18:03:40 recv(4, &quot;A0024 OK NOOP completed\r\n&quot;, 8192, MSG_PEEK) = 25
+    18:03:40 read(4, &quot;A0024 OK NOOP completed\r\n&quot;, 25) = 25
+    18:03:40 setitimer(ITIMER_REAL, {it_interval={0, 0}, it_value={0,
+    0}}, NULL) = 018:03:40 setitimer(ITIMER_REAL, {it_interval={0, 0},
+    it_value={28, 0}}, NULL) = 0
+    18:03:40 recv(4, &quot;* 1 EXISTS\r\n&quot;, 8192, MSG_PEEK) = 12
+    18:03:49 read(4, &quot;* 1 EXISTS\r\n&quot;, 12)  = 12
+    18:03:49 setitimer(ITIMER_REAL, {it_interval={0, 0}, it_value={0,
+    0}}, NULL) = 018:03:49 setitimer(ITIMER_REAL, {it_interval={0, 0},
+    it_value={0, 0}}, NULL) = 018:03:49 write(4, &quot;A0025 NOOP\r\n&quot;, 12) = 12
+    18:03:49 setitimer(ITIMER_REAL, {it_interval={0, 0}, it_value={300,
+    0}}, NULL) = 0
+    18:03:49 recv(4, &quot;* 1 RECENT\r\nA0025 OK NOOP completed\r\n&quot;, 8192,
+    MSG_PEEK) = 37
+    18:03:49 read(4, &quot;* 1 RECENT\r\n&quot;, 12)  = 12
+    18:03:49 setitimer(ITIMER_REAL, {it_interval={0, 0}, it_value={0,
+    0}}, NULL) = 018:03:49 setitimer(ITIMER_REAL, {it_interval={0, 0},
+    it_value={300, 0}}, NULL) = 0
+    18:03:49 recv(4, &quot;A0025 OK NOOP completed\r\n&quot;, 8192, MSG_PEEK) = 25
+    18:03:49 read(4, &quot;A0025 OK NOOP completed\r\n&quot;, 25) = 25
+    18:03:49 setitimer(ITIMER_REAL, {it_interval={0, 0}, it_value={0,
+    0}}, NULL) = 018:03:49 setitimer(ITIMER_REAL, {it_interval={0, 0},
+    it_value={0, 0}}, NULL) = 018:03:49 write(4, &quot;A0026 FETCH 1
+    RFC822.SIZE\r\n&quot;, 27) = 27
+
+After the first RECEIVE further RECEIVES are followed by a FETCH without 
+intervening EXPUNGE.
+
+Brendan
+
+<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">matthias.andree at gmx.de</A> wrote:
+
+&gt;<i>I've committed the patch. One thing makes me wonder though:
+</I>&gt;<i>
+</I>&gt;<i>fetchmail: IMAP&gt; A0004 NOOP
+</I>&gt;<i>fetchmail: IMAP&lt; A0004 OK NOOP completed.
+</I>&gt;<i>fetchmail: IMAP&gt; A0005 NOOP
+</I>&gt;<i>fetchmail: IMAP&lt; * 1 EXISTS
+</I>&gt;<i>fetchmail: IMAP&lt; * 1 RECENT
+</I>&gt;<i>fetchmail: IMAP&lt; A0005 OK NOOP completed.
+</I>&gt;<i>fetchmail: IMAP&gt; A0006 EXPUNGE
+</I>&gt;<i>fetchmail: IMAP&lt; A0006 OK Expunge completed.
+</I>&gt;<i>
+</I>&gt;<i>Why does fetchmail perform an EXPUNGE after NOOP?
+</I>&gt;<i>Accident or intent?
+</I>&gt;<i>
+</I>&gt;<i>  
+</I>&gt;<i>
+</I>-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/fetchmail-users/attachments/20060313/9c467909/attachment.html">https://lists.berlios.de/pipermail/fetchmail-users/attachments/20060313/9c467909/attachment.html</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000320.html">[fetchmail-users] [PATCH-2] Re: Bug in imap_idle() with mail servers not supporting &quot;idle&quot;
+</A></li>
+	<LI>Next message: <A HREF="000317.html">[fetchmail-users] [PATCH] Re: Bug in imap_idle() with mail servers not supporting &quot;idle&quot;
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#316">[ date ]</a>
+              <a href="thread.html#316">[ thread ]</a>
+              <a href="subject.html#316">[ subject ]</a>
+              <a href="author.html#316">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,106 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] IMAP problem
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2007-February/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20IMAP%20problem&In-Reply-To=%3C43ea8d070702122320l1bded2bfja4eee42b7d2805a0%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000813.html">
+   <LINK REL="Next"  HREF="000815.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] IMAP problem</H1>
+    <B>Rob MacGregor</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20IMAP%20problem&In-Reply-To=%3C43ea8d070702122320l1bded2bfja4eee42b7d2805a0%40mail.gmail.com%3E"
+       TITLE="[fetchmail-users] IMAP problem">rob.macgregor at gmail.com
+       </A><BR>
+    <I>Tue Feb 13 08:20:01 CET 2007</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000813.html">[fetchmail-users] IMAP problem
+</A></li>
+        <LI>Next message: <A HREF="000815.html">[fetchmail-users] IMAP problem
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#814">[ date ]</a>
+              <a href="thread.html#814">[ thread ]</a>
+              <a href="subject.html#814">[ subject ]</a>
+              <a href="author.html#814">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On 2/12/07, Alain Chofardet &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">Alain.Chofardet at them-is.fr</A>&gt; wrote:
+&gt;<i>
+</I>&gt;<i> Hi.
+</I>&gt;<i>
+</I>&gt;<i> I'm quite a newbie with Fetchmail, and I've read the FAQs before writing to
+</I>&gt;<i> this list.
+</I>
+But apparently not the one that tells you what to report :)
+
+&gt;<i> This is my problem : I need to fetch mails from an IMAP account and direct
+</I>&gt;<i> them to the local SMTP port. Fetchmail seems the perfect tool for that.
+</I>&gt;<i> However, the mails I fetch from the IMAP account are mainly composed with an
+</I>&gt;<i> attached file.
+</I>
+So, how about at least some of the details the FAQ asks for:
+
+1) Version of fetchmail
+
+2) Contents of .fetchmailrc
+
+3) Output of &quot;fetchmail -v -v --nosyslog&quot; (and any other command line
+arguments you usually use)
+
+4) The OS you're using
+
+&gt;<i> The fetch body[text] command seems to be the one used by fetchmail and
+</I>&gt;<i> doesn't download the file.
+</I>
+Correction - results in the IMAP server providing the original email
+
+&gt;<i> The &quot;fetch body[]&quot; command works for what I have to do.
+</I>
+And in that case the IMAP server seems to be providing the remote part
+of the message for you (the &quot;missing&quot; body part in the first email is
+external, so there's nothing for fetchmail to download).
+
+I'd say the IMAP server is behaving strangely, but I'm not sure what
+the expected behavior for external body parts is.
+
+-- 
+                 Please keep list traffic on the list.
+
+Rob MacGregor
+      Whoever fights monsters should see to it that in the process he
+        doesn't become a monster.                  Friedrich Nietzsche
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000813.html">[fetchmail-users] IMAP problem
+</A></li>
+	<LI>Next message: <A HREF="000815.html">[fetchmail-users] IMAP problem
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#814">[ date ]</a>
+              <a href="thread.html#814">[ thread ]</a>
+              <a href="subject.html#814">[ subject ]</a>
+              <a href="author.html#814">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

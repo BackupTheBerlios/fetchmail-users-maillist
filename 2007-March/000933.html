@@ -1,0 +1,105 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] how to avoid ipv6 address?
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2007-March/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20how%20to%20avoid%20ipv6%20address%3F&In-Reply-To=%3C20070326154008.GA7814%40straylight.m.ringlet.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000937.html">
+   <LINK REL="Next"  HREF="000934.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] how to avoid ipv6 address?</H1>
+    <B>Peter Pentchev</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20how%20to%20avoid%20ipv6%20address%3F&In-Reply-To=%3C20070326154008.GA7814%40straylight.m.ringlet.net%3E"
+       TITLE="[fetchmail-users] how to avoid ipv6 address?">roam at ringlet.net
+       </A><BR>
+    <I>Mon Mar 26 17:40:08 CEST 2007</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000937.html">[fetchmail-users] Groupwise
+</A></li>
+        <LI>Next message: <A HREF="000934.html">[fetchmail-users] signed list mail (was Re: how to avoid ipv6	address?)
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#933">[ date ]</a>
+              <a href="thread.html#933">[ thread ]</a>
+              <a href="subject.html#933">[ subject ]</a>
+              <a href="author.html#933">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Mon, Mar 26, 2007 at 06:16:51PM +0300, Peter Pentchev wrote:
+&gt;<i> On Mon, Mar 26, 2007 at 02:48:22PM +0000, Rob MacGregor wrote:
+</I>&gt;<i> &gt; On 3/26/07, Christian Ebert &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">blacktrash at gmx.org</A>&gt; wrote:
+</I>&gt;<i> &gt; &gt; Hello,
+</I>&gt;<i> &gt; &gt;
+</I>&gt;<i> &gt; &gt; When polling, fetchmail gives the following warning after the
+</I>&gt;<i> &gt; &gt; first message:
+</I>&gt;<i> &gt; &gt;
+</I>&gt;<i> &gt; &gt; Trying to connect to ::1/25...connection failed.
+</I>&gt;<i> &gt; &gt; fetchmail: connection to localhost:smtp [::1/25] failed: Connection refused.
+</I>&gt;<i> &gt; &gt; Trying to connect to 127.0.0.1/25...connected.
+</I>&gt;<i> &gt; &lt;---SNIP---&gt;
+</I>&gt;<i> &gt; &gt; Otherwise everything is working fine, I just wanted to know
+</I>&gt;<i> &gt; &gt; whether there's an &quot;innocent&quot; way to get rid of this warning?
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; 1) Have your mail server listen on IPv6 loopback
+</I>&gt;<i> &gt; 2) Disable IPv6 on your host
+</I>&gt;<i> &gt; 3) Edit your /etc/hosts and comment out the IPv6 loopback
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; I don't believe there is any way in fetchmail to tell it not to use
+</I>&gt;<i> &gt; IPv6.  I think your only option is to either ensure that your SMTP
+</I>&gt;<i> &gt; server listens on IPv6 or disable IPv6 (or at least the lookup), with
+</I>&gt;<i> &gt; the first being the cleanest approach IMO.
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; You could also simply specify the smtphost as 127.0.0.1.
+</I>&gt;<i> 
+</I>
+...resending my own reply, since the berlios server seems to dislike
+multipart/signed messages containing a text/plain part and
+an application/pgp-signature part:
+
+&gt;<i> And, of course,
+</I>&gt;<i> 
+</I>&gt;<i> 4) Edit your /etc/hosts, add another alias for 127.0.0.1 and specify that
+</I>&gt;<i>    as fetchmail's smtphost.
+</I>
+G'luck,
+Peter
+
+-- 
+Peter Pentchev	<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">roam at ringlet.net</A>    <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">roam at cnsys.bg</A>    <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">roam at FreeBSD.org</A>
+PGP key:	<A HREF="http://people.FreeBSD.org/~roam/roam.key.asc">http://people.FreeBSD.org/~roam/roam.key.asc</A>
+Key fingerprint	FDBA FD79 C26F 3C51 C95E  DF9E ED18 B68D 1619 4553
+This sentence would be seven words long if it were six words shorter.
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000937.html">[fetchmail-users] Groupwise
+</A></li>
+	<LI>Next message: <A HREF="000934.html">[fetchmail-users] signed list mail (was Re: how to avoid ipv6	address?)
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#933">[ date ]</a>
+              <a href="thread.html#933">[ thread ]</a>
+              <a href="subject.html#933">[ subject ]</a>
+              <a href="author.html#933">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

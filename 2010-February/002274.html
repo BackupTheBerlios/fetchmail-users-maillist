@@ -1,0 +1,120 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] incorrect header line found while scanning headers
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2010-February/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20incorrect%20header%20line%20found%20while%20scanning%20headers&In-Reply-To=%3C4B6C0729.3000108%40Message-ID.plonk.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002273.html">
+   <LINK REL="Next"  HREF="002275.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] incorrect header line found while scanning headers</H1>
+    <B>Jakob Hirsch</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20incorrect%20header%20line%20found%20while%20scanning%20headers&In-Reply-To=%3C4B6C0729.3000108%40Message-ID.plonk.de%3E"
+       TITLE="[fetchmail-users] incorrect header line found while scanning headers">jh at plonk.de
+       </A><BR>
+    <I>Fri Feb  5 12:55:21 CET 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002273.html">[fetchmail-users] fetchmail 6.3.14 security fix release and fetchmail-SA-2010-01 security announcement
+</A></li>
+        <LI>Next message: <A HREF="002275.html">[fetchmail-users] incorrect header line found while scanning headers
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2274">[ date ]</a>
+              <a href="thread.html#2274">[ thread ]</a>
+              <a href="subject.html#2274">[ subject ]</a>
+              <a href="author.html#2274">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+some mails are piling up in my web.de account. The messages are
+obviously malformed, as there is a line with four spaces instead of an
+empty line following the headers:
+
+&gt;<i> 000011b0  74 5f 57 45 42 2e 44 45  22 0d 0a 4d 49 4d 45 2d  |t_WEB.DE&quot;..MIME-|
+</I>&gt;<i> 000011c0  56 65 72 73 69 6f 6e 3a  20 31 2e 30 0d 0a 44 61  |Version: 1.0..Da|
+</I>&gt;<i> 000011d0  74 65 3a 20 54 68 75 2c  20 32 31 20 4a 61 6e 20  |te: Thu, 21 Jan |
+</I>&gt;<i> 000011e0  32 30 31 30 20 31 34 3a  32 32 3a 35 36 20 2b 30  |2010 14:22:56 +0|
+</I>&gt;<i> 000011f0  31 30 30 0a 53 65 6e 64  65 72 3a 20 66 6d 6e 65  |100.Sender: fmne|
+</I>&gt;<i> 00001200  77 73 40 77 65 62 2e 64  65 0a 20 20 20 20 0d 0a  |<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">ws at web.de.</A>    ..|
+</I>&gt;<i> 00001210  54 68 69 73 20 69 73 20  61 20 6d 75 6c 74 69 2d  |This is a multi-|
+</I>&gt;<i> 00001220  70 61 72 74 20 6d 65 73  73 61 67 65 20 69 6e 20  |part message in |
+</I>&gt;<i> 00001230  4d 49 4d 45 20 66 6f 72  6d 61 74 2e 0d 0a 0d 0a  |MIME format.....|
+</I>&gt;<i> 00001240  29 0d 0a 41 30 30 30 37  20 4f 4b 20 46 45 54 43  |)..A0007 OK FETC|
+</I>&gt;<i> 00001250  48 20 43 6f 6d 70 6c 65  74 65 64 0d 0a 2a 20 42  |H Completed..* B|
+</I>
+(That the last two header lines are only terminated with \n instead of
+\r\n is only a minor problem, albeit a little obscure.)
+
+Fetchmail stumbles over the next line, &quot;This is a multi-part message in
+MIME format.&quot;, because that's not a valid header line, of course:
+
+&gt;<i> fetchmail: IMAP&gt; A0006 FETCH 1 RFC822.HEADER
+</I>&gt;<i> fetchmail: IMAP&lt; * 1 FETCH (RFC822.HEADER {405}
+</I>&gt;<i> reading message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">jxxxxxxxxxx at imap.web.de</A>:1 of 5 (405 header octets) fetchmail: incorrect header line found while scanning headers
+</I>&gt;<i> fetchmail: line: This is a multi-part message in MIME format.
+</I>&gt;<i> 
+</I>&gt;<i> fetchmail: IMAP&lt; )
+</I>&gt;<i> fetchmail: IMAP&lt; A0006 OK FETCH Completed
+</I>&gt;<i>  not flushed
+</I>
+The relevant config is:
+
+set no bouncemail
+
+defaults
+  timeout 30
+  mda &quot;/usr/sbin/sendmail -oi jh.%<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">T at plonk.de</A>&quot;
+  is &quot;jh&quot; here
+  sslcertck
+  no rewrite
+
+poll imap.web.de proto imap user jxxxxxxxxx pass xxxxxx fetchall ssl to
+&quot;my_local_user&quot;
+
+
+So my questions are:
+- Why does fetchmail need to scan the headers at all? What I want is
+fetchmail to just pass it through to my LDA.
+- Wouldn't it be better to ignore invalid header lines? And if such a
+error happens, the error message should be printed even with --silent set.
+
+
+
+Regards,
+J
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002273.html">[fetchmail-users] fetchmail 6.3.14 security fix release and fetchmail-SA-2010-01 security announcement
+</A></li>
+	<LI>Next message: <A HREF="002275.html">[fetchmail-users] incorrect header line found while scanning headers
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2274">[ date ]</a>
+              <a href="thread.html#2274">[ thread ]</a>
+              <a href="subject.html#2274">[ subject ]</a>
+              <a href="author.html#2274">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,101 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] poblems with pop3 and expunge
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2010-June/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20poblems%20with%20pop3%20and%20expunge&In-Reply-To=%3C10851590.471.1277417211223.JavaMail.root%40kowalski.yetopen.it%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002392.html">
+   <LINK REL="Next"  HREF="002394.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] poblems with pop3 and expunge</H1>
+    <B>Lorenzo Milesi</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20poblems%20with%20pop3%20and%20expunge&In-Reply-To=%3C10851590.471.1277417211223.JavaMail.root%40kowalski.yetopen.it%3E"
+       TITLE="[fetchmail-users] poblems with pop3 and expunge">lorenzo.milesi at yetopen.it
+       </A><BR>
+    <I>Fri Jun 25 00:06:51 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002392.html">[fetchmail-users] multi-drop problem on osx, duplicate emails received.
+</A></li>
+        <LI>Next message: <A HREF="002394.html">[fetchmail-users] poblems with pop3 and expunge
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2393">[ date ]</a>
+              <a href="thread.html#2393">[ thread ]</a>
+              <a href="subject.html#2393">[ subject ]</a>
+              <a href="author.html#2393">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi.
+
+I configured a system fetchmail to use expunge, in order to be sure I could delete mails.
+Sadly, this doesn't seem to work...
+My /etc/fetchmailrc looks as follows:
+
+set daemon 300
+set syslog
+defaults proto pop3 timeout 18000 uidl expunge 500
+poll my.mail.server proto pop3 
+    user &quot;my_account&quot; password &quot;my_pass&quot; is &quot;user&quot;  keep expunge 50
+
+but I see no command after the 50th deleted mail. It goes straight to the end, when the pop3 server takes ages to respond to QUIT (I have a lot of messages on this mbox), so wasting time.
+I tried several times but no way.
+
+What's wrong?
+
+I'm issuing the folowing:
+su - fetchmail -c &quot;/usr/bin/fetchmail -F -d0 -f /etc/fetchmailrc -i /var/lib/fetchmail/.fetchmail-UIDL-cache &quot;
+
+using fm 6.3.6-1etch2 on debian etch.
+
+thanks
+-- 
+Lorenzo Milesi - <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">lorenzo.milesi at yetopen.it</A>
+
+YetOpen S.r.l. - <A HREF="http://www.yetopen.it/">http://www.yetopen.it/</A>
+Via Torri Tarelli 19 - 23900 Lecco - ITALY -
+Tel 0341 220 205 - Fax 178 6070 222
+
+GPG/PGP Key-Id: 0xE704E230 - <A HREF="http://keyserver.linux.it">http://keyserver.linux.it</A>
+
+-------- D.Lgs. 196/2003 --------
+
+Si avverte che tutte le informazioni contenute in questo messaggio sono
+riservate ed a uso esclusivo del destinatario. Nel caso in cui questo
+messaggio Le fosse pervenuto per errore, La invitiamo ad eliminarlo
+senza copiarlo, a non inoltrarlo a terzi e ad avvertirci non appena
+possibile.
+Grazie.
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002392.html">[fetchmail-users] multi-drop problem on osx, duplicate emails received.
+</A></li>
+	<LI>Next message: <A HREF="002394.html">[fetchmail-users] poblems with pop3 and expunge
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2393">[ date ]</a>
+              <a href="thread.html#2393">[ thread ]</a>
+              <a href="subject.html#2393">[ subject ]</a>
+              <a href="author.html#2393">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,97 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] fetchmail stops when it gets an e-mail with no subject and body for yahoo
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2010-December/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%20stops%20when%20it%20gets%20an%20e-mail%20with%0A%20no%20subject%20and%20body%20for%20yahoo&In-Reply-To=%3C20101210125413.GA10104%40merlin.emma.line.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002590.html">
+   <LINK REL="Next"  HREF="002592.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] fetchmail stops when it gets an e-mail with no subject and body for yahoo</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%20stops%20when%20it%20gets%20an%20e-mail%20with%0A%20no%20subject%20and%20body%20for%20yahoo&In-Reply-To=%3C20101210125413.GA10104%40merlin.emma.line.org%3E"
+       TITLE="[fetchmail-users] fetchmail stops when it gets an e-mail with no subject and body for yahoo">matthias.andree at gmx.de
+       </A><BR>
+    <I>Fri Dec 10 13:54:13 CET 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002590.html">[fetchmail-users] fetchmail stops when it gets an e-mail with no	subject and body for yahoo
+</A></li>
+        <LI>Next message: <A HREF="002592.html">[fetchmail-users] fetchmail stops when it gets an e-mail with no	subject and body for yahoo
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2591">[ date ]</a>
+              <a href="thread.html#2591">[ thread ]</a>
+              <a href="subject.html#2591">[ subject ]</a>
+              <a href="author.html#2591">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Here's the attachment for the list, it got stripped by the list driver
+the first time around. Sorry.
+-------------- next part --------------
+commit 5a52b46d72abea688eda72c403634ec95046db40
+Author: Matthias Andree &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">matthias.andree at gmx.de</A>&gt;
+Date:   Fri Dec 10 13:47:13 2010 +0100
+
+    Hack: support quoted string in imap_fetch_body()
+    
+    This is seen on Yahoo in * 123 FETCH (BODY[TEXT] &quot;&quot;), reported by
+    Yasin Malli.
+
+diff --git a/imap.c b/imap.c
+index 11b206c..1364027 100644
+--- a/imap.c
++++ b/imap.c
+@@ -1264,6 +1264,13 @@ static int imap_fetch_body(int sock, struct query *ctl, int number, int *lenp)
+ 	    return PS_SUCCESS;
+     }
+ 
++    /* Understand the empty string. Seen on Yahoo. */
++    /* XXX FIXME: we should be able to handle strings here. */
++    if (strstr(buf+10, &quot;\&quot;\&quot;)&quot;)) {
++	    *lenp = 0;
++	    return PS_SUCCESS;
++    }
++
+     /*
+      * Try to extract a length from the FETCH response.  RFC2060 requires
+      * it to be present, but at least one IMAP server (Novell GroupWise)
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: not available
+Type: application/pgp-signature
+Size: 198 bytes
+Desc: not available
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/fetchmail-users/attachments/20101210/8b5d0e6d/attachment.pgp">https://lists.berlios.de/pipermail/fetchmail-users/attachments/20101210/8b5d0e6d/attachment.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002590.html">[fetchmail-users] fetchmail stops when it gets an e-mail with no	subject and body for yahoo
+</A></li>
+	<LI>Next message: <A HREF="002592.html">[fetchmail-users] fetchmail stops when it gets an e-mail with no	subject and body for yahoo
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2591">[ date ]</a>
+              <a href="thread.html#2591">[ thread ]</a>
+              <a href="subject.html#2591">[ subject ]</a>
+              <a href="author.html#2591">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

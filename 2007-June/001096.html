@@ -1,0 +1,102 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] 2 Fetchmail Questions
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2007-June/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%202%20Fetchmail%20Questions&In-Reply-To=%3C43ea8d070706202325n4bf3e985w5bca50e7b96b093e%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001095.html">
+   <LINK REL="Next"  HREF="001097.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] 2 Fetchmail Questions</H1>
+    <B>Rob MacGregor</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%202%20Fetchmail%20Questions&In-Reply-To=%3C43ea8d070706202325n4bf3e985w5bca50e7b96b093e%40mail.gmail.com%3E"
+       TITLE="[fetchmail-users] 2 Fetchmail Questions">rob.macgregor at gmail.com
+       </A><BR>
+    <I>Thu Jun 21 08:25:52 CEST 2007</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001095.html">[fetchmail-users] 2 Fetchmail Questions
+</A></li>
+        <LI>Next message: <A HREF="001097.html">[fetchmail-users] 2 Fetchmail Questions
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1096">[ date ]</a>
+              <a href="thread.html#1096">[ thread ]</a>
+              <a href="subject.html#1096">[ subject ]</a>
+              <a href="author.html#1096">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On 6/21/07, Andrew &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">andrew.david.45 at gmail.com</A>&gt; wrote:
+&gt;<i> Hi,
+</I>&gt;<i>
+</I>&gt;<i>  I am in the process of setting up ssmtp / mutt / fetchmail and
+</I>&gt;<i> procmail to read and send email using gmail as a relay. Version of
+</I>&gt;<i> fetchmail is  6.3.8+SSL+NLS (compiled with ssl support. Can I ask a
+</I>&gt;<i> few questions about the test run below:
+</I>&gt;<i>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">andrew at ilium</A>:~$ fetchmail -v
+</I>&gt;<i>
+</I>&gt;<i> 1. It looks to me as if I have achieved an ssl connection. Is this true?
+</I>
+Yes
+
+&gt;<i> 2. I don't understand the error message in the middle:
+</I>&gt;<i>
+</I>&gt;<i> fetchmail: POP3&lt; +OK 1 544
+</I>&gt;<i> fetchmail: POP3&gt; LAST
+</I>&gt;<i> fetchmail: POP3&lt; -ERR Not supported
+</I>&gt;<i> fetchmail: Not supported
+</I>&gt;<i>
+</I>&gt;<i>  Is this something I should be addressing?
+</I>
+No, the error is from GMail and says that GMail's POP3 service doesn't
+support the LAST command.
+
+&gt;<i> 3. I don't understand 'flushing'? I have set fetchmail to _not_ keep
+</I>&gt;<i> messages which activates this message but the messages remain on the
+</I>&gt;<i> gmail server. I suspect that this is a noob question :-)
+</I>
+GMail's POP3 access works a little oddly that way - you configure your
+choice in GMail and that overrides any settings you make to your POP3
+client.  You've probably got yours at the default still.  Try changing
+it to either archive or delete.
+
+-- 
+                 Please keep list traffic on the list.
+
+Rob MacGregor
+      Whoever fights monsters should see to it that in the process he
+        doesn't become a monster.                  Friedrich Nietzsche
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001095.html">[fetchmail-users] 2 Fetchmail Questions
+</A></li>
+	<LI>Next message: <A HREF="001097.html">[fetchmail-users] 2 Fetchmail Questions
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1096">[ date ]</a>
+              <a href="thread.html#1096">[ thread ]</a>
+              <a href="subject.html#1096">[ subject ]</a>
+              <a href="author.html#1096">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

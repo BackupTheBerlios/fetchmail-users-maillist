@@ -1,0 +1,136 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] fetchmail authorization and socket errors
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2006-November/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%20authorization%20and%20socket%20errors&In-Reply-To=%3C20061111170722.ee8ace0f2c1f5306d64c0b7669778979.32cebd6ef6.wbe%40email.secureserver.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000688.html">
+   <LINK REL="Next"  HREF="000690.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] fetchmail authorization and socket errors</H1>
+    <B>wade at wadesmart.com</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%20authorization%20and%20socket%20errors&In-Reply-To=%3C20061111170722.ee8ace0f2c1f5306d64c0b7669778979.32cebd6ef6.wbe%40email.secureserver.net%3E"
+       TITLE="[fetchmail-users] fetchmail authorization and socket errors">wade at wadesmart.com
+       </A><BR>
+    <I>Sun Nov 12 01:07:22 CET 2006</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000688.html">[fetchmail-users] fetchmail authorization and socket errors
+</A></li>
+        <LI>Next message: <A HREF="000690.html">[fetchmail-users] fetchmail authorization and socket errors
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#689">[ date ]</a>
+              <a href="thread.html#689">[ thread ]</a>
+              <a href="subject.html#689">[ subject ]</a>
+              <a href="author.html#689">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>
+
+&gt;<i> -------- Original Message --------
+</I>&gt;<i> Subject: Re: [fetchmail-users] fetchmail authorization and socket
+</I>&gt;<i> errors
+</I>&gt;<i> From: Gerard Seibert &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">gerard at seibercom.net</A>&gt;
+</I>&gt;<i> Date: Sat, November 11, 2006 4:43 pm
+</I>&gt;<i> To: <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">fetchmail-users at lists.berlios.de</A>
+</I>&gt;<i>
+</I>&gt;<i> On Saturday November 11, 2006 at 05:04:08 (PM) wade wrote:
+</I>&gt;<i>
+</I>&gt;<i> &gt; This is the .fetchmailrc
+</I>&gt;<i> &gt; # Configuration created Tue Oct 24 12:53:28 2006 by fetchmailconf 1.52
+</I>&gt;<i> &gt; $Revision: 4636 $
+</I>&gt;<i> &gt; set syslog
+</I>&gt;<i> &gt; set postmaster &quot;wadesmart&quot;
+</I>&gt;<i> &gt; set no bouncemail
+</I>&gt;<i> &gt; set no spambounce
+</I>&gt;<i> &gt; set properties &quot;&quot;
+</I>&gt;<i> &gt; set daemon 300
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; # setup first email service provider -&gt; WadeSmart
+</I>&gt;<i> &gt; 	poll mail.wadesmart.com
+</I>&gt;<i> &gt;        	uidl protocol pop3 auth password
+</I>&gt;<i> &gt;         user '<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">wade at wadesmart.com</A>' there with password 'password' is
+</I>&gt;<i> &gt; 'wade' here
+</I>&gt;<i> &gt;        	no keep
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; # setup third email service provider -&gt; Gmail
+</I>&gt;<i> &gt; 	poll pop.gmail.com
+</I>&gt;<i> &gt; 	uidl port 995 auth password
+</I>&gt;<i> &gt; 	user '<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">wadesmart at gmail.com</A>' there with password 'password'
+</I>&gt;<i> &gt; 	keep
+</I>&gt;<i> &gt; 	no fetchall
+</I>&gt;<i> &gt; 	ssl sslcertpath /etc/ssl/certs
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> I use fetchmail to access numerous accounts, including some 'gmail' ones also.
+</I>&gt;<i> My configuration for accessing 'gmail' is slightly different though.
+</I>&gt;<i>
+</I>&gt;<i> # Configuration created Sun Jul 30 19:38:15 2006 by fetchmailconf 1.52 $Revision: 4740 $
+</I>&gt;<i> set logfile &quot;/usr/home/ges/logs/fetchmail.log&quot;
+</I>&gt;<i> set postmaster &quot;postmaster&quot;
+</I>&gt;<i> set bouncemail
+</I>&gt;<i> set spambounce
+</I>&gt;<i> set properties &quot;&quot;
+</I>&gt;<i> set daemon 900
+</I>&gt;<i> poll pop.gmail.com with proto POP3 and options uidl
+</I>&gt;<i>     localdomains seibercom.net
+</I>&gt;<i>
+</I>&gt;<i>  user '<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">gerard.seibert at gmail.com</A>' there with password 'secret' is
+</I>&gt;<i> 'gerard-gmail' here options fetchall forcecr pass8bits ssl mimedecode
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> The only real difference is that I do not give it a specific port number.
+</I>&gt;<i> Have you tried removing it and seeing what transpires? Just a suggestion.
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> --
+</I>&gt;<i> Gerard
+</I>&gt;<i>
+</I>&gt;<i> The average housefly lives for one month.
+</I>&gt;<i> _______________________________________________
+</I>&gt;<i> fetchmail-users mailing list
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">fetchmail-users at lists.berlios.de</A>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">https://lists.berlios.de/mailman/listinfo/fetchmail-users</A>
+</I>
+11112006 1806 gmt-6
+
+Actually I got those settings from gmail help.
+I removed the port number and I still got the error.
+
+Wade
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000688.html">[fetchmail-users] fetchmail authorization and socket errors
+</A></li>
+	<LI>Next message: <A HREF="000690.html">[fetchmail-users] fetchmail authorization and socket errors
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#689">[ date ]</a>
+              <a href="thread.html#689">[ thread ]</a>
+              <a href="subject.html#689">[ subject ]</a>
+              <a href="author.html#689">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

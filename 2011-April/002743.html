@@ -1,0 +1,152 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] recieving multiple mails
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2011-April/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20recieving%20multiple%20mails&In-Reply-To=%3CBANLkTimgR9Ga1d_QOBfuurrXDAuAi%2BLovw%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002745.html">
+   <LINK REL="Next"  HREF="002744.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] recieving multiple mails</H1>
+    <B>Anshul Chauhan</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20recieving%20multiple%20mails&In-Reply-To=%3CBANLkTimgR9Ga1d_QOBfuurrXDAuAi%2BLovw%40mail.gmail.com%3E"
+       TITLE="[fetchmail-users] recieving multiple mails">chauhananshul at gmail.com
+       </A><BR>
+    <I>Sat Apr  9 09:29:04 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002745.html">[fetchmail-users] mapi status
+</A></li>
+        <LI>Next message: <A HREF="002744.html">[fetchmail-users] recieving multiple mails
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2743">[ date ]</a>
+              <a href="thread.html#2743">[ thread ]</a>
+              <a href="subject.html#2743">[ subject ]</a>
+              <a href="author.html#2743">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>hi,
+
+I'm using a catchall/multipop account for my domain, I'm using
+fetchmail-6.3.17-1_7.el5 with sendmail-8.13.8-8.el5 on Centos 5.5, below is
+my .fetchmailrc
+
+set daemon 120
+set postmaster &quot;postmaster&quot;
+set bouncemail
+set logfile /var/log/fetchmaillog
+set no spambounce
+set properties &quot;&quot;
+
+
+poll pop.mydomain.com
+        proto pop3
+        via pop.mydomain.com
+        timeout 60
+        envelope Delivered-To
+         user &quot;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">multipopuser at mydomain.com</A>&quot;
+        pass &quot;xxxxx&quot;
+        is *
+        fetchall
+
+My prob is i'm getting multiple mails, if someone sends mails to my domain
+from outside the local reciepients  are getting multiple copies of these
+mails, the mail headers for the prob are below
+
+
+*Return-Path:* &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">chauhananshul at yahoo.com</A>&gt;
+*Received:* from localhost.localdomain (localhost.localdomain [127.0.0.1])
+     by localhost.localdomain (8.13.8/8.13.8) with ESMTP id p2UFiq2D008098;
+     Wed, 30 Mar 2011 21:14:53 +0530
+*Envelope-to:* <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">user1 at mydomain.com</A>
+*Delivery-date:* Sat, 09 Apr 2011 02:07:18 -0500
+*Received:* from mydomain.com [34.186.13.196]
+     by localhost.localdomain with POP3 (fetchmail-6.3.17)
+     Wed, 30 Mar 2011 21:14:53 +0530 (IST)
+*Received:* from nm3.bullet.mail.in.yahoo.com ([121.101.151.225])
+     by uscentral13.myserverhosts.com with smtp (Exim 4.69)
+     (envelope-from &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">chauhananshul at yahoo.com</A>&gt;)
+     id 1Q8SGL-000648-EN
+     for <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">user1 at mydomain.com</A>; Sat, 09 Apr 2011 02:07:18 -0500
+*Received:* from [121.101.151.236] by nm3.bullet.mail.in.yahoo.com with
+NNFMP; 09 Apr 2011 07:11:12 -0000
+*Received:* from [121.101.151.234] by tm1.bullet.mail.in.yahoo.com with
+NNFMP; 09 Apr 2011 07:07:09 -0000
+*Received:* from [127.0.0.1] by omp1003.mail.in.yahoo.com with NNFMP; 09 Apr
+2011 07:08:05 -0000
+*X-Yahoo-Newman-Property:* ymail-3
+*X-Yahoo-Newman-Id:* <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">701590.89517.bm at omp1003.mail.in.yahoo.com</A>
+*Received:* (qmail 53141 invoked by uid 60001); 9 Apr 2011 07:07:14 -0000
+*DKIM-Signature:* v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com;
+s=s1024; t=1302332833; bh=blCut22tsQhGcy49sD6GbRoDeLcetpzO/y8JQ360swI=;
+h=Message-ID:X-YMail-OSG:Received:X-Mailer:Date:From:Subject:To:Cc:MIME-Version:Content-Type;
+b=esK8t4oWR7mYk7MU2UGolyvzvQx07EWG1m1qdYjwsDfchoeTe5eyphcw81XM2FtyqPM44cAsTP7AJgBg+tqAYSDHyeS1HoLm7BCMdQlVurk+grgqA5QHXobhXkNrRlsC0F25dTzHhP1NVN7+2yop8kJSGCC0wpMzS6T9eVT0haY=
+*DomainKey-Signature:* a=rsa-sha1; q=dns; c=nofws;
+     s=s1024; d=yahoo.com;
+
+h=Message-ID:X-YMail-OSG:Received:X-Mailer:Date:From:Subject:To:Cc:MIME-Version:Content-Type;
+
+b=eR5x+bubFRa+8FU7ofq+LaTrtsY1ZA+ipObIqRmdoPdXl878zS9wvnr9CFKWZkibstOjq07eqzEJ2no9YMNJMKsbx9bawtfNnB/u8GcOk7ZaR3FADLBJuEKke/lFBkrqyrVI5VWwfoS6r1w+HUuSw6mYnXdMg1TUv5/l5BGB7BM=;
+*Message-ID:* &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">933249.53025.qm at web95619.mail.in.yahoo.com</A>&gt;
+*X-YMail-OSG:* C1g86k0VM1kEpNWqE7XiLT2DsZ8tDGvoVzvk_PYbxhLoAn1
+     6aDq9EHxqDpiiJIoFzwiTgM0WgO6Te9JQdQDBZODJCB5fpGCeBpFNVyxZMAe
+     uuCKyERvaUuiWwYKWfcddhyjGOQFCdI2cQioSgDTZ.JPmyRKvmGX4gJSu5TW
+     SpKGhLBf.FXXzzqyzrYFfnUB4RYaPU1xBsNHwy5t.SJV.OjLA9IbNtKrMLYN
+     .FKsUJjwA1OAYxCGoyBsR6aDo1ztVtxIbOlL5LLf6lhwULA0Outb5EdhdQaM
+     dveFD7jk.Gz3S.BcSAuYzLULPjLyVzN4_1DgIIga91M0cIfEZ1iP8xGCTQD.
+     _LrPXPkVB7zryAc3.0sCu6yFcBW7d..Qwgr_ZehnRg1s1srnb
+*Received:* from [201.24.23.143] by web95619.mail.in.yahoo.com via HTTP;
+Sat, 09 Apr 2011 12:37:13 IST
+*X-Mailer:* YahooMailClassic/12.0.2 YahooMailWebService/0.8.109.295617
+*Date:* Sat, 9 Apr 2011 12:37:13 +0530 (IST)
+*From:* Anshul Chauhan &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">chauhananshul at yahoo.com</A>&gt;
+*Subject:* test mail
+*To:* <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">user1 at mydomain.com</A>
+*Cc:* <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">user2 at mydomain.com</A>
+*MIME-Version:* 1.0
+*Content-Type:* multipart/alternative;
+boundary=&quot;0-1846624203-1302332833=:53025&quot;
+
+
+
+Kindly suggest where is the problem, i'm not getting a hint of it.
+
+
+Warm Regards,
+Anshul Chauhan
+&quot;Never expect things to happen struggle &amp; make them happen Never expect
+yourself to be given a good value Create a value for your own..&quot;
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002745.html">[fetchmail-users] mapi status
+</A></li>
+	<LI>Next message: <A HREF="002744.html">[fetchmail-users] recieving multiple mails
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2743">[ date ]</a>
+              <a href="thread.html#2743">[ thread ]</a>
+              <a href="subject.html#2743">[ subject ]</a>
+              <a href="author.html#2743">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

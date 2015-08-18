@@ -1,0 +1,81 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] fetch email and delete spam
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2010-October/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetch%20email%20and%20delete%20spam&In-Reply-To=%3C4CB47648.30801%40gmx.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002500.html">
+   <LINK REL="Next"  HREF="002504.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] fetch email and delete spam</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetch%20email%20and%20delete%20spam&In-Reply-To=%3C4CB47648.30801%40gmx.de%3E"
+       TITLE="[fetchmail-users] fetch email and delete spam">matthias.andree at gmx.de
+       </A><BR>
+    <I>Tue Oct 12 16:52:56 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002500.html">[fetchmail-users] fetch email and delete spam
+</A></li>
+        <LI>Next message: <A HREF="002504.html">[fetchmail-users] fetch email and delete spam
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2501">[ date ]</a>
+              <a href="thread.html#2501">[ thread ]</a>
+              <a href="subject.html#2501">[ subject ]</a>
+              <a href="author.html#2501">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Am 12.10.2010 14:58, schrieb nightduke:
+&gt;<i> I want to check with fetchmail an email on a worst mail server, i have
+</I>&gt;<i> huge spam at that email but i still need use it.
+</I>&gt;<i> 
+</I>&gt;<i> Can i check email with fechtmail and check spam and clean spam mail on
+</I>&gt;<i> that email and keep the headers of good emails untouched?
+</I>
+Yes, you can. How you do that depends on how you intend to fetch. You can:
+
+- have fetchmail forward into your regular mail transfer agent (often Sendmail,
+Postfix, Exim) and install spam/virus scanners there - this is the default and
+requires an SMTP server listening on localhost port 25.
+
+- have fetchmail forward into a mail delivery agent (formerly procmail, now
+discouraged, or maildrop, recommended) and configure that to feed your mail
+through spam/virus filters before delivering it to your mailbox. See the --mda
+option.
+
+-- 
+Matthias Andree
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002500.html">[fetchmail-users] fetch email and delete spam
+</A></li>
+	<LI>Next message: <A HREF="002504.html">[fetchmail-users] fetch email and delete spam
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2501">[ date ]</a>
+              <a href="thread.html#2501">[ thread ]</a>
+              <a href="subject.html#2501">[ subject ]</a>
+              <a href="author.html#2501">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

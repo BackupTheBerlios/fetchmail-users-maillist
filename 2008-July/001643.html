@@ -1,0 +1,99 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Incorrect header line and lost mails
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2008-July/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Incorrect%20header%20line%20and%20lost%20mails&In-Reply-To=%3C489001FE.8040006%40wowcompany.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001641.html">
+   <LINK REL="Next"  HREF="001644.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Incorrect header line and lost mails</H1>
+    <B>Frederic Marchal</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Incorrect%20header%20line%20and%20lost%20mails&In-Reply-To=%3C489001FE.8040006%40wowcompany.com%3E"
+       TITLE="[fetchmail-users] Incorrect header line and lost mails">frederic.marchal at wowcompany.com
+       </A><BR>
+    <I>Wed Jul 30 07:54:06 CEST 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001641.html">[fetchmail-users] Fetching mail from POP3 folder
+</A></li>
+        <LI>Next message: <A HREF="001644.html">[fetchmail-users] Delivering mails to more users
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1643">[ date ]</a>
+              <a href="thread.html#1643">[ thread ]</a>
+              <a href="subject.html#1643">[ subject ]</a>
+              <a href="author.html#1643">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Franco Marenco a &#233;crit :
+&gt;<i> Sorry, concerning my previous message, I did not include the original
+</I>&gt;<i> post (after all this time maybe you don't remember the problem).
+</I>&gt;<i> Here it is.
+</I>&gt;<i>
+</I>&gt;<i> Please also note that I applied the patch to fetchmail version 6.3.8.
+</I>&gt;<i>
+</I>&gt;<i>  ---
+</I>&gt;<i>
+</I>&gt;<i> Hello,
+</I>&gt;<i>
+</I>&gt;<i> I've seen your mail dating back to 2006. I've seen no solution on
+</I>&gt;<i> the net. I've had the same problem, due to an error in my provider's
+</I>&gt;<i> server (hopefully fixed). As a result, I lost several days of e-mail
+</I>&gt;<i> :-(
+</I>&gt;<i>
+</I>&gt;<i> Therefore I have applied the following patch to the file transact.c
+</I>&gt;<i> before compiling (very easy, just commenting out one line). At least
+</I>&gt;<i> next time I will be sure I don't lose messages.
+</I>&gt;<i>
+</I>&gt;<i> Is there any reason why NOT to do this?
+</I>&gt;<i>   
+</I>
+I finally applied a similar patch myself except it is configurable in 
+the fetchmailrc file but I didn't submit it to the list because Matthias 
+wanted a solution that would encapsulate the offending e-mail in another 
+e-mail with a warning explaining why the mail was not delivered directly 
+to the user. I still haven't had any time to do that and I'm not sure my 
+users would appreciate it especially since it works well with the 
+current patch...
+
+If I remember well, the main concern was to avoid the blame of crashing 
+a poorly coded MTA or MDA by feeding it with known junk and be 
+responsible for keeping an invalid e-mail in the circuit without 
+sanitizing it.
+
+Frederic
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001641.html">[fetchmail-users] Fetching mail from POP3 folder
+</A></li>
+	<LI>Next message: <A HREF="001644.html">[fetchmail-users] Delivering mails to more users
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1643">[ date ]</a>
+              <a href="thread.html#1643">[ thread ]</a>
+              <a href="subject.html#1643">[ subject ]</a>
+              <a href="author.html#1643">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,117 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] losing mails because of &quot;incorrect	header	line found&quot;
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2008-September/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20losing%20mails%20because%20of%20%22incorrect%0A%09header%09line%20found%22&In-Reply-To=%3C20080916235401.GB19534%40merlin.emma.line.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001689.html">
+   <LINK REL="Next"  HREF="001691.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] losing mails because of &quot;incorrect	header	line found&quot;</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20losing%20mails%20because%20of%20%22incorrect%0A%09header%09line%20found%22&In-Reply-To=%3C20080916235401.GB19534%40merlin.emma.line.org%3E"
+       TITLE="[fetchmail-users] losing mails because of &quot;incorrect	header	line found&quot;">matthias.andree at gmx.de
+       </A><BR>
+    <I>Wed Sep 17 01:54:01 CEST 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001689.html">[fetchmail-users] losing mails because of &quot;incorrect header	line found&quot;
+</A></li>
+        <LI>Next message: <A HREF="001691.html">[fetchmail-users] losing mails because of &quot;incorrect header line found&quot;
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1690">[ date ]</a>
+              <a href="thread.html#1690">[ thread ]</a>
+              <a href="subject.html#1690">[ subject ]</a>
+              <a href="author.html#1690">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Rob MacGregor schrieb am 2008-09-16:
+
+&gt;<i> On Tue, Sep 16, 2008 at 21:47, Andy Spiegl &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">fetchmail.andy at spiegl.de</A>&gt; wrote:
+</I>&gt;<i> &gt; Hi,
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; I just had to find out that I lost quite a few mails throughout the
+</I>&gt;<i> &gt; last year because fetchmail found an &quot;incorrect header line while
+</I>&gt;<i> &gt; scanning headers&quot;.  *sigh*
+</I>&gt;<i> &gt; Of course it's not fetchmail's fault that there was an incorrect
+</I>&gt;<i> &gt; header line in these mails (bad mailer of the sender) but I can't
+</I>&gt;<i> &gt; believe that fetchmail simply dumped those mails!  I entrusted my
+</I>&gt;<i> &gt; mails to fetchmail for decades and was never disappointed so much.
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; More so because I found reports of this bug in the mailing list
+</I>&gt;<i> &gt; archives, e.g. this one by Frederic Marchal from July 2008:
+</I>&gt;<i> &gt;  [fetchmail-users] Incorrect header line and lost mails
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; If it's so hard to fix (which I can understand) why doesn't fetchmail
+</I>&gt;<i> &gt; simply reject to receive (i.e. not send a DELE) this mail from the
+</I>&gt;<i> &gt; mailserver?  I suppose I am not understanding the full story, but I
+</I>&gt;<i> &gt; refuse to believe that _dumping_ the mail is the best solution.
+</I>
+Before getting to follow up on what Rob wrote, some general statements
+in response to Andy's message:
+
+Well, fetchmail cannot make promises as to whether the next hop (MTA,
+LDA, whatever) will accept the message, so why bother? Accepting them in
+fetchmail is likely to cause the next hop to reject it anyways, and
+we're back on start with the whole discussion whether fetchmail should
+normalize or &quot;repair&quot; messages or whatever (the answer is no, it should
+not, BTW).
+
+Leaving it on the server doesn't help either except for clogging up the
+inbox with more and more unfetchable messages over time, the invalid
+headers won't magically cure themselves.
+
+Basically, broken messages are supposed to be rejected as early as
+possible, and Andy's inbound path failed at that. It's always a problem
+if a system reached earlier along the path is more permissive than
+systems reached later.
+
+I wonder how much of the dumped mail is actually legitimate and how much
+stems from broken spam engines.
+
+&gt;<i> &gt; Please let me know how to change this behaviour.
+</I>&gt;<i> 
+</I>&gt;<i> As discussed previously, there isn't a simple fix.  If fetchmail
+</I>&gt;<i> downloads the email it would be rejected by the MTA you pass it to.
+</I>&gt;<i> There have been a number of proposed solutions, but none are currently
+</I>&gt;<i> available (and there's only one developer).
+</I>
+Yup. I wonder if fetchmail's code is so scary nearly nobody dares
+contribute... yes, SOME pieces are, but not all of them. ;-)
+
+-- 
+Matthias Andree
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001689.html">[fetchmail-users] losing mails because of &quot;incorrect header	line found&quot;
+</A></li>
+	<LI>Next message: <A HREF="001691.html">[fetchmail-users] losing mails because of &quot;incorrect header line found&quot;
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1690">[ date ]</a>
+              <a href="thread.html#1690">[ thread ]</a>
+              <a href="subject.html#1690">[ subject ]</a>
+              <a href="author.html#1690">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

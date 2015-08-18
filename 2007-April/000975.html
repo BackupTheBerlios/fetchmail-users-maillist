@@ -1,0 +1,134 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Exchange Server 2003 IMAP NTLM - can someone offer me a test account?
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2007-April/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Exchange%20Server%202003%20IMAP%20NTLM%20-%20can%20someone%0A%20offer%20me%20a%20test%20account%3F&In-Reply-To=%3C461CEA1C.8050805%40muppethouse.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000974.html">
+   <LINK REL="Next"  HREF="000976.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Exchange Server 2003 IMAP NTLM - can someone offer me a test account?</H1>
+    <B>Ben Russo</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Exchange%20Server%202003%20IMAP%20NTLM%20-%20can%20someone%0A%20offer%20me%20a%20test%20account%3F&In-Reply-To=%3C461CEA1C.8050805%40muppethouse.com%3E"
+       TITLE="[fetchmail-users] Exchange Server 2003 IMAP NTLM - can someone offer me a test account?">Ben at muppethouse.com
+       </A><BR>
+    <I>Wed Apr 11 16:01:00 CEST 2007</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000974.html">[fetchmail-users] Exchange Server 2003 IMAP NTLM - can someone offer me a test account?
+</A></li>
+        <LI>Next message: <A HREF="000976.html">[fetchmail-users] Fetchmail Socket error on a satellite connection
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#975">[ date ]</a>
+              <a href="thread.html#975">[ thread ]</a>
+              <a href="subject.html#975">[ subject ]</a>
+              <a href="author.html#975">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Matthias Andree wrote:
+&gt;<i> Ben Russo schrieb:
+</I>&gt;<i>   
+</I>&gt;&gt;<i> Help?
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> I can open Outlook or use a browser to log into my account
+</I>&gt;&gt;<i> So I know that my username and password are correct.
+</I>&gt;&gt;<i> (I have tried to modify some of the info like password hashes and 
+</I>&gt;&gt;<i> usernames/hostnames to maintain some security for my company)
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Username:  user1
+</I>&gt;&gt;<i> Domain:    win2k
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> This works fine.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> When I try to login to the server it fails?
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> [<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">root at linuxdesktop</A> ~]# /usr/local/bin/fetchmail -v -v -v -c  -p IMAP -L 
+</I>&gt;&gt;<i> Fetchlog --auth ntlm -u &quot;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">user1 at win2k</A>&quot; mailserver.win2k.domain.com
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i>     
+</I>&gt;<i>   
+</I>Thanks for your reply!  What a great user community.
+And thanks to Mr. MacGregor too.
+
+With a little help from the Exchange Server admin I got squared away.
+He had to turn on logging on the server, and then checked the log.
+We found error 0x80040920 every time I tried to authenticate.
+    <A HREF="http://support.microsoft.com/kb/296387">http://support.microsoft.com/kb/296387</A>
+
+He opened up my account in the Windows Directory server (or Exchange server)
+and changed the mailbox alias so that it matched my Windows Login name
+&quot;user1&quot;
+The mailbox alias was  &quot;User.1&quot;  (where User is my first name and &quot;1&quot; 
+was my last name&quot;
+He also adjusted the primary and secondary SMTP alias, but I don't know 
+if that was necessary.
+It was primary SMTP <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">User.1 at domain.com</A>
+and secondary smtp  <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">user1 at domain.com</A>
+He swapped the two.
+
+Immediately after that it works fine.
+So I am all set.
+
+BTW, it can also fetch other folders in *my* mailbox.
+with
+
+      -r &quot;INBOX,Spam/Spam - Quarantine&quot;
+
+on the command line.
+
+My .fetchmailrc looks like this:
+
+set postmaster &quot;linuxuser&quot;
+set bouncemail
+set no spambounce
+set properties &quot;&quot;
+set logfile /home/linuxuser/.fetchmaillog
+set no syslog
+poll mailserver.win2k.domain.com with proto IMAP, auth ntlm user 
+&quot;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">user1 at win2k</A>&quot; with pass 'MyPassWord' is linuxuser here options fetchall
+
+My crontab looks like:
+
+*       *       *       *       *        /usr/local/bin/fetchmail -L 
+/home/linuxuser/.fetchmaillog -t 10 -B 10 -r &quot;INBOX,Spam/Spam - 
+Quarantine&quot; &gt; /dev/null
+
+
+Seems to work GREAT!
+
+Thanks again.
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000974.html">[fetchmail-users] Exchange Server 2003 IMAP NTLM - can someone offer me a test account?
+</A></li>
+	<LI>Next message: <A HREF="000976.html">[fetchmail-users] Fetchmail Socket error on a satellite connection
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#975">[ date ]</a>
+              <a href="thread.html#975">[ thread ]</a>
+              <a href="subject.html#975">[ subject ]</a>
+              <a href="author.html#975">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

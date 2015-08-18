@@ -1,0 +1,114 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] multidrop problem
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2009-May/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20multidrop%20problem&In-Reply-To=%3C43ea8d070905301203s9f2d2d0n65551dcea0e0c293%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001949.html">
+   <LINK REL="Next"  HREF="001951.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] multidrop problem</H1>
+    <B>Rob MacGregor</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20multidrop%20problem&In-Reply-To=%3C43ea8d070905301203s9f2d2d0n65551dcea0e0c293%40mail.gmail.com%3E"
+       TITLE="[fetchmail-users] multidrop problem">rob.macgregor at gmail.com
+       </A><BR>
+    <I>Sat May 30 21:03:43 CEST 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001949.html">[fetchmail-users] multidrop problem
+</A></li>
+        <LI>Next message: <A HREF="001951.html">[fetchmail-users] multidrop problem
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1950">[ date ]</a>
+              <a href="thread.html#1950">[ thread ]</a>
+              <a href="subject.html#1950">[ subject ]</a>
+              <a href="author.html#1950">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Sat, May 30, 2009 at 19:12, Peter Macko &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">peter_macko at yahoo.com</A>&gt; wrote:
+&gt;<i> I would like to ask for an advice. I am deploying a mail server and cannot make fetchmail to
+</I>&gt;<i> deliver emails from a multidrop account. This is my setup:
+</I>&gt;<i>
+</I>&gt;<i> 1. Mail server mail.domain.sk accepts emails for domain.sk (e.g. for <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">user at domain.sk</A>).
+</I>&gt;<i> &#160;&#160; This user has a forwad in the /etc/aliases: &quot;user: <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">user at domain.eu</A>&quot;
+</I>&gt;<i>
+</I>&gt;<i> 2. Mail server mail.domain.eu accepts emails for domain.eu (e.g. for <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">user at domain.eu</A>).
+</I>&gt;<i> &#160;&#160; This server accepts emails directly (SMTP) and by fetchmail from multidrop
+</I>&gt;<i> &#160;&#160; account pop3.xxx.sk.
+</I>&gt;<i> &#160;&#160; MX record for domain.eu: 10 mail.domain.eu, 100 smtp.xxx.sk (multidrop)
+</I>&gt;<i>
+</I>&gt;<i> Questions:
+</I>&gt;<i> A. Why fetchmail reports:
+</I>&gt;<i> &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; fetchmail: warning: multidrop for pop3.xxx.sk requires envelope option!
+</I>
+Please, RTFM.  This is clearly covered in the man page.  Your mail
+sample provided has the required Delivered-To header - you just need
+to tell Fetchmail to use it.
+
+&gt;<i> &#160;&#160; Plese, see an email listing that follows. Shell I ask the pop3.xxx.sk provider
+</I>&gt;<i> &#160;&#160; to set the envelope option up? I guess that pop3.xxx.sk has envelope option
+</I>&gt;<i> &#160;&#160; switched off, but what about
+</I>&gt;<i>
+</I>&gt;<i> &#160;&#160;&#160;&#160;&#160; Received: from mail.domain.sk (mail.domain.sk [194.111.111.111])
+</I>&gt;<i> &#160;&#160;&#160;&#160;&#160;&#160; by mailhost.xx.xx.sk (Postfix) with ESMTP id DF09733C52
+</I>&gt;<i> &#160;&#160; &#160;&#160;&#160;&#160;&#160;&#160; for &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">user at domain.eu</A>&gt;; Sat, 30 May 2009 08:31:15 +0200 (CEST)
+</I>&gt;<i>
+</I>&gt;<i> &#160;&#160; Is not this sufficient for fetchmail to find out that <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">user at domain.eushould</A>
+</I>&gt;<i> &#160;&#160; receive the email?
+</I>
+No - this is mentioned in the man page too.
+
+&gt;<i> B. Imagine, I send an email to <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">user at domain.sk.</A> This email is forwarded to <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">user at domain.eu.</A>
+</I>&gt;<i> &#160;&#160; Imagine, the mail.domain.eu is not accessible, so email is delivered to multidrop domain
+</I>&gt;<i> &#160;&#160; account by smtp.xxx.sk. Later the mail.domain.eu downloads email from pop3.xxx.sk.
+</I>&gt;<i> &#160;&#160; This time the email gets delivered to fetchmail's account. Please, see the email listing,
+</I>&gt;<i> &#160;&#160; there is line:
+</I>&gt;<i>
+</I>&gt;<i> &#160;&#160;&#160;&#160;&#160; Received: from mail.domain.sk (mail.domain.sk [194.111.111.111])
+</I>&gt;<i> &#160;&#160;&#160;&#160;&#160;&#160; by mailhost.xx.xx.sk (Postfix) with ESMTP id DF09733C52
+</I>&gt;<i> &#160;&#160; &#160;&#160;&#160;&#160;&#160;&#160; for &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">user at domain.eu</A>&gt;; Sat, 30 May 2009 08:31:15 +0200 (CEST)
+</I>&gt;<i>
+</I>&gt;<i> &#160;&#160; Why is this email delivered to the fetchmail's account and not to the user's accout?
+</I>
+See the error message you reported above for (A).
+
+-- 
+                 Please keep list traffic on the list.
+
+Rob MacGregor
+      Whoever fights monsters should see to it that in the process he
+        doesn't become a monster.                  Friedrich Nietzsche
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001949.html">[fetchmail-users] multidrop problem
+</A></li>
+	<LI>Next message: <A HREF="001951.html">[fetchmail-users] multidrop problem
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1950">[ date ]</a>
+              <a href="thread.html#1950">[ thread ]</a>
+              <a href="subject.html#1950">[ subject ]</a>
+              <a href="author.html#1950">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

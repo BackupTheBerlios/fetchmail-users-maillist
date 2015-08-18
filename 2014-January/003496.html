@@ -1,0 +1,190 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Lost in SSL certificate trouble
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2014-January/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Lost%20in%20SSL%20certificate%20trouble&In-Reply-To=%3C52e87e2f.GfG2/MDbT6U0qXWz%25commsoft%40blaettner-net.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003495.html">
+   <LINK REL="Next"  HREF="003497.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Lost in SSL certificate trouble</H1>
+    <B>commsoft at blaettner-net.de</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Lost%20in%20SSL%20certificate%20trouble&In-Reply-To=%3C52e87e2f.GfG2/MDbT6U0qXWz%25commsoft%40blaettner-net.de%3E"
+       TITLE="[fetchmail-users] Lost in SSL certificate trouble">commsoft at blaettner-net.de
+       </A><BR>
+    <I>Wed Jan 29 05:06:07 CET 2014</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003495.html">[fetchmail-users] Time stamp logs
+</A></li>
+        <LI>Next message: <A HREF="003497.html">[fetchmail-users] Lost in SSL certificate trouble
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3496">[ date ]</a>
+              <a href="thread.html#3496">[ thread ]</a>
+              <a href="subject.html#3496">[ subject ]</a>
+              <a href="author.html#3496">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi, all,
+
+since over 12 years I'm using fetchmail to poll a bunch of mail
+accounts at different providers using POP3.
+
+I've successfully compiled and used versions fetchmail-5.9.11,
+fetchmail-5.9.12, fetchmail-5.9.13, Fetchmail-6.3.9, and
+Fetchmail-6.3.26 on various versions of Linux.  I'm also
+subscribed to the fetchmail mailing lists - upon now as reader
+only.
+
+So, I could claim NOT to be a newbie in respect to fetchmail, and
+I here say a big THANK YOU for all the efforts in maintaining
+and developing this program.
+
+BUT, I'm a total newbie in respect of SSL :-(
+
+A couple of weeks ago, one of my providers made SSL mandatory
+and I (think) I got it for this one.
+
+But now, another provider makes SSL mandatory too and I'm in
+big trouble, since it doesn't work :-(
+
+I've read the README.SSL and I also visited the mentioned
+openssl website hoping to download certificates.  But they
+now claim NOT to provide certificates any more.
+
+Now I'm a bit confused :-(
+
+The only change of my setup, was to insert  keyword 'ssl'
+into my .fetchmailrc file.  I noticed, that fetchmail now
+tries to poll via port 995 (the provider's docu also tells
+to use this port) - without ssl port 110 was polled.
+
+I'm NOT sure whether it's a problem with their serverside
+software or whether I should provide any sort of local
+certificate - and in the latter case: how to do this..
+
+My question: What to do next ?  
+
+Here the info/files (a bit obfuscated) You may need to give
+me any helpful hints:
+
+&gt;<i> === f-V.txt ==========================================
+</I>&gt;<i> 
+</I>&gt;<i> This is fetchmail release 6.3.26+SSL+NLS.
+</I>&gt;<i> 
+</I>&gt;<i> Copyright (C) 2002, 2003 Eric S. Raymond
+</I>&gt;<i> Copyright (C) 2004 Matthias Andree, Eric S. Raymond,
+</I>&gt;<i>                    Robert M. Funk, Graham Wilson
+</I>&gt;<i> Copyright (C) 2005 - 2012 Sunil Shetye
+</I>&gt;<i> Copyright (C) 2005 - 2013 Matthias Andree
+</I>&gt;<i> Fetchmail comes with ABSOLUTELY NO WARRANTY. This is free software, and you
+</I>&gt;<i> are welcome to redistribute it under certain conditions. For details,
+</I>&gt;<i> please see the file COPYING in the source or documentation directory.
+</I>&gt;<i> This product includes software developed by the OpenSSL Project
+</I>&gt;<i> for use in the OpenSSL Toolkit. (<A HREF="http://www.openssl.org/">http://www.openssl.org/</A>)
+</I>&gt;<i> 
+</I>&gt;<i> Fallback MDA: (none)
+</I>&gt;<i> Linux MYMACHINE 2.6.27.7-9-pae #1 SMP 2008-12-04 18:10:04 +0100 i686 i686 i386 GNU/Linux
+</I>&gt;<i> Taking options from command line
+</I>&gt;<i> 
+</I>&gt;<i> === .fetchmailrc.new.nokill.WEBB =====================
+</I>&gt;<i> 
+</I>&gt;<i> 	set idfile /home/Fetchmail/Id/.fetchids.WEBB
+</I>&gt;<i> 	set postmaster=webm-bla
+</I>&gt;<i> 
+</I>&gt;<i> poll pop3.PROVIDER-1.de
+</I>&gt;<i> 	proto pop3
+</I>&gt;<i> 	no dns
+</I>&gt;<i> 	uidl
+</I>&gt;<i> 	tracepolls
+</I>&gt;<i> 	auth password
+</I>&gt;<i> 
+</I>&gt;<i> 	user <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">webmaster at MYDOMAIN.de</A> is webm-bla
+</I>&gt;<i> 	pass TOPSECRET
+</I>&gt;<i> 	ssl
+</I>&gt;<i> 
+</I>&gt;<i> 	keep
+</I>&gt;<i> 	nofetchall
+</I>&gt;<i> 	norewrite
+</I>&gt;<i> 
+</I>&gt;<i> === cmd.fm ===========================================
+</I>&gt;<i> 
+</I>&gt;<i> fetchmail -v --fetchlimit 0 -c -f /home/Fetchmail/Rc/.fetchmailrc.new.nokill.WEBB &gt;&amp; fm-c.log.3
+</I>&gt;<i> 
+</I>&gt;<i> === fm-c.log.3 =======================================
+</I>&gt;<i> 
+</I>&gt;<i> fetchmail: --check mode enabled, not fetching mail
+</I>&gt;<i> fetchmail: 6.3.26 querying pop3.PROVIDER-1.de (protocol POP3) at Tue 28 Jan 2014 07:52:26 PM CET: poll started
+</I>&gt;<i> Trying to connect to 22.222.222.222/995...connected.
+</I>&gt;<i> fetchmail: Server certificate verification error: unable to get local issuer certificate
+</I>&gt;<i> fetchmail: Broken certification chain at: /C=DE/O=Deutsche Telekom AG/OU=T-TeleSec Trust Center/CN=Deutsche Telekom Root CA 2
+</I>&gt;<i> fetchmail: This could mean that the server did not provide the intermediate CA's certificate(s), which is nothing fetchmail could do anything about.  For details, please see the README.SSL-SERVER document that ships with fetchmail.
+</I>&gt;<i> fetchmail: This could mean that the root CA's signing certificate is not in the trusted CA certificate location, or that c_rehash needs to be run on the certificate directory. For details, please see the documentation of --sslcertpath and --sslcertfile in the manual page.
+</I>&gt;<i> fetchmail: Server certificate verification error: certificate not trusted
+</I>&gt;<i> fetchmail: Server certificate:
+</I>&gt;<i> fetchmail: Issuer Organization: T-Systems International GmbH
+</I>&gt;<i> fetchmail: Issuer CommonName: TeleSec ServerPass DE-1
+</I>&gt;<i> fetchmail: Subject CommonName: pop3.PROVIDER-1.de
+</I>&gt;<i> fetchmail: Subject Alternative Name: pop3.PROVIDER-1.de
+</I>&gt;<i> fetchmail: Subject Alternative Name: pop3.PROVIDER-1.com
+</I>&gt;<i> fetchmail: pop3.PROVIDER-1.de key fingerprint: 88:99:AA:BB:CC:DD:EE:FF:00:01:02:03:04:05:06:07
+</I>&gt;<i> fetchmail: Warning: the connection is insecure, continuing anyways. (Better use --sslcertck!)
+</I>&gt;<i> fetchmail: POP3&lt; +OK POP3 server ready (P0 DHE-RSA-AES256-SHA) &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">d7769bc165fa8a2crael0 at pop3.PROVIDER-1.de</A>&gt;
+</I>&gt;<i> fetchmail: POP3&gt; USER <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">webmaster at MYDOMAIN.de</A>
+</I>&gt;<i> fetchmail: POP3&lt; +OK Waiting for password
+</I>&gt;<i> fetchmail: POP3&gt; PASS *
+</I>&gt;<i> fetchmail: POP3&lt; +OK User logged in
+</I>&gt;<i> fetchmail: POP3&gt; STAT
+</I>&gt;<i> fetchmail: POP3&lt; +OK 0 0
+</I>&gt;<i> fetchmail: No mail for <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">webmaster at MYDOMAIN.de</A> at pop3.PROVIDER-1.de
+</I>&gt;<i> fetchmail: POP3&gt; QUIT
+</I>&gt;<i> fetchmail: POP3&lt; +OK Closing connection
+</I>&gt;<i> fetchmail: 6.3.26 querying pop3.PROVIDER-1.de (protocol POP3) at Tue 28 Jan 2014 07:52:27 PM CET: poll completed
+</I>&gt;<i> fetchmail: normal termination, status 1
+</I>&gt;<i> 
+</I>&gt;<i> ======================================================
+</I>
+MANY THX in advance for Your patience !
+
+Rolf
+-- 
+Dipl.phys. Rudolf Otto Bl&#228;ttner
+Email commsoft (at) blaettner-net.de
+</PRE>
+
+
+
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003495.html">[fetchmail-users] Time stamp logs
+</A></li>
+	<LI>Next message: <A HREF="003497.html">[fetchmail-users] Lost in SSL certificate trouble
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3496">[ date ]</a>
+              <a href="thread.html#3496">[ thread ]</a>
+              <a href="subject.html#3496">[ subject ]</a>
+              <a href="author.html#3496">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

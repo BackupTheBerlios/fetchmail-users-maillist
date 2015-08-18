@@ -1,0 +1,143 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] [PATCH] Re: possible bug in IMAP IDLE,	connection times out after 30 minutes
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2006-December/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20%5BPATCH%5D%20Re%3A%20possible%20bug%20in%20IMAP%20IDLE%2C%0A%09connection%20times%20out%20after%2030%20minutes&In-Reply-To=%3C20061214095706.GA11253%40session.bombay.retortsoft.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000763.html">
+   <LINK REL="Next"  HREF="000765.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] [PATCH] Re: possible bug in IMAP IDLE,	connection times out after 30 minutes</H1>
+    <B>Sunil Shetye</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20%5BPATCH%5D%20Re%3A%20possible%20bug%20in%20IMAP%20IDLE%2C%0A%09connection%20times%20out%20after%2030%20minutes&In-Reply-To=%3C20061214095706.GA11253%40session.bombay.retortsoft.com%3E"
+       TITLE="[fetchmail-users] [PATCH] Re: possible bug in IMAP IDLE,	connection times out after 30 minutes">shetye at bombay.retortsoft.com
+       </A><BR>
+    <I>Thu Dec 14 10:57:06 CET 2006</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000763.html">[fetchmail-users] possible bug in IMAP IDLE,	connection times out after 30 minutes
+</A></li>
+        <LI>Next message: <A HREF="000765.html">[fetchmail-users] [PATCH] Re: possible bug in IMAP IDLE,	connection times out after 30 minutes
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#764">[ date ]</a>
+              <a href="thread.html#764">[ thread ]</a>
+              <a href="subject.html#764">[ subject ]</a>
+              <a href="author.html#764">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Quoting from Andrew Baumann's mail on Wed, Dec 13, 2006:
+&gt;<i> &gt;    The server MAY consider a client inactive if it has an IDLE command
+</I>&gt;<i> &gt;    running, and if such a server has an inactivity timeout it MAY log
+</I>&gt;<i> &gt;    the client off implicitly at the end of its timeout period.  Because
+</I>&gt;<i> &gt;    of that, clients using IDLE are advised to terminate the IDLE and
+</I>&gt;<i> &gt;    re-issue it at least every 29 minutes to avoid being logged off.
+</I>&gt;<i> &gt;    This still allows a client to receive immediate mailbox updates even
+</I>&gt;<i> &gt;    though it need only &quot;poll&quot; at half hour intervals.
+</I>&gt;<i> 
+</I>&gt;<i> I've had a quick look in the fetchmail source, and there is some code there 
+</I>&gt;<i> that claims to do something after 28 minutes, but it doesn't appear to be 
+</I>&gt;<i> working. Here is the syslog output of fetchmail running, that shows the 
+</I>&gt;<i> socket being closed 30 minutes after fetchmail last said anything:
+</I>&gt;<i> 
+</I>&gt;<i> Dec 10 16:24:30 zarquon fetchmail[28439]: IMAP&gt; A0013 IDLE
+</I>&gt;<i> Dec 10 16:24:31 zarquon fetchmail[28439]: IMAP&lt; + idling
+</I>&gt;<i> Dec 10 16:26:31 zarquon fetchmail[28439]: IMAP&lt; * OK Still here
+</I>
+...
+
+&gt;<i> Dec 10 16:52:32 zarquon fetchmail[28439]: IMAP&lt; * OK Still here
+</I>&gt;<i> Dec 10 16:54:32 zarquon fetchmail[28439]: re-poll failed
+</I>&gt;<i> Dec 10 16:54:32 zarquon fetchmail[28439]: socket error while fetching from 
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">andrewb at imap.cse.unsw.edu.au</A>
+</I>
+The intermediate messages from the IMAP server are causing the timeout
+to be reset. Please try this patch:
+
+Index: fetchmail-6.3/imap.c
+===================================================================
+--- fetchmail-6.3/imap.c	(revision 4989)
++++ fetchmail-6.3/imap.c	(working copy)
+@@ -46,7 +46,8 @@
+ static int actual_deletions = 0;
+ 
+ /* for &quot;IMAP&gt; IDLE&quot; */
+-static int saved_timeout = 0;
++static int saved_timeout = 0, idle_timeout = 0;
++static time_t idle_start_time = 0;
+ 
+ static int imap_ok(int sock, char *argbuf)
+ /* parse command response */
+@@ -163,6 +164,15 @@
+ 		return(PS_LOCKBUSY);
+ 	    }
+ 	}
++
++	if (stage == STAGE_IDLE)
++	{
++	    /* reduce the timeout: servers may not reset their timeout
++	     * when they send some information asynchronously */
++	    mytimeout = idle_timeout - (time((time_t *) NULL) - idle_start_time);
++	    if (mytimeout &lt;= 0)
++		return(PS_IDLETIMEOUT);
++	}
+     } while
+ 	(tag[0] != '\0' &amp;&amp; strncmp(buf, tag, strlen(tag)));
+ 
+@@ -676,7 +686,8 @@
+ 	/* special timeout to terminate the IDLE and re-issue it
+ 	 * at least every 28 minutes:
+ 	 * (the server may have an inactivity timeout) */
+-	mytimeout = 1680; /* 28 min */
++	mytimeout = idle_timeout = 1680; /* 28 min */
++	time(&amp;idle_start_time);
+ 	stage = STAGE_IDLE;
+ 	/* enter IDLE mode */
+ 	ok = gen_transact(sock, &quot;IDLE&quot;);
+@@ -704,7 +715,8 @@
+ 	     * notification out of the blue. This is in compliance
+ 	     * with RFC 2060 section 5.3. Wait for that with a low
+ 	     * timeout */
+-	    mytimeout = 28;
++	    mytimeout = idle_timeout = 28;
++	    time(&amp;idle_start_time);
+ 	    stage = STAGE_IDLE;
+ 	    /* We are waiting for notification; no tag needed */
+ 	    tag[0] = '\0';
+===================================================================
+
+-- 
+Sunil Shetye.
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000763.html">[fetchmail-users] possible bug in IMAP IDLE,	connection times out after 30 minutes
+</A></li>
+	<LI>Next message: <A HREF="000765.html">[fetchmail-users] [PATCH] Re: possible bug in IMAP IDLE,	connection times out after 30 minutes
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#764">[ date ]</a>
+              <a href="thread.html#764">[ thread ]</a>
+              <a href="subject.html#764">[ subject ]</a>
+              <a href="author.html#764">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

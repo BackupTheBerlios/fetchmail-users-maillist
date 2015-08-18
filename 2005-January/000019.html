@@ -1,0 +1,96 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Exchange converting to quoted-printable
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2005-January/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Exchange%20converting%20to%20quoted-printable&In-Reply-To=%3C200501150156.RAA74167%40riparian.beaverton.windriver.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000018.html">
+   
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Exchange converting to quoted-printable</H1>
+    <B>Perry Hutchison</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Exchange%20converting%20to%20quoted-printable&In-Reply-To=%3C200501150156.RAA74167%40riparian.beaverton.windriver.com%3E"
+       TITLE="[fetchmail-users] Exchange converting to quoted-printable">phutchis at beaverton.windriver.com
+       </A><BR>
+    <I>Sat Jan 15 02:56:17 CET 2005</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000018.html">[fetchmail-users] [2] Exit Status of fetchmail
+</A></li>
+        
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#19">[ date ]</a>
+              <a href="thread.html#19">[ thread ]</a>
+              <a href="subject.html#19">[ subject ]</a>
+              <a href="author.html#19">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>I've been using fetchmail 6.2.5+NTLM+SSL to retrieve mail from the
+corporate Exchange :( server, and it has been working well :)
+
+Recently, the server was &quot;upgraded&quot; -- to something like Exchange
+2002 from Exchange 5.5 IIRC -- and I started having trouble with
+message format.  I doubt very much that it is a fetchmail problem,
+but am hoping that someone in the community may have seen something
+similar and know a solution.  The prospect of getting the server
+admins to change a configuration setting would be improved if they
+did not have to research what setting to change :)
+
+Before the upgrade, mail sent as plain text (with no Content-Type:,
+Content-Transfer-Encoding: etc.) would be passed through as sent.
+Since the upgrade, it looks as if Exchange is rewriting the body of
+such messages as quoted-printable, and inserting several headers:
+
+  MIME-Version: 1.0
+  Content-Type: text/plain;
+          charset=&quot;iso-8859-1&quot;
+  Content-Transfer-Encoding: quoted-printable
+  Content-class: urn:content-classes:message
+  X-MimeOLE: Produced By Microsoft Exchange V6.5.7226.0
+  X-MS-Has-Attach: 
+  X-MS-TNEF-Correlator: 
+  Thread-Topic: &lt;same as Subject: header&gt;
+  Thread-Index: &lt;string of gibberish&gt;
+
+The extra headers aren't really a problem, but does anyone know a
+way to keep the server from &quot;helping&quot; with the message encoding?
+Granted the correct solution would be to ditch Exchange altogether,
+but that is not currently an option :(
+
+BTW this is an improvement from what happened at first:  initially
+it was converting things to multipart, with both a text/plain and
+a text/html part (both encoded as quoted-printable), and I think
+it may have been doing it to outgoing messages as well as incoming.
+They did figure out how to turn that off after a few days.
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000018.html">[fetchmail-users] [2] Exit Status of fetchmail
+</A></li>
+	
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#19">[ date ]</a>
+              <a href="thread.html#19">[ thread ]</a>
+              <a href="subject.html#19">[ subject ]</a>
+              <a href="author.html#19">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

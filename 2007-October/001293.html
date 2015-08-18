@@ -1,0 +1,115 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] dup messages on mid-session expunge (with	requested data)
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2007-October/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20dup%20messages%20on%20mid-session%20expunge%20%28with%0A%09requested%20data%29&In-Reply-To=%3C89a2a1150710121034r196796b6qdf00becea02b4680%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001292.html">
+   <LINK REL="Next"  HREF="001294.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] dup messages on mid-session expunge (with	requested data)</H1>
+    <B>Mike Lowell</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20dup%20messages%20on%20mid-session%20expunge%20%28with%0A%09requested%20data%29&In-Reply-To=%3C89a2a1150710121034r196796b6qdf00becea02b4680%40mail.gmail.com%3E"
+       TITLE="[fetchmail-users] dup messages on mid-session expunge (with	requested data)">mikedotlowell at gmail.com
+       </A><BR>
+    <I>Fri Oct 12 19:34:59 CEST 2007</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001292.html">[fetchmail-users] Fwd: dup messages on mid-session expunge	(with requested data)
+</A></li>
+        <LI>Next message: <A HREF="001294.html">[fetchmail-users] dup messages on mid-session expunge (with	requested data)
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1293">[ date ]</a>
+              <a href="thread.html#1293">[ thread ]</a>
+              <a href="subject.html#1293">[ subject ]</a>
+              <a href="author.html#1293">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>&gt;<i> Looks basically ok.  You probably don't need/want the fetchlimit, and
+</I>
+Agreed.  I added this as part an earlier troubleshooting effort.  I've
+verified that changing this has no effect on the problem.
+
+&gt;<i> Those &quot;^M&quot; symbols are worrying - is your .fetchmailrc file in DOS format?
+</I>
+Nope.
+
+linux:~# sed l &lt;/etc/fetchmailrc | grep '\\r'
+linux:~#
+
+I'd guess fetchmail is getting that extra \r from parsing the mail
+headers.  The end of every mail header line has a \r\n sequence,
+including the ones with addresses.  I've confirmed that several dozen
+successfully delivered messages have this exact same output in my
+fetchmail debug log.  It appears every message I receive looks this
+way (i.e. this doesn't seem to be a problem).
+
+&gt;<i> &gt; 12:56.516414 IMAP&lt; A0011 OK FETCH completed.
+</I>&gt;<i> &lt;---SNIP---&gt;
+</I>&gt;<i> &gt; 17:56.536700 timeout after 300 seconds waiting for server mail..
+</I>&gt;<i>
+</I>&gt;<i> Remote mail server stopped responding.
+</I>
+Not true.  You can plainly see that immediately after the &quot;OK FETCH
+completed&quot; message fetchmail issues a &quot;FETCH 618 BODY&quot; command, which
+receives a response within 2ms.  The problem is that the response is a
+&quot;NO&quot; response, not the &quot;FETCH&quot; response fetchmail is expecting.
+
+Fetchmail is expecting to see &quot;FETCH&quot; in the response, and blocks
+waiting for it, eventually timing out.  Fetchmail is executing this
+code:
+
+------ start code ------
+if ((ok = gen_recv(sock, buf, sizeof(buf))))
+   return(ok);
+} while
+(!strstr(buf+4, &quot;FETCH&quot;) || sscanf(buf+2, &quot;%d&quot;, &amp;num) != 1);
+------ end code ------
+
+This code ensures fetchmail cannot proceed until a &quot;FETCH&quot; response is
+received.  This behavior in imap_fetch_body() is fails to comply with
+RFC2060 section 7.1.2 regarding the handling of &quot;NO&quot; error responses,
+based on my interpretation.
+
+In summary fetchmail issues a command to fetch the body, but instead
+of receiving the body it receives a &quot;NO&quot; response.  Fetchmail doesn't
+properly handle this and blocks forever, eventually timing out.
+Unfortunately, by this time fetchmail has already delivered the
+message headers to procmail, which means my mail client receives a
+message with headers, but no body.
+
+Mike Lowell
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001292.html">[fetchmail-users] Fwd: dup messages on mid-session expunge	(with requested data)
+</A></li>
+	<LI>Next message: <A HREF="001294.html">[fetchmail-users] dup messages on mid-session expunge (with	requested data)
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1293">[ date ]</a>
+              <a href="thread.html#1293">[ thread ]</a>
+              <a href="subject.html#1293">[ subject ]</a>
+              <a href="author.html#1293">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

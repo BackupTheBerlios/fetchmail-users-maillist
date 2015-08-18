@@ -1,0 +1,116 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] more clever resource limitations
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2005-December/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20more%20clever%20resource%20limitations&In-Reply-To=%3C20051209060418.GC27308%40bx9.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000168.html">
+   <LINK REL="Next"  HREF="000153.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] more clever resource limitations</H1>
+    <B>Greg Lindahl</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20more%20clever%20resource%20limitations&In-Reply-To=%3C20051209060418.GC27308%40bx9.net%3E"
+       TITLE="[fetchmail-users] more clever resource limitations">lindahl at pbm.com
+       </A><BR>
+    <I>Fri Dec  9 07:04:18 CET 2005</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000168.html">[fetchmail-users] Fetchmail 6.3.0 released
+</A></li>
+        <LI>Next message: <A HREF="000153.html">[fetchmail-users] more clever resource limitations
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#152">[ date ]</a>
+              <a href="thread.html#152">[ thread ]</a>
+              <a href="subject.html#152">[ subject ]</a>
+              <a href="author.html#152">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>I was pleased to see on LWN that you guys are working on fetchmail,
+I had no idea it had active maintainers.
+
+Due to the advent of spamassassin, I am no longer able to accept lots
+of messages at once via fetchmail -- it causes my laptop to thrash.  I
+use sendmail -&gt; procmail -&gt; spamassassin, so using sendmail's load
+average limit didn't really help the situation, since sendmail has no
+idea it's kicked off a bunch of spamassassin processes that in a few
+seconds will drive the load way up. (In this analysis I'm assuming that
+it's only cpu time and not disk I/O which is causing the problem.)
+
+I worked around this by adding expunge 1 (which since I'm using POP3
+is similar to using a fetchlimit), which slows things down enough by
+re-logging in repeatedly (wastefully) to avoid the problem. But this
+doesn't work well when I'm on the road and have a bad network
+connection; it slows things down quite a lot, especially when I have a
+big inbox. (I see that I'm not using the new fetchsizelimit and
+fastuidl options. But, there are more issues:) Also a large expunge
+limit is simply a bad idea for slow connections if there are large
+messages; the odds of something going wrong is drastically
+increased. And if I move my laptop from the office to a hotel I
+currently would have to change the expunge/fetchlimit value by hand.
+
+I think what we really want is something which decides when to expunge
+or limit based on the *size* of the messages downloaded. This would
+address the current issue that we don't expunge very intelligently;
+the point is that you don't want hugely long downloads which might be
+interrupted and lose some state, so it makes sense to expunge more
+frequently when large messages are being downloaded. One size doesn't
+fit all.
+
+ --fetchlimitsize n (kilobytes, default to 100 kilobytes? 1 meg?)
+ --expungesize n (kilobytes, same default as fetchlimitsize)
+
+In addition, we could use a rate limiter sending messages to sendmail
+to dodge the spamassassin problem. My laptop takes 2 cpu seconds to
+spamassassin a small email message (20 seconds elapsed) and so perhaps
+a time-based measure with an optional addition for the message size
+would do it. If you wanted to be clever you could compute this
+dynamically by watching what happens when you throw a bunch of email
+messages at sendmail, but to start:
+
+ --mtacpu n (seconds, default to 0)
+ --mtacpupermeg n (seconds per megabyte, default to 0)
+
+so fetchmail would wait &quot;mtacpu + size / 1meg * mtacpupermeg&quot; seconds
+before sending another message to the MTA. I'd set this to 2. Hm,
+given that this value is small a floating-point value would be a
+good idea instead of an integer.
+
+Just another fetchmail user,
+
+-- greg
+
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000168.html">[fetchmail-users] Fetchmail 6.3.0 released
+</A></li>
+	<LI>Next message: <A HREF="000153.html">[fetchmail-users] more clever resource limitations
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#152">[ date ]</a>
+              <a href="thread.html#152">[ thread ]</a>
+              <a href="subject.html#152">[ subject ]</a>
+              <a href="author.html#152">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

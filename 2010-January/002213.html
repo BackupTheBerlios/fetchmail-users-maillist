@@ -1,0 +1,97 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Unknown user from mail.log
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2010-January/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Unknown%20user%20from%20mail.log&In-Reply-To=%3Cop.u6jkm5ka1e62zd%40balu.cs.uni-paderborn.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002212.html">
+   <LINK REL="Next"  HREF="002215.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Unknown user from mail.log</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Unknown%20user%20from%20mail.log&In-Reply-To=%3Cop.u6jkm5ka1e62zd%40balu.cs.uni-paderborn.de%3E"
+       TITLE="[fetchmail-users] Unknown user from mail.log">matthias.andree at gmx.de
+       </A><BR>
+    <I>Thu Jan 14 22:29:19 CET 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002212.html">[fetchmail-users] Unknown user from mail.log
+</A></li>
+        <LI>Next message: <A HREF="002215.html">[fetchmail-users] .configure failure
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2213">[ date ]</a>
+              <a href="thread.html#2213">[ thread ]</a>
+              <a href="subject.html#2213">[ subject ]</a>
+              <a href="author.html#2213">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Am 14.01.2010, 20:06 Uhr, schrieb Wagner Pereira &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">wpereira at pop-sp.rnp.br</A>&gt;:
+
+&gt;<i> Hi, guys.
+</I>&gt;<i>
+</I>&gt;<i> What the heck the following means? I retrieved it from
+</I>&gt;<i> /var/log/mail.log, on the same server where my TTS Request Tracker is
+</I>&gt;<i> installed.
+</I>&gt;<i>
+</I>&gt;<i> The thing is I want to create a ticket automatically when a new e-mail
+</I>&gt;<i> message arrives.
+</I>&gt;<i>
+</I>&gt;<i> Jan 14 16:00:02 rtracker postfix/local[7187]: F378524FBE:
+</I>&gt;<i> to=&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">pop-sp-genesis at kliper.pop-sp.rnp.br</A>&gt;,
+</I>&gt;<i> orig_to=&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">root at kliper.pop-sp.rnp.br</A>&gt;, relay=local, delay=0.02,
+</I>&gt;<i> delays=0/0.01/0/0.01, dsn=5.1.1, status=bounced (unknown user:
+</I>&gt;<i> &quot;pop-sp-genesis&quot;)
+</I>
+As a one-time courtesy on this list, the symptom looks like improper  
+configuration of Postfix, its aliases database, omitted postalias run, or  
+incomplete or damaged user database.
+
+Please check the Postfix manuals, local(8) in particular, and FAQ; try  
+<A HREF="http://www.postfix.org/">http://www.postfix.org/</A> -- if that doesn't help (though I guess it will),  
+please refer to the postfix-users@ mailing list archives and mailing list  
+for assistance and include the output of running &quot;postconf -n&quot;. It's  
+probably also good to include the full log (in your case, you'd grep the  
+log for the queue ID, F378524FBE in that case).
+
+Once you're starting to include fetchmail in your setup, you're welcome to  
+ask again here, but please include full logs, too; see  
+&lt;<A HREF="http://www.fetchmail.info/fetchmail-FAQ.html#G3">http://www.fetchmail.info/fetchmail-FAQ.html#G3</A>&gt; for what's needed then.
+
+HTH
+
+-- 
+Matthias Andree
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002212.html">[fetchmail-users] Unknown user from mail.log
+</A></li>
+	<LI>Next message: <A HREF="002215.html">[fetchmail-users] .configure failure
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2213">[ date ]</a>
+              <a href="thread.html#2213">[ thread ]</a>
+              <a href="subject.html#2213">[ subject ]</a>
+              <a href="author.html#2213">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

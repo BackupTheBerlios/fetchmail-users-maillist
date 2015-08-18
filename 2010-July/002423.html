@@ -1,0 +1,90 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Can't fetch old messages from gmail
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2010-July/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Can%27t%20fetch%20old%20messages%20from%20gmail&In-Reply-To=%3C20100728215249.GC9712%40soundsigil.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002434.html">
+   <LINK REL="Next"  HREF="002424.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Can't fetch old messages from gmail</H1>
+    <B>Bart&#322;omiej Wo&#322;k</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Can%27t%20fetch%20old%20messages%20from%20gmail&In-Reply-To=%3C20100728215249.GC9712%40soundsigil.com%3E"
+       TITLE="[fetchmail-users] Can't fetch old messages from gmail">session13 at wp.pl
+       </A><BR>
+    <I>Wed Jul 28 23:52:49 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002434.html">[fetchmail-users] [PATCH] Re: fetchmail hangs when querying IMAP	serve
+</A></li>
+        <LI>Next message: <A HREF="002424.html">[fetchmail-users] Can't fetch old messages from gmail
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2423">[ date ]</a>
+              <a href="thread.html#2423">[ thread ]</a>
+              <a href="subject.html#2423">[ subject ]</a>
+              <a href="author.html#2423">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hello,
+
+I have messages on my gmail account that I cannot fetch.
+($ fetchmail -k) gives my (fetchmail: No mail for <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">USER at gmail.com</A> at pop.gmail.com). 
+When I use mutt to send email to <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">USER at gmail.com</A> from my other account then fetchmail will
+download only this one message as if the others doesn't exist (web-based client shows them though). 
+
+
+My ~/.fetchmailrc file:
+(there are also other accounts but not listed here)
+----------------------------------
+poll pop.gmail.com with proto POP3 user '<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">USER at gmail.com</A>' there with 
+password 'PASSWORD' is 'SYSUSER' here options stripcr ssl sslcertck 
+sslcertpath '/home/SYSUSER/Mail/.certs/' keep mda '/usr/bin/procmail -d %T'
+---------------------------------
+
+My ~/.procmailrc file:
+----------------------------------
+PATH=/bin:/usr/bin:/usr/local/bin 
+VERBOSE=off  
+DEFAULT=/var/spool/mail/SYSUSER
+MAILDIR=$HOME/Mail           
+LOGFILE=$HOME/.procmaillog  
+# Recipes below this comment:
+
+:<i>0:
+</I>* ^TOmutt-user
+mutt
+----------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002434.html">[fetchmail-users] [PATCH] Re: fetchmail hangs when querying IMAP	serve
+</A></li>
+	<LI>Next message: <A HREF="002424.html">[fetchmail-users] Can't fetch old messages from gmail
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2423">[ date ]</a>
+              <a href="thread.html#2423">[ thread ]</a>
+              <a href="subject.html#2423">[ subject ]</a>
+              <a href="author.html#2423">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

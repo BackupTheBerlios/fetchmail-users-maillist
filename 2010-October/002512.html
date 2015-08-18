@@ -1,0 +1,103 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Latest change to configure.ac makes autogen.sh bail out on MacOS 10.5.8
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2010-October/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Latest%20change%20to%20configure.ac%20makes%0A%20autogen.sh%20bail%20out%20on%20MacOS%2010.5.8&In-Reply-To=%3C4CB8D2C9.30101%40gmx.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002511.html">
+   <LINK REL="Next"  HREF="002513.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Latest change to configure.ac makes autogen.sh bail out on MacOS 10.5.8</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Latest%20change%20to%20configure.ac%20makes%0A%20autogen.sh%20bail%20out%20on%20MacOS%2010.5.8&In-Reply-To=%3C4CB8D2C9.30101%40gmx.de%3E"
+       TITLE="[fetchmail-users] Latest change to configure.ac makes autogen.sh bail out on MacOS 10.5.8">matthias.andree at gmx.de
+       </A><BR>
+    <I>Sat Oct 16 00:16:41 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002511.html">[fetchmail-users] Latest change to configure.ac makes autogen.sh bail out on MacOS 10.5.8
+</A></li>
+        <LI>Next message: <A HREF="002513.html">[fetchmail-users] Latest change to configure.ac makes autogen.sh bail out on MacOS 10.5.8
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2512">[ date ]</a>
+              <a href="thread.html#2512">[ thread ]</a>
+              <a href="subject.html#2512">[ subject ]</a>
+              <a href="author.html#2512">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Am 15.10.2010 20:37, schrieb Christian Ebert:
+&gt;<i> Hi,
+</I>&gt;<i> 
+</I>&gt;<i> commit 1acd800e1caee169c964519a5c31b673f8762e54
+</I>&gt;<i> Author: Matthias Andree &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">matthias.andree at gmx.de</A>&gt;
+</I>&gt;<i> Date:   Fri Oct 15 09:24:06 2010 +0200
+</I>&gt;<i> 
+</I>&gt;<i>     Remove AM_GNU_GETTEXT_VERSION to avoid @MKINSTALLDIRS@ issues on Ubuntu 10.10.
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> results in:
+</I>&gt;<i> 
+</I>&gt;<i> $ ./autogen.sh
+</I>&gt;<i> 
+</I>&gt;<i> Please stand by while generating files,
+</I>&gt;<i> this may take a minute or two...
+</I>&gt;<i> 
+</I>&gt;<i> autoreconf: Entering directory `.'
+</I>&gt;<i> autoreconf: configure.ac: not using Gettext
+</I>&gt;<i> autoreconf: running: aclocal -I m4 -I m4-local
+</I>&gt;<i> aclocal: couldn't open directory `m4': No such file or directory
+</I>&gt;<i> autoreconf: aclocal failed with exit status: 1
+</I>&gt;<i> $ sw_vers
+</I>&gt;<i> ProductName:	Mac OS X
+</I>&gt;<i> ProductVersion:	10.5.8
+</I>&gt;<i> BuildVersion:	9L30
+</I>
+Hi Christian,
+
+thanks for the report.  I'm wondering about one thing: Your autoreconf
+is not running autopoint (from gettext, gettext-devel, or similar
+packages), which it should, and does for me even without the removed
+_VERSION macro.
+
+Which autoconf version are you running? Is gettext installed, and which
+version?
+
+However, I'll have configure.ac request gettext 0.17 now, that should
+help. At least it pacifies Ubuntu 10.10's &quot;make distcheck&quot;.
+
+Best regards
+Matthias
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002511.html">[fetchmail-users] Latest change to configure.ac makes autogen.sh bail out on MacOS 10.5.8
+</A></li>
+	<LI>Next message: <A HREF="002513.html">[fetchmail-users] Latest change to configure.ac makes autogen.sh bail out on MacOS 10.5.8
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2512">[ date ]</a>
+              <a href="thread.html#2512">[ thread ]</a>
+              <a href="subject.html#2512">[ subject ]</a>
+              <a href="author.html#2512">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,117 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] fetchmail authorization and socket errors
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2006-November/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%20authorization%20and%20socket%20errors&In-Reply-To=%3C43ea8d070611111532r41a9ac47jb2c809a1b6d6a980%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000687.html">
+   <LINK REL="Next"  HREF="000689.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] fetchmail authorization and socket errors</H1>
+    <B>Rob MacGregor</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%20authorization%20and%20socket%20errors&In-Reply-To=%3C43ea8d070611111532r41a9ac47jb2c809a1b6d6a980%40mail.gmail.com%3E"
+       TITLE="[fetchmail-users] fetchmail authorization and socket errors">rob.macgregor at gmail.com
+       </A><BR>
+    <I>Sun Nov 12 00:32:13 CET 2006</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000687.html">[fetchmail-users] fetchmail authorization and socket errors
+</A></li>
+        <LI>Next message: <A HREF="000689.html">[fetchmail-users] fetchmail authorization and socket errors
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#688">[ date ]</a>
+              <a href="thread.html#688">[ thread ]</a>
+              <a href="subject.html#688">[ subject ]</a>
+              <a href="author.html#688">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On 11/11/06, <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">wade at wadesmart.com</A> &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">wade at wadesmart.com</A>&gt; wrote:
+
+&gt;<i> &gt; 1) Contents of fetchmailrc (mangle usernames/passwords)
+</I>
+&gt;<i> &gt; 1a) The command line used to call fetchmail
+</I>
+Which is?
+
+&gt;<i> &gt; 2) Output of &quot;fetchmail -v -v --nosyslog&quot;
+</I>
+Stop fetchmail and re-run this
+
+&gt;<i> &gt; 3) Output of &quot;fetchmail -V&quot;
+</I>
+Slightly old, but should be ok
+
+&gt;<i> &gt; 4) Details of your OS, including kernel version
+</I>
+Some version of Linux with 2.6.15 kernel :)&gt; &gt;
+
+&gt;<i> This is the .fetchmailrc
+</I>&gt;<i> # Configuration created Tue Oct 24 12:53:28 2006 by fetchmailconf 1.52
+</I>&gt;<i> $Revision: 4636 $
+</I>&gt;<i> set syslog
+</I>&gt;<i> set postmaster &quot;wadesmart&quot;
+</I>&gt;<i> set no bouncemail
+</I>&gt;<i> set no spambounce
+</I>&gt;<i> set properties &quot;&quot;
+</I>&gt;<i> set daemon 300
+</I>&gt;<i>
+</I>&gt;<i> # setup first email service provider -&gt; WadeSmart
+</I>&gt;<i>         poll mail.wadesmart.com
+</I>&gt;<i>         uidl protocol pop3 auth password
+</I>&gt;<i>         user '<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">wade at wadesmart.com</A>' there with password 'password' is
+</I>&gt;<i> 'wade' here
+</I>&gt;<i>         no keep
+</I>
+Typo - there is a keyword &quot;nokeep&quot;, which is probably what you're after.
+
+&gt;<i> # setup third email service provider -&gt; Gmail
+</I>&gt;<i>         poll pop.gmail.com
+</I>&gt;<i>         uidl port 995 auth password
+</I>&gt;<i>         user '<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">wadesmart at gmail.com</A>' there with password 'password'
+</I>&gt;<i>         keep
+</I>&gt;<i>         no fetchall
+</I>&gt;<i>         ssl sslcertpath /etc/ssl/certs
+</I>
+Looks otherwise ok, but without that &quot;-v -v --nosyslog&quot; run I can't
+say where your problem lies.
+
+-- 
+                 Please keep list traffic on the list.
+
+Rob MacGregor
+      Whoever fights monsters should see to it that in the process he
+        doesn't become a monster.                  Friedrich Nietzsche
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000687.html">[fetchmail-users] fetchmail authorization and socket errors
+</A></li>
+	<LI>Next message: <A HREF="000689.html">[fetchmail-users] fetchmail authorization and socket errors
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#688">[ date ]</a>
+              <a href="thread.html#688">[ thread ]</a>
+              <a href="subject.html#688">[ subject ]</a>
+              <a href="author.html#688">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

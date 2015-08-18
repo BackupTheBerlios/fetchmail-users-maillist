@@ -1,0 +1,133 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] help forwarding to Exchange 2010 with TLS
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2011-March/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20help%20forwarding%20to%20Exchange%202010%20with%20TLS&In-Reply-To=%3C20110309075102.7c83e44b%40scorpio%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002712.html">
+   <LINK REL="Next"  HREF="002717.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] help forwarding to Exchange 2010 with TLS</H1>
+    <B>Jerry</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20help%20forwarding%20to%20Exchange%202010%20with%20TLS&In-Reply-To=%3C20110309075102.7c83e44b%40scorpio%3E"
+       TITLE="[fetchmail-users] help forwarding to Exchange 2010 with TLS">fetchmail.user at seibercom.net
+       </A><BR>
+    <I>Wed Mar  9 13:51:02 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002712.html">[fetchmail-users] help forwarding to Exchange 2010 with TLS
+</A></li>
+        <LI>Next message: <A HREF="002717.html">[fetchmail-users] help forwarding to Exchange 2010 with TLS
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2716">[ date ]</a>
+              <a href="thread.html#2716">[ thread ]</a>
+              <a href="subject.html#2716">[ subject ]</a>
+              <a href="author.html#2716">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Tue, 08 Mar 2011 19:35:02 -0800
+Perry Hutchison &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">phutchis at windriver.com</A>&gt; articulated:
+
+&gt;<i> &gt; From: Jerry &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">fetchmail.user at seibercom.net</A>&gt;
+</I>&gt;<i> &gt; <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">robbticb at wp.pl</A> &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">robbticb at wp.pl</A>&gt; articulated:
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; &gt; how can I forward mails to Exchange 2010 with TLS over Port 587?
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; ... I have requested that these features be incorporated into
+</I>&gt;<i> &gt; Fetchmail ... at present I do not believe they are available.
+</I>&gt;<i> &gt; Your only solution as I see it is to configure the Exchange
+</I>&gt;<i> &gt; server to not require TLS ...
+</I>&gt;<i> 
+</I>&gt;<i> IMO this sort of capability does not really belong in fetchmail,
+</I>&gt;<i> which -- being a Unix tool -- is supposed to do one thing well.
+</I>&gt;<i> Fetchmail's job, which it does very well, is to retrieve mail
+</I>&gt;<i> from mailboxes and pass it to another local mail agent for further
+</I>&gt;<i> processing (often local delivery).
+</I>
+I respectfully disagree with your conclusions. Mail servers have and
+are increasingly more likely to enforce SMTP Authentication and TLS.
+Fetchmail can use SMTP Authentication when delivering mail; however, it
+does not as of yet have the ability, at least if I am understanding it
+correctly, to use TLS, aka STARTTLS. That would put your statement:
+&quot;Fetchmail's job, which it does very well, is to retrieve mail from
+mailboxes and pass it to another local mail agent for further
+processing (often local delivery).&quot; in direct conflict with that
+statement since it is not fully able to deliver mail to servers that
+are employing more robust security techniques. Ones that arre fully
+RFC approved i might add and have been for quite some time.
+
+Where I become confused, and that is not all that hard to do, is why
+Fetchmail can apparently use TLS to fetch mail; but, it cannot use the
+same mechanism to deliver mail. I don't understand why. I have also
+been told, although I have never personally verified the fact, that
+other programs similar to Fetchmail do offer this capability. Even
+small utility programs like &quot;Denyhosts&quot;
+&lt;<A HREF="http://denyhosts.sourceforge.net/">http://denyhosts.sourceforge.net/</A>&gt;  which I run on my machine fully
+supports SMTP Authentication and TLS.
+
+&gt;<i> The solution to the OP's problem is to configure a local SMTP
+</I>&gt;<i> forwarder -- another tool which does one job well -- to receive
+</I>&gt;<i> the mail from fetchmail and pass it to the Exchange server via
+</I>&gt;<i> TLS, queueing it locally if necessary (e.g. when the Exchange
+</I>&gt;<i> server is down).  This approach will avoid the problem of having
+</I>&gt;<i> to repeatedly retrieve the same mail from the POP3 server due to
+</I>&gt;<i> the Exchange server being unavailable for one reason or another.
+</I>
+This suggestion adds another layer of complexity which requires further
+knowledge to correctly setup and the obvious time and energy required
+to do so and maintain said software and its dependency's. I am
+personally a life time member of the &quot;KISS&quot; principal. Your suggestion,
+while workable, runs counter to that philosophy. I have all ready
+stated in another post how I worked around Fetchmail's limitation. I
+would not rate it as superior to yours, just different and one that I
+would have rather not taken..
+
+I might add that this is in no way a condemnation of the Fetchmail
+developers. They have created and advanced an excellent product. It is
+just a statement of fact as I see it. I certainly do not want to offend
+anyone.
+
+Anyway, that is my 2&#162; on the matter.
+
+-- 
+Jerry &#9996;
+<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">Fetchmail.user at seibercom.net</A>
+
+Disclaimer: off-list followups get on-list replies or get ignored.
+Please do not ignore the Reply-To header.
+__________________________________________________________________
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002712.html">[fetchmail-users] help forwarding to Exchange 2010 with TLS
+</A></li>
+	<LI>Next message: <A HREF="002717.html">[fetchmail-users] help forwarding to Exchange 2010 with TLS
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2716">[ date ]</a>
+              <a href="thread.html#2716">[ thread ]</a>
+              <a href="subject.html#2716">[ subject ]</a>
+              <a href="author.html#2716">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

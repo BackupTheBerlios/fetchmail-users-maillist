@@ -1,0 +1,73 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] how to set up fetchmail for inbox.com POP3
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2012-June/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20how%20to%20set%20up%20fetchmail%20for%20inbox.com%20POP3&In-Reply-To=%3CCAD2Ti2_aDvLr60biMEAPQavZPi198s7Xnnoa%3DcTwLC%3DM5A7g5g%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003174.html">
+   <LINK REL="Next"  HREF="003176.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] how to set up fetchmail for inbox.com POP3</H1>
+    <B>grarpamp</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20how%20to%20set%20up%20fetchmail%20for%20inbox.com%20POP3&In-Reply-To=%3CCAD2Ti2_aDvLr60biMEAPQavZPi198s7Xnnoa%3DcTwLC%3DM5A7g5g%40mail.gmail.com%3E"
+       TITLE="[fetchmail-users] how to set up fetchmail for inbox.com POP3">grarpamp at gmail.com
+       </A><BR>
+    <I>Thu Jun 21 06:25:37 CEST 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003174.html">[fetchmail-users] how to set up fetchmail for inbox.com POP3
+</A></li>
+        <LI>Next message: <A HREF="003176.html">[fetchmail-users] how to set up fetchmail for inbox.com POP3
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3175">[ date ]</a>
+              <a href="thread.html#3175">[ thread ]</a>
+              <a href="subject.html#3175">[ subject ]</a>
+              <a href="author.html#3175">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>tracing what is served up by inbox, it is sufficient to have these two
+certs installed
+geo:MD5 Fingerprint=F7:75:AB:29:FB:51:4E:B7:77:5E:FF:05:3C:99:8E:F5
+rapid:MD5 Fingerprint=1B:EE:28:5E:8F:F8:08:5F:79:CC:60:8B:92:99:A4:53
+and then this print in fetchmailrc
+inbox:MD5 Fingerprint=81:FB:6C:4F:52:9E:EB:20:A3:42:43:50:45:AA:62:E5
+
+geo is in the current nss set, so if the system is up to date with that and
+you're blindly accepting all those ca's (not the best idea), only rapid should
+be needed locally.
+
+no idea where equifax came from, maybe a mismatched c_rehash.
+</PRE>
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003174.html">[fetchmail-users] how to set up fetchmail for inbox.com POP3
+</A></li>
+	<LI>Next message: <A HREF="003176.html">[fetchmail-users] how to set up fetchmail for inbox.com POP3
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3175">[ date ]</a>
+              <a href="thread.html#3175">[ thread ]</a>
+              <a href="subject.html#3175">[ subject ]</a>
+              <a href="author.html#3175">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,86 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] fetchmail drives me crazy... [I do not want output on STDERR]
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2008-July/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%20drives%20me%20crazy...%20%5BI%20do%20not%20want%0A%20output%20on%20STDERR%5D&In-Reply-To=%3C486A5A2D.4000407%40gmx.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001587.html">
+   <LINK REL="Next"  HREF="001603.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] fetchmail drives me crazy... [I do not want output on STDERR]</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%20drives%20me%20crazy...%20%5BI%20do%20not%20want%0A%20output%20on%20STDERR%5D&In-Reply-To=%3C486A5A2D.4000407%40gmx.de%3E"
+       TITLE="[fetchmail-users] fetchmail drives me crazy... [I do not want output on STDERR]">matthias.andree at gmx.de
+       </A><BR>
+    <I>Tue Jul  1 18:24:13 CEST 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001587.html">[fetchmail-users] &quot;sslcert&quot; not found
+</A></li>
+        <LI>Next message: <A HREF="001603.html">[fetchmail-users] fetchmail drives me crazy... [I do not want	output on STDERR]
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1588">[ date ]</a>
+              <a href="thread.html#1588">[ thread ]</a>
+              <a href="subject.html#1588">[ subject ]</a>
+              <a href="author.html#1588">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Michelle Konzack schrieb:
+
+&gt;<i> I call fetchmail with
+</I>&gt;<i> 
+</I>&gt;<i> ---[ '~/.tddebdevel/projects/tddebbtsmanager/tddebbtsmanager-2.0.0/src/tddebbtsmanager.108.action_fetch-messages.sh' ]--
+</I>&gt;<i> chmod 0600 ${BASEDIR}/fetchmailrc
+</I>&gt;<i> fetchmail --logfile ${BASEDIR}/logs/`date '+%Y-%m'`.fetchmail.log \
+</I>&gt;<i>           --fetchmailrc ${BASEDIR}/fetchmailrc
+</I>&gt;<i> ------------------------------------------------------------------------
+</I>
+&gt;<i> Any suggestions HOW to get the STDERR into the FETCHMAIL logfile?
+</I>
+Not a fetchmail problem... Do
+
+exec 2&gt;&gt;${BASEDIR}/logs/$(date '+%Y-%m').fetchmail.log
+
+or something similar before the fetchmail call.
+
+Understanding this is off-topic as much as the original question, and left
+as an exercise to the reader (of a shell manual, perhaps), that much I will
+expect of a &quot;Systemadministrator&quot;. ;-)
+
+-- 
+Matthias Andree
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001587.html">[fetchmail-users] &quot;sslcert&quot; not found
+</A></li>
+	<LI>Next message: <A HREF="001603.html">[fetchmail-users] fetchmail drives me crazy... [I do not want	output on STDERR]
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1588">[ date ]</a>
+              <a href="thread.html#1588">[ thread ]</a>
+              <a href="subject.html#1588">[ subject ]</a>
+              <a href="author.html#1588">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

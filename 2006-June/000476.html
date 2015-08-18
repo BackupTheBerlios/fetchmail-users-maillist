@@ -1,0 +1,95 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] [BUG] fetchmail daemon does not resume fetching after a network outage
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2006-June/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20%5BBUG%5D%20fetchmail%20daemon%20does%20not%20resume%20fetching%20after%20a%20network%20outage&In-Reply-To=%3C51ADE8F7-FCC4-4575-97D2-76F506C42848%40ritual.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000475.html">
+   <LINK REL="Next"  HREF="000470.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] [BUG] fetchmail daemon does not resume fetching after a network outage</H1>
+    <B>Uli Zappe</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20%5BBUG%5D%20fetchmail%20daemon%20does%20not%20resume%20fetching%20after%20a%20network%20outage&In-Reply-To=%3C51ADE8F7-FCC4-4575-97D2-76F506C42848%40ritual.org%3E"
+       TITLE="[fetchmail-users] [BUG] fetchmail daemon does not resume fetching after a network outage">uli at ritual.org
+       </A><BR>
+    <I>Wed Jun 28 18:43:25 CEST 2006</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000475.html">[fetchmail-users] [BUG] fetchmail daemon does not resume fetching after a network outage
+</A></li>
+        <LI>Next message: <A HREF="000470.html">[fetchmail-users] [BUG] fetchmail daemon does not resume fetching after a network outage
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#476">[ date ]</a>
+              <a href="thread.html#476">[ thread ]</a>
+              <a href="subject.html#476">[ subject ]</a>
+              <a href="author.html#476">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Am 28.06.2006 um 18:18 schrieb Matthias Andree:
+&gt;&gt;<i> The other are actually 4 occurrences of freeaddrinfo() in  
+</I>&gt;&gt;<i> checkalias.c that, via several function calls, end up being called  
+</I>&gt;&gt;<i> in line 1430 in driver.c in the fetch_messages() call. Depending  
+</I>&gt;&gt;<i> on the method you'll use, these could be tricky to handle, because  
+</I>&gt;&gt;<i> as I said
+</I>&gt;&gt;<i> there are several function calls between the fetch_messages() call  
+</I>&gt;&gt;<i> and these freeaddrinfo() calls.
+</I>&gt;<i>
+</I>&gt;<i> I'm not very motivated to fix code that is not of much practical  
+</I>&gt;<i> value (since it assumes inbound MX and POP3/IMAP server are the  
+</I>&gt;<i> same) and that is scheduled for removal.
+</I>
+Of course that's up to you to decide. That's why I wrote that it's  
+probably better you fix this instead of me because you do know the  
+code much better. I have/had not the slightest idea what checkalias.c  
+is for, I just parsed the complete fetchmail code for occurrences of  
+freeaddrinfo() and looked if in the end they would be called from  
+within do_session() in driver.c and were thus subject to a possible  
+timeout interference.
+
+Which of these occurrences are important, I leave completely up to  
+you to decide.
+
+             Bye
+                     Uli
+________________________________________________________
+
+   Uli Zappe, Solmsstra&#223;e 5, D-65189 Wiesbaden, Germany
+   <A HREF="http://www.ritual.org">http://www.ritual.org</A>
+   Fon: +49-700-ULIZAPPE
+   Fax: +49-700-ZAPPEFAX
+________________________________________________________
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000475.html">[fetchmail-users] [BUG] fetchmail daemon does not resume fetching after a network outage
+</A></li>
+	<LI>Next message: <A HREF="000470.html">[fetchmail-users] [BUG] fetchmail daemon does not resume fetching after a network outage
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#476">[ date ]</a>
+              <a href="thread.html#476">[ thread ]</a>
+              <a href="subject.html#476">[ subject ]</a>
+              <a href="author.html#476">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

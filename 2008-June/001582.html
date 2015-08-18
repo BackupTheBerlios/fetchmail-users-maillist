@@ -1,0 +1,141 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] fetchmail drives me crazy... [I do not want	output on STDERR]
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2008-June/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%20drives%20me%20crazy...%20%5BI%20do%20not%20want%0A%09output%20on%20STDERR%5D&In-Reply-To=%3C20080629225938.GR12731%40freenet.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001583.html">
+   
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] fetchmail drives me crazy... [I do not want	output on STDERR]</H1>
+    <B>Michelle Konzack</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%20drives%20me%20crazy...%20%5BI%20do%20not%20want%0A%09output%20on%20STDERR%5D&In-Reply-To=%3C20080629225938.GR12731%40freenet.de%3E"
+       TITLE="[fetchmail-users] fetchmail drives me crazy... [I do not want	output on STDERR]">linux4michelle at tamay-dogan.net
+       </A><BR>
+    <I>Mon Jun 30 00:59:38 CEST 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001583.html">[fetchmail-users] &quot;sslcert&quot; not found
+</A></li>
+        
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1582">[ date ]</a>
+              <a href="thread.html#1582">[ thread ]</a>
+              <a href="subject.html#1582">[ subject ]</a>
+              <a href="author.html#1582">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>************************************************************************
+*       Do not Cc: me, because I READ THIS LIST, if I write here       *
+*    Keine Cc: am mich, ich LESE DIESE LISTE wenn ich hier schreibe    *
+************************************************************************
+
+Hello,
+
+I get all 5 minutes  a  message  from  &quot;Cron Daemon&quot;  since  one  of  my
+fetchmail processes output on STDERR:
+
+---[ mailfetch ]--------------------------------------------------------
+Date: Mon, 30 Jun 2008 00:45:08 +0200
+From: Cron Daemon &lt;root&gt;
+To: <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">linux4michelle at tamay-dogan.net</A>
+Subject: Cron &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">michelle.konzack at tp570</A>&gt; tddebbtsmanager --fetch-messages
+
+Fetching messages:
+fetchmail: timeout after 15 seconds waiting to connect to server server4.pinguin-hosting.de.
+fetchmail: socket error while fetching from server4.pinguin-hosting.de
+fetchmail: Query status=2 (SOCKET)
+------------------------------------------------------------------------
+
+I call fetchmail with
+
+---[ '~/.tddebdevel/projects/tddebbtsmanager/tddebbtsmanager-2.0.0/src/tddebbtsmanager.108.action_fetch-messages.sh' ]--
+chmod 0600 ${BASEDIR}/fetchmailrc
+fetchmail --logfile ${BASEDIR}/logs/`date '+%Y-%m'`.fetchmail.log \
+          --fetchmailrc ${BASEDIR}/fetchmailrc
+------------------------------------------------------------------------
+
+and my fetchmailrc looks
+
+---[ '~/.tddebbtsmanager/fetchmailrc' ]---------------------------------
+###########################  GLOBAL OPTIONS  ###########################
+set     no bouncemail
+set     postmaster      <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">linux4michelle at tamay-dogan.net</A>
+set     invisible
+set     no syslog
+
+###########################  SERVER OPTIONS  ###########################
+poll            server4.pinguin-hosting.de
+proto           imap
+timeout         15
+
+############################  USER OPTIONS  ############################
+user            <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">idonotliketosay at tamay-dogan.net</A>
+pass            =8&lt;0
+is              michelle.konzack
+ssl
+sslcert         /home/michelle.konzack/.tddebbtsmanager/fetchmailcert
+sslproto        tls1
+sslfingerprint  &quot;B6:12:DD:96:5B:76:4A:B1:5C:14:41:9A:00:05:4D:92&quot;
+antispam        -1
+batchlimit      10
+fetchall
+expunge         10
+mda             &quot;/usr/bin/procmail -d %T /home/michelle.konzack/.tddebbtsmanager/procmailrc&quot;
+dropstatus
+------------------------------------------------------------------------
+
+Any suggestions HOW to get the STDERR into the FETCHMAIL logfile?
+
+Thanks, Greetings and nice Day/Evening
+    Michelle Konzack
+    Systemadministrator
+    24V Electronic Engineer
+    Tamay Dogan Network
+    Debian GNU/Linux Consultant
+
+
+-- 
+Linux-User #280138 with the Linux Counter, <A HREF="http://counter.li.org/">http://counter.li.org/</A>
+##################### Debian GNU/Linux Consultant #####################
+Michelle Konzack   Apt. 917                  ICQ #328449886
++49/177/9351947    50, rue de Soultz         MSN LinuxMichi
++33/6/61925193     67100 Strasbourg/France   IRC #Debian (irc.icq.com)
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: signature.pgp
+Type: application/pgp-signature
+Size: 189 bytes
+Desc: Digital signature
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/fetchmail-users/attachments/20080630/8bfb5f83/attachment.pgp">https://lists.berlios.de/pipermail/fetchmail-users/attachments/20080630/8bfb5f83/attachment.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001583.html">[fetchmail-users] &quot;sslcert&quot; not found
+</A></li>
+	
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1582">[ date ]</a>
+              <a href="thread.html#1582">[ thread ]</a>
+              <a href="subject.html#1582">[ subject ]</a>
+              <a href="author.html#1582">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

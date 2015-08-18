@@ -1,0 +1,88 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] fetchmail gets stuck because of malformed spam
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2005-October/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%20gets%20stuck%20because%20of%20malformed%20spam&In-Reply-To=%3C43ea8d070510261106q66231777k%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000083.html">
+   <LINK REL="Next"  HREF="000086.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] fetchmail gets stuck because of malformed spam</H1>
+    <B>Rob MacGregor</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%20gets%20stuck%20because%20of%20malformed%20spam&In-Reply-To=%3C43ea8d070510261106q66231777k%40mail.gmail.com%3E"
+       TITLE="[fetchmail-users] fetchmail gets stuck because of malformed spam">rob.macgregor at gmail.com
+       </A><BR>
+    <I>Wed Oct 26 20:06:51 CEST 2005</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000083.html">[fetchmail-users] fetchmail gets stuck because of malformed spam
+</A></li>
+        <LI>Next message: <A HREF="000086.html">[fetchmail-users] fetchmail gets stuck because of malformed      spam
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#85">[ date ]</a>
+              <a href="thread.html#85">[ thread ]</a>
+              <a href="subject.html#85">[ subject ]</a>
+              <a href="author.html#85">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On 26/10/05, Karel Kulhavy &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">clock at twibright.com</A>&gt; wrote:
+&gt;<i> I got some malformed spam which causes fetchmail to stop on this spam
+</I>&gt;<i> and I am unable to download 162 waiting messages behind this spam.
+</I>&gt;<i>
+</I>&gt;<i> This seems to be some kind of fetchmail DoS vulnerability - if someone
+</I>&gt;<i> sends this mail to all fetchmail users in the world, they will be pretty
+</I>&gt;<i> pissed off to have to log in to remote machine and erase the e-mail by
+</I>&gt;<i> hand. And if he sends every hour, they will have to change to a
+</I>&gt;<i> different program than fetchmail ;-)
+</I>
+I've seen a similar problem before, but usually fetchmail will skip
+the offending mail and carry on.  One option may be to set 501 as one
+of the anti-spam codes.
+
+&gt;<i> don't know how to get IMAP server greeting line
+</I>
+telnet IMAPHOST 143
+
+More useful than the config dump would be the contents of .fetchmailrc
+and output of &quot;fetchmail -v -v&quot; for the problem email (along with the
+matching log entries from your MTA).
+
+--
+                 Please keep list traffic on the list.
+Rob MacGregor
+      Whoever fights monsters should see to it that in the process he
+        doesn't become a monster.                  Friedrich Nietzsche
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000083.html">[fetchmail-users] fetchmail gets stuck because of malformed spam
+</A></li>
+	<LI>Next message: <A HREF="000086.html">[fetchmail-users] fetchmail gets stuck because of malformed      spam
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#85">[ date ]</a>
+              <a href="thread.html#85">[ thread ]</a>
+              <a href="subject.html#85">[ subject ]</a>
+              <a href="author.html#85">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

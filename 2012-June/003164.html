@@ -1,0 +1,93 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] how to set up fetchmail for inbox.com POP3
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2012-June/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20how%20to%20set%20up%20fetchmail%20for%20inbox.com%20POP3&In-Reply-To=%3C4FE241BC.1030703%40gmx.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003163.html">
+   <LINK REL="Next"  HREF="003165.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] how to set up fetchmail for inbox.com POP3</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20how%20to%20set%20up%20fetchmail%20for%20inbox.com%20POP3&In-Reply-To=%3C4FE241BC.1030703%40gmx.de%3E"
+       TITLE="[fetchmail-users] how to set up fetchmail for inbox.com POP3">matthias.andree at gmx.de
+       </A><BR>
+    <I>Wed Jun 20 23:33:48 CEST 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003163.html">[fetchmail-users] how to set up fetchmail for inbox.com POP3
+</A></li>
+        <LI>Next message: <A HREF="003165.html">[fetchmail-users] how to set up fetchmail for inbox.com POP3
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3164">[ date ]</a>
+              <a href="thread.html#3164">[ thread ]</a>
+              <a href="subject.html#3164">[ subject ]</a>
+              <a href="author.html#3164">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Am 20.06.2012 22:47, schrieb Globe Trotter:
+&gt;<i> Thank you very much! I am sorry to say that I have dug arond a fair bit, and I am quite lost. I wonder if the fact that the certificate being checked against:
+</I>&gt;<i> 
+</I>&gt;<i> <A HREF="https://knowledge.rapidssl.com/library/VERISIGN/INTERNATIONAL_AFFILIATES/RapidSSL/AR1548/RapidSSLPKCS7.p7b">https://knowledge.rapidssl.com/library/VERISIGN/INTERNATIONAL_AFFILIATES/RapidSSL/AR1548/RapidSSLPKCS7.p7b</A>
+</I>&gt;<i> 
+</I>&gt;<i> is a pkcs#7 certificate? How would fetchmail handle it? Is that (me not being able to set it correctly) the problem?
+</I>&gt;<i> 
+</I>
+Indeed.  Fetchmail does not handle those.  You need to download them in
+PEM or CRT format, or you can convert the PKCS#7 stuff to PEM format:
+
+1. if necessary, convert from Unicode to ASCII: (may be required if
+openssl doesn't recognize this as PKCS#7)
+iconv -f UTF-16 -t ASCII &lt;RapidSSLPKCS7.p7b &gt;RapidSSLPKCS7.asc
+
+I needed to do this because the p7b file was in UTF-16 (little endian)
+encoding (with byte order mark) after downloading it with cURL on Cygwin.
+
+
+2. convert from PKCS#7 to PEM:
+openssl pkcs7 -print_certs -in RapidSSLPKCS7.asc -text -out RapidSSL.pem
+
+You may need to replace .asc by .p7b in step #2.  RapidSSL.pem then has
+two certificates:
+
+        Subject: C=US, O=GeoTrust, Inc., CN=RapidSSL CA
+        Subject: C=US, O=GeoTrust Inc., CN=GeoTrust Global CA
+
+-- 
+Matthias Andree
+
+
+</PRE>
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003163.html">[fetchmail-users] how to set up fetchmail for inbox.com POP3
+</A></li>
+	<LI>Next message: <A HREF="003165.html">[fetchmail-users] how to set up fetchmail for inbox.com POP3
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3164">[ date ]</a>
+              <a href="thread.html#3164">[ thread ]</a>
+              <a href="subject.html#3164">[ subject ]</a>
+              <a href="author.html#3164">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

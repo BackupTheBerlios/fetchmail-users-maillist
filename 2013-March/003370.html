@@ -1,0 +1,120 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] fetchmail/sendmail: Domain of sender address	does not exist
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2013-March/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail/sendmail%3A%20Domain%20of%20sender%20address%0A%09does%20not%20exist&In-Reply-To=%3C5138E581.6070601%40gmx.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003369.html">
+   <LINK REL="Next"  HREF="003371.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] fetchmail/sendmail: Domain of sender address	does not exist</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail/sendmail%3A%20Domain%20of%20sender%20address%0A%09does%20not%20exist&In-Reply-To=%3C5138E581.6070601%40gmx.de%3E"
+       TITLE="[fetchmail-users] fetchmail/sendmail: Domain of sender address	does not exist">matthias.andree at gmx.de
+       </A><BR>
+    <I>Thu Mar  7 20:07:45 CET 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003369.html">[fetchmail-users] Configure .fetchmailrc for hotwayd
+</A></li>
+        <LI>Next message: <A HREF="003371.html">[fetchmail-users] fetchmail/sendmail: Domain of sender address	does not exist
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3370">[ date ]</a>
+              <a href="thread.html#3370">[ thread ]</a>
+              <a href="subject.html#3370">[ subject ]</a>
+              <a href="author.html#3370">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>(Since freebsd-ports is a public list, too, I am
+copying to fetchmail-users mailing list for future reference.
+Note that the fetchmail lists only permit subscribers to post.)
+
+Am 07.03.2013 16:12, schrieb Anton Shterenlikht:
+
+&gt;<i> I see e.g.:
+</I>&gt;<i> 
+</I>&gt;<i> fetchmail: IMAP&gt; A0021 FETCH 14 RFC822.HEADER
+</I>&gt;<i> fetchmail: IMAP&lt; * 14 FETCH (RFC822.HEADER {4833}
+</I>&gt;<i> reading message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">mexas at epo.bris.ac.uk</A>:14 of 14 (4833 header octets) 
+</I>&gt;<i> fetchmail: SMTP&gt; MAIL FROM:&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">fsde_1e2ciclos at mrsevangelineschafers.localdomain</A>&gt; BODY=8BITMIME SIZE=5930
+</I>&gt;<i> fetchmail: SMTP&lt; 553 5.1.8 &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">fsde_1e2ciclos at mrsevangelineschafers.localdomain</A>&gt;... Domain of sender address <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">fsde_1e2ciclos at mrsevangelineschafers.localdomain</A> does not exist
+</I>&gt;<i> fetchmail: SMTP error: 553 5.1.8 &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">fsde_1e2ciclos at mrsevangelineschafers.localdomain</A>&gt;... Domain of sender address <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">fsde_1e2ciclos at mrsevangelineschafers.localdomain</A> does not exist
+</I>&gt;<i> fetchmail: SMTP&gt; RSET
+</I>&gt;<i> fetchmail: SMTP&lt; 250 2.0.0 Reset state
+</I>&gt;<i> 
+</I>&gt;<i> fetchmail: IMAP&lt; )
+</I>&gt;<i> fetchmail: IMAP&lt; A0021 OK Completed (0.000 sec)
+</I>&gt;<i> 
+</I>&gt;<i>  not flushed
+</I>&gt;<i> 
+</I>&gt;<i> I'm also confused by this section of fetchmail
+</I>&gt;<i> man page:
+</I>&gt;<i> 
+</I>&gt;<i> *quote*
+</I>&gt;<i> SMTP/ESMTP ERROR HANDLING
+</I>&gt;<i>        Besides the spam-blocking  described  above,  fetchmail  takes  special
+</I>&gt;<i>        actions on the following SMTP/ESMTP error responses
+</I>&gt;<i> ...
+</I>&gt;<i> 
+</I>&gt;<i>        553 (invalid sending domain)
+</I>&gt;<i>             Delete the message from  the  server.   Don't  even  try  to  send
+</I>&gt;<i>             bounce-mail to the originator.
+</I>&gt;<i> *end quote*
+</I>&gt;<i> 
+</I>&gt;<i> I do get error 553 here, but the emails are not
+</I>&gt;<i> deleted from the server. I tried running fetchmail
+</I>&gt;<i> dosens of times, but this email (and others, about 15
+</I>&gt;<i> in total), just wouldn't go away, and I cannot
+</I>&gt;<i> get those either.
+</I>&gt;<i> 
+</I>&gt;<i> Maybe I should ask in fetchmail lists.
+</I>
+Indeed you should.
+
+However, look for &quot;softbounce&quot; in the manual page, it is on by default
+in fetchmail versions &gt;= 6.3.10 and &lt; 7.0.0 (not yet released) to avoid
+mail loss.
+
+--nosoftbounce on the command line, or &quot;set no softbounce&quot; early in the
+.fetchmailrc will cause fetchmail to delete such messages (I should add
+a pointer to that section).
+
+I will add a pointer to these options to the quoted section, though, to
+appear in v6.3.25.
+
+HTH
+Matthias
+</PRE>
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003369.html">[fetchmail-users] Configure .fetchmailrc for hotwayd
+</A></li>
+	<LI>Next message: <A HREF="003371.html">[fetchmail-users] fetchmail/sendmail: Domain of sender address	does not exist
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3370">[ date ]</a>
+              <a href="thread.html#3370">[ thread ]</a>
+              <a href="subject.html#3370">[ subject ]</a>
+              <a href="author.html#3370">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

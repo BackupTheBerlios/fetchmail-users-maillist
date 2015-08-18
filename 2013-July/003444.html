@@ -1,0 +1,138 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] set no softbounce does not work with gmail
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2013-July/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20set%20no%20softbounce%20does%20not%20work%20with%20gmail&In-Reply-To=%3C201307190855.r6J8tHv2066388%40mech-cluster241.men.bris.ac.uk%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003438.html">
+   <LINK REL="Next"  HREF="003446.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] set no softbounce does not work with gmail</H1>
+    <B>Anton Shterenlikht</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20set%20no%20softbounce%20does%20not%20work%20with%20gmail&In-Reply-To=%3C201307190855.r6J8tHv2066388%40mech-cluster241.men.bris.ac.uk%3E"
+       TITLE="[fetchmail-users] set no softbounce does not work with gmail">mexas at bris.ac.uk
+       </A><BR>
+    <I>Fri Jul 19 10:55:17 CEST 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003438.html">[fetchmail-users] set no softbounce does not work with gmail
+</A></li>
+        <LI>Next message: <A HREF="003446.html">[fetchmail-users] set no softbounce does not work with gmail
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3444">[ date ]</a>
+              <a href="thread.html#3444">[ thread ]</a>
+              <a href="subject.html#3444">[ subject ]</a>
+              <a href="author.html#3444">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>&gt;<i>Date: Thu, 18 Jul 2013 20:54:48 +0100
+</I>&gt;<i>From: Rob MacGregor &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">rob.macgregor at gmail.com</A>&gt;
+</I>&gt;<i>To: fetchmail-users &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">fetchmail-users at lists.berlios.de</A>&gt;
+</I>&gt;<i>Subject: Re: [fetchmail-users] set no softbounce does not work with gmail
+</I>
+&gt;<i>On Thu, Jul 18, 2013 at 9:43 AM, Anton Shterenlikht &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">mexas at bris.ac.uk</A>&gt;wrote:
+</I>&gt;<i>
+</I>&gt;&gt;<i> On FreeBSD 10.0-CURRENT #5 r252055, with
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> $ fetchmail -V | head -1
+</I>&gt;&gt;<i> This is fetchmail release 6.3.26+RPA+SDPS+SSL+OPIE.
+</I>&gt;&gt;<i> $
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> This is my .fetchmailrc:
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> set no softbounce
+</I>&gt;&gt;<i> poll imap.gmail.com protocol imap user &quot;xxx&quot; password &quot;xxx&quot; folders
+</I>&gt;&gt;<i> &quot;Inbox&quot;,&quot;[Gmail]/Spam&quot; ssl sslcertck sslcertfile
+</I>&gt;&gt;<i> /usr/local/share/certs/ca-root-nss.crt fetchall
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> (I don't trust gmail spam filter.)
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> However, the &quot;no softbounce&quot; option seems to have no effect:
+</I>&gt;&gt;<i> &lt;---SNIP---&gt;
+</I>&gt;&gt;<i> fetchmail: SMTP error: 451 4.1.8 Domain of sender address <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">fjpv at dfyc.orgdoes</A> not resolve
+</I>&gt;&gt;<i> reading message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">mexas at bristol.ac.uk</A>@gmail-imap.l.google.com:5 of 5 (2027
+</I>&gt;&gt;<i> header octets) not flushed
+</I>&gt;&gt;<i> $
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Am I doing something wrong?
+</I>&gt;&gt;<i> Or is gmail IMAP just ignoring &quot;no softbounce&quot;?
+</I>&gt;&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i>A 400 series SMTP error is a temporary error, the softbounce setting
+</I>&gt;<i>controls the behaviour for permanent errors.
+</I>&gt;<i>
+</I>&gt;<i>The safest option is to log on to Gmail and remove the offending emails.
+</I>&gt;<i>You could configure fetchmail to permanently delete emails on a 451 error,
+</I>&gt;<i>however if you have any DNS issues then you'll potentially discard all your
+</I>&gt;<i>new emails
+</I>
+I'm a bit worried about the growing list of rejected
+hosts, reported by sendmail:
+
+Checking for rejected mail hosts:
+  41 451 check_mail gs.org resolve
+  40 451 check_mail jic.net resolve
+  40 451 check_mail ff.com resolve
+  40 451 check_mail dfyc.org resolve
+  40 451 check_mail 0549.com resolve
+   1 553 check_mail zvrhoibh.net exist
+   1 553 check_mail zmjuia.com exist
+   1 553 check_mail zg.net exist
+   1 553 check_mail ysqlj.net exist
+   1 553 check_mail ykgg.net exist
+   1 553 check_mail wxmsb.com exist
+   1 553 check_mail wrgmrd.net exist
+   1 553 check_mail usndiyw.net exist
+   1 553 check_mail tfnj.org exist
+   1 553 check_mail tbqagyl.net exist
+   1 553 check_mail svkydcmw.com exist
+   1 553 check_mail quwtik.com exist
+   1 553 check_mail nipnze.com exist
+   1 553 check_mail hkzkbdg.com exist
+   1 553 check_mail bebrg.net exist
+   1 553 check_mail avdcwgxd.com exist
+
+Actually, this is the statistics collected from
+maillogs by FreeBSD periodic scripts.
+
+Not really my field, so I don't know if this
+is all right, or I should be worried...
+
+Thanks
+
+Anton
+
+</PRE>
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003438.html">[fetchmail-users] set no softbounce does not work with gmail
+</A></li>
+	<LI>Next message: <A HREF="003446.html">[fetchmail-users] set no softbounce does not work with gmail
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3444">[ date ]</a>
+              <a href="thread.html#3444">[ thread ]</a>
+              <a href="subject.html#3444">[ subject ]</a>
+              <a href="author.html#3444">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

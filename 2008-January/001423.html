@@ -1,0 +1,198 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] No Download
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2008-January/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20No%20Download&In-Reply-To=%3C001f01c859e3%24990f3ca0%240200640a%40wtlc%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001437.html">
+   <LINK REL="Next"  HREF="001436.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] No Download</H1>
+    <B>Andrea Bencini</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20No%20Download&In-Reply-To=%3C001f01c859e3%24990f3ca0%240200640a%40wtlc%3E"
+       TITLE="[fetchmail-users] No Download">andrea.bencini at tin.it
+       </A><BR>
+    <I>Fri Jan 18 16:04:14 CET 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001437.html">[fetchmail-users] Extended logging options?
+</A></li>
+        <LI>Next message: <A HREF="001436.html">[fetchmail-users] No Download
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1423">[ date ]</a>
+              <a href="thread.html#1423">[ thread ]</a>
+              <a href="subject.html#1423">[ subject ]</a>
+              <a href="author.html#1423">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>I answer to Rob and Matthias together.
+Thanks
+Andrea
+
+&gt;<i>Rob
+</I>&gt;<i> Can you post the *exact* command line you're using to start fetchmail.
+</I>&gt;<i> I'd almost suspect that you're calling it from cron with the &quot;-c&quot;
+</I>&gt;<i> option in the command line.
+</I>
+&gt;<i>Matthias
+</I>&gt;<i> What I find strange is: fetchmail considers the messages &quot;unseen&quot;,
+</I>&gt;<i> but does not apparently try to fetch them. Does &quot;fetchmail -vvv&quot; provide
+</I>&gt;<i> any further insight? Please try and show the log.
+</I>&gt;<i>
+</I>
+In crontab I have this line (to debug):
+
+* * * * * su - adminpptt -c &quot;/usr/bin/fetchmail -vvv -S localhost/2345&quot;
+
+I have the same message
+Jan 18 10:49:04 srv-posta fetchmail[11965]: 1 is unseen
+
+but now I can download the e-mails.
+The maillog is:
+
+Jan 18 10:49:03 srv-posta fetchmail[11965]: 6.3.8 querying mail.mydom01.it 
+(protocol POP3) at ven 18 gen 2008 10:49:03 CET: poll started
+Jan 18 10:49:03 srv-posta postfix/smtpd[11986]: disconnect from 
+srv-posta[127.0.0.1]
+Jan 18 10:49:03 srv-posta fetchmail[11965]: Trying to connect to 
+11.22.33.142/995...connected.
+Jan 18 10:49:03 srv-posta fetchmail[11965]: Issuer Organization: Courier 
+Mail Server
+Jan 18 10:49:03 srv-posta fetchmail[11965]: Issuer CommonName: localhost
+Jan 18 10:49:03 srv-posta fetchmail[11965]: Server CommonName: localhost
+Jan 18 10:49:03 srv-posta fetchmail[11965]: Server CommonName mismatch: 
+localhost != mail.mydom01.it
+Jan 18 10:49:03 srv-posta fetchmail[11965]: mail.mydom01.it key fingerprint: 
+7B:91:E7:24:B2:AA:48:F8:CB:52:13:B5:11:55:8F:5E
+Jan 18 10:49:03 srv-posta fetchmail[11965]: mail.mydom01.it fingerprints 
+match.
+Jan 18 10:49:04 srv-posta fetchmail[11965]: POP3&lt; +OK Hello there. 
+&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">21854.1200650254 at localhost.localdomain</A>&gt;
+Jan 18 10:49:04 srv-posta fetchmail[11965]: POP3&gt; CAPA
+Jan 18 10:49:04 srv-posta fetchmail[11965]: POP3&lt; +OK Here's what I can do:
+Jan 18 10:49:04 srv-posta fetchmail[11965]: POP3&lt; TOP
+Jan 18 10:49:04 srv-posta fetchmail[11965]: POP3&lt; USER
+Jan 18 10:49:04 srv-posta fetchmail[11965]: POP3&lt; LOGIN-DELAY 10
+Jan 18 10:49:04 srv-posta fetchmail[11965]: POP3&lt; PIPELINING
+Jan 18 10:49:04 srv-posta fetchmail[11965]: POP3&lt; UIDL
+Jan 18 10:49:04 srv-posta fetchmail[11965]: POP3&lt; IMPLEMENTATION Courier 
+Mail Server
+Jan 18 10:49:04 srv-posta fetchmail[11965]: POP3&lt; .
+Jan 18 10:49:04 srv-posta fetchmail[11965]: POP3&gt; USER <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">user01 at mydom01.it</A>
+Jan 18 10:49:04 srv-posta fetchmail[11965]: POP3&lt; +OK Password required.
+Jan 18 10:49:04 srv-posta fetchmail[11965]: POP3&gt; PASS *
+Jan 18 10:49:04 srv-posta fetchmail[11965]: POP3&lt; +OK logged in.
+Jan 18 10:49:04 srv-posta fetchmail[11965]: selecting or re-polling default 
+folder
+Jan 18 10:49:04 srv-posta fetchmail[11965]: POP3&gt; STAT
+Jan 18 10:49:04 srv-posta fetchmail[11965]: POP3&lt; +OK 1 26260
+Jan 18 10:49:04 srv-posta fetchmail[11965]: POP3&gt; LAST
+Jan 18 10:49:04 srv-posta fetchmail[11965]: POP3&lt; -ERR Invalid command.
+Jan 18 10:49:04 srv-posta fetchmail[11965]: Invalid command.
+Jan 18 10:49:04 srv-posta fetchmail[11965]: POP3&gt; UIDL
+Jan 18 10:49:04 srv-posta fetchmail[11965]: POP3&lt; +OK
+Jan 18 10:49:04 srv-posta fetchmail[11965]: POP3&lt; 1 UID37-1177338125
+Jan 18 10:49:04 srv-posta fetchmail[11965]: 1 is unseen
+Jan 18 10:49:04 srv-posta fetchmail[11965]: POP3&lt; .
+Jan 18 10:49:04 srv-posta fetchmail[11965]: 1 message for <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">user01 at mydom01.it</A> 
+at mail.mydom01.it (26260 octets).
+Jan 18 10:49:04 srv-posta fetchmail[11965]: POP3&gt; LIST 1
+Jan 18 10:49:04 srv-posta fetchmail[11965]: POP3&lt; +OK 1 26260
+Jan 18 10:49:04 srv-posta fetchmail[11965]: POP3&gt; TOP 1 99999999
+Jan 18 10:49:04 srv-posta fetchmail[11965]: POP3&lt; +OK headers follow.
+Jan 18 10:49:04 srv-posta fetchmail[11965]: reading message 
+<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">user01 at mydom01.it</A>@mail.mydom01.it:1 of 1 (26260 octets)
+Jan 18 10:49:04 srv-posta fetchmail[11965]: About to rewrite Return-Path: 
+&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">user02 at mail.mydom02.it</A>&gt;#015#012Rewritten version is Return-Path: 
+&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">user02 at mail.mydom02.it</A>&gt;#015#012
+Jan 18 10:49:04 srv-posta fetchmail[11965]: About to rewrite From: &quot;Seg Pro 
+Eco&quot; &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">user02 at mail.mydom02.it</A>&gt;#015#012Rewritten version is From: &quot;Seg Pro 
+Eco&quot; &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">user02 at mail.mydom02.it</A>&gt;#015#012
+Jan 18 10:49:04 srv-posta fetchmail[11965]: About to rewrite To: 
+&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">user03 at dom03.net</A>&gt;,#015#012        &quot;Eco Pro&quot; 
+&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">user01 at mydom01.it</A>&gt;#015#012Rewritten version is To: 
+&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">user03 at dom03.net</A>&gt;,#015#012        &quot;Eco Pro&quot; &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">user01 at mydom01.it</A>&gt;#015#012
+Jan 18 10:49:04 srv-posta fetchmail[11965]: Trying to connect to 
+127.0.0.1/2345...connected.
+Jan 18 10:49:04 srv-posta postfix/smtpd[11986]: connect from 
+srv-posta[127.0.0.1]
+Jan 18 10:49:04 srv-posta fetchmail[11965]: SMTP&lt; 220 srv-posta.mydom01.it 
+ESMTP Postfix
+Jan 18 10:49:04 srv-posta fetchmail[11965]: SMTP&gt; EHLO srv-posta
+Jan 18 10:49:04 srv-posta fetchmail[11965]: SMTP&lt; 250-srv-posta.mydom01.it
+Jan 18 10:49:04 srv-posta fetchmail[11965]: SMTP&lt; 250-PIPELINING
+Jan 18 10:49:04 srv-posta fetchmail[11965]: SMTP&lt; 250-SIZE 10240000
+Jan 18 10:49:04 srv-posta fetchmail[11965]: SMTP&lt; 250-VRFY
+Jan 18 10:49:04 srv-posta fetchmail[11965]: SMTP&lt; 250-ETRN
+Jan 18 10:49:04 srv-posta fetchmail[11965]: SMTP&lt; 250-ENHANCEDSTATUSCODES
+Jan 18 10:49:04 srv-posta fetchmail[11965]: SMTP&lt; 250-8BITMIME
+Jan 18 10:49:04 srv-posta fetchmail[11965]: SMTP&lt; 250 DSN
+Jan 18 10:49:04 srv-posta fetchmail[11965]: forwarding to localhost/2345
+Jan 18 10:49:04 srv-posta fetchmail[11965]: SMTP&gt; MAIL 
+FROM:&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">user02 at mail.mydom02.it</A>&gt; SIZE=26260
+Jan 18 10:49:04 srv-posta fetchmail[11965]: SMTP&lt; 250 2.1.0 Ok
+Jan 18 10:49:04 srv-posta fetchmail[11965]: SMTP&gt; RCPT 
+TO:&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">economo at localhost</A>&gt;
+Jan 18 10:49:04 srv-posta postfix/smtpd[11986]: B037D125007A: 
+client=srv-posta[127.0.0.1]
+Jan 18 10:49:04 srv-posta fetchmail[11965]: SMTP&lt; 250 2.1.5 Ok
+Jan 18 10:49:04 srv-posta fetchmail[11965]: SMTP&gt; DATA
+Jan 18 10:49:04 srv-posta fetchmail[11965]: SMTP&lt; 354 End data with 
+&lt;CR&gt;&lt;LF&gt;.&lt;CR&gt;&lt;LF&gt;
+Jan 18 10:49:04 srv-posta postfix/cleanup[11989]: B037D125007A: 
+message-id=&lt;000901c859b6$19133bf0$<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">9600a8c0 at wsegretario</A>&gt;
+Jan 18 10:49:04 srv-posta fetchmail[11965]: SMTP&gt;. (EOM)
+Jan 18 10:49:04 srv-posta fetchmail[11965]: SMTP&lt; 250 2.0.0 Ok: queued as 
+B037D125007A
+Jan 18 10:49:04 srv-posta postfix/qmgr[1512]: B037D125007A: 
+from=&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">user02 at mail.mydom02.it</A>&gt;, size=26574, nrcpt=1 (queue active)
+Jan 18 10:49:04 srv-posta fetchmail[11965]:  flushed
+Jan 18 10:49:04 srv-posta fetchmail[11965]: POP3&gt; DELE 1
+Jan 18 10:49:04 srv-posta postfix/local[11990]: B037D125007A: 
+to=&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">economo at localhost.mydom01.it</A>&gt;, orig_to=&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">economo at localhost</A>&gt;, relay=local, 
+delay=0.16, delays=0.15/0/0/0, dsn=2.0.0, status=sent (delivered to maildir)
+Jan 18 10:49:04 srv-posta postfix/qmgr[1512]: B037D125007A: removed
+Jan 18 10:49:04 srv-posta fetchmail[11965]: POP3&lt; +OK Deleted.
+Jan 18 10:49:04 srv-posta fetchmail[11965]: POP3&gt; QUIT
+Jan 18 10:49:04 srv-posta fetchmail[11965]: POP3&lt; +OK Bye-bye.
+Jan 18 10:49:04 srv-posta fetchmail[11965]: SMTP&gt; QUIT
+Jan 18 10:49:04 srv-posta postfix/smtpd[11986]: disconnect from 
+srv-posta[127.0.0.1]
+Jan 18 10:49:04 srv-posta fetchmail[11965]: SMTP&lt; 221 2.0.0 Bye
+Jan 18 10:49:04 srv-posta fetchmail[11965]: 6.3.8 querying mail.mydom01.it 
+(protocol POP3) at ven 18 gen 2008 10:49:04 CET: poll completed
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001437.html">[fetchmail-users] Extended logging options?
+</A></li>
+	<LI>Next message: <A HREF="001436.html">[fetchmail-users] No Download
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1423">[ date ]</a>
+              <a href="thread.html#1423">[ thread ]</a>
+              <a href="subject.html#1423">[ subject ]</a>
+              <a href="author.html#1423">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

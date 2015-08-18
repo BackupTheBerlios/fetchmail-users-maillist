@@ -1,0 +1,106 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Authentication problem with fetchmail
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2009-June/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Authentication%20problem%20with%20fetchmail&In-Reply-To=%3Cop.uvqrbpsl1e62zd%40merlin.emma.line.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001972.html">
+   <LINK REL="Next"  HREF="001974.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Authentication problem with fetchmail</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Authentication%20problem%20with%20fetchmail&In-Reply-To=%3Cop.uvqrbpsl1e62zd%40merlin.emma.line.org%3E"
+       TITLE="[fetchmail-users] Authentication problem with fetchmail">matthias.andree at gmx.de
+       </A><BR>
+    <I>Fri Jun 19 00:27:15 CEST 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001972.html">[fetchmail-users] Authentication problem with fetchmail
+</A></li>
+        <LI>Next message: <A HREF="001974.html">[fetchmail-users] Authentication problem with fetchmail
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1973">[ date ]</a>
+              <a href="thread.html#1973">[ thread ]</a>
+              <a href="subject.html#1973">[ subject ]</a>
+              <a href="author.html#1973">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Am 17.06.2009, 16:38 Uhr, schrieb Joep L. Blom &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">jlblom at neuroweave.nl</A>&gt;:
+
+&gt;<i> Hi,
+</I>&gt;<i> I use fetchmail since many years to fetch my mail from my mail-server
+</I>&gt;<i> which pointed to my domain neuroweave.nl.
+</I>&gt;<i> Due to problems with the hosting provider, the domain host changed
+</I>&gt;<i> several times (automatically) and the domain remained visible.
+</I>&gt;<i> However, 2,5 weeks ago without my knowledge ( due to an &quot;administrative
+</I>&gt;<i> error!&quot;) my domain was removed.
+</I>&gt;<i> To make a long story short I now have de domain hosted again on a server
+</I>&gt;<i> which, however, has no public certficate.
+</I>&gt;<i> Now fetchmail complains, as follows:
+</I>&gt;<i>
+</I>&gt;<i> fetchmail: awakened at Wed 17 Jun 2009 04:11:56 PM CEST
+</I>&gt;<i> fetchmail: Server certificate verification error: self signed certificate
+</I>&gt;<i> fetchmail: Authorization failure on <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">jlblom at VhostID2.mcnolia.nl</A>
+</I>&gt;<i> fetchmail: Query status=3 (AUTHFAIL)
+</I>&gt;<i> fetchmail: sleeping at Wed 17 Jun 2009 04:12:01 PM CEST for 600 seconds
+</I>&gt;<i> My .fetchmailrc file is:
+</I>&gt;<i> .....
+</I>&gt;<i> poll VhostID2.mcnolia.nl with proto POP3 envelope X-Envelope-Rcpt
+</I>&gt;<i> #    aka neuroweave.nl localdomains nwhq.nl
+</I>&gt;<i>         user 'jlblom' there with password 'xxxxxx' is 'joep' 'jlblom'
+</I>&gt;<i> 'music' 'info' 'jl.blom' 'joep&amp;lon' 'composer' here options forcecr
+</I>&gt;<i> 	sslproto tls1
+</I>&gt;<i>
+</I>&gt;<i> The aka in or out has no effect.
+</I>&gt;<i> Why bother with a certificate? I have the sslproto option used but it
+</I>&gt;<i> has no effect.
+</I>&gt;<i> I would like to have a  nosslcertck option to override this check or is
+</I>&gt;<i> there another possibility?
+</I>
+sslcertck is off by default, so unless you enable it in another place of  
+the fetchmailrc file that you haven't shown (defaults section?), or on the  
+command line, this error does not cause the authorization failure - it's  
+more likely that the credentials are refused by the
+server.
+
+Please try verbose mode and see if the logging gets clearer - for details,  
+please see &lt;<A HREF="http://www.fetchmail.info/fetchmail-FAQ.html#G3">http://www.fetchmail.info/fetchmail-FAQ.html#G3</A>&gt;
+
+HTH
+
+-- 
+Matthias Andree
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001972.html">[fetchmail-users] Authentication problem with fetchmail
+</A></li>
+	<LI>Next message: <A HREF="001974.html">[fetchmail-users] Authentication problem with fetchmail
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1973">[ date ]</a>
+              <a href="thread.html#1973">[ thread ]</a>
+              <a href="subject.html#1973">[ subject ]</a>
+              <a href="author.html#1973">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

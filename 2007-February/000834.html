@@ -1,0 +1,116 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] How not to download mail for non-existing users?
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2007-February/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20How%20not%20to%20download%20mail%20for%20non-existing%0A%20users%3F&In-Reply-To=%3C20070223092043.1b75a6b0%40informatika.21oktobar.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000837.html">
+   <LINK REL="Next"  HREF="000829.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] How not to download mail for non-existing users?</H1>
+    <B>Ivan Imperl</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20How%20not%20to%20download%20mail%20for%20non-existing%0A%20users%3F&In-Reply-To=%3C20070223092043.1b75a6b0%40informatika.21oktobar.com%3E"
+       TITLE="[fetchmail-users] How not to download mail for non-existing users?">nospamtome at ml1.net
+       </A><BR>
+    <I>Fri Feb 23 09:20:43 CET 2007</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000837.html">[fetchmail-users] How not to download mail for non-existing	users?
+</A></li>
+        <LI>Next message: <A HREF="000829.html">[fetchmail-users] How not to download mail for non-existing	users?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#834">[ date ]</a>
+              <a href="thread.html#834">[ thread ]</a>
+              <a href="subject.html#834">[ subject ]</a>
+              <a href="author.html#834">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Nedavno Rob MacGregor pise:
+
+|<i> Ok, you're running an old, unsupported and vulnerable version of
+</I>|<i> fetchmail (missed that the first time).  Upgrade to (at least) 6.3.6
+</I>|<i> before posting any further diagnostics.
+</I>
+I upgraded to 6.3.7. And no change:
+
+-------------------------------------------------------------------
+# Configuration created Mon Dec  1 12:45:17 2003 by fetchmailconf
+set logfile &quot;/var/log/fetchMailByIva&quot;
+set postmaster &quot;iva&quot;
+# set no bouncemail
+set no spambounce
+set properties &quot;&quot;
+
+poll pop3.ourisp.net with proto POP3:
+	localdomains ourdomain.org
+       user 'ouruseratisp' there with password 'pass' is * here
+
+antispam 550
+-------------------------------------------------------------------
+...
+fetchmail: SMTP&gt; MAIL FROM:&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">someone at something.org</A>&gt; BODY=7BIT SIZE=1428
+fetchmail: SMTP&lt; 250 2.1.0 &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">someone at something.org</A>&gt;... Sender ok
+fetchmail: SMTP&gt; RCPT TO:&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">NonExistingUser at ourdomain.org</A>&gt;
+fetchmail: SMTP&lt; 550 5.1.1 &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">NonExistingUser at ourdomain.org</A>&gt;... User \
+	unknown
+fetchmail: SMTP listener doesn't really like recipient address     \
+	`<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">NonExistingUser at ourdomain.org</A>'
+fetchmail: SMTP&gt; RCPT TO:&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">iva at localhost</A>&gt;
+fetchmail: SMTP&lt; 250 2.1.5 &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">iva at localhost</A>&gt;... Recipient ok
+fetchmail: no address matches; forwarding to iva.
+fetchmail: SMTP&gt; DATA
+fetchmail: SMTP&lt; 354 Enter mail, end with &quot;.&quot; on a line by itself
+#*fetchmail: SMTP&gt;. (EOM)
+fetchmail: SMTP&lt; 250 2.0.0 l1N8Ccjq009290 Message accepted for delivery
+fetchmail:  flushed
+fetchmail: POP3&gt; DELE 1
+fetchmail: POP3&lt; +OK
+fetchmail: POP3&gt; QUIT
+fetchmail: POP3&lt; +OK
+fetchmail: SMTP&gt; QUIT
+fetchmail: SMTP&lt; 221 2.0.0 something.somethingelse.org closing    \
+	connection
+fetchmail: 6.3.7 querying pop3.infosky.net (protocol POP3)        \
+	at Fri 23 Feb 2007 09:12:39 AM CET: poll completed
+fetchmail: normal termination, status 0
+-------------------------------------------------------------------
+
+-- 
+      ___   ____
+     /__/  /    \      ** Registrovani korisnik Linuksa #291606 **
+    /  / \/  /\  \     ** Registered Linux user #291606 **
+   /__/\____/--\__\    ** <A HREF="http://counter.li.org/">http://counter.li.org/</A> **
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000837.html">[fetchmail-users] How not to download mail for non-existing	users?
+</A></li>
+	<LI>Next message: <A HREF="000829.html">[fetchmail-users] How not to download mail for non-existing	users?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#834">[ date ]</a>
+              <a href="thread.html#834">[ thread ]</a>
+              <a href="subject.html#834">[ subject ]</a>
+              <a href="author.html#834">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

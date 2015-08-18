@@ -1,0 +1,102 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Network time-outs when handling IMAP IDLE
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2010-January/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Network%20time-outs%20when%20handling%20IMAP%20IDLE&In-Reply-To=%3C20100108083055.GA2323%40session.bombay.retortsoft.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002180.html">
+   <LINK REL="Next"  HREF="002182.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Network time-outs when handling IMAP IDLE</H1>
+    <B>Sunil Shetye</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Network%20time-outs%20when%20handling%20IMAP%20IDLE&In-Reply-To=%3C20100108083055.GA2323%40session.bombay.retortsoft.com%3E"
+       TITLE="[fetchmail-users] Network time-outs when handling IMAP IDLE">shetye at bombay.retortsoft.com
+       </A><BR>
+    <I>Fri Jan  8 09:30:55 CET 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002180.html">[fetchmail-users] Network time-outs when handling IMAP IDLE
+</A></li>
+        <LI>Next message: <A HREF="002182.html">[fetchmail-users] Network time-outs when handling IMAP IDLE
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2181">[ date ]</a>
+              <a href="thread.html#2181">[ thread ]</a>
+              <a href="subject.html#2181">[ subject ]</a>
+              <a href="author.html#2181">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Matt,
+
+Quoting from Matt Doran's mail on Fri, Jan 08, 2010:
+&gt;<i> I have some questions about the time-out behaviour when using IDLE.   If 
+</I>&gt;<i> I start up fetchmail it will stay connected indefinitely performing an 
+</I>&gt;<i> IDLE. However if I deliberately drop the network connection to simulate 
+</I>&gt;<i> a network out-tage (e.g. reboot the modem), it seems that fetchmail 
+</I>&gt;<i> takes a very long time to recognize this (more than 30 minutes), even 
+</I>&gt;<i> though I'm using the default time-out of 300 seconds.  
+</I>&gt;<i> 
+</I>&gt;<i> I'm using cron to start fetchmail regularly, so if it stops/errors then 
+</I>&gt;<i> it will restart automatically.    So I'd prefer to detect the time-out 
+</I>&gt;<i> early, and restart rather than waiting in a hung state.  Is there a way 
+</I>&gt;<i> to specify a time-out so that the we'll detect outages faster?
+</I>&gt;<i> 
+</I>&gt;<i> Looking at the code (which I don't fully understand) it seems to have a 
+</I>&gt;<i> 28 minute time-out to reissue the IDLE periodically.   Could this be the 
+</I>&gt;<i> reason we see the 30+ minute time to time-out?    Would it make sense to 
+</I>&gt;<i> have an option to shorten this period which would allow us to detect 
+</I>&gt;<i> outtages faster?  Any other ideas?    I'm happy to try develop a patch 
+</I>&gt;<i> if you have a suggestion.
+</I>
+Please check first if the problem is limited to fetchmail or to any
+program with a high timeout. Try downloading a big file via some file
+transfer program. Something like:
+
+wget --timeout=1800 <A HREF="http://www.example.com/some-big-file-via-modem">http://www.example.com/some-big-file-via-modem</A>
+
+Once the downloading starts, reset the modem. Does wget report an
+error immediately or take 30 minutes to report the error? What is the
+error message?
+
+If wget also shows the same problem, then ensure that a modem reset
+also drops the corresponding interface as well as the corresponding
+route leading to a 'No route to host' error immediately. Recheck with
+wget and fetchmail.
+
+If not, then please report the details of the above test.
+
+-- 
+Sunil Shetye.
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002180.html">[fetchmail-users] Network time-outs when handling IMAP IDLE
+</A></li>
+	<LI>Next message: <A HREF="002182.html">[fetchmail-users] Network time-outs when handling IMAP IDLE
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2181">[ date ]</a>
+              <a href="thread.html#2181">[ thread ]</a>
+              <a href="subject.html#2181">[ subject ]</a>
+              <a href="author.html#2181">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

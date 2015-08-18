@@ -1,0 +1,96 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] fetchmail and socks5
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2007-March/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%20and%20socks5&In-Reply-To=%3Cm3ircrlyjl.fsf%40merlin.emma.line.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000913.html">
+   <LINK REL="Next"  HREF="000845.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] fetchmail and socks5</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%20and%20socks5&In-Reply-To=%3Cm3ircrlyjl.fsf%40merlin.emma.line.org%3E"
+       TITLE="[fetchmail-users] fetchmail and socks5">matthias.andree at gmx.de
+       </A><BR>
+    <I>Sat Mar 24 11:35:10 CET 2007</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000913.html">[fetchmail-users] fetchmail and socks5
+</A></li>
+        <LI>Next message: <A HREF="000845.html">[fetchmail-users] use variables in fethcmailrc ?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#924">[ date ]</a>
+              <a href="thread.html#924">[ thread ]</a>
+              <a href="subject.html#924">[ subject ]</a>
+              <a href="author.html#924">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>&quot;Rob MacGregor&quot; &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">rob.macgregor at gmail.com</A>&gt; writes:
+
+&gt;<i> I'd be tempted to go with your second paragraph - if fetchmail is
+</I>&gt;<i> linked with the socks libraries *and* the required socks config file
+</I>&gt;<i> is in place then, by default, use socks.  As long as there is a
+</I>&gt;<i> command line argument to either disable socks or use an alternative
+</I>&gt;<i> socks config file (which implicitly enables socks) then that should be
+</I>&gt;<i> fine.
+</I>
+I have decided to do exactly that, even if it causes pain to those who
+experiment with socks -- IOW, if you leave shards lying around, wear
+tough shoes.
+
+&gt;&gt;<i> Not my essay, and I'm not enthusiastic about several of the assumptions
+</I>&gt;&gt;<i> fetchmail makes, and I'm still pondering whether a complete redesign is
+</I>&gt;&gt;<i> more of an effort than rewriting existing code...
+</I>&gt;<i>
+</I>&gt;<i> Which is more effort to maintain :)
+</I>
+Need not be your concern though. 8-)
+
+&gt;<i> It probably wouldn't hurt for the --configdump option to include the
+</I>&gt;<i> fact that socks is compiled in - which, in theory, is little more
+</I>&gt;<i> than:
+</I>&gt;<i>
+</I>&gt;<i> #ifdef HAVE_SOCKS
+</I>&gt;<i>     &quot;'socks',&quot;
+</I>&gt;<i> #endif
+</I>&gt;<i>
+</I>&gt;<i> after line 186 of conf.c
+</I>
+Done for 6.3.8. Thanks for the report.
+
+-- 
+Matthias Andree
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000913.html">[fetchmail-users] fetchmail and socks5
+</A></li>
+	<LI>Next message: <A HREF="000845.html">[fetchmail-users] use variables in fethcmailrc ?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#924">[ date ]</a>
+              <a href="thread.html#924">[ thread ]</a>
+              <a href="subject.html#924">[ subject ]</a>
+              <a href="author.html#924">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

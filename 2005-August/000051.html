@@ -1,0 +1,473 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] fetchmail daemon problem
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2005-August/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%20daemon%20problem&In-Reply-To=%3C43160408.7000503%40insa-lyon.fr%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000049.html">
+   <LINK REL="Next"  HREF="000050.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] fetchmail daemon problem</H1>
+    <B>Martin Schlienger</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%20daemon%20problem&In-Reply-To=%3C43160408.7000503%40insa-lyon.fr%3E"
+       TITLE="[fetchmail-users] fetchmail daemon problem">martin.schlienger at insa-lyon.fr
+       </A><BR>
+    <I>Wed Aug 31 21:24:56 CEST 2005</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000049.html">[fetchmail-users] fetchmail daemon problem
+</A></li>
+        <LI>Next message: <A HREF="000050.html">[fetchmail-users] fetchmail daemon problem
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#51">[ date ]</a>
+              <a href="thread.html#51">[ thread ]</a>
+              <a href="subject.html#51">[ subject ]</a>
+              <a href="author.html#51">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Martin Schlienger wrote:
+
+&gt;<i> Hello,
+</I>&gt;<i>
+</I>&gt;<i> I'm running fetchmail 6.2.5 version of fetchmail from Debian Etch 
+</I>&gt;<i> package. I noticed that the daemon fails retrieving IMAP mails after a 
+</I>&gt;<i> certain time. I launch fetchmail as daemon with the init.d script 
+</I>&gt;<i> provided by debian. To analyse the problem, I added -v option, and 
+</I>&gt;<i> here is the full log illustrating the problem. It is quite long but 
+</I>&gt;<i> quite clear too.
+</I>&gt;<i>
+</I>&gt;<i> I'm running Exim 4, procmail, courier imap. 3 polls are configures, 
+</I>&gt;<i> POP3, IMAP4 + SSL, IMAP4
+</I>&gt;<i>
+</I>&gt;<i> here everything's ok (it is ok for hours, sometimes 1-2 days):
+</I>&gt;<i>
+</I>&gt;<i> Aug 30 00:51:49 localhost fetchmail[2498]: awakened at Tue Aug 30 
+</I>&gt;<i> 00:51:49 2005
+</I>&gt;<i> Aug 30 00:51:49 localhost fetchmail[2498]: 6.2.5 querying 
+</I>&gt;<i> pop3.evhr.net (protocol POP3) at Tue Aug 30 00:51:49 2005: poll started
+</I>&gt;<i> Aug 30 00:51:49 localhost imaplogin: LOGOUT, user=martin, 
+</I>&gt;<i> ip=[::ffff:62.129.161.22], headers=0, body=0, time=0
+</I>&gt;<i> Aug 30 00:51:49 localhost last message repeated 2 times
+</I>&gt;<i> Aug 30 00:51:49 localhost fetchmail[2498]: POP3&lt; +OK POP3 Ready 
+</I>&gt;<i> pop.evc.net 0001d8f1
+</I>&gt;<i> Aug 30 00:51:49 localhost fetchmail[2498]: POP3&gt; CAPA
+</I>&gt;<i> Aug 30 00:51:49 localhost fetchmail[2498]: POP3&lt; +OK Capability list 
+</I>&gt;<i> follows, mate
+</I>&gt;<i> Aug 30 00:51:49 localhost fetchmail[2498]: POP3&lt; UIDL
+</I>&gt;<i> Aug 30 00:51:49 localhost fetchmail[2498]: POP3&lt; USER
+</I>&gt;<i> Aug 30 00:51:49 localhost fetchmail[2498]: POP3&lt; .
+</I>&gt;<i> Aug 30 00:51:49 localhost fetchmail[2498]: POP3&gt; USER evhr_mart
+</I>&gt;<i> Aug 30 00:51:49 localhost fetchmail[2498]: POP3&lt; +OK USER evhr_mart 
+</I>&gt;<i> set, mate
+</I>&gt;<i> Aug 30 00:51:49 localhost fetchmail[2498]: POP3&gt; PASS *
+</I>&gt;<i> Aug 30 00:51:49 localhost fetchmail[2498]: POP3&lt; +OK You are so in
+</I>&gt;<i> Aug 30 00:51:52 localhost fetchmail[2498]: POP3&gt; STAT
+</I>&gt;<i> Aug 30 00:51:52 localhost fetchmail[2498]: POP3&lt; +OK 0 0
+</I>&gt;<i> Aug 30 00:51:52 localhost fetchmail[2498]: No mail for evhr_mart at 
+</I>&gt;<i> pop3.evhr.net
+</I>&gt;<i> Aug 30 00:51:52 localhost fetchmail[2498]: POP3&gt; QUIT
+</I>&gt;<i> Aug 30 00:51:52 localhost fetchmail[2498]: POP3&lt; +OK Done
+</I>&gt;<i> Aug 30 00:51:52 localhost fetchmail[2498]: 6.2.5 querying 
+</I>&gt;<i> pop3.evhr.net (protocol POP3) at Tue Aug 30 00:51:52 2005: poll completed
+</I>&gt;<i> Aug 30 00:51:52 localhost fetchmail[2498]: 6.2.5 querying 
+</I>&gt;<i> imap4.orange.fr (protocol IMAP) at Tue Aug 30 00:51:52 2005: poll started
+</I>&gt;<i> Aug 30 00:51:52 localhost fetchmail[2498]: IMAP&lt; * OK IMAP4 server 
+</I>&gt;<i> ready (6.7.015)
+</I>&gt;<i> Aug 30 00:51:52 localhost fetchmail[2498]: IMAP&gt; A0001 CAPABILITY
+</I>&gt;<i> Aug 30 00:51:52 localhost fetchmail[2498]: IMAP&lt; * CAPABILITY 
+</I>&gt;<i> IMAP4rev1 UIDPLUS IDLE LOGIN-REFERRALS NAMESPACE QUOTA CHILDREN 
+</I>&gt;<i> AUTH=CRAM-MD5 AUTH=DIGEST-MD5 AUTH=PLAIN
+</I>&gt;<i> Aug 30 00:51:52 localhost fetchmail[2498]: IMAP&lt; A0001 OK capabilities 
+</I>&gt;<i> listed
+</I>&gt;<i> Aug 30 00:51:52 localhost fetchmail[2498]: IMAP&gt; A0002 AUTHENTICATE 
+</I>&gt;<i> CRAM-MD5
+</I>&gt;<i> Aug 30 00:51:52 localhost fetchmail[2498]: IMAP&lt; + 
+</I>&gt;<i> PEExM0JBNTNGRjVBRkNGNUFFMkQwRjE4ODE3NDY3QzkxRkVCOENCMjFAcG9wMS5vcmFuZ2UuZnI+ 
+</I>&gt;<i>
+</I>&gt;<i> Aug 30 00:51:52 localhost fetchmail[2498]: IMAP&gt; 
+</I>&gt;<i> bWFydC5zY2ggYjE0OTc1OTU2MGI4MzIwMmEwY2FmZmU1NWExZWVjNGY=
+</I>&gt;<i> Aug 30 00:51:52 localhost fetchmail[2498]: IMAP&lt; A0002 OK login 
+</I>&gt;<i> successful
+</I>&gt;<i> Aug 30 00:51:52 localhost fetchmail[2498]: IMAP&gt; A0003 SELECT &quot;INBOX&quot;
+</I>&gt;<i> Aug 30 00:51:52 localhost fetchmail[2498]: IMAP&lt; * 1 EXISTS
+</I>&gt;<i> Aug 30 00:51:52 localhost fetchmail[2498]: IMAP&lt; * 0 RECENT
+</I>&gt;<i> Aug 30 00:51:52 localhost fetchmail[2498]: IMAP&lt; * FLAGS (\Answered 
+</I>&gt;<i> \Flagged \Deleted \Seen \Draft $MDNSent)
+</I>&gt;<i> Aug 30 00:51:52 localhost fetchmail[2498]: IMAP&lt; * OK [PERMANENTFLAGS 
+</I>&gt;<i> (\Answered \Flagged \Deleted \Seen \Draft $MDNSent)] flags can be changed
+</I>&gt;<i> Aug 30 00:51:52 localhost fetchmail[2498]: IMAP&lt; * OK [UIDVALIDITY 
+</I>&gt;<i> 1055529069] mailbox UID validity
+</I>&gt;<i> Aug 30 00:51:52 localhost fetchmail[2498]: IMAP&lt; * OK [UIDNEXT 5194] 
+</I>&gt;<i> predicted next UID
+</I>&gt;<i> Aug 30 00:51:52 localhost fetchmail[2498]: IMAP&lt; A0003 OK [READ-WRITE] 
+</I>&gt;<i> SELECT complete
+</I>&gt;<i> Aug 30 00:51:52 localhost fetchmail[2498]: IMAP&gt; A0004 EXPUNGE
+</I>&gt;<i> Aug 30 00:51:52 localhost fetchmail[2498]: IMAP&lt; A0004 OK EXPUNGE 
+</I>&gt;<i> complete
+</I>&gt;<i> Aug 30 00:51:52 localhost fetchmail[2498]: IMAP&gt; A0005 SEARCH UNSEEN 
+</I>&gt;<i> NOT DELETED
+</I>&gt;<i> Aug 30 00:51:52 localhost fetchmail[2498]: IMAP&lt; * SEARCH
+</I>&gt;<i> Aug 30 00:51:52 localhost fetchmail[2498]: IMAP&lt; A0005 OK SEARCH complete
+</I>&gt;<i> Aug 30 00:51:52 localhost fetchmail[2498]: 1 message (1 seen) for 
+</I>&gt;<i> mart.sch at imap4.orange.fr.
+</I>&gt;<i> Aug 30 00:51:52 localhost fetchmail[2498]: skipping message 
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">mart.sch at imap4.orange.fr</A>:1 not flushed
+</I>&gt;<i> Aug 30 00:51:52 localhost fetchmail[2498]: IMAP&gt; A0006 LOGOUT
+</I>&gt;<i> Aug 30 00:51:52 localhost fetchmail[2498]: IMAP&lt; * BYE disconnecting
+</I>&gt;<i> Aug 30 00:51:52 localhost fetchmail[2498]: IMAP&lt; A0006 OK LOGOUT complete
+</I>&gt;<i> Aug 30 00:51:52 localhost fetchmail[2498]: 6.2.5 querying 
+</I>&gt;<i> imap4.orange.fr (protocol IMAP) at Tue Aug 30 00:51:52 2005: poll 
+</I>&gt;<i> completed
+</I>&gt;<i> Aug 30 00:51:52 localhost fetchmail[2498]: 6.2.5 querying 
+</I>&gt;<i> mail.insa-lyon.fr (protocol IMAP) at Tue Aug 30 00:51:52 2005: poll 
+</I>&gt;<i> started
+</I>&gt;<i> Aug 30 00:51:53 localhost fetchmail[2498]: IMAP&lt; * OK 
+</I>&gt;<i> csiges9.insa-lyon.fr Cyrus IMAP4 v2.2.12-INSA-LYON server ready
+</I>&gt;<i> Aug 30 00:51:53 localhost fetchmail[2498]: IMAP&gt; A0001 CAPABILITY
+</I>&gt;<i> Aug 30 00:51:53 localhost fetchmail[2498]: IMAP&lt; * CAPABILITY IMAP4 
+</I>&gt;<i> IMAP4rev1 ACL QUOTA LITERAL+ MAILBOX-REFERRALS NAMESPACE UIDPLUS ID 
+</I>&gt;<i> NO_ATOMIC_RENAME UNSELECT CHILDREN MULTIAPPEND BINARY SORT 
+</I>&gt;<i> THREAD=ORDEREDSUBJECT THREAD=REFERENCES ANNOTATEMORE IDLE STARTTLS 
+</I>&gt;<i> LISTEXT LIST-SUBSCRIBED X-NETSCAPE
+</I>&gt;<i> Aug 30 00:51:53 localhost fetchmail[2498]: IMAP&lt; A0001 OK Completed
+</I>&gt;<i> Aug 30 00:51:53 localhost fetchmail[2498]: IMAP&gt; A0002 STARTTLS
+</I>&gt;<i> Aug 30 00:51:53 localhost fetchmail[2498]: IMAP&lt; A0002 OK Begin TLS 
+</I>&gt;<i> negotiation now
+</I>&gt;<i> Aug 30 00:51:53 localhost fetchmail[2498]: Issuer Organization: INSA Lyon
+</I>&gt;<i> Aug 30 00:51:53 localhost fetchmail[2498]: Issuer CommonName: 
+</I>&gt;<i> mail.insa-lyon.fr
+</I>&gt;<i> Aug 30 00:51:53 localhost fetchmail[2498]: Server CommonName: 
+</I>&gt;<i> mail.insa-lyon.fr
+</I>&gt;<i> Aug 30 00:51:53 localhost fetchmail[2498]: mail.insa-lyon.fr key 
+</I>&gt;<i> fingerprint: 31:D9:BD:88:82:75:B4:92:62:0E:BB:CC:97:7C:2D:3B
+</I>&gt;<i> Aug 30 00:51:53 localhost fetchmail[2498]: Warning: server certificate 
+</I>&gt;<i> verification: self signed certificate
+</I>&gt;<i> Aug 30 00:51:53 localhost fetchmail[2498]: Issuer Organization: INSA Lyon
+</I>&gt;<i> Aug 30 00:51:53 localhost fetchmail[2498]: Issuer CommonName: 
+</I>&gt;<i> mail.insa-lyon.fr
+</I>&gt;<i> Aug 30 00:51:53 localhost fetchmail[2498]: Server CommonName: 
+</I>&gt;<i> mail.insa-lyon.fr
+</I>&gt;<i> Aug 30 00:51:53 localhost fetchmail[2498]: Warning: server certificate 
+</I>&gt;<i> verification: self signed certificate
+</I>&gt;<i> Aug 30 00:51:53 localhost fetchmail[2498]: IMAP&gt; A0003 CAPABILITY
+</I>&gt;<i> Aug 30 00:51:53 localhost fetchmail[2498]: IMAP&lt; * CAPABILITY IMAP4 
+</I>&gt;<i> IMAP4rev1 ACL QUOTA LITERAL+ MAILBOX-REFERRALS NAMESPACE UIDPLUS ID 
+</I>&gt;<i> NO_ATOMIC_RENAME UNSELECT CHILDREN MULTIAPPEND BINARY SORT 
+</I>&gt;<i> THREAD=ORDEREDSUBJECT THREAD=REFERENCES ANNOTATEMORE IDLE AUTH=PLAIN 
+</I>&gt;<i> SASL-IR LISTEXT LIST-SUBSCRIBED X-NETSCAPE
+</I>&gt;<i> Aug 30 00:51:53 localhost fetchmail[2498]: IMAP&lt; A0003 OK Completed
+</I>&gt;<i> Aug 30 00:51:53 localhost fetchmail[2498]: IMAP&gt; A0004 LOGIN 
+</I>&gt;<i> &quot;mschlienger&quot; *
+</I>&gt;<i> Aug 30 00:51:53 localhost fetchmail[2498]: IMAP&lt; A0004 OK User logged in
+</I>&gt;<i> Aug 30 00:51:53 localhost fetchmail[2498]: IMAP&gt; A0005 SELECT &quot;INBOX&quot;
+</I>&gt;<i> Aug 30 00:51:53 localhost fetchmail[2498]: IMAP&lt; * FLAGS (\Answered 
+</I>&gt;<i> \Flagged \Draft \Deleted \Seen)
+</I>&gt;<i> Aug 30 00:51:53 localhost fetchmail[2498]: IMAP&lt; * OK [PERMANENTFLAGS 
+</I>&gt;<i> (\Answered \Flagged \Draft \Deleted \Seen \*)]
+</I>&gt;<i> Aug 30 00:51:53 localhost fetchmail[2498]: IMAP&lt; * 0 EXISTS
+</I>&gt;<i> Aug 30 00:51:53 localhost fetchmail[2498]: IMAP&lt; * 0 RECENT
+</I>&gt;<i> Aug 30 00:51:53 localhost fetchmail[2498]: IMAP&lt; * OK [UIDVALIDITY 
+</I>&gt;<i> 1094806947]
+</I>&gt;<i> Aug 30 00:51:53 localhost fetchmail[2498]: IMAP&lt; * OK [UIDNEXT 1215]
+</I>&gt;<i> Aug 30 00:51:53 localhost fetchmail[2498]: IMAP&lt; A0005 OK [READ-WRITE] 
+</I>&gt;<i> Completed
+</I>&gt;<i> Aug 30 00:51:53 localhost fetchmail[2498]: No mail for mschlienger at 
+</I>&gt;<i> mail.insa-lyon.fr
+</I>&gt;<i> Aug 30 00:51:53 localhost fetchmail[2498]: IMAP&gt; A0006 LOGOUT
+</I>&gt;<i> Aug 30 00:51:53 localhost fetchmail[2498]: IMAP&lt; * BYE LOGOUT received
+</I>&gt;<i> Aug 30 00:51:53 localhost fetchmail[2498]: IMAP&lt; A0006 OK Completed
+</I>&gt;<i> Aug 30 00:51:53 localhost fetchmail[2498]: 6.2.5 querying 
+</I>&gt;<i> mail.insa-lyon.fr (protocol IMAP) at Tue Aug 30 00:51:53 2005: poll 
+</I>&gt;<i> completed
+</I>&gt;<i> Aug 30 00:51:53 localhost fetchmail[2498]: sleeping at Tue Aug 30 
+</I>&gt;<i> 00:51:53 2005
+</I>&gt;<i>
+</I>&gt;<i> This check  was successful.
+</I>&gt;<i>
+</I>&gt;<i> 5 minutes later...
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> Aug 30 00:56:53 localhost fetchmail[2498]: awakened at Tue Aug 30 
+</I>&gt;<i> 00:56:53 2005
+</I>&gt;<i> Aug 30 00:56:53 localhost fetchmail[2498]: 6.2.5 querying 
+</I>&gt;<i> pop3.evhr.net (protocol POP3) at Tue Aug 30 00:56:53 2005: poll started
+</I>&gt;<i> Aug 30 00:56:53 localhost fetchmail[2498]: POP3&lt; +OK POP3 Ready 
+</I>&gt;<i> pop.evc.net 0001d8f1
+</I>&gt;<i> Aug 30 00:56:53 localhost fetchmail[2498]: POP3&gt; CAPA
+</I>&gt;<i> Aug 30 00:56:53 localhost fetchmail[2498]: POP3&lt; +OK Capability list 
+</I>&gt;<i> follows, mate
+</I>&gt;<i> Aug 30 00:56:53 localhost fetchmail[2498]: POP3&lt; UIDL
+</I>&gt;<i> Aug 30 00:56:53 localhost fetchmail[2498]: POP3&lt; USER
+</I>&gt;<i> Aug 30 00:56:53 localhost fetchmail[2498]: POP3&lt; .
+</I>&gt;<i> Aug 30 00:56:53 localhost fetchmail[2498]: POP3&gt; USER evhr_mart
+</I>&gt;<i> Aug 30 00:56:53 localhost fetchmail[2498]: POP3&lt; +OK USER evhr_mart 
+</I>&gt;<i> set, mate
+</I>&gt;<i> Aug 30 00:56:53 localhost fetchmail[2498]: POP3&gt; PASS *
+</I>&gt;<i> Aug 30 00:56:53 localhost fetchmail[2498]: POP3&lt; +OK You are so in
+</I>&gt;<i> Aug 30 00:56:56 localhost fetchmail[2498]: POP3&gt; STAT
+</I>&gt;<i> Aug 30 00:56:56 localhost fetchmail[2498]: POP3&lt; +OK 0 0
+</I>&gt;<i> Aug 30 00:56:56 localhost fetchmail[2498]: No mail for evhr_mart at 
+</I>&gt;<i> pop3.evhr.net
+</I>&gt;<i> Aug 30 00:56:56 localhost fetchmail[2498]: POP3&gt; QUIT
+</I>&gt;<i> Aug 30 00:56:56 localhost fetchmail[2498]: POP3&lt; +OK Done
+</I>&gt;<i> Aug 30 00:56:56 localhost fetchmail[2498]: 6.2.5 querying 
+</I>&gt;<i> pop3.evhr.net (protocol POP3) at Tue Aug 30 00:56:56 2005: poll completed
+</I>&gt;<i> Aug 30 00:56:56 localhost fetchmail[2498]: 6.2.5 querying 
+</I>&gt;<i> imap4.orange.fr (protocol IMAP) at Tue Aug 30 00:56:56 2005: poll started
+</I>&gt;<i> Aug 30 00:56:56 localhost fetchmail[2498]: IMAP&lt; * OK IMAP4 server 
+</I>&gt;<i> ready (6.7.015)
+</I>&gt;<i> Aug 30 00:56:56 localhost fetchmail[2498]: IMAP&gt; A0001 CAPABILITY
+</I>&gt;<i> Aug 30 00:56:56 localhost fetchmail[2498]: IMAP&lt; * CAPABILITY 
+</I>&gt;<i> IMAP4rev1 UIDPLUS IDLE LOGIN-REFERRALS NAMESPACE QUOTA CHILDREN 
+</I>&gt;<i> AUTH=CRAM-MD5 AUTH=DIGEST-MD5 AUTH=PLAIN
+</I>&gt;<i> Aug 30 00:56:56 localhost fetchmail[2498]: IMAP&lt; A0001 OK capabilities 
+</I>&gt;<i> listed
+</I>&gt;<i> Aug 30 00:56:56 localhost fetchmail[2498]: IMAP&gt; A0002 AUTHENTICATE 
+</I>&gt;<i> CRAM-MD5
+</I>&gt;<i> Aug 30 00:56:56 localhost fetchmail[2498]: IMAP&lt; + 
+</I>&gt;<i> PEZCRjkyMEExNDlFQzlBRTEwRjU4MzY0RjY0ODE0RENFOUY0RDFFMzhAcG9wMS5vcmFuZ2UuZnI+ 
+</I>&gt;<i>
+</I>&gt;<i> Aug 30 00:56:56 localhost fetchmail[2498]: IMAP&gt; 
+</I>&gt;<i> bWFydC5zY2ggNGE5MzA2NDNhZWEzZjA1ZTJhY2Y3OWVjODE3NWZkNGQ=
+</I>&gt;<i>
+</I>&gt;<i> Here comes a timeout on one IMAP Server. Then every IMAP check doesn't 
+</I>&gt;<i> work on both server.
+</I>&gt;<i>
+</I>&gt;<i> Aug 30 01:01:56 localhost fetchmail[2498]: timeout after 300 seconds 
+</I>&gt;<i> waiting for server imap4.orange.fr.
+</I>&gt;<i> Aug 30 01:01:56 localhost fetchmail[2498]: socket error while fetching 
+</I>&gt;<i> from imap4.orange.fr
+</I>&gt;<i> Aug 30 01:01:56 localhost fetchmail[2498]: 6.2.5 querying 
+</I>&gt;<i> imap4.orange.fr (protocol IMAP) at Tue Aug 30 01:01:56 2005: poll 
+</I>&gt;<i> completed
+</I>&gt;<i> Aug 30 01:01:56 localhost fetchmail[2498]: Query status=2 (SOCKET)
+</I>&gt;<i>
+</I>&gt;<i> Failure on next IMAP Server.
+</I>&gt;<i>
+</I>&gt;<i> Aug 30 01:01:56 localhost fetchmail[2498]: 6.2.5 querying 
+</I>&gt;<i> mail.insa-lyon.fr (protocol IMAP) at Tue Aug 30 01:01:56 2005: poll 
+</I>&gt;<i> started
+</I>&gt;<i> Aug 30 01:01:56 localhost fetchmail[2498]: IMAP&lt; * OK 
+</I>&gt;<i> csiges9.insa-lyon.fr Cyrus IMAP4 v2.2.12-INSA-LYON server ready
+</I>&gt;<i> Aug 30 01:01:56 localhost fetchmail[2498]: IMAP&gt; CAPABILITY
+</I>&gt;<i> Aug 30 01:01:56 localhost fetchmail[2498]: IMAP&lt; * BAD Invalid tag
+</I>&gt;<i> Aug 30 01:01:56 localhost fetchmail[2498]: IMAP&gt; LOGIN &quot;mschlienger&quot; *
+</I>&gt;<i> Aug 30 01:01:56 localhost fetchmail[2498]: IMAP&lt; LOGIN BAD Null command
+</I>&gt;<i> Aug 30 01:01:56 localhost fetchmail[2498]: IMAP&gt; SELECT &quot;INBOX&quot;
+</I>&gt;<i> Aug 30 01:01:56 localhost fetchmail[2498]: IMAP&lt; SELECT BAD Null command
+</I>&gt;<i> Aug 30 01:01:56 localhost fetchmail[2498]: No mail for mschlienger at 
+</I>&gt;<i> mail.insa-lyon.fr
+</I>&gt;<i> Aug 30 01:01:56 localhost fetchmail[2498]: IMAP&gt; LOGOUT
+</I>&gt;<i> Aug 30 01:01:57 localhost fetchmail[2498]: IMAP&lt; * BAD Invalid tag
+</I>&gt;<i> Aug 30 01:01:57 localhost fetchmail[2498]: 6.2.5 querying 
+</I>&gt;<i> mail.insa-lyon.fr (protocol IMAP) at Tue Aug 30 01:01:57 2005: poll 
+</I>&gt;<i> completed
+</I>&gt;<i> Aug 30 01:01:57 localhost fetchmail[2498]: sleeping at Tue Aug 30 
+</I>&gt;<i> 01:01:57 2005
+</I>&gt;<i>
+</I>&gt;<i> Next poll checks: every IMAP fails indefinitely...
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> Aug 30 01:06:57 localhost fetchmail[2498]: awakened at Tue Aug 30 
+</I>&gt;<i> 01:06:57 2005
+</I>&gt;<i> Aug 30 01:06:57 localhost fetchmail[2498]: 6.2.5 querying 
+</I>&gt;<i> pop3.evhr.net (protocol POP3) at Tue Aug 30 01:06:57 2005: poll started
+</I>&gt;<i> Aug 30 01:06:57 localhost fetchmail[2498]: POP3&lt; +OK POP3 Ready 
+</I>&gt;<i> pop.evc.net 0001d8f1
+</I>&gt;<i> Aug 30 01:06:57 localhost fetchmail[2498]: POP3&gt; CAPA
+</I>&gt;<i> Aug 30 01:06:57 localhost fetchmail[2498]: POP3&lt; +OK Capability list 
+</I>&gt;<i> follows, mate
+</I>&gt;<i> Aug 30 01:06:57 localhost fetchmail[2498]: POP3&lt; UIDL
+</I>&gt;<i> Aug 30 01:06:57 localhost fetchmail[2498]: POP3&lt; USER
+</I>&gt;<i> Aug 30 01:06:57 localhost fetchmail[2498]: POP3&lt; .
+</I>&gt;<i> Aug 30 01:06:57 localhost fetchmail[2498]: POP3&gt; USER evhr_mart
+</I>&gt;<i> Aug 30 01:06:57 localhost fetchmail[2498]: POP3&lt; +OK USER evhr_mart 
+</I>&gt;<i> set, mate
+</I>&gt;<i> Aug 30 01:06:57 localhost fetchmail[2498]: POP3&gt; PASS *
+</I>&gt;<i> Aug 30 01:06:57 localhost fetchmail[2498]: POP3&lt; +OK You are so in
+</I>&gt;<i> Aug 30 01:07:00 localhost fetchmail[2498]: POP3&gt; STAT
+</I>&gt;<i> Aug 30 01:07:00 localhost fetchmail[2498]: POP3&lt; +OK 0 0
+</I>&gt;<i> Aug 30 01:07:00 localhost fetchmail[2498]: No mail for evhr_mart at 
+</I>&gt;<i> pop3.evhr.net
+</I>&gt;<i> Aug 30 01:07:00 localhost fetchmail[2498]: POP3&gt; QUIT
+</I>&gt;<i> Aug 30 01:07:00 localhost fetchmail[2498]: POP3&lt; +OK Done
+</I>&gt;<i> Aug 30 01:07:00 localhost fetchmail[2498]: 6.2.5 querying 
+</I>&gt;<i> pop3.evhr.net (protocol POP3) at Tue Aug 30 01:07:00 2005: poll completed
+</I>&gt;<i> Aug 30 01:07:00 localhost fetchmail[2498]: 6.2.5 querying 
+</I>&gt;<i> imap4.orange.fr (protocol IMAP) at Tue Aug 30 01:07:00 2005: poll started
+</I>&gt;<i> Aug 30 01:07:00 localhost fetchmail[2498]: IMAP&lt; * OK IMAP4 server 
+</I>&gt;<i> ready (6.7.015)
+</I>&gt;<i> Aug 30 01:07:00 localhost fetchmail[2498]: IMAP&gt; CAPABILITY
+</I>&gt;<i> Aug 30 01:07:00 localhost fetchmail[2498]: IMAP&lt; CAPABILITY BAD no 
+</I>&gt;<i> space between tag and command
+</I>&gt;<i> Aug 30 01:07:00 localhost fetchmail[2498]: IMAP&gt; LOGIN &quot;mart.sch&quot; *
+</I>&gt;<i> Aug 30 01:07:00 localhost fetchmail[2498]: IMAP&lt; LOGIN BAD 
+</I>&gt;<i> unrecognized IMAP4 command
+</I>&gt;<i> Aug 30 01:07:00 localhost fetchmail[2498]: IMAP&gt; SELECT &quot;INBOX&quot;
+</I>&gt;<i> Aug 30 01:07:00 localhost fetchmail[2498]: IMAP&lt; SELECT BAD 
+</I>&gt;<i> unrecognized IMAP4 command
+</I>&gt;<i> Aug 30 01:07:00 localhost fetchmail[2498]: No mail for mart.sch at 
+</I>&gt;<i> imap4.orange.fr
+</I>&gt;<i> Aug 30 01:07:00 localhost fetchmail[2498]: IMAP&gt; LOGOUT
+</I>&gt;<i> Aug 30 01:07:00 localhost fetchmail[2498]: IMAP&lt; LOGOUT BAD no space 
+</I>&gt;<i> between tag and command
+</I>&gt;<i> Aug 30 01:07:00 localhost fetchmail[2498]: 6.2.5 querying 
+</I>&gt;<i> imap4.orange.fr (protocol IMAP) at Tue Aug 30 01:07:00 2005: poll 
+</I>&gt;<i> completed
+</I>&gt;<i> Aug 30 01:07:00 localhost fetchmail[2498]: 6.2.5 querying 
+</I>&gt;<i> mail.insa-lyon.fr (protocol IMAP) at Tue Aug 30 01:07:00 2005: poll 
+</I>&gt;<i> started
+</I>&gt;<i> Aug 30 01:07:00 localhost fetchmail[2498]: IMAP&lt; * OK 
+</I>&gt;<i> csiges9.insa-lyon.fr Cyrus IMAP4 v2.2.12-INSA-LYON server ready
+</I>&gt;<i> Aug 30 01:07:00 localhost fetchmail[2498]: IMAP&gt; CAPABILITY
+</I>&gt;<i> Aug 30 01:07:00 localhost fetchmail[2498]: IMAP&lt; * BAD Invalid tag
+</I>&gt;<i> Aug 30 01:07:00 localhost fetchmail[2498]: IMAP&gt; LOGIN &quot;mschlienger&quot; *
+</I>&gt;<i> Aug 30 01:07:00 localhost fetchmail[2498]: IMAP&lt; LOGIN BAD Null command
+</I>&gt;<i> Aug 30 01:07:00 localhost fetchmail[2498]: IMAP&gt; SELECT &quot;INBOX&quot;
+</I>&gt;<i> Aug 30 01:07:00 localhost fetchmail[2498]: IMAP&lt; SELECT BAD Null command
+</I>&gt;<i> Aug 30 01:07:00 localhost fetchmail[2498]: No mail for mschlienger at 
+</I>&gt;<i> mail.insa-lyon.fr
+</I>&gt;<i> Aug 30 01:07:00 localhost fetchmail[2498]: IMAP&gt; LOGOUT
+</I>&gt;<i> Aug 30 01:07:00 localhost fetchmail[2498]: IMAP&lt; * BAD Invalid tag
+</I>&gt;<i> Aug 30 01:07:00 localhost fetchmail[2498]: 6.2.5 querying 
+</I>&gt;<i> mail.insa-lyon.fr (protocol IMAP) at Tue Aug 30 01:07:00 2005: poll 
+</I>&gt;<i> completed
+</I>&gt;<i> Aug 30 01:07:00 localhost fetchmail[2498]: sleeping at Tue Aug 30 
+</I>&gt;<i> 01:07:00 2005
+</I>&gt;<i>                                                                                   
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> Thanks for any help!
+</I>&gt;<i>
+</I>&gt;<i> regards,
+</I>&gt;<i>
+</I>&gt;<i> martin.
+</I>&gt;<i> _______________________________________________
+</I>&gt;<i> fetchmail-users mailing list
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">fetchmail-users at lists.berlios.de</A>
+</I>&gt;<i> <A HREF="http://lists.berlios.de/mailman/listinfo/fetchmail-users">http://lists.berlios.de/mailman/listinfo/fetchmail-users</A>
+</I>&gt;<i>
+</I>According to the log, it uses cram-md5 for first server and 
+plain(password, &quot;en clair&quot;), over SSL/TLS1 connection for the second 
+one. So I forced these settings in my fetchmailrc (error may come from 
+kerberos or other authentication type it tries, but why does it work 
+several times and not after a failure (and why does it fail the first 
+time?). Here is the fetchmail -V with the current version of my file:
+
+This is fetchmail release 6.2.5+NTLM+SDPS+SSL+NLS
+Fallback MDA: (none)
+Linux delorean 2.6.13 #1 Mon Aug 29 03:33:18 CEST 2005 i686 GNU/Linux
+Taking options from command line and /home/martin/.fetchmailrc
+Poll interval is 100 seconds
+Idfile is /home/martin/.fetchids
+Progress messages will be logged via syslog
+Fetchmail will forward misaddressed multidrop messages to martin.
+Options for retrieving from <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">evhr_mart at pop3.evhr.net</A>:
+  True name of server is pop3.evhr.net.
+  Protocol is POP3.
+  All available authentication methods will be tried.
+  Server nonresponse timeout is 300 seconds (default).
+  Default mailbox selected.
+  Only new messages will be retrieved (--all off).
+  Fetched messages will not be kept on the server (--keep off).
+  Old messages will not be flushed before message retrieval (--flush off).
+  Rewrite of server-local addresses is enabled (--norewrite off).
+  Carriage-return stripping is disabled (stripcr off).
+  Carriage-return forcing is disabled (forcecr off).
+  Interpretation of Content-Transfer-Encoding is enabled (pass8bits off).
+  MIME decoding is disabled (mimedecode off).
+  Idle after poll is disabled (idle off).
+  Nonempty Status lines will be kept (dropstatus off)
+  Delivered-To lines will be kept (dropdelivered off)
+  Fetch message size limit is 100 (--fetchsizelimit 100).
+  Do binary search of UIDs during 9 out of 10 polls (--fastuidl 10).
+  Messages will be SMTP-forwarded to: localhost (default)
+  Single-drop mode: 1 local name(s) recognized.
+  No UIDs saved from this host.
+Options for retrieving from <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">mart.sch at imap4.orange.fr</A>:
+  True name of server is imap4.orange.fr.
+  Protocol is IMAP.
+  CRAM-Md5 authentication will be forced.
+  Server nonresponse timeout is 300 seconds (default).
+  Default mailbox selected.
+  Only new messages will be retrieved (--all off).
+  Fetched messages will not be kept on the server (--keep off).
+  Old messages will not be flushed before message retrieval (--flush off).
+  Rewrite of server-local addresses is enabled (--norewrite off).
+  Carriage-return stripping is disabled (stripcr off).
+  Carriage-return forcing is disabled (forcecr off).
+  Interpretation of Content-Transfer-Encoding is enabled (pass8bits off).
+  MIME decoding is disabled (mimedecode off).
+  Idle after poll is disabled (idle off).
+  Nonempty Status lines will be kept (dropstatus off)
+  Delivered-To lines will be kept (dropdelivered off)
+  Fetch message size limit is 100 (--fetchsizelimit 100).
+  Do binary search of UIDs during 9 out of 10 polls (--fastuidl 10).
+  Messages will be SMTP-forwarded to: localhost (default)
+  Single-drop mode: 1 local name(s) recognized.
+  No UIDs saved from this host.
+Options for retrieving from <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">mschlienger at mail.insa-lyon.fr</A>:
+  True name of server is mail.insa-lyon.fr.
+  Protocol is IMAP.
+  Password authentication will be forced.
+  SSL encrypted sessions enabled.
+  SSL protocol: TLS1.
+  Server nonresponse timeout is 300 seconds (default).
+  Default mailbox selected.
+  Only new messages will be retrieved (--all off).
+  Fetched messages will not be kept on the server (--keep off).
+  Old messages will not be flushed before message retrieval (--flush off).
+  Rewrite of server-local addresses is enabled (--norewrite off).
+  Carriage-return stripping is disabled (stripcr off).
+  Carriage-return forcing is disabled (forcecr off).
+  Interpretation of Content-Transfer-Encoding is enabled (pass8bits off).
+  MIME decoding is disabled (mimedecode off).
+  Idle after poll is disabled (idle off).
+  Nonempty Status lines will be kept (dropstatus off)
+  Delivered-To lines will be kept (dropdelivered off)
+  Fetch message size limit is 100 (--fetchsizelimit 100).
+  Do binary search of UIDs during 9 out of 10 polls (--fastuidl 10).
+  Messages will be SMTP-forwarded to: localhost (default)
+  Single-drop mode: 1 local name(s) recognized.
+  No UIDs saved from this host.
+
+I've just launched  fetchmail with this config, so I'll keep informed of 
+the current status after several days (or hours, if it bugs again...) .
+
+best regards,
+
+martin.
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000049.html">[fetchmail-users] fetchmail daemon problem
+</A></li>
+	<LI>Next message: <A HREF="000050.html">[fetchmail-users] fetchmail daemon problem
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#51">[ date ]</a>
+              <a href="thread.html#51">[ thread ]</a>
+              <a href="subject.html#51">[ subject ]</a>
+              <a href="author.html#51">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

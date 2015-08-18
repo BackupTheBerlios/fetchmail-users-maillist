@@ -1,0 +1,162 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Re: [fetchmail]fetchmail 6.3.4 stable release
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2006-April/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Re%3A%20%5Bfetchmail%5Dfetchmail%206.3.4%20stable%20release&In-Reply-To=%3Cm3vet87x90.fsf%40merlin.emma.line.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000349.html">
+   <LINK REL="Next"  HREF="000350.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Re: [fetchmail]fetchmail 6.3.4 stable release</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Re%3A%20%5Bfetchmail%5Dfetchmail%206.3.4%20stable%20release&In-Reply-To=%3Cm3vet87x90.fsf%40merlin.emma.line.org%3E"
+       TITLE="[fetchmail-users] Re: [fetchmail]fetchmail 6.3.4 stable release">matthias.andree at gmx.de
+       </A><BR>
+    <I>Mon Apr 17 22:39:07 CEST 2006</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000349.html">[fetchmail-users] Re: [fetchmail]fetchmail 6.3.4 stable release
+</A></li>
+        <LI>Next message: <A HREF="000350.html">[fetchmail-users] Re: [fetchmail]fetchmail 6.3.4 stable release
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#348">[ date ]</a>
+              <a href="thread.html#348">[ thread ]</a>
+              <a href="subject.html#348">[ subject ]</a>
+              <a href="author.html#348">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Dale Pontius &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">pontius at kimon.btv.ibm.com</A>&gt; writes:
+
+&gt;<i> Hello,
+</I>&gt;<i> I realize that you hate multidrop, and generally disparage and deprecate
+</I>
+That would be &quot;procmail&quot;, and that antipathy is based on technical reasons.
+
+&gt;<i> the heck out of it, but for some of us, it's about the only way to
+</I>&gt;<i> make our email come out halfway decent.
+</I>
+Certainly not. Maildrop is, in many cases, a better alternative to
+procmail and more than just a surrogate, and I have yet to see a
+reasonable procmail construct that you can't write in maildrop or that
+would look uglier.
+
+I'll concede I'm biased WRT maildrop's syntax which borrows a bit from
+C/C++/Java, but the other reasons like error handling are so much better
+in maildrop it's worth a look. Even if your .procmailrc has two dozen
+rules, it's worth the switch.
+
+&gt;<i> Given the text of this announcement, I need to ask some questions, and
+</I>&gt;<i> also see if I'm going to have to squirrel away a &quot;last usable&quot; copy of
+</I>&gt;<i> fetchmail source at some point.
+</I>
+It's not that fetchmail would stop working with procmail, or something
+else, but rather that I'm not going to help you with getting procmail to
+work with fetchmail and vice versa. I don't intend to waste my time
+helping people to shoot themselves in their feet.
+
+&gt;&gt;<i> # DEPRECATED FEATURES AND MAJOR INCOMPATIBLE CHANGE ADVANCE WARNINGS
+</I>&gt;&gt;<i> * The MX and host alias DNS lookups that fetchmail performs in multidrop mode
+</I>&gt;&gt;<i>   are obsolete, deprecated and may be removed from a future fetchmail version.
+</I>&gt;&gt;<i>   They have never supported IPv6 (including IPv6-mapped IPv4) anyhow.
+</I>
+&gt;<i> Is this the 'aka' being deprecated, or is it some implicit lookup that I
+</I>&gt;<i> won't have to worry about, as long as I have 'aka' properly set up?
+</I>
+The implicit automatic DNS lookups. &quot;aka&quot; will continue to work. The
+implicit lookups assume the POP3 or IMAP server were the same as the
+SMTP server of the ISP, which is often untrue nowadays.
+
+&gt;<i> Related to the 'aka' question, I noticed that when I upgraded to 6.3.2,
+</I>&gt;<i> multidrop pretty much fell apart for me, delivering all mail to the
+</I>&gt;<i> default id. I went back and RTFM, ran fetchmail with extra '-v's, added
+</I>&gt;<i> some extra 'aka's, and actually got it running better than ever.
+</I>
+Well, that is, in fact, the reason why the automatisms will go and users
+will have to use &quot;aka&quot; and thereabouts after 6.4.0.
+
+It's not like a hundred of aliased domains were changing every day, so
+&quot;aka&quot; will work well enough for most.
+
+&gt;<i> Most notably, we'd always lived with some duplicates that were now
+</I>&gt;<i> resolved and eliminated. Given that I've already spent the effort to
+</I>&gt;<i> adapt to the jump from 6.2.x to 6.3.2, am I set for the foreseeable
+</I>&gt;<i> future, or do these notes presage major pain to come?
+</I>
+The exact effect will, of course, depend on configuration. Assuming the
+&quot;aka&quot; configuration covers all the destination addresses, that part
+would very likely be set.
+
+The announcements are mainly there so people who intend to upgrade from
+6.3.X to a newer 6.4, 6.Y, 7.0, ... release know where to look before
+actually installing the newer version. My idea is letting users make an
+/informed/ decision. No more luring people into &quot;gold&quot; versions with
+radical changes.
+
+I will keep an eye on compatibility in configuration where that is
+feasible and sensible. But do you know anyone who's using POP2 to fetch
+mail? I don't. Do you know any ISP where the MX is the POP3 server so
+that implicit DNS lookups to detect domain aliases actually work? None
+of mine does.
+
+&gt;<i> I only WISH my ISP would support ssl/tls, or etrn, or odmr. I'm STUCK
+</I>&gt;<i> with multidrop, unless I spring for more $$$ to use a different provider
+</I>&gt;<i> for my email. I'm already paying $$$$ for a cable ISP and $$ for my
+</I>&gt;<i> domain and forwarding, not to mention $$.$e$$ for kids' education, so
+</I>&gt;<i> $$$ just to avoid multidrop just isn't in the cards, for now. (My ISP
+</I>&gt;<i> has multiple POP boxes, but my domain forwarding doesn't have enough
+</I>&gt;<i> capability, so I use multidrop.)
+</I>
+Well, multidrop can work if done right. See
+&lt;<A HREF="http://home.pages.de/~mandree/mail/multidrop">http://home.pages.de/~mandree/mail/multidrop</A>&gt; - if the requirements
+listed there are met, multidrop will work reliably, without any
+duplicate/undeliverable messages (except those with mistyped or guessed
+addresses, think spammers trying a dictionary of local addresses on your
+*@your.example.org catchall multidrop).
+
+As long as hashed authentication schemes such as CRAM-MD5 or APOP are
+supported by your ISP, SSL/TLS is not actually needed, because the mail
+has arrived at your provider's site unencrypted anyways and
+APOP/CRAM-MD5 still protect your password from eavesdropping, and for
+encrypted mail, there are GnuPG and S/MIME which don't require ISP
+support, consent or something like that. And with Thunderbird with the
+Enigmail extension, GnuPG is simple enough to use, too -- IMO.
+
+All in all, there will not be much to worry about that would make
+fetchmail unusable.
+
+-- 
+Matthias Andree
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000349.html">[fetchmail-users] Re: [fetchmail]fetchmail 6.3.4 stable release
+</A></li>
+	<LI>Next message: <A HREF="000350.html">[fetchmail-users] Re: [fetchmail]fetchmail 6.3.4 stable release
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#348">[ date ]</a>
+              <a href="thread.html#348">[ thread ]</a>
+              <a href="subject.html#348">[ subject ]</a>
+              <a href="author.html#348">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

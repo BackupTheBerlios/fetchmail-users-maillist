@@ -1,0 +1,129 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Fetchmail suddenly started segfaulting with Exchange
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2012-August/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Fetchmail%20suddenly%20started%20segfaulting%20with%0A%20Exchange&In-Reply-To=%3C502BE090.9020305%40gmx.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003217.html">
+   <LINK REL="Next"  HREF="003224.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Fetchmail suddenly started segfaulting with Exchange</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Fetchmail%20suddenly%20started%20segfaulting%20with%0A%20Exchange&In-Reply-To=%3C502BE090.9020305%40gmx.de%3E"
+       TITLE="[fetchmail-users] Fetchmail suddenly started segfaulting with Exchange">matthias.andree at gmx.de
+       </A><BR>
+    <I>Wed Aug 15 19:46:56 CEST 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003217.html">[fetchmail-users] Fetchmail suddenly started segfaulting with Exchange
+</A></li>
+        <LI>Next message: <A HREF="003224.html">[fetchmail-users] Fetchmail suddenly started segfaulting with Exchange
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3219">[ date ]</a>
+              <a href="thread.html#3219">[ thread ]</a>
+              <a href="subject.html#3219">[ subject ]</a>
+              <a href="author.html#3219">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Am 15.08.2012 02:54, schrieb J. Porter Clark:
+&gt;<i> I tried your patch (thanks!) and now have this result:
+</I>
+Note that I have had to make further changes in order to validate the
+challenge even more thoroughly.  They are unneeded as long as the server
+is trustworthy (or at least assumed not to be malicious), but 6.3.22
+will have a more thorough fix against forged replies.
+
+&gt;<i> $ fetchmail -vvv --nodetach
+</I>...
+
+&gt;<i> fetchmail: IMAP&lt; * CAPABILITY IMAP4 IMAP4rev1 AUTH=NTLM AUTH=GSSAPI AUTH=PLAIN IDLE NAMESPACE LITERAL+
+</I>&gt;<i> fetchmail: IMAP&lt; A0001 OK CAPABILITY completed.
+</I>&gt;<i> fetchmail: Protocol identified as IMAP4 rev 1
+</I>&gt;<i> fetchmail: IMAP&gt; A0002 AUTHENTICATE NTLM
+</I>&gt;<i> fetchmail: IMAP&lt; +
+</I>&gt;<i> NTLM Request:
+</I>&gt;<i>       Ident = NTLMSSP
+</I>&gt;<i>       mType = 1
+</I>&gt;<i>       Flags = 0000b207
+</I>&gt;<i>        User = [USERNAME - REDACTED]
+</I>&gt;<i>      Domain = 
+</I>&gt;<i> fetchmail: IMAP&gt; TlRMTVNTUAABAAAAB7IAABUAFQAgAAAAAAAAABUAAABuZGNcanBjbGFyazEvanBjbGFyazE=
+</I>&gt;<i> fetchmail: IMAP&lt; A0002 NO AUTHENTICATE failed.
+</I>&gt;<i> fetchmail: could not decode BASE64 challenge
+</I>&gt;<i> fetchmail: Authorization failure on [USERNAME - REDACTED]@imap02.ndc.nasa.gov
+</I>
+&gt;<i> So, it doesn't segfault, but on the other hand, it fails to authenticate.  I
+</I>&gt;<i> thought that the NTLM authentication was working prior to the server upgrade.
+</I>&gt;<i> (Otherwise, how was I able to get mail?)  But perhaps, as a result of the
+</I>&gt;<i> server upgrade, NTLM authentication doesn't work anymore.  If so, then the
+</I>&gt;<i> behavior above is correct.
+</I>
+Possibly.  Some things are conceivable as reason, and possibly one is
+that you need to specify the domain (often called a Windows domain by
+the responsible IT staff).  You can experiment a bit, by specifying the
+username for NTLM authentication in &quot;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">user at domain</A>&quot; form, like:
+
+poll imap02.ndc.nasa.gov proto imap
+...user &quot;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">joe at AD</A>&quot; ...
+
+on the assumption that the username is joe and the domain AD. The
+corresponding syntax when mounting network drives/shares would be AD\joe
+(but that would send the entire string as username).  There's probably
+some organizational policy as to how the clients (possibly MS Outlook
+2010) are supposed to access the Exchange servers.
+
+If there are IT support pages inside NASA stating how to configure
+&quot;other clients&quot; like Thunderbird, or smartphones, then these might be
+useful, tool.
+
+Chances are that asking NASA's IT helpdesk might provide insights what
+to use, hint them to losses along the way of migration; chances are that
+Kerberos support is in place (the Exchange server advertises it, and
+Active Directory servers are usually Kerberos-enabled), so you would
+need to know a few bits of the Kerberos configuration, and fetch a
+ticket-granting ticket with &quot;kinit serversusername&quot; -- providing that
+you used ./configure --with-gssapi ... when installing fetchmail and
+have Kerberos installed on your computer running fetchmail.
+
+I know that fetchmail's GSSAPI support is fine because I have used it
+for a few years (albeit against Cyrus, not Exchange).
+
+&gt;<i> Therefore, I'll continue to use &quot;auth password,&quot; now that I see that SSL hides
+</I>&gt;<i> the password.
+</I>
+That's the easy way. :)
+
+</PRE>
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003217.html">[fetchmail-users] Fetchmail suddenly started segfaulting with Exchange
+</A></li>
+	<LI>Next message: <A HREF="003224.html">[fetchmail-users] Fetchmail suddenly started segfaulting with Exchange
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3219">[ date ]</a>
+              <a href="thread.html#3219">[ thread ]</a>
+              <a href="subject.html#3219">[ subject ]</a>
+              <a href="author.html#3219">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

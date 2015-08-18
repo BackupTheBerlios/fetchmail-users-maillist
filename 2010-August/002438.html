@@ -1,0 +1,94 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Plain passwords in file?
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2010-August/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Plain%20passwords%20in%20file%3F&In-Reply-To=%3Cop.vgsugxge1e62zd%40merlin.emma.line.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002437.html">
+   <LINK REL="Next"  HREF="002439.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Plain passwords in file?</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Plain%20passwords%20in%20file%3F&In-Reply-To=%3Cop.vgsugxge1e62zd%40merlin.emma.line.org%3E"
+       TITLE="[fetchmail-users] Plain passwords in file?">matthias.andree at gmx.de
+       </A><BR>
+    <I>Mon Aug  2 09:15:59 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002437.html">[fetchmail-users] Plain passwords in file?
+</A></li>
+        <LI>Next message: <A HREF="002439.html">[fetchmail-users] Plain passwords in file?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2438">[ date ]</a>
+              <a href="thread.html#2438">[ thread ]</a>
+              <a href="subject.html#2438">[ subject ]</a>
+              <a href="author.html#2438">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Am 02.08.2010, 01:14 Uhr, schrieb Depo Catcher:
+
+&gt;<i>
+</I>&gt;<i> ok.  What are some alternatives then?  How do other mail applications  
+</I>&gt;<i> (like Thunderbird or Outlook) store their saved passwords?
+</I>
+Encrypted with a password, but the root user can intercept them. Either by  
+installing keyloggers to the encryption password, or by sniffing the NSS  
+libraries before passwords are encrypted, or from process memory.
+
+&gt;<i> Secondly, I don't see why having a key (to decrypted passwords) isn't  
+</I>&gt;<i> more secure.  They would need physical access to my USB drive.
+</I>&gt;<i> Plug it in, download mail, unplug it.  The opportunity of attack is much  
+</I>&gt;<i> smaller; were as passwords sitting in plain text are much easier to find.
+</I>
+And the USB drive has which filesystem? Microsoft FAT perhaps? :-)
+
+Anyways, Ben Kibbey has contributed a fetchmail branch that supports PWMD  
+(password manager daemon). The description is at  
+<A HREF="http://benkibbey.wordpress.com/pwmd/">http://benkibbey.wordpress.com/pwmd/</A> and the patched fetchmail source tree  
+is at <A HREF="http://gitorious.org/~bjk/fetchmail/fetchmail-libpwmd/trees/master.">http://gitorious.org/~bjk/fetchmail/fetchmail-libpwmd/trees/master.</A>  
+You can download a tarball, but it's not preconfigured the same way as the  
+release tarballs (because they are snapshots from the repository), so need  
+to have some more tools installed than usual, namely, autoconf, automake,  
+flex, gettext-devel (depending on your distribution), bison, m4, and you  
+need to run ./autogen.sh before you can run ./configure.
+
+If that helps, let me know your experiences.  I haven't felt the need or  
+had the time to try it, but I still plan to merge it for the next feature  
+release if it works well in practice.
+
+-- 
+Matthias Andree
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002437.html">[fetchmail-users] Plain passwords in file?
+</A></li>
+	<LI>Next message: <A HREF="002439.html">[fetchmail-users] Plain passwords in file?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2438">[ date ]</a>
+              <a href="thread.html#2438">[ thread ]</a>
+              <a href="subject.html#2438">[ subject ]</a>
+              <a href="author.html#2438">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

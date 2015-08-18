@@ -1,0 +1,107 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] softbounce and antispam
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2011-April/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20softbounce%20and%20antispam&In-Reply-To=%3Calpine.DEB.2.00.1104211137240.18165%40vmdebian.local.koeppe-net.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002748.html">
+   <LINK REL="Next"  HREF="002750.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] softbounce and antispam</H1>
+    <B>Martin Koeppe</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20softbounce%20and%20antispam&In-Reply-To=%3Calpine.DEB.2.00.1104211137240.18165%40vmdebian.local.koeppe-net.de%3E"
+       TITLE="[fetchmail-users] softbounce and antispam">mkoeppe at gmx.de
+       </A><BR>
+    <I>Thu Apr 21 11:57:39 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002748.html">[fetchmail-users] softbounce and antispam
+</A></li>
+        <LI>Next message: <A HREF="002750.html">[fetchmail-users] softbounce and antispam
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2749">[ date ]</a>
+              <a href="thread.html#2749">[ thread ]</a>
+              <a href="subject.html#2749">[ subject ]</a>
+              <a href="author.html#2749">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>
+On Thu, 21 Apr 2011, Matthias Andree wrote:
+&gt;<i> Am 18.04.2011 14:41, schrieb Martin Koeppe:
+</I>&gt;&gt;<i> I encountered a configuration problem with fetchmail.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> $ fetchmail -V
+</I>&gt;&gt;<i> This is fetchmail release 6.3.18+NTLM+SSL+NLS.
+</I>&gt;&gt;<i> [...]
+</I>&gt;&gt;<i> CYGWIN_NT-5.2 server 1.7.7(0.230/5/3) 2010-08-31 09:58 i686 Cygwin
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Unfortunately, the server from where to fetch mails allows From:
+</I>&gt;&gt;<i> addresses with non-ascii chars in the local part, i.e. df&#233;&#223;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">dfg at abc.de.</A>
+</I>&gt;&gt;<i> The server, which fetchmail sends its mails to, Exchange 2003, OTOH
+</I>&gt;&gt;<i> doesn't accept these with 501 error.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> As all these mails are indeed spam, I tried to set &quot;antispam 501&quot; in
+</I>&gt;&gt;<i> fetchmailrc. But apparently due to &quot;set softbounce&quot; being enabled by
+</I>&gt;&gt;<i> default, even the deletion of mails matching the antispam setting aren't
+</I>&gt;&gt;<i> deleted. I rather would like to leave softbounce enabled so that e.g.
+</I>&gt;&gt;<i> oversized messages are still accessible through the web mailer, but
+</I>&gt;&gt;<i> nonetheless should these antispam matching messages be deleted. Is this
+</I>&gt;&gt;<i> possible somehow?
+</I>&gt;<i>
+</I>&gt;<i> No, softbounce overrides everything.
+</I>:<i>-(
+</I>
+&gt;<i> Oversized messages aren't normally deleted, but left on the server
+</I>&gt;<i> anyways -- that is, unless you set --limitflush or --flush (both off by
+</I>&gt;<i> default).
+</I>
+I don't think of oversized messages due to some limit setting (I don't 
+use a limit setting), but a smtp error from the receiving server that 
+the mail is too big. In this case, it shouldn't (for me) be bounced 
+and deleted, but instead left alone on the POP3 server. I think this 
+is what softbounce is useful for.
+
+So, apparently, (1) antispam and softbounce are (currently) not 
+useable together, and (2) the limit setting is probably handled 
+differently from the error condition that the smtp server rejects a 
+message due to a size limit.  (2) might be reasonable because when 
+using limit there is no transfer of the message to fetchmail.  But (1) 
+seems misdesigned somehow.  Also: if softbounce overrides antispam, 
+then it's confusing that the SMTP error (invalid From: address in my 
+case) is only logged if antispam is not enabled. So antispam always 
+influences log output, but is honored only if no softbounce.
+
+Martin
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002748.html">[fetchmail-users] softbounce and antispam
+</A></li>
+	<LI>Next message: <A HREF="002750.html">[fetchmail-users] softbounce and antispam
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2749">[ date ]</a>
+              <a href="thread.html#2749">[ thread ]</a>
+              <a href="subject.html#2749">[ subject ]</a>
+              <a href="author.html#2749">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

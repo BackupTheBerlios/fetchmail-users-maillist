@@ -1,0 +1,687 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] fetchmail authorization and socket errors
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2006-November/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%20authorization%20and%20socket%20errors&In-Reply-To=%3C1163356298.5342.8.camel%40wadesmart%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000699.html">
+   <LINK REL="Next"  HREF="000702.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] fetchmail authorization and socket errors</H1>
+    <B>Wade Smart</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%20authorization%20and%20socket%20errors&In-Reply-To=%3C1163356298.5342.8.camel%40wadesmart%3E"
+       TITLE="[fetchmail-users] fetchmail authorization and socket errors">wade at wadesmart.com
+       </A><BR>
+    <I>Sun Nov 12 19:31:37 CET 2006</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000699.html">[fetchmail-users] fetchmail authorization and socket errors
+</A></li>
+        <LI>Next message: <A HREF="000702.html">[fetchmail-users] fetchmail authorization and socket errors
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#701">[ date ]</a>
+              <a href="thread.html#701">[ thread ]</a>
+              <a href="subject.html#701">[ subject ]</a>
+              <a href="author.html#701">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>11122006 1156 GMT-6
+
+Rob, I restarted my computer and ran that command again and this is what
+came out:
+
+
+<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">wadesmart at wadesmart</A>:~$ fetchmail -c --nosyslog -v -v
+fetchmail: Old UID list from mail.wadesmart.com: &lt;empty&gt;
+fetchmail: Old UID list from pop.gmail.com: GmailId10a1ee3e2d493c9f
+GmailId10a1ee3e39cbde9a GmailId10a1ee827e95105f GmailId10a256387a932c54
+GmailId10a25698ccae481c GmailId10a286e5d9351232 GmailId10a28d1d9adf2882
+GmailId10a28e20684153e8 GmailId10a29dd5749e8cb9 GmailId10a29ddc8b2efcd2
+GmailId10a29dfab092213c GmailId10a29e15d61a631f GmailId10a29e234c6cc61e
+GmailId10a29e3747ca47a1 GmailId10a29e4edd436b91 GmailId10a2eee15f694239
+GmailId10a2f0235718eb7f GmailId10a2f0289fd51546 GmailId10a2f045abe9443a
+GmailId10a2f0647a554fc5 GmailId10a2f06ca6e912cb GmailId10a2f084355e4b2e
+GmailId10a2f09533dee5c9 GmailId10a31f76012ef874 GmailId10a326169fbd8267
+GmailId10a326529bbbf383 GmailId10a327037d5e9b61 GmailId10a32bc8a4ae4ed7
+GmailId10a32be854ae1288 GmailId10a32d2b03e51588 GmailId10a339d2fcb588af
+GmailId10a388a1d0a73d51 GmailId10a3890853fb6d1d GmailId10a38920c277606e
+GmailId10a389615295405d GmailId10a389676ce3f00c GmailId10a3898aab24c9a2
+GmailId10a389b785b64015 GmailId10a389ba81db529a GmailId10a389d29c943e32
+GmailId10a3d8a772fce276 GmailId10a3d91a49e504b4 GmailId10a3e705aa1e2e8c
+GmailId10a3e71c1821e967 GmailId10a40f0585ddb8ef GmailId10a41f06104eccf3
+GmailId10a41f1c2db06e81 GmailId10a41f6c9d189b0f GmailId10a41f7553b9d20f
+GmailId10a41f99577804bf GmailId10a41fc9bd25a312 GmailId10a41fca60bbe513
+GmailId10a46034940ca421 GmailId10a479390679e3b4 GmailId10a47c1bb15e5b6c
+GmailId10a47c374679d87f GmailId10a47c6c72bb2a33 GmailId10a47c82b1687852
+GmailId10a47c945e0ad8ea GmailId10a47cccb6468d4f GmailId10a47cd8175959bc
+GmailId10a48e037a137a00 GmailId10a4d38c7ec2efd3 GmailId10a4d8532abfaa2b
+GmailId10a4d9c6d5f58c99 GmailId10a4e9291e64e3e2 GmailId10a4e996590246d1
+GmailId10a4e99e96951612 GmailId10a4e9c60418c64c GmailId10a4e9e1309157fb
+GmailId10a4e9f3176d2734 GmailId10a4ea1e58ad3735 GmailId10a4ea26adc3f62f
+GmailId10a50553ca74d72c GmailId10a50f325e320eaf GmailId10a5150ec8fcc5d9
+GmailId10a538322d44b221 GmailId10a53bbe735dff73 GmailId10a53bc95e008ff7
+GmailId10a53beddc25e07a GmailId10a53c0380fb61c8 GmailId10a53c15b3c8bc8f
+GmailId10a53c3f926fd344 GmailId10a53c449d7ec381 GmailId10a5ae7e1dc4c00d
+GmailId10a5aecd0f8bfa0d GmailId10a5aed895c113b4 GmailId10a5af18cde8ec6a
+GmailId10a5af1d92270dc4 GmailId10a5af4254aabd6a GmailId10a5af70b9d95996
+GmailId10a5af768aa12a4d GmailId10a5afb82bc9ce96 GmailId10a5c11a96c44cc4
+GmailId10a5fa62559d6cec GmailId10a5fa87c620084d GmailId10a60977125e1529
+GmailId10a6205f020045ef GmailId10a62df0305c0d8c GmailId10a62e2e86def2b1
+GmailId10a62e44c846270d GmailId10a62e67666e01d4 GmailId10a62e7c84ed4b40
+GmailId10a62e8ffa9d1933 GmailId10a62ebd7b2799da GmailId10a640ae2d7e36f2
+GmailId10a6778939c20e7d GmailId10a6817af37fddb9 GmailId10a6818899a59a45
+GmailId10a681a49ecba2e2 GmailId10a681c7c93cf2b6 GmailId10a681c91e7cfe12
+GmailId10a681eb6e736c73 GmailId10a681fc5bf59735 GmailId10a682a599bd2752
+GmailId10a6a014bca744fd GmailId10a6f3bbe9fb265b GmailId10a6f3da7332b221
+GmailId10a6f3f9c2194882 GmailId10a6f41676c76d79 GmailId10a6f426fedaaa1f
+GmailId10a6f458edc9d265 GmailId10a6f45d04869a1d GmailId10a74924648dfd79
+GmailId10a74989556adead GmailId10a7499aa5dda6a2 GmailId10a749bf187ce480
+GmailId10a749e575f7c983 GmailId10a749f94d0d66b6 GmailId10a74a0f903c12f9
+GmailId10a74a184e83f01e GmailId10a7664f58639ed2 GmailId10a79c2951be47b6
+GmailId10a79caf4bde34a5 GmailId10a7a19e6471c3c7 GmailId10a7a1a9a4295288
+GmailId10a7a1c01db0ff10 GmailId10a7a1e84e45e617 GmailId10a7a1ec8614777d
+GmailId10a7a20f03ad02a3 GmailId10a7a21f561a6968 GmailId10a7c774a105237c
+GmailId10a83f2b616133ff GmailId10a8411488683338 GmailId10a84143d1806987
+GmailId10a84169bd8bbb89 GmailId10a8418643b6f268 GmailId10a8419198327b4b
+GmailId10a841c2927dd4ac GmailId10a841c855135354 GmailId10a8523cd526060d
+GmailId10a853a4cdffc74b GmailId10a86b8d61117e0c GmailId10a88cce6dcb9da4
+GmailId10a8a02c3615bc40 GmailId10a8aa5189418da8 GmailId10a8ae58dbdcd17c
+GmailId10a8b8dea3b2033a GmailId10a8c2892e196d3f GmailId10a8dfdc1bba803c
+GmailId10a8f6a85e3670eb GmailId10a93142f4563ecf GmailId10a93671129140ef
+GmailId10a9367b9df42cb5 GmailId10a937b2c1f0dbf1 GmailId10a937d920b9bf94
+GmailId10a937e5f984467d GmailId10a938160f2ac743 GmailId10a9382666583ed8
+GmailId10a95fbeeb3f914b GmailId10a9605fd0efa0e5 GmailId10a961b2dc2632cb
+GmailId10a962523adf868b GmailId10a96268f377f32d GmailId10a963939c8ee6e3
+GmailId10a9681d844b1cc2 GmailId10a9682e660fb43f GmailId10a96abdc3b139b6
+GmailId10a9816b9bf4c638 GmailId10a984f6d23bbeb4 GmailId10a9888d68a2843a
+GmailId10a98eece1388ca8 GmailId10a99ea93edc1445 GmailId10a99ebb03f6d868
+GmailId10a99ee0d824d0bc GmailId10a99f08e7fb5753 GmailId10a99f0966c4ed7e
+GmailId10a99f3544104c17 GmailId10a99f43f9cde251 GmailId10a9dca88883ce37
+GmailId10a9dcb5a58f7826 GmailId10a9dce8e7e73689 GmailId10a9dd119e893cb3
+GmailId10a9dd126c406963 GmailId10a9dd3c3a0797e3 GmailId10a9dd4e89236975
+GmailId10aa4363c61ca94a GmailId10aa46e84af571ae GmailId10aa46fd66738494
+GmailId10aa48959510ab85 GmailId10aa4a41129f76e9 GmailId10aaad7747e7e812
+GmailId10aaaddbc0ee1b4a GmailId10aab35ce29e68ee GmailId10abe0b3d0015d4c
+GmailId10abe1639aa2f48e GmailId10abe2c969b4659f GmailId10abe3018c8f3925
+GmailId10abe6429c1f6421 GmailId10abe802a6d9075b GmailId10abe91c71e054d6
+GmailId10abe946f7519667 GmailId10abf4553f5fb00a GmailId10ac2c09de3b1467
+GmailId10ac3161ba5d259e GmailId10ac81f108f1432e GmailId10acc547743d166c
+GmailId10ad21f3384fb9a3 GmailId10ad7f5bbed948fa GmailId10ad8c77731240ad
+GmailId10ad8cdd4d83108c GmailId10adc53b74b6a564 GmailId10ae04c753951b31
+GmailId10ae04d9c9a34174 GmailId10ae0641aaa51f1e GmailId10ae06bcb6a0999d
+GmailId10ae0d0fb3336c92 GmailId10ae3b85f5832724 GmailId10aeb084f1cb5fbc
+GmailId10aeb09bf7b3456e GmailId10aeb0cb3b3c0365 GmailId10aeb0d234db99c2
+GmailId10aeb0e028acb1f9 GmailId10aeb11fc4ca4030 GmailId10aeb12c407674a4
+GmailId10aeb1431e66fc93 GmailId10afc3be3c46735a GmailId10afd6dd2e6e8685
+GmailId10afd6ddb4bedf00 GmailId10afd70b14c3dffe GmailId10afd7129bc85b2f
+GmailId10afd72c22c61920 GmailId10afd757f05bca49 GmailId10afd762d4232568
+GmailId10aff53eae77ee60 GmailId10aff74468054179 GmailId10b00c56541ce9b4
+GmailId10b015bd44cfb75c GmailId10b02b491bd9f7aa GmailId10b0676c17280e75
+GmailId10b079384dbca0e2 GmailId10b07979ede26754 GmailId10b0a89f861c3684
+GmailId10b0b044968a7f15 GmailId10b0bda267e3a8e9 GmailId10b0c3a5e5e3fa8f
+GmailId10b0f579351841be GmailId10b0f59f9884756a GmailId10b0f5b6e808e7bd
+GmailId10b0f5c6e6bb1603 GmailId10b0f60e786cb187 GmailId10b0f6244663a42a
+GmailId10b0f655324ba230 GmailId10b0f7b99c9ffe4d GmailId10b0fa96db188c40
+GmailId10b15b273cbfd746 GmailId10b1720df1579b3b GmailId10b172915932142e
+GmailId10b172b4c35aa201 GmailId10b1ae694cf3e496 GmailId10b1af27a83718ad
+GmailId10b1b05d928e3cd7 GmailId10b1b09fc429ab3f GmailId10b1b1ba6aa88fc9
+GmailId10b1b1cc567dc9c7 GmailId10b1cccdffcde517 GmailId10b1e5c3212ef213
+GmailId10b1e7b5f6a4a102 GmailId10b1e7bae6d141e2 GmailId10b1e7e3888c3197
+GmailId10b1e7f7f937cb27 GmailId10b1e810073c59b4 GmailId10b1e825590c2b2e
+GmailId10b1e84f648567dd GmailId10b1e86111286663 GmailId10b1e975839eee8f
+GmailId10b20d757a209400 GmailId10b20eaf091f8999 GmailId10b20f2e15cc55c7
+GmailId10b22be38c1e4b1e GmailId10b245ccfd78c4b8 GmailId10b261190d026e55
+GmailId10b269792cf39576 GmailId10b269969fd98ab0 GmailId10b26f84c39c67b9
+GmailId10b278f16df1b5ce GmailId10b2869ff8f09075 &lt;empty&gt;
+fetchmail: Scratch list of UIDs: &lt;empty&gt;
+fetchmail: 6.3.2 querying mail.wadesmart.com (protocol POP3) at Sun 12
+Nov 2006 11:53:43 AM CST: poll started
+fetchmail: POP3&lt; +OK
+&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">26841.1163354023 at pop16.prod.mesa1.secureserver.net</A>&gt;
+fetchmail: POP3&gt; USER <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">wade at wadesmart.com</A>
+fetchmail: POP3&lt; +OK
+fetchmail: POP3&gt; PASS *
+fetchmail: POP3&lt; +OK
+fetchmail: selecting or re-polling default folder
+fetchmail: POP3&gt; STAT
+fetchmail: POP3&lt; +OK 7 46411
+fetchmail: POP3&gt; UIDL
+fetchmail: POP3&lt; +OK
+fetchmail: POP3&lt; 1 1163351936.720064.smtp07.prod.mesa1.secure.0001252272
+fetchmail: 1 is unseen
+fetchmail: POP3&lt; 2 1163351949.092180.smtp12.prod.mesa1.secure.0016022448
+fetchmail: 2 is unseen
+fetchmail: POP3&lt; 3 1163352070.868729.smtp03.prod.mesa1.secure.2841807792
+fetchmail: 3 is unseen
+fetchmail: POP3&lt; 4 1163352121.130262.smtp14.prod.mesa1.secure.0011434928
+fetchmail: 4 is unseen
+fetchmail: POP3&lt; 5 1163353445.183209.smtp14.prod.mesa1.secure.0005262256
+fetchmail: 5 is unseen
+fetchmail: POP3&lt; 6 1163353571.624566.smtp11.prod.mesa1.secure.0002313136
+fetchmail: 6 is unseen
+fetchmail: POP3&lt; 7 1163353796.927709.smtp06.prod.mesa1.secure.0010271664
+fetchmail: 7 is unseen
+fetchmail: POP3&lt; .
+7 messages for <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">wade at wadesmart.com</A> at mail.wadesmart.com (46411 octets).
+fetchmail: POP3&gt; QUIT
+fetchmail: POP3&lt; +OK
+fetchmail: 6.3.2 querying mail.wadesmart.com (protocol POP3) at Sun 12
+Nov 2006 11:53:44 AM CST: poll completed
+Merged UID list from mail.wadesmart.com:
+1163351936.720064.smtp07.prod.mesa1.secure.0001252272 = 0
+1163351949.092180.smtp12.prod.mesa1.secure.0016022448 = 0
+1163352070.868729.smtp03.prod.mesa1.secure.2841807792 = 0
+1163352121.130262.smtp14.prod.mesa1.secure.0011434928 = 0
+1163353445.183209.smtp14.prod.mesa1.secure.0005262256 = 0
+1163353571.624566.smtp11.prod.mesa1.secure.0002313136 = 0
+1163353796.927709.smtp06.prod.mesa1.secure.0010271664 = 0 &lt;empty&gt;
+fetchmail: discarding new UID list
+fetchmail: 6.3.2 querying pop.gmail.com (protocol POP3) at Sun 12 Nov
+2006 11:53:44 AM CST: poll started
+fetchmail: Issuer Organization: Equifax
+fetchmail: Unknown Issuer CommonName
+fetchmail: Server CommonName: pop.gmail.com
+fetchmail: pop.gmail.com key fingerprint:
+59:51:61:89:CD:DD:B2:35:94:BB:44:97:A0:39:D5:B4
+fetchmail: POP3&lt; +OK Gpop ready for requests from 69.92.172.113
+g9pf9259914wra
+fetchmail: POP3&gt; USER <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">wadesmart at gmail.com</A>
+fetchmail: POP3&lt; +OK send PASS
+fetchmail: POP3&gt; PASS *
+fetchmail: POP3&lt; +OK Welcome.
+fetchmail: selecting or re-polling default folder
+fetchmail: POP3&gt; STAT
+fetchmail: POP3&lt; +OK 297 15848318
+fetchmail: POP3&gt; UIDL
+fetchmail: POP3&lt; +OK
+fetchmail: POP3&lt; 1 GmailId10a1ee3e2d493c9f
+fetchmail: POP3&lt; 2 GmailId10a1ee3e39cbde9a
+fetchmail: POP3&lt; 3 GmailId10a1ee827e95105f
+fetchmail: POP3&lt; 4 GmailId10a256387a932c54
+fetchmail: POP3&lt; 5 GmailId10a25698ccae481c
+fetchmail: POP3&lt; 6 GmailId10a286e5d9351232
+fetchmail: POP3&lt; 7 GmailId10a28d1d9adf2882
+fetchmail: POP3&lt; 8 GmailId10a28e20684153e8
+fetchmail: POP3&lt; 9 GmailId10a29dd5749e8cb9
+fetchmail: POP3&lt; 10 GmailId10a29ddc8b2efcd2
+fetchmail: POP3&lt; 11 GmailId10a29dfab092213c
+fetchmail: POP3&lt; 12 GmailId10a29e15d61a631f
+fetchmail: POP3&lt; 13 GmailId10a29e234c6cc61e
+fetchmail: POP3&lt; 14 GmailId10a29e3747ca47a1
+fetchmail: POP3&lt; 15 GmailId10a29e4edd436b91
+fetchmail: POP3&lt; 16 GmailId10a2eee15f694239
+fetchmail: POP3&lt; 17 GmailId10a2f0235718eb7f
+fetchmail: POP3&lt; 18 GmailId10a2f0289fd51546
+fetchmail: POP3&lt; 19 GmailId10a2f045abe9443a
+fetchmail: POP3&lt; 20 GmailId10a2f0647a554fc5
+fetchmail: POP3&lt; 21 GmailId10a2f06ca6e912cb
+fetchmail: POP3&lt; 22 GmailId10a2f084355e4b2e
+fetchmail: POP3&lt; 23 GmailId10a2f09533dee5c9
+fetchmail: POP3&lt; 24 GmailId10a31f76012ef874
+fetchmail: POP3&lt; 25 GmailId10a326169fbd8267
+fetchmail: POP3&lt; 26 GmailId10a326529bbbf383
+fetchmail: POP3&lt; 27 GmailId10a327037d5e9b61
+fetchmail: POP3&lt; 28 GmailId10a32bc8a4ae4ed7
+fetchmail: POP3&lt; 29 GmailId10a32be854ae1288
+fetchmail: POP3&lt; 30 GmailId10a32d2b03e51588
+fetchmail: POP3&lt; 31 GmailId10a339d2fcb588af
+fetchmail: POP3&lt; 32 GmailId10a388a1d0a73d51
+fetchmail: POP3&lt; 33 GmailId10a3890853fb6d1d
+fetchmail: POP3&lt; 34 GmailId10a38920c277606e
+fetchmail: POP3&lt; 35 GmailId10a389615295405d
+fetchmail: POP3&lt; 36 GmailId10a389676ce3f00c
+fetchmail: POP3&lt; 37 GmailId10a3898aab24c9a2
+fetchmail: POP3&lt; 38 GmailId10a389b785b64015
+fetchmail: POP3&lt; 39 GmailId10a389ba81db529a
+fetchmail: POP3&lt; 40 GmailId10a389d29c943e32
+fetchmail: POP3&lt; 41 GmailId10a3d8a772fce276
+fetchmail: POP3&lt; 42 GmailId10a3d91a49e504b4
+fetchmail: POP3&lt; 43 GmailId10a3e705aa1e2e8c
+fetchmail: POP3&lt; 44 GmailId10a3e71c1821e967
+fetchmail: POP3&lt; 45 GmailId10a40f0585ddb8ef
+fetchmail: POP3&lt; 46 GmailId10a41f06104eccf3
+fetchmail: POP3&lt; 47 GmailId10a41f1c2db06e81
+fetchmail: POP3&lt; 48 GmailId10a41f6c9d189b0f
+fetchmail: POP3&lt; 49 GmailId10a41f7553b9d20f
+fetchmail: POP3&lt; 50 GmailId10a41f99577804bf
+fetchmail: POP3&lt; 51 GmailId10a41fc9bd25a312
+fetchmail: POP3&lt; 52 GmailId10a41fca60bbe513
+fetchmail: POP3&lt; 53 GmailId10a46034940ca421
+fetchmail: POP3&lt; 54 GmailId10a479390679e3b4
+fetchmail: POP3&lt; 55 GmailId10a47c1bb15e5b6c
+fetchmail: POP3&lt; 56 GmailId10a47c374679d87f
+fetchmail: POP3&lt; 57 GmailId10a47c6c72bb2a33
+fetchmail: POP3&lt; 58 GmailId10a47c82b1687852
+fetchmail: POP3&lt; 59 GmailId10a47c945e0ad8ea
+fetchmail: POP3&lt; 60 GmailId10a47cccb6468d4f
+fetchmail: POP3&lt; 61 GmailId10a47cd8175959bc
+fetchmail: POP3&lt; 62 GmailId10a48e037a137a00
+fetchmail: POP3&lt; 63 GmailId10a4d38c7ec2efd3
+fetchmail: POP3&lt; 64 GmailId10a4d8532abfaa2b
+fetchmail: POP3&lt; 65 GmailId10a4d9c6d5f58c99
+fetchmail: POP3&lt; 66 GmailId10a4e9291e64e3e2
+fetchmail: POP3&lt; 67 GmailId10a4e996590246d1
+fetchmail: POP3&lt; 68 GmailId10a4e99e96951612
+fetchmail: POP3&lt; 69 GmailId10a4e9c60418c64c
+fetchmail: POP3&lt; 70 GmailId10a4e9e1309157fb
+fetchmail: POP3&lt; 71 GmailId10a4e9f3176d2734
+fetchmail: POP3&lt; 72 GmailId10a4ea1e58ad3735
+fetchmail: POP3&lt; 73 GmailId10a4ea26adc3f62f
+fetchmail: POP3&lt; 74 GmailId10a50553ca74d72c
+fetchmail: POP3&lt; 75 GmailId10a50f325e320eaf
+fetchmail: POP3&lt; 76 GmailId10a5150ec8fcc5d9
+fetchmail: POP3&lt; 77 GmailId10a538322d44b221
+fetchmail: POP3&lt; 78 GmailId10a53bbe735dff73
+fetchmail: POP3&lt; 79 GmailId10a53bc95e008ff7
+fetchmail: POP3&lt; 80 GmailId10a53beddc25e07a
+fetchmail: POP3&lt; 81 GmailId10a53c0380fb61c8
+fetchmail: POP3&lt; 82 GmailId10a53c15b3c8bc8f
+fetchmail: POP3&lt; 83 GmailId10a53c3f926fd344
+fetchmail: POP3&lt; 84 GmailId10a53c449d7ec381
+fetchmail: POP3&lt; 85 GmailId10a5ae7e1dc4c00d
+fetchmail: POP3&lt; 86 GmailId10a5aecd0f8bfa0d
+fetchmail: POP3&lt; 87 GmailId10a5aed895c113b4
+fetchmail: POP3&lt; 88 GmailId10a5af18cde8ec6a
+fetchmail: POP3&lt; 89 GmailId10a5af1d92270dc4
+fetchmail: POP3&lt; 90 GmailId10a5af4254aabd6a
+fetchmail: POP3&lt; 91 GmailId10a5af70b9d95996
+fetchmail: POP3&lt; 92 GmailId10a5af768aa12a4d
+fetchmail: POP3&lt; 93 GmailId10a5afb82bc9ce96
+fetchmail: POP3&lt; 94 GmailId10a5c11a96c44cc4
+fetchmail: POP3&lt; 95 GmailId10a5fa62559d6cec
+fetchmail: POP3&lt; 96 GmailId10a5fa87c620084d
+fetchmail: POP3&lt; 97 GmailId10a60977125e1529
+fetchmail: POP3&lt; 98 GmailId10a6205f020045ef
+fetchmail: POP3&lt; 99 GmailId10a62df0305c0d8c
+fetchmail: POP3&lt; 100 GmailId10a62e2e86def2b1
+fetchmail: POP3&lt; 101 GmailId10a62e44c846270d
+fetchmail: POP3&lt; 102 GmailId10a62e67666e01d4
+fetchmail: POP3&lt; 103 GmailId10a62e7c84ed4b40
+fetchmail: POP3&lt; 104 GmailId10a62e8ffa9d1933
+fetchmail: POP3&lt; 105 GmailId10a62ebd7b2799da
+fetchmail: POP3&lt; 106 GmailId10a640ae2d7e36f2
+fetchmail: POP3&lt; 107 GmailId10a6778939c20e7d
+fetchmail: POP3&lt; 108 GmailId10a6817af37fddb9
+fetchmail: POP3&lt; 109 GmailId10a6818899a59a45
+fetchmail: POP3&lt; 110 GmailId10a681a49ecba2e2
+fetchmail: POP3&lt; 111 GmailId10a681c7c93cf2b6
+fetchmail: POP3&lt; 112 GmailId10a681c91e7cfe12
+fetchmail: POP3&lt; 113 GmailId10a681eb6e736c73
+fetchmail: POP3&lt; 114 GmailId10a681fc5bf59735
+fetchmail: POP3&lt; 115 GmailId10a682a599bd2752
+fetchmail: POP3&lt; 116 GmailId10a6a014bca744fd
+fetchmail: POP3&lt; 117 GmailId10a6f3bbe9fb265b
+fetchmail: POP3&lt; 118 GmailId10a6f3da7332b221
+fetchmail: POP3&lt; 119 GmailId10a6f3f9c2194882
+fetchmail: POP3&lt; 120 GmailId10a6f41676c76d79
+fetchmail: POP3&lt; 121 GmailId10a6f426fedaaa1f
+fetchmail: POP3&lt; 122 GmailId10a6f458edc9d265
+fetchmail: POP3&lt; 123 GmailId10a6f45d04869a1d
+fetchmail: POP3&lt; 124 GmailId10a74924648dfd79
+fetchmail: POP3&lt; 125 GmailId10a74989556adead
+fetchmail: POP3&lt; 126 GmailId10a7499aa5dda6a2
+fetchmail: POP3&lt; 127 GmailId10a749bf187ce480
+fetchmail: POP3&lt; 128 GmailId10a749e575f7c983
+fetchmail: POP3&lt; 129 GmailId10a749f94d0d66b6
+fetchmail: POP3&lt; 130 GmailId10a74a0f903c12f9
+fetchmail: POP3&lt; 131 GmailId10a74a184e83f01e
+fetchmail: POP3&lt; 132 GmailId10a7664f58639ed2
+fetchmail: POP3&lt; 133 GmailId10a79c2951be47b6
+fetchmail: POP3&lt; 134 GmailId10a79caf4bde34a5
+fetchmail: POP3&lt; 135 GmailId10a7a19e6471c3c7
+fetchmail: POP3&lt; 136 GmailId10a7a1a9a4295288
+fetchmail: POP3&lt; 137 GmailId10a7a1c01db0ff10
+fetchmail: POP3&lt; 138 GmailId10a7a1e84e45e617
+fetchmail: POP3&lt; 139 GmailId10a7a1ec8614777d
+fetchmail: POP3&lt; 140 GmailId10a7a20f03ad02a3
+fetchmail: POP3&lt; 141 GmailId10a7a21f561a6968
+fetchmail: POP3&lt; 142 GmailId10a7c774a105237c
+fetchmail: POP3&lt; 143 GmailId10a83f2b616133ff
+fetchmail: POP3&lt; 144 GmailId10a8411488683338
+fetchmail: POP3&lt; 145 GmailId10a84143d1806987
+fetchmail: POP3&lt; 146 GmailId10a84169bd8bbb89
+fetchmail: POP3&lt; 147 GmailId10a8418643b6f268
+fetchmail: POP3&lt; 148 GmailId10a8419198327b4b
+fetchmail: POP3&lt; 149 GmailId10a841c2927dd4ac
+fetchmail: POP3&lt; 150 GmailId10a841c855135354
+fetchmail: POP3&lt; 151 GmailId10a8523cd526060d
+fetchmail: POP3&lt; 152 GmailId10a853a4cdffc74b
+fetchmail: POP3&lt; 153 GmailId10a86b8d61117e0c
+fetchmail: POP3&lt; 154 GmailId10a88cce6dcb9da4
+fetchmail: POP3&lt; 155 GmailId10a8a02c3615bc40
+fetchmail: POP3&lt; 156 GmailId10a8aa5189418da8
+fetchmail: POP3&lt; 157 GmailId10a8ae58dbdcd17c
+fetchmail: POP3&lt; 158 GmailId10a8b8dea3b2033a
+fetchmail: POP3&lt; 159 GmailId10a8c2892e196d3f
+fetchmail: POP3&lt; 160 GmailId10a8dfdc1bba803c
+fetchmail: POP3&lt; 161 GmailId10a8f6a85e3670eb
+fetchmail: POP3&lt; 162 GmailId10a93142f4563ecf
+fetchmail: POP3&lt; 163 GmailId10a93671129140ef
+fetchmail: POP3&lt; 164 GmailId10a9367b9df42cb5
+fetchmail: POP3&lt; 165 GmailId10a937b2c1f0dbf1
+fetchmail: POP3&lt; 166 GmailId10a937d920b9bf94
+fetchmail: POP3&lt; 167 GmailId10a937e5f984467d
+fetchmail: POP3&lt; 168 GmailId10a938160f2ac743
+fetchmail: POP3&lt; 169 GmailId10a9382666583ed8
+fetchmail: POP3&lt; 170 GmailId10a95fbeeb3f914b
+fetchmail: POP3&lt; 171 GmailId10a9605fd0efa0e5
+fetchmail: POP3&lt; 172 GmailId10a961b2dc2632cb
+fetchmail: POP3&lt; 173 GmailId10a962523adf868b
+fetchmail: POP3&lt; 174 GmailId10a96268f377f32d
+fetchmail: POP3&lt; 175 GmailId10a963939c8ee6e3
+fetchmail: POP3&lt; 176 GmailId10a9681d844b1cc2
+fetchmail: POP3&lt; 177 GmailId10a9682e660fb43f
+fetchmail: POP3&lt; 178 GmailId10a96abdc3b139b6
+fetchmail: POP3&lt; 179 GmailId10a9816b9bf4c638
+fetchmail: POP3&lt; 180 GmailId10a984f6d23bbeb4
+fetchmail: POP3&lt; 181 GmailId10a9888d68a2843a
+fetchmail: POP3&lt; 182 GmailId10a98eece1388ca8
+fetchmail: POP3&lt; 183 GmailId10a99ea93edc1445
+fetchmail: POP3&lt; 184 GmailId10a99ebb03f6d868
+fetchmail: POP3&lt; 185 GmailId10a99ee0d824d0bc
+fetchmail: POP3&lt; 186 GmailId10a99f08e7fb5753
+fetchmail: POP3&lt; 187 GmailId10a99f0966c4ed7e
+fetchmail: POP3&lt; 188 GmailId10a99f3544104c17
+fetchmail: POP3&lt; 189 GmailId10a99f43f9cde251
+fetchmail: POP3&lt; 190 GmailId10a9dca88883ce37
+fetchmail: POP3&lt; 191 GmailId10a9dcb5a58f7826
+fetchmail: POP3&lt; 192 GmailId10a9dce8e7e73689
+fetchmail: POP3&lt; 193 GmailId10a9dd119e893cb3
+fetchmail: POP3&lt; 194 GmailId10a9dd126c406963
+fetchmail: POP3&lt; 195 GmailId10a9dd3c3a0797e3
+fetchmail: POP3&lt; 196 GmailId10a9dd4e89236975
+fetchmail: POP3&lt; 197 GmailId10aa4363c61ca94a
+fetchmail: POP3&lt; 198 GmailId10aa46e84af571ae
+fetchmail: POP3&lt; 199 GmailId10aa46fd66738494
+fetchmail: POP3&lt; 200 GmailId10aa48959510ab85
+fetchmail: POP3&lt; 201 GmailId10aa4a41129f76e9
+fetchmail: POP3&lt; 202 GmailId10aaad7747e7e812
+fetchmail: POP3&lt; 203 GmailId10aaaddbc0ee1b4a
+fetchmail: POP3&lt; 204 GmailId10aab35ce29e68ee
+fetchmail: POP3&lt; 205 GmailId10abe0b3d0015d4c
+fetchmail: POP3&lt; 206 GmailId10abe1639aa2f48e
+fetchmail: POP3&lt; 207 GmailId10abe2c969b4659f
+fetchmail: POP3&lt; 208 GmailId10abe3018c8f3925
+fetchmail: POP3&lt; 209 GmailId10abe6429c1f6421
+fetchmail: POP3&lt; 210 GmailId10abe802a6d9075b
+fetchmail: POP3&lt; 211 GmailId10abe91c71e054d6
+fetchmail: POP3&lt; 212 GmailId10abe946f7519667
+fetchmail: POP3&lt; 213 GmailId10abf4553f5fb00a
+fetchmail: POP3&lt; 214 GmailId10ac2c09de3b1467
+fetchmail: POP3&lt; 215 GmailId10ac3161ba5d259e
+fetchmail: POP3&lt; 216 GmailId10ac81f108f1432e
+fetchmail: POP3&lt; 217 GmailId10acc547743d166c
+fetchmail: POP3&lt; 218 GmailId10ad21f3384fb9a3
+fetchmail: POP3&lt; 219 GmailId10ad7f5bbed948fa
+fetchmail: POP3&lt; 220 GmailId10ad8c77731240ad
+fetchmail: POP3&lt; 221 GmailId10ad8cdd4d83108c
+fetchmail: POP3&lt; 222 GmailId10adc53b74b6a564
+fetchmail: POP3&lt; 223 GmailId10ae04c753951b31
+fetchmail: POP3&lt; 224 GmailId10ae04d9c9a34174
+fetchmail: POP3&lt; 225 GmailId10ae0641aaa51f1e
+fetchmail: POP3&lt; 226 GmailId10ae06bcb6a0999d
+fetchmail: POP3&lt; 227 GmailId10ae0d0fb3336c92
+fetchmail: POP3&lt; 228 GmailId10ae3b85f5832724
+fetchmail: POP3&lt; 229 GmailId10aeb084f1cb5fbc
+fetchmail: POP3&lt; 230 GmailId10aeb09bf7b3456e
+fetchmail: POP3&lt; 231 GmailId10aeb0cb3b3c0365
+fetchmail: POP3&lt; 232 GmailId10aeb0d234db99c2
+fetchmail: POP3&lt; 233 GmailId10aeb0e028acb1f9
+fetchmail: POP3&lt; 234 GmailId10aeb11fc4ca4030
+fetchmail: POP3&lt; 235 GmailId10aeb12c407674a4
+fetchmail: POP3&lt; 236 GmailId10aeb1431e66fc93
+fetchmail: POP3&lt; 237 GmailId10afc3be3c46735a
+fetchmail: POP3&lt; 238 GmailId10afd6dd2e6e8685
+fetchmail: POP3&lt; 239 GmailId10afd6ddb4bedf00
+fetchmail: POP3&lt; 240 GmailId10afd70b14c3dffe
+fetchmail: POP3&lt; 241 GmailId10afd7129bc85b2f
+fetchmail: POP3&lt; 242 GmailId10afd72c22c61920
+fetchmail: POP3&lt; 243 GmailId10afd757f05bca49
+fetchmail: POP3&lt; 244 GmailId10afd762d4232568
+fetchmail: POP3&lt; 245 GmailId10aff53eae77ee60
+fetchmail: POP3&lt; 246 GmailId10aff74468054179
+fetchmail: POP3&lt; 247 GmailId10b00c56541ce9b4
+fetchmail: POP3&lt; 248 GmailId10b015bd44cfb75c
+fetchmail: POP3&lt; 249 GmailId10b02b491bd9f7aa
+fetchmail: POP3&lt; 250 GmailId10b0676c17280e75
+fetchmail: POP3&lt; 251 GmailId10b079384dbca0e2
+fetchmail: POP3&lt; 252 GmailId10b07979ede26754
+fetchmail: POP3&lt; 253 GmailId10b0a89f861c3684
+fetchmail: POP3&lt; 254 GmailId10b0b044968a7f15
+fetchmail: POP3&lt; 255 GmailId10b0bda267e3a8e9
+fetchmail: POP3&lt; 256 GmailId10b0c3a5e5e3fa8f
+fetchmail: POP3&lt; 257 GmailId10b0f579351841be
+fetchmail: POP3&lt; 258 GmailId10b0f59f9884756a
+fetchmail: POP3&lt; 259 GmailId10b0f5b6e808e7bd
+fetchmail: POP3&lt; 260 GmailId10b0f5c6e6bb1603
+fetchmail: POP3&lt; 261 GmailId10b0f60e786cb187
+fetchmail: POP3&lt; 262 GmailId10b0f6244663a42a
+fetchmail: POP3&lt; 263 GmailId10b0f655324ba230
+fetchmail: POP3&lt; 264 GmailId10b0f7b99c9ffe4d
+fetchmail: POP3&lt; 265 GmailId10b0fa96db188c40
+fetchmail: POP3&lt; 266 GmailId10b15b273cbfd746
+fetchmail: POP3&lt; 267 GmailId10b1720df1579b3b
+fetchmail: POP3&lt; 268 GmailId10b172915932142e
+fetchmail: POP3&lt; 269 GmailId10b172b4c35aa201
+fetchmail: POP3&lt; 270 GmailId10b1ae694cf3e496
+fetchmail: POP3&lt; 271 GmailId10b1af27a83718ad
+fetchmail: POP3&lt; 272 GmailId10b1b05d928e3cd7
+fetchmail: POP3&lt; 273 GmailId10b1b09fc429ab3f
+fetchmail: POP3&lt; 274 GmailId10b1b1ba6aa88fc9
+fetchmail: POP3&lt; 275 GmailId10b1b1cc567dc9c7
+fetchmail: POP3&lt; 276 GmailId10b1cccdffcde517
+fetchmail: POP3&lt; 277 GmailId10b1e5c3212ef213
+fetchmail: POP3&lt; 278 GmailId10b1e7b5f6a4a102
+fetchmail: POP3&lt; 279 GmailId10b1e7bae6d141e2
+fetchmail: POP3&lt; 280 GmailId10b1e7e3888c3197
+fetchmail: POP3&lt; 281 GmailId10b1e7f7f937cb27
+fetchmail: POP3&lt; 282 GmailId10b1e810073c59b4
+fetchmail: POP3&lt; 283 GmailId10b1e825590c2b2e
+fetchmail: POP3&lt; 284 GmailId10b1e84f648567dd
+fetchmail: POP3&lt; 285 GmailId10b1e86111286663
+fetchmail: POP3&lt; 286 GmailId10b1e975839eee8f
+fetchmail: POP3&lt; 287 GmailId10b20d757a209400
+fetchmail: POP3&lt; 288 GmailId10b20eaf091f8999
+fetchmail: POP3&lt; 289 GmailId10b20f2e15cc55c7
+fetchmail: POP3&lt; 290 GmailId10b22be38c1e4b1e
+fetchmail: POP3&lt; 291 GmailId10b245ccfd78c4b8
+fetchmail: POP3&lt; 292 GmailId10b261190d026e55
+fetchmail: POP3&lt; 293 GmailId10b269792cf39576
+fetchmail: POP3&lt; 294 GmailId10b269969fd98ab0
+fetchmail: POP3&lt; 295 GmailId10b26f84c39c67b9
+fetchmail: POP3&lt; 296 GmailId10b278f16df1b5ce
+fetchmail: POP3&lt; 297 GmailId10b2869ff8f09075
+fetchmail: POP3&lt; .
+297 messages (297 seen) for <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">wadesmart at gmail.com</A> at pop.gmail.com
+(15848318 octets).
+fetchmail: POP3&gt; QUIT
+fetchmail: POP3&lt; +OK Farewell.
+fetchmail: 6.3.2 querying pop.gmail.com (protocol POP3) at Sun 12 Nov
+2006 11:53:45 AM CST: poll completed
+Merged UID list from pop.gmail.com: GmailId10a1ee3e2d493c9f = 1
+GmailId10a1ee3e39cbde9a = 1 GmailId10a1ee827e95105f = 1
+GmailId10a256387a932c54 = 1 GmailId10a25698ccae481c = 1
+GmailId10a286e5d9351232 = 1 GmailId10a28d1d9adf2882 = 1
+GmailId10a28e20684153e8 = 1 GmailId10a29dd5749e8cb9 = 1
+GmailId10a29ddc8b2efcd2 = 1 GmailId10a29dfab092213c = 1
+GmailId10a29e15d61a631f = 1 GmailId10a29e234c6cc61e = 1
+GmailId10a29e3747ca47a1 = 1 GmailId10a29e4edd436b91 = 1
+GmailId10a2eee15f694239 = 1 GmailId10a2f0235718eb7f = 1
+GmailId10a2f0289fd51546 = 1 GmailId10a2f045abe9443a = 1
+GmailId10a2f0647a554fc5 = 1 GmailId10a2f06ca6e912cb = 1
+GmailId10a2f084355e4b2e = 1 GmailId10a2f09533dee5c9 = 1
+GmailId10a31f76012ef874 = 1 GmailId10a326169fbd8267 = 1
+GmailId10a326529bbbf383 = 1 GmailId10a327037d5e9b61 = 1
+GmailId10a32bc8a4ae4ed7 = 1 GmailId10a32be854ae1288 = 1
+GmailId10a32d2b03e51588 = 1 GmailId10a339d2fcb588af = 1
+GmailId10a388a1d0a73d51 = 1 GmailId10a3890853fb6d1d = 1
+GmailId10a38920c277606e = 1 GmailId10a389615295405d = 1
+GmailId10a389676ce3f00c = 1 GmailId10a3898aab24c9a2 = 1
+GmailId10a389b785b64015 = 1 GmailId10a389ba81db529a = 1
+GmailId10a389d29c943e32 = 1 GmailId10a3d8a772fce276 = 1
+GmailId10a3d91a49e504b4 = 1 GmailId10a3e705aa1e2e8c = 1
+GmailId10a3e71c1821e967 = 1 GmailId10a40f0585ddb8ef = 1
+GmailId10a41f06104eccf3 = 1 GmailId10a41f1c2db06e81 = 1
+GmailId10a41f6c9d189b0f = 1 GmailId10a41f7553b9d20f = 1
+GmailId10a41f99577804bf = 1 GmailId10a41fc9bd25a312 = 1
+GmailId10a41fca60bbe513 = 1 GmailId10a46034940ca421 = 1
+GmailId10a479390679e3b4 = 1 GmailId10a47c1bb15e5b6c = 1
+GmailId10a47c374679d87f = 1 GmailId10a47c6c72bb2a33 = 1
+GmailId10a47c82b1687852 = 1 GmailId10a47c945e0ad8ea = 1
+GmailId10a47cccb6468d4f = 1 GmailId10a47cd8175959bc = 1
+GmailId10a48e037a137a00 = 1 GmailId10a4d38c7ec2efd3 = 1
+GmailId10a4d8532abfaa2b = 1 GmailId10a4d9c6d5f58c99 = 1
+GmailId10a4e9291e64e3e2 = 1 GmailId10a4e996590246d1 = 1
+GmailId10a4e99e96951612 = 1 GmailId10a4e9c60418c64c = 1
+GmailId10a4e9e1309157fb = 1 GmailId10a4e9f3176d2734 = 1
+GmailId10a4ea1e58ad3735 = 1 GmailId10a4ea26adc3f62f = 1
+GmailId10a50553ca74d72c = 1 GmailId10a50f325e320eaf = 1
+GmailId10a5150ec8fcc5d9 = 1 GmailId10a538322d44b221 = 1
+GmailId10a53bbe735dff73 = 1 GmailId10a53bc95e008ff7 = 1
+GmailId10a53beddc25e07a = 1 GmailId10a53c0380fb61c8 = 1
+GmailId10a53c15b3c8bc8f = 1 GmailId10a53c3f926fd344 = 1
+GmailId10a53c449d7ec381 = 1 GmailId10a5ae7e1dc4c00d = 1
+GmailId10a5aecd0f8bfa0d = 1 GmailId10a5aed895c113b4 = 1
+GmailId10a5af18cde8ec6a = 1 GmailId10a5af1d92270dc4 = 1
+GmailId10a5af4254aabd6a = 1 GmailId10a5af70b9d95996 = 1
+GmailId10a5af768aa12a4d = 1 GmailId10a5afb82bc9ce96 = 1
+GmailId10a5c11a96c44cc4 = 1 GmailId10a5fa62559d6cec = 1
+GmailId10a5fa87c620084d = 1 GmailId10a60977125e1529 = 1
+GmailId10a6205f020045ef = 1 GmailId10a62df0305c0d8c = 1
+GmailId10a62e2e86def2b1 = 1 GmailId10a62e44c846270d = 1
+GmailId10a62e67666e01d4 = 1 GmailId10a62e7c84ed4b40 = 1
+GmailId10a62e8ffa9d1933 = 1 GmailId10a62ebd7b2799da = 1
+GmailId10a640ae2d7e36f2 = 1 GmailId10a6778939c20e7d = 1
+GmailId10a6817af37fddb9 = 1 GmailId10a6818899a59a45 = 1
+GmailId10a681a49ecba2e2 = 1 GmailId10a681c7c93cf2b6 = 1
+GmailId10a681c91e7cfe12 = 1 GmailId10a681eb6e736c73 = 1
+GmailId10a681fc5bf59735 = 1 GmailId10a682a599bd2752 = 1
+GmailId10a6a014bca744fd = 1 GmailId10a6f3bbe9fb265b = 1
+GmailId10a6f3da7332b221 = 1 GmailId10a6f3f9c2194882 = 1
+GmailId10a6f41676c76d79 = 1 GmailId10a6f426fedaaa1f = 1
+GmailId10a6f458edc9d265 = 1 GmailId10a6f45d04869a1d = 1
+GmailId10a74924648dfd79 = 1 GmailId10a74989556adead = 1
+GmailId10a7499aa5dda6a2 = 1 GmailId10a749bf187ce480 = 1
+GmailId10a749e575f7c983 = 1 GmailId10a749f94d0d66b6 = 1
+GmailId10a74a0f903c12f9 = 1 GmailId10a74a184e83f01e = 1
+GmailId10a7664f58639ed2 = 1 GmailId10a79c2951be47b6 = 1
+GmailId10a79caf4bde34a5 = 1 GmailId10a7a19e6471c3c7 = 1
+GmailId10a7a1a9a4295288 = 1 GmailId10a7a1c01db0ff10 = 1
+GmailId10a7a1e84e45e617 = 1 GmailId10a7a1ec8614777d = 1
+GmailId10a7a20f03ad02a3 = 1 GmailId10a7a21f561a6968 = 1
+GmailId10a7c774a105237c = 1 GmailId10a83f2b616133ff = 1
+GmailId10a8411488683338 = 1 GmailId10a84143d1806987 = 1
+GmailId10a84169bd8bbb89 = 1 GmailId10a8418643b6f268 = 1
+GmailId10a8419198327b4b = 1 GmailId10a841c2927dd4ac = 1
+GmailId10a841c855135354 = 1 GmailId10a8523cd526060d = 1
+GmailId10a853a4cdffc74b = 1 GmailId10a86b8d61117e0c = 1
+GmailId10a88cce6dcb9da4 = 1 GmailId10a8a02c3615bc40 = 1
+GmailId10a8aa5189418da8 = 1 GmailId10a8ae58dbdcd17c = 1
+GmailId10a8b8dea3b2033a = 1 GmailId10a8c2892e196d3f = 1
+GmailId10a8dfdc1bba803c = 1 GmailId10a8f6a85e3670eb = 1
+GmailId10a93142f4563ecf = 1 GmailId10a93671129140ef = 1
+GmailId10a9367b9df42cb5 = 1 GmailId10a937b2c1f0dbf1 = 1
+GmailId10a937d920b9bf94 = 1 GmailId10a937e5f984467d = 1
+GmailId10a938160f2ac743 = 1 GmailId10a9382666583ed8 = 1
+GmailId10a95fbeeb3f914b = 1 GmailId10a9605fd0efa0e5 = 1
+GmailId10a961b2dc2632cb = 1 GmailId10a962523adf868b = 1
+GmailId10a96268f377f32d = 1 GmailId10a963939c8ee6e3 = 1
+GmailId10a9681d844b1cc2 = 1 GmailId10a9682e660fb43f = 1
+GmailId10a96abdc3b139b6 = 1 GmailId10a9816b9bf4c638 = 1
+GmailId10a984f6d23bbeb4 = 1 GmailId10a9888d68a2843a = 1
+GmailId10a98eece1388ca8 = 1 GmailId10a99ea93edc1445 = 1
+GmailId10a99ebb03f6d868 = 1 GmailId10a99ee0d824d0bc = 1
+GmailId10a99f08e7fb5753 = 1 GmailId10a99f0966c4ed7e = 1
+GmailId10a99f3544104c17 = 1 GmailId10a99f43f9cde251 = 1
+GmailId10a9dca88883ce37 = 1 GmailId10a9dcb5a58f7826 = 1
+GmailId10a9dce8e7e73689 = 1 GmailId10a9dd119e893cb3 = 1
+GmailId10a9dd126c406963 = 1 GmailId10a9dd3c3a0797e3 = 1
+GmailId10a9dd4e89236975 = 1 GmailId10aa4363c61ca94a = 1
+GmailId10aa46e84af571ae = 1 GmailId10aa46fd66738494 = 1
+GmailId10aa48959510ab85 = 1 GmailId10aa4a41129f76e9 = 1
+GmailId10aaad7747e7e812 = 1 GmailId10aaaddbc0ee1b4a = 1
+GmailId10aab35ce29e68ee = 1 GmailId10abe0b3d0015d4c = 1
+GmailId10abe1639aa2f48e = 1 GmailId10abe2c969b4659f = 1
+GmailId10abe3018c8f3925 = 1 GmailId10abe6429c1f6421 = 1
+GmailId10abe802a6d9075b = 1 GmailId10abe91c71e054d6 = 1
+GmailId10abe946f7519667 = 1 GmailId10abf4553f5fb00a = 1
+GmailId10ac2c09de3b1467 = 1 GmailId10ac3161ba5d259e = 1
+GmailId10ac81f108f1432e = 1 GmailId10acc547743d166c = 1
+GmailId10ad21f3384fb9a3 = 1 GmailId10ad7f5bbed948fa = 1
+GmailId10ad8c77731240ad = 1 GmailId10ad8cdd4d83108c = 1
+GmailId10adc53b74b6a564 = 1 GmailId10ae04c753951b31 = 1
+GmailId10ae04d9c9a34174 = 1 GmailId10ae0641aaa51f1e = 1
+GmailId10ae06bcb6a0999d = 1 GmailId10ae0d0fb3336c92 = 1
+GmailId10ae3b85f5832724 = 1 GmailId10aeb084f1cb5fbc = 1
+GmailId10aeb09bf7b3456e = 1 GmailId10aeb0cb3b3c0365 = 1
+GmailId10aeb0d234db99c2 = 1 GmailId10aeb0e028acb1f9 = 1
+GmailId10aeb11fc4ca4030 = 1 GmailId10aeb12c407674a4 = 1
+GmailId10aeb1431e66fc93 = 1 GmailId10afc3be3c46735a = 1
+GmailId10afd6dd2e6e8685 = 1 GmailId10afd6ddb4bedf00 = 1
+GmailId10afd70b14c3dffe = 1 GmailId10afd7129bc85b2f = 1
+GmailId10afd72c22c61920 = 1 GmailId10afd757f05bca49 = 1
+GmailId10afd762d4232568 = 1 GmailId10aff53eae77ee60 = 1
+GmailId10aff74468054179 = 1 GmailId10b00c56541ce9b4 = 1
+GmailId10b015bd44cfb75c = 1 GmailId10b02b491bd9f7aa = 1
+GmailId10b0676c17280e75 = 1 GmailId10b079384dbca0e2 = 1
+GmailId10b07979ede26754 = 1 GmailId10b0a89f861c3684 = 1
+GmailId10b0b044968a7f15 = 1 GmailId10b0bda267e3a8e9 = 1
+GmailId10b0c3a5e5e3fa8f = 1 GmailId10b0f579351841be = 1
+GmailId10b0f59f9884756a = 1 GmailId10b0f5b6e808e7bd = 1
+GmailId10b0f5c6e6bb1603 = 1 GmailId10b0f60e786cb187 = 1
+GmailId10b0f6244663a42a = 1 GmailId10b0f655324ba230 = 1
+GmailId10b0f7b99c9ffe4d = 1 GmailId10b0fa96db188c40 = 1
+GmailId10b15b273cbfd746 = 1 GmailId10b1720df1579b3b = 1
+GmailId10b172915932142e = 1 GmailId10b172b4c35aa201 = 1
+GmailId10b1ae694cf3e496 = 1 GmailId10b1af27a83718ad = 1
+GmailId10b1b05d928e3cd7 = 1 GmailId10b1b09fc429ab3f = 1
+GmailId10b1b1ba6aa88fc9 = 1 GmailId10b1b1cc567dc9c7 = 1
+GmailId10b1cccdffcde517 = 1 GmailId10b1e5c3212ef213 = 1
+GmailId10b1e7b5f6a4a102 = 1 GmailId10b1e7bae6d141e2 = 1
+GmailId10b1e7e3888c3197 = 1 GmailId10b1e7f7f937cb27 = 1
+GmailId10b1e810073c59b4 = 1 GmailId10b1e825590c2b2e = 1
+GmailId10b1e84f648567dd = 1 GmailId10b1e86111286663 = 1
+GmailId10b1e975839eee8f = 1 GmailId10b20d757a209400 = 1
+GmailId10b20eaf091f8999 = 1 GmailId10b20f2e15cc55c7 = 1
+GmailId10b22be38c1e4b1e = 1 GmailId10b245ccfd78c4b8 = 1
+GmailId10b261190d026e55 = 1 GmailId10b269792cf39576 = 1
+GmailId10b269969fd98ab0 = 1 GmailId10b26f84c39c67b9 = 1
+GmailId10b278f16df1b5ce = 1 GmailId10b2869ff8f09075 = 1 &lt;empty&gt;
+fetchmail: discarding new UID list
+fetchmail: normal termination, status 0
+<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">wadesmart at wadesmart</A>:~$ 
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000699.html">[fetchmail-users] fetchmail authorization and socket errors
+</A></li>
+	<LI>Next message: <A HREF="000702.html">[fetchmail-users] fetchmail authorization and socket errors
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#701">[ date ]</a>
+              <a href="thread.html#701">[ thread ]</a>
+              <a href="subject.html#701">[ subject ]</a>
+              <a href="author.html#701">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

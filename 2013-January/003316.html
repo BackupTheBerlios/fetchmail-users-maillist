@@ -1,0 +1,152 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] fetchmail - maildrop: non delivery
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2013-January/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%20-%20maildrop%3A%20non%20delivery&In-Reply-To=%3C49653.120.148.195.2.1358688769.squirrel%40www.holisticgp.com.au%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003315.html">
+   <LINK REL="Next"  HREF="003317.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] fetchmail - maildrop: non delivery</H1>
+    <B>Dr Michael Daly</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%20-%20maildrop%3A%20non%20delivery&In-Reply-To=%3C49653.120.148.195.2.1358688769.squirrel%40www.holisticgp.com.au%3E"
+       TITLE="[fetchmail-users] fetchmail - maildrop: non delivery">gp at holisticgp.com.au
+       </A><BR>
+    <I>Sun Jan 20 14:32:48 CET 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003315.html">[fetchmail-users] unable to vrify certificate after provider renewed it.
+</A></li>
+        <LI>Next message: <A HREF="003317.html">[fetchmail-users] fetchmail - maildrop: non delivery
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3316">[ date ]</a>
+              <a href="thread.html#3316">[ thread ]</a>
+              <a href="subject.html#3316">[ subject ]</a>
+              <a href="author.html#3316">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>
+Hi
+Wondering if someone can give any clues as to why Mail is not being
+delivered...I would like to check with this fetchmail list prior to
+checking with the courier/maildrop people. This is all running on a QNAP
+NAS device. Dovecot is running.
+
+I am invoking fetchmail 6.3.21 with:
+su - mdtesting -c '/opt/bin/fetchmail -vvv -f /opt/etc/fetchmailrc -m
+&quot;/opt/bin/maildrop -d %T&quot;'
+which gives this message on startup:
+fetchmail: Old UID list from mydomain.com.au: &lt;empty&gt;
+fetchmail: Scratch list of UIDs: &lt;empty&gt;
+
+
+anyway, fetchmail runs but mail is not delivered via maildrop, with the
+fetchmail log advising:
+
+fetchmail: starting fetchmail 6.3.21 daemon
+fetchmail: 6.3.21 querying mydomain.com.au (protocol POP3) at Sun Jan 20
+23:28:33 2013: poll started
+fetchmail: Trying to connect to mydomainipaddress/110...connected.
+fetchmail: POP3&lt; +OK Dovecot ready.
+fetchmail: POP3&gt; CAPA
+fetchmail: POP3&lt; +OK
+fetchmail: POP3&lt; CAPA
+fetchmail: POP3&lt; TOP
+fetchmail: POP3&lt; UIDL
+fetchmail: POP3&lt; RESP-CODES
+fetchmail: POP3&lt; PIPELINING
+fetchmail: POP3&lt; STLS
+fetchmail: POP3&lt; USER
+fetchmail: POP3&lt; SASL PLAIN
+fetchmail: POP3&lt; .
+fetchmail: POP3&gt; USER md
+fetchmail: POP3&lt; +OK
+fetchmail: POP3&gt; PASS *
+fetchmail: POP3&lt; +OK Logged in.
+fetchmail: selecting or re-polling default folder
+fetchmail: POP3&gt; STAT
+fetchmail: POP3&lt; +OK 1 788
+fetchmail: POP3&gt; UIDL
+fetchmail: POP3&lt; +OK
+fetchmail: POP3&lt; 1 000034a1473af362
+fetchmail: 1 is unseen
+fetchmail: POP3&lt; .
+fetchmail: 1 message for md at mydomain.com.au (788 octets).
+fetchmail: POP3&gt; LIST 1
+fetchmail: POP3&lt; +OK 1 788
+fetchmail: POP3&gt; TOP 1 99999999
+fetchmail: POP3&lt; +OK
+fetchmail: reading message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">md at mydomain.com.au</A>:1 of 1 (788 octets)About to
+rewrite Return-Path: &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">md at mydomain.com.au</A>&gt;...
+...rewritten version is Return-Path: &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">md at mydomain.com.au</A>&gt;.
+fetchmail: About to rewrite From: <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">md at mydomain.com.au...</A>
+...rewritten version is From: <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">md at mydomain.com.au.</A>
+fetchmail: About to rewrite To: <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">md at mydomain.com.au...</A>
+...rewritten version is To: <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">md at mydomain.com.au.</A>
+fetchmail: about to deliver with: /opt/bin/maildrop -d 'mdtesting'
+.mailfilter(39): Missing )
+fetchmail: MDA returned nonzero status 75
+fetchmail:  not flushed
+fetchmail: POP3&gt; QUIT
+fetchmail: POP3&lt; +OK Logging out.
+fetchmail: 6.3.21 querying mydomain.com.au (protocol POP3) at Sun Jan 20
+23:28:37 2013: poll completed
+fetchmail: New UID list from mydomain.com.au: 000034a1473af362 = UNSEEN
+fetchmail: swapping UID lists
+fetchmail: sleeping at Sun Jan 20 23:28:37 2013 for 300 seconds
+
+
+Other notes:
+Mail will deliver if postfix is set as the delivery agent
+
+I have no idea why .mailfilter cant be found...its definitely in the $HOME
+dir of mdtesting
+
+I added the 'uidl' parameter to fetchmailrc, which at least seems to have
+fixed the 'LAST' error:
+POP3&gt; LAST
+fetchmail: POP3&lt; -ERR Unknown command: LAST
+
+viz the relevant part of fetchmailrc:
+set postmaster admin
+set no bouncemail
+poll mydomain.com.au service 110 protocol pop3 uidl
+user &quot;md&quot; password &quot;mypassword&quot; is &quot;mdtesting&quot; here
+
+/opt/bin/maildrop has the SUID bit set
+Thanks
+Michael
+</PRE>
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003315.html">[fetchmail-users] unable to vrify certificate after provider renewed it.
+</A></li>
+	<LI>Next message: <A HREF="003317.html">[fetchmail-users] fetchmail - maildrop: non delivery
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3316">[ date ]</a>
+              <a href="thread.html#3316">[ thread ]</a>
+              <a href="subject.html#3316">[ subject ]</a>
+              <a href="author.html#3316">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

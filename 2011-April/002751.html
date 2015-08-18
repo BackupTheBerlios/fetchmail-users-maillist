@@ -1,0 +1,96 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Plus (+)  Addressing Problem
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2011-April/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Plus%20%28%2B%29%20%20Addressing%20Problem&In-Reply-To=%3C20110423063849.77f8ee1c%40scorpio%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002750.html">
+   <LINK REL="Next"  HREF="002752.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Plus (+)  Addressing Problem</H1>
+    <B>Jerry</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Plus%20%28%2B%29%20%20Addressing%20Problem&In-Reply-To=%3C20110423063849.77f8ee1c%40scorpio%3E"
+       TITLE="[fetchmail-users] Plus (+)  Addressing Problem">fetchmail.user at seibercom.net
+       </A><BR>
+    <I>Sat Apr 23 12:38:49 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002750.html">[fetchmail-users] softbounce and antispam
+</A></li>
+        <LI>Next message: <A HREF="002752.html">[fetchmail-users] Plus (+) Addressing Problem
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2751">[ date ]</a>
+              <a href="thread.html#2751">[ thread ]</a>
+              <a href="subject.html#2751">[ subject ]</a>
+              <a href="author.html#2751">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>I am not even sure if this is possible; however, since I was asked to
+look into the feasibility of it I thought I might as well try.
+
+The system is a FreeBSD 8.2-STABLE amd64 running Postfix
+(2.9-20110323), Dovecot-1.2.16 and the latest version of Fetchmail.
+
+Scenario:
+
+All of the users are hosted on a Google App's account. The user wants
+to use one account in particular with &quot;plus addressing&quot;; ie,
+&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">joe+sales at domain.com</A>&gt; for example. Actually, there would be several
+&quot;plus&quot; combinations, although most would involve only the one e-mail
+account. The idea is to fetch mail from the Google App account, forward
+it to Postfix and onto Dovecot where dovecot would invoke sieve to
+filter the mail.
+
+We have tried all of the common examples shown in various web examples;
+however, we have not found a way to make this work. Presently, we have
+not found a way to get the envelope address and forward it Postfix
+which in turn is configured to send it onto Dovecot. Mail sent directly
+to this server with &quot;plus&quot; addressing works correctly so I am confident
+that we have that portion configured correctly.
+
+If someone could supply us with a working solution it would be most
+appreciated. I have just not been able to come up with anything that
+works consistently.
+
+-- 
+Jerry &#9996;
+<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">Fetchmail.user at seibercom.net</A>
+
+Disclaimer: off-list followups get on-list replies or get ignored.
+Please do not ignore the Reply-To header.
+__________________________________________________________________
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002750.html">[fetchmail-users] softbounce and antispam
+</A></li>
+	<LI>Next message: <A HREF="002752.html">[fetchmail-users] Plus (+) Addressing Problem
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2751">[ date ]</a>
+              <a href="thread.html#2751">[ thread ]</a>
+              <a href="subject.html#2751">[ subject ]</a>
+              <a href="author.html#2751">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

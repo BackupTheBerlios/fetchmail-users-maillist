@@ -1,0 +1,101 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Connection timed out
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2009-July/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Connection%20timed%20out&In-Reply-To=%3Cop.uxpwypgw1e62zd%40merlin.emma.line.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002000.html">
+   <LINK REL="Next"  HREF="002002.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Connection timed out</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Connection%20timed%20out&In-Reply-To=%3Cop.uxpwypgw1e62zd%40merlin.emma.line.org%3E"
+       TITLE="[fetchmail-users] Connection timed out">matthias.andree at gmx.de
+       </A><BR>
+    <I>Mon Jul 27 10:38:39 CEST 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002000.html">[fetchmail-users] Connection timed out
+</A></li>
+        <LI>Next message: <A HREF="002002.html">[fetchmail-users] Connection timed out
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2001">[ date ]</a>
+              <a href="thread.html#2001">[ thread ]</a>
+              <a href="subject.html#2001">[ subject ]</a>
+              <a href="author.html#2001">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Am 26.07.2009, 12:50 Uhr, schrieb Heinz Diehl &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">htd at fancy-poultry.org</A>&gt;:
+
+&gt;<i> On 26.07.2009, Rob MacGregor wrote:
+</I>&gt;<i>
+</I>&gt;&gt;<i> What Linux are you running?
+</I>&gt;<i>
+</I>&gt;<i> My system is based on opensuse-11.1 with an 2.6.30.3 vanilla (not  
+</I>&gt;<i> opensuse) kernel.
+</I>
+That should not be the cause of the problem, name resolution happens in  
+user space, not inside the kernel.
+
+
+The other issue I have is that nslookup isn't exactly a useful debugging  
+tool, it has somewhat arcane implications about its name servers; &quot;dig&quot; is  
+much more useful, so can you show the output of several commands:
+
+- cat /etc/resolv.conf
+
+- dig pop.online.no a
+
+and for any &quot;nameserver&quot; line you find in /etc/resolv.conf, replacing  
+1.2.3.4 by the nameserver's IP address:
+
+- dig @1.2.3.4 pop.online.no any
+
+and as root:
+
+- lsof -n -P -i:53
+
+
+I see several possible causes:
+
+- hardware failure (if other applications crash randomly or behave in  
+strange ways, this may be it)
+
+- Your name server is broken - it may be your ISP's one.
+
+-- 
+Matthias Andree
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002000.html">[fetchmail-users] Connection timed out
+</A></li>
+	<LI>Next message: <A HREF="002002.html">[fetchmail-users] Connection timed out
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2001">[ date ]</a>
+              <a href="thread.html#2001">[ thread ]</a>
+              <a href="subject.html#2001">[ subject ]</a>
+              <a href="author.html#2001">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

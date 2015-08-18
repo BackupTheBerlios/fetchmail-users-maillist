@@ -1,0 +1,127 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Fetchmail fails with BAD Command received in	invalid state after upgrade to 6.3.24
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2013-January/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Fetchmail%20fails%20with%20BAD%20Command%20received%20in%0A%09invalid%20state%20after%20upgrade%20to%206.3.24&In-Reply-To=%3C18914237-82AB-45DE-81D8-9F19169AF7EA%40petervannes.nl%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003303.html">
+   <LINK REL="Next"  HREF="003305.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Fetchmail fails with BAD Command received in	invalid state after upgrade to 6.3.24</H1>
+    <B>Peter van Nes</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Fetchmail%20fails%20with%20BAD%20Command%20received%20in%0A%09invalid%20state%20after%20upgrade%20to%206.3.24&In-Reply-To=%3C18914237-82AB-45DE-81D8-9F19169AF7EA%40petervannes.nl%3E"
+       TITLE="[fetchmail-users] Fetchmail fails with BAD Command received in	invalid state after upgrade to 6.3.24">mailbox at petervannes.nl
+       </A><BR>
+    <I>Tue Jan  8 00:23:33 CET 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003303.html">[fetchmail-users] Fetchmail fails with BAD Command received in invalid state after upgrade to 6.3.24
+</A></li>
+        <LI>Next message: <A HREF="003305.html">[fetchmail-users] Fetchmail fails with BAD Command received in invalid state after upgrade to 6.3.24
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3304">[ date ]</a>
+              <a href="thread.html#3304">[ thread ]</a>
+              <a href="subject.html#3304">[ subject ]</a>
+              <a href="author.html#3304">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Matthias,
+
+I got it working by re-configuring fetchmail with the --with-ssl option. Just dropped a blog article on this subject for the benefit of others
+<A HREF="http://www.petervannes.nl/files/95dd386524c1ee3647da739d455a2c70-51.php">http://www.petervannes.nl/files/95dd386524c1ee3647da739d455a2c70-51.php</A>
+
+
+Met vriendelijke groet/With kind regards
+
+Peter van Nes
+Mobile +31 652 694 792 | Fax +31 84 747 6999
+    
+
+
+ 
+
+On 7 jan. 2013, at 19:22, Matthias Andree &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">matthias.andree at gmx.de</A>&gt; wrote:
+
+&gt;<i> Am 06.01.2013 22:39, schrieb Peter van Nes:
+</I>&gt;<i> 
+</I>&gt;&gt;<i> poll mail.the-future-group.com proto imap port 143:
+</I>&gt;&gt;<i>        auth password user 'username' with password 'password' sslproto TLS1 smtpname <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">my at personaldomain.com</A>
+</I>&gt;&gt;<i> 
+</I>&gt;&gt;<i> When running fetchmail in debug ;
+</I>&gt;&gt;<i> fetchmail superuser$ /usr/local/bin/fetchmail -vvvv --nodetach -f /private/var/fetchmail/.fetchmailrc --nosyslog
+</I>&gt;&gt;<i> 
+</I>&gt;&gt;<i> i get the following output ;
+</I>&gt;&gt;<i> 
+</I>&gt;&gt;<i> Old UID list from mail.the-future-group.com: &lt;empty&gt;
+</I>&gt;&gt;<i> Scratch list of UIDs: &lt;empty&gt;
+</I>&gt;&gt;<i> fetchmail: starting fetchmail 6.3.24 daemon
+</I>&gt;&gt;<i> fetchmail: 6.3.24 querying mail.the-future-group.com (protocol IMAP) at Sun, 06 Jan 2013 22:14:55 +0100 (CET): poll started
+</I>&gt;&gt;<i> Trying to connect to 46.244.15.13/143...connected.
+</I>&gt;&gt;<i> fetchmail: IMAP&lt; * OK The Microsoft Exchange IMAP4 service is ready.
+</I>&gt;&gt;<i> fetchmail: IMAP&gt; A0001 CAPABILITY
+</I>&gt;&gt;<i> fetchmail: IMAP&lt; * CAPABILITY IMAP4 IMAP4rev1 LOGINDISABLED STARTTLS UIDPLUS CHILDREN IDLE NAMESPACE LITERAL+
+</I>&gt;&gt;<i> fetchmail: IMAP&lt; A0001 OK CAPABILITY completed.
+</I>&gt;&gt;<i> fetchmail: Protocol identified as IMAP4 rev 1
+</I>&gt;&gt;<i> fetchmail: IMAP&gt; A0002 LOGIN &quot;p.vannes&quot; *
+</I>&gt;<i> 
+</I>&gt;<i> Peter,
+</I>&gt;<i> 
+</I>&gt;<i> it seems you have found a bug, and also may have misconfigured fetchmail
+</I>&gt;<i> when compiling it.
+</I>&gt;<i> 
+</I>&gt;<i> Exchange has advertised LOGINDISABLED, so fetchmail must not be trying
+</I>&gt;<i> LOGIN.
+</I>&gt;<i> 
+</I>&gt;<i> Exchange has also advertised STARTTLS, but fetchmail is not using it -
+</I>&gt;<i> have you run ./configure with the --with-ssl option? I suppose not;
+</I>&gt;<i> fetchmail -V|head -n1 will show it, there should be +SSL somewhere.
+</I>&gt;<i> 
+</I>&gt;<i> If fetchmail were to use and succeed with STARTTLS, Exchange would
+</I>&gt;<i> likely offer LOGIN through the secure channel so you would no longer get
+</I>&gt;<i> BAD.
+</I>&gt;<i> 
+</I>&gt;<i> Hope that helps.
+</I>&gt;<i> 
+</I>&gt;<i> Best regards,
+</I>&gt;<i> Matthias
+</I>&gt;<i> 
+</I>&gt;<i> _______________________________________________
+</I>&gt;<i> fetchmail-users mailing list
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">fetchmail-users at lists.berlios.de</A>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">https://lists.berlios.de/mailman/listinfo/fetchmail-users</A>
+</I>&gt;<i> 
+</I>
+</PRE>
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003303.html">[fetchmail-users] Fetchmail fails with BAD Command received in invalid state after upgrade to 6.3.24
+</A></li>
+	<LI>Next message: <A HREF="003305.html">[fetchmail-users] Fetchmail fails with BAD Command received in invalid state after upgrade to 6.3.24
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3304">[ date ]</a>
+              <a href="thread.html#3304">[ thread ]</a>
+              <a href="subject.html#3304">[ subject ]</a>
+              <a href="author.html#3304">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

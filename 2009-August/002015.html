@@ -1,0 +1,153 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] fetchmail 6.3.11 security fix release available	(STABLE)
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2009-August/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%206.3.11%20security%20fix%20release%20available%0A%09%28STABLE%29&In-Reply-To=%3C20090806000252.GB24350%40merlin.emma.line.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002014.html">
+   <LINK REL="Next"  HREF="002016.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] fetchmail 6.3.11 security fix release available	(STABLE)</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%206.3.11%20security%20fix%20release%20available%0A%09%28STABLE%29&In-Reply-To=%3C20090806000252.GB24350%40merlin.emma.line.org%3E"
+       TITLE="[fetchmail-users] fetchmail 6.3.11 security fix release available	(STABLE)">matthias.andree at gmx.de
+       </A><BR>
+    <I>Thu Aug  6 02:02:52 CEST 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002014.html">[fetchmail-users] [SOLVED] Re: --pidfile does not work...
+</A></li>
+        <LI>Next message: <A HREF="002016.html">[fetchmail-users] Need info
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2015">[ date ]</a>
+              <a href="thread.html#2015">[ thread ]</a>
+              <a href="subject.html#2015">[ subject ]</a>
+              <a href="author.html#2015">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA1
+
+Greetings,
+
+I am announcing the release of fetchmail 6.3.11.  This new stable
+version of fetchmail fixes a security bug, CVE-2009-2666, and two other
+issues, see below for details.
+
+The software is available from:
+&lt;<A HREF="http://developer.berlios.de/project/showfiles.php?group_id=1824">http://developer.berlios.de/project/showfiles.php?group_id=1824</A>&gt;
+
+The fetchmail home pages are:
+&lt;<A HREF="http://www.fetchmail.info/">http://www.fetchmail.info/</A>&gt;  or  &lt;<A HREF="http://fetchmail.berlios.de/">http://fetchmail.berlios.de/</A>&gt;
+
+These are the relevant changes in 6.3.11 since 6.3.10;
+unless otherwise noted, changes to this release were made by Matthias Andree:
+
+# SECURITY BUGFIXES
+* CVE-2009-2666: SSL NUL prefix impersonation attack through NULs in a
+  part of a X.509 certificate's CommonName and subjectAltName fields. These
+  fields use opaque strings with a separate length field, so that the NUL
+  character isn't a special character inside the certificate. Fetchmail, being
+  written in the C language, used to treat these strings as C strings
+  nonetheless, so that the domain comparison would end at the first embedded NUL
+  character, rather than at the real end of the string.
+    Fetchmail will now abort certificate verification as failed if NULs are
+  encountered inside either of these fields regardless of their position, and
+  drop the connection even if --sslcertck is not used, because NUL is not a
+  valid character in legitimate DNS names.
+  See fetchmail-SA-2009-01.txt for details, including a minimal patch.
+
+# BUGFIXES
+* Remove the spurious message &quot;message delimiter found while scanning headers&quot;.
+  RFC-5322 syntax states that the delimiter is part of the body, and the body is
+  optional.
+* Convert all non-printable characters in certificate Subject/Issuer
+  Common Name or Subject Alternative Name fields to ANSI-C hex escapes (\xnn,
+  where nn are hex digits).
+
+# TRANSLATION UPDATES AND ADDITIONS (ordered by language name):
+* [zh_CN] Chinese/Simplified (Ji ZhengYu)
+* [es]    Spanish/Castilian (Francisco Molinero)
+
+# ADVANCE WARNING OF FEATURES TO BE REMOVED OR CHANGED IN FUTURE VERSIONS
+(There are no plans to remove features from a 6.3.X release, but they may be
+removed from a 6.4.0 or newer release.)
+* The MX and host alias DNS lookups that fetchmail performs in multidrop mode
+  are based on assumptions that are rarely met in practice, somewhat defective,
+  deprecated and may be removed from a future fetchmail version.
+  They have never supported IPv6 (including IPv6-mapped IPv4).
+  Non-DNS based alias keywords such as &quot;aka&quot; will remain in fetchmail.
+* The monitor and interface options may be removed from a future fetchmail
+  version as they are not reasonably portable across operating systems.
+* POP2 is obsolete, support will be removed from a future fetchmail version.
+* RPOP is obsolete, support will be removed from a future fetchmail release.
+* --sslcertck will become a default setting in a future fetchmail version.
+* --sslfingerprint may be removed from a future fetchmail version, because it's
+  just too easily abused to create a false sense of security.
+* The multidrop To/Cc guessing code along with the fragile duplicate suppressor
+  is deprecated and may be removed from a future release.
+* The &quot;envelope Received&quot; option may be removed from a future release, because
+  the Received header was never meant to be machine-readable, the format varies
+  widely, and various other differences in behavior make parsing Received an
+  unreliable undertaking. The envelope option as such will remain though, in
+  order to support Delivered-To, X-Envelope-To, X-Original-To and similar.
+  See also &lt;<A HREF="http://home.pages.de/~mandree/mail/multidrop">http://home.pages.de/~mandree/mail/multidrop</A>&gt;.
+* The --enable-fallback (fall back to MDA if MTA unavailable) will be removed
+  from a future fetchmail release, because it makes fetchmail's behavior
+  inconsistent and confusing.
+* The &quot;protocol auto&quot; default inside fetchmail may be removed from a future
+  fetchmail release. Explicit configuration of the protocol is recommended.
+* Kerberos IV support may be removed from a future fetchmail release.
+* SIGHUP wakeup support may be removed from a future fetchmail release and
+  cause fetchmail to terminate - it was broken for many years.
+* Support for operating systems that are not sufficiently POSIX compliant may be
+  removed or operation on such systems may be suboptimal for future releases.
+  This means that fetchmail may only continue to work on C99 and POSIX 2001
+  based systems.
+* The maintainer may migrate fetchmail to C++ with STL or C#, and impose further
+  requirements (dependencies), such as Boost or other class libraries.
+* The softbounce option default will change to &quot;false&quot; in the next release.
+
+- -- 
+Matthias Andree
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v2.0.9 (GNU/Linux)
+
+iEYEARECAAYFAkp6HawACgkQvmGDOQUufZVGJwCfUVdPy62qU0zffx8I4RPFGlNg
+KosAoMaqkDewu0x/+QSpCLL5yz5eg8fU
+=lTMq
+-----END PGP SIGNATURE-----
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002014.html">[fetchmail-users] [SOLVED] Re: --pidfile does not work...
+</A></li>
+	<LI>Next message: <A HREF="002016.html">[fetchmail-users] Need info
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2015">[ date ]</a>
+              <a href="thread.html#2015">[ thread ]</a>
+              <a href="subject.html#2015">[ subject ]</a>
+              <a href="author.html#2015">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

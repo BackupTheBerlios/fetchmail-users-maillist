@@ -1,0 +1,116 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Error 550 fetchmail-postfix-cyrus
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2006-August/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Error%20550%20fetchmail-postfix-cyrus&In-Reply-To=%3C423433990608030227y187dfed9u55beffd05b033138%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   
+   <LINK REL="Next"  HREF="000550.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Error 550 fetchmail-postfix-cyrus</H1>
+    <B>Kwadwo Owusu</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Error%20550%20fetchmail-postfix-cyrus&In-Reply-To=%3C423433990608030227y187dfed9u55beffd05b033138%40mail.gmail.com%3E"
+       TITLE="[fetchmail-users] Error 550 fetchmail-postfix-cyrus">kwadwo.owusu at gmail.com
+       </A><BR>
+    <I>Thu Aug  3 11:27:15 CEST 2006</I>
+    <P><UL>
+        
+        <LI>Next message: <A HREF="000550.html">[fetchmail-users] Error 550 fetchmail-postfix-cyrus
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#549">[ date ]</a>
+              <a href="thread.html#549">[ thread ]</a>
+              <a href="subject.html#549">[ subject ]</a>
+              <a href="author.html#549">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>I have installed Open-xchange on SLES9 for a client. We have a DSL
+connection to the Internet. Unfortunately the provider will not give
+us a static public IP. We have a POP3 account with a mail hosting
+provider that up till now the client has been using a web interface to
+access mail for one user. The account has now been turned into a
+catchall for the domain (Multidrop)
+
+I have configured fetchmail (using webmin) to pull all mails destined
+for the clients domain to the mail server running postfix and cyrus.
+This works, but I get the error message 550 from postfix (actual
+domain name changed to anydomain.com):
+
+This is the Postfix program at host ox.anydomain.com.
+
+I'm sorry to have to inform you that your message could not be
+be delivered to one or more recipients. It's attached below.
+
+For further assistance, please send mail to &lt;postmaster&gt;
+
+If you do so, please include this problem report. You can
+delete your own text from the attached returned message.
+
+                       The Postfix program
+
+&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">root at ox.anydomain.com</A>&gt; (expanded from
+   &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">postmaster at localhost.anydomain.com</A>&gt;): host
+   /var/lib/imap/socket/lmtp[/var/lib/imap/socket/lmtp] said: 550-Mailbox
+   unknown.  Either there is no mailbox associated with this 550-name or you
+   do not have authorization to see it. 550 5.1.1 User unknown (in reply to
+   RCPT TO command)
+
+
+Final-Recipient: rfc822; <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">root at ox.anydomain.com</A>
+Original-Recipient: rfc822; <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">postmaster at localhost.anydomain.com</A>
+Action: failed
+Status: 5.0.0
+Diagnostic-Code: X-Postfix; host
+   /var/lib/imap/socket/lmtp[/var/lib/imap/socket/lmtp] said: 550-Mailbox
+   unknown.  Either there is no mailbox associated with this 550-name or you
+   do not have authorization to see it. 550 5.1.1 User unknown (in reply to
+   RCPT TO command)
+
+Using open-xchange i created the accounts with simple first names for
+the staff for example  paul, angela, etc.  and the email addresses as
+<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">firstname at domain.com.</A> Only one person, the md, has his account as
+p.mueller and his email address as <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">p.mueller at domain.com</A>
+
+The server's host and domain name was configured in ldap during the
+sles9 installation.
+
+In fetchmail I run a single fetchmailrc for all users, using the (*)
+as a catchall for all local users.
+
+Any help to rectify this problem would be much appreciated.
+
+
+Kwadwo Owusu
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	
+	<LI>Next message: <A HREF="000550.html">[fetchmail-users] Error 550 fetchmail-postfix-cyrus
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#549">[ date ]</a>
+              <a href="thread.html#549">[ thread ]</a>
+              <a href="subject.html#549">[ subject ]</a>
+              <a href="author.html#549">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,400 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] failed to download mail from Gmail with IMAP
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2013-August/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20failed%20to%20download%20mail%20from%20Gmail%20with%20IMAP&In-Reply-To=%3CCAGO2TstPoP%3D3OAtkSNN0Z53UcQwoXAfdP%3DnGck-Un_jUSdbrxw%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   
+   <LINK REL="Next"  HREF="003452.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] failed to download mail from Gmail with IMAP</H1>
+    <B>Alexander Pohl</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20failed%20to%20download%20mail%20from%20Gmail%20with%20IMAP&In-Reply-To=%3CCAGO2TstPoP%3D3OAtkSNN0Z53UcQwoXAfdP%3DnGck-Un_jUSdbrxw%40mail.gmail.com%3E"
+       TITLE="[fetchmail-users] failed to download mail from Gmail with IMAP">a.h.pohl at gmail.com
+       </A><BR>
+    <I>Fri Aug  2 18:17:21 CEST 2013</I>
+    <P><UL>
+        
+        <LI>Next message: <A HREF="003452.html">[fetchmail-users] failed to download mail from Gmail with IMAP
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3451">[ date ]</a>
+              <a href="thread.html#3451">[ thread ]</a>
+              <a href="subject.html#3451">[ subject ]</a>
+              <a href="author.html#3451">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hello,
+
+I've recently started to backup a small number of Gmail accounts with
+fetchmail. On one account, it fails to download the body of the first mail
+in INBOX with error code 7. I am not able to get more information what
+happens on the Gmail IMAP server side, but I've collected all information I
+could get from fetchmail.
+
+The output was gathered with latest fetchmail 6.3.26 in a Debian Wheezy
+chroot environment. The error also occurred with the older fetchmail 6.3.18
+version in Debian Squeeze run as normal user. Btw, the same email downloads
+fine with POP3 :-|. The files attached are in the following order:
+
+1. the orginal email (sensitive information removed and shortened)
+2. env LC_ALL=C fetchmail -vvv  --nodetach --nosyslog -a
+3. fetchmail -V
+
+Thanks for any help.
+Alexander
+
+1. original mail
+
+X-Gmail-Received: b606484302b4f06a537c6d5c948595343f0edaf8
+Delivered-To: <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">a.h.pohl at gmail.com</A>
+Received: by 10.36.132.14 with SMTP id f14cs12733nzd;
+        Sun, 10 Jul 2005 14:57:25 -0700 (PDT)
+Received: by 10.54.26.56 with SMTP id 56mr3466295wrz;
+        Sun, 10 Jul 2005 14:57:25 -0700 (PDT)
+Return-Path: &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">bouncetest-628821 at starnet.com</A>&gt;
+Received: from qs209.pair.com (qs209.pair.com [216.92.131.209])
+        by mx.gmail.com with SMTP id g7si5076115wra.2005.07.10.14.57.24;
+        Sun, 10 Jul 2005 14:57:25 -0700 (PDT)
+Received-SPF: neutral (gmail.com: 216.92.131.209 is neither permitted nor
+denied by best guess record for domain of <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">bouncetest-628821 at starnet.com</A>)
+Received: (qmail 72271 invoked by uid 65534); 10 Jul 2005 21:57:24 -0000
+Date: 10 Jul 2005 21:57:24 -0000
+Message-ID: &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">20050710215724.72270.qmail at qs209.pair.com</A>&gt;
+From: Paul Swart &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">paul at starnet.com</A>&gt;
+To: Alexander Pohl &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">a.h.pohl at gmail.com</A>&gt;
+Subject: X-Win32 Download Instructions
+Precedence: bulk
+X-Accept-Language: en
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Type: multipart/alternative;
+ boundary=&quot;------------27FEC975DA5970DCB292023E&quot;
+
+--------------27FEC975DA5970DCB292023E
+Content-Type: text/plain; charset=us-ascii
+Content-Transfer-Encoding: 7bit
+
+Dear Mr. Pohl,
+Thank you for your interest in X-Win32.  You may download
+X-Win32, extra fonts, and related products from this URL:
+
+<A HREF="http://www.starnet.com/products/downloads.asp?ID=xxxxxxxxx">http://www.starnet.com/products/downloads.asp?ID=xxxxxxxxx</A>
+
+Use the following trial license (VN):
+
+xxxxxxxxxxxx
+
+-- 
+Paul Swart
+Vice President, Sales &amp; Marketing
+StarNet Communications Corp.
+
+--------------27FEC975DA5970DCB292023E
+Content-Type: multipart/related;
+ boundary=&quot;------------36E157D33FBA4D12728628FD&quot;
+
+
+--------------36E157D33FBA4D12728628FD
+Content-Type: text/html; charset=us-ascii
+Content-Transfer-Encoding: 7bit
+
+&lt;html&gt;
+&lt;head&gt;
+&lt;title&gt;Starnet Communications - Download Instructions&lt;/title&gt;
+&lt;meta name=&quot;GENERATOR&quot; content=&quot;Microsoft FrontPage 4.0&quot;&gt;
+&lt;meta name=&quot;ProgId&quot; content=&quot;FrontPage.Editor.Document&quot;&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+      &lt;table border=&quot;0&quot; cellspacing=&quot;1&quot; width=&quot;100%&quot; height=&quot;95&quot;
+cellpadding=&quot;0&quot;&gt;
+        &lt;tr&gt;
+          &lt;td width=&quot;5%&quot; height=&quot;41&quot;&gt;&lt;/td&gt;
+          &lt;td width=&quot;35%&quot; height=&quot;41&quot;&gt;&lt;img src=&quot;
+<A HREF="http://www.starnet.com/products/logo100.php?SNUserID=xxxxxxxxxxxx">http://www.starnet.com/products/logo100.php?SNUserID=xxxxxxxxxxxx</A>&quot;
+alt=&quot;StarNet Communications&quot;&gt;&lt;/td&gt;
+
+          &lt;td width=&quot;20%&quot; height=&quot;41&quot;&gt;&lt;/td&gt;
+
+          &lt;td width=&quot;40%&quot; height=&quot;41&quot; valign=&quot;bottom&quot;&gt;&lt;font face=&quot;Arial&quot;
+size=&quot;1&quot;&gt;1270
+
+            Oakmead Pkwy., #301&lt;br&gt;
+            Sunnyvale, CA 94085-4044&lt;br&gt;
+            Tel: +1-408-739-0881&lt;br&gt;
+   Fax: +1-408-739-0936&lt;br&gt;
+            email: &lt;a href='mailto:<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">SalesDept at StarNet.com</A>
+'&gt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">SalesDept at StarNet.com</A>&lt;/a&gt;&lt;/font&gt;&lt;/td&gt;
+        &lt;/tr&gt;
+
+        &lt;tr&gt;
+          &lt;td width=&quot;100%&quot; colspan=&quot;4&quot; height=&quot;1&quot;&gt;
+            &lt;hr&gt;
+          &lt;/td&gt;
+        &lt;/tr&gt;
+      &lt;/table&gt;
+
+&lt;p&gt;Dear Mr. Pohl,&lt;/p&gt;
+&lt;p&gt;Thank you for your interest in X-Win32. You may download X-Win32, extra
+fonts, and related products from this URL:&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;<A HREF="http://www.starnet.com/products/downloads.asp?ID=628821-2829">http://www.starnet.com/products/downloads.asp?ID=628821-2829</A>&quot;&gt;
+www.starnet.com/products/downloads.asp?ID=xxxxxxxxxxxxx&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;I&gt;Please note: Clicking on the above link will
+download a full working copy of X-Win32 and place you on our contact
+list.&nbsp;
+You will be removed from this list when you send a &quot;remove&quot;
+message in
+response to a future email you may receive from us.&nbsp; Please read our
+&lt;a href=&quot;<A HREF="http://www.starnet.com/company/privacy.htm">http://www.starnet.com/company/privacy.htm</A>&quot;&gt;privacy
+policy&lt;/a&gt; for additional information.&lt;/I&gt;&lt;/p&gt;
+      &lt;p&gt;Use the following one month trial license (VN):
+      &lt;font color=&quot;red&quot;&gt;xxxxxxxxxxxxxx&lt;/font&gt;.&lt;/p&gt;
+
+&lt;p&gt;Visit &lt;a href='
+<A HREF="http://www.starnet.com/cgi-bin/support/support.cgi?action=new_ticket">http://www.starnet.com/cgi-bin/support/support.cgi?action=new_ticket</A>'&gt;
+www.starnet.com/support&lt;/a&gt;
+to ask any tech support questions.&lt;/p&gt;
+
+&lt;p&gt;Thank you in advance for your interest in X-Win32.&lt;/p&gt;
+
+
+&lt;address&gt;
+  &lt;img SRC=&quot;cid:<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">part1.39A44FF2.8E76FD7E at starnet.com</A>&quot; height=73 width=150
+alt=&quot;Paul's Signature&quot;&gt;&lt;br&gt;
+  Paul Swart&lt;br&gt;
+  Vice President, Sales &amp; Marketing&lt;br&gt;
+  StarNet Communications Corp.
+&lt;/address&gt;
+&lt;/body&gt;
+
+--------------36E157D33FBA4D12728628FD
+Content-Type: image/gif
+Content-ID: &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">part1.39A44FF2.8E76FD7E at starnet.com</A>&gt;
+Content-Transfer-Encoding: base64
+Content-Disposition: inline; filename=&quot;paul.gif&quot;
+
+R0lGODlhlgBJAOcAAAAAAAICAgMDAwUFBQYGBgcHBwkJCQoKCgwMDA0NDQ4ODg8PDxAQEBER
+ERISEhUVFRcXFxgYGBkZGRoaGhsbGxwcHB0dHR4eHiAgICEhISIiIiMjIyQkJCUlJSYmJicn
+JygoKCkpKSoqKisrKywsLC0tLS4uLi8vLzAwMDExMTIyMjMzMzQ0NDU1NTY2Njc3Nzg4ODk5
+OTo6Ojs7Ozw8PD09PT4+Pj8/P0BAQEFBQUJCQkNDQ0REREVFRUZGRkdHR0hISElJSUpKSktL
+S0xMTE1NTU5OTk9PT1BQUFFRUVJSUlNTU1RUVFVVVVZWVldXV1hYWFlZWVpaWltbW1xcXF1d
+XV5eXl9fX2BgYGFhYWJiYmNjY2RkZGVlZWZmZmdnZ2hoaGlpaWpqamtra2xsbG1tbW5ubm9v
+b3BwcHFxcXJycnNzc3R0dHV1dXZ2dnd3d3h4eHl5eXp6ent7e3x8fH19fX5+fn9/f4CAgIGB
+gYKCgoODg4SEhIWFhYaGhoeHh4iIiImJiYqKiouLi4yMjI2NjY6Ojo+Pj5CQkJGRkZKSkpOT
+k5SUlJWVlZaWlpeXl5iYmJmZmZqampubm5ycnJ2dnZ6enp+fn6CgoKGhoaKioqOjo6SkpKWl
+paampqenp6ioqKmpqaqqqqurq6ysrK2tra6urq+vr7CwsLGxsbKysrOzs7S0tLW1tba2tre3
+t7i4uLm5ubq6uru7u7y8vL29vb6+vr+/v8DAwMHBwcLCwsPDw8TExMXFxcbGxsfHx8jIyMnJ
+ycrKysvLy8zMzM3Nzc7Ozs/Pz9DQ0NHR0dLS0tPT09TU1NXV1dbW1tfX19jY2NnZ2dra2tvb
+29zc3N3d3d7e3t/f3+Dg4OHh4eLi4uPj4+Tk5OXl5ebm5ufn5+jo6Onp6erq6uvr6+zs7O3t
+7e7u7u/v7/Dw8PHx8fLy8vPz8/T09PX19fb29vf39/j4+Pn5+fr6+vv7+/z8/P39/f7+/v//
+/////////////////////////////////yH+Dk1hZGUgd2l0aCBHSU1QACH5BAEKAP8ALAAA
+AACWAEkAAAj+AP8JHEiwoMGDCBMqXMiwocOHECNKnEixokWK15zRumSojRYtdDDFGnexpMmT
+KBF6uwQlyAkgXiLZ4hVtGrZlrwDVyLElpc+fQBP+0tPjhJJJ3R4CY4EtqNOnFcfBAhOjCZ5g
+FllA3co1IS47PZJAsnbSzKyuaLeKSvKCULWfeCqlnZsyHKknPgo97XKKrt+K4SLlqEFp21YT
+5P4qdvhtEw4ul9Cm4rS4ckJUPoT0nWvDsueBtnIQUfTXibDPla2RYQEo6V82hlArTnUDiq7K
+bP7IpqsNUJJGntMk2p3215Mfyj6rgUO8q6oYXKKhrvKo+VZHG4bLFqLJulNvf2z+RNpd7Qc1
+70CXTXHiizggKuh/5tqxRhpUwxGfoegeH6WqIYFwlU0TET0SRH8ogWLCINp01cUzD5FTRR8I
+mtQKFBSm9UFiDcXyAzIVXtSLDWuQlNY2JGjDyjELbZFGiBYlw8Md4tBlTQYoOIJVQos8ASGM
+E3XDBBjhKMaKKAoJk0MoQFLkxhOuzZVFe/+olxAbVJjYJER8JNHLX2fAMMpAO8hBhRYETWLD
+bVtC5IoPTP5VDTFCFESlQMUAMUibEDmjgyeWeXNglAOF84QZfEKEhxPf/DUGiAJxA8cnZxS0
+iQ1vJdpQLy0Y45cc/4hCwjjd3LbMB1MQNMoRtGjaUDX+TtTxlxkQ+tBBMV4c1MoMm7jaEB3m
+QUXWQYGs8o82IkyAAX4DHWPEnlt948wwxywDDl269EDKT67wQJA2D2QzUDDc/HMMFATtUhA1
+U5ARFDbANPLFDkhEAYcmsezCSy6usMmVHltc81MNBtBA0BhOCCTIPxX0Ik0K3iBkzRZjNJMS
+N6WcYQISbGSyY2W49NDqT+EUAEARA4HDwDICFdHHAtBk0etBfpABy0nh4KKFDGeIErFsVqDh
+lCMB9PAEQTjgINAHCIBwhNIG1aGDuiVtw4cMSZRyLXGxADHMUydccACHA6GgbgdnLCNXQZoE
+AcxF4vgyxg53+NtcGGpsBYv+Ar8Y9EAxCVXyRSwWeVPIFEhcsrV3zPTQN1S7bJBLQaegMOZB
+lxBxGkXc/MGDEp9UOIcYXDlyoEDUYHOLFXYg1AkPt1BEjRkruPE4gtMwse1WVwA3kBlqmIKQ
+L1CcJRE0h9hQBtUh3kLD4k7ZQsPHC40yBSoSiaOKDlcY2yQZeZAd1DdXxNZQLjq4ItEvUNRA
++JbR7MDLVpMsYTFDqmAR50PQ5MGDH87gkyKksJVgLKEUDXlFG94GkU3AAAzJSZQS+OOUcTAh
+Dw0BRRQY6JBsaGEHM0vUMIxwu6D4pkgLCYUWWMSYtolhGr4ShRRQGJRQCOFmC6kEEgLoEGuw
+QQj+a/PVGeLwFGgUgREMCYUcYOiQYiihCV/ylUCakIqniMEKjVIILKrAjIesAgYEkqJAnjGE
+EqZkHGSQQoMU8okysJAh4QgECxKRRTHSgoBA6cYSliAuLQaChgsZhhRoEDsxDkQTaPoJOawQ
+RoUYwg9aWkgvdHA0QxKED+ZLCTmoIIVMJSQRdShXQzQRAzAw0ZICGQOgUjKNO2BBlAlBxB/W
+uJBu+OEFeAAkKqtAjJRQ4wpTaAobIeEQZiThBsZDJUGagAuUCKMFXbCPQkQhCYccAwdQ6KUy
+CSKOKUSwJKQgAiLqiBBaiEJ8CWGFEtZAzm3+Yxw6kM5FuoGIIFRxIb/aQGBDKMGaSLpTIEHY
+XEW4EQYleDIhwCjkQr6Bhwsg6Z8G4QGkKNIKJ3xBlwdRxT0XggwmFEGbEC3IGYQ3kWwwwgZB
+VAgx7JaQUuxADYALqUEuQTqJDMMMRJBFQ6jRxYV4gw44qKZMD6KNRjokHIugQR8IlZBl6FMh
+2LhCDKg31IJE4aALWUQQxsC8hVxDmgvhBSQEVlWEIGMNDCGHJYwABJampEZlRYgcYHmQWUBB
+Bw+Nq1/yQFeB1CIOMZDCJPRaGWXAgAtnAAMTdvCER/SUsJ4JhzWYCtnKBAQAOw==
+--------------36E157D33FBA4D12728628FD--
+
+--------------27FEC975DA5970DCB292023E--
+
+
+3. fetchmail output
+
+<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">root at p4-eizo</A>:~/Mail# env LC_ALL=C fetchmail -vvv  --nodetach --nosyslog -a
+fetchmail: WARNING: Running as root is discouraged.
+Old UID list from imap.gmail.com: &lt;empty&gt;
+Scratch list of UIDs: &lt;empty&gt;
+fetchmail: 6.3.26 querying imap.gmail.com (protocol IMAP) at Fri Aug  2
+13:59:29 2013: poll started
+Trying to connect to 173.194.69.108/993...connected.
+fetchmail: Certificate chain, from root to peer, starting at depth 2:
+fetchmail: Issuer Organization: Equifax
+fetchmail: Unknown Issuer CommonName
+fetchmail: Certificate at depth 1:
+fetchmail: Issuer Organization: Equifax
+fetchmail: Unknown Issuer CommonName
+fetchmail: Subject CommonName: Google Internet Authority
+fetchmail: Server certificate:
+fetchmail: Issuer Organization: Google Inc
+fetchmail: Issuer CommonName: Google Internet Authority
+fetchmail: Subject CommonName: imap.gmail.com
+fetchmail: Subject Alternative Name: imap.gmail.com
+fetchmail: imap.gmail.com key fingerprint:
+A5:2A:01:F4:9B:B0:AC:6F:C5:19:AB:60:D1:17:FE:26
+fetchmail: IMAP&lt; * OK Gimap ready for requests from 85.178.200.135
+nm3if1738456bkb.69
+fetchmail: IMAP&gt; A0001 CAPABILITY
+fetchmail: IMAP&lt; * CAPABILITY IMAP4rev1 UNSELECT IDLE NAMESPACE QUOTA ID
+XLIST CHILDREN X-GM-EXT-1 XYZZY SASL-IR AUTH=XOAUTH AUTH=XOAUTH2
+fetchmail: IMAP&lt; A0001 OK Thats all she wrote! nm3if1738456bkb.69
+fetchmail: Protocol identified as IMAP4 rev 1
+fetchmail: GSSAPI error gss_inquire_cred: Unspecified GSS failure.  Minor
+code may provide more information
+fetchmail: GSSAPI error gss_inquire_cred: Success
+fetchmail: No suitable GSSAPI credentials found. Skipping GSSAPI
+authentication.
+fetchmail: If you want to use GSSAPI, you need credentials first, possibly
+from kinit.
+fetchmail: IMAP&gt; A0002 LOGIN &quot;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">a.h.pohl at gmail.com</A>&quot; *
+fetchmail: IMAP&lt; * CAPABILITY IMAP4rev1 UNSELECT IDLE NAMESPACE QUOTA ID
+XLIST CHILDREN X-GM-EXT-1 UIDPLUS COMPRESS=DEFLATE ENABLE MOVE CONDSTORE
+ESEARCH
+fetchmail: IMAP&lt; A0002 OK <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">a.h.pohl at gmail.com</A> Alexander Pohl authenticated
+(Success)
+fetchmail: selecting or re-polling folder Inbox
+fetchmail: IMAP&gt; A0003 SELECT &quot;Inbox&quot;
+fetchmail: IMAP&lt; * FLAGS (\Answered \Flagged \Draft \Deleted \Seen
+$Forwarded $MDNSent NonJunk Junk)
+fetchmail: IMAP&lt; * OK [PERMANENTFLAGS (\Answered \Flagged \Draft \Deleted
+\Seen $Forwarded $MDNSent NonJunk Junk \*)] Flags permitted.
+fetchmail: IMAP&lt; * OK [UIDVALIDITY 2] UIDs valid.
+fetchmail: IMAP&lt; * 9215 EXISTS
+fetchmail: IMAP&lt; * 0 RECENT
+fetchmail: IMAP&lt; * OK [UIDNEXT 9761] Predicted next UID.
+fetchmail: IMAP&lt; * OK [HIGHESTMODSEQ 413465]
+fetchmail: IMAP&lt; A0003 OK [READ-WRITE] Inbox selected. (Success)
+fetchmail: 9215 messages waiting after first poll
+9215 messages for <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">a.h.pohl at gmail.com</A> at imap.gmail.com (folder Inbox).
+fetchmail: IMAP&gt; A0004 FETCH 1:100 RFC822.SIZE
+fetchmail: IMAP&lt; * 1 FETCH (RFC822.SIZE 10146)
+fetchmail: IMAP&lt; * 2 FETCH (RFC822.SIZE 3424)
+*** some lines omitted ***
+fetchmail: IMAP&lt; * 97 FETCH (RFC822.SIZE 6948)
+fetchmail: IMAP&lt; * 98 FETCH (RFC822.SIZE 4631)
+fetchmail: IMAP&lt; * 99 FETCH (RFC822.SIZE 3046)
+fetchmail: IMAP&lt; * 100 FETCH (RFC822.SIZE 39309)
+fetchmail: IMAP&lt; A0004 OK Success
+fetchmail: IMAP&gt; A0005 FETCH 1 RFC822.HEADER
+fetchmail: IMAP&lt; * 1 FETCH (RFC822.HEADER {1118}
+reading message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">a.h.pohl at gmail.com</A>@gmail-imap.l.google.com:1 of 9215 (1118
+header octets) About to rewrite Return-Path: &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">bouncetest-628821 at starnet.com</A>
+&gt;<i>...
+</I>...rewritten version is Return-Path: &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">bouncetest-628821 at starnet.com</A>&gt;.
+About to rewrite From: Paul Swart &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">paul at starnet.com</A>&gt;...
+...rewritten version is From: Paul Swart &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">paul at starnet.com</A>&gt;.
+About to rewrite To: Alexander Pohl &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">a.h.pohl at gmail.com</A>&gt;...
+...rewritten version is To: Alexander Pohl &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">a.h.pohl at gmail.com</A>&gt;.
+fetchmail: about to deliver with: formail -c &gt;&gt; ~/Mail/.Inbox
+#
+fetchmail: IMAP&lt; )
+fetchmail: IMAP&lt; A0005 OK Success
+fetchmail: IMAP&gt; A0006 FETCH 1 BODY.PEEK[TEXT]
+fetchmail: IMAP&lt; A0006 NO Some messages could not be FETCHed (Failure)
+fetchmail: IMAP&gt; A0007 LOGOUT
+fetchmail: IMAP&lt; * BYE LOGOUT Requested
+fetchmail: IMAP&lt; A0007 OK 73 good day (Success)
+fetchmail: client/server synchronization error while fetching from
+<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">a.h.pohl at gmail.com</A>@imap.gmail.com
+fetchmail: 6.3.26 querying imap.gmail.com (protocol IMAP) at Fri Aug  2
+13:59:30 2013: poll completed
+Merged UID list from imap.gmail.com: &lt;empty&gt;
+fetchmail: Query status=7 (ERROR)
+fetchmail: normal termination, status 7
+
+
+
+4. fetchmail -V
+
+<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">root at p4-eizo</A>:~/Mail# fetchmail -V
+fetchmail: WARNING: Running as root is discouraged.
+This is fetchmail release 6.3.26+GSS+NTLM+SDPS+SSL+NLS+KRB5.
+
+Copyright (C) 2002, 2003 Eric S. Raymond
+Copyright (C) 2004 Matthias Andree, Eric S. Raymond,
+                   Robert M. Funk, Graham Wilson
+Copyright (C) 2005 - 2012 Sunil Shetye
+Copyright (C) 2005 - 2013 Matthias Andree
+Fetchmail comes with ABSOLUTELY NO WARRANTY. This is free software, and you
+are welcome to redistribute it under certain conditions. For details,
+please see the file COPYING in the source or documentation directory.
+This product includes software developed by the OpenSSL Project
+for use in the OpenSSL Toolkit. (<A HREF="http://www.openssl.org/">http://www.openssl.org/</A>)
+
+Fallback MDA: (none)
+Linux p4-eizo 2.6.32-5-686 #1 SMP Fri May 10 08:33:48 UTC 2013 i686
+GNU/Linux
+Taking options from command line and /root/.fetchmailrc
+Idfile is /root/.fetchids
+Fetchmail will forward misaddressed multidrop messages to postmaster.
+Options for retrieving from <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">a.h.pohl at gmail.com</A>@imap.gmail.com:
+  True name of server is imap.gmail.com.
+  Protocol is IMAP.
+  All available authentication methods will be tried.
+  SSL encrypted sessions enabled.
+  Server nonresponse timeout is 300 seconds (default).
+  Selected mailboxes are: Inbox
+  Only new messages will be retrieved (--all off).
+  Fetched messages will be kept on the server (--keep on).
+  Old messages will not be flushed before message retrieval (--flush off).
+  Oversized messages will not be flushed before message retrieval
+(--limitflush off).
+  Rewrite of server-local addresses is enabled (--norewrite off).
+  Carriage-return stripping is enabled (stripcr on).
+  Carriage-return forcing is disabled (forcecr off).
+  Interpretation of Content-Transfer-Encoding is enabled (pass8bits off).
+  MIME decoding is disabled (mimedecode off).
+  Idle after poll is disabled (idle off).
+  Nonempty Status lines will be kept (dropstatus off)
+  Delivered-To lines will be kept (dropdelivered off)
+  Fetch message size limit is 100 (--fetchsizelimit 100).
+  Do binary search of UIDs during 3 out of 4 polls (--fastuidl 4).
+  Messages will be delivered with &quot;formail -c &gt;&gt; ~/Mail/.Inbox&quot;.
+  Single-drop mode: 1 local name recognized.
+  No UIDs saved from this host.
+</PRE>
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	
+	<LI>Next message: <A HREF="003452.html">[fetchmail-users] failed to download mail from Gmail with IMAP
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3451">[ date ]</a>
+              <a href="thread.html#3451">[ thread ]</a>
+              <a href="subject.html#3451">[ subject ]</a>
+              <a href="author.html#3451">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

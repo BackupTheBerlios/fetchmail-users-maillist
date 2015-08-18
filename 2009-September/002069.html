@@ -1,0 +1,98 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] fetchmail: SMTP error: 530 5.7.0 Must issue a	STARTTLS command first
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2009-September/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%3A%20SMTP%20error%3A%20530%205.7.0%20Must%20issue%20a%0A%09STARTTLS%20command%20first&In-Reply-To=%3C43ea8d070909090639g4376ea87i671e40ac965d3aef%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002068.html">
+   <LINK REL="Next"  HREF="002073.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] fetchmail: SMTP error: 530 5.7.0 Must issue a	STARTTLS command first</H1>
+    <B>Rob MacGregor</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%3A%20SMTP%20error%3A%20530%205.7.0%20Must%20issue%20a%0A%09STARTTLS%20command%20first&In-Reply-To=%3C43ea8d070909090639g4376ea87i671e40ac965d3aef%40mail.gmail.com%3E"
+       TITLE="[fetchmail-users] fetchmail: SMTP error: 530 5.7.0 Must issue a	STARTTLS command first">rob.macgregor at gmail.com
+       </A><BR>
+    <I>Wed Sep  9 15:39:47 CEST 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002068.html">[fetchmail-users] fetchmail: SMTP error: 530 5.7.0 Must issue a STARTTLS command first
+</A></li>
+        <LI>Next message: <A HREF="002073.html">[fetchmail-users] fetchmail: SMTP error: 530 5.7.0 Must issue a STARTTLS command first
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2069">[ date ]</a>
+              <a href="thread.html#2069">[ thread ]</a>
+              <a href="subject.html#2069">[ subject ]</a>
+              <a href="author.html#2069">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Wed, Sep 9, 2009 at 13:04, Gerard&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">gerard at seibercom.net</A>&gt; wrote:
+&gt;<i> fetchmail release 6.3.11+RPA+SDPS+SSL+OPIE+NLS.
+</I>&gt;<i>
+</I>&gt;<i> I have a questing regarding Fetchmail with Postfix.
+</I>&gt;<i>
+</I>&gt;<i> If I have the following entry in the Postfix 'main.cf'
+</I>&gt;<i>
+</I>&gt;<i> &#160; &#160; &#160; &#160;smtpd_tls_security_level = encrypt
+</I>&gt;<i>
+</I>&gt;<i> Fetchmail will fail with this error message in the log file:
+</I>&gt;<i>
+</I>&gt;<i> fetchmail: SMTP error: 530 5.7.0 Must issue a STARTTLS command first
+</I>&gt;<i> fetchmail: SMTP server requires STARTTLS, keeping message.
+</I>&gt;<i> fetchmail: &#160;not flushed
+</I>&gt;<i>
+</I>&gt;<i> However, if I use this in the postfix 'main.cf' file fetchmail does not
+</I>&gt;<i> complain.
+</I>&gt;<i>
+</I>&gt;<i> &#160; &#160; &#160; &#160;smtpd_tls_security_level = may
+</I>&gt;<i>
+</I>&gt;<i> I want to enforce mandatory authentication on the server. Is there
+</I>&gt;<i> anyway to make Fetchmail work in that environment?
+</I>
+For authentication you want SASL - TLS, unless you're issuing and
+validating client certificates, is not about authentication.
+
+That said, I do not believe that Fetchmail supports authentication to
+the SMTP server.  You should consider not requiring it for loopback
+and then configuring fetchmail to use that interface to talk to
+postfix.
+
+-- 
+                 Please keep list traffic on the list.
+
+Rob MacGregor
+      Whoever fights monsters should see to it that in the process he
+        doesn't become a monster.                  Friedrich Nietzsche
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002068.html">[fetchmail-users] fetchmail: SMTP error: 530 5.7.0 Must issue a STARTTLS command first
+</A></li>
+	<LI>Next message: <A HREF="002073.html">[fetchmail-users] fetchmail: SMTP error: 530 5.7.0 Must issue a STARTTLS command first
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2069">[ date ]</a>
+              <a href="thread.html#2069">[ thread ]</a>
+              <a href="subject.html#2069">[ subject ]</a>
+              <a href="author.html#2069">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,138 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] incorrect header line found while scanning headers
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2010-February/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20incorrect%20header%20line%20found%20while%20scanning%0A%20headers&In-Reply-To=%3C4B7165BC.8070509%40Message-ID.plonk.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002280.html">
+   <LINK REL="Next"  HREF="002276.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] incorrect header line found while scanning headers</H1>
+    <B>Jakob Hirsch</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20incorrect%20header%20line%20found%20while%20scanning%0A%20headers&In-Reply-To=%3C4B7165BC.8070509%40Message-ID.plonk.de%3E"
+       TITLE="[fetchmail-users] incorrect header line found while scanning headers">jh at plonk.de
+       </A><BR>
+    <I>Tue Feb  9 14:40:12 CET 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002280.html">[fetchmail-users] incorrect header line found while scanning headers
+</A></li>
+        <LI>Next message: <A HREF="002276.html">[fetchmail-users] keep option
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2281">[ date ]</a>
+              <a href="thread.html#2281">[ thread ]</a>
+              <a href="subject.html#2281">[ subject ]</a>
+              <a href="author.html#2281">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Matthias Andree, 2010-02-08 20:55:
+
+&gt;&gt;&gt;<i> Not only that. Given that your fetchmail was talking IMAP, and it asked for just
+</I>&gt;&gt;&gt;<i> the header, imap.web.de already goofed up and shipped a body line as part of the
+</I>&gt;&gt;&gt;<i> header... Whoops!
+</I>&gt;&gt;<i> Nope, it just follows RFC 822: &quot;[the body] is separated from the headers
+</I>&gt;&gt;<i> by a null line  (i.e.,  a line with nothing preceding the CRLF.&quot;
+</I>&gt;&gt;<i> The IMAP server simply outputs everything up to the first empty line
+</I>&gt;&gt;<i> when the headers are requested.
+</I>&gt;<i> RFC 5322 (the successor to 822) also states, quote:
+</I>&gt;<i> 
+</I>&gt;<i> &quot;2.2.  Header Fields
+</I>&gt;<i> 
+</I>&gt;<i>    Header fields are lines beginning with a field name, followed by a
+</I>&gt;<i>    colon (&quot;:&quot;), followed by a field body, and terminated by CRLF.  A
+</I>&gt;<i>    field name MUST be composed of printable US-ASCII characters (i.e.,
+</I>&gt;<i>    characters that have values between 33 and 126, inclusive), except
+</I>&gt;<i>    colon.  [...]&quot;
+</I>
+What do you expect the IMAP server to do? Apply some magic to the
+headers? Or barf and abort like fetchmail does? Surely not.
+The IMAP server does the only reasonable thing: Just ignore the
+malformed header line.
+Btw, my local dovecot does just the same. My guess is that most other
+IMAP servers also do.
+
+&gt;&gt;&gt;<i> And in order to avoid allegations that fetchmail were corrupting messages, when
+</I>&gt;&gt;&gt;<i> in fact the upstream or the sender or some router spoiled the message, the
+</I>&gt;&gt;&gt;<i> original fetchmail has refused to fetch such messages.
+</I>&gt;&gt;<i> I don't think the development is marketing-driven, where allegations are
+</I>&gt;&gt;<i> more relevant than facts and functionality.
+</I>&gt;<i> Only to have the next person blame fetchmail because it discards the invalid
+</I>&gt;<i> header line? No thanks. We can't win, see below.
+</I>
+I never said anything about &quot;discard&quot;. Just pass it on as-is.
+
+&gt;<i> I'd considered a heuristic like &quot;line with only whitespace followed by invalid
+</I>&gt;<i> header&quot;, but even that might truncate the header prematurely...
+</I>
+Really, there's no need for heuristics here. Too much magic is not good.
+
+&gt;<i> It'd be nice if someone wrote the code with proper options to have some kind of:
+</I>&gt;<i> 
+</I>&gt;<i> handle-invalid-headers: {method}
+</I>&gt;<i> 
+</I>&gt;<i> Where method is one of the following:
+</I>&gt;<i> 
+</I>&gt;<i> - skip-message: does what we have now,
+</I>&gt;<i> 
+</I>&gt;<i> - pass-invalid-message-verbatim: would ignore the corruption and disable the
+</I>&gt;<i> check as proposed by Fr&#233;d&#233;ric Marchal,
+</I>
+These two should really be enough. The three others require extra coding
+which is not worth the hassle.
+I'll do it when I have the time (probably not in the next few weeks).
+For now, the patch is ok for me, but I don't want to keep that for ever.
+
+&gt;&gt;<i> I don't understand [what] should go wrong with disabling refuse_mail and
+</I>&gt;&gt;<i> why silently skipping is better than ignoring non-fatal errors, but as I
+</I>&gt;&gt;<i> can see this was discussed before and I really don't want to reraise old
+</I>&gt;&gt;<i> topics.
+</I>&gt;<i> If the downstream MTA is picky, it refuses the mail and fetchmail gets the blame
+</I>&gt;<i> -- as the messenger between two other parts of the system, it often gets the
+</I>&gt;<i> blame when the downstream refuses what the upstream should have rejected in the
+</I>&gt;<i> first place.
+</I>
+Sure, but currently fetchmail does not even leave a chance to the
+downstream *DA, so it is to blame anyway. What can we possibly lose if
+we pass the mail?
+- If downstream accepts (as most xDAs will), so the MUA is left to do
+the magic, and they are usually well prepared.
+- If the downstream rejects, we can leave it on the upstream server and
+log the event, just like we do it right now.
+
+
+Regards
+Jakob
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002280.html">[fetchmail-users] incorrect header line found while scanning headers
+</A></li>
+	<LI>Next message: <A HREF="002276.html">[fetchmail-users] keep option
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2281">[ date ]</a>
+              <a href="thread.html#2281">[ thread ]</a>
+              <a href="subject.html#2281">[ subject ]</a>
+              <a href="author.html#2281">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

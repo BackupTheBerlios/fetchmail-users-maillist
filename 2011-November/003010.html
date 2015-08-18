@@ -1,0 +1,106 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] the message fetch should be completed before quitting
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2011-November/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20the%20message%20fetch%20should%20be%20completed%20before%0A%20quitting&In-Reply-To=%3C4ED26BA3.7060305%40gmx.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003009.html">
+   <LINK REL="Next"  HREF="003011.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] the message fetch should be completed before quitting</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20the%20message%20fetch%20should%20be%20completed%20before%0A%20quitting&In-Reply-To=%3C4ED26BA3.7060305%40gmx.de%3E"
+       TITLE="[fetchmail-users] the message fetch should be completed before quitting">matthias.andree at gmx.de
+       </A><BR>
+    <I>Sun Nov 27 17:56:03 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003009.html">[fetchmail-users] the message fetch should be completed before quitting
+</A></li>
+        <LI>Next message: <A HREF="003011.html">[fetchmail-users] the message fetch should be completed before quitting
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3010">[ date ]</a>
+              <a href="thread.html#3010">[ thread ]</a>
+              <a href="subject.html#3010">[ subject ]</a>
+              <a href="author.html#3010">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Am 27.11.2011 17:00, schrieb <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">rossi.f at inwind.it</A>:
+&gt;&gt;<i> Regarding your proposal of having the signal delivered to maildrop, too,
+</I>&gt;&gt;<i> can you please try this:
+</I>&gt;<i> 
+</I>&gt;<i> I think this is the way to go :-)
+</I>&gt;<i> 
+</I>&gt;&gt;<i> unpack the fetchmail source and configure as usual.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Open fetchmail.c in a text editor (which may not show line numbers) and
+</I>&gt;&gt;<i> find this section:
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i>   446     if (quitonly) {
+</I>&gt;&gt;<i>   447 fprintf(stderr,GT_(&quot;fetchmail: no other fetchmail is running\n&quot;));
+</I>&gt;&gt;<i>   448 exit(PS_EXCLUDE);
+</I>&gt;&gt;<i>   449     }
+</I>&gt;&gt;<i>   450 }
+</I>&gt;&gt;<i>   451 else if (kill(pid, SIGTERM) &lt; 0)
+</I>&gt;&gt;<i>   452 {
+</I>&gt;&gt;<i>   453     fprintf(stderr,GT_(&quot;fetchmail: error killing %s fetchmail at
+</I>&gt;&gt;<i> %ld; bailing out.\n&quot;),
+</I>&gt;&gt;<i>   454     bkgd ? GT_(&quot;background&quot;) : GT_(&quot;foreground&quot;), (long)pid);
+</I>&gt;&gt;<i>   455     exit(PS_EXCLUDE);
+</I>&gt;&gt;<i>   456 }
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> In the kill line that reads &quot;SIGTERM&quot;, modify the kill(pid, SIGTERM) so
+</I>&gt;&gt;<i> it reads kill(-pid, SIGTERM), i. e. insert a minus before the pid.  Then
+</I>&gt;&gt;<i> build, install, and test if fetchmail --quit now shuts down maildrop.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> The difference that makes it that the signal is delivered to the process
+</I>&gt;&gt;<i> group (which should encompass maildrop), not just a single process.
+</I>&gt;<i> 
+</I>&gt;<i> I have tried with the attached patch (-pid is not the group process id). The
+</I>&gt;<i> effect seems different than killing the process via CTRL-C at the terminal. 
+</I>&gt;<i> The
+</I>&gt;<i> maildrop child process is not killed and the message is accordingly delivered.
+</I>&gt;<i> Something is still not working correctly: might it be due to the fact that the
+</I>&gt;<i> parent process is killed before the child? If this is the case the signal
+</I>&gt;<i> handler in fetchmail should kill its children before dying
+</I>
+The problem is that fetchmail uses popen(), thus does not know the PID
+of its child (and uses pclose() to reap the zombie process), so we'll
+have to rely on process group signalling.  Does maildrop respond
+differently to SIGTERM than to SIGINT?  I haven't got time to check that
+now, will do some time during the week.
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003009.html">[fetchmail-users] the message fetch should be completed before quitting
+</A></li>
+	<LI>Next message: <A HREF="003011.html">[fetchmail-users] the message fetch should be completed before quitting
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3010">[ date ]</a>
+              <a href="thread.html#3010">[ thread ]</a>
+              <a href="subject.html#3010">[ subject ]</a>
+              <a href="author.html#3010">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,89 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] fetchmail with dovecot as mda
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2013-March/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%20with%20dovecot%20as%20mda&In-Reply-To=%3CCAJCMLO91S12fvfm9V1CKuiQBjXyXQS1MwtZS5rx%2BjFQFDRtN-g%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003374.html">
+   <LINK REL="Next"  HREF="003376.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] fetchmail with dovecot as mda</H1>
+    <B>Rob MacGregor</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%20with%20dovecot%20as%20mda&In-Reply-To=%3CCAJCMLO91S12fvfm9V1CKuiQBjXyXQS1MwtZS5rx%2BjFQFDRtN-g%40mail.gmail.com%3E"
+       TITLE="[fetchmail-users] fetchmail with dovecot as mda">rob.macgregor at gmail.com
+       </A><BR>
+    <I>Sat Mar  9 23:17:45 CET 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003374.html">[fetchmail-users] fetchmail with dovecot as mda
+</A></li>
+        <LI>Next message: <A HREF="003376.html">[fetchmail-users] Multiple acceptable fingerprints needed
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3375">[ date ]</a>
+              <a href="thread.html#3375">[ thread ]</a>
+              <a href="subject.html#3375">[ subject ]</a>
+              <a href="author.html#3375">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Sat, Mar 9, 2013 at 9:48 PM, Jerry &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">jerry at seibercom.net</A>&gt; wrote:
+&gt;<i> On Sat, 9 Mar 2013 21:06:32 +0000
+</I>&gt;<i> Rob MacGregor articulated:
+</I>&gt;<i>
+</I>&gt;&gt;<i> A quick Google search suggests that the problem is usually that you're
+</I>&gt;&gt;<i> not running fetchmail and dovecot as the same user. Doing that, or
+</I>&gt;&gt;<i> delivering via SMTP, seems to solve it in the cases I found.
+</I>&gt;<i>
+</I>&gt;<i> I noticed that also. Dovecot runs as user:group &quot;vmail:vmail&quot;. How do I
+</I>&gt;<i> get fetchmail to deliver mail using &quot;vmail&quot; as the user ID?
+</I>
+You don't* - you run fetchmail as the user &quot;vmail&quot;.
+
+How you do that depends on how you're running fetchmail. If it's on
+boot as a daemon you'll need to change the startup script, or the
+config file it calls. If it's from cron simply remove it from the
+current crontab and add it to vmail's crontab instead.
+
+
+*Well, you could probably use sudo to achieve this, but it's likely to
+be significantly more complicated to get working.
+
+-- 
+                 Please keep list traffic on the list.
+
+Rob MacGregor
+      Whoever fights monsters should see to it that in the process he
+        doesn't become a monster.                  Friedrich Nietzsche
+</PRE>
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003374.html">[fetchmail-users] fetchmail with dovecot as mda
+</A></li>
+	<LI>Next message: <A HREF="003376.html">[fetchmail-users] Multiple acceptable fingerprints needed
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3375">[ date ]</a>
+              <a href="thread.html#3375">[ thread ]</a>
+              <a href="subject.html#3375">[ subject ]</a>
+              <a href="author.html#3375">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,186 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] fetchmail and socks5
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2007-March/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%20and%20socks5&In-Reply-To=%3Cm3lkhy4oeo.fsf%40HayekJ.Hayek-local.name%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000843.html">
+   <LINK REL="Next"  HREF="000868.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] fetchmail and socks5</H1>
+    <B>Jochen+fetchmail-users at Hayek.name</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%20and%20socks5&In-Reply-To=%3Cm3lkhy4oeo.fsf%40HayekJ.Hayek-local.name%3E"
+       TITLE="[fetchmail-users] fetchmail and socks5">Jochen+fetchmail-users at Hayek.name
+       </A><BR>
+    <I>Thu Mar 15 14:38:55 CET 2007</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000843.html">[fetchmail-users] fetchmail and socks5
+</A></li>
+        <LI>Next message: <A HREF="000868.html">[fetchmail-users] fetchmail and socks5
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#867">[ date ]</a>
+              <a href="thread.html#867">[ thread ]</a>
+              <a href="subject.html#867">[ subject ]</a>
+              <a href="author.html#867">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>&gt;&gt;&gt;&gt;&gt;<i> &quot;RMG&quot; == Rob MacGregor writes:
+</I>
+On 3/8/07, Jochen Hayek wrote:
+
+    &gt;&gt; A while ago I started experiments with socks5 (-&gt; dante)
+    &gt;&gt; and created a /etc/socks.conf on my local host and I set up a socks5 proxy server on a neighbour box.
+    &gt;&gt; 
+    &gt;&gt; I did not instruct my local fetchmail to make use of my socks5 proxy
+    &gt;&gt; and I also wasn't aware, that my local fetchmail actually does us it,
+    &gt;&gt; but in a situation, when that proxy server on the neighbour box temporarily did not run,
+    &gt;&gt; I finally noticed (using &quot;strace&quot;), that fetchmail contacted my socks5 proxy.
+    &gt;&gt; 
+    &gt;&gt; 
+    &gt;&gt; I did some rtfm-ing,
+    &gt;&gt; but I did not find a way to instruct fetchmail to *not* attempt contacting my socks5 proxy.
+
+    RMG&gt; Fetchmail has *no* native socks support.  
+
+Currently I am convinced, your statement is incorrect.
+
+But I rather have some sympathy for your suspicion,
+as this magical and undescribed feature of fetchmail is certainly rather weird,
+and fetchmail shouldn't behave like that.
+
+Have you ever run fetchmail in a socks5 ready environment?
+Give yourself a try and let's continue discussing the matter than!
+
+    RMG&gt; You're either running it
+    RMG&gt; with a socks wrapper (runsock/socksify)
+    RMG&gt; or have added this yourself (eg via ld.so.preload).
+
+No, I don't, nothing like that.
+(No socks wrapper, no LD_PRELOAD, no /etc/ld.so.preload, no ...)
+I told you above: &quot;I did not instruct my local fetchmail to make use of my socks5 proxy&quot;
+I mean, what I write.
+And you read my statement, didn't you?!?
+
+    RMG&gt; It's hard to say though as you've provided no
+    RMG&gt; real information (version numbers, contents of configuration files,
+    RMG&gt; command lines used, anything really).
+
+Alright, alright, yet another doubting Thomas ;-)
+
+Can you see &quot;SOCKS&quot; here:
+
+    [2007-03-15 14:11:49] <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">johayek at HayekJ</A> $ fetchmail --version
+    This is fetchmail release 6.3.2+POP2+IMAP-GSS+RPA+NTLM+SDPS+SSL+OPIE+SOCKS+NLS.
+
+    Copyright (C) 2002, 2003 Eric S. Raymond
+    Copyright (C) 2004 Matthias Andree, Eric S. Raymond, Rob F. Funk, Graham Wilson
+    Copyright (C) 2005 Matthias Andree, Sunil Shetye
+    Copyright (C) 2006 Matthias Andree
+    Fetchmail comes with ABSOLUTELY NO WARRANTY. This is free software, and you
+    are welcome to redistribute it under certain conditions. For details,
+    please see the file COPYING in the source or documentation directory.
+
+    Fallback MDA: (none)
+    Linux HayekJ 2.6.16.21-0.13-default #1 Mon Jul 17 17:22:44 UTC 2006 i686 i686 i386 GNU/Linux
+    Taking options from command line and /home/jochen_hayek/.fetchmailrc
+    Idfile is /home/jochen_hayek/.fetchids
+    Fetchmail will show progress dots even in logfiles.
+    Fetchmail will forward misaddressed multidrop messages to johayek.
+    Fetchmail will direct error mail to the postmaster.
+
+
+    close(3)                                = 0
+    [...]
+    open(&quot;/etc/socks.conf&quot;, O_RDONLY)       = 4
+    [...]
+
+
+
+And here we have some config file extract:
+
+      skip shuttle.de
+        via   &quot;blablabla.shuttle.de&quot; with proto IMAP and no dns tracepolls
+        user &quot;jh9999&quot; there with password &quot;PASSWORD&quot; is johayek here
+        options
+        ssl
+          sslproto tls1
+          sslfingerprint &quot;D9:83:30:EA:3B:A5:02:A2:D6:72:1D:B7:AB:C3:30:CB&quot;
+        fetchall
+        stripcr
+        dropstatus
+        dropdelivered
+        warnings 3600
+        expunge 20
+        folders imap/folder-misc/_to-be-downloaded,imap/folder/prio-4
+        properties &quot;'mailbox_from':'INBOX','mailbox_dir':'imap','mailbox_dir_separator':'/'&quot;
+        antispam 571
+        no rewrite
+        pass8bits
+
+
+And here we have some &quot;strace&quot; output:
+
+    [2007-03-15 13:30:59] <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">johayek at HayekJ</A> $ strace fetchmail shuttle.de
+    execve(&quot;/usr/bin/fetchmail&quot;, [&quot;fetchmail&quot;, &quot;shuttle.de&quot;], [/* 112 vars */]) = 0
+    brk(0)                                  = 0x808d000
+    mmap2(NULL, 4096, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0xb7fb3000
+    access(&quot;/etc/ld.so.preload&quot;, R_OK)      = -1 ENOENT (No such file or directory)
+    open(&quot;/usr/local/lib/tls/i686/sse2/libsocks.so.0&quot;, O_RDONLY) = -1 ENOENT (No such file or directory)
+    open(&quot;/usr/local/lib/tls/i686/libsocks.so.0&quot;, O_RDONLY) = -1 ENOENT (No such file or directory)
+    open(&quot;/usr/local/lib/tls/sse2/libsocks.so.0&quot;, O_RDONLY) = -1 ENOENT (No such file or directory)
+    open(&quot;/usr/local/lib/tls/libsocks.so.0&quot;, O_RDONLY) = -1 ENOENT (No such file or directory)
+    open(&quot;/usr/local/lib/i686/sse2/libsocks.so.0&quot;, O_RDONLY) = -1 ENOENT (No such file or directory)
+    open(&quot;/usr/local/lib/i686/libsocks.so.0&quot;, O_RDONLY) = -1 ENOENT (No such file or directory)
+    open(&quot;/usr/local/lib/sse2/libsocks.so.0&quot;, O_RDONLY) = -1 ENOENT (No such file or directory)
+    open(&quot;/usr/local/lib/libsocks.so.0&quot;, O_RDONLY) = -1 ENOENT (No such file or directory)
+    open(&quot;/usr/lib/tls/i686/sse2/libsocks.so.0&quot;, O_RDONLY) = -1 ENOENT (No such file or directory)
+    open(&quot;/usr/lib/tls/i686/libsocks.so.0&quot;, O_RDONLY) = -1 ENOENT (No such file or directory)
+    open(&quot;/usr/lib/tls/sse2/libsocks.so.0&quot;, O_RDONLY) = -1 ENOENT (No such file or directory)
+    open(&quot;/usr/lib/tls/libsocks.so.0&quot;, O_RDONLY) = -1 ENOENT (No such file or directory)
+    open(&quot;/usr/lib/i686/sse2/libsocks.so.0&quot;, O_RDONLY) = -1 ENOENT (No such file or directory)
+    open(&quot;/usr/lib/i686/libsocks.so.0&quot;, O_RDONLY) = -1 ENOENT (No such file or directory)
+    open(&quot;/usr/lib/sse2/libsocks.so.0&quot;, O_RDONLY) = -1 ENOENT (No such file or directory)
+    open(&quot;/usr/lib/libsocks.so.0&quot;, O_RDONLY) = 3
+    read(3, &quot;\177ELF\1\1\1\0\0\0\0\0\0\0\0\0\3\0\3\0\1\0\0\0 O\0\000&quot;..., 512) = 512
+    [...]
+    open(&quot;/etc/socks.conf&quot;, O_RDONLY)       = 4
+    fstat64(4, {st_mode=S_IFREG|0644, st_size=4374, ...}) = 0
+    mmap2(NULL, 4096, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0xb7bb3000
+    read(4, &quot;# $Id: socks.conf,v 1.28 2001/12&quot;..., 8192) = 4374
+    read(4, &quot;&quot;, 4096)                       = 0
+    [...]
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000843.html">[fetchmail-users] fetchmail and socks5
+</A></li>
+	<LI>Next message: <A HREF="000868.html">[fetchmail-users] fetchmail and socks5
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#867">[ date ]</a>
+              <a href="thread.html#867">[ thread ]</a>
+              <a href="subject.html#867">[ subject ]</a>
+              <a href="author.html#867">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,82 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] IMAP IDLE + UIDL patch
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2011-December/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20IMAP%20IDLE%20%2B%20UIDL%20patch&In-Reply-To=%3C4EFA1D49.2000509%40gmx.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003014.html">
+   
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] IMAP IDLE + UIDL patch</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20IMAP%20IDLE%20%2B%20UIDL%20patch&In-Reply-To=%3C4EFA1D49.2000509%40gmx.de%3E"
+       TITLE="[fetchmail-users] IMAP IDLE + UIDL patch">matthias.andree at gmx.de
+       </A><BR>
+    <I>Tue Dec 27 20:32:25 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003014.html">[fetchmail-users] IMAP IDLE + UIDL patch
+</A></li>
+        
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3015">[ date ]</a>
+              <a href="thread.html#3015">[ thread ]</a>
+              <a href="subject.html#3015">[ subject ]</a>
+              <a href="author.html#3015">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Am 27.12.2011 18:59, schrieb Nathan Wheeler:
+&gt;<i> I understand, I wasn't looking for it to be ported to later versions, just if anyone had done any quick work themselves to get it to work with IDLE. I wasn't to hopeful, mostly curious.
+</I>
+Well, the &quot;IDLE&quot; feature in particular is an odd one, in that it does
+not blend in with fetchmail's model of operation, has many quirks, and
+took many a fix to get going to the point where it is.  I don't believe
+IDLE has much of a future with the current fetchmail model, but I am
+open for event-based (one thread holding several file descriptors, which
+is prone to unveiling kernel bugs all about) or multithreaded approaches
+(which is prone to unveiling library issues...), as well as more
+versatile successors of IDLE, although I do not yet know how
+widely-supported that is on the server side, and which way I'll go with
+future versions.
+
+The one thing I can offer is that people can create
+one-rcfile-per-server and use the FETCHMAILHOME environment variable to
+run multiple instances of fetchmail that can idle, without getting in
+one another's way, but that doesn't bring you anywhere closer to UID
+support for IMAP in fetchmail unfortunately.
+
+Best regards,
+Matthias
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003014.html">[fetchmail-users] IMAP IDLE + UIDL patch
+</A></li>
+	
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3015">[ date ]</a>
+              <a href="thread.html#3015">[ thread ]</a>
+              <a href="subject.html#3015">[ subject ]</a>
+              <a href="author.html#3015">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

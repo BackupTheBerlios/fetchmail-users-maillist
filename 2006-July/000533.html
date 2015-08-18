@@ -1,0 +1,111 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Simple fetch and forward
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2006-July/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Simple%20fetch%20and%20forward&In-Reply-To=%3CNEBBLNPIODEEBMMBMLHJKEAHMBAB.fetchmail%40jelmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000532.html">
+   <LINK REL="Next"  HREF="000534.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Simple fetch and forward</H1>
+    <B>John</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Simple%20fetch%20and%20forward&In-Reply-To=%3CNEBBLNPIODEEBMMBMLHJKEAHMBAB.fetchmail%40jelmail.com%3E"
+       TITLE="[fetchmail-users] Simple fetch and forward">fetchmail at jelmail.com
+       </A><BR>
+    <I>Mon Jul 24 19:27:41 CEST 2006</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000532.html">[fetchmail-users] Simple fetch and forward
+</A></li>
+        <LI>Next message: <A HREF="000534.html">[fetchmail-users] Simple fetch and forward
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#533">[ date ]</a>
+              <a href="thread.html#533">[ thread ]</a>
+              <a href="subject.html#533">[ subject ]</a>
+              <a href="author.html#533">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>
+&gt;<i>You can (that's what I'm doing).  What you're missing is providing us
+</I>&gt;<i>with any information to help you.
+</I>
+&gt;<i>So,
+</I>
+&gt;<i>1) Fetchmail version
+</I>Fetchmail 6.3.4
+
+&gt;<i>2) Contents of .fetchmailrc
+</I>
+I've tried so many variants of the fetchmailrc file I don't really have
+&quot;one&quot; to send. Here is what I have at the moment:
+
+set logfile /var/log/fetchmail.log
+set no bouncemail
+set postmaster root
+set daemon 1500
+
+poll mail.ispmailserver.net protocol pop3
+    user my-username pass my-password
+
+I was previously trying:
+
+poll mail.ispmailserver.net protocol pop3
+    aka forwarder1.com
+    envelope Received
+    localdomains domain1.com domain2.com domain3.com
+    user my-username there pass my-password to * here
+
+I had to put in aka to get mail that had been forwarded by my domain's DNS
+to be recognised when the Received lines were parsed. Without this I got the
+below error on a Bcc:
+
+fetchmail: line rejected, four.mx.forwarder1.com is not an alias of the
+mailserver
+
+The localdomains are my domains. This latter configuration is probably
+nonsense but it got me close (but not exactly) to what I am trying to do. It
+works for a specific case but is not really a solution.
+
+Fetchmail seems to want to change headers and this is confusing things. If I
+can just get it to pass stuff through verbatim then I think it'll be ok.
+
+All help is much appreciated.
+
+
+
+
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000532.html">[fetchmail-users] Simple fetch and forward
+</A></li>
+	<LI>Next message: <A HREF="000534.html">[fetchmail-users] Simple fetch and forward
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#533">[ date ]</a>
+              <a href="thread.html#533">[ thread ]</a>
+              <a href="subject.html#533">[ subject ]</a>
+              <a href="author.html#533">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

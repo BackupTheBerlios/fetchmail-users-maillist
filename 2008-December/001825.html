@@ -1,0 +1,130 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Difference in headers - Was Re: Error showing in fetchmail log
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2008-December/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Difference%20in%20headers%20-%20Was%20Re%3A%20Error%20showing%20in%0A%20fetchmail%20log&In-Reply-To=%3CPine.LNX.4.64.0812301932360.3407%40bretnewworkstation.busby.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001824.html">
+   <LINK REL="Next"  HREF="001828.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Difference in headers - Was Re: Error showing in fetchmail log</H1>
+    <B>Bret Busby</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Difference%20in%20headers%20-%20Was%20Re%3A%20Error%20showing%20in%0A%20fetchmail%20log&In-Reply-To=%3CPine.LNX.4.64.0812301932360.3407%40bretnewworkstation.busby.net%3E"
+       TITLE="[fetchmail-users] Difference in headers - Was Re: Error showing in fetchmail log">bret at busby.net
+       </A><BR>
+    <I>Tue Dec 30 12:01:21 CET 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001824.html">[fetchmail-users] Error showing in fetchmail log
+</A></li>
+        <LI>Next message: <A HREF="001828.html">[fetchmail-users] Headers Problem.
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1825">[ date ]</a>
+              <a href="thread.html#1825">[ thread ]</a>
+              <a href="subject.html#1825">[ subject ]</a>
+              <a href="author.html#1825">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Mon, 29 Dec 2008, Bret Busby wrote:
+
+&gt;<i> 
+</I>&gt;<i>
+</I>&gt;<i> Hello, everyone.
+</I>&gt;<i>
+</I>&gt;<i> I am new to this list (haven't received any messages since I subscribed,
+</I>&gt;<i> so I hope that the list is active).
+</I>&gt;<i>
+</I>&gt;<i> Our web hosting ISP made some changes to their hosting, and it wrecked
+</I>&gt;<i> our downloading of email from that ISP to our mail server. The ISP had
+</I>&gt;<i> been using a &quot;self made certificate&quot; or something similar, that had
+</I>&gt;<i> expired, that ended up preventing us from donloading email, and they did
+</I>&gt;<i> a (apparently cheap and nasty) patch, that led from one error that we
+</I>&gt;<i> received, to another.
+</I>&gt;<i>
+</I>&gt;<i> We spent a few days tring to fix the issues caused by the ISP, and we
+</I>&gt;<i> still have a persistent error, as shown in the entry below from our
+</I>&gt;<i> fetchmail log.
+</I>&gt;<i>
+</I>&gt;<i> &quot;fetchmail: awakened at Mon Dec 29 11:40:41 2008
+</I>&gt;<i> fetchmail: Server CommonName mismatch: plesk3.distributeit.com.au !=
+</I>&gt;<i> mail.busby.net
+</I>&gt;<i> fetchmail: sleeping at Mon Dec 29 11:40:42 2008 for 300 seconds&quot;
+</I>&gt;<i>
+</I>&gt;<i> We can still down load email, but would like to eliminate the error.
+</I>&gt;<i>
+</I>&gt;<i> The mail.busby.net is the name of the mail server at the hosting ISP,
+</I>&gt;<i> that we need to use, as the source for downloading our email. The
+</I>&gt;<i> hosting ISP uses Plesk for their hosting.
+</I>&gt;<i>
+</I>&gt;<i> The relevant line from our .fetchmailrc file is
+</I>&gt;<i> &quot; poll mail.busby.net with proto POP3
+</I>&gt;<i>        user &lt;username&gt; there with password &lt;password&gt; is &lt;our mailserver
+</I>&gt;<i> account name&gt; here warnings 3600&quot;
+</I>&gt;<i>
+</I>&gt;<i> Please advise how to eliminate the error and get our fetchmail
+</I>&gt;<i> downloading of email, working without errors.
+</I>&gt;<i>
+</I>&gt;<i> Thank you in anticipation.
+</I>&gt;<i>
+</I>&gt;<i> --
+</I>&gt;<i> Bret Busby
+</I>&gt;<i> Armadale
+</I>&gt;<i> West Australia
+</I>&gt;<i> ..............
+</I>&gt;<i>
+</I>&gt;<i> &quot;So once you do know what the question actually is,
+</I>&gt;<i>  you'll know what the answer means.&quot;
+</I>&gt;<i> - Deep Thought,
+</I>&gt;<i>   Chapter 28 of Book 1 of
+</I>&gt;<i>   &quot;The Hitchhiker's Guide to the Galaxy:
+</I>&gt;<i>   A Trilogy In Four Parts&quot;,
+</I>&gt;<i>   written by Douglas Adams,
+</I>&gt;<i>   published by Pan Books, 1992
+</I>&gt;<i>
+</I>&gt;<i> ....................................................
+</I>&gt;<i>
+</I>
+Hello again.
+
+I had got (offlist) two replies, which contained the solution; replacing 
+&quot;poll mail.busby.net&quot; with &quot;poll plesk3.distributeit.com.au&quot;, which 
+solved the server mismacth error.
+
+Thank you for that.
+
+Now, the problem that remins, in the ability to filter incoming email 
+messages, appears to be caused by a difference in full headers.
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001824.html">[fetchmail-users] Error showing in fetchmail log
+</A></li>
+	<LI>Next message: <A HREF="001828.html">[fetchmail-users] Headers Problem.
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1825">[ date ]</a>
+              <a href="thread.html#1825">[ thread ]</a>
+              <a href="subject.html#1825">[ subject ]</a>
+              <a href="author.html#1825">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

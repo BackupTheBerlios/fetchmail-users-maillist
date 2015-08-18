@@ -1,0 +1,386 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] fetchmail stops unexpected
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2010-June/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%20stops%20unexpected&In-Reply-To=%3C20100629224014.GP21273%40tamay-dogan.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002396.html">
+   <LINK REL="Next"  HREF="002398.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] fetchmail stops unexpected</H1>
+    <B>Michelle Konzack</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%20stops%20unexpected&In-Reply-To=%3C20100629224014.GP21273%40tamay-dogan.net%3E"
+       TITLE="[fetchmail-users] fetchmail stops unexpected">linux4michelle at tamay-dogan.net
+       </A><BR>
+    <I>Wed Jun 30 00:40:14 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002396.html">[fetchmail-users] poblems with pop3 and expunge
+</A></li>
+        <LI>Next message: <A HREF="002398.html">[fetchmail-users] Yahoo Plus SSL Issue
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2397">[ date ]</a>
+              <a href="thread.html#2397">[ thread ]</a>
+              <a href="subject.html#2397">[ subject ]</a>
+              <a href="author.html#2397">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hello,
+
+before I post tonns of logs, my fechmail setup is working perfectly  for
+10 years but now it stops at a file without reason...
+
+From &quot;fetchmail&quot; it goes to &quot;procmail&quot; as MDA and thee is nothing in the
+logfiles of procmail, which mean, it never arrive there and it hangs  in
+fetchmail:
+
+----[ '~/log/tdfetchmail/2010-06-29.log' ]------------------------------
+fetchmail: 6.3.9~rc2 querying mail.tamay-dogan.net (protocol IMAP) at Tue 29 Jun 2010 02:21:33 PM CEST: poll started
+fetchmail: Trying to connect to 88.168.69.36/143...connected.
+fetchmail: IMAP&lt; * OK [CAPABILITY IMAP4rev1 UIDPLUS CHILDREN NAMESPACE THREAD=ORDEREDSUBJECT THREAD=REFERENCES SORT QUOTA IDLE ACL ACL2=UNION STARTTLS XCOURIEROUTBOX=INBOX.Outbox_courier] Courier-IMAP ready. Copyright 1998-2005 Double Precision, Inc.  See COPYING for distribution information.
+fetchmail: IMAP&gt; A0001 CAPABILITY
+fetchmail: IMAP&lt; * CAPABILITY IMAP4rev1 UIDPLUS CHILDREN NAMESPACE THREAD=ORDEREDSUBJECT THREAD=REFERENCES SORT QUOTA IDLE ACL ACL2=UNION STARTTLS XCOURIEROUTBOX=INBOX.Outbox_courier
+fetchmail: IMAP&lt; A0001 OK CAPABILITY completed
+fetchmail: IMAP&gt; A0002 STARTTLS
+fetchmail: IMAP&lt; A0002 OK Begin SSL/TLS negotiation now.
+fetchmail: Issuer Organization: Private Courier Mail Server
+fetchmail: Issuer CommonName: mail.tamay-dogan.net
+fetchmail: Server CommonName: mail.tamay-dogan.net
+fetchmail: mail.tamay-dogan.net key fingerprint: B2:A3:32:AF:7A:3E:74:A5:51:2C:A1:4F:63:C0:26:AD
+fetchmail: IMAP&gt; A0003 CAPABILITY
+fetchmail: IMAP&lt; * CAPABILITY IMAP4rev1 UIDPLUS CHILDREN NAMESPACE THREAD=ORDEREDSUBJECT THREAD=REFERENCES SORT QUOTA IDLE AUTH=PLAIN ACL ACL2=UNION XCOURIEROUTBOX=INBOX.Outbox_courier
+fetchmail: IMAP&lt; A0003 OK CAPABILITY completed
+fetchmail: mail.tamay-dogan.net: upgrade to TLS succeeded.
+fetchmail: IMAP&gt; A0004 LOGIN &quot;XXXXXXX.ml4michelle&quot; *
+fetchmail: IMAP&lt; A0004 OK LOGIN Ok.
+fetchmail: IMAP&gt; A0005 SELECT &quot;INBOX&quot;
+fetchmail: IMAP&lt; * FLAGS (\Draft \Answered \Flagged \Deleted \Seen \Recent)
+fetchmail: IMAP&lt; * OK [PERMANENTFLAGS (\* \Draft \Answered \Flagged \Deleted \Seen)] Limited
+fetchmail: IMAP&lt; * 52 EXISTS
+fetchmail: IMAP&lt; * 3 RECENT
+fetchmail: IMAP&lt; * OK [UIDVALIDITY 1248655548] Ok
+fetchmail: IMAP&lt; * OK [MYRIGHTS &quot;acdilrsw&quot;] ACL
+fetchmail: IMAP&lt; A0005 OK [READ-WRITE] Ok
+fetchmail: IMAP&gt; A0006 EXPUNGE
+fetchmail: IMAP&lt; A0006 OK EXPUNGE completed
+fetchmail: 52 messages for XXXXXXX.ml4michelle at mail.tamay-dogan.net.
+fetchmail: IMAP&gt; A0007 FETCH 1:52 RFC822.SIZE
+fetchmail: IMAP&lt; * 1 FETCH (RFC822.SIZE 9569)
+fetchmail: IMAP&lt; * 2 FETCH (RFC822.SIZE 6048)
+fetchmail: IMAP&lt; * 3 FETCH (RFC822.SIZE 5144)
+fetchmail: IMAP&lt; * 4 FETCH (RFC822.SIZE 4225)
+fetchmail: IMAP&lt; * 5 FETCH (RFC822.SIZE 270211)
+fetchmail: IMAP&lt; * 6 FETCH (RFC822.SIZE 3491)
+fetchmail: IMAP&lt; * 7 FETCH (RFC822.SIZE 3507)
+fetchmail: IMAP&lt; * 8 FETCH (RFC822.SIZE 28483)
+fetchmail: IMAP&lt; * 9 FETCH (RFC822.SIZE 4202)
+fetchmail: IMAP&lt; * 10 FETCH (RFC822.SIZE 6416)
+fetchmail: IMAP&lt; * 11 FETCH (RFC822.SIZE 4483)
+fetchmail: IMAP&lt; * 12 FETCH (RFC822.SIZE 16272)
+fetchmail: IMAP&lt; * 13 FETCH (RFC822.SIZE 4393)
+fetchmail: IMAP&lt; * 14 FETCH (RFC822.SIZE 4508)
+fetchmail: IMAP&lt; * 15 FETCH (RFC822.SIZE 9222)
+fetchmail: IMAP&lt; * 16 FETCH (RFC822.SIZE 4226)
+fetchmail: IMAP&lt; * 17 FETCH (RFC822.SIZE 4234)
+fetchmail: IMAP&lt; * 18 FETCH (RFC822.SIZE 4697)
+fetchmail: IMAP&lt; * 19 FETCH (RFC822.SIZE 4241)
+fetchmail: IMAP&lt; * 20 FETCH (RFC822.SIZE 3867)
+fetchmail: IMAP&lt; * 21 FETCH (RFC822.SIZE 4589)
+fetchmail: IMAP&lt; * 22 FETCH (RFC822.SIZE 4540)
+fetchmail: IMAP&lt; * 23 FETCH (RFC822.SIZE 5704)
+fetchmail: IMAP&lt; * 24 FETCH (RFC822.SIZE 4421)
+fetchmail: IMAP&lt; * 25 FETCH (RFC822.SIZE 4990)
+fetchmail: IMAP&lt; * 26 FETCH (RFC822.SIZE 4388)
+fetchmail: IMAP&lt; * 27 FETCH (RFC822.SIZE 5576)
+fetchmail: IMAP&lt; * 28 FETCH (RFC822.SIZE 12330)
+fetchmail: IMAP&lt; * 29 FETCH (RFC822.SIZE 4048)
+fetchmail: IMAP&lt; * 30 FETCH (RFC822.SIZE 25431)
+fetchmail: IMAP&lt; * 31 FETCH (RFC822.SIZE 4019)
+fetchmail: IMAP&lt; * 32 FETCH (RFC822.SIZE 5237)
+fetchmail: IMAP&lt; * 33 FETCH (RFC822.SIZE 5382)
+fetchmail: IMAP&lt; * 34 FETCH (RFC822.SIZE 4212)
+fetchmail: IMAP&lt; * 35 FETCH (RFC822.SIZE 6249)
+fetchmail: IMAP&lt; * 36 FETCH (RFC822.SIZE 3997)
+fetchmail: IMAP&lt; * 37 FETCH (RFC822.SIZE 4948)
+fetchmail: IMAP&lt; * 38 FETCH (RFC822.SIZE 4531)
+fetchmail: IMAP&lt; * 39 FETCH (RFC822.SIZE 4388)
+fetchmail: IMAP&lt; * 40 FETCH (RFC822.SIZE 7703)
+fetchmail: IMAP&lt; * 41 FETCH (RFC822.SIZE 3981)
+fetchmail: IMAP&lt; * 42 FETCH (RFC822.SIZE 4277)
+fetchmail: IMAP&lt; * 43 FETCH (RFC822.SIZE 4996)
+fetchmail: IMAP&lt; * 44 FETCH (RFC822.SIZE 5401)
+fetchmail: IMAP&lt; * 45 FETCH (RFC822.SIZE 5207)
+fetchmail: IMAP&lt; * 46 FETCH (RFC822.SIZE 13966)
+fetchmail: IMAP&lt; * 47 FETCH (RFC822.SIZE 4665)
+fetchmail: IMAP&lt; * 48 FETCH (RFC822.SIZE 27198)
+fetchmail: IMAP&lt; * 49 FETCH (RFC822.SIZE 41415)
+fetchmail: IMAP&lt; * 50 FETCH (RFC822.SIZE 6199)
+fetchmail: IMAP&lt; * 51 FETCH (RFC822.SIZE 5053)
+fetchmail: IMAP&lt; * 52 FETCH (RFC822.SIZE 3212)
+fetchmail: IMAP&lt; A0007 OK FETCH completed.
+fetchmail: IMAP&gt; A0008 FETCH 1 RFC822.HEADER
+fetchmail: IMAP&lt; * 1 FETCH (RFC822.HEADER {3913}
+fetchmail: reading message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">XXXXXXX.ml4michelle at mail.tamay-dogan.net</A>:1 of 52 (3913 header octets)
+fetchmail: IMAP&lt; )
+fetchmail: IMAP&lt; A0008 OK FETCH completed.
+fetchmail: IMAP&gt; A0009 FETCH 1 BODY.PEEK[TEXT]
+fetchmail: IMAP&lt; * 1 FETCH (BODY[TEXT] {5656}
+.....fetchmail:  (5656 body octets) (log message incomplete)fetchmail: IMAP&lt; )
+fetchmail: IMAP&lt; A0009 OK FETCH completed.
+------------------------------------------------------------------------
+
+and that it is...  Stoped at 14:21:36 and not it is 23:57.
+It does simply not continue at this message:
+
+----[ STDIN ]-----------------------------------------------------------
+Return-Path: &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">openocd-development-bounces at lists.berlios.de</A>&gt;
+Delivered-To: <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">XXXXXXX.ml4michelle at tamay-dogan.net</A>
+Received: from mail.berlios.de (bat.berlios.de [::ffff:195.37.77.135])
+  by mail.tamay-dogan.net with esmtp; Tue, 29 Jun 2010 11:33:34 +0200
+  id 0002BDBC.4C29BDEE.00001D9B
+Received: from bat.berlios.de (unknown [IPv6:::1])
+	by mail.berlios.de (Postfix) with ESMTP id 9EE3E227AD;
+	Tue, 29 Jun 2010 11:33:00 +0200 (CEST)
+X-Original-To: <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">openocd-development at lists.berlios.de</A>
+Delivered-To: <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">openocd-development at lists.berlios.de</A>
+Received: from n23.bullet.mail.ukl.yahoo.com (n23.bullet.mail.ukl.yahoo.com
+	[87.248.110.140])
+	by mail.berlios.de (Postfix) with SMTP id A0684223D2
+	for &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">openocd-development at lists.berlios.de</A>&gt;;
+	Tue, 29 Jun 2010 11:32:58 +0200 (CEST)
+Received: from [217.12.4.214] by n23.bullet.mail.ukl.yahoo.com with NNFMP;
+	29 Jun 2010 09:32:58 -0000
+Received: from [87.248.110.202] by t1.bullet.ukl.yahoo.com with NNFMP;
+	29 Jun 2010 09:32:58 -0000
+Received: from [127.0.0.1] by omp232.mail.ukl.yahoo.com with NNFMP;
+	29 Jun 2010 09:32:58 -0000
+X-Yahoo-Newman-Property: ymail-3
+X-Yahoo-Newman-Id: <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">318765.71192.bm at omp232.mail.ukl.yahoo.com</A>
+Received: (qmail 72748 invoked by uid 60001); 29 Jun 2010 09:32:58 -0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.fr; s=s1024;
+	t=1277803978; bh=TEXGjuwkkonov3SV826yYP1fyG94MDeWColtxgXN0v0=;
+	h=Message-ID:X-YMail-OSG:Received:X-Mailer:Date:From:Subject:To:Cc:In-Reply-To:MIME-Version:Content-Type;
+	b=Aiq1P9eokJ+ZUO9/grG5FqgPJ+I/A3O8bbcVuQ44ibimgmQ48nt/u9SyM7O3k1WAxxGf44fS4i0dZrwpc7Vm6j8eQz7Eh4jaEdE9xAcEpX17OaBQvMeff+8sbjGcaXcUtIf5wAoflljAw3GBXQ82MKVUnkmFptyr0b0vyIWsJE4=
+DomainKey-Signature: a=rsa-sha1; q=dns; c=nofws; s=s1024; d=yahoo.fr;
+	h=Message-ID:X-YMail-OSG:Received:X-Mailer:Date:From:Subject:To:Cc:In-Reply-To:MIME-Version:Content-Type;
+	b=aYMCNH3FwdU+qQfLsDYVP6ioWJ3KyaTKc9e/s3vs6YZzgDLtDcrCueb4HkNzfCy7VzmApG7wM2kYtRkc/mAaIvEHLGciVJBjqOM0+njqrCmn+XcYubyhLkFmdgJ0kf6gOy/cNnGgUPRdnbY+dYiL2RekzuixWP/aiW0e2x+uzCk=;
+Message-ID: &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">210720.71839.qm at web25808.mail.ukl.yahoo.com</A>&gt;
+X-YMail-OSG: zmrh93MVM1nCydpyaL1Fsu8sXj56DW.GxpJ2he16aLMBseo
+	3hX2Ag3E9HcHsvDQxtAVh2FnbOQ0phgYKRXTXLyupL6X0nqBLQ9auNM3vZGT
+	30d0s1pFKkDy0EnXELM6wvpEgBfBbaa1xfCaO8zWe0MjxowdyEF5XDzG0Rf2
+	sRSNypKPejHpntS70zoJrnkgnEAtw7JlLNYYBQuf1I1NX.L1c7mi901pFJ94
+	nMUbKOSkVeNchZrYJnTvWJwhr2DYsd1vgHbIBq2VG27bMqIzYklBk4roPfp7
+	S4BN_eJsYvVzBLEzTD_xW_7FqxYPzdbhj8.juUxg40gp2HPKXa7Bl5pgbGw_
+	0PzcXHfHb6ANUmnmV6w--
+Received: from [87.90.107.239] by web25808.mail.ukl.yahoo.com via HTTP;
+	Tue, 29 Jun 2010 09:32:57 GMT
+X-Mailer: YahooMailClassic/11.1.4 YahooMailWebService/0.8.104.274457
+Date: Tue, 29 Jun 2010 09:32:57 +0000 (GMT)
+From: cedric libre &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">cedric_libre at yahoo.fr</A>&gt;
+To: <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">freddie_chopin at op.pl</A>
+In-Reply-To: &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">Q6613466-75d0c3fb1a86422afad14394eab5f68f at pmq4.m5r2.onet.test.onet.pl</A>&gt;
+MIME-Version: 1.0
+Cc: <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">openocd-development at lists.berlios.de</A>
+Subject: [Openocd-development] Re : =?ISO-8859-2?Q?Re: Re :
+	Openocd-development Digest, Vol 45, Issue 44=ina?=
+X-BeenThere: <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">openocd-development at lists.berlios.de</A>
+X-Mailman-Version: 2.1.12
+Precedence: list
+List-Id: &lt;openocd-development.lists.berlios.de&gt;
+List-Unsubscribe: &lt;<A HREF="https://lists.berlios.de/mailman/options/openocd-development">https://lists.berlios.de/mailman/options/openocd-development</A>&gt;, 
+	&lt;mailto:<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">openocd-development-request at lists.berlios.de</A>?subject=unsubscribe&gt;
+List-Archive: &lt;<A HREF="https://lists.berlios.de/pipermail/openocd-development">https://lists.berlios.de/pipermail/openocd-development</A>&gt;
+List-Post: &lt;mailto:<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">openocd-development at lists.berlios.de</A>&gt;
+List-Help: &lt;mailto:<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">openocd-development-request at lists.berlios.de</A>?subject=help&gt;
+List-Subscribe: &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/openocd-development">https://lists.berlios.de/mailman/listinfo/openocd-development</A>&gt;,
+	&lt;mailto:<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">openocd-development-request at lists.berlios.de</A>?subject=subscribe&gt;
+Content-Type: multipart/mixed; boundary=&quot;===============2630188975131600596==&quot;
+Sender: <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">openocd-development-bounces at lists.berlios.de</A>
+Errors-To: <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">openocd-development-bounces at lists.berlios.de</A>
+
+--===============2630188975131600596==
+Content-Type: multipart/alternative; boundary=&quot;0-1817831307-1277803977=:71839&quot;
+
+--0-1817831307-1277803977=:71839
+Content-Type: text/plain; charset=iso-8859-1
+Content-Transfer-Encoding: quoted-printable
+
+Hi ,
+
+I have once more ( :-)=A0 tried to install the drivers but this time, I hav=
+e
+=A0copied first libusb0.dll in \WINDOWS\system32 and then I succeeded the i=
+nstallation !!
+Now, I still have a problem , as I plug the device and run this command :
+=A0openocd.exe -f interface\jtagkey-tiny.cfg=A0=A0 :=A0=20
+Error: unable to open ftdi device: unable to claim usb device . Make sure f=
+tdi_sio is unloaded !
+
+What does that mean ?
+
+Thanks all for your help
+
+C=E9dric
+
+--- En date de=A0: Mar 29.6.10, <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">freddie_chopin at op.pl</A> &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">freddie_chopin at op.pl</A>&gt;=
+ a =E9crit=A0:
+
+De: <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">freddie_chopin at op.pl</A> &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">freddie_chopin at op.pl</A>&gt;
+Objet: =3D?ISO-8859-2?Q?Re: [Openocd-development] Re : Openocd-development =
+Digest, Vol 45, Issue 44=3Dina?=3D
+=C0: <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">openocd-development at lists.berlios.de</A>, &quot;cedric libre&quot; &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">cedric_libre at yah</A>=
+oo.fr&gt;
+Date: Mardi 29 juin 2010, 10h54
+
+Hi!
+
+After installing OpenOCD extract the file c:\Program Files\OpenOCD\0.4.0\dr=
+ivers\libusb-win32_ft2232_driver-100223.zip and follow the instructions in =
+info.txt. This package has functional libusb-win32 drivers for JTAGkey.
+
+When searching for drivers point the wizard (with the &quot;Have Disk&quot; button) t=
+o the directory containing libusb-win32_ft2232_driver.inf.
+
+Have in mind that FT2232 is a composite device which normally takes 3-5 dri=
+vers:
+- Composite Device - this uses generic Windows driver (this usually does no=
+t require any Wizard and is installed automatically)
+- first channel (Channel A - usually JTAG interface)
+- second channel (Channel B - usually USB Serial Port or unused)
+
+if first or second channel are configured as serial port, additional driver=
+s will be required for &quot;USB Serial Port&quot;.
+
+Your JTAGkey should require 3 drivers - Composite Device (automatic) and 2x=
+ libusb-win32 from the package bundled with OpenOCD installer.
+
+Do note, that once you installed ftd2xx drivers you have to remove the ones=
+ you wish to replace or - as Xiaofan said - you can manually &quot;update&quot; them.=
+ You only need to manipulate with the first channel, as OpenOCD doesn't car=
+e about the second channel (whether or not it's actually used for anything)=
+.
+
+4\/3!!
+=0A=0A=0A      
+--0-1817831307-1277803977=:71839
+Content-Type: text/html; charset=iso-8859-1
+Content-Transfer-Encoding: quoted-printable
+
+&lt;table cellspacing=3D&quot;0&quot; cellpadding=3D&quot;0&quot; border=3D&quot;0&quot; &gt;&lt;tr&gt;&lt;td valign=3D&quot;=
+top&quot; style=3D&quot;font: inherit;&quot;&gt;Hi ,&lt;br&gt;&lt;br&gt;I have once more ( :-)&nbsp; trie=
+d to install the drivers but this time, I have&lt;br&gt;&nbsp;copied first libusb=
+0.dll in \WINDOWS\system32 and then I succeeded the installation !!&lt;br&gt;Now,=
+ I still have a problem , as I plug the device and run this command :&lt;br&gt;&amp;n=
+bsp;openocd.exe -f interface\jtagkey-tiny.cfg&nbsp;&nbsp; :&nbsp; &lt;br&gt;Error=
+:<i> unable to open ftdi device: unable to claim usb device . Make sure ftdi_s=
+</I>io is unloaded !&lt;br&gt;&lt;br&gt;What does that mean ?&lt;br&gt;&lt;br&gt;Thanks all for your he=
+lp&lt;br&gt;&lt;br&gt;C=E9dric&lt;br&gt;&lt;br&gt;--- En date de&nbsp;: &lt;b&gt;Mar 29.6.10, freddie_cho=
+<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">pin at op.pl</A> &lt;i&gt;&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">freddie_chopin at op.pl</A>&gt;&lt;/i&gt;&lt;/b&gt; a =E9crit&nbsp;:&lt;br&gt;&lt;bloc=
+kquote style=3D&quot;border-left: 2px solid rgb(16, 16, 255); margin-left: 5px; =
+padding-left: 5px;&quot;&gt;&lt;br&gt;De: <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">freddie_chopin at op.pl</A> &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">freddie_chopin at op.pl</A>&amp;g=
+t;&lt;br&gt;Objet: =3D?ISO-8859-2?Q?Re: [Openocd-development] Re : Openocd-develo=
+pment
+ Digest, Vol 45, Issue 44=3Dina?=3D&lt;br&gt;=C0: <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">openocd-development at lists.berli</A>=
+os.de, &quot;cedric libre&quot; &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">cedric_libre at yahoo.fr</A>&gt;&lt;br&gt;Date: Mardi 29 juin =
+2010, 10h54&lt;br&gt;&lt;br&gt;&lt;div class=3D&quot;plainMail&quot;&gt;Hi!&lt;br&gt;&lt;br&gt;After installing Ope=
+nOCD extract the file c:\Program Files\OpenOCD\0.4.0\drivers\libusb-win32_f=
+t2232_driver-100223.zip and follow the instructions in info.txt. This packa=
+ge has functional libusb-win32 drivers for JTAGkey.&lt;br&gt;&lt;br&gt;When searching f=
+or drivers point the wizard (with the &quot;Have Disk&quot; button) to the directory =
+containing libusb-win32_ft2232_driver.inf.&lt;br&gt;&lt;br&gt;Have in mind that FT2232 =
+is a composite device which normally takes 3-5 drivers:&lt;br&gt;- Composite Devi=
+ce - this uses generic Windows driver (this usually does not require any Wi=
+zard and is installed automatically)&lt;br&gt;- first channel (Channel A - usuall=
+y JTAG interface)&lt;br&gt;- second channel (Channel B - usually USB Serial Port =
+or unused)&lt;br&gt;&lt;br&gt;if first or second channel are configured as serial port,
+ additional drivers will be required for &quot;USB Serial Port&quot;.&lt;br&gt;&lt;br&gt;Your JTA=
+Gkey should require 3 drivers - Composite Device (automatic) and 2x libusb-=
+win32 from the package bundled with OpenOCD installer.&lt;br&gt;&lt;br&gt;Do note, that=
+ once you installed ftd2xx drivers you have to remove the ones you wish to =
+replace or - as Xiaofan said - you can manually &quot;update&quot; them. You only nee=
+d to manipulate with the first channel, as OpenOCD doesn't care about the s=
+econd channel (whether or not it's actually used for anything).&lt;br&gt;&lt;br&gt;4\/3=
+!!&lt;br&gt;&lt;/div&gt;&lt;/blockquote&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;br&gt;=0A=0A=0A=0A=0A      
+--0-1817831307-1277803977=:71839--
+
+
+--===============2630188975131600596==
+Content-Type: text/plain; charset=&quot;us-ascii&quot;
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Openocd-development mailing list
+<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">Openocd-development at lists.berlios.de</A>
+<A HREF="https://lists.berlios.de/mailman/listinfo/openocd-development">https://lists.berlios.de/mailman/listinfo/openocd-development</A>
+
+--===============2630188975131600596==--
+
+------------------------------------------------------------------------
+
+
+
+Thanks, Greetings and nice Day/Evening
+    Michelle Konzack
+
+-- 
+##################### Debian GNU/Linux Consultant ######################
+   Development of Intranet and Embedded Systems with Debian GNU/Linux
+
+<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">itsystems at tdnet</A> France EURL       <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">itsystems at tdnet</A> UG (limited liability)
+Owner Michelle Konzack            Owner Michelle Konzack
+
+Apt. 917 (homeoffice)
+50, rue de Soultz                 Kinzigstra&#223;e 17
+67100 Strasbourg/France           77694 Kehl/Germany
+Tel: +33-6-61925193 mobil         Tel: +49-177-9351947 mobil
+Tel: +33-9-52705884 fix
+
+&lt;<A HREF="http://www.itsystems.tamay-dogan.net/">http://www.itsystems.tamay-dogan.net/</A>&gt;  &lt;<A HREF="http://www.flexray4linux.org/">http://www.flexray4linux.org/</A>&gt;
+&lt;<A HREF="http://www.debian.tamay-dogan.net/">http://www.debian.tamay-dogan.net/</A>&gt;         &lt;<A HREF="http://www.can4linux.org/">http://www.can4linux.org/</A>&gt;
+
+Jabber <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">linux4michelle at jabber.ccc.de</A>
+ICQ    #328449886
+
+Linux-User #280138 with the Linux Counter, <A HREF="http://counter.li.org/">http://counter.li.org/</A>
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: signature.pgp
+Type: application/pgp-signature
+Size: 189 bytes
+Desc: Digital signature
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/fetchmail-users/attachments/20100630/b76ad393/attachment.pgp">https://lists.berlios.de/pipermail/fetchmail-users/attachments/20100630/b76ad393/attachment.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002396.html">[fetchmail-users] poblems with pop3 and expunge
+</A></li>
+	<LI>Next message: <A HREF="002398.html">[fetchmail-users] Yahoo Plus SSL Issue
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2397">[ date ]</a>
+              <a href="thread.html#2397">[ thread ]</a>
+              <a href="subject.html#2397">[ subject ]</a>
+              <a href="author.html#2397">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

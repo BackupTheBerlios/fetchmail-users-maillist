@@ -1,0 +1,114 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] 100% CPU usage when fetching all UIDLs?
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2012-June/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20100%25%20CPU%20usage%20when%20fetching%20all%20UIDLs%3F&In-Reply-To=%3C4FD115CC.40007%40gmx.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003151.html">
+   <LINK REL="Next"  HREF="003153.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] 100% CPU usage when fetching all UIDLs?</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20100%25%20CPU%20usage%20when%20fetching%20all%20UIDLs%3F&In-Reply-To=%3C4FD115CC.40007%40gmx.de%3E"
+       TITLE="[fetchmail-users] 100% CPU usage when fetching all UIDLs?">matthias.andree at gmx.de
+       </A><BR>
+    <I>Thu Jun  7 22:57:48 CEST 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003151.html">[fetchmail-users] 100% CPU usage when fetching all UIDLs?
+</A></li>
+        <LI>Next message: <A HREF="003153.html">[fetchmail-users] how to stop duplicate messages while still	deleting messages from pop3
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3152">[ date ]</a>
+              <a href="thread.html#3152">[ thread ]</a>
+              <a href="subject.html#3152">[ subject ]</a>
+              <a href="author.html#3152">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Am 07.06.2012 20:45, schrieb Johann 'Myrkraverk' Oskarsson:
+&gt;<i> Hi all,
+</I>&gt;<i> 
+</I>&gt;<i> Fetchmail intermittently uses 100% CPU or so (well, one core) when it's
+</I>&gt;<i> apparently doing it's hourly &quot;make sure there are no missing UIDLs&quot; with
+</I>&gt;<i> POP3.
+</I>&gt;<i> 
+</I>&gt;<i> I presume it's because I have a lot of mail.  More than 30k in one
+</I>&gt;<i> mailbox, and possibly even more in another.
+</I>&gt;<i> 
+</I>&gt;<i> Is there a way to fix this somehow?  Or if not, is there a way to tell
+</I>&gt;<i> it not to check for all of them until I say so?
+</I>&gt;<i> 
+</I>&gt;<i> My defaults are
+</I>&gt;<i> 
+</I>&gt;<i>   set daemon 300
+</I>&gt;<i>   set logfile .fetchmail.log
+</I>&gt;<i> 
+</I>&gt;<i>   defaults proto pop3 service 995 uidl fastuidl 6
+</I>&gt;<i> 	ssl sslcertck keep
+</I>&gt;<i> 
+</I>&gt;<i> and they are not overriden for those two particular mailboxes.
+</I>
+Johann,
+
+I'm sorry to say that this is a known issue in your situation but I
+haven't gotten around to doing a new major release due to real-life
+work. The algorithms dealing with UIDL in 6.3.X do not scale well, the
+time they take grows with the number of messages squared, O(n&#178;).
+
+The solution would be to build the &quot;master&quot; branch from Gitorious, which
+has a bit of a cutting edge.  You need to install development libraries
+of gssapi, ssl, something like a &quot;build-essentials&quot; package of your
+distribution (to pull compiler, assembler, linker and thereabouts in),
+instructions below.  This version lets the time grow only with the
+number of messages times its logarithm, O(n log n), which was noticably
+more efficient in my tests with a 13,000 message mailbox.
+
+git clone -b master <A HREF="git://gitorious.org/fetchmail/fetchmail.git">git://gitorious.org/fetchmail/fetchmail.git</A> \
+    fetchmail-master.git
+cd fetchmail-master.git
+autoreconf -isvf
+mkdir build
+cd build
+../configure -C --with-ssl --with-gssapi
+make
+
+Alternatively, you can download the 7.0.0-alpha2 version from
+<A HREF="http://mandree.home.pages.de/fetchmail/">http://mandree.home.pages.de/fetchmail/</A> - but it is older than the Git
+version.
+
+Hope that helps,
+Matthias
+</PRE>
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003151.html">[fetchmail-users] 100% CPU usage when fetching all UIDLs?
+</A></li>
+	<LI>Next message: <A HREF="003153.html">[fetchmail-users] how to stop duplicate messages while still	deleting messages from pop3
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3152">[ date ]</a>
+              <a href="thread.html#3152">[ thread ]</a>
+              <a href="subject.html#3152">[ subject ]</a>
+              <a href="author.html#3152">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

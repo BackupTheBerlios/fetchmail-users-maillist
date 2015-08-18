@@ -1,0 +1,215 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Fwd: dup messages on mid-session expunge (with	requested data)
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2007-October/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Fwd%3A%20dup%20messages%20on%20mid-session%20expunge%20%28with%0A%09requested%20data%29&In-Reply-To=%3C89a2a1150710112102h1aa594b8ib58ead228eece824%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001288.html">
+   <LINK REL="Next"  HREF="001292.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Fwd: dup messages on mid-session expunge (with	requested data)</H1>
+    <B>Mike Lowell</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Fwd%3A%20dup%20messages%20on%20mid-session%20expunge%20%28with%0A%09requested%20data%29&In-Reply-To=%3C89a2a1150710112102h1aa594b8ib58ead228eece824%40mail.gmail.com%3E"
+       TITLE="[fetchmail-users] Fwd: dup messages on mid-session expunge (with	requested data)">mikedotlowell at gmail.com
+       </A><BR>
+    <I>Fri Oct 12 06:02:02 CEST 2007</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001288.html">[fetchmail-users] strange dns behaviour
+</A></li>
+        <LI>Next message: <A HREF="001292.html">[fetchmail-users] Fwd: dup messages on mid-session expunge	(with requested data)
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1289">[ date ]</a>
+              <a href="thread.html#1289">[ thread ]</a>
+              <a href="subject.html#1289">[ subject ]</a>
+              <a href="author.html#1289">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>I apologize if this is a duplicate message.  The list server held my
+message due to &quot;suspicious&quot; headers, and then indicated that my
+message was rejected.  This is try #2.
+
+
+
+&gt;<i> &gt; Can you provide the following:
+</I>&gt;<i> &gt; 1) Contents of .fetchmailrc
+</I>
+--------- /etc/fetchmailrc start ---------
+set postmaster &quot;root&quot;
+set syslog
+set bouncemail
+set no spambounce
+set properties &quot;&quot;
+set daemon 60
+poll mail. with proto IMAP timeout 300 and options no dns
+       user 'D\\u' there with password 'secret' is 'my.account' here
+options keep idle fetchlimit 1
+ mda &quot;/usr/bin/procmail -d %T&quot;
+ smtpaddress '<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">my.account at example.com</A>'
+--------- /etc/fetchmailrc end ---------
+
+
+
+&gt;<i> &gt; 2) Results of &quot;fetchmail --nosyslog --nodetach -vvv -f /etc/fetchmailrc&quot; for a problem email
+</I>
+--------- fetchmail output start ---------
+fetchmail:   selecting or re-polling default folder
+fetchmail:   IMAP&gt; A0008 IDLE
+fetchmail:   IMAP&lt; + IDLE accepted, awaiting DONE command.
+12:56.377569 IMAP&lt; * 618 EXISTS
+12:56.377684 IMAP&gt; DONE
+fetchmail:   IMAP&lt; * 2 RECENT
+12:56.378600 IMAP&lt; A0008 OK IDLE completed.
+fetchmail:   618 messages waiting after re-poll
+12:56.378643 IMAP&gt; A0009 SEARCH UNSEEN NOT DELETED
+12:56.379479 IMAP&lt; * SEARCH 618
+fetchmail:   618 is unseen
+fetchmail:   IMAP&lt; A0009 OK SEARCH completed.
+fetchmail:   618 is first unseen
+618 messages (617 seen) for D\u at mail..
+skipping message D\<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">u at mail.</A>:1 not flushed
+[...]
+skipping message D\<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">u at mail.</A>:617 not flushed
+12:56.382255 IMAP&gt; A0010 FETCH 618 RFC822.SIZE
+12:56.437700 IMAP&lt; * 618 FETCH (RFC822.SIZE 48984)
+12:56.476476 IMAP&lt; A0010 OK FETCH completed.
+12:56.476525 IMAP&gt; A0011 FETCH 618 RFC822.HEADER
+12:56.484300 IMAP&lt; * 618 FETCH (RFC822.HEADER {1308}
+reading message D\<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">u at mail.</A>:618 of 618 (1308 header octets)
+About to rewrite Return-Path: &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">A.User at example.com</A>&gt;^M
+Rewritten version is Return-Path: &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">A.User at example.com</A>&gt;^M
+
+About to rewrite From: &quot;A User&quot; &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">A.User at example.com</A>&gt;^M
+Rewritten version is From: &quot;A User&quot; &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">A.User at example.com</A>&gt;^M
+
+About to rewrite To: &quot;Mike Lowell&quot; &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">my.account at example.com</A>&gt;^M
+Rewritten version is To: &quot;Mike Lowell&quot; &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">my.account at example.com</A>&gt;^M
+
+fetchmail:   about to deliver with: /usr/bin/procmail -d 'my.account'
+fetchmail:   IMAP&lt; )
+12:56.516414 IMAP&lt; A0011 OK FETCH completed.
+12:56.516795 IMAP&gt; A0012 FETCH 618 BODY.PEEK[TEXT]
+12:56.518013 IMAP&lt; * 619 EXISTS
+fetchmail:   IMAP&lt; * 3 RECENT
+fetchmail:   IMAP&lt; A0012 NO Some messages in the mailbox had
+previously been expunged and could not be returned.
+17:56.536700 timeout after 300 seconds waiting for server mail..
+fetchmail:   socket error while fetching from D\<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">u at mail.</A>
+fetchmail:   6.3.8 querying mail. (protocol IMAP) at Wed Oct 10
+09:17:56 2007: poll completed
+fetchmail:   Query status=2 (SOCKET)
+fetchmail:   Deleting fetchids file.
+fetchmail:   sleeping at Wed Oct 10 09:17:56 2007 for 60 seconds
+fetchmail:   awakened at Wed Oct 10 09:18:56 2007
+fetchmail:   6.3.8 querying mail. (protocol IMAP) at Wed Oct 10
+09:18:56 2007: poll started
+Trying to connect to 192.168.1.1/143...connected.
+18:56.539132 IMAP&lt; * OK Microsoft Exchange Server 2003 IMAP4rev1
+server version 6.5.7638.1 (mail) ready.
+18:56.539175 IMAP&gt; A0001 CAPABILITY
+18:56.539872 IMAP&lt; * CAPABILITY IMAP4 IMAP4rev1 IDLE LOGIN-REFERRALS
+MAILBOX-REFERRALS NAMESPACE LITERAL+ UIDPLUS CHILDREN AUTH=NTLM
+fetchmail:   IMAP&lt; A0001 OK CAPABILITY completed.
+fetchmail:   Protocol identified as IMAP4 rev 1
+fetchmail:   will idle after poll
+fetchmail:   mail.: opportunistic upgrade to TLS failed, trying to continue
+18:56.539922 IMAP&gt; A0002 NOOP
+18:56.540895 IMAP&lt; A0002 OK NOOP completed.
+[login stuff]
+18:56.571492 IMAP&lt; A0005 OK LOGIN completed.
+fetchmail:   selecting or re-polling default folder
+18:56.571528 IMAP&gt; A0006 SELECT &quot;INBOX&quot;
+18:56.823399 IMAP&lt; * 618 EXISTS
+fetchmail:   IMAP&lt; * 0 RECENT
+fetchmail:   IMAP&lt; * FLAGS (\Seen \Answered \Flagged \Deleted \Draft $MDNSent)
+fetchmail:   IMAP&lt; * OK [PERMANENTFLAGS (\Seen \Answered \Flagged
+\Deleted \Draft $MDNSent)] Permanent flags
+fetchmail:   IMAP&lt; * OK [UNSEEN 618] Is the first unseen message
+fetchmail:   IMAP&lt; * OK [UIDVALIDITY 3979] UIDVALIDITY value
+fetchmail:   IMAP&lt; A0006 OK [READ-WRITE] SELECT completed.
+fetchmail:   618 messages waiting after first poll
+18:56.823503 IMAP&gt; A0007 SEARCH UNSEEN NOT DELETED
+18:56.824423 IMAP&lt; * SEARCH 618
+fetchmail:   618 is unseen
+fetchmail:   IMAP&lt; A0007 OK SEARCH completed.
+fetchmail:   618 is first unseen
+618 messages (617 seen) for D\u at mail..
+skipping message D\<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">u at mail.</A>:1 not flushed
+[...]
+skipping message D\<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">u at mail.</A>:617 not flushed
+18:56.827176 IMAP&gt; A0008 FETCH 618 RFC822.SIZE
+18:56.881140 IMAP&lt; * 618 FETCH (RFC822.SIZE 48984)
+18:56.913402 IMAP&lt; A0008 OK FETCH completed.
+18:56.913446 IMAP&gt; A0009 FETCH 618 RFC822.HEADER
+18:56.921350 IMAP&lt; * 618 FETCH (RFC822.HEADER {1308}
+reading message D\<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">u at mail.</A>:618 of 618 (1308 header octets)
+About to rewrite Return-Path: &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">A.User at example.com</A>&gt;^M
+Rewritten version is Return-Path: &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">A.User at example.com</A>&gt;^M
+
+About to rewrite From: &quot;A User&quot; &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">A.User at example.com</A>&gt;^M
+Rewritten version is From: &quot;A User&quot; &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">A.User at example.com</A>&gt;^M
+
+About to rewrite To: &quot;Mike Lowell&quot; &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">my.account at example.com</A>&gt;^M
+Rewritten version is To: &quot;Mike Lowell&quot; &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">my.account at example.com</A>&gt;^M
+
+fetchmail:   about to deliver with: /usr/bin/procmail -d 'my.account'
+fetchmail:   IMAP&lt; )
+18:56.953625 IMAP&lt; A0009 OK FETCH completed.
+18:56.953987 IMAP&gt; A0010 FETCH 618 BODY.PEEK[TEXT]
+18:56.961623 IMAP&lt; * 618 FETCH (BODY[TEXT] {47676}
+ (47676 body octets)..............................................fetchmail:
+IMAP&lt; )
+18:56.965024 IMAP&lt; A0010 OK FETCH completed.
+ not flushed
+18:56.979834 IMAP&gt; A0011 STORE 618 +FLAGS (\Seen)
+18:56.983981 IMAP&lt; * 618 FETCH (FLAGS (\Seen))
+fetchmail:   IMAP&lt; A0011 OK STORE completed.
+--------- fetchmail output end ---------
+
+
+
+*Note: in the above fetchmail output I've replaced the prefix
+'fetchmail: ' with a timestamp from tcpdump when the corresponding
+packets were received.  The timestamp shows
+'minute:second.millisecond' during the 9th hour of October 10th (9am
+today).  I've also condensed the hundreds of lines mentioning
+&quot;skipped&quot; messages to a single '[...]', and I've replaced the actual
+login information with '[login stuff]'.  Looks best in a fixed-width
+font.
+
+For reference, I've also included the relevant procmail log entries:
+
+----------- procmail log start -----------
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001288.html">[fetchmail-users] strange dns behaviour
+</A></li>
+	<LI>Next message: <A HREF="001292.html">[fetchmail-users] Fwd: dup messages on mid-session expunge	(with requested data)
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1289">[ date ]</a>
+              <a href="thread.html#1289">[ thread ]</a>
+              <a href="subject.html#1289">[ subject ]</a>
+              <a href="author.html#1289">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,154 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] launchd problems on Mac OSX 10.6
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2009-December/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20launchd%20problems%20on%20Mac%20OSX%2010.6&In-Reply-To=%3CD3506C23-DBD2-4ABE-B4B2-8FB59E00CC93%40ritual.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002173.html">
+   <LINK REL="Next"  HREF="002175.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] launchd problems on Mac OSX 10.6</H1>
+    <B>Uli Zappe</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20launchd%20problems%20on%20Mac%20OSX%2010.6&In-Reply-To=%3CD3506C23-DBD2-4ABE-B4B2-8FB59E00CC93%40ritual.org%3E"
+       TITLE="[fetchmail-users] launchd problems on Mac OSX 10.6">uli at ritual.org
+       </A><BR>
+    <I>Thu Dec 24 17:01:54 CET 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002173.html">[fetchmail-users] launchd problems on Mac OSX 10.6
+</A></li>
+        <LI>Next message: <A HREF="002175.html">[fetchmail-users] How to use fetchmail with ipv6
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2174">[ date ]</a>
+              <a href="thread.html#2174">[ thread ]</a>
+              <a href="subject.html#2174">[ subject ]</a>
+              <a href="author.html#2174">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Am 24.12.2009 um 15:28 schrieb Ken Gillett:
+
+&gt;<i> I'm trying to start fetchmail from launchd. The plist appears to be correct as using launchctl load etc. works perfectly, but after startup fetchmail is not running.
+</I>
+This is a basic conceptual problem with launchd.
+
+The Mac OS X Startup items, which launchd aims to replace, provided a mechanism for dealing with dependencies, i.e. you could specify that process y should be started only after process x is already up and running (and the services it provides are already available).
+
+launchd, however, provides no such mechanism, and there is no way of telling in which order launchd will launch the various processes it launches. This is because Apple is of the opinion that every process should be designed to be clever enough to wait until the services it needs become available, instead of quitting with an error message if they are not yet available. 
+
+In reality, however, many Unix daemons (including fetchmail) are still not designed that way. As a result, you cannot use launchd to launch them at startup time, as there is no guarantee that the services they need are already available.
+
+The only way to reliably start these daemons is to still use Startup items.
+
+However, launchd does have its share of distinct advantages, most notably that it will restart daemons automatically should they stop running for whatever reason. Therefore, the optimum is a hybrid approach: use a Startup item to load the daemon into launchd. I've used this approach with good results since 2005.
+
+The important thing to remember is that in this configuration, the launchd plist must *NOT* reside in /Library/LaunchDaemons/, as this would load them automatically at an indetermined moment during startup, which is *not* what we want.
+
+Instead, I've put my launchd plist for fetchmail into /etc/postfix/. (But you could choose whatever location you want except /Library/LaunchDaemons/.) Here's how it looks like:
+
+####org.catb.fetchmail.plist#################################
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;!DOCTYPE plist PUBLIC &quot;-//Apple Computer//DTD PLIST 1.0//EN&quot; &quot;<A HREF="http://www.apple.com/DTDs/PropertyList-1.0.dtd">http://www.apple.com/DTDs/PropertyList-1.0.dtd</A>&quot;&gt;
+&lt;plist version=&quot;1.0&quot;&gt;
+&lt;dict&gt;
+	&lt;key&gt;Label&lt;/key&gt;
+	&lt;string&gt;org.catb.fetchmail&lt;/string&gt;
+	&lt;key&gt;OnDemand&lt;/key&gt;
+	&lt;false/&gt;
+	&lt;key&gt;Program&lt;/key&gt;
+	&lt;string&gt;/usr/bin/fetchmail&lt;/string&gt;
+	&lt;key&gt;ProgramArguments&lt;/key&gt;
+	&lt;array&gt;
+		&lt;string&gt;fetchmail&lt;/string&gt;
+		&lt;string&gt;-f&lt;/string&gt;
+		&lt;string&gt;/etc/postfix/fetchmail.cf&lt;/string&gt;
+	&lt;/array&gt;
+&lt;/dict&gt;
+&lt;/plist&gt;
+#############################################################
+
+(You might have to change /etc/postfix/fetchmail.cf to whatever location you use for fetchmail.cf.)
+
+And here are the two files in /Library/StartupItems/Fetchmail/:
+
+####Fetchmail################################################
+#!/bin/sh
+
+. /etc/rc.common
+
+StartService ()
+{
+	/bin/launchctl load /private/etc/postfix/org.catb.fetchmail.plist
+}
+
+StopService ()
+{
+	/bin/launchctl unload /private/etc/postfix/org.catb.fetchmail.plist
+}
+
+RestartService ()
+{
+	/usr/bin/fetchmail --quit
+}
+
+RunService &quot;$1&quot;
+
+#############################################################
+
+####StartupParameters.plist##################################
+{
+	Description     = &quot;Fetchmail POP Mail Retrieval Daemon&quot;;
+	Provides        = (&quot;Fetchmail&quot;);
+	Requires        = (&quot;Resolver&quot;, &quot;SMTP&quot;);
+	Uses            = (&quot;Network Time&quot;);
+}
+
+#############################################################
+
+As you can see, the Fetchmail Startup item loads org.catb.fetchmail.plist into launchd, but does so only after the services are up and running that are listed in the &quot;Requires&quot; line in StartupParameters.plist. You might need to add another service here to make sure that the password retrieval you need does already work.
+
+Hope that helps.
+
+            Bye
+                    Uli
+________________________________________________________
+
+  Uli Zappe, Solmsstra&#223;e 5, D-65189 Wiesbaden, Germany
+  <A HREF="http://www.ritual.org">http://www.ritual.org</A>
+  Fon: +49-700-ULIZAPPE
+  Fax: +49-700-ZAPPEFAX
+________________________________________________________
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002173.html">[fetchmail-users] launchd problems on Mac OSX 10.6
+</A></li>
+	<LI>Next message: <A HREF="002175.html">[fetchmail-users] How to use fetchmail with ipv6
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2174">[ date ]</a>
+              <a href="thread.html#2174">[ thread ]</a>
+              <a href="subject.html#2174">[ subject ]</a>
+              <a href="author.html#2174">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

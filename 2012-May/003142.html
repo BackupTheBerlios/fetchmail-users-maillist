@@ -1,0 +1,201 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Problem with Demon's new Exchange service and distribution lists. Can fetchmail be tested with e-mail on stdin?
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2012-May/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Problem%20with%20Demon%27s%20new%20Exchange%20service%20and%0A%20distribution%20lists.%20Can%20fetchmail%20be%20tested%20with%20e-mail%20on%20stdin%3F&In-Reply-To=%3C20120529164000.GD25290%40stronglg.demon.co.uk%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003141.html">
+   <LINK REL="Next"  HREF="003143.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Problem with Demon's new Exchange service and distribution lists. Can fetchmail be tested with e-mail on stdin?</H1>
+    <B>Stanley Dziegiel</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Problem%20with%20Demon%27s%20new%20Exchange%20service%20and%0A%20distribution%20lists.%20Can%20fetchmail%20be%20tested%20with%20e-mail%20on%20stdin%3F&In-Reply-To=%3C20120529164000.GD25290%40stronglg.demon.co.uk%3E"
+       TITLE="[fetchmail-users] Problem with Demon's new Exchange service and distribution lists. Can fetchmail be tested with e-mail on stdin?">stanley at stronglg.demon.co.uk
+       </A><BR>
+    <I>Tue May 29 18:40:00 CEST 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003141.html">[fetchmail-users] [tor-talk] Socks5 and msmtp
+</A></li>
+        <LI>Next message: <A HREF="003143.html">[fetchmail-users] Problem with Demon's new Exchange service and distribution lists. Can fetchmail be tested with e-mail on stdin?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3142">[ date ]</a>
+              <a href="thread.html#3142">[ thread ]</a>
+              <a href="subject.html#3142">[ subject ]</a>
+              <a href="author.html#3142">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hello,
+
+Demon migrated their users to Microsoft Exchange earlier this
+month and after reconfiguring /etc/fetchmailrc it is distributing
+all mail correctly apart from that sent to mailing lists e.g.
+<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">opensuse-secuity-announce at opensuse.org.</A>
+
+I believe that I have finally got /etc/fetchmailrc correct but I cannot
+prove it yet as the distribution lists that I subscribe to only send
+mail infrequently so I am looking for a way to simulate such e-mails.
+
+As part of the Demon 'upgrade' all e-mails get the mail headers rewritten
+to <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">administrator at hostname.demon.co.uk</A> before being stored in Exchange. The
+Demon FAQ suggests using their web forms to register any addresses that
+you don't want rewritten which I have done. However, that still leaves
+mailing lists broken.
+
+What I want to be able to do:
+
+is to take a 'failing' dlist e-mail and replay it through fetchmail to
+prove that mail to lists will work with the new fetchmailrc file. I am
+happy that the POP conversation has worked as all such e-mails end up
+in /var/mail/fetchmail. What I want to test is that I have configured
+/etc/fetchmailrc correctly.
+
+I have read the FAQ but cannot see a way to replay a message in order to
+test configuration changes.
+
+Following the example of the previous Demon user's post:
+
+Operating system:
+    $ cat /etc/SuSE-release
+    openSUSE 11.3 (i586)
+    VERSION = 11.3
+
+Name and origin of the RPM:
+    $ rpm -q fetchmail
+    fetchmail-6.3.16-3.7.i586
+
+The name and version of the SMTP listener:
+    $ rpm -q sendmail
+    sendmail-8.14.4-54.2.i586
+
+Command-line options you used:
+     openSUSE 11.3 distributed /etc/init.d/fetchmail with added &quot;-vvv&quot;.
+     ps -ef | grep fetchmail
+     /usr/bin/fetchmail -d 180 -a -v -v -v -f /etc/fetchmailrc -L /var/log/fetchmail
+
+The output of env LC_ALL=C fetchmail -V ...
+    # env LC_ALL=C fetchmail ...   # only including first retrieval section
+                                   # as I now have one per recipient.
+
+This is fetchmail release 6.3.16+POP2+GSS+RPA+NTLM+SDPS+SSL+OPIE+NLS+KRB5.
+
+Copyright (C) 2002, 2003 Eric S. Raymond
+Copyright (C) 2004 Matthias Andree, Eric S. Raymond,
+                   Robert M. Funk, Graham Wilson
+Copyright (C) 2005 - 2006, 2010 Sunil Shetye
+Copyright (C) 2005 - 2010 Matthias Andree
+Fetchmail comes with ABSOLUTELY NO WARRANTY. This is free software, and you
+are welcome to redistribute it under certain conditions. For details,
+please see the file COPYING in the source or documentation directory.
+
+Fallback MDA: (none)
+Linux stronglg 2.6.34.10-0.4-desktop #1 SMP PREEMPT 2011-10-19 22:16:41 +0200 i686 i686 i386 GNU/Linux
+Taking options from command line and /etc/fetchmailrc
+Poll interval is 180 seconds
+Logfile is /var/log/fetchmail
+Idfile is /root/.fetchids
+Fetchmail will forward misaddressed multidrop messages to postmaster.
+Fetchmail will direct error mail to the sender.
+Fetchmail will treat permanent errors as temporary (keep messages).
+Options for retrieving from <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">administrator at stronglg.demon.co.uk</A>@stronglg.demon.co.uk:
+  Mail will be retrieved via mail.demon.co.uk
+  True name of server is mail.demon.co.uk.
+  This host will be queried when no host is specified.
+  Password = &quot;******&quot;.
+  Protocol is auto (using default port).
+  All available authentication methods will be tried.
+  Server nonresponse timeout is 300 seconds (default).
+  Default mailbox selected.
+  All messages will be retrieved (--all on).
+  Fetched messages will not be kept on the server (--keep off).
+  Old messages will not be flushed before message retrieval (--flush off).
+  Oversized messages will not be flushed before message retrieval (--limitflush off).
+  Rewrite of server-local addresses is enabled (--norewrite off).
+  Carriage-return stripping is disabled (stripcr off).
+  Carriage-return forcing is disabled (forcecr off).
+  Interpretation of Content-Transfer-Encoding is enabled (pass8bits off).
+  MIME decoding is disabled (mimedecode off).
+  Idle after poll is disabled (idle off).
+  Nonempty Status lines will be kept (dropstatus off)
+  Delivered-To lines will be kept (dropdelivered off)
+  No received-message limit (--fetchlimit 0).
+  Fetch message size limit is 100 (--fetchsizelimit 100).
+  Do binary search of UIDs during 3 out of 4 polls (--fastuidl 4).
+  No SMTP message batch limit (--batchlimit 0).
+  No forced expunges (--expunge 0).
+  Messages will be SMTP-forwarded to: localhost (default)
+  Spam-blocking disabled
+  Server connection will be brought up with &quot;date '+%b %d %H:%M:%S' &gt;&gt; /var/log/fetchmail&quot;.
+  No post-connection command.
+  Multi-drop mode: 1 local name recognized.
+	root
+	*
+  DNS lookup for multidrop addresses is disabled.
+  Envelope header is assumed to be: Received
+  Number of envelope headers to be skipped over: 0
+  No prefix stripping
+  Predeclared mailserver aliases: inty.net
+  Local domains: stronglg.demon.co.uk
+  No interface requirement specified.
+  No monitor interface specified.
+  No plugin command specified.
+  No plugout command specified.
+  No poll trace information will be added to the Received header.
+  Messages with bad headers will be rejected.
+
+The output of env LC_ALL=C fetchmail --nodetach
+    # env LC_ALL=C fetchmail --nodetach --nosyslog -d 180 -a -v -v -v -f /etc/fetchmailrc -L /var/log/fetchmail
+#
+fetchmail: WARNING: Running as root is discouraged.
+File /etc/fetchmailrc must be owned by you.
+
+    # cat /etc/fetchmailrc
+    set daemon 120
+    poll stronglg.demon.co.uk via &quot;mail.demon.co.uk&quot; aka inty.net
+      no dns:
+      localdomains stronglg.demon.co.uk
+      user &quot;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">administrator at stronglg.demon.co.uk</A>&quot; password &quot;******&quot; is * fetchall
+      preconnect &quot;date '+%b %d %H:%M:%S' &gt;&gt; /var/log/fetchmail&quot;
+    ;
+
+If you have got this far: I am happy that the POP conversation has worked I
+want to test configuration changes for e-mails to mailing lists that will
+arrive infrequently.
+
+Please let me know if you need any further information.
+
+Many thanks, Stanley
+</PRE>
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003141.html">[fetchmail-users] [tor-talk] Socks5 and msmtp
+</A></li>
+	<LI>Next message: <A HREF="003143.html">[fetchmail-users] Problem with Demon's new Exchange service and distribution lists. Can fetchmail be tested with e-mail on stdin?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3142">[ date ]</a>
+              <a href="thread.html#3142">[ thread ]</a>
+              <a href="subject.html#3142">[ subject ]</a>
+              <a href="author.html#3142">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

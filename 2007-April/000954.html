@@ -1,0 +1,118 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Fetchmail/Multiple Local Users/Multiple Email	Accounts
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2007-April/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Fetchmail/Multiple%20Local%20Users/Multiple%20Email%0A%09Accounts&In-Reply-To=%3C7A232A2F-D057-4A64-B5D1-38C10530CEA9%40gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000953.html">
+   <LINK REL="Next"  HREF="000955.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Fetchmail/Multiple Local Users/Multiple Email	Accounts</H1>
+    <B>Lovell Mcilwain</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Fetchmail/Multiple%20Local%20Users/Multiple%20Email%0A%09Accounts&In-Reply-To=%3C7A232A2F-D057-4A64-B5D1-38C10530CEA9%40gmail.com%3E"
+       TITLE="[fetchmail-users] Fetchmail/Multiple Local Users/Multiple Email	Accounts">lovell.mcilwain at gmail.com
+       </A><BR>
+    <I>Mon Apr  2 00:58:09 CEST 2007</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000953.html">[fetchmail-users] Fetchmail/Multiple Local Users/Multiple Email	Accounts
+</A></li>
+        <LI>Next message: <A HREF="000955.html">[fetchmail-users] Fetchmail/Multiple Local Users/Multiple Email	Accounts
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#954">[ date ]</a>
+              <a href="thread.html#954">[ thread ]</a>
+              <a href="subject.html#954">[ subject ]</a>
+              <a href="author.html#954">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>
+On Apr 1, 2007, at 6:43 PM, Matthias Andree wrote:
+
+&gt;<i> Lovell Mcilwain &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">lovell.mcilwain at gmail.com</A>&gt; writes:
+</I>&gt;<i>
+</I>&gt;&gt;<i> Can anyone tell me how I can use fetchmail and procmail to be able to
+</I>&gt;&gt;<i> download mail from two separate accounts to two separate local  
+</I>&gt;&gt;<i> accounts?
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> I already have a local account (user1) that is downloading mail from
+</I>&gt;&gt;<i> my gmail account. Now I am trying to setup another account (user2) to
+</I>&gt;&gt;<i> be able to download my work email (so I can keep both account emails
+</I>&gt;&gt;<i> separate).
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> When I attempt this I get the following error when trying to run
+</I>&gt;&gt;<i> fetchmail as user2:
+</I>&gt;&gt;<i> ===============
+</I>&gt;&gt;<i> [<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">user2 at linux</A> ~]$ fetchmail -c
+</I>&gt;&gt;<i> fetchmail: can't check mail while another fetchmail to same host is
+</I>&gt;&gt;<i> running.
+</I>&gt;&gt;<i> ===============
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> I assume I am getting this error because the fetchmail daemon is
+</I>&gt;&gt;<i> already running on user1.
+</I>&gt;<i>
+</I>&gt;<i> As long as user1 and user2 have *distinct* home directories, that
+</I>&gt;<i> shouldn't be a problem, user1 and user2 can both be running a  
+</I>&gt;<i> fetchmail
+</I>&gt;<i> daemon at the same time -- unless they are sharing the same home
+</I>&gt;<i> directory.
+</I>&gt;<i>
+</I>&gt;<i> -- 
+</I>&gt;<i> Matthias Andree
+</I>No they are both running on completely different directories, nothing  
+is shared.
+user1 = /home/user1
+user2 = /home/user2
+
+I was able to get fetchmail started but I have now run into another  
+problem.  When I checked my log after running in detailed verbose, I  
+get the following error:
+[<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">lmcilwain at Firewall</A> ~]$ tail -f fetchmail.log
+procmail: Couldn't create &quot;/var/mail/lmcilwain&quot;
+procmail: [17952] Sun Apr  1 17:54:43 2007
+procmail: Assigning &quot;LOGNAME=procmail.log&quot;
+procmail: Assigning &quot;LOGFILE=procmail.log&quot;
+procmail: Opening &quot;procmail.log&quot;
+
+So now I am not able to get anything into my inbox and everything  
+haults.  I have not been able to find a way to get it to write to / 
+var/mail/user2.
+
+I even created it myself and gave it the same type of permissions
+Owner = user2
+Group = mail
+
+But still it won't write.
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000953.html">[fetchmail-users] Fetchmail/Multiple Local Users/Multiple Email	Accounts
+</A></li>
+	<LI>Next message: <A HREF="000955.html">[fetchmail-users] Fetchmail/Multiple Local Users/Multiple Email	Accounts
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#954">[ date ]</a>
+              <a href="thread.html#954">[ thread ]</a>
+              <a href="subject.html#954">[ subject ]</a>
+              <a href="author.html#954">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

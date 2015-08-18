@@ -1,0 +1,138 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] how to set up fetchmail for inbox.com POP3
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2012-June/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20how%20to%20set%20up%20fetchmail%20for%20inbox.com%20POP3&In-Reply-To=%3C4FE1A4AF.2050801%40echter-kuechen-elektro.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003157.html">
+   <LINK REL="Next"  HREF="003159.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] how to set up fetchmail for inbox.com POP3</H1>
+    <B>J&#252;rgen Echter</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20how%20to%20set%20up%20fetchmail%20for%20inbox.com%20POP3&In-Reply-To=%3C4FE1A4AF.2050801%40echter-kuechen-elektro.de%3E"
+       TITLE="[fetchmail-users] how to set up fetchmail for inbox.com POP3">j.echter at echter-kuechen-elektro.de
+       </A><BR>
+    <I>Wed Jun 20 12:23:43 CEST 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003157.html">[fetchmail-users] how to set up fetchmail for inbox.com POP3
+</A></li>
+        <LI>Next message: <A HREF="003159.html">[fetchmail-users] how to set up fetchmail for inbox.com POP3
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3158">[ date ]</a>
+              <a href="thread.html#3158">[ thread ]</a>
+              <a href="subject.html#3158">[ subject ]</a>
+              <a href="author.html#3158">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Am 20.06.2012 10:24, schrieb grarpamp:
+&gt;&gt;<i> set daemon 611
+</I>&gt;&gt;<i> poll  my.inbox.com with proto POP3 user auth password uidl ssl
+</I>&gt;&gt;<i> user John.Doe there is doejohn here warnings 3600
+</I>&gt;&gt;<i> mda 'procmail -d %s'
+</I>&gt;&gt;<i> keep
+</I>&gt;<i> You should put each config item on a
+</I>&gt;<i> separate line. And you should quote
+</I>&gt;<i> things like usernames and passwords.
+</I>&gt;<i> Read the man page again, the examples
+</I>&gt;<i> that ship with it, and the internet search.
+</I>&gt;<i> Then run it in debug mode to be sure.
+</I>&gt;<i>
+</I>&gt;<i> I have abused the 'poll' string because fetchmail doesn't
+</I>&gt;<i> seem to support my need for multiple accounts
+</I>&gt;<i> on a provider and multiple providers in an rc.
+</I>&gt;<i> And fetchmail wants to be a single process,
+</I>&gt;<i> so I'll be hacking it all differently real soon now.
+</I>&gt;<i> And getting rid of procmail :)
+</I>&gt;<i>
+</I>&gt;<i> fetchmail -v -v -f fmrc -d 300 -N -K -a -n string
+</I>&gt;<i> set invisible
+</I>&gt;<i> poll <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">username at example.com</A>
+</I>&gt;<i>   via imap.example.com
+</I>&gt;<i>   service 993
+</I>&gt;<i>   protocol imap
+</I>&gt;<i>   authenticate password
+</I>&gt;<i>   username &quot;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">username at example.com</A>&quot;
+</I>&gt;<i>   password &quot;password&quot;
+</I>&gt;<i>   ssl
+</I>&gt;<i>   sslcertck
+</I>&gt;<i>   sslfingerprint &quot;M:D:5&quot;
+</I>&gt;<i>   mda &quot;procmail -m HOME=$HOME/mail/<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">username at example.com</A> $HOME/mail/procmailrc&quot;
+</I>&gt;<i>   keep
+</I>&gt;<i>   folder &quot;INBOX&quot;
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> VERBOSE=on
+</I>&gt;<i> LOGFILE=log
+</I>&gt;<i> LOGABSTRACT=all
+</I>&gt;<i> COMSAT=no
+</I>&gt;<i> :0 c
+</I>&gt;<i> Maildir_archive/
+</I>&gt;<i> :0
+</I>&gt;<i> Maildir/
+</I>&gt;<i> _______________________________________________
+</I>&gt;<i> fetchmail-users mailing list
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">fetchmail-users at lists.berlios.de</A>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">https://lists.berlios.de/mailman/listinfo/fetchmail-users</A>
+</I>Hi,
+
+i have this fetchmailrc:
+
+# General
+set postmaster &quot;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">postmaster at mydomain.de</A>&quot;
+set bouncemail
+set no spambounce
+set properties &quot;&quot;
+set syslog
+set daemon 300
+
+# Accounts
+poll mailserver.myprovider.de with proto POP3 interval 3
+         user &quot;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">user1 at mydomain.de</A>&quot; there with password &quot;passwd1&quot; is 
+&quot;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">user1 at mydomain.de</A>&quot; here ssl
+poll mailserver.myprovider.de with proto POP3 interval 3
+         user &quot;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">user2 at mydomain.de</A>&quot; there with password &quot;passwd2&quot; is 
+&quot;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">user2 at mydomain.de</A>&quot; here ssl
+poll mailserver.myprovider.de with proto POP3 interval 3
+         user &quot;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">user3 at mydomain.de</A>&quot; there with password &quot;passwd3&quot; is 
+&quot;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">user3 at mydomain.de</A>&quot; here ssl
+
+works fine.
+
+cheers
+
+juergen
+</PRE>
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003157.html">[fetchmail-users] how to set up fetchmail for inbox.com POP3
+</A></li>
+	<LI>Next message: <A HREF="003159.html">[fetchmail-users] how to set up fetchmail for inbox.com POP3
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3158">[ date ]</a>
+              <a href="thread.html#3158">[ thread ]</a>
+              <a href="subject.html#3158">[ subject ]</a>
+              <a href="author.html#3158">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

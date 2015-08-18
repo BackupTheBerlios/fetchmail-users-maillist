@@ -1,0 +1,133 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] validating Yahoo SSL certificate
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2008-January/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20validating%20Yahoo%20SSL%20certificate&In-Reply-To=%3C479695FD.7070802%40mailinator.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001433.html">
+   <LINK REL="Next"  HREF="001435.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] validating Yahoo SSL certificate</H1>
+    <B>Bruce</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20validating%20Yahoo%20SSL%20certificate&In-Reply-To=%3C479695FD.7070802%40mailinator.com%3E"
+       TITLE="[fetchmail-users] validating Yahoo SSL certificate">fetchmail at mailinator.com
+       </A><BR>
+    <I>Wed Jan 23 02:18:53 CET 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001433.html">[fetchmail-users] client/server protocol error?
+</A></li>
+        <LI>Next message: <A HREF="001435.html">[fetchmail-users] validating Yahoo SSL certificate
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1434">[ date ]</a>
+              <a href="thread.html#1434">[ thread ]</a>
+              <a href="subject.html#1434">[ subject ]</a>
+              <a href="author.html#1434">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>I am running Debian sarge. I have installed fetchmail and some openssl
+and certifcates packages.
+
+I am attempting to use fetchmail to fetch mail from mail server
+pop.mail.yahoo.co.uk using SSL. Fetchmail does not like the mail 
+server's SSL
+certificate. The output from any of the commands
+     fetchmail -c -v pop.mail.yahoo.co.uk
+     fetchmail -c -v --sslcertpath /etc/ssl pop.mail.yahoo.co.uk
+     fetchmail -c -v --sslcertpath /etc/ssl/certs pop.mail.yahoo.co.uk
+includes
+
+fetchmail: 6.2.5 querying pop.mail.yahoo.co.uk (protocol POP3) at Tue 22 
+Jan 2008 18:39:51 GMT: poll started
+fetchmail: Issuer Organization: Equifax
+fetchmail: Unknown Issuer CommonName
+fetchmail: Server CommonName: pop.mail.yahoo.co.uk
+fetchmail: pop.mail.yahoo.co.uk key fingerprint: 
+40:6B:F5:AB:23:AF:2F:B0:66:9B:A7:6A:7B:6D:3A:B7
+fetchmail: Warning: server certificate verification: unable to get local 
+issuercertificate
+fetchmail: Issuer Organization: Equifax
+fetchmail: Unknown Issuer CommonName
+fetchmail: Server CommonName: pop.mail.yahoo.co.uk
+fetchmail: Warning: server certificate verification: certificate not trusted
+fetchmail: Issuer Organization: Equifax
+fetchmail: Unknown Issuer CommonName
+fetchmail: Server CommonName: pop.mail.yahoo.co.uk
+fetchmail: Warning: server certificate verification: unable to verify 
+the firstcertificate
+fetchmail: POP3&lt; +OK hello from popgate on pop012.mail.ukl.yahoo.com 2.38.1
+
+
+I do have some certificates from Equifax because when I run (as root) 
+c_rehash
+its output includes
+Equifax_Secure_CA.pem =&gt; 594f1775.0
+Equifax_Secure_eBusiness_CA_1.pem =&gt; e7b8d656.0
+Equifax_Secure_eBusiness_CA_2.pem =&gt; 8f7b96c4.0
+Equifax_Secure_Global_eBusiness_CA.pem =&gt; 74c26bd0.0
+
+I have tried the command
+     openssl s_client -connect pop.mail.yahoo.co.uk:995 test.fil
+This printed
+
+depth=0 /C=US/ST=California/L=Santa Clara/O=Yahoo! 
+Inc./OU=Yahoo/CN=pop.mail.yahoo.co.uk
+verify error:num=20:unable to get local issuer certificate
+verify return:1
+depth=0 /C=US/ST=California/L=Santa Clara/O=Yahoo! 
+Inc./OU=Yahoo/CN=pop.mail.yahoo.co.uk
+verify error:num=27:certificate not trusted
+verify return:1
+depth=0 /C=US/ST=California/L=Santa Clara/O=Yahoo! 
+Inc./OU=Yahoo/CN=pop.mail.yahoo.co.uk
+verify error:num=21:unable to verify the first certificate
+verify return:1
+DONE
+
+After this the contents of test.fil included
+---
+Certificate chain
+  0 s:/C=US/ST=California/L=Santa Clara/O=Yahoo! 
+Inc./OU=Yahoo/CN=pop.mail.yahoo.co.uk
+    i:/C=US/O=Equifax/OU=Equifax Secure Certificate Authority
+---
+
+
+Can anyone tell me why neither fetchmail or openssl can validate
+the pop.mail.yahoo.co.uk certificate ?
+
+Does the openssl command work for anyone?
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001433.html">[fetchmail-users] client/server protocol error?
+</A></li>
+	<LI>Next message: <A HREF="001435.html">[fetchmail-users] validating Yahoo SSL certificate
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1434">[ date ]</a>
+              <a href="thread.html#1434">[ thread ]</a>
+              <a href="subject.html#1434">[ subject ]</a>
+              <a href="author.html#1434">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

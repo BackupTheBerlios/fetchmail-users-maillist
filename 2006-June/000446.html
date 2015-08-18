@@ -1,0 +1,170 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Accessing user mailbox from another account
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2006-June/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Accessing%20user%20mailbox%20from%20another%20account&In-Reply-To=%3CE8CFEFEBB3E8444BBC820C0B3C3993330631E7%40goya.integra-xp.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000445.html">
+   <LINK REL="Next"  HREF="000447.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Accessing user mailbox from another account</H1>
+    <B>Ian Murphy</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Accessing%20user%20mailbox%20from%20another%20account&In-Reply-To=%3CE8CFEFEBB3E8444BBC820C0B3C3993330631E7%40goya.integra-xp.com%3E"
+       TITLE="[fetchmail-users] Accessing user mailbox from another account">ian at integra-xp.com
+       </A><BR>
+    <I>Fri Jun 23 12:06:46 CEST 2006</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000445.html">[fetchmail-users] Accessing user mailbox from another account
+</A></li>
+        <LI>Next message: <A HREF="000447.html">[fetchmail-users] Accessing user mailbox from another account
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#446">[ date ]</a>
+              <a href="thread.html#446">[ thread ]</a>
+              <a href="subject.html#446">[ subject ]</a>
+              <a href="author.html#446">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Frederic, Thanks for responding,
+
+Mail is currently delivered to exchange. They are migrating to a linux
+server. No external boxes involved. This requires a visit to each and
+every desktop to modify the mail client, so the migration will take some
+time (multiple remote offices too to complicate matters) and will have
+to be done mailbox by mailbox. 
+
+Step one will be switch the mx record to deliver email to the linux
+server by default. Easy.
+
+Once email is arriving on the linux box, fetchmail is used to pull it
+out and redeliver it to the exchange server. Again easy.
+
+When a users mail client is switched from exchange to using pop3 against
+the linux server the pull-from-linux-push-to-exchange will be switched
+off for their mailbox. 
+
+However the problem is that internal users will continue to send email
+via exchange, which will deliver to the now unmonitored exchange
+mailbox.
+
+What I want to do is pull any mail which may arrive out of the exhange
+mailbox and deliver it to the users mailbox on the linux box. However
+since users change their passwords, and its not a good idea, I didn't
+want to make a big list of each user account and their password just to
+achieve this.
+
+I was hoping either pop3 or imap would have an authentication type which
+would allow me to do something like
+
+Fetch mail using user administrator password asecret from mailbox
+johndoe on server 1.2.3.4 deliver to smtpserver 1.2.3.5
+
+
+Ian Murphy
+Integra XP
+<A HREF="http://www.integra-xp.com">http://www.integra-xp.com</A>
+00 34 94 621 5265
+ 
+
+-----Mensaje original-----
+De: Frederic Marchal [mailto:<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">frederic.marchal at wowcompany.com</A>] 
+Enviado el: viernes, 23 de junio de 2006 11:49
+Para: Ian Murphy
+CC: <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">fetchmail-users at lists.berlios.de</A>
+Asunto: Re: [fetchmail-users] Accessing user mailbox from another
+account
+
+Ian Murphy wrote:
+&gt;<i> I have been charged with migrating an exchange 2000 instalation to a 
+</I>&gt;<i> linux server and am using fetchmail to handle interopability during 
+</I>&gt;<i> the migration period.
+</I>&gt;<i>  
+</I>&gt;<i> I am currently re-delivering email that arrives on the linux box to 
+</I>&gt;<i> MSExchange via smtp and its working like a dream.
+</I>&gt;<i>  
+</I>&gt;<i> I now need to be able to pull new email from the exchange server and 
+</I>&gt;<i> deliver it to the linux server. To avoid the need to know the users 
+</I>&gt;<i> passwords I want to give read/write access rights to their mailboxes 
+</I>&gt;<i> to a special account and to read all the mailboxes using a single 
+</I>&gt;<i> priviliged account.
+</I>&gt;<i>  
+</I>&gt;<i> Now, my problem, what is this type of access called ? I've been 
+</I>&gt;<i> looking at the fetchmail documentation for pop3 and imap access and am
+</I>
+&gt;<i> lost in the sea of authentication types and options, though it seems 
+</I>&gt;<i> pretty likely that it is possible.
+</I>&gt;<i>  
+</I>&gt;<i> Can anyone steer me in the right direction ?
+</I>
+I don't understand your current configuration and what you want to
+achieve, especially, the part about what server is downloading what kind
+of mail and from where...
+
+Depending on the way I read your mail, I understand one of the two
+following things:
+
+1) You have both a linux *and* an msexchange server fetching inbound
+e-mails from an outside server (your ISP for instance) and you want to
+synchronize the e-mails between the two servers so that your users can
+use any server.
+
+2) Your mails are processed by the msexchange server which act now as a
+relay for the linux server and you want your users to migrate at their
+leisure from this server to the linux server before you decommission the
+msexchange server and make the linux server your main mail server.
+
+Since case 2 seems more likely, I'll answer this one for now.
+
+If your idea is to read all the mailboxes of all the users from one
+account on the msexchange server and deliver them to the proper user
+account on the linux server, then I don't think it is possible (at least
+not with pop3 or imap but maybe with a samba connection and some
+cron/bash scripts).
+
+You have either to divert a copy of each incoming mail on the msexchange
+server to one account on that server and read that single account with
+fetchmail (provided your msexchange server adds the proper information
+such as a X-Envelope header) or you have to forward the mails of each
+user to the linux server using the msexchange equivalent to a .forward
+file on linux (I don't know what that mechanism could be because I don't
+know msechange).
+
+Frederic
+
+
+
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000445.html">[fetchmail-users] Accessing user mailbox from another account
+</A></li>
+	<LI>Next message: <A HREF="000447.html">[fetchmail-users] Accessing user mailbox from another account
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#446">[ date ]</a>
+              <a href="thread.html#446">[ thread ]</a>
+              <a href="subject.html#446">[ subject ]</a>
+              <a href="author.html#446">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

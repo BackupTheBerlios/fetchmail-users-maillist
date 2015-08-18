@@ -1,0 +1,119 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Fetchmail refuses to deliver some messages
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2009-October/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Fetchmail%20refuses%20to%20deliver%20some%20messages&In-Reply-To=%3Cop.u04kv1ji1e62zd%40balu.cs.uni-paderborn.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002107.html">
+   <LINK REL="Next"  HREF="002109.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Fetchmail refuses to deliver some messages</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Fetchmail%20refuses%20to%20deliver%20some%20messages&In-Reply-To=%3Cop.u04kv1ji1e62zd%40balu.cs.uni-paderborn.de%3E"
+       TITLE="[fetchmail-users] Fetchmail refuses to deliver some messages">matthias.andree at gmx.de
+       </A><BR>
+    <I>Thu Oct  1 16:22:39 CEST 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002107.html">[fetchmail-users] Fetchmail refuses to deliver some messages
+</A></li>
+        <LI>Next message: <A HREF="002109.html">[fetchmail-users] fetchmail 6.3.12 regression/bug fix release	available (STABLE)
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2108">[ date ]</a>
+              <a href="thread.html#2108">[ thread ]</a>
+              <a href="subject.html#2108">[ subject ]</a>
+              <a href="author.html#2108">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Am 01.10.2009, 12:59 Uhr, schrieb Jerry &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">gesbbb at yahoo.com</A>&gt;:
+
+&gt;<i> This is fetchmail release 6.3.11+RPA+SDPS+SSL+OPIE+NLS.
+</I>&gt;<i>
+</I>&gt;<i> I have been finding this notation in the fetchmail log file quite
+</I>&gt;<i> consistently:
+</I>&gt;<i>
+</I>&gt;<i> fetchmail: reading message  
+</I>&gt;<i> recent:<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">me at mydomain.com</A>@gmail-pop.l.google.com:1 of 2 (2239 octets) (log  
+</I>&gt;<i> message incomplete)
+</I>&gt;<i> fetchmail: SMTP error: 501 5.1.7 Bad sender address syntax
+</I>&gt;<i> fetchmail:  not flushed
+</I>&gt;<i>
+</I>&gt;<i> This is the e-mail headers from the problem message:
+</I>&gt;<i> Delivered-To: <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">me at mydomain.com</A>
+</I>&gt;<i> Received: by 10.216.46.134 with SMTP id r6cs313217web;
+</I>&gt;<i>         Wed, 30 Sep 2009 18:04:08 -0700 (PDT)
+</I>&gt;<i> Received: by 10.150.131.5 with SMTP id e5mr1046587ybd.262.1254359047461;
+</I>&gt;<i>         Wed, 30 Sep 2009 18:04:07 -0700 (PDT)
+</I>&gt;<i> Return-Path: &lt;abfsupajsih@??????&gt;
+</I>
+This looks like there are issues with the DNS or configuration of the  
+sender (might be a spammer anyways), and...
+
+&gt;<i> Received: from ?????? ([211.225.33.79])
+</I>&gt;<i>         by mx.google.com with ESMTP id  
+</I>&gt;<i> 19si23490503gxk.29.2009.09.30.18.04.06;
+</I>&gt;<i>         Wed, 30 Sep 2009 18:04:07 -0700 (PDT)
+</I>&gt;<i> Received-SPF: softfail (google.com: best guess record for domain of  
+</I>&gt;<i> transitioning abfsupajsih@\ufffd\ufffd\ufffd\ufffd does not designate  
+</I>&gt;<i> 211.225.33.79 as permitted sender) client-ip=211.225.33.79;
+</I>&gt;<i> Authentication-Results: mx.google.com; spf=softfail (google.com: best  
+</I>&gt;<i> guess record for domain of transitioning  
+</I>&gt;<i> abfsupajsih@\ufffd\ufffd\ufffd\ufffd does not designate 211.225.33.79 as  
+</I>&gt;<i> permitted sender) smtp.mail=abfsupajsih@\ufffd\ufffd\ufffd\ufffd
+</I>
+...that seems to confirm it. The sending domain is just crap, \ufffd is  
+the Unicode replacement character and hints to earlier encoding errors.
+
+&gt;<i> I am not sure why fetchmail is not simply delivering the message.
+</I>
+It tries to, but your SMTP server (MTA) refuses it - and rightfully so.  
+Nothing fetchmail can do about that, and Google shouldn't be accepting or  
+sending such messages.
+
+Permanently kill the message with the invalid domain through the web  
+interface and move on.
+
+&gt;<i> Is the some configuration setting that I should be using?
+</I>
+Perhaps you may want to &quot;set nosoftbounce&quot; so that such permanently  
+undeliverable messages get removed.
+
+First and foremost, as written above, the upstream server where you're  
+fetching from shouldn't accept such nonstandard garbage.
+
+-- 
+Matthias Andree
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002107.html">[fetchmail-users] Fetchmail refuses to deliver some messages
+</A></li>
+	<LI>Next message: <A HREF="002109.html">[fetchmail-users] fetchmail 6.3.12 regression/bug fix release	available (STABLE)
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2108">[ date ]</a>
+              <a href="thread.html#2108">[ thread ]</a>
+              <a href="subject.html#2108">[ subject ]</a>
+              <a href="author.html#2108">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

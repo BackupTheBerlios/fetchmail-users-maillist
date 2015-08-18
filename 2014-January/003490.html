@@ -1,0 +1,107 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] cutom install - was: Certificate verification error
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2014-January/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20cutom%20install%20-%20was%3A%20Certificate%20verification%0A%20error&In-Reply-To=%3C52E43FF702000085000653C6%40oes2-vm2%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003489.html">
+   <LINK REL="Next"  HREF="003491.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] cutom install - was: Certificate verification error</H1>
+    <B>Joe Acquisto-j4</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20cutom%20install%20-%20was%3A%20Certificate%20verification%0A%20error&In-Reply-To=%3C52E43FF702000085000653C6%40oes2-vm2%3E"
+       TITLE="[fetchmail-users] cutom install - was: Certificate verification error">joea at j4computers.com
+       </A><BR>
+    <I>Sun Jan 26 04:51:35 CET 2014</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003489.html">[fetchmail-users] cutom install - was: Certificate verification error
+</A></li>
+        <LI>Next message: <A HREF="003491.html">[fetchmail-users] cutom install - was: Certificate verification error
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3490">[ date ]</a>
+              <a href="thread.html#3490">[ thread ]</a>
+              <a href="subject.html#3490">[ subject ]</a>
+              <a href="author.html#3490">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>&gt;&gt;&gt;<i> On 1/25/2014 at 5:21 PM, Matthias Andree &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">matthias.andree at gmx.de</A>&gt; wrote:
+</I>&gt;<i> Am 25.01.2014 21:57, schrieb Joe Acquisto-j4:
+</I>&gt;&gt;<i> Let's say I want to try the latest version.   But I don't want to fire up a 
+</I>&gt;<i> new box or vm to test it on.
+</I>&gt;&gt;<i> 
+</I>&gt;&gt;<i> It's a problem when one is lazy, cheap and paranoid, (uh, I mean careful) 
+</I>&gt;<i> all in one 
+</I>&gt;&gt;<i> 
+</I>&gt;&gt;<i> I'd like to make to a new directory, so I can fall back immediately if 
+</I>&gt;<i> something goes south.
+</I>&gt;&gt;<i> 
+</I>&gt;&gt;<i> I've never done a make install (or preliminary steps, if needed) to a custom 
+</I>&gt;<i> directory (or plural)
+</I>&gt;&gt;<i> 
+</I>&gt;&gt;<i> Can this be done?  Pointers, cookbook?
+</I>&gt;<i> 
+</I>&gt;<i> Yes, you can do that.
+</I>&gt;<i> 
+</I>&gt;<i> Download the tarball.
+</I>&gt;<i> Unpack the tarball.
+</I>&gt;<i> Configure with a --prefix of a directory outside the usual ways, for
+</I>&gt;<i> instance:
+</I>&gt;<i> 
+</I>&gt;<i> ./configure --prefix=/opt/fetchmail --with-ssl
+</I>&gt;<i> [add other options as you see fit,
+</I>&gt;<i> --help=short will list special options,
+</I>&gt;<i> --help will list all options]
+</I>&gt;<i> 
+</I>&gt;<i> make check
+</I>&gt;<i> make install   (this is the only operation that requires privileges)
+</I>&gt;<i> 
+</I>&gt;<i> Try: /opt/fetchmail/bin/fetchmail
+</I>&gt;<i> and add your usual options.
+</I>&gt;<i> 
+</I>&gt;<i> If you like it, keep it, if you don't like it, or it goofs up,
+</I>&gt;<i> rm -rf /opt/fetchmail to remove it and let me know what went wrong.
+</I>&gt;<i> 
+</I>
+Configure tells me: &quot;configure: error: SSL support enabled, but OpenSSL not found&quot;
+
+Yet it  is and says it is &quot;OpenSSL 0.9.8a 11 Oct 2005&quot;
+
+I tried with and without &quot; --with-ssl=where openssl is&quot;
+
+joe a
+
+</PRE>
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003489.html">[fetchmail-users] cutom install - was: Certificate verification error
+</A></li>
+	<LI>Next message: <A HREF="003491.html">[fetchmail-users] cutom install - was: Certificate verification error
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3490">[ date ]</a>
+              <a href="thread.html#3490">[ thread ]</a>
+              <a href="subject.html#3490">[ subject ]</a>
+              <a href="author.html#3490">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

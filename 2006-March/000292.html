@@ -1,0 +1,98 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Re: Bug in imap_idle() with mail servers not supporting &quot;idle&quot;
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2006-March/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Re%3A%20Bug%20in%20imap_idle%28%29%20with%20mail%20servers%20not%20supporting%20%22idle%22&In-Reply-To=%3C44072AD5.8010401%40aim.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000284.html">
+   <LINK REL="Next"  HREF="000285.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Re: Bug in imap_idle() with mail servers not supporting &quot;idle&quot;</H1>
+    <B>Brendan Lynch</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Re%3A%20Bug%20in%20imap_idle%28%29%20with%20mail%20servers%20not%20supporting%20%22idle%22&In-Reply-To=%3C44072AD5.8010401%40aim.com%3E"
+       TITLE="[fetchmail-users] Re: Bug in imap_idle() with mail servers not supporting &quot;idle&quot;">brendanplynch at aim.com
+       </A><BR>
+    <I>Thu Mar  2 18:26:45 CET 2006</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000284.html">[fetchmail-users] Re: Bug in imap_idle() with mail servers not supporting &quot;idle&quot;
+</A></li>
+        <LI>Next message: <A HREF="000285.html">[fetchmail-users] After reading the FAQ, a question about lost/mangled attachments
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#292">[ date ]</a>
+              <a href="thread.html#292">[ thread ]</a>
+              <a href="subject.html#292">[ subject ]</a>
+              <a href="author.html#292">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>I have been in communication with Casper; see my response to Matthias 
+earlier in this thread.
+
+Brendan
+
+<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">shetye at bombay.retortsoft.com</A> wrote:
+
+&gt;<i>I think this issue is similar to the one reported by Casper
+</I>&gt;<i>Gripenberg. Could you try this patch and report if it works for you?
+</I>&gt;<i>
+</I>&gt;<i>=========================================================================
+</I>&gt;<i>Index: fetchmail/imap.c
+</I>&gt;<i>===================================================================
+</I>&gt;<i>--- fetchmail/imap.c    (revision 4696)
+</I>&gt;<i>+++ fetchmail/imap.c    (working copy)
+</I>&gt;<i>@@ -633,11 +633,12 @@
+</I>&gt;<i>    if (ok != 0 || stage != STAGE_IDLE)
+</I>&gt;<i>        return(ok);
+</I>&gt;<i> 
+</I>&gt;<i>-   /* wait (briefly) for an unsolicited status update */
+</I>&gt;<i>-   ok = imap_ok(sock, NULL);
+</I>&gt;<i>-   /* again, this is new mail or an error */
+</I>&gt;<i>-   if (ok != PS_IDLETIMEOUT)
+</I>&gt;<i>-       return(ok);
+</I>&gt;<i>+   /* we used to wait for an unsolicited status update here with
+</I>&gt;<i>+    * imap_ok(). However, since no command has actually been
+</I>&gt;<i>+    * sent, there is no &quot;tag&quot; which can be used for comparison.
+</I>&gt;<i>+    * Just sleep instead */
+</I>&gt;<i>+   set_timeout(0);
+</I>&gt;<i>+   sleep(mytimeout);
+</I>&gt;<i>     }
+</I>&gt;<i> 
+</I>&gt;<i>     /* restore normal timeout value */
+</I>&gt;<i>=========================================================================
+</I>&gt;<i>
+</I>&gt;<i>  
+</I>&gt;<i>
+</I>
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000284.html">[fetchmail-users] Re: Bug in imap_idle() with mail servers not supporting &quot;idle&quot;
+</A></li>
+	<LI>Next message: <A HREF="000285.html">[fetchmail-users] After reading the FAQ, a question about lost/mangled attachments
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#292">[ date ]</a>
+              <a href="thread.html#292">[ thread ]</a>
+              <a href="subject.html#292">[ subject ]</a>
+              <a href="author.html#292">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,168 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] [PATCH 2] Upgradation to TLS (WAS: Re: I'm getting a response &quot;NO you are not allowed to act as a proxy server&quot; from server at ISP)
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2010-November/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20%5BPATCH%202%5D%20Upgradation%20to%20TLS%20%28WAS%3A%20Re%3A%20I%27m%0A%20getting%20a%20response%20%22NO%20you%20are%20not%20allowed%20to%20act%20as%20a%20proxy%20server%22%20from%0A%20server%20at%20ISP%29&In-Reply-To=%3C20101111062254.GA3794%40session.bombay.retortsoft.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002541.html">
+   <LINK REL="Next"  HREF="002560.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] [PATCH 2] Upgradation to TLS (WAS: Re: I'm getting a response &quot;NO you are not allowed to act as a proxy server&quot; from server at ISP)</H1>
+    <B>Sunil Shetye</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20%5BPATCH%202%5D%20Upgradation%20to%20TLS%20%28WAS%3A%20Re%3A%20I%27m%0A%20getting%20a%20response%20%22NO%20you%20are%20not%20allowed%20to%20act%20as%20a%20proxy%20server%22%20from%0A%20server%20at%20ISP%29&In-Reply-To=%3C20101111062254.GA3794%40session.bombay.retortsoft.com%3E"
+       TITLE="[fetchmail-users] [PATCH 2] Upgradation to TLS (WAS: Re: I'm getting a response &quot;NO you are not allowed to act as a proxy server&quot; from server at ISP)">shetye at bombay.retortsoft.com
+       </A><BR>
+    <I>Thu Nov 11 07:22:54 CET 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002541.html">[fetchmail-users] [PATCH] Re: I'm getting a response &quot;NO you are not allowed to act as a proxy server&quot; from server at ISP
+</A></li>
+        <LI>Next message: <A HREF="002560.html">[fetchmail-users] [PATCH 2] Upgradation to TLS (WAS: Re: I'm getting a response &quot;NO you are not allowed to act as a proxy server&quot; from server at ISP)
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2533">[ date ]</a>
+              <a href="thread.html#2533">[ thread ]</a>
+              <a href="subject.html#2533">[ subject ]</a>
+              <a href="author.html#2533">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Matthias,
+
+Quoting from Matthias Andree's mail on Wed, Nov 10, 2010:
+&gt;<i> &gt; Subject: [PATCH] Distinguish between server not advertising TLS capability and server failing during upgradation to TLS.
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; Send a NOOP only after a failed STARTTLS in IMAP.
+</I>&gt;<i> 
+</I>&gt;<i> Thanks a bunch. I've read it, test compiled it, then applied and pushed it.  I
+</I>&gt;<i> haven't fully tested all cases yet.
+</I>
+Thanks for that.
+
+I was also wondering if fetchmail should upgrade to TLS when it is
+mandatory even if TLS support is not advertised. In this
+configuration:
+
+poll mailserver
+    protocol imap
+    no ssl
+    sslproto &quot;tls1&quot;
+
+if the server CAPABILITY does not include STARTTLS, fetchmail
+currently directly gives a socket error without trying to upgrade to
+TLS. Should fetchmail send STARTTLS anyway if must_tls() is TRUE?
+
+Here is a patch for that. Please check.
+
+&gt;<i>From e3da116ee567096501189179fdb7990658fdb889 Mon Sep 17 00:00:00 2001
+</I>From: Sunil Shetye &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">shetye at bombay.retortsoft.com</A>&gt;
+Date: Thu, 11 Nov 2010 11:49:21 +0530
+Subject: [PATCH] Do STARTTLS/STLS negotiation in IMAP/POP3 if it is mandatory ignoring server capabilities
+
+---
+ NEWS   |    2 ++
+ imap.c |    7 ++-----
+ pop3.c |    7 ++-----
+ 3 files changed, 6 insertions(+), 10 deletions(-)
+
+diff --git a/NEWS b/NEWS
+index 8c93aa9..634b9d2 100644
+--- a/NEWS
++++ b/NEWS
+@@ -76,6 +76,8 @@ fetchmail-6.3.19 (not yet released):
+   Workaround for 6.3.18: build in a separate directory, i. e:
+   mkdir build &amp;&amp; cd build &amp;&amp; ../configure --options-go-here
+ * Send a NOOP only after a failed STARTTLS in IMAP. (Sunil Shetye)
++* Do STARTTLS/STLS negotiation in IMAP/POP3 if it is mandatory even if the
++  server capabilities do not show support for upgradation to TLS. (Sunil Shetye)
+ 
+ # DOCUMENTATION:
+ * The manual page now links to IANA for GSSAPI service names.
+diff --git a/imap.c b/imap.c
+index cbaa913..11b206c 100644
+--- a/imap.c
++++ b/imap.c
+@@ -430,7 +430,8 @@ static int imap_getauth(int sock, struct query *ctl, char *greeting)
+ 	if (ctl-&gt;sslcommonname)
+ 	    commonname = ctl-&gt;sslcommonname;
+ 
+-	if (strstr(capabilities, &quot;STARTTLS&quot;))
++	if (strstr(capabilities, &quot;STARTTLS&quot;)
++		|| must_tls(ctl)) /* if TLS is mandatory, ignore capabilities */
+ 	{
+ 	    /* Use &quot;tls1&quot; rather than ctl-&gt;sslproto because tls1 is the only
+ 	     * protocol that will work with STARTTLS.  Don't need to worry
+@@ -478,10 +479,6 @@ static int imap_getauth(int sock, struct query *ctl, char *greeting)
+ 		}
+ 		/* Usable.  Proceed with authenticating insecurely. */
+ 	    }
+-	} else if (must_tls(ctl)) {
+-	    /* Config required TLS but STARTTLS is not advertised. */
+-	    report(stderr, GT_(&quot;%s: cannot upgrade to TLS: no STARTTLS in CAPABILITY response.\n&quot;), commonname);
+-	    return PS_SOCKET;
+ 	}
+     }
+ #endif /* SSL_ENABLE */
+diff --git a/pop3.c b/pop3.c
+index 21251e5..3e62d86 100644
+--- a/pop3.c
++++ b/pop3.c
+@@ -440,7 +440,8 @@ static int pop3_getauth(int sock, struct query *ctl, char *greeting)
+ 	    if (ctl-&gt;sslcommonname)
+ 		commonname = ctl-&gt;sslcommonname;
+ 
+-	   if (has_stls)
++	   if (has_stls
++		   || must_tls(ctl)) /* if TLS is mandatory, ignore capabilities */
+ 	   {
+ 	       /* Use &quot;tls1&quot; rather than ctl-&gt;sslproto because tls1 is the only
+ 		* protocol that will work with STARTTLS.  Don't need to worry
+@@ -490,10 +491,6 @@ static int pop3_getauth(int sock, struct query *ctl, char *greeting)
+ 		       report(stdout, GT_(&quot;%s: opportunistic upgrade to TLS failed, trying to continue.\n&quot;), commonname);
+ 		   }
+ 	       }
+-	   } else if (must_tls(ctl)) {
+-	       /* Config required TLS but STLS is not advertised. */
+-	       report(stderr, GT_(&quot;%s: cannot upgrade to TLS: no STLS in CAPA response.\n&quot;), commonname);
+-	       return PS_SOCKET;
+ 	   }
+ 	} /* maybe_tls() */
+ #endif /* SSL_ENABLE */
+-- 
+1.7.2.3
+
+
+-- 
+Sunil Shetye.
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002541.html">[fetchmail-users] [PATCH] Re: I'm getting a response &quot;NO you are not allowed to act as a proxy server&quot; from server at ISP
+</A></li>
+	<LI>Next message: <A HREF="002560.html">[fetchmail-users] [PATCH 2] Upgradation to TLS (WAS: Re: I'm getting a response &quot;NO you are not allowed to act as a proxy server&quot; from server at ISP)
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2533">[ date ]</a>
+              <a href="thread.html#2533">[ thread ]</a>
+              <a href="subject.html#2533">[ subject ]</a>
+              <a href="author.html#2533">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,100 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Running fetchmail as root for all users
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2006-August/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Running%20fetchmail%20as%20root%20for%20all%20users&In-Reply-To=%3CE3bYWB.A.nI.Y1iyEB%40t1950ct.private%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000552.html">
+   <LINK REL="Next"  HREF="000558.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Running fetchmail as root for all users</H1>
+    <B>Michelle Konzack</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Running%20fetchmail%20as%20root%20for%20all%20users&In-Reply-To=%3CE3bYWB.A.nI.Y1iyEB%40t1950ct.private%3E"
+       TITLE="[fetchmail-users] Running fetchmail as root for all users">linux4michelle at freenet.de
+       </A><BR>
+    <I>Fri Aug 11 18:30:17 CEST 2006</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000552.html">[fetchmail-users] fetchmail 6.3.5-beta1 snapshot
+</A></li>
+        <LI>Next message: <A HREF="000558.html">[fetchmail-users] Running fetchmail as root for all users
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#553">[ date ]</a>
+              <a href="thread.html#553">[ thread ]</a>
+              <a href="subject.html#553">[ subject ]</a>
+              <a href="author.html#553">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Am 2006-07-06 08:20:49, schrieb Rob MacGregor:
+&gt;<i> On 7/6/06, Stephen Allen &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">fetchmail at rowyerboat.com</A>&gt; wrote:
+</I>&gt;<i> &gt;The subject may be a little misleading... in my scenario we have 10 ISP
+</I>&gt;<i> &gt;POP3 accounts that map to 8 local users.  The way I set it up a few
+</I>&gt;<i> &gt;years ago was fetchmail running as root and collecting mail for all POP3
+</I>&gt;<i> &gt;accounts.  I've since discovered that fetchmail is normally run on a
+</I>&gt;<i> &gt;per-user basis.
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt;Given that the users never log in to a shell, what is the best
+</I>&gt;<i> &gt;configuration in my case?  Are there pros/cons of doing it either way?
+</I>&gt;<i> 
+</I>&gt;<i> There is no need, unless you're passing email directly to a non-SUID
+</I>&gt;<i> MDA, to run fetchmail as root.  Indeed, future versions of fetchmail
+</I>&gt;<i> will refuse to run as root.  I haven't run fetchmail as root since
+</I>&gt;<i> before 6.0 was released and have not had any problems.
+</I>&gt;<i> 
+</I>&gt;<i> Simply run it as a standard user (say &quot;fetchmail&quot;) and have it pass
+</I>&gt;<i> email to your MTA.
+</I>
+And if there is no &quot;real&quot; MTA (we use ssmtp) ?  I have tried the setup
+as user &quot;fetchmail&quot; and I can not deliver to the other around 180 users.
+
+Sorry for the late question, but I was some month not availlable and
+came back from Palestine for 3 weeks (after 8 days prison illegal).
+
+Greetings
+    Michelle Konzack
+    Systemadministrator
+    Tamay Dogan Network
+    Debian GNU/Linux Consultant
+
+
+-- 
+Linux-User #280138 with the Linux Counter, <A HREF="http://counter.li.org/">http://counter.li.org/</A>
+##################### Debian GNU/Linux Consultant #####################
+Michelle Konzack   Apt. 917                  ICQ #328449886
+                   50, rue de Soultz         MSM LinuxMichi
+0033/6/61925193    67100 Strasbourg/France   IRC #Debian (irc.icq.com)
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000552.html">[fetchmail-users] fetchmail 6.3.5-beta1 snapshot
+</A></li>
+	<LI>Next message: <A HREF="000558.html">[fetchmail-users] Running fetchmail as root for all users
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#553">[ date ]</a>
+              <a href="thread.html#553">[ thread ]</a>
+              <a href="subject.html#553">[ subject ]</a>
+              <a href="author.html#553">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

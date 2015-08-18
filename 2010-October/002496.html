@@ -1,0 +1,248 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] multidrop RC configuration help
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2010-October/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20multidrop%20RC%20configuration%20help&In-Reply-To=%3C4CB38C7C.5030202%40JeffMcKinzie.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002495.html">
+   <LINK REL="Next"  HREF="002497.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] multidrop RC configuration help</H1>
+    <B>Jeffrey Shawn McKinzie</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20multidrop%20RC%20configuration%20help&In-Reply-To=%3C4CB38C7C.5030202%40JeffMcKinzie.com%3E"
+       TITLE="[fetchmail-users] multidrop RC configuration help">Jeff at JeffMcKinzie.com
+       </A><BR>
+    <I>Tue Oct 12 00:15:24 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002495.html">[fetchmail-users] multidrop RC configuration help
+</A></li>
+        <LI>Next message: <A HREF="002497.html">[fetchmail-users] multidrop RC configuration help
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2496">[ date ]</a>
+              <a href="thread.html#2496">[ thread ]</a>
+              <a href="subject.html#2496">[ subject ]</a>
+              <a href="author.html#2496">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>  I've made two changes to the RC that helped but still no luck.
+
+1&gt; changed the aka to secureserver.net (domain of the email server)
+2&gt; removed domain from left side of mapping (jeff=  not 
+<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">jeff at mydogbosco.com</A>)
+
+sent three emails, one to each mapping.
+ran fetchmail -vvv , looks like it sees the like and parses but still 
+sends everything to <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">postmaster at local</A>
+
+_RC:_
+
+poll &quot;pop.secureserver.net&quot;  protocol POP3 interval 1
+    envelope 1 Received
+    no dns aka secureserver.net
+    user &quot;**********@mydogbosco.com&quot; password &quot;**********&quot;
+    to jeff=<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">jmckinzie at jeffmckinzie.com</A>
+    jklotz=<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">jeff at jeffbehounek.com</A>
+    * is jeffklotz.com here  fetchall
+
+_Output of fetchmail -vvv:_
+
+fetchmail: 6.3.8 querying pop.secureserver.net (protocol POP3) at Mon 11 
+Oct 2010 02:52:21 PM PDT: poll started
+Trying to connect to 72.167.82.11/110...connected.
+fetchmail: POP3&lt; +OK &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">18923.1286834699 at p3pop01-02.prod.phx3.gdg</A>&gt;
+fetchmail: POP3&gt; CAPA
+fetchmail: POP3&lt; -ERR authorization first
+fetchmail: authorization first
+fetchmail: Repoll immediately on <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">jeff at mydogbosco.com</A>@pop.secureserver.net
+Trying to connect to 72.167.82.11/110...connected.
+fetchmail: POP3&lt; +OK &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">26011.1286834699 at p3pop01-13.prod.phx3.gdg</A>&gt;
+fetchmail: POP3&gt; USER <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">jeff at mydogbosco.com</A>
+fetchmail: POP3&lt; +OK
+fetchmail: POP3&gt; PASS *
+fetchmail: POP3&lt; +OK
+fetchmail: selecting or re-polling default folder
+fetchmail: POP3&gt; STAT
+fetchmail: POP3&lt; +OK 3 36839
+3 messages for <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">jeff at mydogbosco.com</A> at pop.secureserver.net (36839 octets).
+fetchmail: POP3&gt; LIST 1
+fetchmail: POP3&lt; +OK 1 12277
+fetchmail: POP3&gt; RETR 1
+fetchmail: POP3&lt; +OK 12277 octets
+reading message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">jeff at mydogbosco.com</A>@pop.secureserver.net:1 of 3 (12277 
+octets)
+fetchmail: analyzing Received line:
+Received: from unknown (HELO p3pismtp01-031.prod.phx3.secureserver.net) 
+([10.6.12.41])
+           (envelope-sender &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">Jeff at JeffMcKinzie.com</A>&gt;)
+           by p3plsmtp09-04.prod.phx3.secureserver.net (qmail-1.03) with 
+SMTP
+           for &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">jeff at mydogbosco.com</A>&gt;; 11 Oct 2010 22:04:15 -0000
+*fetchmail: line accepted, p3plsmtp09-04.prod.phx3.secureserver.net is 
+an alias of the mailserver
+fetchmail: found Received address `<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">jeff at mydogbosco.com</A>'
+*About to rewrite From: Jeffrey Shawn McKinzie &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">Jeff at JeffMcKinzie.com</A>&gt;
+Rewritten version is From: Jeffrey Shawn McKinzie &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">Jeff at JeffMcKinzie.com</A>&gt;
+
+About to rewrite Reply-To: <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">Jeff at JeffMcKinzie.com</A>
+Rewritten version is Reply-To: <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">Jeff at JeffMcKinzie.com</A>
+
+About to rewrite To: <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">jeff at mydogbosco.com</A>
+Rewritten version is To: <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">jeff at mydogbosco.com</A>
+
+*fetchmail: no local matches, forwarding to postmaster
+*Trying to connect to 127.0.0.1/25...connected.
+fetchmail: SMTP&lt; 220 mail.jeffmckinzie.com ESMTP Postfix
+fetchmail: SMTP&gt; EHLO ip-208-109-186-25.ip.secureserver.net
+fetchmail: SMTP&lt; 250-mail.jeffmckinzie.com
+fetchmail: SMTP&lt; 250-PIPELINING
+fetchmail: SMTP&lt; 250-SIZE 41943040
+fetchmail: SMTP&lt; 250-VRFY
+fetchmail: SMTP&lt; 250-ETRN
+fetchmail: SMTP&lt; 250-STARTTLS
+fetchmail: SMTP&lt; 250-AUTH LOGIN PLAIN
+fetchmail: SMTP&lt; 250-AUTH=LOGIN PLAIN
+fetchmail: SMTP&lt; 250-ENHANCEDSTATUSCODES
+fetchmail: SMTP&lt; 250-8BITMIME
+fetchmail: SMTP&lt; 250 DSN
+fetchmail: forwarding to localhost
+fetchmail: SMTP&gt; MAIL FROM:&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">Jeff at JeffMcKinzie.com</A>&gt; SIZE=12277
+fetchmail: SMTP&lt; 250 2.1.0 Ok
+fetchmail: SMTP&gt; RCPT TO:&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">postmaster at localhost</A>&gt;
+fetchmail: SMTP&lt; 250 2.1.5 Ok
+fetchmail: SMTP&gt; DATA
+fetchmail: SMTP&lt; 354 End data with &lt;CR&gt;&lt;LF&gt;.&lt;CR&gt;&lt;LF&gt;
+#************************************.*****************************.****************************.****************.*************.**************.**************.**************.**************.**************.*************fetchmail: 
+message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">jeff at mydogbosco.com</A>@pop.secureserver.net:1 was not the expected 
+length (12507 actual != 12277 expected)
+fetchmail: SMTP&gt;. (EOM)
+fetchmail: SMTP&lt; 250 2.0.0 Ok: queued as 090BA4410A
+  flushed
+fetchmail: POP3&gt; DELE 1
+fetchmail: POP3&lt; +OK
+fetchmail: POP3&gt; LIST 2
+fetchmail: POP3&lt; +OK 2 12280
+fetchmail: POP3&gt; RETR 2
+fetchmail: POP3&lt; +OK 12280 octets
+reading message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">jeff at mydogbosco.com</A>@pop.secureserver.net:2 of 3 (12280 
+octets)
+fetchmail: analyzing Received line:
+Received: from unknown (HELO p3pismtp01-028.prod.phx3.secureserver.net) 
+([10.6.12.38])
+           (envelope-sender &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">Jeff at JeffMcKinzie.com</A>&gt;)
+           by p3plsmtp09-05.prod.phx3.secureserver.net (qmail-1.03) with 
+SMTP
+           for &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">jklotz at mydogbosco.com</A>&gt;; 11 Oct 2010 22:04:33 -0000
+*fetchmail: line accepted, p3plsmtp09-05.prod.phx3.secureserver.net is 
+an alias of the mailserver
+fetchmail: found Received address `<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">jklotz at mydogbosco.com</A>'
+*About to rewrite From: Jeffrey Shawn McKinzie &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">Jeff at JeffMcKinzie.com</A>&gt;
+Rewritten version is From: Jeffrey Shawn McKinzie &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">Jeff at JeffMcKinzie.com</A>&gt;
+
+About to rewrite Reply-To: <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">Jeff at JeffMcKinzie.com</A>
+Rewritten version is Reply-To: <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">Jeff at JeffMcKinzie.com</A>
+
+About to rewrite To: <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">jklotz at mydogbosco.com</A>
+Rewritten version is To: <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">jklotz at mydogbosco.com</A>
+
+*fetchmail: no local matches, forwarding to postmaster
+*fetchmail: forwarding to localhost
+fetchmail: SMTP&gt; MAIL FROM:&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">Jeff at JeffMcKinzie.com</A>&gt; SIZE=12280
+fetchmail: SMTP&lt; 250 2.1.0 Ok
+fetchmail: SMTP&gt; RCPT TO:&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">postmaster at localhost</A>&gt;
+fetchmail: SMTP&lt; 250 2.1.5 Ok
+fetchmail: SMTP&gt; DATA
+fetchmail: SMTP&lt; 354 End data with &lt;CR&gt;&lt;LF&gt;.&lt;CR&gt;&lt;LF&gt;
+#************************************.*****************************.****************************.****************.*************.**************.**************.**************.**************.**************.*************fetchmail: 
+message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">jeff at mydogbosco.com</A>@pop.secureserver.net:2 was not the expected 
+length (12510 actual != 12280 expected)
+fetchmail: SMTP&gt;. (EOM)
+fetchmail: SMTP&lt; 250 2.0.0 Ok: queued as 19E924412A
+  flushed
+fetchmail: POP3&gt; DELE 2
+fetchmail: POP3&lt; +OK
+fetchmail: POP3&gt; LIST 3
+fetchmail: POP3&lt; +OK 3 12282
+fetchmail: POP3&gt; RETR 3
+fetchmail: POP3&lt; +OK 12282 octets
+reading message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">jeff at mydogbosco.com</A>@pop.secureserver.net:3 of 3 (12282 
+octets)
+fetchmail: analyzing Received line:
+Received: from unknown (HELO p3pismtp01-014.prod.phx3.secureserver.net) 
+([10.6.12.14])
+           (envelope-sender &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">Jeff at JeffMcKinzie.com</A>&gt;)
+           by p3plsmtp09-03.prod.phx3.secureserver.net (qmail-1.03) with 
+SMTP
+           for &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">user1 at mydogbosco.com</A>&gt;; 11 Oct 2010 22:04:51 -0000
+*fetchmail: line accepted, p3plsmtp09-03.prod.phx3.secureserver.net is 
+an alias of the mailserver
+fetchmail: found Received address `<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">user1 at mydogbosco.com</A>'
+*About to rewrite From: Jeffrey Shawn McKinzie &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">Jeff at JeffMcKinzie.com</A>&gt;
+Rewritten version is From: Jeffrey Shawn McKinzie &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">Jeff at JeffMcKinzie.com</A>&gt;
+
+About to rewrite Reply-To: <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">Jeff at JeffMcKinzie.com</A>
+Rewritten version is Reply-To: <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">Jeff at JeffMcKinzie.com</A>
+
+About to rewrite To: <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">user1 at mydogbosco.com</A>
+Rewritten version is To: <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">user1 at mydogbosco.com</A>
+
+*fetchmail: no local matches, forwarding to postmaster
+*fetchmail: forwarding to localhost
+fetchmail: SMTP&gt; MAIL FROM:&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">Jeff at JeffMcKinzie.com</A>&gt; SIZE=12282
+fetchmail: SMTP&lt; 250 2.1.0 Ok
+fetchmail: SMTP&gt; RCPT TO:&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">postmaster at localhost</A>&gt;
+fetchmail: SMTP&lt; 250 2.1.5 Ok
+fetchmail: SMTP&gt; DATA
+fetchmail: SMTP&lt; 354 End data with &lt;CR&gt;&lt;LF&gt;.&lt;CR&gt;&lt;LF&gt;
+#************************************.*****************************.****************************.****************.*************.**************.**************.**************.**************.**************.*************fetchmail: 
+message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">jeff at mydogbosco.com</A>@pop.secureserver.net:3 was not the expected 
+length (12512 actual != 12282 expected)
+fetchmail: SMTP&gt;. (EOM)
+fetchmail: SMTP&lt; 250 2.0.0 Ok: queued as 2E3BC4412C
+  flushed
+fetchmail: POP3&gt; DELE 3
+fetchmail: POP3&lt; +OK
+fetchmail: POP3&gt; QUIT
+fetchmail: POP3&lt; +OK
+fetchmail: SMTP&gt; QUIT
+fetchmail: SMTP&lt; 221 2.0.0 Bye
+fetchmail: 6.3.8 querying pop.secureserver.net (protocol POP3) at Mon 11 
+Oct 2010 02:52:25 PM PDT: poll completed
+fetchmail: not swapping UID lists, no UIDs seen this query
+fetchmail: Deleting fetchids file.
+fetchmail: normal termination, status 0
+fetchmail: Deleting fetchids file.
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002495.html">[fetchmail-users] multidrop RC configuration help
+</A></li>
+	<LI>Next message: <A HREF="002497.html">[fetchmail-users] multidrop RC configuration help
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2496">[ date ]</a>
+              <a href="thread.html#2496">[ thread ]</a>
+              <a href="subject.html#2496">[ subject ]</a>
+              <a href="author.html#2496">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

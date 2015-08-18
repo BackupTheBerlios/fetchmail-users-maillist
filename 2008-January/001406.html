@@ -1,0 +1,80 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] RETR vs TOP
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2008-January/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20RETR%20vs%20TOP&In-Reply-To=%3C47874462.6020502%40gmx.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001408.html">
+   <LINK REL="Next"  HREF="001407.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] RETR vs TOP</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20RETR%20vs%20TOP&In-Reply-To=%3C47874462.6020502%40gmx.de%3E"
+       TITLE="[fetchmail-users] RETR vs TOP">matthias.andree at gmx.de
+       </A><BR>
+    <I>Fri Jan 11 11:26:42 CET 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001408.html">[fetchmail-users] RETR vs TOP
+</A></li>
+        <LI>Next message: <A HREF="001407.html">[fetchmail-users] RETR vs TOP
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1406">[ date ]</a>
+              <a href="thread.html#1406">[ thread ]</a>
+              <a href="subject.html#1406">[ subject ]</a>
+              <a href="author.html#1406">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>drbob schrieb:
+
+&gt;<i> Is there any workaround for this that would allow me to leave messages
+</I>&gt;<i> on the server without having them bounce after 30 days? Some way to
+</I>&gt;<i> automatically delete messages older than 29 days would work.
+</I>
+Recompile with the attached patch (WARNING: untested and undocumented) and 
+set FETCHMAIL_POP3_FORCE_RETR=1 in the environment when running fetchmail, 
+that should force fetchmail to use RETR instead of TOP - but it applies to 
+all POP3 servers you're polling.
+
+-- 
+Matthias Andree
+
+Life is what happens to you while you're busy making other plans.
+   						-- John Lennon, 1980
+-------------- next part --------------
+An embedded and charset-unspecified text was scrubbed...
+Name: hack-allow-force-RETR.patch
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/fetchmail-users/attachments/20080111/2a072a99/attachment.ksh">https://lists.berlios.de/pipermail/fetchmail-users/attachments/20080111/2a072a99/attachment.ksh</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001408.html">[fetchmail-users] RETR vs TOP
+</A></li>
+	<LI>Next message: <A HREF="001407.html">[fetchmail-users] RETR vs TOP
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1406">[ date ]</a>
+              <a href="thread.html#1406">[ thread ]</a>
+              <a href="subject.html#1406">[ subject ]</a>
+              <a href="author.html#1406">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

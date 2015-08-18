@@ -1,0 +1,235 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] only one message gets fetched using IMAP idle
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2006-May/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20only%20one%20message%20gets%20fetched%20using%20IMAP%20idle&In-Reply-To=%3C4461C79B.8080003%40gmx.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000393.html">
+   <LINK REL="Next"  HREF="000403.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] only one message gets fetched using IMAP idle</H1>
+    <B>Lars Tewes</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20only%20one%20message%20gets%20fetched%20using%20IMAP%20idle&In-Reply-To=%3C4461C79B.8080003%40gmx.de%3E"
+       TITLE="[fetchmail-users] only one message gets fetched using IMAP idle">lsr at gmx.de
+       </A><BR>
+    <I>Wed May 10 12:59:39 CEST 2006</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000393.html">[fetchmail-users] Fetchamil is very slow
+</A></li>
+        <LI>Next message: <A HREF="000403.html">[fetchmail-users] only one message gets fetched using IMAP idle
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#399">[ date ]</a>
+              <a href="thread.html#399">[ thread ]</a>
+              <a href="subject.html#399">[ subject ]</a>
+              <a href="author.html#399">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hello!
+
+Using fetchmail successfully with polling by interval for several months I 
+just tried to use the IMAP idle-extension to get my mails delivered immediately.
+
+Unfortunately only one message gets fetched - after that, fetchmail recognizes 
+the arrival of a new one, but instead of downloading the message, it just 
+triggers another idle.
+
+---------------------------------------------------------------------
+
+<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">lsr at lsr</A>:# fetchmail -v -v
+fetchmail: 6.3.4 querying imap.strato.de (protocol IMAP) at Wed 10 May 2006 
+12:05:46 PM CEST: poll started
+fetchmail: IMAP&lt; * OK IMAP server ready
+fetchmail: IMAP&gt; A0001 CAPABILITY
+fetchmail: IMAP&lt; * CAPABILITY IDLE IMAP4rev1 AUTH=CRAM-MD5 SORT QUOTA NAMESPACE
+fetchmail: IMAP&lt; A0001 OK CAPABILITY completed
+fetchmail: Protocol identified as IMAP4 rev 1
+fetchmail: will idle after poll
+fetchmail: IMAP&gt; A0002 AUTHENTICATE CRAM-MD5
+fetchmail: IMAP&lt; + PDQ3NzgwMi4yMTY1Ni4xMTQ3MjU1NTMzQHBvc3Qud2VibWFpbGVyLmRlPg==
+fetchmail: decoded as &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">477802.21656.1147255533 at post.webmailer.de</A>&gt;
+fetchmail: IMAP&gt; 
+bHNyQHZpZXctc291cmNlLmRlIGQ4Nzg1YzVjMzAxZjI4NTBjZTg4ZDA0ZWMxMmU2Y2E5
+fetchmail: IMAP&lt; A0002 OK LOGIN completed
+fetchmail: selecting or re-polling default folder
+fetchmail: IMAP&gt; A0003 SELECT &quot;INBOX&quot;
+fetchmail: IMAP&lt; * 0 EXISTS
+fetchmail: IMAP&lt; * 0 RECENT
+fetchmail: IMAP&lt; * FLAGS (\Answered \Flagged \Deleted \Seen \Draft \Forwarded)
+fetchmail: IMAP&lt; * OK [PERMANENTFLAGS (\Answered \Flagged \Deleted \Seen 
+\Draft \Forwarded)] Permanent flags
+fetchmail: IMAP&lt; * OK [UIDVALIDITY 1116049368] UIDVALIDITY value
+fetchmail: IMAP&lt; * OK [UIDNEXT 3216] may be the next UID value
+fetchmail: IMAP&lt; A0003 OK [READ-WRITE] SELECT completed
+fetchmail: 0 messages waiting after first poll
+fetchmail: IMAP&gt; A0004 IDLE
+fetchmail: IMAP&lt; + will notify you of all changes
+
+
+ &gt; so far, so good: mailbox is empty.
+ &gt; sending first mail to this account now!
+
+
+fetchmail: IMAP&lt; * 1 EXISTS
+fetchmail: IMAP&gt; DONE
+fetchmail: IMAP&lt; A0004 OK IDLE completed
+fetchmail: 1 message waiting after re-poll
+fetchmail: IMAP&gt; A0005 SEARCH UNSEEN NOT DELETED
+fetchmail: IMAP&lt; * SEARCH 1
+fetchmail: 1 is unseen
+fetchmail: IMAP&lt; A0005 OK SEARCH completed
+fetchmail: 1 is first unseen
+fetchmail: 1 message for <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">lsr at view-source.de</A> at imap.strato.de.
+fetchmail: IMAP&gt; A0006 FETCH 1 RFC822.SIZE
+fetchmail: IMAP&lt; * 1 FETCH (RFC822.SIZE 906)
+fetchmail: IMAP&lt; A0006 OK Fetch complete
+fetchmail: IMAP&gt; A0007 FETCH 1 RFC822.HEADER
+fetchmail: IMAP&lt; * 1 FETCH (RFC822.HEADER {898}
+fetchmail: reading message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">lsr at view-source.de</A>@imap.rzone.de:1 of 1 (898 header 
+octets)
+fetchmail: About to rewrite From: Lars Tewes &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">lsr at gmx.de</A>&gt;
+Rewritten version is From: Lars Tewes &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">lsr at gmx.de</A>&gt;
+
+fetchmail: About to rewrite To: Lars Tewes &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">lsr at view-source.de</A>&gt;
+Rewritten version is To: Lars Tewes &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">lsr at view-source.de</A>&gt;
+
+fetchmail: about to deliver with: /usr/bin/procmail -d 'lsr'
+fetchmail: IMAP&lt; )
+fetchmail: IMAP&lt; A0007 OK Fetch complete
+fetchmail: IMAP&gt; A0008 FETCH 1 BODY.PEEK[TEXT]
+fetchmail: IMAP&lt; * 1 FETCH (BODY[TEXT] {8}
+fetchmail:  (8 body octets) fetchmail: IMAP&lt; )
+fetchmail: IMAP&lt; A0008 OK Fetch complete
+fetchmail:  flushed
+fetchmail: IMAP&gt; A0009 STORE 1 +FLAGS (\Seen \Deleted)
+fetchmail: IMAP&lt; * 1 FETCH (FLAGS (\Deleted \Seen \Recent))
+fetchmail: IMAP&lt; A0009 OK STORE completed
+fetchmail: IMAP&gt; A0010 EXPUNGE
+fetchmail: IMAP&lt; * 1 EXPUNGE
+fetchmail: IMAP&lt; A0010 OK EXPUNGE completed
+fetchmail: selecting or re-polling default folder
+fetchmail: IMAP&gt; A0011 IDLE
+fetchmail: IMAP&lt; + will notify you of all changes
+
+
+ &gt; well done, fetchmail gets notified, stops &quot;imap idle&quot; and sends &quot;A0005 
+SEARCH UNSEEN NOT DELETED&quot;, then downloads the message and negotiates idle again
+ &gt; sending second mail to this account now...
+
+
+fetchmail: IMAP&lt; * 1 EXISTS
+fetchmail: IMAP&gt; DONE
+fetchmail: IMAP&lt; A0011 OK IDLE completed
+fetchmail: IMAP&gt; A0012 IDLE
+fetchmail: IMAP&lt; + will notify you of all changes
+
+
+ &gt; hmmm, idle is interuppted by fetchmail as before, but instead of polling 
+the new message, it just sends anonther &quot;idle&quot;.
+ &gt; sending third mail to this account now...
+
+fetchmail: IMAP&lt; * 2 EXISTS
+fetchmail: IMAP&gt; DONE
+fetchmail: IMAP&lt; A0012 OK IDLE completed
+fetchmail: IMAP&gt; A0013 IDLE
+fetchmail: IMAP&lt; + will notify you of all changes
+
+etc. etc.
+
+---------------------------------------------------------------------
+
+Who's to blame? My config, a stupid server or a bug in fetchmail?
+
+---------------------------------------------------------------------
+.fetchmailrc:
+
+poll imap.strato.de
+         protocol imap
+         username &quot;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">lsr at view-source.de</A>&quot;
+         password &quot;xxxxxxxx&quot;
+         mda &quot;/usr/bin/procmail -d %s&quot;
+         idle
+---------------------------------------------------------------------
+
+<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">lsr at lsr</A>:# fetchmail -V
+This is fetchmail release 6.3.4+RPA+NTLM+SDPS+SSL+NLS.
+
+Copyright (C) 2002, 2003 Eric S. Raymond
+Copyright (C) 2004 Matthias Andree, Eric S. Raymond, Rob F. Funk, Graham Wilson
+Copyright (C) 2005-2006 Matthias Andree, Sunil Shetye
+Fetchmail comes with ABSOLUTELY NO WARRANTY. This is free software, and you
+are welcome to redistribute it under certain conditions. For details,
+please see the file COPYING in the source or documentation directory.
+
+Fallback MDA: (none)
+Linux lsr 2.6.15.6 #4 PREEMPT Mon Apr 24 10:54:39 CEST 2006 i686 AMD 
+Athlon(tm) 64 Processor 3400+ AuthenticAMD GNU/Linux
+Taking options from command line and /home/lsr/.fetchmailrc
+Idfile is /home/lsr/.fetchids
+Fetchmail will show progress dots even in logfiles.
+Fetchmail will forward misaddressed multidrop messages to lsr.
+Options for retrieving from <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">lsr at view-source.de</A>@imap.strato.de:
+   True name of server is imap.strato.de.
+   Protocol is IMAP.
+   All available authentication methods will be tried.
+   Server nonresponse timeout is 300 seconds (default).
+   Default mailbox selected.
+   Only new messages will be retrieved (--all off).
+   Fetched messages will not be kept on the server (--keep off).
+   Old messages will not be flushed before message retrieval (--flush off).
+   Oversized messages will not be flushed before message retrieval 
+(--limitflush off).
+   Rewrite of server-local addresses is enabled (--norewrite off).
+   Carriage-return stripping is enabled (stripcr on).
+   Carriage-return forcing is disabled (forcecr off).
+   Interpretation of Content-Transfer-Encoding is enabled (pass8bits off).
+   MIME decoding is disabled (mimedecode off).
+   Idle after poll is enabled (idle on).
+   Nonempty Status lines will be kept (dropstatus off)
+   Delivered-To lines will be kept (dropdelivered off)
+   Fetch message size limit is 100 (--fetchsizelimit 100).
+   Do binary search of UIDs during 3 out of 4 polls (--fastuidl 4).
+   Messages will be delivered with &quot;/usr/bin/procmail -d %s&quot;.
+   Single-drop mode: 1 local name recognized.
+   No UIDs saved from this host.
+
+---------------------------------------------------------------------
+
+Regards
+Lars
+
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000393.html">[fetchmail-users] Fetchamil is very slow
+</A></li>
+	<LI>Next message: <A HREF="000403.html">[fetchmail-users] only one message gets fetched using IMAP idle
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#399">[ date ]</a>
+              <a href="thread.html#399">[ thread ]</a>
+              <a href="subject.html#399">[ subject ]</a>
+              <a href="author.html#399">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

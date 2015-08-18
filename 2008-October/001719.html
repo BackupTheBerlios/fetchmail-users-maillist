@@ -1,0 +1,113 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] losing mails because of &quot;incorrect	header	line found&quot;
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2008-October/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20losing%20mails%20because%20of%20%22incorrect%0A%09header%09line%20found%22&In-Reply-To=%3C20081001233442.GR19462%40tamay-dogan.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   
+   <LINK REL="Next"  HREF="001721.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] losing mails because of &quot;incorrect	header	line found&quot;</H1>
+    <B>Michelle Konzack</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20losing%20mails%20because%20of%20%22incorrect%0A%09header%09line%20found%22&In-Reply-To=%3C20081001233442.GR19462%40tamay-dogan.net%3E"
+       TITLE="[fetchmail-users] losing mails because of &quot;incorrect	header	line found&quot;">linux4michelle at tamay-dogan.net
+       </A><BR>
+    <I>Thu Oct  2 01:34:42 CEST 2008</I>
+    <P><UL>
+        
+        <LI>Next message: <A HREF="001721.html">[fetchmail-users] losing mails because of &quot;incorrect	header	line found&quot;
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1719">[ date ]</a>
+              <a href="thread.html#1719">[ thread ]</a>
+              <a href="subject.html#1719">[ subject ]</a>
+              <a href="author.html#1719">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Am 2008-09-25 09:47:32, schrieb Fr&#233;d&#233;ric Marchal:
+&gt;<i> It isn't nice to toss the mail as simple text in an encapsulating text e-mail 
+</I>&gt;<i> because that makes it unreadable if it is more than a simple bare ASCII text 
+</I>&gt;<i> (look at the source of your e-mails to see what I mean).
+</I>&gt;<i> 
+</I>&gt;<i> Therefore, that &quot;envelope&quot; implies to build a valid MIME encapsulating message 
+</I>&gt;<i> with all the headers and MIME stuff without conflicting with any (possibly 
+</I>&gt;<i> corrupted) MIME structure the original message may have. We must also add an 
+</I>&gt;<i> explanation message in the multipart encapsulating message for the benefit of 
+</I>&gt;<i> the final recipient. The explanation message along with the subject line of 
+</I>&gt;<i> the encapsulated message must be configurable to let the site administrator 
+</I>&gt;<i> adapt the message or its language.
+</I>&gt;<i> 
+</I>&gt;<i> It is not difficult. It just takes time :-)
+</I>
+How long?  5ms?
+
+Sorry, but I have to do such things daily, normaly in
+Perl or BaSH but coded in C it is 100 times faster.
+
+And of course, I have change setup the BOFH values in my courier-mta and
+it does not reyect the message but encapsulate it like this...  and  the
+message is delivered...
+
+So, after intensive checking, I have found options in postfix and  exim,
+which mean, ALL three major MTAs  can  handel  such  crap  messages  and
+fetchmail is currently doing right.
+
+If someone have problems configuring the  MTA,  he/she/it  should  RTFM,
+STFM and if no solution was found in a  resonable  time  asking  on  the
+appropriated mailinglist...
+
+Note:   I am on &lt;exim-user&gt; and &lt;courier-user&gt;.
+
+Thanks, Greetings and nice Day/Evening
+    Michelle Konzack
+    Systemadministrator
+    24V Electronic Engineer
+    Tamay Dogan Network
+    Debian GNU/Linux Consultant
+
+
+-- 
+Linux-User #280138 with the Linux Counter, <A HREF="http://counter.li.org/">http://counter.li.org/</A>
+##################### Debian GNU/Linux Consultant #####################
+Michelle Konzack   Apt. 917                  ICQ #328449886
++49/177/9351947    50, rue de Soultz         MSN LinuxMichi
++33/6/61925193     67100 Strasbourg/France   IRC #Debian (irc.icq.com)
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: signature.pgp
+Type: application/pgp-signature
+Size: 189 bytes
+Desc: Digital signature
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/fetchmail-users/attachments/20081002/b38f6b78/attachment.pgp">https://lists.berlios.de/pipermail/fetchmail-users/attachments/20081002/b38f6b78/attachment.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	
+	<LI>Next message: <A HREF="001721.html">[fetchmail-users] losing mails because of &quot;incorrect	header	line found&quot;
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1719">[ date ]</a>
+              <a href="thread.html#1719">[ thread ]</a>
+              <a href="subject.html#1719">[ subject ]</a>
+              <a href="author.html#1719">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

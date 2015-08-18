@@ -1,0 +1,121 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Making fetchmail work with original sendmail storage format
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2012-January/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Making%20fetchmail%20work%20with%20original%20sendmail%0A%20storage%20format&In-Reply-To=%3C20120115140124.GC2789%40alanmcc.localdomain%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003023.html">
+   <LINK REL="Next"  HREF="003025.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Making fetchmail work with original sendmail storage format</H1>
+    <B>Alan McConnell</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Making%20fetchmail%20work%20with%20original%20sendmail%0A%20storage%20format&In-Reply-To=%3C20120115140124.GC2789%40alanmcc.localdomain%3E"
+       TITLE="[fetchmail-users] Making fetchmail work with original sendmail storage format">alan at patriot.net
+       </A><BR>
+    <I>Sun Jan 15 15:01:24 CET 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003023.html">[fetchmail-users] Making fetchmail work with original sendmail storage format
+</A></li>
+        <LI>Next message: <A HREF="003025.html">[fetchmail-users] Making fetchmail work with original sendmail storage format
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3024">[ date ]</a>
+              <a href="thread.html#3024">[ thread ]</a>
+              <a href="subject.html#3024">[ subject ]</a>
+              <a href="author.html#3024">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Sat, Jan 14, 2012 at 10:14:08PM +0100, Matthias Andree wrote:
+&gt;<i>
+</I>&gt;<i> &gt; Now I am confronted with a system which stores the
+</I>&gt;<i> &gt; incoming mail in separate files in &lt;my home directory&gt;/mail/new/.
+</I>&gt;<i> &gt; I am assured by the owners of this system that this is a
+</I>&gt;<i> &gt; standard way to store incoming mail.
+</I>    	 I now have further information about this. The
+	 directory ~mail/ contains subdirectories cur/ and
+	 new/ .  New mail arrives in new/ but then after
+	 being inspected gets moved to cur/.  This is somehow
+	 reminiscent of qmail, which I ran for a while a
+	 few years ago, but abandoned for the &quot;usual reasons&quot;&lt;g&gt;.
+
+&gt;<i> &gt; So my question: how to make a .fetchmailrc that will
+</I>&gt;<i> &gt; pull the single files from ~/mail/new/?  the files
+</I>&gt;<i> &gt; have names like:
+</I>&gt;<i> &gt; 1326465349.H185481P14437.&lt;systemname&gt;.com,S\=1881  .
+</I>&gt;<i> &gt; Running 'file' on them tells me that they are &quot;ASCII mail
+</I>&gt;<i> &gt; text&quot;, and I can inspect their contents.
+</I>    	   I made a fairly standard .fetchmailrc which, now,
+	   seems to do the trick.  See below.
+
+&gt;<i> you must be thinking of a different tool than the fetchmail that is
+</I>&gt;<i> discussed on this list. 
+</I>  	  &lt;G&gt;
+
+&gt;<i> &quot;My&quot; fetchmail does not support reading from traditional mail
+</I>&gt;<i> spools, unless you add a separate software that exports the
+</I>&gt;<i> mail spool through IMAP, such as UW's imapd.  Fetchmail does
+</I>&gt;<i> not do that by itself, neither for /var/mail/USER or
+</I>&gt;<i> /var/spool/mail/USER, nor for $HOME/mail/new/.
+</I>  	Hard to say what &quot;your&quot; fetchmail does, or supports.
+	As just stated, &quot;my&quot; fetchmail, which is
+	6.3.18+GSS+NTLM+SDPS+SSL+NLS+KRB5(installed when I
+	moved from Debian etch to Debian squeeze) seems to
+	grab the mail from ~/mail/cur/, on the system I am
+	accessing.  I can give you the relevant 'poll' and
+	'user' lines from my .fetchmailrc if you are curious.
+
+&gt;<i> storage format is Maildir (i. e. there are cur and tmp directories under
+</I>&gt;<i> ~/mail), or traditional /var(/spool)/mail, I recommend installing
+</I>&gt;<i> Dovecot on the computer that needs to export the mail, and only then can
+</I>&gt;<i> you use fetchmail on the computer that needs to download the mail.
+</I>      It is possible that dovecot is installed on the upstream
+      computer I am fetching mail from.  There is, clearly, a 
+      lot about this situation that I don't understand!
+
+&gt;<i> I hope that helps.
+</I>      &lt;G&gt; It was certainly a suggestive post.  And I thank you for
+      taking the time to write it.  Are there others on this
+      discussion E-list?
+
+Herzliche Gr&#252;sse!
+
+Alan
+
+-- 
+Alan McConnell :  <A HREF="http://patriot.net/users/alan">http://patriot.net/users/alan</A>
+   When the ax came into the woods, the trees all said: &quot;Well, at least 
+   the handle is one of us.&quot; (Turkish folk warning, from 'The Nation')
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003023.html">[fetchmail-users] Making fetchmail work with original sendmail storage format
+</A></li>
+	<LI>Next message: <A HREF="003025.html">[fetchmail-users] Making fetchmail work with original sendmail storage format
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3024">[ date ]</a>
+              <a href="thread.html#3024">[ thread ]</a>
+              <a href="subject.html#3024">[ subject ]</a>
+              <a href="author.html#3024">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

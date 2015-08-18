@@ -1,0 +1,111 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] How to avoid these annoying reports
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2007-August/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20How%20to%20avoid%20these%20annoying%20reports&In-Reply-To=%3C200708192200.35816.cannewilson%40googlemail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001171.html">
+   <LINK REL="Next"  HREF="001176.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] How to avoid these annoying reports</H1>
+    <B>Anne Wilson</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20How%20to%20avoid%20these%20annoying%20reports&In-Reply-To=%3C200708192200.35816.cannewilson%40googlemail.com%3E"
+       TITLE="[fetchmail-users] How to avoid these annoying reports">cannewilson at googlemail.com
+       </A><BR>
+    <I>Sun Aug 19 23:00:35 CEST 2007</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001171.html">[fetchmail-users] How to avoid these annoying reports
+</A></li>
+        <LI>Next message: <A HREF="001176.html">[fetchmail-users] How to avoid these annoying reports
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1175">[ date ]</a>
+              <a href="thread.html#1175">[ thread ]</a>
+              <a href="subject.html#1175">[ subject ]</a>
+              <a href="author.html#1175">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Saturday 18 Aug 2007, Rob MacGregor wrote:
+&gt;<i> On 8/18/07, Anne Wilson &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">cannewilson at googlemail.com</A>&gt; wrote:
+</I>&gt;<i> &gt; On Friday 17 Aug 2007, Rob MacGregor wrote:
+</I>&gt;<i> &gt; &gt; On 8/17/07, Anne Wilson &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">cannewilson at googlemail.com</A>&gt; wrote:
+</I>&gt;<i> &gt; &gt; &gt; Fetchmail is collecting mail from several boxes on my new ISP's
+</I>&gt;<i> &gt; &gt; &gt; server. I have suppressed the messages about how many messages were
+</I>&gt;<i> &gt; &gt; &gt; collected, but I still get a set of
+</I>&gt;<i> &gt; &gt; &gt;
+</I>&gt;<i> &gt; &gt; &gt; fetchmail: Server certificate verification error: self signed
+</I>&gt;<i> &gt; &gt; &gt; certificate
+</I>&gt;<i> &gt; &gt; &gt;
+</I>&gt;<i> &gt; &gt; &gt; every few minutes.
+</I>&gt;<i> &gt; &gt;
+</I>&gt;<i> &gt; &gt; What version of fetchmail?  Are you running it from cron, or as a
+</I>&gt;<i> &gt; &gt; daemon?
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; 6.3.6.  It's run from cron.
+</I>&gt;<i>
+</I>&gt;<i> 1) Upgrade to 6.3.8
+</I>&gt;<i> 2) Use daemon mode
+</I>&gt;<i> 3) Download the certificate by running the following TWO lines:
+</I>&gt;<i>
+</I>&gt;<i> openssl s_client -connect remote.server.net:993 &lt;/dev/null | sed -ne
+</I>&gt;<i> '/-BEGIN CERTIFICATE-/,/-END CERTIFICATE-/p'
+</I>&gt;<i>
+</I>&gt;<i> &gt;/usr/local/openssl/remote.pem
+</I>&gt;<i>
+</I>&gt;<i> c_rehash
+</I>&gt;<i>
+</I>&gt;<i> Replace &quot;remote.pem&quot; and &quot;remote.server.net&quot; with relevant names.
+</I>
+Hi, Rob.  I've upgraded now, but I've not been able to run as a daemon.  I 
+seem to have a path problem.
+
+fetchmail --daemon 300
+fetchmail: cannot open /home/anne/~/fetchmail.log: No such file or directory
+fetchmail: fetchmail: Cannot detach into background. Aborting.
+
+This when commanding as user.  I did wonder if root needed to start it, but I 
+guess if that's so I'll have to feed it the user path somehow.
+
+Can you help, please?
+
+Anne
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: signature.asc
+Type: application/pgp-signature
+Size: 189 bytes
+Desc: This is a digitally signed message part.
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/fetchmail-users/attachments/20070819/ed23fbe4/attachment.pgp">https://lists.berlios.de/pipermail/fetchmail-users/attachments/20070819/ed23fbe4/attachment.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001171.html">[fetchmail-users] How to avoid these annoying reports
+</A></li>
+	<LI>Next message: <A HREF="001176.html">[fetchmail-users] How to avoid these annoying reports
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1175">[ date ]</a>
+              <a href="thread.html#1175">[ thread ]</a>
+              <a href="subject.html#1175">[ subject ]</a>
+              <a href="author.html#1175">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

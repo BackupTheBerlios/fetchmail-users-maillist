@@ -1,0 +1,303 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Fetchmail going out of date?
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2013-July/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Fetchmail%20going%20out%20of%20date%3F&In-Reply-To=%3C3ED2DC41-4064-4EA0-A0C8-36D7B4D0795F%40gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003429.html">
+   <LINK REL="Next"  HREF="003432.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Fetchmail going out of date?</H1>
+    <B>Yoann Gini</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Fetchmail%20going%20out%20of%20date%3F&In-Reply-To=%3C3ED2DC41-4064-4EA0-A0C8-36D7B4D0795F%40gmail.com%3E"
+       TITLE="[fetchmail-users] Fetchmail going out of date?">yoann.gini at gmail.com
+       </A><BR>
+    <I>Thu Jul 11 22:52:10 CEST 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003429.html">[fetchmail-users] Fetchmail going out of date?
+</A></li>
+        <LI>Next message: <A HREF="003432.html">[fetchmail-users] Fetchmail going out of date?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3431">[ date ]</a>
+              <a href="thread.html#3431">[ thread ]</a>
+              <a href="subject.html#3431">[ subject ]</a>
+              <a href="author.html#3431">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>
+Le 11 juil. 2013 &#224; 20:04, Matthias Andree &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">matthias.andree at gmx.de</A>&gt; a &#233;crit :
+
+&gt;<i> Am 11.07.2013 12:22, schrieb Yoann Gini:
+</I>&gt;<i> 
+</I>&gt;<i> Well, given the code I'd pointed you it is not plausible that verbose
+</I>&gt;<i> mode changes the way DNS addresses are resolved.
+</I>&gt;<i> 
+</I>&gt;<i> We need to figure out *what else* changes, besides the -vvv error
+</I>&gt;<i> reporting, that is:
+</I>
+One thing could be the time laps between each call to getaddrinfo. Your polling system seems to be serial (at least when I read the logs). Depending of how logs are managed, more logs may lead to slower execution (time to write on file for example). If it&#8217;s a time based problem, more logs can change the way DNS addresses are resolved. 
+
+This is just an example, I really didn&#8217;t have time to trace execution of the system and it&#8217;s why I&#8217;ve offer to make a demo system&#8230;
+
+&gt;<i> - IP address changes (whatever way, for instance DHCP)
+</I>
+Nop, all servers are in static addressing.
+
+&gt;<i> - /etc/resolv.conf changes (whatever way, for instance DHCP), or
+</I>&gt;<i>  wherever the computer running fetchmail keeps its configuration
+</I>
+No change here, in each case, the only DNS server is 127.0.0.1.
+
+&gt;<i> - any dynamic network stuff OS X might be doing;
+</I>
+They have some specific DNS optimization in OS X but not applicable here because I use only the local DNS server. Wired OS X DNS stuff appear only when you&#8217;ve multiple DNS server.
+
+&gt;<i> - any client-specific DNS client stuff, according to resolver(5),
+</I>&gt;<i>  /etc/resolver/* changes in particular?
+</I>
+No /etc/resolver/* folder.
+
+Here is the DNS stack setting :
+
+bash-3.2# scutil --dns
+DNS configuration
+
+resolver #1
+  search domain[0] : local.example.com
+  nameserver[0] : 127.0.0.1
+  reach    : Reachable,Local Address
+
+resolver #2
+  domain   : local
+  options  : mdns
+  timeout  : 5
+  order    : 300000
+
+resolver #3
+  domain   : 254.169.in-addr.arpa
+  options  : mdns
+  timeout  : 5
+  order    : 300200
+
+resolver #4
+  domain   : 8.e.f.ip6.arpa
+  options  : mdns
+  timeout  : 5
+  order    : 300400
+
+resolver #5
+  domain   : 9.e.f.ip6.arpa
+  options  : mdns
+  timeout  : 5
+  order    : 300600
+
+resolver #6
+  domain   : a.e.f.ip6.arpa
+  options  : mdns
+  timeout  : 5
+  order    : 300800
+
+resolver #7
+  domain   : b.e.f.ip6.arpa
+  options  : mdns
+  timeout  : 5
+  order    : 301000
+
+DNS configuration (for scoped queries)
+
+resolver #1
+  search domain[0] : local.example.com
+  nameserver[0] : 127.0.0.1
+  if_index : 4 (en0)
+  flags    : Scoped
+  reach    : Reachable,Local Address
+
+&gt;<i> Can you:
+</I>&gt;<i> 
+</I>&gt;<i> - confirm that you are always restarting fetchmail the same way (always
+</I>&gt;<i>  through launchd), only with the command line changed?  It would not
+</I>&gt;<i>  be a useful experiment to run the &quot;without -v&quot; experiment from
+</I>&gt;<i>  launchd, and the -vvv from the shell.
+</I>
+launchctl unload /Library/LaunchDaemons/org.fetchmail.plist
+launchctl load /Library/LaunchDaemons/org.fetchmail.plist
+
+And here is the content of the plist file
+
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;!DOCTYPE plist PUBLIC &quot;-//Apple Computer//DTD PLIST 1.0//EN&quot; &quot;<A HREF="http://www.apple.com/DTDs/PropertyList-1.0.dtd">http://www.apple.com/DTDs/PropertyList-1.0.dtd</A>&quot;&gt;
+&lt;plist version=&quot;1.0&quot;&gt;
+&lt;dict&gt;
+        &lt;key&gt;GroupName&lt;/key&gt;
+        &lt;string&gt;wheel&lt;/string&gt;
+        &lt;key&gt;Label&lt;/key&gt;
+        &lt;string&gt;org.fetchmail&lt;/string&gt;
+        &lt;key&gt;ProgramArguments&lt;/key&gt;
+        &lt;array&gt;
+                &lt;string&gt;/usr/local/bin/fetchmail&lt;/string&gt;
+                &lt;string&gt;-L&lt;/string&gt;
+                &lt;string&gt;/var/log/fetchmail.log&lt;/string&gt;
+                &lt;string&gt;-f&lt;/string&gt;
+                &lt;string&gt;/etc/fetchmailrc&lt;/string&gt;
+		&lt;string&gt;-vvv&lt;/string&gt;
+        &lt;/array&gt;
+        &lt;key&gt;RunAtLoad&lt;/key&gt;
+        &lt;true/&gt;
+        &lt;key&gt;UserName&lt;/key&gt;
+        &lt;string&gt;root&lt;/string&gt;
+&lt;/dict&gt;
+&lt;/plist&gt;
+
+&gt;<i> - instead of -vvv, try -vv and -v, to see which ones &quot;solve&quot; the
+</I>&gt;<i>  problem and which don&#8217;t?
+</I>
+I&#8217;m on holiday from Juliet 15 to 24 so I gonna try that when I come back.
+
+&gt;<i> - possibly attach a library call tracer (ltrace under Linux, sotruss
+</I>&gt;<i>  on Solaris, not sure how MacOS X's is called - might be dapptrace)
+</I>&gt;<i>  to the version running without -v, to see what it's up to?
+</I>
+I&#8217;ve dapptrace, I can do that when I come back from holidays, the version without verbose take usually two or three day to die.
+
+&gt;<i> - confirm that all /etc/resolv.conf hosts point to the port where
+</I>&gt;<i>  BIND ist listening?
+</I>
+bash-3.2# cat /etc/resolv.conf 
+#
+# Mac OS X Notice
+#
+# This file is not used by the host name and address resolution
+# or the DNS query routing mechanisms used by most processes on
+# this Mac OS X system.
+#
+# This file is automatically generated.
+#
+search local.example.com
+nameserver 127.0.0.1
+
+bash-3.2# lsof -Pni4 | grep named | grep 127.0.0.1
+named        48           root   20u  IPv4 0xe8f6cdaa7d59c539      0t0  TCP 127.0.0.1:53 (LISTEN)
+named        48           root   21u  IPv4 0xe8f6cdaa7d59d3a9      0t0  TCP 127.0.0.1:54 (LISTEN)
+named        48           root  512u  IPv4 0xe8f6cdaa71102099      0t0  UDP 127.0.0.1:53
+
+&gt;<i> - while the resolving is failing, attach a syscall tracer such as truss
+</I>&gt;<i>  to see how it's attempting to resolve things;
+</I>
+Same as before, when I come back.
+
+&gt;<i> - check the settings of the LOCALDOMAIN and RES_OPTIONS environment
+</I>&gt;<i>  variables, for fetchmail's environment?
+</I>
+bash-3.2# launchctl getenv LOCALDOMAIN
+bash-3.2# launchctl getenv RES_OPTIONS
+bash-3.2#
+
+(empty)
+
+&gt;&gt;<i> For the config, you already have the most important part, the server
+</I>&gt;&gt;<i> address. Here is an example of one of the config file.
+</I>&gt;&gt;<i> 
+</I>&gt;&gt;<i> set daemon 180
+</I>&gt;&gt;<i> poll mail.gandi.net &lt;<A HREF="http://mail.gandi.net">http://mail.gandi.net</A>&gt; with protocol POP3 user
+</I>&gt;&gt;<i> &#8217;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">alice at example.com</A> &lt;mailto:<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">alice at example.com</A>&gt;' there with password
+</I>&gt;&gt;<i> &#8217;abcd1234'
+</I>&gt;&gt;<i> is &#8217;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">alice at example.com</A> &lt;mailto:<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">alice at example.com</A>&gt;' here sslproto ssl23
+</I>&gt;&gt;<i> 
+</I>&gt;&gt;<i> 
+</I>&gt;&gt;<i> I&#8217;ve the problem on multiple OS X Server, from different network
+</I>&gt;&gt;<i> provider, different country and continent, different fetchmail and bind
+</I>&gt;&gt;<i> release. Bind is hosted on the same server than the fetchmail one.
+</I>&gt;<i> 
+</I>&gt;<i> Can you state the minimum and maximum OS X Server OS versions?  Are
+</I>&gt;<i> there older/newer versions where the problem does not occur?
+</I>
+To day I&#8217;ve the problem on the 4 server who use fetchmail. One of them was running for 3 years without any problems and start to crash in the same month than the 3 others.
+
+The oldest is on 10.6.8 and the newest on 10.8.4 with also a 10.7.3.
+
+&gt;<i> Can you state the minimum and maximum BIND versions used?
+</I>
+BIND 9.8.3-P1 for the maximum. I can&#8217;t access to the minimum one at this time, it hosted in Tunisia and we&#8217;ve a problem at this time with ISP in this country but it should be a 9.6-ESV-R4-P3
+
+&gt;&gt;<i> 
+</I>&gt;&gt;<i> Again, those lines :
+</I>&gt;&gt;<i> 
+</I>&gt;&gt;<i> fetchmail: Query status=11 (DNS)
+</I>&gt;&gt;<i> fetchmail: couldn't find canonical DNS name of mail.gandi.net
+</I>&gt;&gt;<i> &lt;<A HREF="http://mail.gandi.net/">http://mail.gandi.net/</A>&gt; (mail.gandi.net &lt;<A HREF="http://mail.gandi.net/">http://mail.gandi.net/</A>&gt;):
+</I>&gt;&gt;<i> nodename nor servname provided, or not known
+</I>&gt;&gt;<i> 
+</I>&gt;&gt;<i> 
+</I>&gt;&gt;<i> Just repeat endless until I restart the service. And before this problem
+</I>&gt;&gt;<i> occur, they have no specific log message before, only the nominal messages.
+</I>&gt;&gt;<i> 
+</I>&gt;&gt;<i> If I add the -vvv, I never get any DNS related issue&#8230;
+</I>&gt;<i> 
+</I>&gt;<i> Which is extremely strange. The only thing that -vvv would be doing
+</I>&gt;<i> differently is cause massive amount of stderr or syslog or logfile
+</I>&gt;<i> output, which is why I am asking above what else changes when you run
+</I>&gt;<i> with -vvv - but it changes nothing about how the name is resolved.
+</I>&gt;<i> There are no references to outlevel involved.
+</I>
+See my comment about side effect on execution time in the top of this message.
+
+&gt;&gt;<i> BTW, you should check &quot;couldn't find canonical DNS name&quot; on Google to
+</I>&gt;&gt;<i> see how many people have problems with this cryptic message. No
+</I>&gt;&gt;<i> documentation about what could lead to this problem and of course every
+</I>&gt;&gt;<i> body have a working DNS setup and can fully resolve the e-mail server
+</I>&gt;&gt;<i> hostname using  system command line&#8230;
+</I>&gt;<i> 
+</I>&gt;<i> The system command line resolver does not run for countless hours, so it
+</I>&gt;<i> will never notice if getaddrinfo() starts failing because, for instance,
+</I>&gt;<i> the libc or resolver caches go stale, or exhaust resources.
+</I>
+That make sense, but it&#8217;s not really on the DNS setup here but on the DNS resolver stack&#8230;
+
+&gt;<i> I have fetchmail running on Linux and/or FreeBSD for weeks, without any
+</I>&gt;<i> hitch, and if there were a systematic problem, it would have shown here
+</I>&gt;<i> much sooner&#8230;
+</I>
+Before going to fail, my fetchmail installations was running for month without any problems.
+
+&gt;<i> Anyways, unless we dig up substantially more information as to what is
+</I>&gt;<i> happening on the failing system, and why, and what should be happening
+</I>&gt;<i> instead, and how we can achieve that, this is not going to be resolved
+</I>&gt;<i> in code.
+</I>
+To be honest, I prefer this kind of e-mail, with focussed request of settings and global explanation about what could happen. It&#8217;s more time effective for me and I don&#8217;t have to just send the whole system config of my clients on a unknown and publicly archived mailing list.
+
+</PRE>
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003429.html">[fetchmail-users] Fetchmail going out of date?
+</A></li>
+	<LI>Next message: <A HREF="003432.html">[fetchmail-users] Fetchmail going out of date?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3431">[ date ]</a>
+              <a href="thread.html#3431">[ thread ]</a>
+              <a href="subject.html#3431">[ subject ]</a>
+              <a href="author.html#3431">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

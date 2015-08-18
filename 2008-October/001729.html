@@ -1,0 +1,129 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Bug report: odd behavior with --quit
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2008-October/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Bug%20report%3A%20odd%20behavior%20with%20--quit&In-Reply-To=%3C20081017011053.GA13453%40merlin.emma.line.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001728.html">
+   <LINK REL="Next"  HREF="001730.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Bug report: odd behavior with --quit</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Bug%20report%3A%20odd%20behavior%20with%20--quit&In-Reply-To=%3C20081017011053.GA13453%40merlin.emma.line.org%3E"
+       TITLE="[fetchmail-users] Bug report: odd behavior with --quit">matthias.andree at gmx.de
+       </A><BR>
+    <I>Fri Oct 17 03:10:53 CEST 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001728.html">[fetchmail-users] Bug report: odd behavior with --quit
+</A></li>
+        <LI>Next message: <A HREF="001730.html">[fetchmail-users] basic setup &amp; usage
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1729">[ date ]</a>
+              <a href="thread.html#1729">[ thread ]</a>
+              <a href="subject.html#1729">[ subject ]</a>
+              <a href="author.html#1729">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Andy Theuninck schrieb am 2008-10-16:
+
+&gt;<i> Now, here's the issue I'm experiencing. I have two bash scripts set up
+</I>&gt;<i> to start and stop my fetchmail daemon. The first, fetchmail.start,
+</I>&gt;<i> contains this single command:
+</I>&gt;<i> /usr/bin/fetchmail -f /file/path/rc -i /file/path/ids --pidfile
+</I>&gt;<i> /file/path/pid -d 300
+</I>&gt;<i> The second, fetchmail.stop, contains this single command:
+</I>&gt;<i> /usr/bin/fetchmail -f /file/path/rc -i /file/path/ids --pidfile
+</I>&gt;<i> /file/path/pid --quit
+</I>&gt;<i> 
+</I>&gt;<i> I've altered the actual paths for sane email line width, but the paths
+</I>&gt;<i> are the same in each command. I'm using sudo to run fetchmail as a
+</I>&gt;<i> non-root user, which may influence this behavior. Here's the behavior
+</I>
+Hi Andy,
+
+I don't think sudo has got to do with it - you use it in both
+situations identically.
+
+&gt;<i> I get with these files:
+</I>&gt;<i> # sudo -u fetchmail fetchmail.start
+</I>&gt;<i> # ps -A | grep fetchmail
+</I>&gt;<i> 11158 ?        00:00:00 fetchmail
+</I>&gt;<i> # sudo -u fetchmail fetchmail.stop
+</I>&gt;<i> # sudo -u fetchmail fetchmail.stop
+</I>&gt;<i> fetchmail: no other fetchmail is running
+</I>
+What it's meaning (but failing to say, I'll concede it's imprecise) is
+that no other fetchmail *had been* running when it encountered the
+--quit option.
+
+&gt;<i> Now, here's what's odd. If I add a verbose option to fetchmail.stop:
+</I>&gt;<i> /usr/bin/fetchmail -f /file/path/rc -i /file/path/ids --pidfile
+</I>&gt;<i> /file/path/pid --quit -v
+</I>&gt;<i> And re-run my command the same way, it works correctly.
+</I>
+For an arbitrarily twisted definition of &quot;correct&quot;, yes -- but adding
+the -v actually starts a new one. Run this modified fetchmail.stop (with
+the *trailing* -v) thrice and see what you get. Surprised? I suppose so.
+(Read on.)
+
+First hint: ordering of the &quot;-q&quot; option matters.
+
+&gt;<i> # sudo -u fetchmail fetchmail.stop
+</I>&gt;<i> fetchmail: background fetchmail at 11158 killed.
+</I>&gt;<i> 
+</I>&gt;<i> Obviously this isn't a big deal; it does work, after all. It just
+</I>&gt;<i> isn't clear why the -v option is required. Thought someone might want
+</I>&gt;<i> to know about it.
+</I>
+Second hint is in the (admittedly inconcise) manual page from the
+post-6.3.9-rc2 SVN:
+
+  Terminating the background daemon
+    The  option --quit will kill a running daemon process instead of
+    waking it up (if there is no such process, fetchmail will notify
+    you.  If  the --quit option appears last on the command line,
+    fetchmail will kill the running daemon process and then quit.
+    Otherwise, fetchmail  will  first kill  a running daemon process and
+    then continue running with the other options.
+
+Which I hope explains the difference. If you see a deviation in actual
+behaviour from this section with 6.3.9-rc2, please let me know; to me
+everything seems to be consistent.
+
+HTH
+Matthias
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001728.html">[fetchmail-users] Bug report: odd behavior with --quit
+</A></li>
+	<LI>Next message: <A HREF="001730.html">[fetchmail-users] basic setup &amp; usage
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1729">[ date ]</a>
+              <a href="thread.html#1729">[ thread ]</a>
+              <a href="subject.html#1729">[ subject ]</a>
+              <a href="author.html#1729">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

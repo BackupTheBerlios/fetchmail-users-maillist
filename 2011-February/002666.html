@@ -1,0 +1,112 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] syntax error
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2011-February/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20syntax%20error&In-Reply-To=%3Calpine.BSF.2.00.1102192238550.71293%40freire1.furyyjbeyq.arg%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002665.html">
+   <LINK REL="Next"  HREF="002667.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] syntax error</H1>
+    <B>Jude DaShiell</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20syntax%20error&In-Reply-To=%3Calpine.BSF.2.00.1102192238550.71293%40freire1.furyyjbeyq.arg%3E"
+       TITLE="[fetchmail-users] syntax error">jdashiel at shellworld.net
+       </A><BR>
+    <I>Sun Feb 20 04:39:32 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002665.html">[fetchmail-users] syntax error
+</A></li>
+        <LI>Next message: <A HREF="002667.html">[fetchmail-users] clean .fetchmailrc file
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2666">[ date ]</a>
+              <a href="thread.html#2666">[ thread ]</a>
+              <a href="subject.html#2666">[ subject ]</a>
+              <a href="author.html#2666">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>it does, thanks.On Sat, 19 Feb 2011, N.J. Mann wrote:
+
+&gt;<i> In message &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">alpine.BSF.2.00.1102190805060.27132 at freire1.furyyjbeyq.arg</A>&gt;,
+</I>&gt;<i> 	Jude DaShiell (<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">jdashiel at shellworld.net</A>) wrote:
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; Script started on Sat 19 Feb 2011 08:03:36 AM EST
+</I>&gt;<i> &gt; <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">jude at md</A>:~$ fetchmail
+</I>&gt;<i> &gt; fetchmail:/home/jude/.fetchmailrc:3: syntax error at silent
+</I>&gt;<i> 
+</I>&gt;<i> fetchmail is telling you that the syntax of line 3 of your .fetchmailrc
+</I>&gt;<i> is wrong and in particular the 'silent' statement.
+</I>&gt;<i> 
+</I>&gt;<i> &gt; <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">jude at md</A>:~$ cat .fetchmailrc
+</I>&gt;<i> &gt; set daemon 300
+</I>&gt;<i> &gt; set logfile /home/jude/fetchmail.log
+</I>&gt;<i> &gt; set silent=1
+</I>&gt;<i> 
+</I>&gt;<i> There is no keyword 'silent', only the command mode option '-s' or
+</I>&gt;<i> '--silent'.  Perhaps there should be.
+</I>&gt;<i> 
+</I>&gt;<i> Also, in the .fetchmailrc the syntax to enable an option is
+</I>&gt;<i>   'set &lt;keyword&gt;'
+</I>&gt;<i> and to disable an option
+</I>&gt;<i>   'set no &lt;keyword&gt;'
+</I>&gt;<i> 
+</I>&gt;<i> &gt; set syslog /home/jude/fetchmail.log
+</I>&gt;<i> 
+</I>&gt;<i> This is incorrect because the 'syslog' option is either on or off, it
+</I>&gt;<i> does not take a parameter.
+</I>&gt;<i> 
+</I>&gt;<i> If you wish to disable the use of syslog(3) and log everything to a file
+</I>&gt;<i> then you need to either use the command line options:
+</I>&gt;<i> 
+</I>&gt;<i>   fetchmail --nosyslog --logfile &lt;path/to/logfile&gt;
+</I>&gt;<i> 
+</I>&gt;<i> or have the following statements in your .fetchmailrc file:
+</I>&gt;<i> 
+</I>&gt;<i>   set no syslog
+</I>&gt;<i>   set logfile &lt;path/to/logfile&gt;
+</I>&gt;<i> 
+</I>&gt;<i> Do _not_ forget to create the log file before you run fetchmail after
+</I>&gt;<i> adding the above.
+</I>&gt;<i> 
+</I>&gt;<i> I hope the above helps.
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> Cheers,
+</I>&gt;<i>        Nick.
+</I>&gt;<i> 
+</I>
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002665.html">[fetchmail-users] syntax error
+</A></li>
+	<LI>Next message: <A HREF="002667.html">[fetchmail-users] clean .fetchmailrc file
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2666">[ date ]</a>
+              <a href="thread.html#2666">[ thread ]</a>
+              <a href="subject.html#2666">[ subject ]</a>
+              <a href="author.html#2666">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

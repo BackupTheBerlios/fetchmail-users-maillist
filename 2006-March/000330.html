@@ -1,0 +1,120 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Fetchmail socket error.
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2006-March/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Fetchmail%20socket%20error.&In-Reply-To=%3Cm3odzvz5wg.fsf%40merlin.emma.line.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000329.html">
+   <LINK REL="Next"  HREF="000331.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Fetchmail socket error.</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Fetchmail%20socket%20error.&In-Reply-To=%3Cm3odzvz5wg.fsf%40merlin.emma.line.org%3E"
+       TITLE="[fetchmail-users] Fetchmail socket error.">matthias.andree at gmx.de
+       </A><BR>
+    <I>Sat Mar 25 02:09:51 CET 2006</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000329.html">[fetchmail-users] Fetchmail socket error.
+</A></li>
+        <LI>Next message: <A HREF="000331.html">[fetchmail-users] Fetchmail socket error.
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#330">[ date ]</a>
+              <a href="thread.html#330">[ thread ]</a>
+              <a href="subject.html#330">[ subject ]</a>
+              <a href="author.html#330">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Ernst Verhaar &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">e.verhaar at viddel.nl</A>&gt; writes:
+
+&gt;<i> fetchmail: IMAP&lt; * 1 FETCH (BODY[TEXT] {375012}
+</I>&gt;<i> (375012 body octets)
+</I>&gt;<i> ******************.***************.*********************.**********
+</I>&gt;<i> **********.***************.***************fetchmail: socket error while
+</I>&gt;<i> fetching from <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">vid_dbmanta at 212.204.236.251</A>
+</I>&gt;<i> fetchmail: 6.3.2 querying 212.204.236.251 (protocol IMAP) at Fri Mar 24
+</I>&gt;<i> 16:30:12 2006: poll completed
+</I>&gt;<i> fetchmail: Query status=2 (SOCKET)
+</I>&gt;<i>
+</I>&gt;<i> According to the FAQ, I should set the MTU to 552. This doesn't help.
+</I>&gt;<i> I tried fetchmail versions 6.2.5.2 (included in Suse 10) and fetchmail
+</I>&gt;<i> 6.3.2 (builded on Suse 10) On the same machine. I also tried fetching
+</I>&gt;<i> the same emailbox on a different machine Fedora Core 4 (fetchmail
+</I>&gt;<i> 6.2.5.5). And on a Fedora Core 4 machine at a different
+</I>&gt;<i> Internetprovider. I get the same error everytime...
+</I>&gt;<i>
+</I>&gt;<i> Fetchmail 6.2.5 on an very old Slackware distro runs
+</I>&gt;<i> perfectly. (different machine, same and different internet provider).
+</I>
+This appears to happen a few kBytes into a larger transfer.
+
+Are you (on the client end) using routers, Linux-based firewalls, other
+firewalls along the way? Does the server use such? Or FreeBSD ipfw,
+ipfw2, ipfilter?  
+
+Are those devices or filters letting ICMP traffic through between server
+and client? What physical network is between server and client?
+Modem/PPP, DSL, ...?
+
+Is fetchmail -vvv any more helpful? Perhaps attaching strace?
+
+&gt;<i> The host with is being contacted is a FreeBSD running both dovecot and
+</I>&gt;<i>imap-uv (different port).
+</I>
+Which FreeBSD version is the server running?
+
+&gt;<i> Could this be a fetchmail error? Or is it a combination between a
+</I>&gt;<i> specific Distribution and a specific fetchmail version?
+</I>
+Theoretically possible, but both unlikely. Socket errors are reported to
+fetchmail by the network stack built into your kernel (or kernel
+module), and 6.3.2 has been around for a while, if there'd been
+systematic incompatibilites, we'd pretty surely see more reports.
+
+Are wireless networks (WLAN, IEEE 802.11*) involved?
+
+On any Linux machine that has troubles, if it runs netfilter (firewalls,
+SUSEfirewall for instance), run:
+/sbin/sysctl net.ipv4.netfilter.ip_conntrack_tcp_be_liberal=1
+to work around Linux kernel bugs.
+
+Perhaps running [t]ethereal or tcpdump on either side sheds some light
+about the nature of the socket error, if it starves, if it's reset (TCP
+RST), shut down (FIN), if it's killed (some ICMP) or what else.
+
+-- 
+Matthias Andree
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000329.html">[fetchmail-users] Fetchmail socket error.
+</A></li>
+	<LI>Next message: <A HREF="000331.html">[fetchmail-users] Fetchmail socket error.
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#330">[ date ]</a>
+              <a href="thread.html#330">[ thread ]</a>
+              <a href="subject.html#330">[ subject ]</a>
+              <a href="author.html#330">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

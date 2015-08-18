@@ -1,0 +1,126 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] fetchmail with maildrop
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2009-July/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%20with%20maildrop&In-Reply-To=%3Cop.uwo5kxcc1e62zd%40balu.cs.uni-paderborn.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001989.html">
+   <LINK REL="Next"  HREF="001991.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] fetchmail with maildrop</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%20with%20maildrop&In-Reply-To=%3Cop.uwo5kxcc1e62zd%40balu.cs.uni-paderborn.de%3E"
+       TITLE="[fetchmail-users] fetchmail with maildrop">matthias.andree at gmx.de
+       </A><BR>
+    <I>Tue Jul  7 14:13:35 CEST 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001989.html">[fetchmail-users] fetchmail with maildrop
+</A></li>
+        <LI>Next message: <A HREF="001991.html">[fetchmail-users] maillog entry
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1990">[ date ]</a>
+              <a href="thread.html#1990">[ thread ]</a>
+              <a href="subject.html#1990">[ subject ]</a>
+              <a href="author.html#1990">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Am 07.07.2009, 12:39 Uhr, schrieb Bijayant Kumar  
+&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">bijayant.kumar at gmail.com</A>&gt;:
+
+&gt;<i> Dear All,
+</I>&gt;<i>
+</I>&gt;<i> I have a virtual local mail server installed and running successfully. I  
+</I>&gt;<i> do
+</I>&gt;<i> fetchmail to get all the emails from the remote server. Now I wanted to
+</I>&gt;<i> introduce Maildrop also in between. When I am relaying email from the
+</I>&gt;<i> remote, its working fine. But with fetchmail its not working. My  
+</I>&gt;<i> fetchmail
+</I>&gt;<i> configuration is as
+</I>&gt;<i>
+</I>&gt;<i> poll remote.server.ip
+</I>&gt;<i>       proto pop3
+</I>&gt;<i>      user <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">bijayant.kumar at example.com</A>
+</I>&gt;<i>      pass bijayant
+</I>&gt;<i>      is <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">bijayant.kumar at example.com</A> here
+</I>&gt;<i>
+</I>&gt;<i> When I am accessing this via
+</I>&gt;<i> fetchmail -m &quot;/usr/bin/maildrop -d vmail&quot;
+</I>&gt;<i>
+</I>&gt;<i> I am getting error &quot;/usr/bin/maildrop : You are not a trusted User&quot;. I  
+</I>&gt;<i> tried
+</I>&gt;<i> it with varios combination after -d like &quot;%T, vmail ....&quot; but no luck.
+</I>&gt;<i>
+</I>&gt;<i> In postfix master.cf I have
+</I>&gt;<i> maildrop  unix  -       n       n       -       -       pipe
+</I>&gt;<i>         flags=DRhu user=vmail argv=/usr/bin/maildrop /etc/maildroprc  -d
+</I>&gt;<i> ${user}@${nexthop} ${extension} ${recipient} ${user} ${nexthop} ${sender}
+</I>&gt;<i>
+</I>&gt;<i> Please help me, I have searched archive till date, but did not find any
+</I>&gt;<i> solution or pointer.
+</I>
+Hi Bijayant,
+
+the programs used with mda options (-m in your case) are usually quite  
+&quot;picky&quot; about their configuration, in that small changes on the command  
+line have a largish impact on the functionality.
+
+Postfix (for remote relaying) runs maildrop with these options (or  
+something similar), as user vmail:
+
+maildrop /etc/maildroprc -d <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">bijayant.kumar at example.com</A> &quot;&quot;  
+<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">bijayant.kumar at example.com</A> bijayant.kumar &quot;&quot; &quot;whatever&quot;
+
+and fetchmail instead runs it as:
+
+maildrop -d vmail
+
+under your account (bijayant.kumar), not under the vmail account. Check if  
+maildrop is installed as setuid, and how gentoo's emerge *really* maps the  
+options to ./configure arguments... especially the trusted user stuff.
+
+
+As a first step, try running fetchmail as user &quot;vmail&quot;, for instance:
+
+su vmail -c 'fetchmail -m &quot;/usr/bin/maildrop -d %T&quot;'
+
+If that doesn't help, please check the pointers Rob has given you. For  
+further questions, please ask on the courier-maildrop list, as that's a  
+maildrop specific question, not a fetchmail question.
+
+-- 
+Matthias Andree
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001989.html">[fetchmail-users] fetchmail with maildrop
+</A></li>
+	<LI>Next message: <A HREF="001991.html">[fetchmail-users] maillog entry
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1990">[ date ]</a>
+              <a href="thread.html#1990">[ thread ]</a>
+              <a href="subject.html#1990">[ subject ]</a>
+              <a href="author.html#1990">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,91 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] losing mails because of &quot;incorrect header	line found&quot;
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2008-October/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20losing%20mails%20because%20of%20%22incorrect%0A%20header%09line%20found%22&In-Reply-To=%3C48EA2811.7050405%40gmx.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001720.html">
+   <LINK REL="Next"  HREF="001716.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] losing mails because of &quot;incorrect header	line found&quot;</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20losing%20mails%20because%20of%20%22incorrect%0A%20header%09line%20found%22&In-Reply-To=%3C48EA2811.7050405%40gmx.de%3E"
+       TITLE="[fetchmail-users] losing mails because of &quot;incorrect header	line found&quot;">matthias.andree at gmx.de
+       </A><BR>
+    <I>Mon Oct  6 17:00:33 CEST 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001720.html">[fetchmail-users] losing mails because of &quot;incorrect header	line found&quot;
+</A></li>
+        <LI>Next message: <A HREF="001716.html">[fetchmail-users] losing mails because of &quot;incorrect	header	line found&quot;
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1722">[ date ]</a>
+              <a href="thread.html#1722">[ thread ]</a>
+              <a href="subject.html#1722">[ subject ]</a>
+              <a href="author.html#1722">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Michelle Konzack schrieb:
+&gt;<i> Am 2008-09-25 11:40:39, schrieb Andy Spiegl:
+</I>&gt;&gt;&gt;<i> ONLY the receiving MTA has the right to &quot;notify&quot; (sending backscater
+</I>&gt;&gt;&gt;<i> or spam) to the sender.  If fetchmail is only fetching the message
+</I>&gt;&gt;&gt;<i> it is already to late...
+</I>&gt;&gt;<i> Right, so it has to deal with the problem and find some kind of
+</I>&gt;&gt;<i> solution.  Silently dropping it is IMHO not a solution.
+</I>&gt;<i> 
+</I>&gt;<i> Please read my other message...
+</I>&gt;<i> 
+</I>&gt;<i> you can set in courier-mta BOFH setings to accept  those  messages.  The
+</I>&gt;<i> same goes for exim4 and postfix.  So there is NO need for  fetchmail  to
+</I>&gt;<i> bother with it.  You have only to configure your MTA correctly.
+</I>
+I think you're mixing different threads here (which probably also pertains
+to your other message dated Oct 2 that I replied to a few minutes ago).
+
+Fetchmail isn't even trying to forward such messages, and that's what Andy
+rightfully complained about (Sept 16).
+
+For experimental purposes, the attached INOFFICIAL patch disables the test.
+Please everybody let me know if you tried and your findings.
+
+HTH
+
+-- 
+Matthias Andree
+-------------- next part --------------
+An embedded and charset-unspecified text was scrubbed...
+Name: fetchmail-noincorrect.patch
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/fetchmail-users/attachments/20081006/b911c6e6/attachment.ksh">https://lists.berlios.de/pipermail/fetchmail-users/attachments/20081006/b911c6e6/attachment.ksh</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001720.html">[fetchmail-users] losing mails because of &quot;incorrect header	line found&quot;
+</A></li>
+	<LI>Next message: <A HREF="001716.html">[fetchmail-users] losing mails because of &quot;incorrect	header	line found&quot;
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1722">[ date ]</a>
+              <a href="thread.html#1722">[ thread ]</a>
+              <a href="subject.html#1722">[ subject ]</a>
+              <a href="author.html#1722">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

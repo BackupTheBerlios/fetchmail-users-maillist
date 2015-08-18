@@ -1,0 +1,98 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Messages not downloaded
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2007-September/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Messages%20not%20downloaded&In-Reply-To=%3C46E14890.8040103%40wowcompany.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001236.html">
+   <LINK REL="Next"  HREF="001240.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Messages not downloaded</H1>
+    <B>Frederic Marchal</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Messages%20not%20downloaded&In-Reply-To=%3C46E14890.8040103%40wowcompany.com%3E"
+       TITLE="[fetchmail-users] Messages not downloaded">frederic.marchal at wowcompany.com
+       </A><BR>
+    <I>Fri Sep  7 14:48:16 CEST 2007</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001236.html">[fetchmail-users] Messages not downloaded
+</A></li>
+        <LI>Next message: <A HREF="001240.html">[fetchmail-users] Messages not downloaded
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1237">[ date ]</a>
+              <a href="thread.html#1237">[ thread ]</a>
+              <a href="subject.html#1237">[ subject ]</a>
+              <a href="author.html#1237">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>David Nash a &#233;crit :
+&gt;<i> We've been using fetchmail for a few years, but recently noticed that there was a delay of up to 20minutes in receiving messages sent to us from an external email address.  We're using a POP3 multidrop mailbox, and fetchmail passes the retrieved mail to Trestlemail MDA which then drops messages into the correct user's inbox.  It's all worked fine 'til now.  
+</I>&gt;<i>  
+</I>&gt;<i> I logged on to our domain's webmail service, and noticed that our multidrop inbox had a few thousand messages in it.  I don't think this used to happen, but they've started to collect there.  I cleaned them out, and we started to receive external mail instantaneously (obviously fetchmail was taking time to parse the thousands of messages).
+</I>&gt;<i>   
+</I>I encounter that problem from time to time. In my case, it always occurs 
+after a broken connection.
+
+What happens is that fetchmail starts retrieving the mails and marks 
+them for deletion as soon as they are delivered to the MDA. Then, at 
+some point, the connection break (usually a timeout) and the server 
+assumes that it should not delete the mails that were marked so (it is 
+the expected behaviour).
+
+When fetchmail starts the next poll, it sees all the old messages and do 
+not download nor delete them again. Instead it leaves them on the server.
+&gt;<i>  
+</I>&gt;<i> When new mail hits the multi-drop mailbox, its status is 'unread'.  When fetchmail downloads from the multidrop, the mail is removed from the multidrop mailbox, with the exception of some messages where the status changes to 'read' but it is not downloaded.  These are the ones that are building up.  Some of the recipients are genuine users on our system, but many are not.  From what I've been able to monitor, all these messages are SPAM.  I've looked at the headers, and they seem to be pretty much the same as genuine messages, but they have X-IMAIL-SPAM-xxx lines in their header, eg X-IMAIL-SPAM-VALFROM.  
+</I>&gt;<i>  
+</I>&gt;<i> After all that explanation, I just wondered if fetchmail is looking at these header lines and choosing not to download the messages?  
+</I>&gt;<i>   
+</I>No header filtering that I'm aware of.
+&gt;<i>  
+</I>&gt;<i> I'm probably going to look at the 'flush' parameter to automatically delete them, once I've monitored it for a wee while to make sure that every message affected is genuinely SPAM.  I don't really want to change fetchmail versions if I can help it!  
+</I>&gt;<i>   
+</I>You cannot assumes they are all spams but you may assume they were all 
+delivered some time in the past. When I notice that a lot of mails are 
+left on the server, I just turn the 'flush' option on for one poll and 
+then I disable it for normal usage.
+
+To reduce the likelihood of leaving a lot of mails on the server if the 
+connection break late in the transaction, I set fetchlimit to 500 mails. 
+With that option, fetchmail closes the POP3 connection after retrieving 
+500 mails and the server deletes at least those mails.
+
+Frederic
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001236.html">[fetchmail-users] Messages not downloaded
+</A></li>
+	<LI>Next message: <A HREF="001240.html">[fetchmail-users] Messages not downloaded
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1237">[ date ]</a>
+              <a href="thread.html#1237">[ thread ]</a>
+              <a href="subject.html#1237">[ subject ]</a>
+              <a href="author.html#1237">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

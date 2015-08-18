@@ -1,0 +1,358 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Very frequent AUTHFAILs
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2011-October/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Very%20frequent%20AUTHFAILs&In-Reply-To=%3CCOL120-W59D81407CAABB2FBB44DA9B3E00%40phx.gbl%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002966.html">
+   <LINK REL="Next"  HREF="002968.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Very frequent AUTHFAILs</H1>
+    <B>Ed Hochman</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Very%20frequent%20AUTHFAILs&In-Reply-To=%3CCOL120-W59D81407CAABB2FBB44DA9B3E00%40phx.gbl%3E"
+       TITLE="[fetchmail-users] Very frequent AUTHFAILs">charleschat at hotmail.com
+       </A><BR>
+    <I>Thu Oct 13 22:25:40 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002966.html">[fetchmail-users] Very frequent AUTHFAILs
+</A></li>
+        <LI>Next message: <A HREF="002968.html">[fetchmail-users] Very frequent AUTHFAILs
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2967">[ date ]</a>
+              <a href="thread.html#2967">[ thread ]</a>
+              <a href="subject.html#2967">[ subject ]</a>
+              <a href="author.html#2967">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>
+Sorry in advance for the length of this message; but it contains the information requested.
+
+The problem appears to be that passwords are being rejected by the MDA.  BUT the passwords are correct.  If they were not correct they would ALWAYS be rejected.  But that is not the case.  Rejections are frequent but not consistent.
+
+Per FAQ # G2
+1.  Your operating system:  Ubuntu 11.04
+2.  name and origin of the RPM or other binary package you
+installed:  From Ubuntu repository.
+3.  MDA you are
+forwarding to:  pop.homapump.com
+4.  command-line options you used.  -f /etc/fetchmailrc
+5.  output of env LC_ALL=C fetchmail -V
+
+****** Only including output for first user in fetchmailrc ***********
+Fallback MDA: (none)
+Linux pti-server 2.6.38-11-generic #48-Ubuntu SMP Fri Jul 29 19:05:14 UTC 2011 i686 i686 i386 GNU/Linux
+Taking options from command line and /etc/fetchmailrc
+Poll interval is 600 seconds
+Idfile is /root/.fetchids
+Fetchmail will forward misaddressed multidrop messages to ed.
+Fetchmail will direct error mail to the sender.
+Fetchmail will treat permanent errors as temporary (keep messages).
+Options for retrieving from <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">ed at pop.homapump.com</A>:
+  Poll of this server will occur every 1 interval.
+  True name of server is pop.homapump.com.
+  This host will be queried when no host is specified.
+  Password = &quot;&lt;password&gt;&quot;.
+  Protocol is POP3 (using default port).
+  All available authentication methods will be tried.
+  Server nonresponse timeout is 30 seconds.
+  Default mailbox selected.
+  All messages will be retrieved (--all on).
+  Fetched messages will not be kept on the server (--keep off).
+  Old messages will not be flushed before message retrieval (--flush off).
+  Oversized messages will not be flushed before message retrieval (--limitflush off).
+  Rewrite of server-local addresses is enabled (--norewrite off).
+  Carriage-return stripping is disabled (stripcr off).
+  Carriage-return forcing is disabled (forcecr off).
+  Interpretation of Content-Transfer-Encoding is enabled (pass8bits off).
+  MIME decoding is disabled (mimedecode off).
+  Idle after poll is disabled (idle off).
+  Nonempty Status lines will be kept (dropstatus off)
+  Delivered-To lines will be kept (dropdelivered off)
+  No received-message limit (--fetchlimit 0).
+  Fetch message size limit is 100 (--fetchsizelimit 100).
+  Do binary search of UIDs during 3 out of 4 polls (--fastuidl 4).
+  No SMTP message batch limit (--batchlimit 0).
+  No forced expunges (--expunge 0).
+  Messages will be SMTP-forwarded to: localhost (default)
+  Spam-blocking disabled
+  No pre-connection command.
+  No post-connection command.
+  Single-drop mode: 1 local name recognized.
+    ed
+  No interface requirement specified.
+  No monitor interface specified.
+  No plugin command specified.
+  No plugout command specified.
+  No UIDs saved from this host.
+  No poll trace information will be added to the Received header.
+  Messages with bad headers will be rejected.
+
+6. output of env LC_ALL=C fetchmail --nodetach -vvv
+--nosyslog 
+
+****** again, just for one user.  ********
+
+Old UID list from pop.homapump.com: &lt;empty&gt;  {this line repeats several times}
+Scratch list of UIDs: &lt;empty&gt;
+fetchmail: starting fetchmail 6.3.18 daemon
+fetchmail: 6.3.18 querying pop.homapump.com (protocol POP3) at Thu Oct 13 13:16:55 2011: poll started
+Trying to connect to 208.76.82.67/110...connected.
+fetchmail: POP3&lt; +OK Hello there.
+fetchmail: POP3&gt; CAPA
+fetchmail: POP3&lt; +OK Here's what I can do:
+fetchmail: POP3&lt; STLS
+fetchmail: POP3&lt; TOP
+fetchmail: POP3&lt; USER
+fetchmail: POP3&lt; LOGIN-DELAY 10
+fetchmail: POP3&lt; PIPELINING
+fetchmail: POP3&lt; UIDL
+fetchmail: POP3&lt; IMPLEMENTATION Courier Mail Server
+fetchmail: POP3&lt; .
+fetchmail: POP3&gt; STLS
+fetchmail: POP3&lt; +OK Begin SSL/TLS negotiation now.
+fetchmail: Certificate chain, from root to peer, starting at depth 2:
+fetchmail: Issuer Organization: AddTrust AB
+fetchmail: Issuer CommonName: AddTrust External CA Root
+fetchmail: Subject CommonName: AddTrust External CA Root
+fetchmail: Certificate at depth 1:
+fetchmail: Issuer Organization: AddTrust AB
+fetchmail: Issuer CommonName: AddTrust External CA Root
+fetchmail: Subject CommonName: UTN-USERFirst-Hardware
+fetchmail: Issuer Organization: The USERTRUST Network
+fetchmail: Issuer CommonName: UTN-USERFirst-Hardware
+fetchmail: Subject CommonName: *.snhdns.com
+fetchmail: Subject Alternative Name: *.snhdns.com
+fetchmail: Subject Alternative Name: snhdns.com
+fetchmail: pop.homapump.com key fingerprint: 3A:4C:5F:D4:68:D3:99:76:3B:72:B0:20:D1:FF:52:01
+fetchmail: POP3&gt; CAPA
+fetchmail: POP3&lt; +OK Here's what I can do:
+fetchmail: POP3&lt; TOP
+fetchmail: POP3&lt; USER
+fetchmail: POP3&lt; LOGIN-DELAY 10
+fetchmail: POP3&lt; PIPELINING
+fetchmail: POP3&lt; UIDL
+fetchmail: POP3&lt; IMPLEMENTATION Courier Mail Server
+fetchmail: POP3&lt; .
+fetchmail: pop.homapump.com: upgrade to TLS succeeded.
+fetchmail: POP3&gt; USER ed
+fetchmail: POP3&lt; +OK Password required.
+fetchmail: POP3&gt; PASS *
+fetchmail: POP3&lt; -ERR Login failed.
+fetchmail: POP3&gt; QUIT
+fetchmail: POP3&lt; +OK Better luck next time.
+***** end of listing ******
+
+Thanks for your help.
+
+
+
+&gt;<i> From: <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">fetchmail-users-request at lists.berlios.de</A>
+</I>&gt;<i> Subject: fetchmail-users Digest, Vol 63, Issue 8
+</I>&gt;<i> To: <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">fetchmail-users at lists.berlios.de</A>
+</I>&gt;<i> Date: Thu, 13 Oct 2011 12:00:03 +0200
+</I>&gt;<i> 
+</I>&gt;<i> Send fetchmail-users mailing list submissions to
+</I>&gt;<i> 	<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">fetchmail-users at lists.berlios.de</A>
+</I>&gt;<i> 
+</I>&gt;<i> To subscribe or unsubscribe via the World Wide Web, visit
+</I>&gt;<i> 	<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">https://lists.berlios.de/mailman/listinfo/fetchmail-users</A>
+</I>&gt;<i> or, via email, send a message with subject or body 'help' to
+</I>&gt;<i> 	<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">fetchmail-users-request at lists.berlios.de</A>
+</I>&gt;<i> 
+</I>&gt;<i> You can reach the person managing the list at
+</I>&gt;<i> 	<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">fetchmail-users-owner at lists.berlios.de</A>
+</I>&gt;<i> 
+</I>&gt;<i> When replying, please edit your Subject line so it is more specific
+</I>&gt;<i> than &quot;Re: Contents of fetchmail-users digest...&quot;
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> Today's Topics:
+</I>&gt;<i> 
+</I>&gt;<i>    1. Very frequent AUTHFAILs (Ed Hochman)
+</I>&gt;<i>    2. Re: Very frequent AUTHFAILs (Rob MacGregor)
+</I>&gt;<i>    3. Re: Very frequent AUTHFAILs (Matthias Andree)
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> ----------------------------------------------------------------------
+</I>&gt;<i> 
+</I>&gt;<i> Message: 1
+</I>&gt;<i> Date: Wed, 12 Oct 2011 16:19:15 -0400
+</I>&gt;<i> From: Ed Hochman &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">charleschat at hotmail.com</A>&gt;
+</I>&gt;<i> To: &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">fetchmail-users at lists.berlios.de</A>&gt;
+</I>&gt;<i> Subject: [fetchmail-users] Very frequent AUTHFAILs
+</I>&gt;<i> Message-ID: &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">COL120-W56FDE97CB2E27095B7FF93B3E30 at phx.gbl</A>&gt;
+</I>&gt;<i> Content-Type: text/plain; charset=&quot;iso-8859-1&quot;
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> More than half the time I get AUTHFAIL from the server.  
+</I>&gt;<i> 
+</I>&gt;<i> Tech support at the server says they are not having any problems at their end.
+</I>&gt;<i> 
+</I>&gt;<i> Here are a couple of lines from mail.log:
+</I>&gt;<i> Oct 12 16:00:29 pti-server fetchmail[3773]: Authorization failure on <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">admin at homapump.com</A>@pop.homapump.com
+</I>&gt;<i> Oct 12 16:00:29 pti-server fetchmail[3773]: Query status=3 (AUTHFAIL)
+</I>&gt;<i> Oct 12 16:00:35 pti-server fetchmail[3773]: Authorization failure on <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">acctg1 at homapump.com</A>@pop.homapump.com
+</I>&gt;<i> Oct 12 16:00:35 pti-server fetchmail[3773]: Query status=3 (AUTHFAIL)
+</I>&gt;<i> 
+</I>&gt;<i> And when it fails I get this email subject:
+</I>&gt;<i> fetchmail authentication failed on ed@&lt;mydomain&gt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">.com at pop.</A>&lt;mydomain&gt;.com
+</I>&gt;<i> ****** body ************
+</I>&gt;<i> Fetchmail could not get mail from ed@&lt;mydomain&gt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">.com at pop.</A>&lt;mydomain&gt;.com.
+</I>&gt;<i> 
+</I>&gt;<i> The attempt to get authorization failed.
+</I>&gt;<i> Since we have already succeeded in getting authorization for this
+</I>&gt;<i> connection, this is probably another failure mode (such as busy server)
+</I>&gt;<i> that fetchmail cannot distinguish because the server didn't send a useful
+</I>&gt;<i> error message.
+</I>&gt;<i> 
+</I>&gt;<i> However, if you HAVE changed your account details since starting the
+</I>&gt;<i> fetchmail daemon, you need to stop the daemon, change your configuration
+</I>&gt;<i> of fetchmail, and then restart the daemon.
+</I>&gt;<i> 
+</I>&gt;<i> The fetchmail daemon will continue running and attempt to connect
+</I>&gt;<i> at each cycle.  No future notifications will be sent until service
+</I>&gt;<i> is restored.
+</I>&gt;<i> -- 
+</I>&gt;<i> The Fetchmail Daemon
+</I>&gt;<i> ****** end body ********
+</I>&gt;<i> 
+</I>&gt;<i> The doubling up of &quot;@&lt;mydomain&gt;&quot; above seems odd.
+</I>&gt;<i> 
+</I>&gt;<i> When this error occurs it happens for everyone.  When it works, I get this message.
+</I>&gt;<i> When it works, I get this email subject:
+</I>&gt;<i> fetchmail authentication OK on ed@&lt;mydomain&gt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">.com at pop.</A>&lt;mydomain&gt;.com
+</I>&gt;<i>  		 	   		  
+</I>&gt;<i> 
+</I>&gt;<i> ------------------------------
+</I>&gt;<i> 
+</I>&gt;<i> Message: 2
+</I>&gt;<i> Date: Wed, 12 Oct 2011 21:28:45 +0100
+</I>&gt;<i> From: Rob MacGregor &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">rob.macgregor at gmail.com</A>&gt;
+</I>&gt;<i> To: <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">fetchmail-users at lists.berlios.de</A>
+</I>&gt;<i> Subject: Re: [fetchmail-users] Very frequent AUTHFAILs
+</I>&gt;<i> Message-ID:
+</I>&gt;<i> 	&lt;CAJCMLO8ZjUVmpE0kGuWQWafu=<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">gsEEyVuPjWBNbPegufSkQTwPQ at mail.gmail.com</A>&gt;
+</I>&gt;<i> Content-Type: text/plain; charset=UTF-8
+</I>&gt;<i> 
+</I>&gt;<i> On Wed, Oct 12, 2011 at 21:19, Ed Hochman &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">charleschat at hotmail.com</A>&gt; wrote:
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; More than half the time I get AUTHFAIL from the server.
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; Tech support at the server says they are not having any problems at their end.
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; Here are a couple of lines from mail.log:
+</I>&gt;<i> &gt; Oct 12 16:00:29 pti-server fetchmail[3773]: Authorization failure on <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">admin at homapump.com</A>@pop.homapump.com
+</I>&gt;<i> &gt; Oct 12 16:00:29 pti-server fetchmail[3773]: Query status=3 (AUTHFAIL)
+</I>&gt;<i> &gt; Oct 12 16:00:35 pti-server fetchmail[3773]: Authorization failure on <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">acctg1 at homapump.com</A>@pop.homapump.com
+</I>&gt;<i> &gt; Oct 12 16:00:35 pti-server fetchmail[3773]: Query status=3 (AUTHFAIL)
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; And when it fails I get this email subject:
+</I>&gt;<i> &gt; fetchmail authentication failed on ed@&lt;mydomain&gt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">.com at pop.</A>&lt;mydomain&gt;.com
+</I>&gt;<i> &lt;---SNIP---&gt;
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; When this error occurs it happens for everyone. ?When it works, I get this message.
+</I>&gt;<i> &gt; When it works, I get this email subject:
+</I>&gt;<i> &gt; fetchmail authentication OK on ed@&lt;mydomain&gt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">.com at pop.</A>&lt;mydomain&gt;.com
+</I>&gt;<i> 
+</I>&gt;<i> That sounds like one of 2 things:
+</I>&gt;<i> 
+</I>&gt;<i>  1) A communications failure between you and your mail provider
+</I>&gt;<i>  2) A failure at the mail provider that they are unaware of
+</I>&gt;<i> 
+</I>&gt;<i> I'd say that (1) is more likely.
+</I>&gt;<i> 
+</I>&gt;<i> -- 
+</I>&gt;<i> ? ? ? ? ? ? ? ?? Please keep list traffic on the list.
+</I>&gt;<i> 
+</I>&gt;<i> Rob MacGregor
+</I>&gt;<i> ? ? ? Whoever fights monsters should see to it that in the process he
+</I>&gt;<i> ? ? ? ? doesn't become a monster.? ? ? ? ? ? ? ? ? Friedrich Nietzsche
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> ------------------------------
+</I>&gt;<i> 
+</I>&gt;<i> Message: 3
+</I>&gt;<i> Date: Wed, 12 Oct 2011 22:41:21 +0200
+</I>&gt;<i> From: Matthias Andree &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">matthias.andree at gmx.de</A>&gt;
+</I>&gt;<i> To: <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">fetchmail-users at lists.berlios.de</A>
+</I>&gt;<i> Subject: Re: [fetchmail-users] Very frequent AUTHFAILs
+</I>&gt;<i> Message-ID: &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">4E95FB71.5000106 at gmx.de</A>&gt;
+</I>&gt;<i> Content-Type: text/plain; charset=UTF-8
+</I>&gt;<i> 
+</I>&gt;<i> Am 12.10.2011 22:28, schrieb Rob MacGregor:
+</I>&gt;<i> &gt; On Wed, Oct 12, 2011 at 21:19, Ed Hochman &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">charleschat at hotmail.com</A>&gt; wrote:
+</I>&gt;<i> &gt;&gt;
+</I>&gt;<i> &gt;&gt; More than half the time I get AUTHFAIL from the server.
+</I>&gt;<i> &gt;&gt;
+</I>&gt;<i> &gt;&gt; Tech support at the server says they are not having any problems at their end.
+</I>&gt;<i> &gt;&gt;
+</I>&gt;<i> &gt;&gt; Here are a couple of lines from mail.log:
+</I>&gt;<i> &gt;&gt; Oct 12 16:00:29 pti-server fetchmail[3773]: Authorization failure on <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">admin at homapump.com</A>@pop.homapump.com
+</I>&gt;<i> &gt;&gt; Oct 12 16:00:29 pti-server fetchmail[3773]: Query status=3 (AUTHFAIL)
+</I>&gt;<i> &gt;&gt; Oct 12 16:00:35 pti-server fetchmail[3773]: Authorization failure on <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">acctg1 at homapump.com</A>@pop.homapump.com
+</I>&gt;<i> &gt;&gt; Oct 12 16:00:35 pti-server fetchmail[3773]: Query status=3 (AUTHFAIL)
+</I>&gt;<i> &gt;&gt;
+</I>&gt;<i> &gt;&gt; And when it fails I get this email subject:
+</I>&gt;<i> &gt;&gt; fetchmail authentication failed on ed@&lt;mydomain&gt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">.com at pop.</A>&lt;mydomain&gt;.com
+</I>&gt;<i> &gt; &lt;---SNIP---&gt;
+</I>&gt;<i> &gt;&gt;
+</I>&gt;<i> &gt;&gt; When this error occurs it happens for everyone.  When it works, I get this message.
+</I>&gt;<i> &gt;&gt; When it works, I get this email subject:
+</I>&gt;<i> &gt;&gt; fetchmail authentication OK on ed@&lt;mydomain&gt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">.com at pop.</A>&lt;mydomain&gt;.com
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; That sounds like one of 2 things:
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt;  1) A communications failure between you and your mail provider
+</I>&gt;<i> &gt;  2) A failure at the mail provider that they are unaware of
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; I'd say that (1) is more likely.
+</I>&gt;<i> &gt; 
+</I>&gt;<i> 
+</I>&gt;<i> that said, logs would help. FAQ item #G3.
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> ------------------------------
+</I>&gt;<i> 
+</I>&gt;<i> _______________________________________________
+</I>&gt;<i> fetchmail-users mailing list
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">fetchmail-users at lists.berlios.de</A>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">https://lists.berlios.de/mailman/listinfo/fetchmail-users</A>
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> End of fetchmail-users Digest, Vol 63, Issue 8
+</I>&gt;<i> **********************************************
+</I> 		 	   		  
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002966.html">[fetchmail-users] Very frequent AUTHFAILs
+</A></li>
+	<LI>Next message: <A HREF="002968.html">[fetchmail-users] Very frequent AUTHFAILs
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2967">[ date ]</a>
+              <a href="thread.html#2967">[ thread ]</a>
+              <a href="subject.html#2967">[ subject ]</a>
+              <a href="author.html#2967">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

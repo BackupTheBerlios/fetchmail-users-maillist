@@ -1,0 +1,127 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] dup messages on mid-session expunge
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2007-October/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20dup%20messages%20on%20mid-session%20expunge&In-Reply-To=%3C89a2a1150710031541w669a22f4m8acd1866f89a5dca%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   
+   <LINK REL="Next"  HREF="001285.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] dup messages on mid-session expunge</H1>
+    <B>Mike Lowell</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20dup%20messages%20on%20mid-session%20expunge&In-Reply-To=%3C89a2a1150710031541w669a22f4m8acd1866f89a5dca%40mail.gmail.com%3E"
+       TITLE="[fetchmail-users] dup messages on mid-session expunge">mikedotlowell at gmail.com
+       </A><BR>
+    <I>Thu Oct  4 00:41:44 CEST 2007</I>
+    <P><UL>
+        
+        <LI>Next message: <A HREF="001285.html">[fetchmail-users] dup messages on mid-session expunge
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1283">[ date ]</a>
+              <a href="thread.html#1283">[ thread ]</a>
+              <a href="subject.html#1283">[ subject ]</a>
+              <a href="author.html#1283">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>The information requested in FAQ G3 is at the bottom of this message.
+
+** User Problem Description:
+Occasionally I receive two copies of an Email, except that the first
+message is blank.  The first message was delivered with only headers
+(no body), and the second message is normal (full headers + body).
+
+** Technical Problem Description:
+If any message is expunged after a message header has been downloaded,
+but before the body has been downloaded, fetchmail will still deliver
+the headers to the MDA (empty body).  The message is not marked as
+&quot;SEEN&quot;, so this message will be (successfully) downloaded next time
+fetchmail queries the server.
+
+I have captured this behavior in tcpdumps and log entries.  When the
+error occurs, I see the following IMAP behavior:
+
+1  &gt; A0009 SEARCH UNSEEN NOT DELETED
+2  &lt; * SEARCH 3116
+   &lt; A0009 OK SEARCH completed.
+3  &gt; A0010 FETCH 3116 RFC822.SIZE
+4 &lt; * 3116 FETCH (RFC822.SIZE 35525)
+   &lt; A0010 OK FETCH completed.
+5 &gt; A0011 FETCH 3116 RFC822.HEADER
+6 &lt; * 3116 FETCH (RFC822.HEADER
+7 &lt; {830} [...] )
+   &lt; A0011 OK FETCH completed.
+8 &gt; A0012 FETCH 3116 BODY.PEEK[TEXT]
+9 &lt; * 3117 EXISTS
+   &lt; * 3 RECENT
+   &lt; A0012 NO Some messages in the mailbox had previously been
+expunged and could not be returned.
+
+
+The behavior through step #8 is normal and works great.  At step #9 we
+are expecting the server to respond with the message body, but it does
+not.  Instead it tells us:
+
+&quot;NO Some messages in the mailbox had previously been expunged and
+could not be returned.&quot;
+
+I'm certain that I'm not expunging any messages at this time (because,
+in fact, I don't ever expunge messages -- all messages are left on the
+server).  However, the server is not under my control, and it is
+possible (and even likely) that the server itself is deleting messages
+for spam control.
+
+In case you're wondering, the time elapsed from the sending of step #1
+to the receipt of step #9 is about 220ms.
+
+** Fetchmail log at the time:
+14:49:03 3116 messages (3115 seen) for D\u at mail.
+14:54:03 reading message D\<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">u at mail</A>:3116 of 3116 (830 header octets)
+(log message incomplete)
+14:54:03 timeout after 300 seconds waiting for server mail
+14:54:03 socket error while fetching from D\<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">u at mail</A>
+14:54:03 Query status=2 (SOCKET)
+14:54:03 sleeping at 14:54:03 for 60 seconds
+
+** Relevant code:
+The call sequence when this occurs is as follows:
+    1) fetch_messages()
+    2) imap_fetch_headers()
+    3) readheaders()
+    4) imap_fetch_body()
+       - gen_recv()
+       - SockRead()
+       - recv()   [[ blocked waiting for a response that won't come ]]
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	
+	<LI>Next message: <A HREF="001285.html">[fetchmail-users] dup messages on mid-session expunge
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1283">[ date ]</a>
+              <a href="thread.html#1283">[ thread ]</a>
+              <a href="subject.html#1283">[ subject ]</a>
+              <a href="author.html#1283">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

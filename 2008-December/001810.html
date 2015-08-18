@@ -1,0 +1,113 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Store emails from different accounts in	different files
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2008-December/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Store%20emails%20from%20different%20accounts%20in%0A%09different%20files&In-Reply-To=%3C7f7571cd0812180810y22070fc9ibee56207dad69618%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001809.html">
+   <LINK REL="Next"  HREF="001818.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Store emails from different accounts in	different files</H1>
+    <B>Rafa Mu&#241;oz C&#225;rdenas</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Store%20emails%20from%20different%20accounts%20in%0A%09different%20files&In-Reply-To=%3C7f7571cd0812180810y22070fc9ibee56207dad69618%40mail.gmail.com%3E"
+       TITLE="[fetchmail-users] Store emails from different accounts in	different files">bymenda at gmail.com
+       </A><BR>
+    <I>Thu Dec 18 17:10:46 CET 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001809.html">[fetchmail-users] Store emails from different accounts in	different files
+</A></li>
+        <LI>Next message: <A HREF="001818.html">[fetchmail-users] where is all my emails ?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1810">[ date ]</a>
+              <a href="thread.html#1810">[ thread ]</a>
+              <a href="subject.html#1810">[ subject ]</a>
+              <a href="author.html#1810">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>I read the fetchmail man but I didn't find a clear explanation about how to
+do this. In my opinion it should be easy to do what I want, but I don't know
+how to do it, hehe.
+
+My ~/.fetchmailrc:
+*set daemon 50
+
+poll pop.gmail.com with proto POP3 and options no dns
+user '<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">account1 at gmail.com</A>' with pass 'blabla' is account1
+with options nokeep ssl
+
+poll pop.gmail.com with proto POP3 and options no dns
+user '<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">account2 at gmail.com</A>' with pass 'blabla' is account2
+with options nokeep ssl
+
+smtphost localhost
+*
+
+2008/12/18 Rob MacGregor &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">rob.macgregor at gmail.com</A>&gt;
+
+&gt;<i> On Thu, Dec 18, 2008 at 15:13, Rafa Mu&#241;oz C&#225;rdenas &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">bymenda at gmail.com</A>&gt;
+</I>&gt;<i> wrote:
+</I>&gt;<i> &gt; Hi everyone.
+</I>&gt;<i> &gt; I've installed fetchmail in my system and I put in my configuration file
+</I>&gt;<i> &gt; several email directions.
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; Now, when I receive emails from all acounts they go to the file
+</I>&gt;<i> &gt; /var/spool/mail/username.
+</I>&gt;<i> &gt; What I want is a way that every account has its independent file where
+</I>&gt;<i> all
+</I>&gt;<i> &gt; its emails are stored in it.
+</I>&gt;<i> &gt; I don't want to store all emails from all accounts into &quot;username&quot; file.
+</I>&gt;<i>
+</I>&gt;<i> As Matthias said, that's down to how you configure fetchmail.
+</I>&gt;<i> Unfortunately you've provided zero information on your setup, so it
+</I>&gt;<i> isn't possible to point out where you've gone wrong ;)
+</I>&gt;<i>
+</I>&gt;<i> The man page does provide examples of how to handle this for
+</I>&gt;<i> multi-drop accounts, which I'm guessing is what you're using.  It also
+</I>&gt;<i> contains lots of information about the issues surrounding multi-drop.
+</I>&gt;<i>
+</I>&gt;<i> --
+</I>&gt;<i>                 Please keep list traffic on the list.
+</I>&gt;<i>
+</I>&gt;<i> Rob MacGregor
+</I>&gt;<i>      Whoever fights monsters should see to it that in the process he
+</I>&gt;<i>        doesn't become a monster.                  Friedrich Nietzsche
+</I>&gt;<i> _______________________________________________
+</I>&gt;<i> fetchmail-users mailing list
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">fetchmail-users at lists.berlios.de</A>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">https://lists.berlios.de/mailman/listinfo/fetchmail-users</A>
+</I>&gt;<i>
+</I>
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001809.html">[fetchmail-users] Store emails from different accounts in	different files
+</A></li>
+	<LI>Next message: <A HREF="001818.html">[fetchmail-users] where is all my emails ?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1810">[ date ]</a>
+              <a href="thread.html#1810">[ thread ]</a>
+              <a href="subject.html#1810">[ subject ]</a>
+              <a href="author.html#1810">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

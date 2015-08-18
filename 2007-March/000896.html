@@ -1,0 +1,172 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] fetchmail and socks5
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2007-March/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%20and%20socks5&In-Reply-To=%3Cm3hcsipr0j.fsf%40HayekJ.Hayek-local.name%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000888.html">
+   <LINK REL="Next"  HREF="000897.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] fetchmail and socks5</H1>
+    <B>Jochen Hayek</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%20and%20socks5&In-Reply-To=%3Cm3hcsipr0j.fsf%40HayekJ.Hayek-local.name%3E"
+       TITLE="[fetchmail-users] fetchmail and socks5">Jochen+fetchmail-users at Hayek.name
+       </A><BR>
+    <I>Sun Mar 18 15:26:04 CET 2007</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000888.html">[fetchmail-users] fetchmail and socks5
+</A></li>
+        <LI>Next message: <A HREF="000897.html">[fetchmail-users] fetchmail and socks5
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#896">[ date ]</a>
+              <a href="thread.html#896">[ thread ]</a>
+              <a href="subject.html#896">[ subject ]</a>
+              <a href="author.html#896">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>&gt;&gt;&gt;&gt;&gt;<i> &quot;MA&quot; == Matthias Andree writes:
+</I>
+&gt;<i> Jochen Hayek writes:
+</I>
+    MA&gt; But why would fetchmail then need its own command line switch at all?
+
+Because that feature needs to get locked out, until it gets explicitly invited.
+
+And the fact that ready-made fetchmails in distros come with not so obvious linked-in socks support
+is not really a contradiction,
+to the fact, that people don't want that feature until they say &quot;I want it&quot;.
+
+
+Because a fetchmail switch &quot;--use-socks&quot; defaulting to false
+would have helped not costing me and others quite a couple of hours.
+
+And maybe far more hours to others, that were not as sick as me, to go here to tell you, there *is* a weird thing with fetchmail.
+
+
+Pls don't get upset!
+I certainly don't consider *you* responsible for that problem.
+
+
+Who is responsible then? Hard to tell ...
+
+When people attempt socksification of fetchmail (likewise other applications),
+they are faced with the suggestion to do it via CPP macros.
+If they are lucky, they don't even need to touch their code.
+Apparently as long, as no /etc/socks.conf is created, the application continues working as before,
+so nobody considers introducing a &quot;--use-socks&quot; switch.
+Only at a far later stage impacts and problems appear and get discussed.
+Meanwhile the recentyl introduced has long gotten an established feature,
+and changing it would break compatibility ...
+A good example for the downsides of the bazaar approach ...
+(Sorry for this, but I couldn't resist.)
+
+    MA&gt; I mean - if the SOCKS library reads the environment, 
+    MA&gt; we can just document this.
+    MA&gt; I'll do that now.
+
+A couple of words in the man page and in the FAQ,
+that will get found by search machines,
+so that googling for &quot;fetchmail socks&quot;
+will immediately reveal the problem.
+
+But I guess this thread here will get picked up the search machines anyway
+and will also actually help already.
+
+
+But still:
+when *I* couldn't connect to my ISP's IMAP server any longer
+I was ***far*** away from googling for &quot;fetchmail socks&quot;,
+and it took me pretty long to find out,
+that I had gone through my socks server for quite a while
+(without being aware of it, as I never told fetchmail to do so)
+and that I could not connect to the IMAP server, only because my socks server was down.
+
+Now that I know that, it's obviously easy to make use of that env. var. &quot;SOCKS_CONF&quot;.
+This already found its place in my ~/.profile -- maybe this should even go to /etc/profile :
+
+    export SOCKS_CONF=/dev/null
+
+And wherever I do want to go through the socks server,
+I will &quot;prepend&quot; this to a command line:
+
+    env SOCKS_CONF=/etc/socks.conf
+
+e.g.
+
+    env SOCKS_CONF=/etc/socks.conf socksify ftp ...
+    env SOCKS_CONF=/etc/socks.conf socksify wget ...
+    env SOCKS_CONF=/etc/socks.conf socksify curl ...
+
+Nothing easier than that.
+
+I hated it anyway, that &quot;socksify&quot; does not take command line switches,
+and so you are not able to try different socks.conf on the the socksified command lines -- of course *after* the word socksify.
+But as we do know by now: you can get this effect through that env. var. -- see above!
+
+    MA&gt; I'm not going to change the default behaviour in 6.3.X releases anyways:
+    MA&gt; incompatibilities do not belong in patchlevel update releases. 
+    MA&gt; So no putenvs without options.
+
+    MA&gt; Adding even more code to handle yet another option 
+    MA&gt; however doesn't seem justified in this case
+    MA&gt; -- this new option would just be one different
+    MA&gt; formulation for exactly the same purpose
+    MA&gt; - and we already have env(1) and shells to handle this.
+
+You are very right.
+I cannot blame you for this position.
+
+    MA&gt; It's not the putenv, 
+    MA&gt; but the dozens of code lines in the fetchmail dump, option
+    MA&gt; parser, rcfile parser, fetchmailconf
+    MA&gt; and everywhere else I've forgotten.
+
+    MA&gt; I hope that's acceptable.
+
+It is.
+
+    MA&gt; If it's not, please find some good excuses for me for duplicating the
+    MA&gt; environment modification code that is already in env(1)
+
+    MA&gt; - and please one that keeps compatibility with 6.3.7. :-)
+
+My idea was to *break* compatibility here,
+as this feature has always been a very bad feature.
+
+Cheers,
+Jochen
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000888.html">[fetchmail-users] fetchmail and socks5
+</A></li>
+	<LI>Next message: <A HREF="000897.html">[fetchmail-users] fetchmail and socks5
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#896">[ date ]</a>
+              <a href="thread.html#896">[ thread ]</a>
+              <a href="subject.html#896">[ subject ]</a>
+              <a href="author.html#896">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,100 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Fetching mail repeatedly but without duplication.
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2008-May/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Fetching%20mail%20repeatedly%20but%20without%20duplication.&In-Reply-To=%3C440ee8770805190747m477fdef1hd38e77218d6c97aa%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001529.html">
+   <LINK REL="Next"  HREF="001531.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Fetching mail repeatedly but without duplication.</H1>
+    <B>Pratap Subrahmanyam</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Fetching%20mail%20repeatedly%20but%20without%20duplication.&In-Reply-To=%3C440ee8770805190747m477fdef1hd38e77218d6c97aa%40mail.gmail.com%3E"
+       TITLE="[fetchmail-users] Fetching mail repeatedly but without duplication.">pratapsu at gmail.com
+       </A><BR>
+    <I>Mon May 19 16:47:07 CEST 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001529.html">[fetchmail-users] Fetchmail Problem : oversized	messages	notification will not be sent to the sender but to	user(the	receiver)
+</A></li>
+        <LI>Next message: <A HREF="001531.html">[fetchmail-users] Fetching mail repeatedly but without	duplication.
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1530">[ date ]</a>
+              <a href="thread.html#1530">[ thread ]</a>
+              <a href="subject.html#1530">[ subject ]</a>
+              <a href="author.html#1530">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Folks,
+I'm having a small issue that I need to workaround.
+
+All my mail arrives and resides in an MS Exchange 2007 mail box. I then use
+fetchmail to get it from there, via IMAP4, send it through procmail to have
+it filtered into folders etc, and then read it via mutt. It all works mostly
+just fine and I like my setup a lot.
+
+Recently, due to some IT screwup, all the mail that I had incrementally
+fetched over the last few years have been lost. Thankfully, I left all my
+mail on the server!
+
+Now, I have about 61K emails on the server :-(
+
+I decided to do a &quot;fetchmail -ak&quot;. But, it has failed the last 7 attempts,
+some time after the low teen thousandth email, once after 13K once after 17K
+emails etc. And it takes a long time to do this. Each time it fails, I &quot;rm
+-rf ~/Mail/inbox&quot; and try again. But, it seems to me there has to be a
+better way. Each time the error is some socket failure. I totally believe
+this is probably a flaky mail server problem and has nothing to do with
+fetchmail itself. Still, I need to find a way around it.
+
+Here are some specific questions:
+
+a) is there a way I can tell fetchmail to fetch emails numbered 1 - 1000,
+then 1001 - 2000 etc? The chances that there will be a socket error while
+bringing in a 1000 emails is, let's see, about 60 times smaller than if I
+asked it to fetch 60000 emails. I like those kind of odds.
+
+b) Ask fetchmail to retry without having it fetch the same mail repeatedly?
+For instance, let us say I said &quot;fetchmail -ak&quot; and it failed at 13894th
+email. I'd like to restart it and have it start fetching from the 13895th
+email. Can this be done? How?
+
+c) Is there any other clever way?
+
+Thanks,
+
+Pratap
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001529.html">[fetchmail-users] Fetchmail Problem : oversized	messages	notification will not be sent to the sender but to	user(the	receiver)
+</A></li>
+	<LI>Next message: <A HREF="001531.html">[fetchmail-users] Fetching mail repeatedly but without	duplication.
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1530">[ date ]</a>
+              <a href="thread.html#1530">[ thread ]</a>
+              <a href="subject.html#1530">[ subject ]</a>
+              <a href="author.html#1530">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

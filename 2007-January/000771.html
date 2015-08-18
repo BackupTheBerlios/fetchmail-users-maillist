@@ -1,0 +1,125 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] server problems
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2007-January/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20server%20problems&In-Reply-To=%3C95FFFE25-36FC-4247-AB2D-D6D25E2F8E23%40charter.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   
+   <LINK REL="Next"  HREF="000772.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] server problems</H1>
+    <B>Thomas Isenbarger</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20server%20problems&In-Reply-To=%3C95FFFE25-36FC-4247-AB2D-D6D25E2F8E23%40charter.net%3E"
+       TITLE="[fetchmail-users] server problems">isen at charter.net
+       </A><BR>
+    <I>Thu Jan  4 01:08:07 CET 2007</I>
+    <P><UL>
+        
+        <LI>Next message: <A HREF="000772.html">[fetchmail-users] server problems
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#771">[ date ]</a>
+              <a href="thread.html#771">[ thread ]</a>
+              <a href="subject.html#771">[ subject ]</a>
+              <a href="author.html#771">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>I am still having problems with fetchmail and my 3 mail servers.  I  
+have read the Retrieval Failure Modes section of the fetchmail man  
+page, but I still cannot solve my problem.  I was able to use nmap to  
+determine that the servers I am polling are all pop3, so the issues  
+with pop2 listed in that section of the man page are not relevant.
+
+For the 2 servers that give me trouble, nmap says they are pop3, but  
+cannot determine the server info from the fingerprint.  For the  
+server that works correctly, nmap says it is pop3d (notice the 'd')  
+and that it is a Novell Groupwise server.
+
+Do you have any other advice for using nmap to troubleshoot this?
+
+Any other suggestions?
+
+Below is my original message describing the problem.  In short, I  
+receive all mail from the the 2 problematic servers every time I poll  
+them.  I only want to receive unread mail.
+
+--------
+
+I have my .fetchmailrc set to poll 3 mail servers (like below but  
+without the specific servers, usernames, and passwords).  As you can  
+see I have all three servers set up the same way.  However, both  
+servers 1 and 3 always download all my mail whether it was read  
+previously or not.  server2 skips downloading previously read  
+messages and only downloads mail that is new since the last fetch.   
+Because I have the three set up the same here in my .fetchmailrc,  
+there must be something specific to the servers that causes this  
+behavior.
+
+1) How can I figure out the nature of the servers on the other end? And,
+
+2) What can I do in my .fetchmailrc file to make fetchmail skip  
+downloading previously read messages for all servers?
+
+I check my mail from a number of computers, and I want all my mail to  
+be available to all the computers, but have each computer only  
+download the mail that is new for that particular computer (but which  
+I may have read on another one already)
+
+Thanks in advance,
+isen
+
+defaults
+   no fetchall
+   keep
+   limit 500000
+
+set postmaster &quot;username&quot;
+set bouncemail
+
+poll server1
+   protocol pop3
+   user username1
+   password 'pass1'
+
+poll server2
+   protocol pop3
+   user username2
+   password 'pass2'
+
+poll server3
+   protocol pop3
+   user username3
+   password 'pass3'
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	
+	<LI>Next message: <A HREF="000772.html">[fetchmail-users] server problems
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#771">[ date ]</a>
+              <a href="thread.html#771">[ thread ]</a>
+              <a href="subject.html#771">[ subject ]</a>
+              <a href="author.html#771">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

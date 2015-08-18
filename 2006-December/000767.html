@@ -1,0 +1,128 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] fetchmail 6.3.6-rc5 final release candidate
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2006-December/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%206.3.6-rc5%20final%20release%20candidate&In-Reply-To=%3C20061219004208.GB16966%40merlin.emma.line.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000766.html">
+   <LINK REL="Next"  HREF="000769.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] fetchmail 6.3.6-rc5 final release candidate</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%206.3.6-rc5%20final%20release%20candidate&In-Reply-To=%3C20061219004208.GB16966%40merlin.emma.line.org%3E"
+       TITLE="[fetchmail-users] fetchmail 6.3.6-rc5 final release candidate">matthias.andree at gmx.de
+       </A><BR>
+    <I>Tue Dec 19 01:42:08 CET 2006</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000766.html">[fetchmail-users] [PATCH] Re: possible bug in IMAP IDLE,	connection times out after 30 minutes
+</A></li>
+        <LI>Next message: <A HREF="000769.html">[fetchmail-users] Character encoding
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#767">[ date ]</a>
+              <a href="thread.html#767">[ thread ]</a>
+              <a href="subject.html#767">[ subject ]</a>
+              <a href="author.html#767">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA1
+
+Greetings,
+
+After several more bugs had to be fixed, I have uploaded the fifth
+fetchmail 6.3.6 release candidate to the usual download location:
+&lt;<A HREF="http://home.pages.de/~mandree/fetchmail/">http://home.pages.de/~mandree/fetchmail/</A>&gt; - this should become the
+final 6.3.6 release soon.
+
+It fixes the --sslcert vs. --user regression seen in 6.3.5,
+it fixes the long-standing &quot;doesn't detect /etc/resolv.conf changes&quot;
+issue that broke DNS resolving on so many systems, makes IMAP IDLE
+handling more robust vs. server timeouts and adds a few other minor
+changes - see the next section for details.
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+fetchmail 6.3.6-rc5 changes (versus -rc4) are:
+
+# REGRESSION FIX:
+* In 6.3.5 (as a side effect of the authenticate external patch), using SSL
+  certificate/key authentication overrode the --user option. Now the latter
+  takes precedence, and only defaults to the certificate's common name.
+  Debian Bug #400950, reported by Jorgen Schaefer &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">forcer at debian.org</A>&gt;.
+
+# BUG FIXES:
+* On systems that have res_search(), assume we also have res_init() and call it
+  (suggested by Ulrich Drepper, glibc bug #3675) in order to make libc or
+  libresolv reread the resolver configuration at the beginning of a poll cycle.
+  This is important when fetchmail is in daemon mode and /etc/resolv.conf is
+  changed later by dhcpcd, dhclient, pppd, openvpn or other ip-up/ipchange
+  scripts.  Should fix Debian Bug#389270, Bug#391698.
+* Fix crash on systems that do not provide strdup(), the crash then happens in
+  out-of-memory conditions.  Patch by Andreas Krennmair.
+
+# CHANGES:
+* Remove excess no-op strcpy() after strdup() found by Andreas Krennmair.
+* Remove handling for PS_TRUNCATED (code 27), which was never asserted.
+* Improve handling of IMAP IDLE, some servers do not reset their time counters
+  after sending information asynchronously. Patch by Sunil Shetye, after report
+  from Andrew Baumann.
+* When requesting Kerberos V4, V5 or GSSAPI, complain and exit with syntax error
+  if any of these requested features has not been compiled in. Reported by Isaac
+  Wilcox.
+* --version will now add +KRB4 or +KRB5 if Kerberos v4 or v5, respectively, have
+  been compiled in. Reported by Isaac Wilcox.
+
+# DOCUMENTATION:
+* Dropped exit status 15 from manual page, it's not used by fetchmail.
+  Reported by Isaac Wilcox.
+* Documented exit codes 24 - 29 as internal.
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+WARNING: This message sets the Reply-To: header.
+When replying to me personally, you need to edit the To: header!
+
+Thank you.
+
+Happy fetching,
+Matthias Andree
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1.4.5 (GNU/Linux)
+
+iD8DBQFFhzVfvmGDOQUufZURAqM3AJ94TzwwVttbLXy1IFM4/dXvoj4jtgCgxZdm
+ATncf/Di6YiqLUddIrBpZ3Q=
+=2tcR
+-----END PGP SIGNATURE-----
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000766.html">[fetchmail-users] [PATCH] Re: possible bug in IMAP IDLE,	connection times out after 30 minutes
+</A></li>
+	<LI>Next message: <A HREF="000769.html">[fetchmail-users] Character encoding
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#767">[ date ]</a>
+              <a href="thread.html#767">[ thread ]</a>
+              <a href="subject.html#767">[ subject ]</a>
+              <a href="author.html#767">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

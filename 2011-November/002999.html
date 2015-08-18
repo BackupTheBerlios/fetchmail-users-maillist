@@ -1,0 +1,103 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Downloading from MailEnable catch-all
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2011-November/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Downloading%20from%20MailEnable%20catch-all&In-Reply-To=%3C911b258e-bc49-463f-aa5d-a28d9c631a5e%40quaglia%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002995.html">
+   <LINK REL="Next"  HREF="002992.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Downloading from MailEnable catch-all</H1>
+    <B>Lorenzo Milesi</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Downloading%20from%20MailEnable%20catch-all&In-Reply-To=%3C911b258e-bc49-463f-aa5d-a28d9c631a5e%40quaglia%3E"
+       TITLE="[fetchmail-users] Downloading from MailEnable catch-all">maxxer at ufficyo.com
+       </A><BR>
+    <I>Fri Nov 18 09:07:36 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002995.html">[fetchmail-users] Downloading from MailEnable catch-all
+</A></li>
+        <LI>Next message: <A HREF="002992.html">[fetchmail-users] [Solved] Fetchmail won't start at boot
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2999">[ date ]</a>
+              <a href="thread.html#2999">[ thread ]</a>
+              <a href="subject.html#2999">[ subject ]</a>
+              <a href="author.html#2999">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>&gt;<i> &gt; Anyway this option doesn't look possible to me: the &quot;from&quot; field
+</I>&gt;<i> &gt; contains the sender mail relay. In this case this is gmail, but
+</I>&gt;<i> &gt; will change at every email!
+</I>&gt;<i> 
+</I>&gt;<i> Yet another case for just posting the pointer to
+</I>&gt;<i> &lt;<A HREF="http://www.fetchmail.info/fetchmail-FAQ.html#G3">http://www.fetchmail.info/fetchmail-FAQ.html#G3</A>&gt;
+</I>&gt;<i> because it lacks configuration information and -vvv traces...
+</I>
+I didn't add these information because I /thought/ I provided enough informations. 
+
+Anyway config is this:
+
+poll mailenable.mailserver.it proto pop3 envelope 1 &quot;Received&quot; localdomains mydomain.com:
+    user <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">postmaster at mydomain.com</A> with pass &quot;password&quot; to * here keep
+
+Mail headers:
+Received: from mail.mailenable.mailserver.it ([127.0.0.1]) by mailenable.mailserver.it with MailEnable ESMTP; Fri, 18 Nov 2011 08:52:33 +0100
+Received: from ([x.x.24.235]) for &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">administrator at mydomain.com</A>&gt; with MailEnable Catch-All Filter; Fri, 18 Nov 2011 08:52:32 +0100
+Received: from smtp.smtp.com ([x.x.24.235]) by mailenable.mailserver.it with MailEnable ESMTP; Fri, 18 Nov 2011 08:52:32 +0100
+Received: from sender.mailserver.com (sender.mailserver.com [x.x.131.226])
+        by smtp.smtp.com (Postfix) with ESMTP id A68AE1CEF0
+        for &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">administrator at mydomain.com</A>&gt;; Fri, 18 Nov 2011 08:44:31 +0100 (CET)
+Received: from localhost (localhost [127.0.0.1])
+        by sender.mailserver.com (Postfix) with ESMTP id B8AD41C1452
+        for &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">administrator at mydomain.com</A>&gt;; Fri, 18 Nov 2011 08:52:31 +0100 (CET)
+X-Virus-Scanned: amavisd-new at senderdomain.it
+[...]
+
+When fetching with -vvvv
+lettura del messaggio <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">postmaster at mailenable.mailserver.it</A> in corso: 1 di 1 (2340 ottetti)
+fetchmail: analisi della riga &#171;Received&#187; in corso:
+Received: from ([xx.xx.xx.xx]) for &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">administrator at mydomain.com</A>&gt; with MailEnable Catch-All Filter; Fri, 18 Nov 2011 08:52:32 +0100
+fetchmail: nessuno indirizzo &#171;Received&#187; trovato
+
+
+So it seems the header is not sendmail-style, thus the recipient is not identified.
+I guess I my options are:
+* use single mailboxes
+* modify and recompile fetchmail
+
+any other idea?
+thanks
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002995.html">[fetchmail-users] Downloading from MailEnable catch-all
+</A></li>
+	<LI>Next message: <A HREF="002992.html">[fetchmail-users] [Solved] Fetchmail won't start at boot
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2999">[ date ]</a>
+              <a href="thread.html#2999">[ thread ]</a>
+              <a href="subject.html#2999">[ subject ]</a>
+              <a href="author.html#2999">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,121 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Possible improvements in future Fetchmail	versions.
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2010-April/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Possible%20improvements%20in%20future%20Fetchmail%0A%09versions.&In-Reply-To=%3C4BD1ECEA.8060300%40gmx.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002366.html">
+   <LINK REL="Next"  HREF="002364.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Possible improvements in future Fetchmail	versions.</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Possible%20improvements%20in%20future%20Fetchmail%0A%09versions.&In-Reply-To=%3C4BD1ECEA.8060300%40gmx.de%3E"
+       TITLE="[fetchmail-users] Possible improvements in future Fetchmail	versions.">matthias.andree at gmx.de
+       </A><BR>
+    <I>Fri Apr 23 20:54:34 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002366.html">[fetchmail-users] Possible improvements in future Fetchmail	versions.
+</A></li>
+        <LI>Next message: <A HREF="002364.html">[fetchmail-users] Possible improvements in future Fetchmail versions.
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2362">[ date ]</a>
+              <a href="thread.html#2362">[ thread ]</a>
+              <a href="subject.html#2362">[ subject ]</a>
+              <a href="author.html#2362">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Am 23.04.2010 20:04, schrieb Jerry:
+&gt;<i> I would like to suggest the following changes for upcoming versions of
+</I>&gt;<i> Fetchmail.
+</I>&gt;<i> 
+</I>&gt;<i> 1) The ability to use SMTP authentication.
+</I>&gt;<i> 
+</I>&gt;<i> I know I mentioned this several months ago; however, I feel it
+</I>&gt;<i> is still something that should be implemented. Several other utilities
+</I>&gt;<i> already support this feature. I am somewhat surprised that Fetchmail
+</I>&gt;<i> does not. Having it do so would eliminate having to do creative
+</I>&gt;<i> configuring with Postfix on systems them employ full SMTP
+</I>&gt;<i> authentication with TLS.
+</I>
+For 6.4.X (requires proper modularization of SMTP/LMTP/BSMTP/MDA sinks first),
+and I am still wondering about if and which SASL libary to use (Cyrus vs.
+gsasl). I don't want to implement all that stuff myself if others have already
+done it.
+
+&gt;<i> 2) The ability to include both time and message ID in the Fetchmail log
+</I>&gt;<i> file. Including the message ID would make back tracing an e-mail
+</I>&gt;<i> eminently easier. Also, Fetchmail apparently does not have the ability
+</I>&gt;<i> to check for its log file and create it if it doesn't exist.
+</I>
+Oh, it DOES check and deliberately does not log if the file is absent.
+I think it's even documented.  The log rotation stuff I have (newsyslog on
+FreeBSD, logrotate on Linux) can create empty files after rotation, while the
+the restart part is pending.
+
+&gt;<i> That
+</I>&gt;<i> behavior should be modified to include the ability to create its own
+</I>&gt;<i> log file if it doesn't exist.
+</I>
+Message-ID would be worthwhile, but requires more work to make sure it's present
+on all messages, and perhaps there are sequence numbers that relate to the
+Message-ID so that those group properly.  Just the Message-ID as the message
+header flies by might work, but isn't as useful.
+
+Not so sure about timestamps. OTOH, most of the logging is supposed to go
+through report(), so would probably be reasonably simple to do.
+
+&gt;<i> 3) The ability to rotate Fetchmail's log files without shutting
+</I>&gt;<i> Fetchmail down. Virtually every daemon that I am familiar with has this
+</I>&gt;<i> feature. Whether using a standard signal or a custom one (similar to
+</I>&gt;<i> Clamav):
+</I>&gt;<i> 
+</I>&gt;<i> 30    SIGUSR1      terminate process    User defined signal 1
+</I>&gt;<i> 31    SIGUSR2      terminate process    User defined signal 2
+</I>
+Well... for the nonce, as Rob suggests, syslog helps with that, and with
+timestamping, too. :)
+
+In the long run I expect the whole logging to be revised.
+
+&gt;<i> I realize that this is not going to happen over night, or perhaps ever.
+</I>&gt;<i> I just think it is something for the developers to consider.
+</I>
+Yes. Just considered. :)
+
+-- 
+Matthias Andree
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002366.html">[fetchmail-users] Possible improvements in future Fetchmail	versions.
+</A></li>
+	<LI>Next message: <A HREF="002364.html">[fetchmail-users] Possible improvements in future Fetchmail versions.
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2362">[ date ]</a>
+              <a href="thread.html#2362">[ thread ]</a>
+              <a href="subject.html#2362">[ subject ]</a>
+              <a href="author.html#2362">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

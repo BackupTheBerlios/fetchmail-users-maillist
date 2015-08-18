@@ -1,0 +1,163 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] multidrop RC configuration help
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2010-October/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20multidrop%20RC%20configuration%20help&In-Reply-To=%3C4CB1E6F9.7000603%40JeffMcKinzie.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002486.html">
+   <LINK REL="Next"  HREF="002488.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] multidrop RC configuration help</H1>
+    <B>Jeffrey Shawn McKinzie</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20multidrop%20RC%20configuration%20help&In-Reply-To=%3C4CB1E6F9.7000603%40JeffMcKinzie.com%3E"
+       TITLE="[fetchmail-users] multidrop RC configuration help">Jeff at JeffMcKinzie.com
+       </A><BR>
+    <I>Sun Oct 10 18:16:57 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002486.html">[fetchmail-users] multidrop RC configuration help
+</A></li>
+        <LI>Next message: <A HREF="002488.html">[fetchmail-users] multidrop RC configuration help
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2487">[ date ]</a>
+              <a href="thread.html#2487">[ thread ]</a>
+              <a href="subject.html#2487">[ subject ]</a>
+              <a href="author.html#2487">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>  Updating fedora isn't an option,  I do not control the system it runs 
+on.  I can update fetchmail if needed but I'd like to stick with the 
+standard RPM's so I can use YUM for updates.
+
+With my current rc all emails get forwarded to <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">User at New.domain</A>, which is 
+the first mapping in the list.  I believe the issue is the headers but 
+don't know where to go from there.  Here are the headers from an email 
+sent to <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">user1 at original.domain</A>:
+
+retr 1
++OK 9584 octets
+
+Received: (qmail 23150 invoked from network); 10 Oct 2010 15:46:51 -0000
+Received: from unknown (HELO p3pismtp01-006.prod.phx3.secureserver.net) 
+([10.6.12.6])
+           (envelope-sender &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">Jeff at JeffMcKinzie.com</A>&gt;)
+           by p3plsmtp09-05.prod.phx3.secureserver.net (qmail-1.03) with 
+SMTP
+           for &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">user1 at original.domain</A>&gt;; 10 Oct 2010 15:46:51 -0000
+X-IronPort-Anti-Spam-Result: 
+AloBALd6sUxAyqUamWdsb2JhbACUEI4RAQEBAQEICwoHESK6X4VIBIRSiQg
+Received: from smtpauth15.prod.mesa1.secureserver.net ([64.202.165.26])
+   by p3pismtp01-006.prod.phx3.secureserver.net with SMTP; 10 Oct 2010 
+08:46:51 -0700
+Received: (qmail 12429 invoked from network); 10 Oct 2010 15:46:50 -0000
+Received: from unknown (70.7.125.19)
+   by smtpauth15.prod.mesa1.secureserver.net (64.202.165.26) with ESMTP; 
+10 Oct 2010 15:46:49 -0000
+Message-ID: &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">4CB1DFE5.6080002 at JeffMcKinzie.com</A>&gt;
+Disposition-Notification-To: Jeffrey Shawn McKinzie &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">Jeff at JeffMcKinzie.com</A>&gt;
+Date: Sun, 10 Oct 2010 08:46:45 -0700
+From: Jeffrey Shawn McKinzie &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">Jeff at JeffMcKinzie.com</A>&gt;
+Reply-To: <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">Jeff at JeffMcKinzie.com</A>
+Organization: www.JeffMcKinzie.com
+User-Agent: Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10.6; en-US; 
+rv:1.9.2.9) Gecko/20100915 Lightning/1.0b2 Thunderbird/3.1.4
+MIME-Version: 1.0
+To: <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">user1 at original.domain</A>
+Subject: test to user 1
+Content-Type: multipart/signed; protocol=&quot;application/pkcs7-signature&quot;; 
+micalg=sha1; boundary=&quot;------------ms070508020701040304060908&quot;
+X-Nonspam: IP whitelist 64.202.165.26
+
+This is a cryptographically signed message in MIME format.
+
+--------------ms070508020701040304060908
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: quoted-printable
+
+   message body....
+
+_____________________________________________________
+fetchmailrc:
+
+<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">User1 at original.domain</A> goes to <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">User at New.domain</A>
+<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">User2 at original.domain</A> goes to <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">differentUser at Different.domain</A>
+<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">AllOtherUsers at original.domain</A> goes to
+<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">YetAnotherUser at CompletelyDifferent.domain.</A>
+
+____________________________________________________
+On 10/10/10 12:42 AM, Matthias Andree wrote:
+&gt;<i> Am 10.10.2010 07:59, schrieb Jeffrey Shawn McKinzie:
+</I>&gt;&gt;<i> I'm trying to configure fetchmailrc for multidrop and am completely
+</I>&gt;&gt;<i> lost. Fetchmail is working perfectly in single drop mode. Using
+</I>&gt;&gt;<i> fetchmail 6.3.8 on fedora core 8 (2.6.26.8-57.sk98_noraid.fc8).
+</I>&gt;<i> This is outdated and fetchmail 6.3.8 is buggy, although probably not the
+</I>&gt;<i> cause of your current problem.
+</I>&gt;<i>
+</I>&gt;<i> Fedora Core 8 isn't maintained, and neither are its packages.
+</I>&gt;<i> Upgrade to Fedora 13.&lt;<A HREF="http://fedoraproject.org/wiki/Upgrading">http://fedoraproject.org/wiki/Upgrading</A>&gt;
+</I>&gt;<i>
+</I>&gt;&gt;<i> ISP is delivering mail from all users in a domain to a &quot;catch all&quot;
+</I>&gt;&gt;<i> mailbox.  I login via POP3 to the ISP.  I need the mail forwarded as
+</I>&gt;&gt;<i> follows:
+</I>&gt;<i> Does the ISP write required headers? Details at my personal
+</I>&gt;<i> home.pages.de link below.
+</I>&gt;<i>
+</I>&gt;&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">User1 at original.domain</A> goes to <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">User at New.domain</A>
+</I>&gt;&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">User2 at original.domain</A> goes to <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">differentUser at Different.domain</A>
+</I>&gt;&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">AllOtherUsers at original.domain</A> goes to
+</I>&gt;&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">YetAnotherUser at CompletelyDifferent.domain.</A>
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> I tried fetchmailrc:
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> poll ISP.pop3.host interval 1
+</I>&gt;&gt;<i>      user &quot;loginname&quot; password &quot;secretword&quot;
+</I>&gt;&gt;<i>      to <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">User1 at orignial.domain</A>=<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">User at New.domain</A>
+</I>&gt;&gt;<i>          <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">User2 at original.domain</A>=<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">differentUser at Different.domain</A>
+</I>&gt;&gt;<i>          * is <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">YetAnotherUser at CompletelyDifferent.domain</A>&quot;  here fetchall
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> fetchmail logs in okay but does not forward the mail to the correct
+</I>&gt;&gt;<i> account/domains. I'm totally lost. Any direction would be a great help.
+</I>&gt;<i> You may need to configure the envelope option, see
+</I>&gt;<i> &lt;<A HREF="http://www.fetchmail.info/fetchmail-man.html#12">http://www.fetchmail.info/fetchmail-man.html#12</A>&gt;
+</I>&gt;<i>
+</I>&gt;<i> &lt;<A HREF="http://www.fetchmail.info/fetchmail-FAQ.html#G3">http://www.fetchmail.info/fetchmail-FAQ.html#G3</A>&gt;
+</I>&gt;<i> &lt;<A HREF="http://home.pages.de/~mandree/mail/multidrop">http://home.pages.de/~mandree/mail/multidrop</A>&gt;
+</I>&gt;<i> &lt;<A HREF="http://www.fetchmail.info/fetchmail-FAQ.html#C_M">http://www.fetchmail.info/fetchmail-FAQ.html#C_M</A>&gt;
+</I>&gt;<i>
+</I>&gt;<i> If that doesn't help, please send a test mail with irrelevant contents
+</I>&gt;<i> to <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">user1 at original.domain</A>, retrieve it, and post it in raw format with
+</I>&gt;<i> all headers included. It'll probably end up in YetAnotherUser's mailbox.
+</I>&gt;<i>
+</I></PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002486.html">[fetchmail-users] multidrop RC configuration help
+</A></li>
+	<LI>Next message: <A HREF="002488.html">[fetchmail-users] multidrop RC configuration help
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2487">[ date ]</a>
+              <a href="thread.html#2487">[ thread ]</a>
+              <a href="subject.html#2487">[ subject ]</a>
+              <a href="author.html#2487">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

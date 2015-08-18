@@ -1,0 +1,107 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] fetchmail multiple mails
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2007-December/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%20multiple%20mails&In-Reply-To=%3C43ea8d070712211250h3eea3a48pc4689c3c036b49aa%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001400.html">
+   
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] fetchmail multiple mails</H1>
+    <B>Rob MacGregor</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%20multiple%20mails&In-Reply-To=%3C43ea8d070712211250h3eea3a48pc4689c3c036b49aa%40mail.gmail.com%3E"
+       TITLE="[fetchmail-users] fetchmail multiple mails">rob.macgregor at gmail.com
+       </A><BR>
+    <I>Fri Dec 21 21:50:31 CET 2007</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001400.html">[fetchmail-users] fetchmail multiple mails
+</A></li>
+        
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1401">[ date ]</a>
+              <a href="thread.html#1401">[ thread ]</a>
+              <a href="subject.html#1401">[ subject ]</a>
+              <a href="author.html#1401">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Dec 21, 2007 6:09 PM, jaspal singla &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">jaspal at tetrain.com</A>&gt; wrote:
+&gt;<i> Dear all,
+</I>&gt;<i>
+</I>&gt;<i> Please get me relief from the multiple mails by fetchmailrc.Here is the
+</I>&gt;<i> headers and my problem.
+</I>&lt;---SNIP---&gt;
+&gt;<i> There is 3 Delivered To: But I want to skip the first two Deliverd To:.
+</I>&gt;<i> I want to take delivered To: from the localuser name(harleen) not from
+</I>&gt;<i> the pop-ID(test).
+</I>
+Once more, with feeling...
+
+&gt;<i> My fetchmailrc are as:
+</I>&gt;<i>
+</I>&gt;<i> ________________________________________________________________________
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> set postmaster &quot;postmaster&quot;
+</I>&gt;<i> set nobouncemail
+</I>&gt;<i> set properties&quot;Delivered-To:<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">boutiqueintl.com-boutique_gurgaon at boutiqueintl.com</A>&quot;
+</I>
+If you're not using extension scripts you can drop this line.
+
+&gt;<i> poll example.com with proto POP3
+</I>&gt;<i>         no dns, aka example.com
+</I>&gt;<i>         envelope &quot;Delivered-To:&quot;
+</I>
+Append the number 2 to the line above, so that it reads:
+
+         envelope &quot;Delivered-To:&quot; 2
+
+This *is* documented in the man page, and is what I told you the last
+2 times when you were posting to the -devel list ;)
+
+In the event this doesn't solve your problems please post the
+following (as I've already asked, twice):
+
+1) Fetchmail version
+2) Output of &quot;fetchmail --nosyslog --nodetach -vvv&quot; for a problem email
+
+It would help if you could include the headers of the email in (2).
+
+-- 
+                 Please keep list traffic on the list.
+
+Rob MacGregor
+      Whoever fights monsters should see to it that in the process he
+        doesn't become a monster.                  Friedrich Nietzsche
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001400.html">[fetchmail-users] fetchmail multiple mails
+</A></li>
+	
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1401">[ date ]</a>
+              <a href="thread.html#1401">[ thread ]</a>
+              <a href="subject.html#1401">[ subject ]</a>
+              <a href="author.html#1401">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

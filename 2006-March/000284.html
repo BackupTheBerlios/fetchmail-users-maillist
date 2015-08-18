@@ -1,0 +1,91 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Re: Bug in imap_idle() with mail servers not supporting &quot;idle&quot;
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2006-March/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Re%3A%20Bug%20in%20imap_idle%28%29%20with%20mail%20servers%20not%20supporting%20%22idle%22&In-Reply-To=%3C20060301115254.GA3791%40session.bombay.retortsoft.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000283.html">
+   <LINK REL="Next"  HREF="000292.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Re: Bug in imap_idle() with mail servers not supporting &quot;idle&quot;</H1>
+    <B>Sunil Shetye</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Re%3A%20Bug%20in%20imap_idle%28%29%20with%20mail%20servers%20not%20supporting%20%22idle%22&In-Reply-To=%3C20060301115254.GA3791%40session.bombay.retortsoft.com%3E"
+       TITLE="[fetchmail-users] Re: Bug in imap_idle() with mail servers not supporting &quot;idle&quot;">shetye at bombay.retortsoft.com
+       </A><BR>
+    <I>Wed Mar  1 12:52:54 CET 2006</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000283.html">[fetchmail-users] Re: [fetchmail]2 Delivered-To: fields in email
+</A></li>
+        <LI>Next message: <A HREF="000292.html">[fetchmail-users] Re: Bug in imap_idle() with mail servers not supporting &quot;idle&quot;
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#284">[ date ]</a>
+              <a href="thread.html#284">[ thread ]</a>
+              <a href="subject.html#284">[ subject ]</a>
+              <a href="author.html#284">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>I think this issue is similar to the one reported by Casper
+Gripenberg. Could you try this patch and report if it works for you?
+
+=========================================================================
+Index: fetchmail/imap.c
+===================================================================
+--- fetchmail/imap.c	(revision 4696)
++++ fetchmail/imap.c	(working copy)
+@@ -633,11 +633,12 @@
+ 	if (ok != 0 || stage != STAGE_IDLE)
+ 	    return(ok);
+ 
+-	/* wait (briefly) for an unsolicited status update */
+-	ok = imap_ok(sock, NULL);
+-	/* again, this is new mail or an error */
+-	if (ok != PS_IDLETIMEOUT)
+-	    return(ok);
++	/* we used to wait for an unsolicited status update here with
++	 * imap_ok(). However, since no command has actually been
++	 * sent, there is no &quot;tag&quot; which can be used for comparison.
++	 * Just sleep instead */
++	set_timeout(0);
++	sleep(mytimeout);
+     }
+ 
+     /* restore normal timeout value */
+=========================================================================
+
+-- 
+Sunil Shetye.
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000283.html">[fetchmail-users] Re: [fetchmail]2 Delivered-To: fields in email
+</A></li>
+	<LI>Next message: <A HREF="000292.html">[fetchmail-users] Re: Bug in imap_idle() with mail servers not supporting &quot;idle&quot;
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#284">[ date ]</a>
+              <a href="thread.html#284">[ thread ]</a>
+              <a href="subject.html#284">[ subject ]</a>
+              <a href="author.html#284">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

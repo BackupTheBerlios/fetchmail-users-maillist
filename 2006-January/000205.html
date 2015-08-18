@@ -1,0 +1,105 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Fetchmail is running slow on Mac OS X
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2006-January/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Fetchmail%20is%20running%20slow%20on%20Mac%20OS%20X&In-Reply-To=%3C2730035E-946A-4FB6-A0F1-F6A6750AAD5F%40lux.io%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000204.html">
+   <LINK REL="Next"  HREF="000207.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Fetchmail is running slow on Mac OS X</H1>
+    <B>St&#233;phane Lux</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Fetchmail%20is%20running%20slow%20on%20Mac%20OS%20X&In-Reply-To=%3C2730035E-946A-4FB6-A0F1-F6A6750AAD5F%40lux.io%3E"
+       TITLE="[fetchmail-users] Fetchmail is running slow on Mac OS X">stephane at lux.io
+       </A><BR>
+    <I>Mon Jan  2 22:59:57 CET 2006</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000204.html">[fetchmail-users] Fetchmail is running slow on Mac OS X
+</A></li>
+        <LI>Next message: <A HREF="000207.html">[fetchmail-users] Fetchmail is running slow on Mac OS X
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#205">[ date ]</a>
+              <a href="thread.html#205">[ thread ]</a>
+              <a href="subject.html#205">[ subject ]</a>
+              <a href="author.html#205">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Am 02.01.2006 um 16:38 schrieb Rob Funk:
+
+&gt;<i> St&#233;phane Lux wrote:
+</I>&gt;&gt;<i> fetchmail: starting fetchmail 6.2.5 daemon
+</I>&gt;&gt;<i> fetchmail: 6.2.5 querying ... (protocol IMAP) at Sat, 31 Dec 2005
+</I>&gt;&gt;<i> 03:03:13 +0100 (CET): poll started
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Then nothing happens for about one minute  (timout?), then fetchmail
+</I>&gt;&gt;<i> ist running normaly:
+</I>&gt;<i>
+</I>&gt;<i> Normally delays of a minute or two indicate a DNS problem somewhere.
+</I>
+What kind of DNS problem? Server or client? I can telnet to the port  
+143 without a delay.
+
+
+&gt;&gt;<i> On my linux server it takes only a few seconds for fetchmail to check
+</I>&gt;&gt;<i> the mail accounts? What can I do? Is it a DNS or IDENT problem? I'm
+</I>&gt;&gt;<i> using a NAT router.
+</I>&gt;<i>
+</I>&gt;<i> Ah, ident could be a possibility too, depending on the server  
+</I>&gt;<i> software, but
+</I>&gt;<i> DNS is more likely.
+</I>&gt;<i>
+</I>&gt;<i> As the other Rob recommended, first try fetchmail 6.3.1 from
+</I>&gt;<i> <A HREF="http://fetchmail.berlios.de/.">http://fetchmail.berlios.de/.</A>  If that doesn't help let us know.
+</I>
+I have tried fetchmail 6.3.1. I still have the one minute delays for  
+setting up a connection:
+
+mac-mini:~/Desktop root# ./fetchmail -Nv -f /var/root/.fetchmailrc
+fetchmail: WARNING: Running as root is discouraged.
+fetchmail: starting fetchmail 6.3.1 daemon
+fetchmail: 6.3.1 querying *** (protocol IMAP) at Mon, 02 Jan 2006  
+22:56:38 +0100 (CET): poll started
+fetchmail: IMAP&lt; * OK [CAPABILITY IMAP4REV1 LOGIN-REFERRALS STARTTLS  
+AUTH=LOGIN] *** IMAP4rev1 2003.339 at Mon, 2 Jan 2006 22:57:37 +0100  
+(CET)
+...
+
+
+
+
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000204.html">[fetchmail-users] Fetchmail is running slow on Mac OS X
+</A></li>
+	<LI>Next message: <A HREF="000207.html">[fetchmail-users] Fetchmail is running slow on Mac OS X
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#205">[ date ]</a>
+              <a href="thread.html#205">[ thread ]</a>
+              <a href="subject.html#205">[ subject ]</a>
+              <a href="author.html#205">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

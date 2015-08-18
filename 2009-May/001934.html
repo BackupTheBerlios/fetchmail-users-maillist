@@ -1,0 +1,94 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] daemon mode and file permissions
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2009-May/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20daemon%20mode%20and%20file%20permissions&In-Reply-To=%3C200905241927.29541.finex%40finex.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001933.html">
+   <LINK REL="Next"  HREF="001935.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] daemon mode and file permissions</H1>
+    <B>FiNeX</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20daemon%20mode%20and%20file%20permissions&In-Reply-To=%3C200905241927.29541.finex%40finex.org%3E"
+       TITLE="[fetchmail-users] daemon mode and file permissions">finex at finex.org
+       </A><BR>
+    <I>Sun May 24 19:27:29 CEST 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001933.html">[fetchmail-users] daemon mode and file permissions
+</A></li>
+        <LI>Next message: <A HREF="001935.html">[fetchmail-users] daemon mode and file permissions
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1934">[ date ]</a>
+              <a href="thread.html#1934">[ thread ]</a>
+              <a href="subject.html#1934">[ subject ]</a>
+              <a href="author.html#1934">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Thanks Rob for your quick answer, here is the full fetchmailrc:
+
+
+# --- START /etc/fetchmailrc --- #
+set daemon 300
+set syslog
+set postmaster root
+
+set no bouncemail
+
+defaults:
+timeout 300
+antispam -1
+batchlimit 100
+
+poll SERVER proto POP3 user ACCOUNT1 with password ### is USER1 here
+poll SERVER proto POP3 user ACCOUNT2 with password ### is USER2 here
+poll SERVER proto POP3 user ACCOUNT3 with password ### is USER3 here
+poll SERVER proto POP3 user ACCOUNT4 with password ### is USER4 here
+poll SERVER proto POP3 user ACCOUNT5 with password ### is USER5 here
+# --- END /etc/fetchmailrc --- #
+
+
+Do you need some more informations?
+
+Many thanks!!!
+
+-- 
+by FiNeX
+<A HREF="http://www.finex.org">http://www.finex.org</A>
+finex (@) finex (.) org
+Linux Registered User #306523
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001933.html">[fetchmail-users] daemon mode and file permissions
+</A></li>
+	<LI>Next message: <A HREF="001935.html">[fetchmail-users] daemon mode and file permissions
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1934">[ date ]</a>
+              <a href="thread.html#1934">[ thread ]</a>
+              <a href="subject.html#1934">[ subject ]</a>
+              <a href="author.html#1934">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

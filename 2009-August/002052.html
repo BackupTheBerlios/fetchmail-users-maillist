@@ -1,0 +1,108 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Setting up e-mail capability
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2009-August/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Setting%20up%20e-mail%20capability&In-Reply-To=%3C43ea8d070908310206k605e4178k84a154fa77e656a6%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002051.html">
+   <LINK REL="Next"  HREF="002053.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Setting up e-mail capability</H1>
+    <B>Rob MacGregor</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Setting%20up%20e-mail%20capability&In-Reply-To=%3C43ea8d070908310206k605e4178k84a154fa77e656a6%40mail.gmail.com%3E"
+       TITLE="[fetchmail-users] Setting up e-mail capability">rob.macgregor at gmail.com
+       </A><BR>
+    <I>Mon Aug 31 11:06:57 CEST 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002051.html">[fetchmail-users] Setting up e-mail capability
+</A></li>
+        <LI>Next message: <A HREF="002053.html">[fetchmail-users] Setting up e-mail capability
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2052">[ date ]</a>
+              <a href="thread.html#2052">[ thread ]</a>
+              <a href="subject.html#2052">[ subject ]</a>
+              <a href="author.html#2052">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Mon, Aug 31, 2009 at 02:40, Dave Beach&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">drbeach at rogers.com</A>&gt; wrote:
+&lt;---SNIP---&gt;
+&gt;<i> If I understand fetchmail correctly, it will allow me to regularly poll my
+</I>&gt;<i> ISP and pop mail for all of my e-mail accounts, and interact with mail
+</I>&gt;<i> server software on my server to place mail in the appropriate directories. I
+</I>&gt;<i> presumably can then run other software to allow the client Outlook
+</I>&gt;<i> installations to access the server-based e-mail using IMAP. I presume I can
+</I>&gt;<i> rely on some sort of MTA functionality on my server to continue to send
+</I>&gt;<i> outbound SMTP mail to my ISP.
+</I>
+Sort of.  Fetchmail allows you to retrieve email from your ISP (and
+any other POP/IMAP servers) and pass it to your local SMTP server.  It
+is up to your SMTP server what happens next.
+
+&gt;<i> With that as a summary of what I'd like to do, I would be very grateful if
+</I>&gt;<i> someone would conceptually walk me through how this might work, and what
+</I>&gt;<i> software would be applicable at what stages. I'm not after a detailed
+</I>&gt;<i> explanation of how to configure the software, but rather a general overview
+</I>&gt;<i> of how it would all work together and what role each software would play. I
+</I>&gt;<i> am a complete newbie when it comes to implementing and using mail server
+</I>&gt;<i> software.
+</I>
+There is no shortage of information out there on this subject.  Throw
+appropriate words into any search engine and you'll get a host of
+pages taking you through the process.  You'll need to make 2
+decisions:
+
+1) What SMTP software you want to use (Sendmail, Postfix, Exim, or others)
+2) What IMAP/POP software you want to use (UWash, Courier, Cyrus or others)
+
+There's no single right answer here.  It all depends on what size of
+installation you've got and what features you want.  You'll find
+people who'll argue strongly for/against particular software because
+of the author, or some historical event relating to the software.  I'd
+recommend you make your own decisions ;)  You may also want to look at
+one of the all-in-one packages that are available to make your life
+easier.
+
+There's nothing particularly difficult about what you're planning -
+it's the setup I've got myself.
+
+-- 
+                 Please keep list traffic on the list.
+
+Rob MacGregor
+      Whoever fights monsters should see to it that in the process he
+        doesn't become a monster.                  Friedrich Nietzsche
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002051.html">[fetchmail-users] Setting up e-mail capability
+</A></li>
+	<LI>Next message: <A HREF="002053.html">[fetchmail-users] Setting up e-mail capability
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2052">[ date ]</a>
+              <a href="thread.html#2052">[ thread ]</a>
+              <a href="subject.html#2052">[ subject ]</a>
+              <a href="author.html#2052">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

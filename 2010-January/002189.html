@@ -1,0 +1,163 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] fetchmail IMAP bug - causes some mails to not be delivered when using IDLE
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2010-January/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%20IMAP%20bug%20-%20causes%20some%20mails%20to%20not%0A%20be%20delivered%20when%20using%20IDLE&In-Reply-To=%3C4B4D82C2.6010607%40papercut.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002188.html">
+   <LINK REL="Next"  HREF="002190.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] fetchmail IMAP bug - causes some mails to not be delivered when using IDLE</H1>
+    <B>Matt Doran</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%20IMAP%20bug%20-%20causes%20some%20mails%20to%20not%0A%20be%20delivered%20when%20using%20IDLE&In-Reply-To=%3C4B4D82C2.6010607%40papercut.com%3E"
+       TITLE="[fetchmail-users] fetchmail IMAP bug - causes some mails to not be delivered when using IDLE">matt.doran at papercut.com
+       </A><BR>
+    <I>Wed Jan 13 09:22:26 CET 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002188.html">[fetchmail-users] fetchmail IMAP bug - causes some mails to not be delivered when using IDLE
+</A></li>
+        <LI>Next message: <A HREF="002190.html">[fetchmail-users] fetchmail IMAP bug - causes some mails to not be delivered when using IDLE
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2189">[ date ]</a>
+              <a href="thread.html#2189">[ thread ]</a>
+              <a href="subject.html#2189">[ subject ]</a>
+              <a href="author.html#2189">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Sunil Shetye wrote:
+&gt;<i> Quoting from Matt Doran's mail on Wed, Jan 13, 2010:
+</I>&gt;<i>   
+</I>&gt;&gt;<i> Thanks for the patch.  I tried this patch, and it did not work. :(
+</I>&gt;&gt;<i> I've attached another log showing the problem again, I added some
+</I>&gt;&gt;<i> more debug lines outputting recentcount,count,oldcount when we see
+</I>&gt;&gt;<i> EXISTS, RECENT, EXPUNGE (I thought it might help).
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> It seems this this only occurs if the EXISTS comes just at the right
+</I>&gt;&gt;<i> time ... and I think fetchmail is missing it.   In the attached file
+</I>&gt;&gt;<i> the &quot;* 2 EXISTS&quot; comes immediately after fetchmail receceives the &quot;*
+</I>&gt;&gt;<i> SEARCH 1&quot;  response to the request &quot;A0007 SEARCH UNSEEN NOT
+</I>&gt;&gt;<i> DELETED&quot;. .... and it seems that fetchmail ignores this one.
+</I>&gt;&gt;<i> Maybe something needs to be added to the do loop at imap.c:870?
+</I>&gt;&gt;<i>     
+</I>&gt;<i>
+</I>&gt;<i> On going through the imap transaction again, the reason why is this
+</I>&gt;<i> happens is that there is a missing &quot;* n EXISTS&quot; response from the
+</I>&gt;<i> dovecot server.
+</I>&gt;<i>
+</I>&gt;<i>   
+</I>&gt;&gt;<i> fetchmail: IMAP&gt; A0008 FETCH 1 RFC822.SIZE
+</I>&gt;&gt;<i> fetchmail: IMAP&lt; * 1 FETCH (RFC822.SIZE 544)
+</I>&gt;&gt;<i> fetchmail: IMAP&lt; A0008 OK Fetch completed.
+</I>&gt;&gt;<i> fetchmail: IMAP&gt; A0009 FETCH 1 RFC822.HEADER
+</I>&gt;&gt;<i> fetchmail: IMAP&lt; * 1 FETCH (RFC822.HEADER {535}
+</I>&gt;&gt;<i>     
+</I>&gt;<i> ...
+</I>&gt;<i>   
+</I>&gt;&gt;<i> fetchmail: IMAP&lt; )
+</I>&gt;&gt;<i> fetchmail: IMAP&lt; A0009 OK Fetch completed.
+</I>&gt;&gt;<i> fetchmail: IMAP&gt; A0010 FETCH 1 BODY.PEEK[TEXT]
+</I>&gt;&gt;<i> fetchmail: IMAP&lt; * 1 FETCH (BODY[TEXT] {9}
+</I>&gt;&gt;<i> fetchmail: IMAP&lt; )
+</I>&gt;&gt;<i> fetchmail: IMAP&lt; A0010 OK Fetch completed.
+</I>&gt;&gt;<i>     
+</I>&gt;<i> ...
+</I>&gt;<i>   
+</I>&gt;&gt;<i> fetchmail: IMAP&gt; A0011 STORE 1 +FLAGS (\Seen \Deleted)
+</I>&gt;&gt;<i> fetchmail: IMAP&lt; * 1 FETCH (FLAGS (\Deleted \Seen \Recent))
+</I>&gt;&gt;<i> fetchmail: IMAP&lt; * 2 RECENT
+</I>&gt;&gt;<i> fetchmail: IMAP&lt; A0011 OK Store completed.
+</I>&gt;&gt;<i> fetchmail: IMAP&gt; A0012 EXPUNGE
+</I>&gt;&gt;<i> fetchmail: IMAP&lt; * 1 EXPUNGE
+</I>&gt;&gt;<i> fetchmail: IMAP&lt; * 1 RECENT
+</I>&gt;&gt;<i> fetchmail: IMAP&lt; A0012 OK Expunge completed.
+</I>&gt;&gt;<i>     
+</I>&gt;<i> ...
+</I>&gt;<i>   
+</I>&gt;&gt;<i> fetchmail: IMAP&gt; A0013 IDLE
+</I>&gt;&gt;<i> fetchmail: IMAP&lt; + idling
+</I>&gt;&gt;<i>     
+</I>&gt;<i>
+</I>&gt;<i> As can be seen above, the response to the 'A0012 EXPUNGE' command from
+</I>&gt;<i> the imap server was:
+</I>&gt;<i>
+</I>&gt;<i> =================================
+</I>&gt;<i> * 1 EXPUNGE
+</I>&gt;<i> * 1 RECENT
+</I>&gt;<i> A0012 OK Expunge completed.
+</I>&gt;<i> =================================
+</I>&gt;<i>
+</I>&gt;<i> fetchmail actually expects this response in the above case:
+</I>&gt;<i>
+</I>&gt;<i> =================================
+</I>&gt;<i> * 1 EXPUNGE
+</I>&gt;<i> * 1 EXISTS
+</I>&gt;<i> * 1 RECENT
+</I>&gt;<i> A0012 OK Expunge completed.
+</I>&gt;<i> =================================
+</I>&gt;<i>
+</I>&gt;<i> If the second response comes, then fetchmail does not need any patch.
+</I>&gt;<i> Could you ask dovecot developers why they do not respond to an EXPUNGE
+</I>&gt;<i> with an updated EXISTS count along with the updated RECENT count?
+</I>&gt;<i>
+</I>&gt;<i> For the record, fetchmail ignores the RECENT count deliberately. When
+</I>&gt;<i> fetchmail skips some of the mails due to other options like --limit,
+</I>&gt;<i> the RECENT count includes those skipped mails also. Also, the RECENT
+</I>&gt;<i> count is a count of newly arrived mails, not of new mails or of unseen
+</I>&gt;<i> mails. This has several implications when fetchmail is idling for
+</I>&gt;<i> mail. Hence, fetchmail does not rely on the RECENT count and requires
+</I>&gt;<i> an updated EXISTS count for smooth operation.
+</I>&gt;<i>
+</I>&gt;<i>   
+</I>Thanks for the analysis.  Did you see the email Timo just sent to the 
+fetchmail list (see below)?   He says that this assumption is incorrect.
+
+&gt;&gt;<i> &gt;/  		    /* We do expect an EXISTS response immediately
+</I>&gt;&gt;<i> /&gt;/  		     * after this, so this updation of recentcount is
+</I>&gt;&gt;<i> /&gt;/  		     * just a precaution! */
+</I>&gt;&gt;<i> /
+</I>&gt;<i>
+</I>&gt;<i> BTW. This assumption is wrong. Some servers might do that, but it's 
+</I>&gt;<i> completely unnecessary to send EXISTS after EXPUNGE.
+</I>
+
+
+
+
+
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002188.html">[fetchmail-users] fetchmail IMAP bug - causes some mails to not be delivered when using IDLE
+</A></li>
+	<LI>Next message: <A HREF="002190.html">[fetchmail-users] fetchmail IMAP bug - causes some mails to not be delivered when using IDLE
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2189">[ date ]</a>
+              <a href="thread.html#2189">[ thread ]</a>
+              <a href="subject.html#2189">[ subject ]</a>
+              <a href="author.html#2189">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

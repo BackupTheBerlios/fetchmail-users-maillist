@@ -1,0 +1,104 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] fetchmail and socks5
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2007-March/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%20and%20socks5&In-Reply-To=%3C45FEF8D6.2080602%40gmx.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000912.html">
+   <LINK REL="Next"  HREF="000911.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] fetchmail and socks5</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%20and%20socks5&In-Reply-To=%3C45FEF8D6.2080602%40gmx.de%3E"
+       TITLE="[fetchmail-users] fetchmail and socks5">matthias.andree at gmx.de
+       </A><BR>
+    <I>Mon Mar 19 21:55:50 CET 2007</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000912.html">[fetchmail-users] fetchmail and socks5
+</A></li>
+        <LI>Next message: <A HREF="000911.html">[fetchmail-users] fetchmail and socks5
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#905">[ date ]</a>
+              <a href="thread.html#905">[ thread ]</a>
+              <a href="subject.html#905">[ subject ]</a>
+              <a href="author.html#905">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Jochen Hayek schrieb:
+&gt;&gt;&gt;&gt;&gt;&gt;<i> Rob MacGregor writes:
+</I>&gt;<i> 
+</I>&gt;&gt;<i> On 3/18/07, Matthias Andree &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">matthias.andree at gmx.de</A>&gt; wrote:
+</I>&gt;<i> 
+</I>&gt;<i>     RM&gt; if fetchmail is linked with the socks libraries
+</I>&gt;<i>     RM&gt; *and* the required socks config file
+</I>&gt;<i>     RM&gt; is in place then, by default, use socks.
+</I>&gt;<i> 
+</I>&gt;<i> Pls remember: readymade distro fetchmails may come linked with the socks library,
+</I>&gt;<i> but its user is still quite likely not aware of it.
+</I>
+That's the distributor's business, not that of the fetchmail
+maintainers. See - if they change the defaults, they need to support
+those changes. And the default fetchmail compilation options DO NOT
+include socks support.
+
+We cannot afford - and I personally do not even want - to support every
+compilation or perhaps patch variant there is in practice.
+
+&gt;<i> I recently spent quite some hours (to be honest: far too many) on evaluating,
+</I>&gt;<i> whether and with which socks server certain applications like &quot;wget&quot; and &quot;curl&quot; work resp. don't work.
+</I>
+I understand your frustration, but what has this got to do with
+fetchmail? I'm very much with Rob Funk here, if there is a system-wide
+configuration, we should just use it -- the possibility for local
+override is documented now.
+
+&gt;<i> 
+</I>&gt;<i> Trust me (pls!), neither explicit nor implicit sockisification *usually* work out of the box,
+</I>&gt;<i> ie. w/o changing the code,
+</I>&gt;<i> so somebody (&quot;a user&quot;), who &quot;moves&quot; into an enforced socks server environment, 
+</I>&gt;<i> will have to try / verify socksification on every single application on its own,
+</I>&gt;<i> and not all at once by toggling the one and only global switch.
+</I>
+echo &gt;&gt;$HOME/.profile 'SOCKS_CONF=/dev/null ; export SOCKS_CONF'
+. .profile
+
+Csh left as an exercise to the reader.
+
+&gt;<i> I seriously plea for: the default shall be: &quot;off&quot;.
+</I>
+Noted for consideration for the fetchmail 6.4 branch.
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000912.html">[fetchmail-users] fetchmail and socks5
+</A></li>
+	<LI>Next message: <A HREF="000911.html">[fetchmail-users] fetchmail and socks5
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#905">[ date ]</a>
+              <a href="thread.html#905">[ thread ]</a>
+              <a href="subject.html#905">[ subject ]</a>
+              <a href="author.html#905">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

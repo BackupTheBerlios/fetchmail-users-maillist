@@ -1,0 +1,140 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Can fetchmail leave email on the POP3 srever	for (say) 10 days?
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2007-March/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Can%20fetchmail%20leave%20email%20on%20the%20POP3%20srever%0A%09for%20%28say%29%2010%20days%3F&In-Reply-To=%3Cm3k5xe3la5.fsf%40merlin.emma.line.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000891.html">
+   <LINK REL="Next"  HREF="000892.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Can fetchmail leave email on the POP3 srever	for (say) 10 days?</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Can%20fetchmail%20leave%20email%20on%20the%20POP3%20srever%0A%09for%20%28say%29%2010%20days%3F&In-Reply-To=%3Cm3k5xe3la5.fsf%40merlin.emma.line.org%3E"
+       TITLE="[fetchmail-users] Can fetchmail leave email on the POP3 srever	for (say) 10 days?">matthias.andree at gmx.de
+       </A><BR>
+    <I>Sun Mar 18 11:20:50 CET 2007</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000891.html">[fetchmail-users] Can fetchmail leave email on the POP3 srever	for (say) 10 days?
+</A></li>
+        <LI>Next message: <A HREF="000892.html">[fetchmail-users] Using LDAP for user account information
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#893">[ date ]</a>
+              <a href="thread.html#893">[ thread ]</a>
+              <a href="subject.html#893">[ subject ]</a>
+              <a href="author.html#893">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>&quot;Richard&quot; &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">rchapman at aardvark.com.au</A>&gt; writes:
+
+&gt;<i> I have Centos 4.4 all up to date. Being a recently reformed Windows Sys
+</I>&gt;<i> Admin - I tend to manage centos mostly with Webmin - though I also use the
+</I>&gt;<i> Gnome interface through nx. I try to avoid the command line stuff where
+</I>&gt;<i> possible.
+</I>
+I find command-line interfaces more efficient in the long run -- even if
+I don't suggest to start learning the modal vi editor first, pico, nano
+or joe are user-friendly alternatives.
+
+And the command-line interface is standard - in contrast to the various
+incarnations of web interfaces - so there are more people around who are
+able to support the former.
+
+&gt;<i> The Webmin interface for configuring fetchmial allows me to specify whether
+</I>&gt;<i> or not to leave the email items on the POP3 server after downloading them.
+</I>&gt;<i> As far as I can see there is no way to specify to leave them there for (say)
+</I>&gt;<i> 10 days then delete them. Most POP clients support this behaviour. (Outlook
+</I>&gt;<i> &amp; Outlook express certainly do)
+</I>
+Outlook &amp; express are by no means setting standards -- with
+long-standing serious MIME and quoting bugs still unfixed in Outlook 11
+that Microsoft documented in the KB in the days of Outlook Express 4 a
+decade ago...
+
+Having said that, fetchmail up to and including 6.3.X versions do not
+have such a feature yet, but the next major spin (which might be called
+6.4, 6.5 or 7.0 eventually) might.
+
+This has mostly historical reasons: ESR wanted to keep this feature out
+and also (not sure if it's related) loathed touching client-side
+&quot;message seen&quot; tracking like a toothache -- and I wanted to offer the
+many dozens of 6.3.X fixes as painlessly and as soon as possible to
+6.2.X users - which required leaving a few shortcomings as they were in
+2003 and 2004, the days of ESR's last fetchmail release, 6.2.5, and I
+can't work full-time on fetchmail and am currently the only active
+developer.
+
+For the nonce, check the contrib/ directory of recent fetchmail versions
+and see if you can find stuff that helps you -- although I'm not able to
+support what's in there unless I've personally written it.
+
+There is a MySQL/Tcl/Expect based solution appearing in fetchmail
+6.3.8's contrib/ directory (already included in -rc1, check the mailing
+list archives for the announcement).
+
+If you can't be bothered to do that, but your CentOS 4.4 has Python 2.4
+or newer as the default Python install, getmail 4 by Charles Cazabon
+might be an alternative that has this feature, but its resistance
+against eavesdroppers and man-in-the-middle attacks is largely dependent
+on the behavior of Python libraries and not always clear.
+
+&gt;<i> Can anyone tell me whether this can be done - and if so - is it a limitation
+</I>&gt;<i> of the webmin interface which prevents me from specifying this?
+</I>
+Not up to and including fetchmail 6.3.X.
+
+&gt;<i> I think Webmin allows me to run a command before and/or after
+</I>&gt;<i> downloading emails.  Perhaps I can achieve what I want this way?
+</I>
+Yes, you can - provided that command or script removes messages that
+have arrived N days. :-)
+
+&gt;<i> If I revert to editing a conf file - will that interfere with webmin's
+</I>&gt;<i> control of the conf file?
+</I>
+That depends on Webmin, of which I know naught beyond its bare existence.
+
+&gt;<i> I would like to do this so that there is a copy of new emails somewhere if
+</I>&gt;<i> the Centos machine hard disk dies.
+</I>
+If you don't want to do this at an application level, but on a file
+system level, look for DRBD (essentially RAID across the network in
+Linux) - requires a second computer with fast disks, preferably
+off-site, and a fast network connection.
+
+-- 
+Matthias Andree
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000891.html">[fetchmail-users] Can fetchmail leave email on the POP3 srever	for (say) 10 days?
+</A></li>
+	<LI>Next message: <A HREF="000892.html">[fetchmail-users] Using LDAP for user account information
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#893">[ date ]</a>
+              <a href="thread.html#893">[ thread ]</a>
+              <a href="subject.html#893">[ subject ]</a>
+              <a href="author.html#893">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

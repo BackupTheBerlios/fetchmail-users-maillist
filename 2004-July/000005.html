@@ -1,0 +1,85 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] IDLE support broken?
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2004-July/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20IDLE%20support%20broken%3F&In-Reply-To=%3C20040722170943.GU21273%40conectiva.com.br%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000004.html">
+   <LINK REL="Next"  HREF="000006.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] IDLE support broken?</H1>
+    <B>Andreas</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20IDLE%20support%20broken%3F&In-Reply-To=%3C20040722170943.GU21273%40conectiva.com.br%3E"
+       TITLE="[fetchmail-users] IDLE support broken?">andreas at conectiva.com.br
+       </A><BR>
+    <I>Thu Jul 22 19:09:43 CEST 2004</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000004.html">[fetchmail-users] PLEASE I NEED YOUR ASSISTANCE AND HELP
+</A></li>
+        <LI>Next message: <A HREF="000006.html">[fetchmail-users] IDLE support broken?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#5">[ date ]</a>
+              <a href="thread.html#5">[ thread ]</a>
+              <a href="subject.html#5">[ subject ]</a>
+              <a href="author.html#5">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>I was wondering if someone is being able to use IDLE support. I remember
+seeing it working once, but it isn't anymore.
+
+A trace:
+fetchmail: IMAP&lt; * OK [CAPABILITY IMAP4 IMAP4REV1 STARTTLS LOGIN-REFERRALS AUTH=PLAIN AUTH=LOGIN] pop.domain IMAP4rev1 2000.287cl at Thu, 22 Jul 2004 14:55:53 -0300 (EST)
+fetchmail: IMAP&gt; A0001 CAPABILITY
+fetchmail: IMAP&lt; * CAPABILITY IMAP4 IMAP4REV1 STARTTLS NAMESPACE IDLE MAILBOX-REFERRALS SCAN SORT THREAD=REFERENCES THREAD=ORDEREDSUBJECT MULTIAPPEND LOGIN-REFERRALS AUTH=PLAIN AUTH=LOGIN
+fetchmail: IMAP&lt; A0001 OK CAPABILITY completed
+fetchmail: will idle after poll
+fetchmail: IMAP&gt; A0002 LOGIN &quot;andreas&quot; *
+fetchmail: IMAP&lt; * CAPABILITY IMAP4 IMAP4REV1 STARTTLS NAMESPACE IDLE MAILBOX-REFERRALS SCAN SORT THREAD=REFERENCES THREAD=ORDEREDSUBJECT MULTIAPPEND
+fetchmail: IMAP&lt; A0002 OK LOGIN completed
+fetchmail: IMAP&gt; A0003 SELECT &quot;INBOX&quot;
+(...)
+fetchmail: IMAP&lt; A0011 OK Expunged 1 messages
+fetchmail: IMAP&gt; A0012 LOGOUT
+fetchmail: IMAP&lt; * BYE imap.domain IMAP4rev1 server terminating connection
+fetchmail: IMAP&lt; A0012 OK LOGOUT completed
+fetchmail: 6.2.5 querying pop.domain (protocol IMAP) at Qui 22 Jul 2004 14:02:46 BRT: poll completed
+
+It hastn't issued any IDLE command, even though it detected IDLE support...
+
+The server is uw-imap and fetchmail is version 6.2.5. If it makes any difference, I'm running this over
+imaps (the trace above is from fetchmail -N -v).
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000004.html">[fetchmail-users] PLEASE I NEED YOUR ASSISTANCE AND HELP
+</A></li>
+	<LI>Next message: <A HREF="000006.html">[fetchmail-users] IDLE support broken?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#5">[ date ]</a>
+              <a href="thread.html#5">[ thread ]</a>
+              <a href="subject.html#5">[ subject ]</a>
+              <a href="author.html#5">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

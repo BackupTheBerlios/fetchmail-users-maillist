@@ -1,0 +1,93 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] how to fetchmail when using a proxy server to connect to the internet
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2013-April/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20how%20to%20fetchmail%20when%20using%20a%20proxy%20server%20to%0A%20connect%20to%20the%20internet&In-Reply-To=%3C516B877B.6040503%40gmx.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003383.html">
+   <LINK REL="Next"  HREF="003385.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] how to fetchmail when using a proxy server to connect to the internet</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20how%20to%20fetchmail%20when%20using%20a%20proxy%20server%20to%0A%20connect%20to%20the%20internet&In-Reply-To=%3C516B877B.6040503%40gmx.de%3E"
+       TITLE="[fetchmail-users] how to fetchmail when using a proxy server to connect to the internet">matthias.andree at gmx.de
+       </A><BR>
+    <I>Mon Apr 15 06:52:11 CEST 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003383.html">[fetchmail-users] how to fetchmail when using a proxy server to	connect to the internet
+</A></li>
+        <LI>Next message: <A HREF="003385.html">[fetchmail-users] fetchmail doesn't want to connect to my mysql	database
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3384">[ date ]</a>
+              <a href="thread.html#3384">[ thread ]</a>
+              <a href="subject.html#3384">[ subject ]</a>
+              <a href="author.html#3384">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Am 13.04.2013 11:42, schrieb Globe Trotter:
+&gt;<i>  Hi,
+</I>&gt;<i> 
+</I>&gt;<i> I can only access the internet using a proxy server with a specified port. My question: what should I change in my .fetchmailrc settings to be able to fetch mail using fetchmail?
+</I>
+Globe Trotter,
+
+you have not specified the kind of proxy that you must use.
+
+Unless your proxy is a SOCKS-type proxy (the only proxy that fetchmail
+accesses natively - details in the manual page), you will need to use a
+&quot;plugin&quot;, because fetchmail itself does not currently use HTTP proxies
+for &quot;CONNECT&quot;, such as squid or a proxy that is usually used for web
+access. It would need to support https, though.
+
+&quot;plugin&quot; is also the name of fetchmail's option, and is being used to
+connect to POP3/IMAP servers; &quot;plugout&quot; is the complement for connecting
+to SMTP servers.
+
+You would have to find a program that connects to your proxy, configures
+it to relay your traffic properly, and talks to fetchmail through the
+stdin and stdout file descriptors.  If you can find such a proxy helper
+program, configure fetchmail with plugin and - if needed - plugout, and
+you should be set.
+
+Without further indication of what your proxy server exactly is and what
+protocol it uses, we cannot help you further than this.  Feel free to
+ask again with more detailed information.
+
+Hope that helps.
+
+Matthias
+</PRE>
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003383.html">[fetchmail-users] how to fetchmail when using a proxy server to	connect to the internet
+</A></li>
+	<LI>Next message: <A HREF="003385.html">[fetchmail-users] fetchmail doesn't want to connect to my mysql	database
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3384">[ date ]</a>
+              <a href="thread.html#3384">[ thread ]</a>
+              <a href="subject.html#3384">[ subject ]</a>
+              <a href="author.html#3384">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

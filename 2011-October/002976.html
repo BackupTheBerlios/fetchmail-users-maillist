@@ -1,0 +1,115 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] unable to get local issuer certificate
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2011-October/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20unable%20to%20get%20local%20issuer%20certificate&In-Reply-To=%3C4E9C8850.4010007%40gmx.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002973.html">
+   <LINK REL="Next"  HREF="002977.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] unable to get local issuer certificate</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20unable%20to%20get%20local%20issuer%20certificate&In-Reply-To=%3C4E9C8850.4010007%40gmx.de%3E"
+       TITLE="[fetchmail-users] unable to get local issuer certificate">matthias.andree at gmx.de
+       </A><BR>
+    <I>Mon Oct 17 21:56:00 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002973.html">[fetchmail-users] unable to get local issuer certificate
+</A></li>
+        <LI>Next message: <A HREF="002977.html">[fetchmail-users] unable to get local issuer certificate
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2976">[ date ]</a>
+              <a href="thread.html#2976">[ thread ]</a>
+              <a href="subject.html#2976">[ subject ]</a>
+              <a href="author.html#2976">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Am 16.10.2011 23:51, schrieb Tim Johnson:
+&gt;<i> FYI: Linux user, setting up on Mac Lion (Darwin Kernel Version
+</I>&gt;<i> 11.2.0). Comfortable with command line, but not a virtuoso, new to
+</I>&gt;<i> Mac.
+</I>&gt;<i> 
+</I>&gt;<i> When attempting to fetch mail for pop.gmail.com the following error
+</I>&gt;<i> messages are generated :
+</I>&gt;<i> ####################################################################
+</I>&gt;<i> fetchmail: Server certificate verification error: unable to get local issuer
+</I>&gt;<i> certificate fetchmail: This means that the root signing certificate (issued for
+</I>&gt;<i> /C=US/O=Google Inc/CN=Google Internet Authority) is not in the trusted CA
+</I>&gt;<i> certificate locations, or that c_rehash needs to be run on the certificate
+</I>&gt;<i> directory. For details, please see the documentation of --sslcertpath and
+</I>&gt;<i> --sslcertfile in the manual page.  fetchmail: Certificate/fingerprint
+</I>&gt;<i> verification was somehow skipped!  fetchmail: SSL connection failed.
+</I>&gt;<i> fetchmail: socket error while fetching from <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">tim042849 at pop.gmail.com</A> fetchmail:
+</I>&gt;<i> 6.3.18 querying pop.gmail.com (protocol POP3) at Sun, 16 Oct 2011 10:20:39
+</I>&gt;<i> -0800 (AKDT): poll completed fetchmail: Query status=2 (SOCKET)
+</I>&gt;<i> ####################################################################
+</I>&gt;<i> cert files are in /Users/tim/.certs
+</I>&gt;<i> Two files were created from 
+</I>&gt;<i> openssl s_client -connect pop.gmail.com:995 -showcerts
+</I>&gt;<i> 1)gmail.pem = google cert
+</I>&gt;<i> 2)equifax.pem = equifax cert
+</I>&gt;<i> c_rehash was run after certificates were installed.
+</I>&gt;<i> permissions :
+</I>&gt;<i>   cert files are 644 tim:staff
+</I>&gt;<i>   cert directory is 755
+</I>
+In whichever dark corner of the Internet you found instructions to
+download certificates that way, it is wrong, dangerous, and must not be
+done.  Please install your distribution's ca-certificates or nss_root_ca
+package (or however it's named), and point fetchmail there.
+
+I'm not sure where to get those on Macs, MacPorts, or Fink, wherever.
+
+Oh, and it's the first time ever I've seen &quot;Certificate/fingerprint
+verification was somehow skipped&quot; trigger in the wild.
+
+&gt;<i> 
+</I>&gt;<i> Polling code in .fetchmailrc is
+</I>&gt;<i> 
+</I>&gt;<i> poll pop.gmail.com with proto POP3 user '*********' there with
+</I>&gt;<i> password '******' is 'tim' here mda &quot;/usr/bin/procmail&quot; options ssl
+</I>&gt;<i> sslcertck sslcertpath /Users/tim/.certs
+</I>
+Basically you need to download the Equifax root certificate SEPARATELY
+with your browser through a trusted <A HREF="https://">https://</A> connection (_not_ with
+gnutls-cli, openssl, or similar tools!) and put that into
+/Users/tim/.certs - and be sure it's named something with .pem suffix.
+Then re-run c_rehash, and see if that helps.
+
+Note your fetchmail version is outdated and should not be used. Update
+to 6.3.21 instead.
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002973.html">[fetchmail-users] unable to get local issuer certificate
+</A></li>
+	<LI>Next message: <A HREF="002977.html">[fetchmail-users] unable to get local issuer certificate
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2976">[ date ]</a>
+              <a href="thread.html#2976">[ thread ]</a>
+              <a href="subject.html#2976">[ subject ]</a>
+              <a href="author.html#2976">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

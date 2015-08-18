@@ -1,0 +1,108 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] strange polling errors
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2011-February/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20strange%20polling%20errors&In-Reply-To=%3C4D6B7C54.6060402%40ericsson.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002682.html">
+   <LINK REL="Next"  HREF="002685.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] strange polling errors</H1>
+    <B>Jonathan Buschmann</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20strange%20polling%20errors&In-Reply-To=%3C4D6B7C54.6060402%40ericsson.com%3E"
+       TITLE="[fetchmail-users] strange polling errors">jonathan.buschmann at ericsson.com
+       </A><BR>
+    <I>Mon Feb 28 11:43:32 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002682.html">[fetchmail-users] strange polling errors
+</A></li>
+        <LI>Next message: <A HREF="002685.html">[fetchmail-users] strange polling errors
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2684">[ date ]</a>
+              <a href="thread.html#2684">[ thread ]</a>
+              <a href="subject.html#2684">[ subject ]</a>
+              <a href="author.html#2684">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Matthias,
+Your right that it is somehow a syslog problem. --nodetach --nosyslog 
+behaves correctly with -vv
+OTOH I don't see anymore useful information compared with -v, as I sent 
+earlier.
+
+FWIW my syslog is configed at mail.debug... must be a bug in my syslog 
+daemon (IHTA my OS does suffer from some bitrot.)
+Jonathan
+
+At precisely 28/02/2011 10.10, with renowned erudition Matthias Andree 
+eloquently scribed:
+&gt;<i> Am 28.02.2011 10:01, schrieb Matthias Andree:
+</I>&gt;<i>
+</I>&gt;&gt;<i> Please check your syslog configuration -- fetchmail logs at ERR and INFO
+</I>&gt;&gt;<i> priorities.  Chances are that your syslog provider is configured at
+</I>&gt;&gt;<i> &quot;NOTICE&quot; level, which would discard &quot;info&quot;-level logging.
+</I>&gt;<i> Hm... I see in your earlier logs that you do have mail.info and
+</I>&gt;<i> mail.error logs.  But yours is the very first report in over half a
+</I>&gt;<i> dozen years that -vv were less verbose than -v, and I don't know how
+</I>&gt;<i> that could happen given the existing code -- try --nodetach --nosyslog.
+</I>&gt;<i> _______________________________________________
+</I>&gt;<i> fetchmail-users mailing list
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">fetchmail-users at lists.berlios.de</A>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">https://lists.berlios.de/mailman/listinfo/fetchmail-users</A>
+</I>
+-- 
+
+
+Picture (Device Independent Bitmap)
+
+*JONATHAN BUSCHMANN
+Customer Solution Sales *
+
+Ericsson Telecomunicazioni S.p.A.
+Business Segment Services, Market Unit South East Europe
+Strada 2, Palazzo C
+20090 Assago Milanofiori (MI), Italy
+Phone +390239572097
+Fax +390239572902
+Mobile +393351223478
+<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">Jonathan.Buschmann at ericsson.com</A>
+www.ericsson.com
+
+Picture (Device Independent Bitmap)
+
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002682.html">[fetchmail-users] strange polling errors
+</A></li>
+	<LI>Next message: <A HREF="002685.html">[fetchmail-users] strange polling errors
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2684">[ date ]</a>
+              <a href="thread.html#2684">[ thread ]</a>
+              <a href="subject.html#2684">[ subject ]</a>
+              <a href="author.html#2684">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

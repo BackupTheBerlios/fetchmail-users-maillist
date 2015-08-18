@@ -1,0 +1,176 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] fetchmail gets stuck because of malformed spam
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2005-October/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%20gets%20stuck%20because%20of%20malformed%20spam&In-Reply-To=%3C20051026085930.GA11740%40kestrel%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000082.html">
+   <LINK REL="Next"  HREF="000085.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] fetchmail gets stuck because of malformed spam</H1>
+    <B>Karel Kulhavy</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%20gets%20stuck%20because%20of%20malformed%20spam&In-Reply-To=%3C20051026085930.GA11740%40kestrel%3E"
+       TITLE="[fetchmail-users] fetchmail gets stuck because of malformed spam">clock at twibright.com
+       </A><BR>
+    <I>Wed Oct 26 10:59:30 CEST 2005</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000082.html">[fetchmail-users] fetchmail 6.2.9-rc6 available (yet another candidate...)
+</A></li>
+        <LI>Next message: <A HREF="000085.html">[fetchmail-users] fetchmail gets stuck because of malformed spam
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#83">[ date ]</a>
+              <a href="thread.html#83">[ thread ]</a>
+              <a href="subject.html#83">[ subject ]</a>
+              <a href="author.html#83">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>I got some malformed spam which causes fetchmail to stop on this spam
+and I am unable to download 162 waiting messages behind this spam.
+
+This seems to be some kind of fetchmail DoS vulnerability - if someone
+sends this mail to all fetchmail users in the world, they will be pretty
+pissed off to have to log in to remote machine and erase the e-mail by
+hand. And if he sends every hour, they will have to change to a
+different program than fetchmail ;-)
+
+<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">clock at kestrel</A>:~$ fetchmail
+162 messages for clock at twin.jikos.cz.
+reading message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">clock at twin.jikos.cz</A>:1 of 162 (765 header octets) fetchmail: SMTP error: 501 &lt;agrode@%%DOMAIN%&gt;: domain missing or malformed
+gethostbyname failed for kestrel
+
+Operating system gentoo linux
+GCC 3.3.6
+don't know how to get IMAP server greeting line
+MDA: ESMTP Exim 4.50
+ 
+This is fetchmail release 6.2.5.2+RPA+NTLM+SDPS+SSL+INET6+NLS
+Fallback MDA: (none)
+Linux kestrel 2.6.12-gentoo-r10 #2 Tue Oct 4 10:27:59 CEST 2005 i686 Intel(R) Pentium(R) M processor 1.50GHz GenuineIntel GNU/Linux
+Taking options from command line and /home/clock/.fetchmailrc
+Idfile is /home/clock/.fetchids
+Fetchmail will forward misaddressed multidrop messages to clock.
+Options for retrieving from <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">clock at twin.jikos.cz</A>:
+  True name of server is twin.jikos.cz.
+  Protocol is IMAP.
+  All available authentication methods will be tried.
+  SSL encrypted sessions enabled.
+  Server nonresponse timeout is 300 seconds (default).
+  Default mailbox selected.
+  Only new messages will be retrieved (--all off).
+  Fetched messages will not be kept on the server (--keep off).
+  Old messages will not be flushed before message retrieval (--flush off).
+  Rewrite of server-local addresses is enabled (--norewrite off).
+  Carriage-return stripping is disabled (stripcr off).
+  Carriage-return forcing is disabled (forcecr off).
+  Interpretation of Content-Transfer-Encoding is enabled (pass8bits off).
+  MIME decoding is disabled (mimedecode off).
+  Idle after poll is disabled (idle off).
+  Nonempty Status lines will be kept (dropstatus off)
+  Delivered-To lines will be kept (dropdelivered off)
+  Fetch message size limit is 100 (--fetchsizelimit 100).
+  Do binary search of UIDs during 9 out of 10 polls (--fastuidl 10).
+  Messages will be SMTP-forwarded to: localhost (default)
+  Single-drop mode: 1 local name(s) recognized.
+  No UIDs saved from this host.
+Options for retrieving from <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">clock at atrey.karlin.mff.cuni.cz</A>:
+  True name of server is atrey.karlin.mff.cuni.cz.
+  Protocol is IMAP.
+  All available authentication methods will be tried.
+  SSL encrypted sessions enabled.
+  Server nonresponse timeout is 300 seconds (default).
+  Default mailbox selected.
+  Only new messages will be retrieved (--all off).
+  Fetched messages will not be kept on the server (--keep off).
+  Old messages will not be flushed before message retrieval (--flush off).
+  Rewrite of server-local addresses is enabled (--norewrite off).
+  Carriage-return stripping is disabled (stripcr off).
+  Carriage-return forcing is disabled (forcecr off).
+  Interpretation of Content-Transfer-Encoding is enabled (pass8bits off).
+  MIME decoding is disabled (mimedecode off).
+  Idle after poll is disabled (idle off).
+  Nonempty Status lines will be kept (dropstatus off)
+  Delivered-To lines will be kept (dropdelivered off)
+  Fetch message size limit is 100 (--fetchsizelimit 100).
+  Do binary search of UIDs during 9 out of 10 polls (--fastuidl 10).
+  Messages will be SMTP-forwarded to: localhost (default)
+  Single-drop mode: 1 local name(s) recognized.
+  No UIDs saved from this host.
+Options for retrieving from <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">dito2 at pop.centrum.cz</A>:
+  True name of server is pop.centrum.cz.
+  Protocol is POP3.
+  All available authentication methods will be tried.
+  Server nonresponse timeout is 300 seconds (default).
+  Default mailbox selected.
+  Only new messages will be retrieved (--all off).
+  Fetched messages will not be kept on the server (--keep off).
+  Old messages will not be flushed before message retrieval (--flush off).
+  Rewrite of server-local addresses is enabled (--norewrite off).
+  Carriage-return stripping is disabled (stripcr off).
+  Carriage-return forcing is disabled (forcecr off).
+  Interpretation of Content-Transfer-Encoding is enabled (pass8bits off).
+  MIME decoding is disabled (mimedecode off).
+  Idle after poll is disabled (idle off).
+  Nonempty Status lines will be kept (dropstatus off)
+  Delivered-To lines will be kept (dropdelivered off)
+  Fetch message size limit is 100 (--fetchsizelimit 100).
+  Do binary search of UIDs during 9 out of 10 polls (--fastuidl 10).
+  Messages will be SMTP-forwarded to: localhost (default)
+  Single-drop mode: 1 local name(s) recognized.
+  No UIDs saved from this host.
+Options for retrieving from <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">ycarus at pop.centrum.cz</A>:
+  True name of server is pop.centrum.cz.
+  Protocol is POP3.
+  All available authentication methods will be tried.
+  Server nonresponse timeout is 300 seconds (default).
+  Default mailbox selected.
+  Only new messages will be retrieved (--all off).
+  Fetched messages will not be kept on the server (--keep off).
+  Old messages will not be flushed before message retrieval (--flush off).
+  Rewrite of server-local addresses is enabled (--norewrite off).
+  Carriage-return stripping is disabled (stripcr off).
+  Carriage-return forcing is disabled (forcecr off).
+  Interpretation of Content-Transfer-Encoding is enabled (pass8bits off).
+  MIME decoding is disabled (mimedecode off).
+  Idle after poll is disabled (idle off).
+  Nonempty Status lines will be kept (dropstatus off)
+  Delivered-To lines will be kept (dropdelivered off)
+  Fetch message size limit is 100 (--fetchsizelimit 100).
+  Do binary search of UIDs during 9 out of 10 polls (--fastuidl 10).
+  Messages will be SMTP-forwarded to: localhost (default)
+  Single-drop mode: 1 local name(s) recognized.
+  No UIDs saved from this host.
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000082.html">[fetchmail-users] fetchmail 6.2.9-rc6 available (yet another candidate...)
+</A></li>
+	<LI>Next message: <A HREF="000085.html">[fetchmail-users] fetchmail gets stuck because of malformed spam
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#83">[ date ]</a>
+              <a href="thread.html#83">[ thread ]</a>
+              <a href="subject.html#83">[ subject ]</a>
+              <a href="author.html#83">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

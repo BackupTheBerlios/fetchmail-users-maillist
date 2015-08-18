@@ -1,0 +1,85 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] SSH tunnel question
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2009-November/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20SSH%20tunnel%20question&In-Reply-To=%3Cop.u3igx11i1e62zd%40merlin.emma.line.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002140.html">
+   <LINK REL="Next"  HREF="002143.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] SSH tunnel question</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20SSH%20tunnel%20question&In-Reply-To=%3Cop.u3igx11i1e62zd%40merlin.emma.line.org%3E"
+       TITLE="[fetchmail-users] SSH tunnel question">matthias.andree at gmx.de
+       </A><BR>
+    <I>Tue Nov 17 00:31:03 CET 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002140.html">[fetchmail-users] SSH tunnel question
+</A></li>
+        <LI>Next message: <A HREF="002143.html">[fetchmail-users] Rotating Fetchmail log
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2142">[ date ]</a>
+              <a href="thread.html#2142">[ thread ]</a>
+              <a href="subject.html#2142">[ subject ]</a>
+              <a href="author.html#2142">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Am 15.11.2009, 17:07 Uhr, schrieb A S &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">akinstur at yahoo.com</A>&gt;:
+
+&gt;<i> Thanks.
+</I>&gt;<i>
+</I>&gt;<i> When I have three users in a row like that, under a single poll, is  
+</I>&gt;<i> there a way to make fetchmail wait for the first user to finish before  
+</I>&gt;<i> going onto the second one, etc.? Otherwise the second and third  
+</I>&gt;<i> preconnects throw back bind errors, as ssh is trying to set up three  
+</I>&gt;<i> listeners on the same port.
+</I>
+Fetchmail always queries one account after another. In doubt, you can also  
+use a &quot;postconnect&quot; command to kill the ssh tunnel before the next account  
+will set up its own.
+
+Alternatively, if the destination server allows SSH-preauth, see the  
+&quot;plugin&quot; option.
+
+See the manual for details (and let me know if the 6.3.13  
+documentation/manpage is unclear; in doubt check  
+<A HREF="http://www.fetchmail.info/fetchmail-man.html">http://www.fetchmail.info/fetchmail-man.html</A> -- I don't have time to look  
+into older manpages).
+
+-- 
+Matthias Andree
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002140.html">[fetchmail-users] SSH tunnel question
+</A></li>
+	<LI>Next message: <A HREF="002143.html">[fetchmail-users] Rotating Fetchmail log
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2142">[ date ]</a>
+              <a href="thread.html#2142">[ thread ]</a>
+              <a href="subject.html#2142">[ subject ]</a>
+              <a href="author.html#2142">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

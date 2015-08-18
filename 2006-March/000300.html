@@ -1,0 +1,115 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] [PATCH] Re: RETR with UIDL
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2006-March/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20%5BPATCH%5D%20Re%3A%20RETR%20with%20UIDL&In-Reply-To=%3C20060304084604.GA2049%40session.bombay.retortsoft.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000299.html">
+   <LINK REL="Next"  HREF="000301.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] [PATCH] Re: RETR with UIDL</H1>
+    <B>Sunil Shetye</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20%5BPATCH%5D%20Re%3A%20RETR%20with%20UIDL&In-Reply-To=%3C20060304084604.GA2049%40session.bombay.retortsoft.com%3E"
+       TITLE="[fetchmail-users] [PATCH] Re: RETR with UIDL">shetye at bombay.retortsoft.com
+       </A><BR>
+    <I>Sat Mar  4 09:46:04 CET 2006</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000299.html">[fetchmail-users] Re: RETR with UIDL
+</A></li>
+        <LI>Next message: <A HREF="000301.html">[fetchmail-users] [PATCH] Re: RETR with UIDL
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#300">[ date ]</a>
+              <a href="thread.html#300">[ thread ]</a>
+              <a href="subject.html#300">[ subject ]</a>
+              <a href="author.html#300">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Quoting from Matthias Andree's mail on Fri, Mar 03, 2006:
+&gt;<i> &gt; The advice being given to force fetchmail to avoid using &quot;TOP&quot; with
+</I>&gt;<i> &gt; these buggy servers is to enable the &quot;fetchall&quot; option. The FAQ is
+</I>&gt;<i> &gt; littered with this advice for various servers with variety of
+</I>&gt;<i> &gt; problems. The problems with &quot;fetchall&quot; option are:
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; - &quot;fetchall&quot; cannot be used with &quot;uidl&quot;
+</I>&gt;<i> 
+</I>&gt;<i> Well, we can fix eventual incompatibilities between these two options
+</I>&gt;<i> any time. 6.3.X is open for bug fixes.
+</I>
+Here is a patch for this.
+
+================================================================
+Index: fetchmail-6.3/pop3.c
+===================================================================
+--- fetchmail-6.3/pop3.c	(revision 4719)
++++ fetchmail-6.3/pop3.c	(working copy)
+@@ -894,7 +894,7 @@
+      */
+     last = 0;
+     *newp = -1;
+-    if (*countp &gt; 0 &amp;&amp; !ctl-&gt;fetchall)
++    if (*countp &gt; 0 &amp;&amp; (!ctl-&gt;fetchall || ctl-&gt;server.uidl))
+     {
+ 	int fastuidl;
+ 	char id [IDLEN+1];
+@@ -902,6 +902,7 @@
+ 	/* should we do fast uidl this time? */
+ 	fastuidl = ctl-&gt;fastuidl;
+ 	if (*countp &gt; 7 &amp;&amp;		/* linear search is better if there are few mails! */
++	    !ctl-&gt;fetchall &amp;&amp;		/* with fetchall, all uids are required */
+ 	    !ctl-&gt;flush &amp;&amp;		/* with flush, it is safer to disable fastuidl */
+ 	    NUM_NONZERO (fastuidl))
+ 	{
+================================================================
+
+&gt;<i> The best option would be to use UIDL. Still we'll not be forcing UIDL
+</I>&gt;<i> downloads to use RETR in 6.3.X. We can safely do that in 6.4.X: the
+</I>&gt;<i> 6.3.X manpage already has warnings in place.
+</I>
+...
+
+&gt;<i> &gt; I don't get this part. If the pop3 server is supporting UIDL and
+</I>&gt;<i> &gt; fetchmail is running with the &quot;uidl&quot; option, why bother about the LAST
+</I>&gt;<i> &gt; pointer and message flags?
+</I>&gt;<i> 
+</I>&gt;<i> Why bother? Because I promised I'd stop the ESR madness of gold versions
+</I>&gt;<i> and promised 6.3.X would be compatible with 6.3.0 when I released 6.3.0.
+</I>
+Ok.
+
+-- 
+Sunil Shetye.
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000299.html">[fetchmail-users] Re: RETR with UIDL
+</A></li>
+	<LI>Next message: <A HREF="000301.html">[fetchmail-users] [PATCH] Re: RETR with UIDL
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#300">[ date ]</a>
+              <a href="thread.html#300">[ thread ]</a>
+              <a href="subject.html#300">[ subject ]</a>
+              <a href="author.html#300">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

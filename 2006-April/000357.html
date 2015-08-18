@@ -1,0 +1,146 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Re: &quot;Seen&quot; status disappears everytime
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2006-April/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Re%3A%20%22Seen%22%20status%20disappears%20everytime&In-Reply-To=%3C20060421214856.39984.qmail%40web33409.mail.mud.yahoo.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000356.html">
+   <LINK REL="Next"  HREF="000358.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Re: &quot;Seen&quot; status disappears everytime</H1>
+    <B>Ratan Nalumasu</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Re%3A%20%22Seen%22%20status%20disappears%20everytime&In-Reply-To=%3C20060421214856.39984.qmail%40web33409.mail.mud.yahoo.com%3E"
+       TITLE="[fetchmail-users] Re: &quot;Seen&quot; status disappears everytime">nalumasu at yahoo.com
+       </A><BR>
+    <I>Fri Apr 21 23:48:56 CEST 2006</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000356.html">[fetchmail-users] Re: &quot;Seen&quot; status disappears everytime
+</A></li>
+        <LI>Next message: <A HREF="000358.html">[fetchmail-users] Re: &quot;Seen&quot; status disappears everytime
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#357">[ date ]</a>
+              <a href="thread.html#357">[ thread ]</a>
+              <a href="subject.html#357">[ subject ]</a>
+              <a href="author.html#357">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Matthias:
+
+I think I understand the confusion on &quot;read&quot; vs. &quot;unread&quot;
+status.
+What I want is the mail on server to disappear and the mail on
+laptop to have &quot;read&quot; or &quot;unread&quot; according to what was on the
+server before the fetch started. What is happening is that the
+mail on the server is disappearing (as I want), but all mail on
+the laptop is unread (disconcerting).
+
+--- Matthias Andree &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">matthias.andree at gmx.de</A>&gt; wrote:
+
+&gt;<i> Ratan Nalumasu &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">nalumasu at yahoo.com</A>&gt; writes:
+</I>[...]
+&gt;<i> &gt; - The mailserver currently has IMAP and POP3 ports open,
+</I>&gt;<i> &gt;   though POP3 may be closed in the future. There is no
+</I>&gt;<i> server
+</I>&gt;<i> &gt;   on the POP3S port as we speak though.
+</I>&gt;<i> 
+</I>&gt;<i> Does the POP3 port offer STLS? If it does, no need for POP3S.
+</I>
+Yes, it does. Ok, at least one less thing to worry about.
+
+[...]
+
+&gt;<i> &gt; - I sometimes read the mail directly on the mail server
+</I>&gt;<i> &gt;   using squirrelmail and elm.
+</I>&gt;<i> 
+</I>&gt;<i> That will only work until fetchmail has downloaded the
+</I>&gt;<i> messages. After
+</I>&gt;<i> that, your requirement &quot;empty mailbox after fetch&quot; prevents
+</I>&gt;<i> that.
+</I>
+That is a good thing for me. I login to the mail sever or use
+squirrelmail infrequently (e.g., when I am on the road and don't
+have access to laptop). Once I am back in the office, I want to
+fetch all the mails along with their status.
+
+&gt;<i> &gt; In these cases, the messages are being marked as Read on the
+</I>&gt;<i> server
+</I>&gt;<i> &gt; (&quot;Status: RO&quot;).  However, when I get them using fetchmail on
+</I>&gt;<i> IMAP
+</I>&gt;<i> &gt; protocol, the Status line disappears in the fetched e-mail.
+</I>&gt;<i> 
+</I>&gt;<i> This looks a bit like a server issue. Fetchmail would mark
+</I>&gt;<i> downloaded
+</I>&gt;<i> messages read (rather than marking read messages unread), but
+</I>&gt;<i> as per
+</I>&gt;<i> your description the effect is quite the opposite.
+</I>
+I think here, you are stating that fetchmail would mark the
+messages on the server as read, right? That is true. After this
+step, as you find below, the fetchmail does mark it as deleted
+and expunge it--that is good too. My trouble with the mail on
+the laptop.
+
+&gt;<i> What I find most peculiar though is that (judging from the -v
+</I>&gt;<i> -v log)
+</I>&gt;<i> fetchmail marks the messages as seen and deleted, sends an
+</I>&gt;<i> EXPUNGE
+</I>&gt;<i> command that logs the two messages as expunged, and apparently
+</I>&gt;<i> the
+</I>&gt;<i> messages are still there (else you wouldn't have messages
+</I>&gt;<i> marked unread,
+</I>&gt;<i> but the messages should be gone). Any idea?
+</I>&gt;<i> 
+</I>&gt;<i> &gt; - When I fetch the same mail using fetchmail on POP3
+</I>&gt;<i> protocol,
+</I>&gt;<i> &gt;   the &quot;Status&quot; fields are retained but it leads to a
+</I>&gt;<i> different
+</I>&gt;<i> &gt;   problem: insufficient integration with ssh/ssh-agent.
+</I>&gt;<i> 
+</I>&gt;<i> Yes, that requires some experimenting on how exactly to start
+</I>&gt;<i> the
+</I>&gt;<i> server, and not all support it, since it's not standardized.
+</I>&gt;<i> 
+</I>[...]
+
+Thanks much for the help
+Ratan
+
+__________________________________________________
+Do You Yahoo!?
+Tired of spam?  Yahoo! Mail has the best spam protection around 
+<A HREF="http://mail.yahoo.com">http://mail.yahoo.com</A> 
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000356.html">[fetchmail-users] Re: &quot;Seen&quot; status disappears everytime
+</A></li>
+	<LI>Next message: <A HREF="000358.html">[fetchmail-users] Re: &quot;Seen&quot; status disappears everytime
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#357">[ date ]</a>
+              <a href="thread.html#357">[ thread ]</a>
+              <a href="subject.html#357">[ subject ]</a>
+              <a href="author.html#357">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

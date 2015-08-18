@@ -1,0 +1,273 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Procmail callup
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2010-November/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Procmail%20callup&In-Reply-To=%3C20101115183936.GA7553%40fever%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002547.html">
+   <LINK REL="Next"  HREF="002552.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Procmail callup</H1>
+    <B>Danny</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Procmail%20callup&In-Reply-To=%3C20101115183936.GA7553%40fever%3E"
+       TITLE="[fetchmail-users] Procmail callup">dannydebont at gmail.com
+       </A><BR>
+    <I>Mon Nov 15 19:39:36 CET 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002547.html">[fetchmail-users] Procmail callup
+</A></li>
+        <LI>Next message: <A HREF="002552.html">[fetchmail-users] Procmail callup
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2550">[ date ]</a>
+              <a href="thread.html#2550">[ thread ]</a>
+              <a href="subject.html#2550">[ subject ]</a>
+              <a href="author.html#2550">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi guys,
+
+I have realized that I have not given you enough info to work with.
+
+The reason I posted here on fetchmail with my problem is because I
+thought that maybe fetchmail was having trouble calling up procmail.
+
+I have been using fetchmail/procmail since Debian 4.0 with no real problems, however I
+switched over to Debian 5.1 at the beginning of the year and tried to get
+fetchmail/procmail working together again. I used the configurations I have used
+on Debian 4.0 and I thought that maybe the configuration files were out of date.
+So I gave up untill this weekend.
+
+Anyhow, I get a lot of mail primarily from mailing lists 
+(just like everyone else I suppose) and sorting them out manually became a 
+tedious task. So I made it my mission this weekend to sort it out.
+
+The maildrop guys will be happy to know that maildrop is used where I work,
+with no real problems, however, I guess I am one of those that like to
+stick with what I know, even if it is less effective ... :)
+
+Back to my issue:
+Fetchmail complained about DNS errors a lot. That was something that puzzled me
+as my bind9 was set up properly (so I thought). Just as a measure I checked my
+zones and named.conf and discovered that my subnets were totally wrong. I was
+still using an old subnet (copied from Debian 4.0 which in turn was copied from
+Debian 3.0 which in turn ... you get the idea :).
+
+Here is the complaint /var/log/fetchmail.log:
+///////////////////////////////////////////////////////////////////////////////////
+fetchmail: Warning: syslog and logfile are set. Check both for logs!
+gethostbyname failed for fever
+Name or service not knownCannot find my own host in hosts database to qualify it!
+Trying to continue with unqualified hostname.
+DO NOT report broken Received: headers, HELO/EHLO lines or similar problems!
+DO repair your /etc/hosts, DNS, NIS or LDAP instead.
+//////////////////////////////////////////////////////////////////////////////////
+
+Sorted that out ...
+
+I checked the logs again and alas ... something was happening ... this is what I
+got from fetchmail then /var/log/fetchmail.log:
+/////////////////////////////////////////////////////////////////////////////////
+fetchmail: Warning: syslog and logfile are set. Check both for logs!
+procmail: No space left to finish writing &quot;/var/mail/fetchmail&quot;
+procmail: No space left to finish writing &quot;/var/mail/fetchmail&quot;
+procmail: No space left to finish writing &quot;/var/mail/fetchmail&quot;
+procmail: No space left to finish writing &quot;/var/mail/fetchmail&quot;
+procmail: No space left to finish writing &quot;/var/mail/fetchmail&quot;
+procmail: No space left to finish writing &quot;/var/mail/fetchmail&quot;
+procmail: No space left to finish writing &quot;/var/mail/fetchmail&quot;
+/var/run/fetchmail/fetchmail.pid: No space left on device
+fetchmail: lock creation failed.
+/////////////////////////////////////////////////////////////////////////////////
+
+Now this puzzled me for a loooooong time ... can't remember what I did cause it
+disapeared .....
+
+
+Now I get this in /var/log/fetchmail.log:
+////////////////////////////////////////////////////////////////////////////////
+fetchmail: Warning: syslog and logfile are set. Check both for logs!
+procmail: Suspicious rcfile &quot;/root/.procmailrc&quot;
+procmail: Couldn't read &quot;/root/.procmailrc&quot;
+procmail: Suspicious rcfile &quot;/root/.procmailrc&quot;
+procmail: Couldn't read &quot;/root/.procmailrc&quot;
+procmail: Suspicious rcfile &quot;/root/.procmailrc&quot;
+procmail: Couldn't read &quot;/root/.procmailrc&quot;
+procmail: Suspicious rcfile &quot;/root/.procmailrc&quot;
+procmail: Couldn't read &quot;/root/.procmailrc&quot;
+procmail: Couldn't chdir to &quot;/var/lib/fetchmail/Mail&quot;
+procmail: Couldn't chdir to &quot;/var/lib/fetchmail/Mail&quot;
+procmail: Couldn't chdir to &quot;/var/lib/fetchmail/Mail&quot;
+procmail: Couldn't chdir to &quot;/var/lib/fetchmail/Mail&quot;
+procmail: Couldn't chdir to &quot;/var/lib/fetchmail/Mail&quot;
+procmail: Couldn't chdir to &quot;/var/lib/fetchmail/Mail&quot;
+procmail: Couldn't chdir to &quot;/var/lib/fetchmail/Mail&quot;
+procmail: Couldn't chdir to &quot;/var/lib/fetchmail/Mail&quot;
+////////////////////////////////////////////////////////////////////////////////
+
+Now I can see in the procmail.log file that procmail is actually working but not
+to my desire. Procmail is now dumping everything in my /root/Mail/inbox/inbox
+
+I thought that if I change the UIDL variable/argument in /etc/init.d/fetchmail
+from UIDL=&quot;/var/lib/fetchmail/.fetchmail-UIDL-cache&quot; to
+UIDL=&quot;/root/Mail/inbox/.fetchmail-UIDL-cache&quot; it would change the behaviour but
+I think I messed up.
+
+Here is /etc/rc.d/fetchmail (first part):
+////////////////////////////////////////////////////////////////////////////////
+PATH=/sbin:/bin:/usr/sbin:/usr/bin
+DAEMON=/usr/bin/fetchmail
+USER=fetchmail
+OPTIONS=&quot;&quot;
+
+CONFFILE=&quot;/root/.fetchmailrc&quot;
+#CONFFILE=&quot;/etc/fetchmailrc&quot;
+PIDFILE=&quot;/var/run/fetchmail/fetchmail.pid&quot;
+#UIDL=&quot;/var/lib/fetchmail/.fetchmail-UIDL-cache&quot;
+UIDL=&quot;/root/Mail/inbox/.fetchmail-UIDL-cache&quot;
+START_DAEMON=&quot;no&quot;
+////////////////////////////////////////////////////////////////////////////////
+
+Now everything is a mess. Procmail is working but it is skipping all recipes and
+dumps all mail in /root/Mail/inbox/inbox.
+
+Part of procmail log:
+////////////////////////////////////////////////////////////////////////////////
+procmail: Unlocking &quot;/var/lock/.procmail_lock&quot;
+procmail: [7945] Mon Nov 15 20:11:33 2010
+procmail: Assigning &quot;DEFAULT=/root/Mail/inbox/inbox&quot;
+procmail: Assigning &quot;PMDIR=/root/.procmail&quot;
+procmail: Assigning &quot;LOCKFILE=/var/lock/.procmail_lock&quot;
+procmail: Locking &quot;/var/lock/.procmail_lock&quot;
+procmail: No match on &quot;^(From|Cc|To|X-Loop|Sender|Bcc|X-BeenThere):.*<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">misc at openbsd</A>\.org&quot;
+procmail: No match on &quot;^(From|Cc|To|X-Loop|Sender|Bcc|X-BeenThere):.*<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">debian-user at lists</A>\.debian\.org&quot;
+procmail: No match on &quot;^(From|Cc|To|X-Loop|Sender|Bcc|X-BeenThere):.*<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">freebsd-questions at freebsd</A>\.org&quot;
+procmail: No match on &quot;^(From|Cc|To|X-Loop|Sender|Bcc|X-BeenThere):.*<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">mutt-users at mutt</A>\.org&quot;
+procmail: No match on &quot;^(From|Cc|To|X-Loop|Sender|Bcc|X-BeenThere):.*<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">mysql at lists</A>\.mysql\.com&quot;
+procmail: No match on &quot;^(From|Cc|To|X-Loop|Sender|Bcc|X-BeenThere):.*<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">proftp-user at lists</A>\.sourceforge\.net&quot;
+procmail: No match on &quot;^(From|Cc|To|X-Loop|Sender|Bcc|X-BeenThere):.*<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">postfix-users at postfix</A>\.org&quot;
+procmail: No match on &quot;^(From|Cc|To|X-Loop|Sender|Bcc|X-BeenThere):.*<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">postfix-users at cloud9</A>\.net&quot;
+procmail: No match on &quot;^(From|Cc|To|X-Loop|Sender|Bcc|X-BeenThere):.*<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">enlightenment-users at lists</A>\.sourceforge\.net&quot;
+procmail: No match on &quot;^(From|Cc|To|X-Loop|Sender|Bcc|X-BeenThere):.*<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">vim at vim</A>\.org&quot;
+procmail: No match on &quot;^(From|Cc|To|X-Loop|Sender|Bcc|X-BeenThere):.*<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">magick-users at imagemagick</A>\.org&quot;
+procmail: No match on &quot;^(From|Cc|To|X-Loop|Sender|Bcc|X-BeenThere):.*<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">fetchmail-users at lists</A>\.berlios\.de&quot;
+procmail: No match on &quot;^(From|Cc|To|X-Loop|Sender|Bcc|X-BeenThere):.*<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">general at lists</A>\.mozilla\.org&quot;
+procmail: No match on &quot;^(From|Cc|To|X-Loop|Sender|Bcc|X-BeenThere):.*<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">php-general at lists</A>\.php\.net&quot;
+procmail: No match on &quot;^(From|Cc|To|X-Loop|Sender|Bcc|X-BeenThere):.*<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">info at openDesktop</A>\.org&quot;
+procmail: No match on &quot;^(From|Cc|To|X-Loop|Sender|Bcc|X-BeenThere):.*<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">wine-users at winehq</A>\.org&quot;
+procmail: No match on &quot;^(From|Cc|To|X-Loop|Sender|Bcc|X-BeenThere):.*<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">openvpn-users at lists</A>\.sourceforge\.net&quot;
+procmail: Assigning &quot;LASTFOLDER=/root/Mail/inbox/inbox&quot;
+procmail: Opening &quot;/root/Mail/inbox/inbox&quot;
+procmail: Acquiring kernel-lock
+procmail: Notified comsat: &quot;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">root at 298472</A>:/root/Mail/inbox/inbox&quot;
+From %f  Mon Nov 15 20:11:33 2010
+ Subject: kern/152141: [vlan] encapsulate vlan in ng_ether before output to if
+  Folder: /root/Mail/inbox/inbox					   5183
+///////////////////////////////////////////////////////////////////////////////
+
+Guys, I am missing something somewhere, it is ok if you don't understand either
+... :)
+
+I am however going to include fetchmail and procmail's config files ...
+
+Here is /etc/procmailrc (only the configuration and a few recipes):
+///////////////////////////////////////////////////////////////////////////////
+SHELL=/bin/sh
+HOME=/root &lt;----- Note, I had to create this to stop procmail from trying to
+                  access /var/lib/fetchmail/Mail
+PATH=$HOME/bin:/usr/local/bin:/usr/bin:/bin:/sbin:/usr/sbin
+SENDMAIL=/usr/sbin/sendmail
+MAILDIR=$HOME/Mail/incoming
+LOGFILE=/var/log/procmail.log
+LOGABSTRACT=&quot;all&quot;
+VERBOSE=&quot;on&quot;
+DEFAULT=$HOME/Mail/inbox/inbox
+#DEFAULT=/var/spool/mail/fetchmail
+PMDIR=$HOME/.procmail
+#INCLUDERC=$PMDIR/spam.rc
+LOCKFILE=/var/lock/.procmail_lock
+
+###################################
+:<i>0
+</I>* ^(From|Cc|To|X-Loop|Sender|Bcc|X-BeenThere):.*@facebookmail\.com
+$MAILDIR/incoming/internet/social/facebook
+###################################
+:<i>0
+</I>* ^(From|Cc|To|X-Loop|Sender|Bcc|X-BeenThere):.*<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">misc at openbsd</A>\.org
+$MAILDIR/incoming/operating_systems/openbsd/misc/openbsd-misc
+###################################
+:<i>0
+</I>* ^(From|Cc|To|X-Loop|Sender|Bcc|X-BeenThere):.*<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">debian-user at lists</A>\.debian\.org
+$MAILDIR/incoming/operating_systems/linux/debian/debian-user
+###################################
+:<i>0
+</I>* ^(From|Cc|To|X-Loop|Sender|Bcc|X-BeenThere):.*<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">freebsd-questions at freebsd</A>\.org
+$MAILDIR/incoming/operating_systems/freebsd/general/freebsd-questions 
+###################################
+///////////////////////////////////////////////////////////////////////////////
+
+Here is /root/.fetchmailrc (I will incorporate the changes you guys suggested
+later):
+///////////////////////////////////////////////////////////////////////////////
+set syslog
+set postmaster &quot;postmaster&quot;
+set no bouncemail
+set logfile &quot;/var/log/fetchmail.log&quot;
+set spambounce
+#set daemon
+
+poll 111.111.111.111
+  no dns                &lt;--- this was because my DNS was screwed up ...
+  proto pop3
+  user &quot;username&quot;
+  pass &quot;password&quot;
+  fetchall
+  expunge 50
+#  ssl
+#  flush
+#  smtphost localhost
+mda &quot;formail -s procmail&quot; &lt;--- This is working now :))
+///////////////////////////////////////////////////////////////////////////////
+
+Phew, that was a lot. I don't even remember what I said in the first part of
+this mail ... :)
+
+Guys, I know it is confusing ...
+
+Thanks anyway for trying to help ...
+
+Danny
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002547.html">[fetchmail-users] Procmail callup
+</A></li>
+	<LI>Next message: <A HREF="002552.html">[fetchmail-users] Procmail callup
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2550">[ date ]</a>
+              <a href="thread.html#2550">[ thread ]</a>
+              <a href="subject.html#2550">[ subject ]</a>
+              <a href="author.html#2550">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

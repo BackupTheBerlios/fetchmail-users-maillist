@@ -1,0 +1,97 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Infinite loop!
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2007-November/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Infinite%20loop%21&In-Reply-To=%3C200711201116.29358.ndbecker2%40gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001380.html">
+   <LINK REL="Next"  HREF="001382.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Infinite loop!</H1>
+    <B>Neal Becker</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Infinite%20loop%21&In-Reply-To=%3C200711201116.29358.ndbecker2%40gmail.com%3E"
+       TITLE="[fetchmail-users] Infinite loop!">ndbecker2 at gmail.com
+       </A><BR>
+    <I>Tue Nov 20 17:16:29 CET 2007</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001380.html">[fetchmail-users] Infinite loop!
+</A></li>
+        <LI>Next message: <A HREF="001382.html">[fetchmail-users] Infinite loop!
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1381">[ date ]</a>
+              <a href="thread.html#1381">[ thread ]</a>
+              <a href="subject.html#1381">[ subject ]</a>
+              <a href="author.html#1381">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Tuesday 20 November 2007, Rob MacGregor wrote:
+&gt;<i> On Nov 20, 2007 2:48 PM, Neal Becker &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">ndbecker2 at gmail.com</A>&gt; wrote:
+</I>&gt;<i> &gt; Looks like adding 'antispam 501' to my fetchmailrc didn't work either:
+</I>&gt;<i> &gt; ...
+</I>&gt;<i> &gt; fetchmail: IMAP&lt; )
+</I>&gt;<i> &gt; fetchmail: IMAP&lt; A0031 OK Completed
+</I>&gt;<i> &gt; msmtp: envelope from address &lt;&gt; not accepted by the server
+</I>&gt;<i> &gt; msmtp: server message: 501 &lt;&lt;&gt;&gt;: missing or malformed local part
+</I>&gt;<i> &gt; msmtp: could not send mail (account default from /home/nbecker/.msmtprc)
+</I>&gt;<i> &gt; fetchmail: MDA returned nonzero status 65
+</I>&gt;<i> &gt;  not flushed
+</I>&gt;<i>
+</I>&gt;<i> Ah, I just noticed you're using the MDA option.  There is (that I know
+</I>&gt;<i> of) no way for fetchmail to get anything other than the return code
+</I>&gt;<i> from the MDA.  The return code will be little more than success or
+</I>&gt;<i> failure.
+</I>&gt;<i>
+</I>&gt;<i> You need to either have your local system accept email from &lt;&gt; (which
+</I>&gt;<i> by the RFCs you're not supposed to reject mail from - see
+</I>&gt;<i> <A HREF="http://www.rfc-ignorant.org/policy-dsn.php">http://www.rfc-ignorant.org/policy-dsn.php</A>) or use an (E)SMTP
+</I>&gt;<i> listener.
+</I>
+I think I solved it.  I didn't know that I didn't need a local mda to relay on 
+to my server.  Now it looks like:
+
+imap server -&gt; fetchmail -&gt; my remote server
+
+I use:
+
+poll upstream_imap_server proto imap user <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">upstream_user at domain</A> password xxx 
+smtphost 10.4.0.1 smtpname <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">user at remote_host_name</A>
+
+This sends directly to my remote server, rewriting the rcpt to be 
+<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">user at remote_host_name.</A>
+
+Perhaps add this to a FAQ?
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001380.html">[fetchmail-users] Infinite loop!
+</A></li>
+	<LI>Next message: <A HREF="001382.html">[fetchmail-users] Infinite loop!
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1381">[ date ]</a>
+              <a href="thread.html#1381">[ thread ]</a>
+              <a href="subject.html#1381">[ subject ]</a>
+              <a href="author.html#1381">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

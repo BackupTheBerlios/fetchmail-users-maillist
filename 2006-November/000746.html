@@ -1,0 +1,102 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] [fetchmail-announce] fetchmail 6.3.6-rc4	release candidate
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2006-November/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20%5Bfetchmail-announce%5D%20fetchmail%206.3.6-rc4%0A%09release%20candidate&In-Reply-To=%3C456AB822.2090702%40plonk.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000741.html">
+   <LINK REL="Next"  HREF="000748.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] [fetchmail-announce] fetchmail 6.3.6-rc4	release candidate</H1>
+    <B>Jakob Hirsch</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20%5Bfetchmail-announce%5D%20fetchmail%206.3.6-rc4%0A%09release%20candidate&In-Reply-To=%3C456AB822.2090702%40plonk.de%3E"
+       TITLE="[fetchmail-users] [fetchmail-announce] fetchmail 6.3.6-rc4	release candidate">jh at plonk.de
+       </A><BR>
+    <I>Mon Nov 27 11:04:18 CET 2006</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000741.html">[fetchmail-users] fetchmail 6.3.6-rc4 release candidate
+</A></li>
+        <LI>Next message: <A HREF="000748.html">[fetchmail-users] fetchmail 6.3.6-rc4 release candidate
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#746">[ date ]</a>
+              <a href="thread.html#746">[ thread ]</a>
+              <a href="subject.html#746">[ subject ]</a>
+              <a href="author.html#746">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Quoting Matthias Andree:
+
+It worked here:
+
+&gt;<i> fetchmail: 6.3.6-rc3 querying pop.guru.de (protocol POP3) at Mon, 27 Nov 2006 10:58:09 +0100 (CET): poll started
+</I>&gt;<i> Trying to connect to 212.11.227.194/110...connected.
+</I>&gt;<i> fetchmail: POP3&lt; +OK b1gPOP3 2-1.22 Linux (guru.de) ready
+</I>&gt;<i> fetchmail: POP3&gt; USER <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">xxxx at guru.de</A>
+</I>&gt;<i> fetchmail: POP3&lt; +OK Need password for <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">xxxx at guru.de</A>
+</I>&gt;<i> fetchmail: POP3&gt; PASS *
+</I>&gt;<i> fetchmail: POP3&lt; +OK Logged in, you have 0 message(s) in your mailbox (0 octets)
+</I>...
+
+but not anymore...
+
+&gt;<i> fetchmail: 6.3.6-rc4 querying pop.guru.de (protocol POP3) at Mon, 27 Nov 2006 10:59:54 +0100 (CET): poll started
+</I>&gt;<i> Trying to connect to 212.11.227.194/110...connected.
+</I>&gt;<i> fetchmail: POP3&lt; +OK b1gPOP3 2-1.22 Linux (guru.de) ready
+</I>&gt;<i> fetchmail: POP3&gt; CAPA
+</I>&gt;<i> fetchmail: POP3&lt; -ERR Unknown command (in this session state): &quot;CAPA&quot;
+</I>&gt;<i> fetchmail: Unknown command (in this session state): &quot;CAPA&quot;
+</I>&gt;<i> fetchmail: Authorization failure on <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">xxxx at guru.de</A>@pop.guru.de
+</I>&gt;<i> fetchmail: POP3&gt; QUIT
+</I>&gt;<i> fetchmail: POP3&lt; +OK Bye
+</I>&gt;<i> fetchmail: 6.3.6-rc4 querying pop.guru.de (protocol POP3) at Mon, 27 Nov 2006 10:59:54 +0100 (CET): poll completed
+</I>&gt;<i> fetchmail: Query status=3 (AUTHFAIL)
+</I>&gt;<i> fetchmail: normal termination, status 3
+</I>
+with
+
+defaults
+  proto pop3
+...
+
+and
+
+poll pop.guru.de auth password user <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">xxxx at guru.de</A> pass yyyyyy fetchall to
+&quot;guru&quot;
+
+There should be no CAPA at all (or at least used to be), but fetchmail
+should not stumble on that, I guess.
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000741.html">[fetchmail-users] fetchmail 6.3.6-rc4 release candidate
+</A></li>
+	<LI>Next message: <A HREF="000748.html">[fetchmail-users] fetchmail 6.3.6-rc4 release candidate
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#746">[ date ]</a>
+              <a href="thread.html#746">[ thread ]</a>
+              <a href="subject.html#746">[ subject ]</a>
+              <a href="author.html#746">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

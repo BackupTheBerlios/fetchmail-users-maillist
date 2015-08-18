@@ -1,0 +1,103 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] fetchmail on server unable to connect to	postfix
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2007-August/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%20on%20server%20unable%20to%20connect%20to%0A%09postfix&In-Reply-To=%3C200708161212.34260.rfunk%40funknet.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001163.html">
+   <LINK REL="Next"  HREF="001166.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] fetchmail on server unable to connect to	postfix</H1>
+    <B>Rob Funk</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%20on%20server%20unable%20to%20connect%20to%0A%09postfix&In-Reply-To=%3C200708161212.34260.rfunk%40funknet.net%3E"
+       TITLE="[fetchmail-users] fetchmail on server unable to connect to	postfix">rfunk at funknet.net
+       </A><BR>
+    <I>Thu Aug 16 18:12:34 CEST 2007</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001163.html">[fetchmail-users] fetchmail on server unable to connect to	postfix
+</A></li>
+        <LI>Next message: <A HREF="001166.html">[fetchmail-users] fetchmail on server unable to connect to	postfix
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1165">[ date ]</a>
+              <a href="thread.html#1165">[ thread ]</a>
+              <a href="subject.html#1165">[ subject ]</a>
+              <a href="author.html#1165">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Rob MacGregor wrote:
+&gt;<i> I only have the source for 6.3.8 to hand.  It's possible this feature
+</I>&gt;<i> is relatively recent.
+</I>
+See <A HREF="http://mknod.org/svn/fetchmail/">http://mknod.org/svn/fetchmail/</A>  :-)
+Looks like the way fetchmailhost is determined (in fetchmail.c) has 
+changed since 6.2.5.
+
+&gt;<i> It may also be that there's something else 
+</I>&gt;<i> happening to the value of the hostname beforehand - certainly lots of
+</I>&gt;<i> software relies on resolver libraries, which can be tripped up by
+</I>&gt;<i> having your hostname against the loopback address.
+</I>&gt;<i>
+</I>&gt;<i> I'd advise that, if you can, you create a second line with JUST the
+</I>&gt;<i> hostname in it, and the real IP of the host.
+</I>
+I agree.
+
+&gt;<i> Checking the source it looks like the hostname passed is based off of
+</I>&gt;<i> the value of id_me in sink.c.  The value of that depends on whether
+</I>&gt;<i> &quot;set invisible&quot; is on (which I use).
+</I>&gt;<i>
+</I>&gt;<i> That may be set to the value of fetchmailhost, which defaults to
+</I>&gt;<i> localhost, but is later over-ridden by the DNS name of the host using
+</I>&gt;<i> gethostname.
+</I>&gt;<i>
+</I>&gt;<i> It may also default to value of server.truename, and I'm not enough of
+</I>&gt;<i> a C programmer to work out where that comes from :)
+</I>
+If invisible is on, fetchmail uses the POP/IMAP server's name for HELO.
+If invisible is off, fetchmail uses the pre-determined &quot;fetchmailhost&quot; 
+value instead.  fetchmailhost is determined by heuristics in fetchmail.c, 
+and references the machine fetchmail is running on.
+
+It might be worthwhile to add an option to specify fetchmailhost in the 
+config file.  Not that I'll have time to do that anytime soon.
+
+
+-- 
+==============================|   &quot;A microscope locked in on one point
+ Rob Funk &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">rfunk at funknet.net</A>&gt; |Never sees what kind of room that it's in&quot;
+ <A HREF="http://www.funknet.net/rfunk">http://www.funknet.net/rfunk</A> |    -- Chris Mars, &quot;Stuck in Rewind&quot;
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001163.html">[fetchmail-users] fetchmail on server unable to connect to	postfix
+</A></li>
+	<LI>Next message: <A HREF="001166.html">[fetchmail-users] fetchmail on server unable to connect to	postfix
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1165">[ date ]</a>
+              <a href="thread.html#1165">[ thread ]</a>
+              <a href="subject.html#1165">[ subject ]</a>
+              <a href="author.html#1165">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

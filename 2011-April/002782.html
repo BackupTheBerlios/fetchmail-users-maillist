@@ -1,0 +1,128 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Plus (+) Addressing Problem {Epilogue}
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2011-April/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Plus%20%28%2B%29%20Addressing%20Problem%20%7BEpilogue%7D&In-Reply-To=%3C4DB978AE.9030100%40gmx.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002780.html">
+   <LINK REL="Next"  HREF="002783.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Plus (+) Addressing Problem {Epilogue}</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Plus%20%28%2B%29%20Addressing%20Problem%20%7BEpilogue%7D&In-Reply-To=%3C4DB978AE.9030100%40gmx.de%3E"
+       TITLE="[fetchmail-users] Plus (+) Addressing Problem {Epilogue}">matthias.andree at gmx.de
+       </A><BR>
+    <I>Thu Apr 28 16:24:46 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002780.html">[fetchmail-users] Plus (+) Addressing Problem {Epilogue}
+</A></li>
+        <LI>Next message: <A HREF="002783.html">[fetchmail-users] Plus (+) Addressing Problem {Epilogue}
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2782">[ date ]</a>
+              <a href="thread.html#2782">[ thread ]</a>
+              <a href="subject.html#2782">[ subject ]</a>
+              <a href="author.html#2782">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Am 28.04.2011 14:26, schrieb Jerry:
+
+&gt;&gt;<i> &quot;localdomains&quot; isn't the only option for such setups - and it is a bit
+</I>&gt;&gt;<i> different from, for instance, &quot;aka&quot; -- which would serve others, too.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> WRT &quot;dropdelivered&quot;, I don't think I am ready to advertise it for such
+</I>&gt;&gt;<i> setups (possibly I should remove it from future fetchmail versions
+</I>&gt;&gt;<i> altogether).  It seems that it is only needed if there are multiple
+</I>&gt;&gt;<i> computers around with the same hostname (i. e. one upstream, possibly
+</I>&gt;&gt;<i> a rented server, and your own personal home/SOHO Postfix or Exim
+</I>&gt;&gt;<i> host), and I am certainly not going to support such setups as they are
+</I>&gt;&gt;<i> error-prone and debugging them is long-winded (as evidenced by the
+</I>&gt;&gt;<i> length of the thread).
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> I need to think about this a bit more, and comments are welcome.
+</I>&gt;<i> 
+</I>&gt;<i> I think you really should reconsider not dropping &quot;dropdelivered&quot; from
+</I>&gt;<i> future versions of Fetchmail. By the way, I did try the &quot;aka&quot; option
+</I>&gt;<i> first, but it still failed without the &quot;localdomains&quot; being
+</I>&gt;<i> specifically entered. An option might be for Fetchmail to get the
+</I>&gt;<i> hostname for the machine it is running on and always consider that
+</I>&gt;<i> local unless overridden by some other flag; ie, &quot;--nolocalhost&quot; or
+</I>&gt;<i> something like that. The option to add additional localhosts should
+</I>&gt;<i> still remain though. I am just playing around here, sorry.
+</I>
+Which is perfectly fine since I've asked for such comments - and some
+kind of kicking things around might put these things into a different
+light and kindle new ideas.
+
+Recovering from family vacation and preparation over Easter holidays, I
+haven't looked at every tiny bit yet.  Anyways I do agree that the
+aka/localdomains and multidrop stuff is hard to understand from the
+manual page and there isn't a guide as to how to usefully set things up.
+
+&gt;&gt;<i> They were looping because the Postfix you're injecting to listens to
+</I>&gt;&gt;<i> the same names than the server you're fetching from - both think they
+</I>&gt;&gt;<i> are &quot;seibercom.net&quot;. Oops.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> IMNSHO, nobody should ever need &quot;dropdelivered&quot;, as that is a
+</I>&gt;&gt;<i> dangerous cure for the symptom, but does not remedy the cause.
+</I>&gt;<i> 
+</I>&gt;<i> I had created an experimental site on Google apps that resembled the
+</I>&gt;<i> actual environment that I was attempting to set fetchmail up to work
+</I>&gt;<i> in. In both case, the actual one and the experimental one, the domain
+</I>&gt;<i> name on Google apps mirrored the hostname on the mailserver. There are
+</I>
+Whatever Google Apps provides exactly, this setup with mirrored
+hostnames is what mail systems aren't made for.
+
+All I'm saying is that the computer that fetchmail _gets_ its mail from
+and the computer that fetchmail _forwards_ its mail to should have
+different names, and then neither software would be getting in your way.
+
+&gt;<i> probably more similar setups, although I cannot confirm that. In any
+</I>&gt;<i> case, removing that option would cause Postfix to always reject such
+</I>&gt;<i> e-mails. Removing that option would make configuration, IMHO, more
+</I>&gt;<i> difficult. Although I am all in favor of improvement and development of
+</I>&gt;<i> better ideas and concepts, I believe the axiomatic, &quot;If it ain't broke,
+</I>&gt;<i> don't fix it&quot; is apropos here.
+</I>
+I usually subscribe to that saying, but I'm also trying to prevent
+accidents and guide users to more robust setups -- and I certainly do
+not need code that needs maintenance, care, testing, and everything if I
+can solve that same problem with documentation (such as a &quot;don't use the
+same hostname for your mail source and sink computers&quot; rule).
+
+Not convinced yet :-)
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002780.html">[fetchmail-users] Plus (+) Addressing Problem {Epilogue}
+</A></li>
+	<LI>Next message: <A HREF="002783.html">[fetchmail-users] Plus (+) Addressing Problem {Epilogue}
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2782">[ date ]</a>
+              <a href="thread.html#2782">[ thread ]</a>
+              <a href="subject.html#2782">[ subject ]</a>
+              <a href="author.html#2782">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

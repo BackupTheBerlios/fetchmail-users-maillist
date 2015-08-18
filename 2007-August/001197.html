@@ -1,0 +1,94 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] How to avoid these annoying reports
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2007-August/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20How%20to%20avoid%20these%20annoying%20reports&In-Reply-To=%3C43ea8d070708201125y6e807e3ekacfecac8ec4a7dfe%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001196.html">
+   <LINK REL="Next"  HREF="001198.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] How to avoid these annoying reports</H1>
+    <B>Rob MacGregor</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20How%20to%20avoid%20these%20annoying%20reports&In-Reply-To=%3C43ea8d070708201125y6e807e3ekacfecac8ec4a7dfe%40mail.gmail.com%3E"
+       TITLE="[fetchmail-users] How to avoid these annoying reports">rob.macgregor at gmail.com
+       </A><BR>
+    <I>Mon Aug 20 20:25:17 CEST 2007</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001196.html">[fetchmail-users] How to avoid these annoying reports
+</A></li>
+        <LI>Next message: <A HREF="001198.html">[fetchmail-users] How to avoid these annoying reports
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1197">[ date ]</a>
+              <a href="thread.html#1197">[ thread ]</a>
+              <a href="subject.html#1197">[ subject ]</a>
+              <a href="author.html#1197">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On 8/20/07, Anne Wilson &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">cannewilson at googlemail.com</A>&gt; wrote:
+&gt;<i> Right - maybe I misunderstood your instructions.  At present the stanzas in
+</I>&gt;<i> fetchmailrc look like this:
+</I>&gt;<i>
+</I>&gt;<i> poll zencphosting09.zen.co.uk with proto pop3
+</I>&gt;<i>         sslfingerprint 01:A0:29:54:2F:03:DB:AE:79:8D:B8:B9:BB:9A:1F:9A
+</I>&gt;<i>         user &quot;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">suspect at lydgate.org</A>&quot;
+</I>&gt;<i>         pass &quot;xxxxxx&quot;
+</I>&gt;<i>         is anne fetchall
+</I>&gt;<i>
+</I>&gt;<i> And attempting to restart fetchmail, or to run with --configdump, brings
+</I>&gt;<i>
+</I>&gt;<i> fetchmail:/home/anne/.fetchmailrc:24: syntax error at 01
+</I>
+Ok, having got home and checked, that should have been AFTER the user
+line - apologies.  It should look something like the following:
+
+poll zencphosting09.zen.co.uk with proto pop3
+        user &quot;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">suspect at lydgate.org</A>&quot; password &quot;xxxxxx&quot;
+        ssl sslfingerprint &quot;01:A0:29:54:2F:03:DB:AE:79:8D:B8:B9:BB:9A:1F:9A&quot;
+        is anne fetchall
+
+(Or at least, that's basically what works for me).
+
+If that doesn't work, please include the entire .fetchmailrc, editing
+only passwords/usernames.
+
+-- 
+                 Please keep list traffic on the list.
+
+Rob MacGregor
+      Whoever fights monsters should see to it that in the process he
+        doesn't become a monster.                  Friedrich Nietzsche
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001196.html">[fetchmail-users] How to avoid these annoying reports
+</A></li>
+	<LI>Next message: <A HREF="001198.html">[fetchmail-users] How to avoid these annoying reports
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1197">[ date ]</a>
+              <a href="thread.html#1197">[ thread ]</a>
+              <a href="subject.html#1197">[ subject ]</a>
+              <a href="author.html#1197">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

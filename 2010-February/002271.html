@@ -1,0 +1,133 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] config and password
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2010-February/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20config%20and%20password&In-Reply-To=%3Cop.u7jmlde81e62zd%40merlin.emma.line.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002270.html">
+   <LINK REL="Next"  HREF="002273.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] config and password</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20config%20and%20password&In-Reply-To=%3Cop.u7jmlde81e62zd%40merlin.emma.line.org%3E"
+       TITLE="[fetchmail-users] config and password">matthias.andree at gmx.de
+       </A><BR>
+    <I>Wed Feb  3 09:45:03 CET 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002270.html">[fetchmail-users] config and password
+</A></li>
+        <LI>Next message: <A HREF="002273.html">[fetchmail-users] fetchmail 6.3.14 security fix release and fetchmail-SA-2010-01 security announcement
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2271">[ date ]</a>
+              <a href="thread.html#2271">[ thread ]</a>
+              <a href="subject.html#2271">[ subject ]</a>
+              <a href="author.html#2271">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Am 02.02.2010, 18:13 Uhr, schrieb Fabio Marcone &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">fabio.marcone at duet.it</A>&gt;:
+
+&gt;<i> Hi,
+</I>&gt;<i> thanks for your reply, but...
+</I>&gt;&gt;<i> See <A HREF="http://www.fetchmail.info/esrs-design-notes.html">http://www.fetchmail.info/esrs-design-notes.html</A>
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> ---quote---
+</I>&gt;&gt;<i> The most-requested features that I will never add, and why not:
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Password encryption in .fetchmailrc
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> The reason there's no facility to store passwords encrypted in the
+</I>&gt;&gt;<i> .fetchmailrc file is because this doesn't actually add protection.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Anyone who's acquired the 0600 permissions needed to read your
+</I>&gt;&gt;<i> .fetchmailrc file will be able to run fetchmail as you anyway -- and if
+</I>&gt;&gt;<i> it's your password they're after, they'd be able to rip the necessary
+</I>&gt;&gt;<i> decoder out of the fetchmail code itself to get it.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> All .fetchmailrc encryption would do is give a false sense of security
+</I>&gt;&gt;<i> to people who don't think very hard.
+</I>&gt;&gt;<i> ---unquote---
+</I>&gt;&gt;<i>
+</I>&gt;<i> ... I don't agree with you. Example: while server administrator is
+</I>&gt;<i> editing fetchmailrc config file, a colleague walk around him and can see
+</I>&gt;<i> all password in clear text.
+</I>
+Press Windows+L, Ctrl-Left + Ctrl-Right + L or similar to blank out and  
+lock the screen, or similar combinations depending on your desktop and  
+window managers.
+
+You can keep passwords in a separate .netrc file, separate from  
+.fetchmailrc.
+
+You can also use client-certificate-based authentication.
+
+There are protector foils for screens (not sure up to which size, surely  
+for laptops) that prevent spying on the screen from the side, i. e. you  
+can only see from the center.
+
+&gt;<i> I can think a lot of example like that.
+</I>&gt;<i>
+</I>&gt;<i> I agree with you that crypt password isn't an hard security solution,
+</I>&gt;<i> but it's better than nothing. I think.
+</I>
+It requires special support for editing the configuration files from  
+inside fetchmail. Particularly, fetchmail will have to be able to re-write  
+the configuration file, and somehow transport unknown options and comments  
+to the output -- this is a major undertaking. There are more important  
+code changes up the priority lists.
+
+Note that crypt() isn't suitable because it's a one-way function, but you  
+need to be able to recover the original password from the encrypted output.
+
+&gt;<i> Can you suggest me files source used to read fetchmailrc?
+</I>
+*.[chly] - try fetchmail.*, rcfile* first, or possibly use &quot;cscope&quot; or  
+other static/source call analyzers.
+
+Note that relevant patches will probably not be accepted into the  
+fetchmail source.
+Anything that creates a false sense of security will be rejected.
+
+If you think a change improves security, I will ask for documentation on  
+the exact attack scenario that is being addressed (you provided it here,  
+but based on that, *I* would not change fetchmail, there are features  
+missing that are more important).
+
+Sorry.
+
+-- 
+Matthias Andree
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002270.html">[fetchmail-users] config and password
+</A></li>
+	<LI>Next message: <A HREF="002273.html">[fetchmail-users] fetchmail 6.3.14 security fix release and fetchmail-SA-2010-01 security announcement
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2271">[ date ]</a>
+              <a href="thread.html#2271">[ thread ]</a>
+              <a href="subject.html#2271">[ subject ]</a>
+              <a href="author.html#2271">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

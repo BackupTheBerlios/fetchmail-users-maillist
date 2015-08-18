@@ -1,0 +1,117 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] server certificates (was: fetchmail gmail set up	problem)
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2011-March/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20server%20certificates%20%28was%3A%20fetchmail%20gmail%20set%20up%0A%09problem%29&In-Reply-To=%3C20110302115819.121290%40gmx.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002694.html">
+   <LINK REL="Next"  HREF="002696.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] server certificates (was: fetchmail gmail set up	problem)</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20server%20certificates%20%28was%3A%20fetchmail%20gmail%20set%20up%0A%09problem%29&In-Reply-To=%3C20110302115819.121290%40gmx.net%3E"
+       TITLE="[fetchmail-users] server certificates (was: fetchmail gmail set up	problem)">matthias.andree at gmx.de
+       </A><BR>
+    <I>Wed Mar  2 12:58:19 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002694.html">[fetchmail-users] fetchmail gmail set up problem
+</A></li>
+        <LI>Next message: <A HREF="002696.html">[fetchmail-users] server certificates (was: fetchmail gmail set up problem)
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2695">[ date ]</a>
+              <a href="thread.html#2695">[ thread ]</a>
+              <a href="subject.html#2695">[ subject ]</a>
+              <a href="author.html#2695">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>I wrote:
+
+&gt;<i> &gt; It's no good marking a server certificate as trusted (by
+</I>&gt;<i> &gt; copying it into $SSLDIR/certs).  People need to install
+</I>&gt;<i> &gt; the root certificate that signed the server certificate,
+</I>&gt;<i> &gt; not the server certificate itself!
+</I>
+Perry Hutchison asked:
+
+&gt;<i> Can someone point to a good explanation of _why_ trusting the server
+</I>&gt;<i> certificate directly is insecure?  [...]
+</I>&gt;<i> the IT folks are saying to just accept the server certificate
+</I>&gt;<i> itself.  I doubt I'll be able to convince them otherwise without
+</I>&gt;<i> a comprehensible explanation of why it's a bad idea. [...]
+</I>
+Which is clueless and creates a false sense of security -- unless they provide you with certificate fingerprints that you need to verify before marking the certificate trusted.
+
+There are several considerations:
+
+1. instructions to obtain and/or accept the server certificate as trusted usually rely on a direct download of the server certificate. The communications channel is the same that fetchmail would use.
+
+Any man-in-the-middle attacker can and will replace the server certificate in a way that makes the end believe it were the authentic server certificate, like copying and pasting server names, creation and expiration dates, issuer, and all that.  
+
+The openssl s_client and copy-and-paste-the-cert instructions afoot throughout the web all have this problem.
+
+This setup could only be secure if people were told to verify the certificate finger prints and only install if the finger prints match. Apparently this isn't the case for you.
+
+Now, the finger prints would have to be provided through a separate channel that is hard to spoof, which could be a fax polling machine at the ISP, a fax or phone reply from their customer service, or material in printed traditional mail (such as the user credentials mailed back when you signed up).
+
+Anything where:
+- you look at finger prints or certificates through <A HREF="http://">http://</A> or <A HREF="ftp://">ftp://</A> rather than <A HREF="https://">https://</A> websites is insecure
+- you need to tell (or have told in the past) your browser to accept certificates when downloading the finger prints is insecure
+- you use the server's certificate directly as presented by openssl or gnutls-cli or similar tools is insecure.
+
+In all these scenarios, man-in-the-middle (MITM) attacks go unnoticed, and SSL or TLS doesn't add security.  The MITM attacker can foist the certificate on you, and subsequently decrypt all your communication.
+
+The MITM will present you counterfeit certificates, pretend to be the ISP's server, read your traffic, and re-encrypt it when talking to the real ISP server.
+
+
+2. server certificates are usually short-lived, this causes a maintenance burden on end users because they need to be exchanged every few months, including re-validation of finger prints, updating web sites, and all that.
+
+The root certificates, by contrast, are often valid for five to ten years.
+
+
+3. in load balancing and/or failover setups for bigger ISPs, servers may have individual certificates, also a setup and maintenance headache for users.
+
+
+Note that fetchmail allows you to bypass certificate validation if the finger prints match, but this also requires you to obtain the finger print through a secure channel.
+
+Is that clear, or does that leave further questions open?  I'm happy to answer more questions and possibly refine the README.SSL and/or FAQ that ships with fetchmail.  This is really important.
+
+Best regards
+Matthias
+-- 
+Matthias Andree
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002694.html">[fetchmail-users] fetchmail gmail set up problem
+</A></li>
+	<LI>Next message: <A HREF="002696.html">[fetchmail-users] server certificates (was: fetchmail gmail set up problem)
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2695">[ date ]</a>
+              <a href="thread.html#2695">[ thread ]</a>
+              <a href="subject.html#2695">[ subject ]</a>
+              <a href="author.html#2695">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

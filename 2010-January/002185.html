@@ -1,0 +1,100 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] fetchmail IMAP bug - causes some mails to not be delivered when using IDLE
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2010-January/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%20IMAP%20bug%20-%20causes%20some%20mails%20to%20not%20be%0A%20delivered%20when%20using%20IDLE&In-Reply-To=%3C4B4D184A.4040908%40papercut.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002200.html">
+   <LINK REL="Next"  HREF="002186.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] fetchmail IMAP bug - causes some mails to not be delivered when using IDLE</H1>
+    <B>Matt Doran</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%20IMAP%20bug%20-%20causes%20some%20mails%20to%20not%20be%0A%20delivered%20when%20using%20IDLE&In-Reply-To=%3C4B4D184A.4040908%40papercut.com%3E"
+       TITLE="[fetchmail-users] fetchmail IMAP bug - causes some mails to not be delivered when using IDLE">matt.doran at papercut.com
+       </A><BR>
+    <I>Wed Jan 13 01:48:10 CET 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002200.html">[fetchmail-users] Network time-outs when handling IMAP IDLE
+</A></li>
+        <LI>Next message: <A HREF="002186.html">[fetchmail-users] fetchmail IMAP bug - causes some mails to not be delivered when using IDLE
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2185">[ date ]</a>
+              <a href="thread.html#2185">[ thread ]</a>
+              <a href="subject.html#2185">[ subject ]</a>
+              <a href="author.html#2185">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi there,
+
+I believe I've found a bug in the fetchmail IMAP implementation when 
+IDLE is used.  I originally reported the issue to the Dovecot IMAP list, 
+because I was unsure whether it was a bug in the IMAP server.  The 
+Dovecot lead, Timo Sirainen, confirmed that the issue is with 
+fetchmail.  You can see the thread at the link below:
+
+    <A HREF="http://www.dovecot.org/list/dovecot/2010-January/045865.html">http://www.dovecot.org/list/dovecot/2010-January/045865.html</A>
+
+Timo's analysis is here:
+    <A HREF="http://www.dovecot.org/list/dovecot/2010-January/045875.html">http://www.dovecot.org/list/dovecot/2010-January/045875.html</A>
+
+
+Now that I know this is a fetchmail issue, I'll restate the problem 
+here.  I'm using fetchmail 2.6.9 (but the same applies to latest 
+version), fetching from Dovecot 1.1.16.
+
+When fetchmail has activated the IDLE command and 2 emails are delivered 
+to the upstream server in quick succession fetchmail will only download 
+the first email (the second does not download).  If I then send in a 3rd 
+email, this email triggers the download of the new email and the 
+previous one.
+
+It appears that after receiving the notification of the first mail, 
+fetchmail cancels the idle and starts fetching the first mail.  The IMAP 
+server then notifies of the next mail (i.e. it sends another 
+EXISTS/RECENT), but fetchmail fails to recognise this and reinitiates 
+the IDLE.   Only when another new mail arrives will it download the 
+other email.
+
+I've attached the fetchmail -v output showing this.  I've added some 
+annotations starting with &quot;&gt;&gt;&gt;&gt;&gt;&quot;.
+
+Regards,
+Matt Doran
+-------------- next part --------------
+An embedded and charset-unspecified text was scrubbed...
+Name: fetchmail.txt
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/fetchmail-users/attachments/20100113/6f81ebbe/attachment.txt">https://lists.berlios.de/pipermail/fetchmail-users/attachments/20100113/6f81ebbe/attachment.txt</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002200.html">[fetchmail-users] Network time-outs when handling IMAP IDLE
+</A></li>
+	<LI>Next message: <A HREF="002186.html">[fetchmail-users] fetchmail IMAP bug - causes some mails to not be delivered when using IDLE
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2185">[ date ]</a>
+              <a href="thread.html#2185">[ thread ]</a>
+              <a href="subject.html#2185">[ subject ]</a>
+              <a href="author.html#2185">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

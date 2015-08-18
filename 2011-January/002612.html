@@ -1,0 +1,96 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Authorization failure against Microsoft Exchange 2010
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2011-January/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Authorization%20failure%20against%20Microsoft%0A%20Exchange%202010&In-Reply-To=%3C4D38A78A.1080607%40gmx.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002611.html">
+   <LINK REL="Next"  HREF="002613.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Authorization failure against Microsoft Exchange 2010</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Authorization%20failure%20against%20Microsoft%0A%20Exchange%202010&In-Reply-To=%3C4D38A78A.1080607%40gmx.de%3E"
+       TITLE="[fetchmail-users] Authorization failure against Microsoft Exchange 2010">matthias.andree at gmx.de
+       </A><BR>
+    <I>Thu Jan 20 22:22:18 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002611.html">[fetchmail-users] Authorization failure against Microsoft Exchange 2010
+</A></li>
+        <LI>Next message: <A HREF="002613.html">[fetchmail-users] Authorization failure against Microsoft Exchange 2010
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2612">[ date ]</a>
+              <a href="thread.html#2612">[ thread ]</a>
+              <a href="subject.html#2612">[ subject ]</a>
+              <a href="author.html#2612">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Am 20.01.2011 14:08, schrieb Pa Ba:
+&gt;<i> 
+</I>&gt;<i> Hi
+</I>&gt;<i>  
+</I>&gt;<i> We are currently running fetchmail-6.3.2-15.16 and have updated our main mailing system to Microsoft Exchange 2010.
+</I>
+Hi Paul,
+
+upgrade fetchmail, and remember to ./configure --with-ssl.
+
+This bug was fixed in 6.3.18; the latest version is 6.3.19 at the time
+of this writing.
+
+&gt;<i> /etc/fetchmailrc:
+</I>&gt;<i> poll &quot;imap.ckw&quot; protocol IMAP : user &quot;CED/ckw-rmb-nfs_meteo&quot; there with password &quot;PASSWORD&quot; is &quot;nfs_meteo&quot; here ;
+</I>&gt;<i>  
+</I>&gt;<i> We are getting following messages:
+</I>&gt;<i> fetchmail: Authorization failure on CED/<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">ckw-rmb-nfs_meteo at imap.ckw</A>
+</I>&gt;<i> fetchmail: Query status=3 (AUTHFAIL)
+</I>&gt;<i>  
+</I>&gt;<i> How can we prevent that fetchmail is sending @imap.ckw to our Exchange server?
+</I>
+It's not sending that part, but just formatting the message in an
+awkward way. Sorry for that.
+
+&gt;<i> The user simply needs to be  CED/ckw-rmb-nfs_meteo  in order to get a proper login.
+</I>
+That's not the problem, but you've not followed
+&lt;<A HREF="http://www.fetchmail.info/fetchmail-FAQ.html#G3">http://www.fetchmail.info/fetchmail-FAQ.html#G3</A>&gt; so you don't see the
+actual reason.
+
+Upgrading to 6.3.19 will fix this.
+
+Best regards
+Matthias
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002611.html">[fetchmail-users] Authorization failure against Microsoft Exchange 2010
+</A></li>
+	<LI>Next message: <A HREF="002613.html">[fetchmail-users] Authorization failure against Microsoft Exchange 2010
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2612">[ date ]</a>
+              <a href="thread.html#2612">[ thread ]</a>
+              <a href="subject.html#2612">[ subject ]</a>
+              <a href="author.html#2612">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

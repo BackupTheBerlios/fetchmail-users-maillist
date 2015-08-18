@@ -1,0 +1,84 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] CommonName mismatch after fetchmail upgrade
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2007-February/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20CommonName%20mismatch%20after%20fetchmail%20upgrade&In-Reply-To=%3C2753bafa0702171319y71ca56b6gff4f305ba1ed38d7%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000821.html">
+   <LINK REL="Next"  HREF="000823.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] CommonName mismatch after fetchmail upgrade</H1>
+    <B>thomas</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20CommonName%20mismatch%20after%20fetchmail%20upgrade&In-Reply-To=%3C2753bafa0702171319y71ca56b6gff4f305ba1ed38d7%40mail.gmail.com%3E"
+       TITLE="[fetchmail-users] CommonName mismatch after fetchmail upgrade">thomas.bsd at gmail.com
+       </A><BR>
+    <I>Sat Feb 17 22:19:40 CET 2007</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000821.html">[fetchmail-users] CommonName mismatch after fetchmail upgrade
+</A></li>
+        <LI>Next message: <A HREF="000823.html">[fetchmail-users] CommonName mismatch after fetchmail upgrade
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#822">[ date ]</a>
+              <a href="thread.html#822">[ thread ]</a>
+              <a href="subject.html#822">[ subject ]</a>
+              <a href="author.html#822">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>2007/2/17, Rob MacGregor &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">rob.macgregor at gmail.com</A>&gt;:
+&gt;<i> &gt; Maybe the certificate of my university is wrong, but the old version
+</I>&gt;<i> &gt; of fetchmail had no problem to fetch the emails, so there must be a
+</I>&gt;<i> &gt; workaround.
+</I>&gt;<i>
+</I>&gt;<i> The &quot;old version&quot; (you don't say which, but I suspect a pretty old
+</I>&gt;<i> one) obviously didn't attempt to support TLS.  Simply disable TLS:
+</I>
+Thanks a lot for your quick answer Rob, it works now.
+
+I think the &quot;old version&quot; was 6.3.4-7. About the following version
+shipped with Debian etch (6.3.6-rc3-1), I can read the following in
+the distro-specific changelog:
+
+fetchmail 6.3.5 and older had no way to enforce TLS. With those older
+versions, TLS was always opportunistic, but fetchmail would happily
+transmit the password in cleartext if STARTTLS failed. [...]
+Configurations using --ssl --sslcertck however have been safe.
+
+I think this is the reason why fetching emails worked until the
+upgrade to 6.3.6. Anyway, problem fixed, re-thanks.
+
+Thomas
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000821.html">[fetchmail-users] CommonName mismatch after fetchmail upgrade
+</A></li>
+	<LI>Next message: <A HREF="000823.html">[fetchmail-users] CommonName mismatch after fetchmail upgrade
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#822">[ date ]</a>
+              <a href="thread.html#822">[ thread ]</a>
+              <a href="subject.html#822">[ subject ]</a>
+              <a href="author.html#822">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

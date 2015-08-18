@@ -1,0 +1,127 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] set no softbounce does not work with gmail
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2013-July/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20set%20no%20softbounce%20does%20not%20work%20with%20gmail&In-Reply-To=%3C201307191358.r6JDwYXc083631%40mech-cluster241.men.bris.ac.uk%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003443.html">
+   <LINK REL="Next"  HREF="003448.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] set no softbounce does not work with gmail</H1>
+    <B>Anton Shterenlikht</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20set%20no%20softbounce%20does%20not%20work%20with%20gmail&In-Reply-To=%3C201307191358.r6JDwYXc083631%40mech-cluster241.men.bris.ac.uk%3E"
+       TITLE="[fetchmail-users] set no softbounce does not work with gmail">mexas at bris.ac.uk
+       </A><BR>
+    <I>Fri Jul 19 15:58:34 CEST 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003443.html">[fetchmail-users] set no softbounce does not work with gmail
+</A></li>
+        <LI>Next message: <A HREF="003448.html">[fetchmail-users] fetchmail ssl cipher
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3445">[ date ]</a>
+              <a href="thread.html#3445">[ thread ]</a>
+              <a href="subject.html#3445">[ subject ]</a>
+              <a href="author.html#3445">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>&gt;<i>Date: Fri, 19 Jul 2013 02:11:51 +0200
+</I>&gt;<i>From: Matthias Andree &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">matthias.andree at gmx.de</A>&gt;
+</I>&gt;<i>To: <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">fetchmail-users at lists.berlios.de</A>
+</I>&gt;<i>Subject: Re: [fetchmail-users] set no softbounce does not work with gmail
+</I>&gt;<i>
+</I>&gt;<i>Am 18.07.2013 10:43, schrieb Anton Shterenlikht:
+</I>&gt;&gt;<i> On FreeBSD 10.0-CURRENT #5 r252055, with 
+</I>&gt;&gt;<i> 
+</I>&gt;&gt;<i> $ fetchmail -V | head -1
+</I>&gt;&gt;<i> This is fetchmail release 6.3.26+RPA+SDPS+SSL+OPIE.
+</I>&gt;&gt;<i> $
+</I>&gt;&gt;<i> 
+</I>&gt;&gt;<i> This is my .fetchmailrc:
+</I>&gt;&gt;<i> 
+</I>&gt;&gt;<i> set no softbounce
+</I>&gt;&gt;<i> poll imap.gmail.com protocol imap user &quot;xxx&quot; password &quot;xxx&quot; folders &quot;Inbox&quot;,&quot;[Gmail]/Spam&quot; ssl sslcertck sslcertfile /usr/local/share/certs/ca-root-nss.crt fetchall
+</I>&gt;&gt;<i> 
+</I>&gt;&gt;<i> (I don't trust gmail spam filter.)
+</I>&gt;&gt;<i> 
+</I>&gt;&gt;<i> However, the &quot;no softbounce&quot; option seems to have no effect:
+</I>&gt;&gt;<i> 
+</I>&gt;&gt;<i> $ fetchmail
+</I>&gt;&gt;<i> 5 messages for <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">mexas at bristol.ac.uk</A> at imap.gmail.com (folder [Gmail]/Spam).
+</I>&gt;&gt;<i> fetchmail: SMTP error: 451 4.1.8 Domain of sender address <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">ewxl at gs.org</A> does not resolve
+</I>&gt;&gt;<i> reading message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">mexas at bristol.ac.uk</A>@gmail-imap.l.google.com:1 of 5 (2021 header octets) not flushed
+</I>&gt;&gt;<i> fetchmail: SMTP error: 451 4.1.8 Domain of sender address <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">zdmipq at jic.net</A> does not resolve
+</I>&gt;<i>
+</I>&gt;<i>Trying to walk the tree manually for jic.com, I have received SERVFAIL
+</I>&gt;<i>from ns5.ns0.com and REFUSED from ns124.pair.com (both are
+</I>&gt;<i>authoritiative name servers according to a.gtld-servers.net), so your
+</I>&gt;<i>resolver returned &quot;temporary failure&quot;.  That's correct behaviour.
+</I>&gt;<i>
+</I>&gt;<i>Either way, fetchmail cannot really tell why the SMTP sink is reporting
+</I>&gt;<i>a temporary error (4xx code), as opposed to a permanent error (5xx
+</I>&gt;<i>code), and should not second-guess.  Should those DNS servers be fixed
+</I>&gt;<i>one day and return either proper domain or authoritative NXDOMAIN,
+</I>&gt;<i>fetchmail would remove the mail from the server given nosoftbounce.
+</I>&gt;<i>
+</I>&gt;<i>For the conclusion, see Rob's earlier post in this thread, but I will
+</I>&gt;<i>underline his warning that you should never reject/discard mail due to a
+</I>&gt;<i>4xx series SMTP code - you might discard legitimate mail, too, if the
+</I>&gt;<i>computer hicc-ups (disk full, for monoliths like sendmail or exim: too
+</I>&gt;<i>much system load, filesystem gone read-only after a fault) in unrelated
+</I>&gt;<i>areas.
+</I>&gt;<i>
+</I>&gt;&gt;<i> fetchmail: SMTP error: 451 4.1.8 Domain of sender address <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">fjpv at dfyc.org</A> does not resolve
+</I>&gt;&gt;<i> reading message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">mexas at bristol.ac.uk</A>@gmail-imap.l.google.com:5 of 5 (2027 header octets) not flushed
+</I>&gt;&gt;<i> 
+</I>&gt;&gt;<i> Am I doing something wrong?
+</I>&gt;<i>
+</I>&gt;<i>Not necessarily.
+</I>&gt;<i>
+</I>&gt;&gt;<i> Or is gmail IMAP just ignoring &quot;no softbounce&quot;?
+</I>&gt;<i>
+</I>&gt;<i>This is not about IMAP, but about SMTP, and &quot;softbounce&quot; is not
+</I>&gt;<i>communicated.  If enabled or unspecified, fetchmail pretends that a 5xx
+</I>&gt;<i>series SMTP/LMTP code had been a 4xx code, to avoid the removal.  This
+</I>&gt;<i>is useful while tuning an MTA where you cannot set a softbounce feature
+</I>&gt;<i>(i. e. not Postfix, or not under your administrative control).
+</I>
+Thank you for a detailed answer.
+
+Anton
+
+</PRE>
+
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003443.html">[fetchmail-users] set no softbounce does not work with gmail
+</A></li>
+	<LI>Next message: <A HREF="003448.html">[fetchmail-users] fetchmail ssl cipher
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3445">[ date ]</a>
+              <a href="thread.html#3445">[ thread ]</a>
+              <a href="subject.html#3445">[ subject ]</a>
+              <a href="author.html#3445">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

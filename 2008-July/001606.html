@@ -1,0 +1,112 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] fetchmail drives me crazy... [I do not want output on STDERR]
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2008-July/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%20drives%20me%20crazy...%20%5BI%20do%20not%20want%0A%20output%20on%20STDERR%5D&In-Reply-To=%3C48736D23.3090803%40gmx.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001603.html">
+   <LINK REL="Next"  HREF="001612.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] fetchmail drives me crazy... [I do not want output on STDERR]</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%20drives%20me%20crazy...%20%5BI%20do%20not%20want%0A%20output%20on%20STDERR%5D&In-Reply-To=%3C48736D23.3090803%40gmx.de%3E"
+       TITLE="[fetchmail-users] fetchmail drives me crazy... [I do not want output on STDERR]">matthias.andree at gmx.de
+       </A><BR>
+    <I>Tue Jul  8 15:35:31 CEST 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001603.html">[fetchmail-users] fetchmail drives me crazy... [I do not want	output on STDERR]
+</A></li>
+        <LI>Next message: <A HREF="001612.html">[fetchmail-users] fetchmail drives me crazy... [I do not want	output on STDERR]
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1606">[ date ]</a>
+              <a href="thread.html#1606">[ thread ]</a>
+              <a href="subject.html#1606">[ subject ]</a>
+              <a href="author.html#1606">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Michelle Konzack schrieb:
+&gt;<i> Am 2008-07-01 18:24:13, schrieb Matthias Andree:
+</I>&gt;&gt;<i> Not a fetchmail problem... Do
+</I>&gt;<i> 
+</I>&gt;<i> Oh yes it is, because on some of my machines I have over 2000  instances
+</I>&gt;<i> of fetchmail running and gotten unknown failures...
+</I>
+Of which kind? Those should be in your cron mails, and if they happen with
+the latest released (6.3.8) or release candidate (6.3.9-rc2) version,
+report them - to the list, or to BerliOS bugtrackers.
+
+&gt;<i> So WHY does fetchmail output to a VT and NOT to a  given  LOGFILE  which
+</I>&gt;<i> will analyzed every day for errors
+</I>
+It's only trying to tease you because you haven't read the manpage.
+
+No, seriously, because you're not running in daemon mode.
+
+Mind the second line (...detached), which is basically what Rob already
+wrote, so you'll have to redirect output.
+
+-----8&lt;------------------------------------------------------------------
+...
+The -L &lt;filename&gt; or --logfile &lt;filename&gt; option (keyword: set logfile)
+is only effective when fetchmail is detached.  Note  that  the  logfile
+must  exist  BEFORE  fetchmail is run, you can use the touch(1) command
+with the filename as its sole argument to create it.
+...
+-----8&lt;------------------------------------------------------------------
+
+I'll make it clearer in 6.3.9 that detached + daemon mode is required. I'm
+not changing this behaviour in 6.3.X.
+
+&gt;<i> 
+</I>&gt;&gt;<i> exec 2&gt;&gt;${BASEDIR}/logs/$(date '+%Y-%m').fetchmail.log
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> or something similar before the fetchmail call.
+</I>&gt;<i> 
+</I>&gt;<i> Which is NOT always posible (over 80% of all our cases)
+</I>
+You showed a shell script, for which this solution is suitable.
+
+It's not fetchmail's fault if your overall setup doesn't allow you to
+redirect fetchmail's output. Sorry to be harsh, but: your job to make it
+possible.
+
+-- 
+Matthias Andree
+
+Life is what happens to you while you're busy making other plans.
+  						-- John Lennon, 1980
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001603.html">[fetchmail-users] fetchmail drives me crazy... [I do not want	output on STDERR]
+</A></li>
+	<LI>Next message: <A HREF="001612.html">[fetchmail-users] fetchmail drives me crazy... [I do not want	output on STDERR]
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1606">[ date ]</a>
+              <a href="thread.html#1606">[ thread ]</a>
+              <a href="subject.html#1606">[ subject ]</a>
+              <a href="author.html#1606">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

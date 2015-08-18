@@ -1,0 +1,119 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] multidrop mailinglist config prob cont.
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2009-January/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20multidrop%20mailinglist%20config%20prob%20cont.&In-Reply-To=%3C20090128225912.GA80318%40merlin.emma.line.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001837.html">
+   <LINK REL="Next"  HREF="001839.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] multidrop mailinglist config prob cont.</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20multidrop%20mailinglist%20config%20prob%20cont.&In-Reply-To=%3C20090128225912.GA80318%40merlin.emma.line.org%3E"
+       TITLE="[fetchmail-users] multidrop mailinglist config prob cont.">matthias.andree at gmx.de
+       </A><BR>
+    <I>Wed Jan 28 23:59:12 CET 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001837.html">[fetchmail-users] multidrop mailinglist config prob cont.
+</A></li>
+        <LI>Next message: <A HREF="001839.html">[fetchmail-users] how to download Bcc mail via fetchmail
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1838">[ date ]</a>
+              <a href="thread.html#1838">[ thread ]</a>
+              <a href="subject.html#1838">[ subject ]</a>
+              <a href="author.html#1838">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Rob MacGregor schrieb am 2009-01-28:
+
+&gt;<i> On Wed, Jan 28, 2009 at 21:48, allcoms &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">allcoms at googlemail.com</A>&gt; wrote:
+</I>&gt;<i> &gt; Hi
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; I've still not been able to resolve my problem with getting fetchmail
+</I>&gt;<i> &gt; to send mailing list postings to the correct user, but shortly after
+</I>&gt;<i> &gt; posting I realised I should've included a more complete example of my
+</I>&gt;<i> &gt; fetchmailrc, which atm looks approx. like this:
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; ------------------
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; set daemon 600
+</I>&gt;<i> &gt; set postmaster &quot;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">postmaster at yourdomain.org</A>&quot;
+</I>&gt;<i> &gt; set no bouncemail
+</I>&gt;<i> &gt; set no spambounce
+</I>&gt;<i> &gt; set logfile /root/fetchlog
+</I>&gt;<i> &gt; poll mailhost.yourisp.com aka yourdomain.org
+</I>&gt;<i> &gt; envelope &quot;X-Envelope-To&quot;
+</I>&gt;<i> &gt; user &quot;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">username at yourisp.com</A>&quot; with pass &quot;password&quot; to * here fetchall
+</I>&gt;<i> &gt; dropdelivered
+</I>&gt;<i> &gt; smtphost /usr/local/citadel/lmtp.socket
+</I>&gt;<i> &gt; smtphost /var/run/citadel/lmtp.socket
+</I>&gt;<i> &gt; smtpaddress yourdomain.org
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; -----------------------
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; Matthias Andree sed:
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt;&gt; So the envelope header NAME has apparently changed from X-Envelope-To to
+</I>&gt;<i> &gt;&gt; Envelope-To.
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; Why has that happened? Do I need to specify multiple envelope headers
+</I>&gt;<i> &gt; to get these mailing list postings to work?
+</I>&gt;<i> 
+</I>&gt;<i> I've seen ISPs change the headers as they change products.  Are you
+</I>&gt;<i> sure the earlier emails used X-Envelope-To?
+</I>
+Former evidence posted to a message I've seen from Dan showed just that,
+so the answer is &quot;yes, he is&quot; :-)
+
+&gt;<i> &gt; Also, can I safely run fetchmail (in keep mode) whilst the fetchmail
+</I>&gt;<i> &gt; daemon is still running in the background, both accessing the same
+</I>&gt;<i> &gt; mailbox?
+</I>&gt;<i> 
+</I>&gt;<i> You shouldn't do that.
+</I>
+It would also require some trickery, since fetchmail usually locks its
+home directory (equal to the invoking user's home directory, unless
+overridden by environment variables) and prevents being started for a
+second time; it will instead just signal the background daemon to start
+a new poll cycle.
+
+Many POP3 servers will also lock the mailbox if one client is active, so
+that a second cannot access while the first one is live.
+
+-- 
+Matthias Andree
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001837.html">[fetchmail-users] multidrop mailinglist config prob cont.
+</A></li>
+	<LI>Next message: <A HREF="001839.html">[fetchmail-users] how to download Bcc mail via fetchmail
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1838">[ date ]</a>
+              <a href="thread.html#1838">[ thread ]</a>
+              <a href="subject.html#1838">[ subject ]</a>
+              <a href="author.html#1838">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

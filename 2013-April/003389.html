@@ -1,0 +1,102 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] The 6.3.26 release of fetchmail is available
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2013-April/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20The%206.3.26%20release%20of%20fetchmail%20is%20available&In-Reply-To=%3C20130423215021.GA14692%40apollo.emma.line.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003393.html">
+   <LINK REL="Next"  HREF="003390.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] The 6.3.26 release of fetchmail is available</H1>
+    <B>Fetchmail Development Team</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20The%206.3.26%20release%20of%20fetchmail%20is%20available&In-Reply-To=%3C20130423215021.GA14692%40apollo.emma.line.org%3E"
+       TITLE="[fetchmail-users] The 6.3.26 release of fetchmail is available">fetchmail-devel at lists.berlios.de
+       </A><BR>
+    <I>Tue Apr 23 23:50:21 CEST 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003393.html">[fetchmail-users] fetchmail doesn't want to connect to my mysql database
+</A></li>
+        <LI>Next message: <A HREF="003390.html">[fetchmail-users] master: TODO.txt
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3389">[ date ]</a>
+              <a href="thread.html#3389">[ thread ]</a>
+              <a href="subject.html#3389">[ subject ]</a>
+              <a href="author.html#3389">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>The 6.3.26 release of fetchmail is now available at the usual locations,
+including &lt;<A HREF="http://developer.berlios.de/projects/fetchmail">http://developer.berlios.de/projects/fetchmail</A>&gt; and
+&lt;<A HREF="http://sourceforge.net/projects/fetchmail/">http://sourceforge.net/projects/fetchmail/</A>&gt;.
+
+The source archive is available at:
+&lt;<A HREF="http://prdownload.berlios.de/fetchmail/fetchmail-6.3.26.tar.xz">http://prdownload.berlios.de/fetchmail/fetchmail-6.3.26.tar.xz</A>&gt;
+&lt;<A HREF="http://sourceforge.net/projects/fetchmail/files/branch_6.3/fetchmail-6.3.26.tar.xz/download">http://sourceforge.net/projects/fetchmail/files/branch_6.3/fetchmail-6.3.26.tar.xz/download</A>&gt;
+
+or in the older bzip2 format:
+&lt;<A HREF="http://prdownload.berlios.de/fetchmail/fetchmail-6.3.26.tar.bz2">http://prdownload.berlios.de/fetchmail/fetchmail-6.3.26.tar.bz2</A>&gt;
+
+Here are the release notes:
+
+fetchmail-6.3.26 (released 2013-04-23, 26180 LoC):
+
+# NOTE THAT FETCHMAIL IS NO LONGER PUBLISHED THROUGH IBIBLIO.
+* They have stopped accepting submissions and consider themselves an archive.
+
+# CRITICAL BUG FIX for setups using &quot;mimedecode&quot;:
+* The mimedecode feature failed to ship the last line of the body if it was
+  encoded as quoted-printable and had a MIME soft line break in the very last
+  line.  Reported by Lars Hecking in June 2011.
+
+  Bug introduced on 1998-03-20 when the mimedecode support was added by ESR
+  before release 4.4.1 through code contributed by Henrik Storner.
+  Workaround for older releases: do not use mimedecode feature.
+
+  Earlier versions of this NEWS file claimed this bug fixed in fetchmail-6.3.23,
+  but it was not.
+
+  Fixes Launchpad Bug#1171818.
+
+By popular demand, diffs from the previous release have been omitted.
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: signature.asc
+Type: application/pgp-signature
+Size: 198 bytes
+Desc: Digital signature
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/fetchmail-users/attachments/20130423/6dfa8f04/attachment.pgp">https://lists.berlios.de/pipermail/fetchmail-users/attachments/20130423/6dfa8f04/attachment.pgp</A>&gt;
+</PRE>
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003393.html">[fetchmail-users] fetchmail doesn't want to connect to my mysql database
+</A></li>
+	<LI>Next message: <A HREF="003390.html">[fetchmail-users] master: TODO.txt
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3389">[ date ]</a>
+              <a href="thread.html#3389">[ thread ]</a>
+              <a href="subject.html#3389">[ subject ]</a>
+              <a href="author.html#3389">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

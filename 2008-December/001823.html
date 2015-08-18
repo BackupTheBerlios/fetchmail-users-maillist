@@ -1,0 +1,87 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Error showing in fetchmail log
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2008-December/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Error%20showing%20in%20fetchmail%20log&In-Reply-To=%3C20081229120618.GB21003%40merlin.emma.line.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001822.html">
+   <LINK REL="Next"  HREF="001824.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Error showing in fetchmail log</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Error%20showing%20in%20fetchmail%20log&In-Reply-To=%3C20081229120618.GB21003%40merlin.emma.line.org%3E"
+       TITLE="[fetchmail-users] Error showing in fetchmail log">matthias.andree at gmx.de
+       </A><BR>
+    <I>Mon Dec 29 13:06:18 CET 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001822.html">[fetchmail-users] Error showing in fetchmail log
+</A></li>
+        <LI>Next message: <A HREF="001824.html">[fetchmail-users] Error showing in fetchmail log
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1823">[ date ]</a>
+              <a href="thread.html#1823">[ thread ]</a>
+              <a href="subject.html#1823">[ subject ]</a>
+              <a href="author.html#1823">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Bret Busby schrieb am 2008-12-29:
+
+&gt;<i> I am new to this list (haven't received any messages since I subscribed, 
+</I>&gt;<i> so I hope that the list is active).
+</I>
+It is, has just been low traffic over the holidays (and can be silent in
+other times, too).
+
+&gt;<i> Our web hosting ISP made some changes to their hosting, and it wrecked 
+</I>&gt;<i> our downloading of email from that ISP to our mail server. The ISP had 
+</I>&gt;<i> been using a &quot;self made certificate&quot; or something similar, that had 
+</I>&gt;<i> expired, that ended up preventing us from donloading email, and they did 
+</I>&gt;<i> a (apparently cheap and nasty) patch, that led from one error that we 
+</I>&gt;<i> received, to another.
+</I>
+There are two issues at hand. One is the goofed-up certificate that you
+show below, but it is non-fatal for your configuration (it would be
+fatal if you used fetchmail's &quot;sslcertck&quot; option).
+
+The other is that you seem to be unable to get messages, which cannot be
+debugged from the little output you show.
+
+The output of fetchmail -vv might help.
+
+-- 
+Matthias Andree
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001822.html">[fetchmail-users] Error showing in fetchmail log
+</A></li>
+	<LI>Next message: <A HREF="001824.html">[fetchmail-users] Error showing in fetchmail log
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1823">[ date ]</a>
+              <a href="thread.html#1823">[ thread ]</a>
+              <a href="subject.html#1823">[ subject ]</a>
+              <a href="author.html#1823">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

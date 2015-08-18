@@ -1,0 +1,103 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Fetchmail is running slow on Mac OS X
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2006-January/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Fetchmail%20is%20running%20slow%20on%20Mac%20OS%20X&In-Reply-To=%3CBB741496-9D70-4547-8EE2-4CDD1A0ADCC5%40lux.io%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   
+   <LINK REL="Next"  HREF="000203.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Fetchmail is running slow on Mac OS X</H1>
+    <B>St&#233;phane Lux</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Fetchmail%20is%20running%20slow%20on%20Mac%20OS%20X&In-Reply-To=%3CBB741496-9D70-4547-8EE2-4CDD1A0ADCC5%40lux.io%3E"
+       TITLE="[fetchmail-users] Fetchmail is running slow on Mac OS X">stephane at lux.io
+       </A><BR>
+    <I>Sun Jan  1 23:50:00 CET 2006</I>
+    <P><UL>
+        
+        <LI>Next message: <A HREF="000203.html">[fetchmail-users] Fetchmail is running slow on Mac OS X
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#202">[ date ]</a>
+              <a href="thread.html#202">[ thread ]</a>
+              <a href="subject.html#202">[ subject ]</a>
+              <a href="author.html#202">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+I hope, that this is the right place for my question regarding  
+fetchmail:
+
+I have switched my mailserver from linux to Mac OS X 10.4. I  
+apreciated, that fetchmail was already included in  OS 10.4. But on  
+OS X it takes 1-2 minutes for fetchmail to set up a connection:
+
+When I start fetchmail, I get this message:
+
+fetchmail: starting fetchmail 6.2.5 daemon
+fetchmail: 6.2.5 querying ... (protocol IMAP) at Sat, 31 Dec 2005  
+03:03:13 +0100 (CET): poll started
+
+Then nothing happens for about one minute  (timout?), then fetchmail  
+ist running normaly:
+
+fetchmail: IMAP&lt; * OK [CAPABILITY IMAP4REV1 LOGIN-REFERRALS STARTTLS  
+AUTH=LOGIN] ...  03:04:11 +0100 (CET)
+fetchmail: IMAP&gt; A0001 CAPABILITY
+fetchmail: IMAP&lt; * CAPABILITY IMAP4REV1 IDLE NAMESPACE MAILBOX- 
+REFERRALS BINARY UNSELECT SCAN SORT THREAD=REFERENCES  
+THREAD=ORDEREDSUBJECT MULTIAPPEND LOGIN-REFERRALS STARTTLS AUTH=LOGIN
+
+When I try to connect manualy, I get an answer at once:
+
+mac-mini:/var/root root# telnet ... 143
+Trying ... ...
+Connected to ....
+Escape character is '^]'.
+* OK [CAPABILITY IMAP4REV1 LOGIN-REFERRALS STARTTLS AUTH=LOGIN] ...  
+IMAP4rev1 2003.339 at Sun, 1 Jan 2006 23:47:33 +0100 (CET)
+
+On my linux server it takes only a few seconds for fetchmail to check  
+the mail accounts? What can I do? Is it a DNS or IDENT problem? I'm  
+using a NAT router.
+
+
+Kind regards,
+
+Stephane
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/fetchmail-users/attachments/20060101/d7e9a2a8/attachment.html">https://lists.berlios.de/pipermail/fetchmail-users/attachments/20060101/d7e9a2a8/attachment.html</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	
+	<LI>Next message: <A HREF="000203.html">[fetchmail-users] Fetchmail is running slow on Mac OS X
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#202">[ date ]</a>
+              <a href="thread.html#202">[ thread ]</a>
+              <a href="subject.html#202">[ subject ]</a>
+              <a href="author.html#202">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

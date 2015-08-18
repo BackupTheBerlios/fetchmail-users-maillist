@@ -1,0 +1,83 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Error messages with fetchmail 6.3.8
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2007-May/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Error%20messages%20with%20fetchmail%206.3.8&In-Reply-To=%3C20070516133529.GA589%40gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001046.html">
+   <LINK REL="Next"  HREF="001050.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Error messages with fetchmail 6.3.8</H1>
+    <B>Pongthep Kulkrisada</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Error%20messages%20with%20fetchmail%206.3.8&In-Reply-To=%3C20070516133529.GA589%40gmail.com%3E"
+       TITLE="[fetchmail-users] Error messages with fetchmail 6.3.8">ptkrisada at gmail.com
+       </A><BR>
+    <I>Wed May 16 15:35:29 CEST 2007</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001046.html">[fetchmail-users] Error messages with fetchmail 6.3.8
+</A></li>
+        <LI>Next message: <A HREF="001050.html">[fetchmail-users] Error messages with fetchmail 6.3.8
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1049">[ date ]</a>
+              <a href="thread.html#1049">[ thread ]</a>
+              <a href="subject.html#1049">[ subject ]</a>
+              <a href="author.html#1049">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>&gt;<i> &gt; Can I skip step 1) and carry on with steps 2), 3) and 4)?
+</I>&gt;<i> &gt; I have the binary of /usr/local/bin/cvsup
+</I>&gt;<i> 
+</I>&gt;<i> Yup, that will be fine.
+</I>So what I shall do are
+- mv /usr/ports/* /somewhere/else/
+- cp /usr/share/examples/cvsup/ports-supfile /root
+- vim /root/ports-supfile
+- cvsup -g -L 2 /root/ports-supfile
+- cd /usr/ports/mail/fetchmail
+- make install
+- I shall do the same with its dependencies i.e. ca-roots, gettext, gmake, libiconv as ports should not know dependency.
+If I'm wrong, pls correct me.
+
+&gt;<i> You may not have to do anything, try restarting fetchmail (or stopping
+</I>&gt;<i> it and running &quot;fetchmail --nosyslog --nodetach -vvv -c&quot; to do a mail
+</I>&gt;<i> check).  If everything is in the expected locations then the error
+</I>&gt;<i> will go away.
+</I>Is it secure as intent? If so I shall follow this instruction as it is very simple.
+
+thank you
+Pongthep Kulkrisada
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001046.html">[fetchmail-users] Error messages with fetchmail 6.3.8
+</A></li>
+	<LI>Next message: <A HREF="001050.html">[fetchmail-users] Error messages with fetchmail 6.3.8
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1049">[ date ]</a>
+              <a href="thread.html#1049">[ thread ]</a>
+              <a href="subject.html#1049">[ subject ]</a>
+              <a href="author.html#1049">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

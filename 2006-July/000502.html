@@ -1,0 +1,89 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Rotating the log file
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2006-July/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Rotating%20the%20log%20file&In-Reply-To=%3Cm3ac7gbhys.fsf%40merlin.emma.line.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000500.html">
+   <LINK REL="Next"  HREF="000505.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Rotating the log file</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Rotating%20the%20log%20file&In-Reply-To=%3Cm3ac7gbhys.fsf%40merlin.emma.line.org%3E"
+       TITLE="[fetchmail-users] Rotating the log file">matthias.andree at gmx.de
+       </A><BR>
+    <I>Tue Jul 11 11:37:15 CEST 2006</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000500.html">[fetchmail-users] Rotating the log file
+</A></li>
+        <LI>Next message: <A HREF="000505.html">[fetchmail-users] reasonable poll intervals (was: Re: Rotating the log file)
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#502">[ date ]</a>
+              <a href="thread.html#502">[ thread ]</a>
+              <a href="subject.html#502">[ subject ]</a>
+              <a href="author.html#502">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>&quot;Rob MacGregor&quot; &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">rob.macgregor at gmail.com</A>&gt; writes:
+
+&gt;&gt;<i> fetchmail: sleeping at Mon 10 Jul 2006 20:25:26 BST
+</I>&gt;&gt;<i> fetchmail: awakened at Mon 10 Jul 2006 20:28:26 BST
+</I>&gt;<i>
+</I>&gt;<i> However, if you run syslog-ng you could easily weed out the messages
+</I>&gt;<i> you don't want.  I've done that on a number of systems, using the
+</I>&gt;<i> pattern matching to avoid logging pointless stuff.  Probably easier
+</I>&gt;<i> than patching fetchmail, and arguing over what messages should go at
+</I>&gt;<i> what verbosity level :)
+</I>
+There's a bug report/patching &quot;war&quot; in the Debian system going on for
+many a month... Some users want these sleeping/awakened messages logged,
+others don't, so whenever one fix is made to close a bug report, the
+other group files a bug report... Looks like a switch is needed for
+these particular messages in the long run.
+
+Since I tend to think that uninteresting messages can be filtered out
+easily with egrep -v or syslog-ng or whatever and checking new mail
+every 3 minutes abusive (if you need real-time delivery, either use IMAP
+with IDLE or SMTP or UUCP over TCP/IP, I'll say we keep these for the
+nonce.
+
+These particular messages for the 6.3.X series will stay in so that
+6.3.X releases are compatible with each other.
+
+-- 
+Matthias Andree
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000500.html">[fetchmail-users] Rotating the log file
+</A></li>
+	<LI>Next message: <A HREF="000505.html">[fetchmail-users] reasonable poll intervals (was: Re: Rotating the log file)
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#502">[ date ]</a>
+              <a href="thread.html#502">[ thread ]</a>
+              <a href="subject.html#502">[ subject ]</a>
+              <a href="author.html#502">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

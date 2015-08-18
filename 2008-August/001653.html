@@ -1,0 +1,133 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] fetchmail, fetchnews can't get thru router
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2008-August/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%2C%20fetchnews%20can%27t%20get%20thru%20router&In-Reply-To=%3C20080805222323.GA435%40krille.blacktrash.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001660.html">
+   <LINK REL="Next"  HREF="001662.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] fetchmail, fetchnews can't get thru router</H1>
+    <B>Christian Ebert</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%2C%20fetchnews%20can%27t%20get%20thru%20router&In-Reply-To=%3C20080805222323.GA435%40krille.blacktrash.org%3E"
+       TITLE="[fetchmail-users] fetchmail, fetchnews can't get thru router">blacktrash at gmx.net
+       </A><BR>
+    <I>Wed Aug  6 00:23:23 CEST 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001660.html">[fetchmail-users] fetchmail, fetchnews can't get thru router
+</A></li>
+        <LI>Next message: <A HREF="001662.html">[fetchmail-users] fetchmail, fetchnews can't get thru router
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1653">[ date ]</a>
+              <a href="thread.html#1653">[ thread ]</a>
+              <a href="subject.html#1653">[ subject ]</a>
+              <a href="author.html#1653">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>* Matthias Andree on Tuesday, August 05, 2008 at 11:23:40 +0200
+&gt;<i> Christian Ebert &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">blacktrash at gmx.net</A>&gt; writes:
+</I>&gt;&gt;<i> I changed my internet access at home from dsl to vdsl, and am now
+</I>&gt;&gt;<i> connected via a router (Speedport W 701v). Everything works fine
+</I>&gt;&gt;<i> except fetchmail and fetchnews -- they just hang. Even smtp (via
+</I>&gt;&gt;<i> msmtp) works, also ssh, jabber, irc (both also via ssl) etc.
+</I>&gt;<i> 
+</I>&gt;<i> What do you see in tcpdump or tshark for the respective connection while
+</I>&gt;<i> it's still live?
+</I>
+This is the first time I ever ran tcpdump, so be kind and propose
+a better command in case the following is useless:
+
+$ sudo tcpdump -w &lt;file&gt;.pcap -vv -i en1 tcp
+
+I polled a pop3 t-online email account both with fetchmail (tried
+in vain to poll I mean) and AppleMail:
+
+fetchmail: nothing:
+~$ sudo tcpdump -w fetchmail.pcap -vv -i en1 tcp
+tcpdump: listening on en1, link-type EN10MB (Ethernet), capture
+size 96 bytes
+0 packets captured
+59 packets received by filter
+0 packets dropped by kernel
+
+AppleMail:
+
+$ tcpdump -ttttnnr applemail.pcap
+reading from file applemail.pcap, link-type EN10MB (Ethernet)
+2008-08-06 00:10:42.439503 IP 192.168.2.100.49514 &gt; 194.25.134.51.110: S 2083874209:2083874209(0) win 65535 &lt;mss 1460,nop,wscale 0,nop,nop,timestamp 1326777093 0,sackOK,eol&gt;
+2008-08-06 00:10:42.470185 IP 194.25.134.51.110 &gt; 192.168.2.100.49514: S 3785261448:3785261448(0) ack 2083874210 win 5792 &lt;mss 1452,sackOK,timestamp 676987670 1326777093,nop,wscale 7&gt;
+2008-08-06 00:10:42.470276 IP 192.168.2.100.49514 &gt; 194.25.134.51.110: . ack 1 win 65535 &lt;nop,nop,timestamp 1326777093 676987670&gt;
+2008-08-06 00:10:42.501230 IP 194.25.134.51.110 &gt; 192.168.2.100.49514: P 1:104(103) ack 1 win 46 &lt;nop,nop,timestamp 676987673 1326777093&gt;
+2008-08-06 00:10:42.501327 IP 192.168.2.100.49514 &gt; 194.25.134.51.110: . ack 104 win 65535 &lt;nop,nop,timestamp 1326777093 676987673&gt;
+2008-08-06 00:10:42.502140 IP 192.168.2.100.49514 &gt; 194.25.134.51.110: P 1:7(6) ack 104 win 65535 &lt;nop,nop,timestamp 1326777093 676987673&gt;
+2008-08-06 00:10:42.532158 IP 194.25.134.51.110 &gt; 192.168.2.100.49514: . ack 7 win 46 &lt;nop,nop,timestamp 676987676 1326777093&gt;
+2008-08-06 00:10:42.532446 IP 194.25.134.51.110 &gt; 192.168.2.100.49514: P 104:184(80) ack 7 win 46 &lt;nop,nop,timestamp 676987676 1326777093&gt;
+2008-08-06 00:10:42.532506 IP 192.168.2.100.49514 &gt; 194.25.134.51.110: . ack 184 win 65535 &lt;nop,nop,timestamp 1326777094 676987676&gt;
+2008-08-06 00:10:42.533420 IP 192.168.2.100.49514 &gt; 194.25.134.51.110: P 7:22(15) ack 184 win 65535 &lt;nop,nop,timestamp 1326777094 676987676&gt;
+2008-08-06 00:10:42.563305 IP 194.25.134.51.110 &gt; 192.168.2.100.49514: P 184:252(68) ack 22 win 46 &lt;nop,nop,timestamp 676987679 1326777094&gt;
+2008-08-06 00:10:42.563424 IP 192.168.2.100.49514 &gt; 194.25.134.51.110: . ack 252 win 65535 &lt;nop,nop,timestamp 1326777094 676987679&gt;
+2008-08-06 00:10:42.564338 IP 192.168.2.100.49514 &gt; 194.25.134.51.110: P 22:84(62) ack 252 win 65535 &lt;nop,nop,timestamp 1326777094 676987679&gt;
+2008-08-06 00:10:42.597155 IP 194.25.134.51.110 &gt; 192.168.2.100.49514: P 252:272(20) ack 84 win 46 &lt;nop,nop,timestamp 676987683 1326777094&gt;
+2008-08-06 00:10:42.597228 IP 192.168.2.100.49514 &gt; 194.25.134.51.110: . ack 272 win 65535 &lt;nop,nop,timestamp 1326777094 676987683&gt;
+2008-08-06 00:10:42.597964 IP 192.168.2.100.49514 &gt; 194.25.134.51.110: P 84:134(50) ack 272 win 65535 &lt;nop,nop,timestamp 1326777094 676987683&gt;
+2008-08-06 00:10:42.630851 IP 194.25.134.51.110 &gt; 192.168.2.100.49514: P 272:292(20) ack 134 win 46 &lt;nop,nop,timestamp 676987686 1326777094&gt;
+2008-08-06 00:10:42.630980 IP 192.168.2.100.49514 &gt; 194.25.134.51.110: . ack 292 win 65535 &lt;nop,nop,timestamp 1326777094 676987686&gt;
+2008-08-06 00:10:42.631943 IP 192.168.2.100.49514 &gt; 194.25.134.51.110: P 134:151(17) ack 292 win 65535 &lt;nop,nop,timestamp 1326777094 676987686&gt;
+2008-08-06 00:10:42.663263 IP 194.25.134.51.110 &gt; 192.168.2.100.49514: P 292:300(8) ack 151 win 46 &lt;nop,nop,timestamp 676987689 1326777094&gt;
+2008-08-06 00:10:42.663347 IP 192.168.2.100.49514 &gt; 194.25.134.51.110: . ack 300 win 65535 &lt;nop,nop,timestamp 1326777094 676987689&gt;
+2008-08-06 00:10:42.663946 IP 192.168.2.100.49514 &gt; 194.25.134.51.110: P 151:165(14) ack 300 win 65535 &lt;nop,nop,timestamp 1326777094 676987689&gt;
+2008-08-06 00:10:42.703004 IP 194.25.134.51.110 &gt; 192.168.2.100.49514: P 300:316(16) ack 165 win 46 &lt;nop,nop,timestamp 676987693 1326777094&gt;
+2008-08-06 00:10:42.703120 IP 192.168.2.100.49514 &gt; 194.25.134.51.110: . ack 316 win 65535 &lt;nop,nop,timestamp 1326777094 676987693&gt;
+2008-08-06 00:10:42.703864 IP 192.168.2.100.49514 &gt; 194.25.134.51.110: P 165:171(6) ack 316 win 65535 &lt;nop,nop,timestamp 1326777094 676987693&gt;
+2008-08-06 00:10:42.733661 IP 194.25.134.51.110 &gt; 192.168.2.100.49514: P 316:325(9) ack 171 win 46 &lt;nop,nop,timestamp 676987696 1326777094&gt;
+2008-08-06 00:10:42.733772 IP 192.168.2.100.49514 &gt; 194.25.134.51.110: . ack 325 win 65535 &lt;nop,nop,timestamp 1326777094 676987696&gt;
+2008-08-06 00:10:42.734519 IP 192.168.2.100.49514 &gt; 194.25.134.51.110: P 171:177(6) ack 325 win 65535 &lt;nop,nop,timestamp 1326777094 676987696&gt;
+2008-08-06 00:10:42.764166 IP 194.25.134.51.110 &gt; 192.168.2.100.49514: P 325:349(24) ack 177 win 46 &lt;nop,nop,timestamp 676987699 1326777094&gt;
+2008-08-06 00:10:42.764281 IP 192.168.2.100.49514 &gt; 194.25.134.51.110: . ack 349 win 65535 &lt;nop,nop,timestamp 1326777094 676987699&gt;
+2008-08-06 00:10:42.765109 IP 194.25.134.51.110 &gt; 192.168.2.100.49514: F 349:349(0) ack 177 win 46 &lt;nop,nop,timestamp 676987699 1326777094&gt;
+2008-08-06 00:10:42.765189 IP 192.168.2.100.49514 &gt; 194.25.134.51.110: . ack 350 win 65535 &lt;nop,nop,timestamp 1326777094 676987699&gt;
+2008-08-06 00:10:42.771527 IP 192.168.2.100.49514 &gt; 194.25.134.51.110: F 177:177(0) ack 350 win 65535 &lt;nop,nop,timestamp 1326777094 676987699&gt;
+2008-08-06 00:10:42.802622 IP 194.25.134.51.110 &gt; 192.168.2.100.49514: . ack 178 win 46 &lt;nop,nop,timestamp 676987703 1326777094&gt;
+
+
+c
+-- 
+  Was hei&#223;t hier Dogma, ich bin Underdogma!
+[ What the hell do you mean dogma, I am underdogma. ]
+
+_F R E E_  _V I D E O S_  --&gt;&gt;  <A HREF="http://www.blacktrash.org/underdogma/">http://www.blacktrash.org/underdogma/</A>
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001660.html">[fetchmail-users] fetchmail, fetchnews can't get thru router
+</A></li>
+	<LI>Next message: <A HREF="001662.html">[fetchmail-users] fetchmail, fetchnews can't get thru router
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1653">[ date ]</a>
+              <a href="thread.html#1653">[ thread ]</a>
+              <a href="subject.html#1653">[ subject ]</a>
+              <a href="author.html#1653">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,109 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Init Script
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2007-September/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Init%20Script&In-Reply-To=%3C000601c7fdfc%245a957a40%240201a8c0%40userydq01op4u1%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001277.html">
+   <LINK REL="Next"  HREF="001279.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Init Script</H1>
+    <B>Alex May</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Init%20Script&In-Reply-To=%3C000601c7fdfc%245a957a40%240201a8c0%40userydq01op4u1%3E"
+       TITLE="[fetchmail-users] Init Script">alex at maymay.de
+       </A><BR>
+    <I>Sun Sep 23 18:10:45 CEST 2007</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001277.html">[fetchmail-users] Init Script
+</A></li>
+        <LI>Next message: <A HREF="001279.html">[fetchmail-users] Init Script
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1278">[ date ]</a>
+              <a href="thread.html#1278">[ thread ]</a>
+              <a href="subject.html#1278">[ subject ]</a>
+              <a href="author.html#1278">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>I understand that Fetchmail is intended to be run as a daemon.
+Is that right?
+If so, can you please tell me the correct method for starting it up after a server restart?
+I understand from everything that I have seen, that the SuSe standard init script is bad,
+but I don't know what I am supposed to use.
+Thanks,
+Alex May
+
+-----Original Message-----
+From: <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">fetchmail-users-bounces at lists.berlios.de</A> [mailto:<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">fetchmail-users-bounces at lists.berlios.de</A>] On Behalf Of Matthias Andree
+Sent: Sunday, September 23, 2007 5:00 PM
+To: Joe Acquisto
+Cc: <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">fetchmail-users at lists.berlios.de</A>
+Subject: Re: [fetchmail-users] Init Script
+
+
+On Sun, 23 Sep 2007, Joe Acquisto wrote:
+
+&gt;<i> &gt; Please turn to SUSE or Novell about anything that has to do with 
+</I>&gt;<i> &gt; their init script - it's their work, and not written by the 
+</I>&gt;<i> &gt; fetchmail maintainers.
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; Note though that their running fetchmail as root has already been 
+</I>&gt;<i> &gt; reported as a bug.
+</I>&gt;<i> &gt; 
+</I>&gt;<i> 
+</I>&gt;<i> Please explain?
+</I>
+SUSE run fetchmail as root, which is discouraged, so a bug report was filed. As long as you inject into SMTP and/or maildrop or
+procmail are installed setuid-root (both are designed for that purpose), you can run fetchmail as &quot;nobody&quot; or some other
+unprivileged account.
+
+While I'm not aware of code injection vulnerabilities in fetchmail, I may have overlooked a bug and thus it's simply due diligence
+to not hand fetchmail root privileges when it doesn't need them.
+
+I considered automatically dropping privileges, but didn't want to make this incompatible change in 6.3.X.
+
+&gt;<i> I'm running fine with Suse 9.x.  I could post you my init script if you like.   Or try the author, whose name appears in the
+</I>script.
+
+SUSE 9.x is no longer supported and should be updated to a newer version. 10.3 is due in a few weeks' time.
+
+-- 
+Matthias Andree
+_______________________________________________
+fetchmail-users mailing list
+<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">fetchmail-users at lists.berlios.de</A> <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">https://lists.berlios.de/mailman/listinfo/fetchmail-users</A>
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001277.html">[fetchmail-users] Init Script
+</A></li>
+	<LI>Next message: <A HREF="001279.html">[fetchmail-users] Init Script
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1278">[ date ]</a>
+              <a href="thread.html#1278">[ thread ]</a>
+              <a href="subject.html#1278">[ subject ]</a>
+              <a href="author.html#1278">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

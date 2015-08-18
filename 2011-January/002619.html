@@ -1,0 +1,120 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Fetchmail's bounce behavior - &quot;can't even send to postmaster&quot;
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2011-January/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Fetchmail%27s%20bounce%20behavior%20-%20%22can%27t%20even%0A%20send%20to%20postmaster%22&In-Reply-To=%3CPine.LNX.4.62.1101221952480.10958%40vmdebian.local.koeppe-net.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002618.html">
+   <LINK REL="Next"  HREF="002617.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Fetchmail's bounce behavior - &quot;can't even send to postmaster&quot;</H1>
+    <B>Martin Koeppe</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Fetchmail%27s%20bounce%20behavior%20-%20%22can%27t%20even%0A%20send%20to%20postmaster%22&In-Reply-To=%3CPine.LNX.4.62.1101221952480.10958%40vmdebian.local.koeppe-net.de%3E"
+       TITLE="[fetchmail-users] Fetchmail's bounce behavior - &quot;can't even send to postmaster&quot;">mkoeppe at gmx.de
+       </A><BR>
+    <I>Sat Jan 22 20:11:58 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002618.html">[fetchmail-users] Fetchmail's bounce behavior - &quot;can't even	send to postmaster&quot;
+</A></li>
+        <LI>Next message: <A HREF="002617.html">[fetchmail-users] Fetchmail's bounce behavior - &quot;can't even	send to postmaster&quot;
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2619">[ date ]</a>
+              <a href="thread.html#2619">[ thread ]</a>
+              <a href="subject.html#2619">[ subject ]</a>
+              <a href="author.html#2619">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>
+Hi Sunil,
+
+On Sun, 23 Jan 2011, Sunil Shetye wrote:
+
+&gt;<i> Hi Martin,
+</I>&gt;<i>
+</I>&gt;<i> --- On Sat, 22/1/11, Martin Koeppe &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">mkoeppe at gmx.de</A>&gt; wrote:
+</I>&gt;<i>
+</I>&gt;&gt;<i> The man page says:
+</I>&gt;&gt;&gt;<i> Fetchmail's method of sending bounces due to errors or
+</I>&gt;&gt;<i> spam-blocking and spam bounces requires that port 25 of
+</I>&gt;&gt;<i> localhost be available for sending mail via SMTP.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> I think the 2 points above should be made more explicit in
+</I>&gt;&gt;<i> the man pages, e.g. when describing &quot;set (no) bounce&quot;,
+</I>&gt;&gt;<i> &quot;smtphost&quot;, &quot;esmtpname&quot; and/or &quot;esmtppassword&quot;.
+</I>&gt;<i>
+</I>&gt;<i> Please note that the 'smtphost' and other options are related to 
+</I>&gt;<i> acceptance of local mails. This means that 'smtphost' is only 
+</I>&gt;<i> guaranteed to accept mails for local users and for the postmaster.
+</I>&gt;<i>
+</I>&gt;<i> It cannot be assumed that 'smtphost' is guaranteed to relay the 
+</I>&gt;<i> bounce mails even when 'esmtpname' and 'esmtppassword' are 
+</I>&gt;<i> specified. For all you know, the 'smtphost' might not even be 
+</I>&gt;<i> connected to the internet even indirectly.
+</I>
+Yes, I saw this problem already with cygwin's 6.3.9. But 
+fortunately we now have 6.3.19 in cygwin with support for soft 
+bounces, so for me the use of postmaster delivery isn't necessary any 
+more.
+
+Because in this case I use cygwin and have no &quot;normal, unix-like&quot; 
+local mail system, but only Exchange which required in default 
+configuration esmtpuname/esmtppassword. I used as smtphost 
+&quot;127.0.0.1&quot;, which works, but as you write for postmaster access the 
+fixed server &quot;localhost&quot; is used, on Windows 2008R2 this gets resolved 
+to ipv6 ::1 instead of 127.0.0.1, and Exchange has 2 distinct policies 
+for ip4 and ip6. At least I now know that smtphost isn't always 
+honored, and why mails to postmaster weren't delivered while other 
+recipients worked ok.
+
+When simply reading the man page entry for smtphost, I didn't thought 
+automatically that far that (1) relaying of bounces might be a problem 
+AND (2) that fetchmail already tries to workaround this by ignoring 
+smtphost for bounces. So I would find it helpful to add these 2 
+points to smtphost description. And also that esmtpname/esmtppassword 
+are only applied to smtphost, and not the fixed &quot;localhost&quot; for 
+bounces.
+
+&gt;<i> Yes, fetchmail's bounce behaviour requires more work. However, that 
+</I>&gt;<i> is not going to be trivial as any implicit assumptions are only 
+</I>&gt;<i> going to muddle the issue further.
+</I>
+For my purposes, the soft bounces (i.e. letting the mail where it is 
+when it can't be forwarded) are currently perfectly ok.
+
+Martin
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002618.html">[fetchmail-users] Fetchmail's bounce behavior - &quot;can't even	send to postmaster&quot;
+</A></li>
+	<LI>Next message: <A HREF="002617.html">[fetchmail-users] Fetchmail's bounce behavior - &quot;can't even	send to postmaster&quot;
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2619">[ date ]</a>
+              <a href="thread.html#2619">[ thread ]</a>
+              <a href="subject.html#2619">[ subject ]</a>
+              <a href="author.html#2619">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

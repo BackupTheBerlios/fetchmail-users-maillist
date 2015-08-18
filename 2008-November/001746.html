@@ -1,0 +1,108 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Add headers in notification for oversized	messages deletet by limitflush
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2008-November/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Add%20headers%20in%20notification%20for%20oversized%0A%09messages%20deletet%20by%20limitflush&In-Reply-To=%3C3446cbf5937fa4409d73b838faa17797%40lora%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001745.html">
+   <LINK REL="Next"  HREF="001747.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Add headers in notification for oversized	messages deletet by limitflush</H1>
+    <B>Boxhorn-EDV | Bernhard Boxhorn</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Add%20headers%20in%20notification%20for%20oversized%0A%09messages%20deletet%20by%20limitflush&In-Reply-To=%3C3446cbf5937fa4409d73b838faa17797%40lora%3E"
+       TITLE="[fetchmail-users] Add headers in notification for oversized	messages deletet by limitflush">bernhard at boxhorn-edv.com
+       </A><BR>
+    <I>Fri Nov 21 09:17:10 CET 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001745.html">[fetchmail-users] fetchmail 6.3.9 release available,	with security fixes
+</A></li>
+        <LI>Next message: <A HREF="001747.html">[fetchmail-users] Add headers in notification for oversized	messages deletet by limitflush
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1746">[ date ]</a>
+              <a href="thread.html#1746">[ thread ]</a>
+              <a href="subject.html#1746">[ subject ]</a>
+              <a href="author.html#1746">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi fetchmail list,
+ 
+we&#180;re using fetchmail for smaller servers to pull mails from the pop
+servers to their mailboxes, mostly when we don&#180;t have control over the
+MX settings.
+To keep their mailboxes small and prevent the users for missusing e-mail
+for data transfers with large files we limit the local MTA to e.g. 10
+MB.
+Often the MX allows bigger messages. So if there are bigger messages we
+delete them with the --limitflush option, user gets a notification that
+a oversized message has been deleted.
+Everything fine until now.
+ 
+The Problem is: The user has no clue who was the original sender and the
+sender does not get any error message.
+So user knows there was a big message and it has been deleted and sender
+thinks user received the message, there is a lack of information.
+ 
+Two possible solutions by design I can think about:
+ 
+1. Sender is notified that the message is oversized, was rejected by the
+MTA and has been deleted.
+Something like: MTA said 5XX (permanent error), given up, your message
+was deleted and not deliverd, maybe quote the MTA, we should do this for
+all 5XX errors.
+or 
+2.User notification is with headers of the original mail.
+Something like:
+The messsage received on 01.01.2008 8:00 am was rejected by MTA due
+error 5XX and deleted. Please ask the sender to correct the error and
+resend the mails.
+Headers following.
+ 
+We could bring this feature request futher not only to --limitflush but
+to any 5XX errors or even to to 4XX error as we often have the situation
+that the MX do not very intensive checking when receiving the mails but
+we want to do at our MX before delivering to the users.
+Shure we could make the local MTA more weak but we even have mixed
+configurations like MTA is MX for domain test.com and otherwise
+fetchmail polls mails from testxyz.com as we don&#180;t have the control over
+DNS.
+ 
+So, whats everbody thinking about this.
+ 
+Bye Bernhard Boxhorn
+
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001745.html">[fetchmail-users] fetchmail 6.3.9 release available,	with security fixes
+</A></li>
+	<LI>Next message: <A HREF="001747.html">[fetchmail-users] Add headers in notification for oversized	messages deletet by limitflush
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1746">[ date ]</a>
+              <a href="thread.html#1746">[ thread ]</a>
+              <a href="subject.html#1746">[ subject ]</a>
+              <a href="author.html#1746">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

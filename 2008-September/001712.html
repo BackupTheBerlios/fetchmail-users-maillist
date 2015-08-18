@@ -1,0 +1,102 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] losing mails because of	&quot;incorrect	header	line found&quot;
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2008-September/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20losing%20mails%20because%20of%0A%09%22incorrect%09header%09line%20found%22&In-Reply-To=%3C20080927000903.GI17284%40tamay-dogan.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001705.html">
+   <LINK REL="Next"  HREF="001713.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] losing mails because of	&quot;incorrect	header	line found&quot;</H1>
+    <B>Michelle Konzack</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20losing%20mails%20because%20of%0A%09%22incorrect%09header%09line%20found%22&In-Reply-To=%3C20080927000903.GI17284%40tamay-dogan.net%3E"
+       TITLE="[fetchmail-users] losing mails because of	&quot;incorrect	header	line found&quot;">linux4michelle at tamay-dogan.net
+       </A><BR>
+    <I>Sat Sep 27 02:09:03 CEST 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001705.html">[fetchmail-users] losing mails because of &quot;incorrect	header	line found&quot;
+</A></li>
+        <LI>Next message: <A HREF="001713.html">[fetchmail-users] losing mails because of &quot;incorrect header	line found&quot;
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1712">[ date ]</a>
+              <a href="thread.html#1712">[ thread ]</a>
+              <a href="subject.html#1712">[ subject ]</a>
+              <a href="author.html#1712">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Am 2008-09-24 20:08:55, schrieb Matthias Andree:
+&gt;<i> That's your assumption, but not how fetchmail works.
+</I>&gt;<i> Fetchmail operates on a line-by-line basis (for the body).
+</I>
+Does this mean, if fetchmail fetch the message and  WHILE  the  body  is
+coming in, fetchmail send it already parallel to the MDA/MTA?
+
+E.g., if the message is 10 MByte fetchmail begin to  download  and  pass
+the body line by line to the MTA/MDA and if they consider the message is
+to big, they stop accepting further lines of the body?
+
+Hmmm, I never have seen this behaviour, since long time ago I was spamed
+which messages of 20-30 MByte and my procmail has refused to  accept  it
+but the messages has already passed several rules...
+
+This would mean, since I am  using  a  global  lock  file,  an  incoming
+message would block procmail to accept further messages  because  it  is 
+waiting maybe one hour for fetchmail to finish downloading the message?
+
+Sounds a little bit stupid...
+
+Thanks, Greetings and nice Day/Evening
+    Michelle Konzack
+    Systemadministrator
+    24V Electronic Engineer
+    Tamay Dogan Network
+    Debian GNU/Linux Consultant
+
+
+-- 
+Linux-User #280138 with the Linux Counter, <A HREF="http://counter.li.org/">http://counter.li.org/</A>
+##################### Debian GNU/Linux Consultant #####################
+Michelle Konzack   Apt. 917                  ICQ #328449886
++49/177/9351947    50, rue de Soultz         MSN LinuxMichi
++33/6/61925193     67100 Strasbourg/France   IRC #Debian (irc.icq.com)
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: signature.pgp
+Type: application/pgp-signature
+Size: 189 bytes
+Desc: Digital signature
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/fetchmail-users/attachments/20080927/47a1b06e/attachment.pgp">https://lists.berlios.de/pipermail/fetchmail-users/attachments/20080927/47a1b06e/attachment.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001705.html">[fetchmail-users] losing mails because of &quot;incorrect	header	line found&quot;
+</A></li>
+	<LI>Next message: <A HREF="001713.html">[fetchmail-users] losing mails because of &quot;incorrect header	line found&quot;
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1712">[ date ]</a>
+              <a href="thread.html#1712">[ thread ]</a>
+              <a href="subject.html#1712">[ subject ]</a>
+              <a href="author.html#1712">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,103 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Block email downloading using fetchmail and	multidrop
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2007-March/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Block%20email%20downloading%20using%20fetchmail%20and%0A%09multidrop&In-Reply-To=%3CBAY117-F1985D460E8303E245F80FE9F740%40phx.gbl%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000923.html">
+   <LINK REL="Next"  HREF="000917.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Block email downloading using fetchmail and	multidrop</H1>
+    <B>Santa Clause</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Block%20email%20downloading%20using%20fetchmail%20and%0A%09multidrop&In-Reply-To=%3CBAY117-F1985D460E8303E245F80FE9F740%40phx.gbl%3E"
+       TITLE="[fetchmail-users] Block email downloading using fetchmail and	multidrop">fution_ at hotmail.com
+       </A><BR>
+    <I>Wed Mar 21 17:37:58 CET 2007</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000923.html">[fetchmail-users] Fetchmail 6.3.7+NLS not deleting one specific	message from server
+</A></li>
+        <LI>Next message: <A HREF="000917.html">[fetchmail-users] Block email downloading using fetchmail and	multidrop
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#916">[ date ]</a>
+              <a href="thread.html#916">[ thread ]</a>
+              <a href="subject.html#916">[ subject ]</a>
+              <a href="author.html#916">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>HI
+Please could you let me know if the following is possiable and how to do it.
+
+I am using fetchmail to download email from a &quot;catchall account&quot; at our isp. 
+I want to know if it is possiable to block / delete a user when it is 
+downloaded by fetchmail. The user must still be able to send and receive  
+mail on the local server.
+
+This is my fetchmail.cron file (Runs every 10min)
+
+fetchmail -f /etc/fetchmailrc
+if [ $? = 0 ]
+then
+echo &quot;Mail completed at `date`&quot;&gt;&gt;/etc/mail/fetchmail.log
+elif [ $? = 1 ]
+then
+echo &quot;No mail to retrieve at `date`&quot;&gt;&gt;/etc/fetchmail.log
+fi
+
+
+This is my fetchmail rc file:
+
+set postmaster (<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">root at connoisseur.co.za</A>)
+set bouncemail
+set properties &quot;&quot;
+poll pop.connoisseur.co.za
+protocol POP3
+nodns
+localdomains connoisseur.co.za
+username <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">webmaster at connoisseur.co.za</A> password mxg123 to * here
+smtp 192.1.1.240
+fetchall
+forcecr
+
+
+regards
+Fution
+
+_________________________________________________________________
+Message offline contacts without any fire risk! 
+<A HREF="http://www.communicationevolved.com/en-za/">http://www.communicationevolved.com/en-za/</A>
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000923.html">[fetchmail-users] Fetchmail 6.3.7+NLS not deleting one specific	message from server
+</A></li>
+	<LI>Next message: <A HREF="000917.html">[fetchmail-users] Block email downloading using fetchmail and	multidrop
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#916">[ date ]</a>
+              <a href="thread.html#916">[ thread ]</a>
+              <a href="subject.html#916">[ subject ]</a>
+              <a href="author.html#916">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

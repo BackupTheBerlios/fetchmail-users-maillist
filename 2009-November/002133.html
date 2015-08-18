@@ -1,0 +1,118 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] fetchmail fails to detect actual recipient
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2009-November/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%20fails%20to%20detect%20actual%20recipient&In-Reply-To=%3C43ea8d070911080211p238509b9x14d7f66b8ebbae98%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002132.html">
+   <LINK REL="Next"  HREF="002134.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] fetchmail fails to detect actual recipient</H1>
+    <B>Rob MacGregor</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%20fails%20to%20detect%20actual%20recipient&In-Reply-To=%3C43ea8d070911080211p238509b9x14d7f66b8ebbae98%40mail.gmail.com%3E"
+       TITLE="[fetchmail-users] fetchmail fails to detect actual recipient">rob.macgregor at gmail.com
+       </A><BR>
+    <I>Sun Nov  8 11:11:32 CET 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002132.html">[fetchmail-users] fetchmail fails to detect actual recipient
+</A></li>
+        <LI>Next message: <A HREF="002134.html">[fetchmail-users] fetchmail fails to detect actual recipient
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2133">[ date ]</a>
+              <a href="thread.html#2133">[ thread ]</a>
+              <a href="subject.html#2133">[ subject ]</a>
+              <a href="author.html#2133">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Sun, Nov 8, 2009 at 03:12, W Marifosque &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">wim1036 at gmail.com</A>&gt; wrote:
+&gt;<i> Dear All,
+</I>&gt;<i>
+</I>&gt;<i> I have this peculiar problem with multidrop messages if the source is
+</I>&gt;<i> from the googlegroups mailing list.
+</I>&gt;<i>
+</I>&gt;<i> For everyone's reference, here are the relevant fetchmailrc, message
+</I>&gt;<i> headers and transaction log info. I'm using Fetchmail 6.3.6 in CentOS
+</I>&gt;<i> 5.2.
+</I>&gt;<i>
+</I>&gt;<i> ### fetchmailrc
+</I>&gt;<i> -----------------------------------
+</I>&gt;<i> set logfile /u1/log/fetchmail.log
+</I>&gt;<i>
+</I>&gt;<i> set no bouncemail
+</I>&gt;<i>
+</I>&gt;<i> poll pop3.mydomain.com proto pop3 localdomains mydomain.com envelope 1 Received
+</I>&gt;<i> &#160;&#160;&#160;&#160;&#160;&#160;&#160; user &quot;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">mailpool at mydomain.com</A>&quot; with pass &quot;12345678&quot; is * here expunge 10
+</I>&gt;<i> -----------------------------------
+</I>&gt;<i>
+</I>&gt;<i> ### message Received headers
+</I>&gt;<i> -----------------------------------
+</I>&gt;<i> Received: from mydomain by accord.websitewelcome.com with local-bsmtp
+</I>&gt;<i> (Exim 4.69)
+</I>&gt;<i> &#160;&#160;&#160;&#160; (envelope-from
+</I>&gt;<i> &lt;grbounce-MCDmzwUAAADWcZ4g5ZLNrX99TKSKZi-2=username=<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">mydomain.com at googlegroups.com</A>&gt;)
+</I>&gt;<i> &#160;&#160;&#160;&#160; id 1N2zOU-0002HB-JO
+</I>&gt;<i> &#160;&#160;&#160;&#160; for <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">mailpool at mydomain.com</A>; Tue, 27 Oct 2009 22:40:18 -0500
+</I>&gt;<i> X-Spam-Checker-Version: SpamAssassin 3.3.0-r613124 (2008-01-18) on
+</I>&gt;<i> &#160;&#160;&#160;&#160; accord.websitewelcome.com
+</I>&gt;<i> X-Spam-Level: ***
+</I>&gt;<i> X-Spam-Status: No, score=3.4 required=5.0 tests=AWL,FORGED_MUA_OUTLOOK,
+</I>&gt;<i> &#160;&#160;&#160;&#160; HTML_MESSAGE,SPF_PASS shortcircuit=no autolearn=disabled
+</I>&gt;<i> version=3.3.0-r613124
+</I>&gt;<i> Received: from mail-pw0-f66.google.com ([209.85.160.66]:60502)
+</I>&gt;<i> &#160;&#160;&#160;&#160; by accord.websitewelcome.com with esmtp (Exim 4.69)
+</I>&gt;<i> &#160;&#160;&#160;&#160; (envelope-from
+</I>&gt;<i> &lt;grbounce-MCDmzwUAAADWcZ4g5ZLNrX99TKSKZi-2=username=<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">mydomain.com at googlegroups.com</A>&gt;)
+</I>&gt;<i> &#160;&#160;&#160;&#160; id 1N2zOU-0002Gy-EE
+</I>&gt;<i> &#160;&#160;&#160;&#160; for <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">username at mydomain.com</A>; Tue, 27 Oct 2009 22:40:18 -0500
+</I>&gt;<i> Received: by pwj11 with SMTP id 11so144144pwj.5
+</I>&gt;<i> &#160;&#160;&#160;&#160; for &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">username at mydomain.com</A>&gt;; Tue, 27 Oct 2009 20:40:19 -0700 (PDT)
+</I>
+Try using the third Received header instead of the second.
+
+Note that parsing the Received header is something the developer has
+discussed dropping in future.  You should be looking for a
+Delivered-To or similar header - if one doesn't exist you need to
+raise a request with Google to have them add this.
+
+
+-- 
+                 Please keep list traffic on the list.
+
+Rob MacGregor
+      Whoever fights monsters should see to it that in the process he
+        doesn't become a monster.                  Friedrich Nietzsche
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002132.html">[fetchmail-users] fetchmail fails to detect actual recipient
+</A></li>
+	<LI>Next message: <A HREF="002134.html">[fetchmail-users] fetchmail fails to detect actual recipient
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2133">[ date ]</a>
+              <a href="thread.html#2133">[ thread ]</a>
+              <a href="subject.html#2133">[ subject ]</a>
+              <a href="author.html#2133">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

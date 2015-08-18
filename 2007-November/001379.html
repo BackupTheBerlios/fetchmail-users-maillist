@@ -1,0 +1,103 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Infinite loop!
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2007-November/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Infinite%20loop%21&In-Reply-To=%3C200711200948.58144.ndbecker2%40gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001384.html">
+   <LINK REL="Next"  HREF="001380.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Infinite loop!</H1>
+    <B>Neal Becker</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Infinite%20loop%21&In-Reply-To=%3C200711200948.58144.ndbecker2%40gmail.com%3E"
+       TITLE="[fetchmail-users] Infinite loop!">ndbecker2 at gmail.com
+       </A><BR>
+    <I>Tue Nov 20 15:48:58 CET 2007</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001384.html">[fetchmail-users] Infinite loop!
+</A></li>
+        <LI>Next message: <A HREF="001380.html">[fetchmail-users] Infinite loop!
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1379">[ date ]</a>
+              <a href="thread.html#1379">[ thread ]</a>
+              <a href="subject.html#1379">[ subject ]</a>
+              <a href="author.html#1379">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Tuesday 20 November 2007, Matthias Andree wrote:
+&gt;<i> Neal Becker schrieb:
+</I>&gt;<i> &gt; On Tuesday 20 November 2007, Matthias Andree wrote:
+</I>&gt;<i> &gt;&gt; Neal Becker schrieb:
+</I>&gt;<i> &gt;&gt;&gt; I'm using fetchmail to read from an imap server and feed to msmtp to
+</I>&gt;<i> &gt;&gt;&gt; xfer to my exim server.  I have an (unlimited) number of these
+</I>&gt;<i> &gt;&gt;&gt; messages:
+</I>&gt;<i> &gt;&gt;&gt;
+</I>&gt;<i> &gt;&gt;&gt; Nov 20 07:55:41 host=10.4.0.1 tls=off auth=off from=&lt;&gt;
+</I>&gt;<i> &gt;&gt;&gt; recipients=<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">nbecker at nbecker.dyndns.org</A> smtpstatus=501 smtpmsg='501 &lt;&lt;&gt;&gt;:
+</I>&gt;<i> &gt;&gt;&gt; missing or malformed local part' errormsg='envelope from address &lt;&gt; not
+</I>&gt;<i> &gt;&gt;&gt; accepted by the server' exitcode=EX_DATAERR
+</I>&gt;<i> &gt;&gt;&gt;
+</I>&gt;<i> &gt;&gt;&gt; Can I convince fetchmail that 501 is a permanent error, and not to keep
+</I>&gt;<i> &gt;&gt;&gt; trying to fetch this message?
+</I>&gt;<i> &gt;&gt;
+</I>&gt;<i> &gt;&gt; Are you sure that you're using a current fetchmail version?
+</I>&gt;<i> &gt;&gt; I think I fixed relevant (to NULL envelope sender addresses) bugs in
+</I>&gt;<i> &gt;&gt; 6.3.0.
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; fetchmail-6.3.8-3.fc8.x86_64 (fedora f8)
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; I suppose spam filter is an option.  I wonder if there is a better
+</I>&gt;<i> &gt; approach?
+</I>&gt;<i>
+</I>&gt;<i> Now there's a problem.
+</I>&gt;<i>
+</I>&gt;<i> Some users want such messages to bounce (or be dropped on the floor), and
+</I>&gt;<i> some users want such messages to be deferred - evidently, there isn't a
+</I>&gt;<i> universally accepted approach anyways, and a configuration option will have
+</I>&gt;<i> to be introduced some day.
+</I>
+Looks like adding 'antispam 501' to my fetchmailrc didn't work either:
+...
+fetchmail: IMAP&lt; )
+fetchmail: IMAP&lt; A0031 OK Completed
+msmtp: envelope from address &lt;&gt; not accepted by the server
+msmtp: server message: 501 &lt;&lt;&gt;&gt;: missing or malformed local part
+msmtp: could not send mail (account default from /home/nbecker/.msmtprc)
+fetchmail: MDA returned nonzero status 65
+ not flushed
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001384.html">[fetchmail-users] Infinite loop!
+</A></li>
+	<LI>Next message: <A HREF="001380.html">[fetchmail-users] Infinite loop!
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1379">[ date ]</a>
+              <a href="thread.html#1379">[ thread ]</a>
+              <a href="subject.html#1379">[ subject ]</a>
+              <a href="author.html#1379">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

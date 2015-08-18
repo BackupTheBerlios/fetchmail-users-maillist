@@ -1,0 +1,100 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Fetchmail not fetching after boot on FC5
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2006-May/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Fetchmail%20not%20fetching%20after%20boot%20on%20FC5&In-Reply-To=%3Ca86534660605070641q28d12fa8gd88554924524bb09%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000380.html">
+   <LINK REL="Next"  HREF="000382.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Fetchmail not fetching after boot on FC5</H1>
+    <B>Catalin Rotaru</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Fetchmail%20not%20fetching%20after%20boot%20on%20FC5&In-Reply-To=%3Ca86534660605070641q28d12fa8gd88554924524bb09%40mail.gmail.com%3E"
+       TITLE="[fetchmail-users] Fetchmail not fetching after boot on FC5">catalin.rotaru at gmail.com
+       </A><BR>
+    <I>Sun May  7 15:41:37 CEST 2006</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000380.html">[fetchmail-users] help needed - BCC problem
+</A></li>
+        <LI>Next message: <A HREF="000382.html">[fetchmail-users] Fetchmail not fetching after boot on FC5
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#381">[ date ]</a>
+              <a href="thread.html#381">[ thread ]</a>
+              <a href="subject.html#381">[ subject ]</a>
+              <a href="author.html#381">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>The problem: right after booting, fetchmail doesn't do anything,
+although ps shows it as running. It doesn't fetch and it doesn't
+output *any* log.
+
+This started to happen after upgrading to Fedora Core 5 from FC4.
+
+A simple restart (service fetchmail restart) gets it going, with
+logging and fetching and all...
+
+fetchmail --version
+fetchmail: WARNING: Running as root is discouraged.
+This is fetchmail release 6.3.4+IMAP-GSS+RPA+NTLM+SDPS+SSL+HESIOD+NLS.
+
+uname -a
+Linux foo.bar.net 2.6.16-1.2111_FC5 #1 Thu May 4 21:16:58 EDT 2006
+i686 athlon i386 GNU/Linux
+
+more /etc/fetchmailrc
+#set daemon 100
+
+poll foo.bar.com proto imap
+  localdomains bar.net
+  user &quot;user&quot; pass &quot;pass&quot; is &quot;user&quot; here
+...
+
+more /etc/init.d/fetchmail
+...
+FETCHMAIL=/usr/bin/fetchmail
+FRC=/etc/fetchmailrc
+TIME=100
+start() {
+  $FETCHMAIL -f $FRC -L /var/log/fetchmail -d $TIME &gt;/dev/null 2&gt;&amp;1
+}
+...
+
+Any clues?
+
+Thanks!
+Cata
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000380.html">[fetchmail-users] help needed - BCC problem
+</A></li>
+	<LI>Next message: <A HREF="000382.html">[fetchmail-users] Fetchmail not fetching after boot on FC5
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#381">[ date ]</a>
+              <a href="thread.html#381">[ thread ]</a>
+              <a href="subject.html#381">[ subject ]</a>
+              <a href="author.html#381">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,140 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Messages not downloaded
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2007-September/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Messages%20not%20downloaded&In-Reply-To=%3C46E18727.500%40gmx.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001239.html">
+   <LINK REL="Next"  HREF="001242.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Messages not downloaded</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Messages%20not%20downloaded&In-Reply-To=%3C46E18727.500%40gmx.de%3E"
+       TITLE="[fetchmail-users] Messages not downloaded">matthias.andree at gmx.de
+       </A><BR>
+    <I>Fri Sep  7 19:15:19 CEST 2007</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001239.html">[fetchmail-users] Messages not downloaded
+</A></li>
+        <LI>Next message: <A HREF="001242.html">[fetchmail-users] Messages not downloaded
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1241">[ date ]</a>
+              <a href="thread.html#1241">[ thread ]</a>
+              <a href="subject.html#1241">[ subject ]</a>
+              <a href="author.html#1241">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>So, some more version-agnostic answers now that I've more time at my hands,
+note that my answers will still assume you're using version 6.3.8 of fetchmail.
+
+David Nash schrieb:
+&gt;<i> I logged on to our domain's webmail service, and noticed that our multidrop inbox had a few thousand messages in it.  I don't think this used to happen, but they've started to collect there.  I cleaned them out, and we started to receive external mail instantaneously (obviously fetchmail was taking time to parse the thousands of messages).
+</I>
+Likely, to be confirmed or denied with &quot;fetchmail -v&quot; or perhaps &quot;fetchmail
+-vv&quot;.
+
+&gt;<i> When new mail hits the multi-drop mailbox, its status is 'unread'.  When fetchmail downloads from the multidrop, the mail is removed from the multidrop mailbox, with the exception of some messages where the status changes to 'read' but it is not downloaded.  These are the ones that are building up.  Some of the recipients are genuine users on our system, but many are not.  From what I've been able to monitor, all these messages are SPAM.  I've looked at the headers, and they seem to be pretty much the same as genuine messages, but they have X-IMAIL-SPAM-xxx lines in their header, eg X-IMAIL-SPAM-VALFROM.  
+</I>
+&gt;<i> After all that explanation, I just wondered if fetchmail is looking at these header lines and choosing not to download the messages?  
+</I>
+No, it does not. If it did, you'd see that documented as a feature.
+However, one of those spam messages may confuse your older version of
+fetchmail, or perhaps (though less likely as I see it) your MDA (note I
+wrote &quot;may&quot;, not &quot;does&quot;, I don't know trestlemail and this is not a
+statement about trestlemail as such).
+
+&gt;<i> I'm probably going to look at the 'flush' parameter to automatically delete them, once I've monitored it for a wee while to make sure that every message affected is genuinely SPAM.  I don't really want to change fetchmail versions if I can help it!  
+</I>
+It's a dangerous option to use, I'd rather run fetchmail once with that
+option on the command line.
+
+You really should update, not only fetchmail, but also your kernel, and
+probably HEAPS of your system libraries and basic utilities. Your system is
+way outdated and full of security-relevant bugs, and unless your fetchmail
+version has been patched against known security holes, it's prone to code
+injection.
+
+I'd not be surprised at all if one of the bugs caused the messages to pile
+up, by terminating fetchmail prematurely.
+
+In a separate response to Fr&#233;d&#233;ric I describe some workarounds to contain
+the damage a bit - consider them regardless of if you're updating.
+
+&gt;<i> Output of fetchmail -V is:
+</I>&gt;<i>  
+</I>&gt;<i> This is fetchmail release 5.8.17+SSL+NLS
+</I>&gt;<i> Linux scoms1.xxxxx.co.uk 2.4.13 #1 Thu Oct 31 02:32:23 EST 2002 i686 unknown
+</I>&gt;<i> Taking options from command line and /.fetchmailrc
+</I>&gt;<i> Poll interval is 300 seconds
+</I>&gt;<i> Idfile is //.fetchids
+</I>&gt;<i> Fetchmail will forward misaddressed multidrop messages to postmaster.
+</I>&gt;<i> Options for retrieving from <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">xxxx at xxxx.co.uk</A>@xxx.net:
+</I>&gt;<i>   True name of server is xxx.net.
+</I>&gt;<i>   Protocol is POP3.
+</I>&gt;<i>   All available authentication methods will be tried.
+</I>&gt;<i>   Server nonresponse timeout is 300 seconds (default).
+</I>&gt;<i>   Default mailbox selected.
+</I>&gt;<i>   All messages will be retrieved (--all on).
+</I>&gt;<i>   Fetched messages will not be kept on the server (--keep off).
+</I>&gt;<i>   Old messages will not be flushed before message retrieval (--flush off).
+</I>&gt;<i>   Rewrite of server-local addresses is enabled (--norewrite off).
+</I>&gt;<i>   Carriage-return stripping is enabled (stripcr on).
+</I>&gt;<i>   Carriage-return forcing is disabled (forcecr off).
+</I>&gt;<i>   Interpretation of Content-Transfer-Encoding is enabled (pass8bits off).
+</I>&gt;<i>   MIME decoding is disabled (mimedecode off).
+</I>&gt;<i>   Idle after poll is disabled (idle off).
+</I>&gt;<i>   Nonempty Status lines will be kept (dropstatus off)
+</I>&gt;<i>   Delivered-To lines will be kept (dropdelivered off)
+</I>&gt;<i>   Messages will be delivered with &quot;~/trestlemail/bin/trestlemail ~/trestlemail/trestlemail.rc -F %F -- %T&quot;.
+</I>&gt;<i>   Recognized listener spam block responses are: 571 550 501 554
+</I>&gt;<i>   Multi-drop mode: 1 local name(s) recognized.
+</I>&gt;<i>   DNS lookup for multidrop addresses is enabled.
+</I>&gt;<i>   Server aliases will be compared with multidrop addresses by name.
+</I>&gt;<i>   Envelope header is assumed to be: Received
+</I>&gt;<i>   Local domains: xxxx.co.uk
+</I>&gt;<i>   No UIDs saved from this host.
+</I>
+A general remark: DNS lookup for multidrop is a resource-consuming option
+to use and based on the - usually false today - assumption that POP3 and
+SMTP MX servers for the given domain are identical. This holds for none but
+the smallest sites that run all services off the same computer. If there is
+more than the polling domain, list it with &quot;aka&quot;, then use the &quot;no dns&quot; option.
+
+Hope that clarifies things a bit.
+
+-- Matthias
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001239.html">[fetchmail-users] Messages not downloaded
+</A></li>
+	<LI>Next message: <A HREF="001242.html">[fetchmail-users] Messages not downloaded
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1241">[ date ]</a>
+              <a href="thread.html#1241">[ thread ]</a>
+              <a href="subject.html#1241">[ subject ]</a>
+              <a href="author.html#1241">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

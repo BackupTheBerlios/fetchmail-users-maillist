@@ -1,0 +1,96 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Freebsd &amp; Fetchmail
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2011-June/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Freebsd%20%26%20Fetchmail&In-Reply-To=%3C4DEF4040.10809%40gmx.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002856.html">
+   <LINK REL="Next"  HREF="002858.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Freebsd &amp; Fetchmail</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Freebsd%20%26%20Fetchmail&In-Reply-To=%3C4DEF4040.10809%40gmx.de%3E"
+       TITLE="[fetchmail-users] Freebsd &amp; Fetchmail">matthias.andree at gmx.de
+       </A><BR>
+    <I>Wed Jun  8 11:26:24 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002856.html">[fetchmail-users] Freebsd &amp; Fetchmail
+</A></li>
+        <LI>Next message: <A HREF="002858.html">[fetchmail-users] 'set daemon' and 'idle'
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2857">[ date ]</a>
+              <a href="thread.html#2857">[ thread ]</a>
+              <a href="subject.html#2857">[ subject ]</a>
+              <a href="author.html#2857">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Am 08.06.2011 09:31, schrieb Tinus Blaauw:
+&gt;<i> Hi
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> I've been using fetchmail for quite some time, and it has been working
+</I>&gt;<i> brilliantly. However, recently it is asif fetchmail does not 'wake' up again
+</I>&gt;<i> to check for new email.
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> Anybody else experiencing the same?
+</I>
+1. update to the latest version from ports (6.3.20 currently), best to 
+&quot;make WITH_DEBUG=yes all deinstall install clean&quot; so the debugging 
+symbols are left in the port, and check if the problem persists.
+
+2. report all information listed in 
+&lt;<A HREF="http://www.fetchmail.info/fetchmail-FAQ.html#G3">http://www.fetchmail.info/fetchmail-FAQ.html#G3</A>&gt; - as requested by the 
+manual page.
+
+3. AND IN ADDITION please get me a stack backtrace:
+
+gdb /usr/local/bin/fetchmail $(pgrep fetchmail)
+
+and inside gdb, type
+
+bt full
+
+and attach the result to what you got from #2.
+
+Double-check that it doesn't reveal passwords before posting it.
+
+-- 
+Matthias Andree
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002856.html">[fetchmail-users] Freebsd &amp; Fetchmail
+</A></li>
+	<LI>Next message: <A HREF="002858.html">[fetchmail-users] 'set daemon' and 'idle'
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2857">[ date ]</a>
+              <a href="thread.html#2857">[ thread ]</a>
+              <a href="subject.html#2857">[ subject ]</a>
+              <a href="author.html#2857">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

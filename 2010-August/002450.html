@@ -1,0 +1,91 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Problem fetching: &quot;AUTHFAIL&quot;
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2010-August/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Problem%20fetching%3A%20%22AUTHFAIL%22&In-Reply-To=%3Cop.vhnl4udi1e62zd%40merlin.emma.line.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002449.html">
+   <LINK REL="Next"  HREF="002456.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Problem fetching: &quot;AUTHFAIL&quot;</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Problem%20fetching%3A%20%22AUTHFAIL%22&In-Reply-To=%3Cop.vhnl4udi1e62zd%40merlin.emma.line.org%3E"
+       TITLE="[fetchmail-users] Problem fetching: &quot;AUTHFAIL&quot;">matthias.andree at gmx.de
+       </A><BR>
+    <I>Thu Aug 19 00:01:32 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002449.html">[fetchmail-users] Problem fetching: &quot;AUTHFAIL&quot;
+</A></li>
+        <LI>Next message: <A HREF="002456.html">[fetchmail-users] Problem fetching: &quot;AUTHFAIL&quot;
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2450">[ date ]</a>
+              <a href="thread.html#2450">[ thread ]</a>
+              <a href="subject.html#2450">[ subject ]</a>
+              <a href="author.html#2450">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Am 18.08.2010, 21:31 Uhr, schrieb Alan Murrell:
+
+&gt;<i> OK, I think I have found the problem.  Found this thread on the &quot;Debian  
+</I>&gt;<i> bugs&quot; list:
+</I>&gt;<i>
+</I>&gt;<i> &lt;<A HREF="http://old.nabble.com/Bug-568455:-fetchmail-TLS-SSL-with-Exchange-2007-results-in-Autorization-failures-td27458941.html">http://old.nabble.com/Bug-568455:-fetchmail-TLS-SSL-with-Exchange-2007-results-in-Autorization-failures-td27458941.html</A>&gt;
+</I>&gt;<i>
+</I>&gt;<i> It seems the version of fetchmail on Debian 4.0 (which I just upgraded  
+</I>&gt;<i> from) is not compiled with GSS support while the fetchmail package for  
+</I>&gt;<i> Debian 5.0 is.  The person in question could find no way of disabling  
+</I>&gt;<i> GSS in the config, so he ended up having uninstall the Debian packaged  
+</I>&gt;<i> version and compile from source.
+</I>&gt;<i>
+</I>&gt;<i> I will give that a try and report back either way of that solves the  
+</I>&gt;<i> issue.
+</I>&gt;<i>
+</I>&gt;<i> I would not consider this to be completely a fetchmail issue, but if it  
+</I>&gt;<i> works, it would be useful to have this solution on the list :-)
+</I>
+The solution is in my earlier post in this thread, item (2) - you can  
+configure authentication methods.
+
+The open issue is that I don't know yet if 6.3.17 would still fail when  
+falling back to USER/PASS, and if so, would it be fetchmail's or  
+Exchange's fault. If it's fetchmail fault that it somehow goofs up the  
+fallback to USER/PASS, I should fix that for 6.3.18; if it's Exchange's  
+fault, a reconnection before USER/PASS might work around it.
+
+-- 
+Matthias Andree
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002449.html">[fetchmail-users] Problem fetching: &quot;AUTHFAIL&quot;
+</A></li>
+	<LI>Next message: <A HREF="002456.html">[fetchmail-users] Problem fetching: &quot;AUTHFAIL&quot;
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2450">[ date ]</a>
+              <a href="thread.html#2450">[ thread ]</a>
+              <a href="subject.html#2450">[ subject ]</a>
+              <a href="author.html#2450">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,86 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] .fetchids file
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2008-April/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20.fetchids%20file&In-Reply-To=%3C20080423072939.GA7954%40merlin.emma.line.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001509.html">
+   <LINK REL="Next"  HREF="001512.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] .fetchids file</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20.fetchids%20file&In-Reply-To=%3C20080423072939.GA7954%40merlin.emma.line.org%3E"
+       TITLE="[fetchmail-users] .fetchids file">matthias.andree at gmx.de
+       </A><BR>
+    <I>Wed Apr 23 09:29:39 CEST 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001509.html">[fetchmail-users] .fetchids file
+</A></li>
+        <LI>Next message: <A HREF="001512.html">[fetchmail-users] .fetchids file
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1510">[ date ]</a>
+              <a href="thread.html#1510">[ thread ]</a>
+              <a href="subject.html#1510">[ subject ]</a>
+              <a href="author.html#1510">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Chris schrieb am 2008-04-22:
+
+&gt;<i> I no longer have a pop3 account with earthlink, it was changed to embarqmail 
+</I>&gt;<i> whenever embarq chose not to have earthlink handle their mail but setup their 
+</I>&gt;<i> own mail servers. On restarting fetchmail a while ago I noticed this:
+</I>...
+&gt;<i> Is there a reason why each time I deleted the .fetchids file and restart 
+</I>&gt;<i> fetchmail that the same four ids show up from earthlink when I'm not even 
+</I>&gt;<i> polling it anymore?
+</I>
+When exactly do you delete the .fetchids file?
+Is fetchmail then running in daemon mode?
+
+Fetchmail won't garbage collect UIDs from an unqueried host by itself,
+but deleting the &quot;offending&quot; UIDs from .fetchids (or the file
+altogether) while fetchmail is currently NOT running should remedy the
+situation.
+
+If it doesn't, please show the output of these two command lines:
+
+env LC_ALL=C fetchmail --nosyslog --nodetach --daemon 0 -V
+env LC_ALL=C fetchmail --nosyslog --nodetach --daemon 0 -vvv
+
+-- 
+Matthias Andree
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001509.html">[fetchmail-users] .fetchids file
+</A></li>
+	<LI>Next message: <A HREF="001512.html">[fetchmail-users] .fetchids file
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1510">[ date ]</a>
+              <a href="thread.html#1510">[ thread ]</a>
+              <a href="subject.html#1510">[ subject ]</a>
+              <a href="author.html#1510">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

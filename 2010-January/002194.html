@@ -1,0 +1,110 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] [PATCH] Re: fetchmail IMAP bug - causes some mails to not be delivered when using IDLE
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2010-January/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20%5BPATCH%5D%20Re%3A%20fetchmail%20IMAP%20bug%20-%20causes%20some%0A%20mails%20to%20not%20be%20delivered%20when%20using%20IDLE&In-Reply-To=%3C4B4DB3B7.1080805%40papercut.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002193.html">
+   <LINK REL="Next"  HREF="002197.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] [PATCH] Re: fetchmail IMAP bug - causes some mails to not be delivered when using IDLE</H1>
+    <B>Matt Doran</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20%5BPATCH%5D%20Re%3A%20fetchmail%20IMAP%20bug%20-%20causes%20some%0A%20mails%20to%20not%20be%20delivered%20when%20using%20IDLE&In-Reply-To=%3C4B4DB3B7.1080805%40papercut.com%3E"
+       TITLE="[fetchmail-users] [PATCH] Re: fetchmail IMAP bug - causes some mails to not be delivered when using IDLE">matt.doran at papercut.com
+       </A><BR>
+    <I>Wed Jan 13 12:51:19 CET 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002193.html">[fetchmail-users] [PATCH] Re: fetchmail IMAP bug - causes some mails to not be delivered when using IDLE
+</A></li>
+        <LI>Next message: <A HREF="002197.html">[fetchmail-users] [PATCH] Re: fetchmail IMAP bug - causes some mails to not be delivered when using IDLE
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2194">[ date ]</a>
+              <a href="thread.html#2194">[ thread ]</a>
+              <a href="subject.html#2194">[ subject ]</a>
+              <a href="author.html#2194">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Sunil Shetye wrote:
+&gt;<i> Quoting from Matt Doran's mail on Wed, Jan 13, 2010:
+</I>&gt;<i>   
+</I>&gt;&gt;<i> Thanks for the patch.  I tried this patch, and it did not work. :(
+</I>&gt;&gt;<i> I've attached another log showing the problem again, I added some
+</I>&gt;&gt;<i> more debug lines outputting recentcount,count,oldcount when we see
+</I>&gt;&gt;<i> EXISTS, RECENT, EXPUNGE (I thought it might help).
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> It seems this this only occurs if the EXISTS comes just at the right
+</I>&gt;&gt;<i> time ... and I think fetchmail is missing it.   In the attached file
+</I>&gt;&gt;<i> the &quot;* 2 EXISTS&quot; comes immediately after fetchmail receceives the &quot;*
+</I>&gt;&gt;<i> SEARCH 1&quot;  response to the request &quot;A0007 SEARCH UNSEEN NOT
+</I>&gt;&gt;<i> DELETED&quot;. .... and it seems that fetchmail ignores this one.
+</I>&gt;&gt;<i> Maybe something needs to be added to the do loop at imap.c:870?
+</I>&gt;&gt;<i>     
+</I>&gt;<i>
+</I>&gt;<i> Okay, here is a new version of that patch. It pushes SEARCH to
+</I>&gt;<i> imap_ok() so that EXISTS and other messages are not missed out. Also,
+</I>&gt;<i> it now uses 'oldcount' there as 'count' can get updated by EXISTS.
+</I>&gt;<i>
+</I>&gt;<i>   
+</I>This is looking better! :)
+
+I've attached the session again, and this time it downloads both the 
+messages. :)
+
+The text to stdout looks a little strange though:
+
+    1 message (1 seen) for matt at mail.papercut.com.
+    2 messages for matt at mail.papercut.com.
+
+That first message is a little strange, given that the message 
+definitely wasn't seen yet.
+
+
+Also in testing this I hit another strange occurence (maybe related), 
+but I didn't capture the logs and wasn't 100% sure how I produced it.  
+But I started a fetchmail session, sent in the 2 mails and then killed 
+fetchmail with a CTRL+C.  The mails hadn't downloaded but when I re-ran 
+fetchmail it said they were &quot;seen (not flushed)&quot;.   Maybe I just killed 
+it at an inopportune time??  And it may not be a real  issue.
+
+Thanks for working on this,
+Matt
+
+-------------- next part --------------
+An embedded and charset-unspecified text was scrubbed...
+Name: fetchmail-patched.txt
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/fetchmail-users/attachments/20100113/16a3e560/attachment.txt">https://lists.berlios.de/pipermail/fetchmail-users/attachments/20100113/16a3e560/attachment.txt</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002193.html">[fetchmail-users] [PATCH] Re: fetchmail IMAP bug - causes some mails to not be delivered when using IDLE
+</A></li>
+	<LI>Next message: <A HREF="002197.html">[fetchmail-users] [PATCH] Re: fetchmail IMAP bug - causes some mails to not be delivered when using IDLE
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2194">[ date ]</a>
+              <a href="thread.html#2194">[ thread ]</a>
+              <a href="subject.html#2194">[ subject ]</a>
+              <a href="author.html#2194">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

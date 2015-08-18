@@ -1,0 +1,147 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] getting fetchmail to work with postfix
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2012-May/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20getting%20fetchmail%20to%20work%20with%20postfix&In-Reply-To=%3C4FC02B55.8050308%40gmx.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003138.html">
+   <LINK REL="Next"  HREF="003141.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] getting fetchmail to work with postfix</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20getting%20fetchmail%20to%20work%20with%20postfix&In-Reply-To=%3C4FC02B55.8050308%40gmx.de%3E"
+       TITLE="[fetchmail-users] getting fetchmail to work with postfix">matthias.andree at gmx.de
+       </A><BR>
+    <I>Sat May 26 03:01:09 CEST 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003138.html">[fetchmail-users] getting fetchmail to work with postfix
+</A></li>
+        <LI>Next message: <A HREF="003141.html">[fetchmail-users] [tor-talk] Socks5 and msmtp
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3140">[ date ]</a>
+              <a href="thread.html#3140">[ thread ]</a>
+              <a href="subject.html#3140">[ subject ]</a>
+              <a href="author.html#3140">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Am 25.05.2012 14:53, schrieb J&#252;rgen Echter:
+&gt;<i> Hi,
+</I>&gt;<i> 
+</I>&gt;<i> i try to setup fetchmail to get mails and send them with postfix to my
+</I>&gt;<i> local dovecot imapd.
+</I>&gt;<i> 
+</I>&gt;<i> If i try to run fetchmail i get this in the logs:
+</I>&gt;<i> 
+</I>&gt;<i> fetchmail[4514]: 1 message for <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">test at mydomain.de</A> at mailserver.external.de.
+</I>&gt;<i> fetchmail[4514]: reading message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">test at mydomain</A>@mailserver.external.de:1
+</I>&gt;<i> of 1 (649 header octets) (log message incomplete)
+</I>&gt;<i> fetchmail[4514]: connection to localhost:smtp [::1/25] failed:
+</I>&gt;<i> Connection refused.
+</I>&gt;<i> postfix/smtpd[4516]: connect from localhost[127.0.0.1]
+</I>&gt;<i> postfix/smtpd[4516]: NOQUEUE: reject: RCPT from localhost[127.0.0.1]:
+</I>&gt;<i> 550 5.1.1 &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">test at mydomain.de</A>&gt;: Recipient address rejected: mydomain.de;
+</I>&gt;<i> from=&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">j.echter at mydomain.de</A>&gt; to=&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">test at mydomain.de</A>&gt; proto=ESMTP
+</I>&gt;<i> helo=&lt;mehlbox.workgroup.local&gt;
+</I>&gt;<i> fetchmail[4514]: SMTP error: 550 5.1.1 &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">test at mydomain.de</A>&gt;: Recipient
+</I>&gt;<i> address rejected: mydomain.de
+</I>&gt;<i> fetchmail[4514]: connection to localhost:smtp [::1/25] failed:
+</I>&gt;<i> Connection refused.
+</I>&gt;<i> postfix/smtpd[4519]: connect from localhost[127.0.0.1]
+</I>&gt;<i> postfix/smtpd[4519]: NOQUEUE: reject: RCPT from localhost[127.0.0.1]:
+</I>&gt;<i> 550 5.1.1 &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">j.echter at mydomain.de</A>&gt;: Recipient address rejected:
+</I>&gt;<i> mydomain.de; from=&lt;&gt; to=&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">j.echter at mydomain.de</A>&gt; proto=SMTP
+</I>&gt;<i> helo=&lt;mehlbox.workgroup.local&gt;
+</I>&gt;<i> postfix/smtpd[4519]: disconnect from localhost[127.0.0.1]
+</I>&gt;<i> postfix/smtpd[4516]: NOQUEUE: reject: RCPT from localhost[127.0.0.1]:
+</I>&gt;<i> 550 5.1.1 &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">j.echter at mydomain.de</A>&gt;: Recipient address rejected:
+</I>&gt;<i> mydomain.de; from=&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">j.echter at mydomain.de</A>&gt; to=&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">j.echter at mydomain.de</A>&gt;
+</I>&gt;<i> proto=ESMTP helo=&lt;mehlbox.workgroup.local&gt;
+</I>&gt;<i> fetchmail[4514]: can't even send to <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">j.echter at echter-kuechen-elektro.de</A>!
+</I>&gt;<i> fetchmail[4514]:  flushed
+</I>&gt;<i> postfix/smtpd[4516]: disconnect from localhost[127.0.0.1]
+</I>&gt;<i> fetchmail[4514]: sleeping at Fr 25 Mai 2012 14:42:00 CEST for 300 seconds
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> my fetchmailrc looks like this:
+</I>&gt;<i> 
+</I>&gt;<i> set postmaster &quot;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">j.echter at mydomain.de</A>&quot;
+</I>&gt;<i> set bouncemail
+</I>&gt;<i> set no spambounce
+</I>&gt;<i> set properties &quot;&quot;
+</I>&gt;<i> set syslog
+</I>&gt;<i> set daemon 300
+</I>&gt;<i> 
+</I>&gt;<i> poll mailserver.external.de with proto IMAP
+</I>&gt;<i>        user '<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">test at mydomain.de</A>' there with password 's3cr3t' is
+</I>&gt;<i> '<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">test at mydomain.de</A>' here ssl
+</I>
+Add &quot;sslcertck&quot; at the end so that fetchmail actually verifies certificates.
+
+You will need to select a way to teach Postfix that it properly maps
+<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">test at mydomain.de</A>, or mydomain.de, is a local address - but what exactly
+you need to configure depends so much on your desired overall setup that
+it's not easily explained here.  Important factors are if your Postfix
+needs to send mail to &quot;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">another.user at mydomain.de</A>&quot; externally or deliver
+internally, for instance, or if other users in &quot;mydomain.de&quot; are
+supposed to download their mail from your own Postfix/IMAP/fetchmail
+computer or your provider's mail server, and if all your mail users have
+UNIX accounts, or you are offering virtual hosting instead.
+
+This is more of a Postfix problem than a fetchmail problem.
+
+&gt;<i> is the problem because i told fetchmail to send mails also to
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">test at mydomain.de</A>?
+</I>
+The problem is because you did not tell Postfix (how) to handle mail for
+<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">test at mydomain.de.</A> Fetchmail will usually deliver to <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">j.echter at localhost.</A>
+
+Note that example.org is reserved and available for documentation, and
+you should use that when making up domains.
+
+&gt;<i> postfix looks up users via ldap, which works afaik
+</I>&gt;<i> 
+</I>&gt;<i> postmap -q <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">test at mydomain.de</A> ldap:/etc/postfix/ldap-aliases.cf
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">test at mydomain.de</A>
+</I>
+The interesting question is not how it maps users, but how it maps
+addresses to mailboxes or maildirs.
+<A HREF="http://www.postfix.org/documentation.html">http://www.postfix.org/documentation.html</A> is full of documentation, and
+<A HREF="http://www.postfix.org/SOHO_README.html">http://www.postfix.org/SOHO_README.html</A> might be a useful starting point.
+
+HTH
+Matthias
+</PRE>
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003138.html">[fetchmail-users] getting fetchmail to work with postfix
+</A></li>
+	<LI>Next message: <A HREF="003141.html">[fetchmail-users] [tor-talk] Socks5 and msmtp
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3140">[ date ]</a>
+              <a href="thread.html#3140">[ thread ]</a>
+              <a href="subject.html#3140">[ subject ]</a>
+              <a href="author.html#3140">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

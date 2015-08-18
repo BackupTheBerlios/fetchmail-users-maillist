@@ -1,0 +1,143 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Fetchmail crash (SIGSERV)
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2006-March/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Fetchmail%20crash%20%28SIGSERV%29&In-Reply-To=%3Cm3k6anxwkd.fsf%40merlin.emma.line.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000323.html">
+   <LINK REL="Next"  HREF="000326.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Fetchmail crash (SIGSERV)</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Fetchmail%20crash%20%28SIGSERV%29&In-Reply-To=%3Cm3k6anxwkd.fsf%40merlin.emma.line.org%3E"
+       TITLE="[fetchmail-users] Fetchmail crash (SIGSERV)">matthias.andree at gmx.de
+       </A><BR>
+    <I>Tue Mar 21 23:27:46 CET 2006</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000323.html">[fetchmail-users] Fetchmail crash (SIGSERV)
+</A></li>
+        <LI>Next message: <A HREF="000326.html">[fetchmail-users] Fetchmail crash (SIGSERV)
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#325">[ date ]</a>
+              <a href="thread.html#325">[ thread ]</a>
+              <a href="subject.html#325">[ subject ]</a>
+              <a href="author.html#325">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Voldemar &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">deka at itc.tsu.ru</A>&gt; writes:
+
+&gt;<i> $ uname -a                                                                      
+</I>&gt;<i> FreeBSD netadmin.ssmu.ru 4.11-RELEASE FreeBSD 4.11-RELEASE #3: Wed Aug 17 10:31:
+</I>&gt;<i> 07 OMSST 2005     <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">root at netadmin.ssmu.ru</A>:/usr/src/sys/compile/netadmin  i386
+</I>...
+&gt;<i> $ gdb fetchmail
+</I>&gt;<i> ...[skip]...
+</I>&gt;<i> Program received signal SIGSEGV, Segmentation fault.
+</I>&gt;<i> 0x8061c20 in xstrdup (s=0x0) at xmalloc.c:56
+</I>&gt;<i> 56          p = (char *) xmalloc(strlen(s)+1);
+</I>&gt;<i> (gdb) backtrace
+</I>&gt;<i> #0  0x8061c20 in xstrdup (s=0x0) at xmalloc.c:56
+</I>&gt;<i> #1  0x805478d in do_session (ctl=0x8081600, proto=0x80642c0, maxfetch=0) at driver.c:1030
+</I>&gt;<i> #2  0x8055573 in do_protocol (ctl=0x8081600, proto=0x80642c0) at driver.c:1630
+</I>
+[...]
+
+&gt;<i> It seems to me, the function getaddrinfo returns 0 (no error),
+</I>&gt;<i> but thus res-&gt;ai_canonname == 0, that leads SIGSERV at attempt
+</I>&gt;<i> strcpy(0) in xmalloc.c:xstrdup.
+</I>
+Yes, that's what I'd have guessed from your backtrace, too.  BTW, thanks
+for a detailed report. I'd wish more reports were as complete as yours
+was - very useful. This saved me any asking further questions.
+
+&gt;<i> I do not know, whether is a mistake: fetchmail or incorrect behaviour
+</I>&gt;<i>libc.
+</I>
+Probably unfortunate coincidence. FreeBSD probably implemented
+getaddrinfo() (from KAME perhaps) before IEEE Std 1003.1-2001 stipulated
+the final specification, and someone forgot to update it to the
+standard.
+
+&gt;<i>My variant of patch (not assured of its correctness, however fetchmail
+</I>&gt;<i>starts to work normally):
+</I>&gt;<i>
+</I>&gt;<i> $ diff driver.c ../driver.c
+</I>&gt;<i> 1030c1030,1034                                                               
+</I>&gt;<i> &lt;                   ctl-&gt;server.truename = xstrdup(res-&gt;ai_canonname);       
+</I>&gt;<i> ---                                                                          
+</I>&gt;&gt;<i>                   if (res-&gt;ai_canonname) {                                 
+</I>&gt;&gt;<i>                     ctl-&gt;server.truename = xstrdup(res-&gt;ai_canonname);     
+</I>&gt;&gt;<i>                   } else {                                                 
+</I>&gt;&gt;<i>                     ctl-&gt;server.truename = xstrdup(ctl-&gt;server.queryname); 
+</I>&gt;&gt;<i>                   };      
+</I>
+&#1057;&#1087;&#1072;&#1089;&#1080;&#1073;&#1086;!
+
+I had read IEEE Std 1003.1-2001, which requests that the implementation
+copies the nodename if no canonical name is available.  FreeBSD 4.11's
+implementation however does not do that.
+
+Please file a bug report (use send-pr and file against &quot;standards&quot;) for
+FreeBSD 4.11, too. Mention that the standard deviation causes
+application crashes, and ask politely that they update their
+getaddrinfo() for standards conformance. (And please send me the PR
+number, so I may add further FreeBSD versions should 6.0 also turn out
+to be noncompliant.)
+
+I have taken your patch (with trivial modifications, and with a comment
+added) for fetchmail-6.3.3. It is already committed to SVN. Thanks a lot.
+
+(I suspect other IPv6 enabled BSD implementations might suffer from the
+same deviation from the standard, so I'd rather work around this in
+fetchmail.)
+
+In the future, when sending patches, please use &quot;diff -u&quot; or &quot;diff -c&quot;
+to generate a &quot;unified&quot; or &quot;context&quot; patch. These work even if line
+numbers change, as was the case here.
+
+Finally, can I ask you for your full name (best two times: 1-in original
+Cyrillic, 2-with English transcription) to be mentioned in the &quot;NEWS&quot;
+file, or would you prefer to be listed as &quot;Voldemar&quot;?
+
+Thanks again,
+
+I've set Reply-To: to my personal address, as I think this is completely
+covered as far as the mailing list is concerned.
+
+-- 
+Matthias Andree
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000323.html">[fetchmail-users] Fetchmail crash (SIGSERV)
+</A></li>
+	<LI>Next message: <A HREF="000326.html">[fetchmail-users] Fetchmail crash (SIGSERV)
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#325">[ date ]</a>
+              <a href="thread.html#325">[ thread ]</a>
+              <a href="subject.html#325">[ subject ]</a>
+              <a href="author.html#325">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

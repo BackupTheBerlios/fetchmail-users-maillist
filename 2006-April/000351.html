@@ -1,0 +1,193 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Re: [fetchmail]fetchmail 6.3.4 stable release
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2006-April/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Re%3A%20%5Bfetchmail%5Dfetchmail%206.3.4%20stable%20release&In-Reply-To=%3C20060418224306.GA17087%40merlin.emma.line.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000350.html">
+   <LINK REL="Next"  HREF="000343.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Re: [fetchmail]fetchmail 6.3.4 stable release</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Re%3A%20%5Bfetchmail%5Dfetchmail%206.3.4%20stable%20release&In-Reply-To=%3C20060418224306.GA17087%40merlin.emma.line.org%3E"
+       TITLE="[fetchmail-users] Re: [fetchmail]fetchmail 6.3.4 stable release">matthias.andree at gmx.de
+       </A><BR>
+    <I>Wed Apr 19 00:43:06 CEST 2006</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000350.html">[fetchmail-users] Re: [fetchmail]fetchmail 6.3.4 stable release
+</A></li>
+        <LI>Next message: <A HREF="000343.html">[fetchmail-users] Getting only messages older than X days
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#351">[ date ]</a>
+              <a href="thread.html#351">[ thread ]</a>
+              <a href="subject.html#351">[ subject ]</a>
+              <a href="author.html#351">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Tue, 18 Apr 2006, Dale Pontius wrote:
+
+&gt;<i> Matthias Andree wrote:
+</I>&gt;<i> &gt;Dale Pontius &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">pontius at kimon.btv.ibm.com</A>&gt; writes:
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt;&gt;Hello,
+</I>&gt;<i> &gt;&gt;I realize that you hate multidrop, and generally disparage and deprecate
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt;That would be &quot;procmail&quot;, and that antipathy is based on technical reasons.
+</I>&gt;<i> &gt;
+</I>&gt;<i> No, I was talking fetchmail's &quot;multidrop&quot;, not maildrop or procmail. As 
+</I>&gt;<i> a matter of fact, I AM using procmail, but that's more of an historical 
+</I>&gt;<i> accident than preference.
+</I>
+Ah, sorry, missed that in the late evening and misread it as maildrop
+(the MDA). My apologies for not reading and thinking more carefully.
+
+I'm not against multidrop as such; but several false decisions have been
+made in fetchmail's history that need to be corrected to make fetchmail
+reliable, and fetchmail has for far too long deluded users into
+believing multidrop were an easy thing that would &quot;just work&quot; with
+second-guessing aliases and recipients in place when in fact the
+retrieved messages had been long past recovery and fetchmail had been
+fighting lost cases rather than telling the user &quot;sorry, pal, this can't
+work&quot;.
+
+And fetchmail's logging wasn't (and still isn't) sufficient to log all
+the relevant data obtained to make fetchmail's decisions traceable,
+which makes debugging such automatic setups next to impossible. If DNS
+data changes or servers go temporarily out of synch, retracing this
+situation in order to answer questions about the past, as in &quot;why did
+fetchmail decide this way&quot; are unanswerable. I think such a state is
+worse than asking a bit more explicit configuration from the user.
+
+So I'll rather get rid of using information that can change every minute
+and is thus hard to trace and replace it by hardcoded configuration
+where that is sensible. It's also easier for the user to understand why
+fetchmail did things a certain way if it's based on a configuration the
+user made.
+
+When I was rather new to fetchmail, my girl-friend had an account with
+her own domain and domain forwards (qmail-style) but it took me quite a
+while until I got the multidrop working right.
+
+I think fetchmail could also use a revision of its configuration that is
+more helpful in terms of guiding the user rather than slaying him with
+the vast configuration space that it offers and just a short option
+reference. That's nothing that can happen overnight, and if anyone is
+willing to help with the documentation job, (s)he'll be more than
+welcome.
+
+To/Cc and DNS guessing will be removed and explicit envelope and domain
+configuration will become necessary for POP3/IMAP multidrop, but
+multidrop in general will remain. I may require explicit
+singledrop/multidrop configuration per separate keyword so that
+fetchmail can validate the &quot;users [...] here&quot; lists more strictly, if
+that is desired.
+
+&gt;<i> When I moved my email over to my new 
+</I>&gt;<i> infrastructure, (new server, Postfix instead of Exim, Dovecot instead of 
+</I>&gt;<i> UWash IMAP, etc.) I considered replacing procmail with maildrop. I got 
+</I>&gt;<i> the definite impression that maildrop is the better tool, but by this 
+</I>&gt;<i> time my procmail rules are all working, and I didn't feel like fussing 
+</I>&gt;<i> with it. Maybe some time, when I have time, I'll reexamine this issue.
+</I>
+Well, error handling is the point where procmail setups fall short. At
+the very least, add
+
+:<i>0e
+</I>{ EXITCODE=75 HOST= }
+
+after each delivering recipe to make sure messages remain in the queue
+or on the server if there are problems (out of quota, disk full), rather
+than having messages misfiled.
+
+&gt;<i> One other reason, now obsolete... For a while I was running procmail 
+</I>&gt;<i> under xinetd as an lmtp server. The basic idea was to completely chroot 
+</I>&gt;<i> postfix, instead of having to leave the local delivery part un-chrooted. 
+</I>&gt;<i> I eventually decided I'd rather have postfix local delivery un-chrooted 
+</I>&gt;<i> and running with elevated authority than procmail, even though both try 
+</I>&gt;<i> to drop privileges when possible. Now if maildrop had an lmtp mode...
+</I>
+Well, Postfix drops privileges early, so using Postfix and using
+procmail WITHOUT set-uid bit set should be pretty safe in terms of
+containing possible havoc to a certain user account while keeping the
+system (as the basis of everything) out of harm's way.
+
+Of course, if the .procmailrc (or .mailfilter, for that matter) does
+stupid things like injecting untrusted data into the shell, there isn't
+much Postfix or an LMTP wrapper could do about that.
+
+&gt;<i> As I said, the whole issue is fetchmail's multidrop mode. The rest of 
+</I>&gt;<i> your letter has satisfied my concerns quite nicely. It looks like that 
+</I>&gt;<i> work I did after the 6.3.2 upgrade was well worth it, and the right 
+</I>&gt;<i> thing to do. I'm guessing that when 6.3.4 makes it to Gentoo x86 I'll 
+</I>&gt;<i> have no problems with the upgrade.
+</I>
+Well, that is at least my intention for the 6.3.X releases - update from
+6.3.X to 6.3.X+N are supposed to be smooth.
+
+&gt;<i> &gt;The implicit automatic DNS lookups. &quot;aka&quot; will continue to work. The
+</I>&gt;<i> &gt;implicit lookups assume the POP3 or IMAP server were the same as the
+</I>&gt;<i> &gt;SMTP server of the ISP, which is often untrue nowadays.
+</I>
+&gt;<i> Interestingly enough, since I own a domain and have an email forwarding 
+</I>&gt;<i> service for all mail to that domain to be sent to my pop box at my ISP, 
+</I>&gt;<i> I find that I needed to add 'aka' statements for the domain-host's 
+</I>&gt;<i> forwarding machines. That made everything work *perfectly*, which it 
+</I>&gt;<i> never had before.
+</I>
+...and which is evidence that fetchmail's assumption that POP3/IMAP
+servers are the same as those recorded as MX (SMTP) servers simply
+doesn't hold in yet another individual case.
+
+&gt;<i> I suspect you also changed the &quot;-v -v&quot; debugging 
+</I>&gt;<i> information some, because this time it was absolutely clear what I 
+</I>&gt;<i> needed to do with 'aka' statements to make things work. I don't remember 
+</I>&gt;<i> the debugging information being that useful, before.
+</I>
+Well, not something that addressed this particular issue, but there have
+been some logging/verbosity fixes which should make &quot;-v&quot;, &quot;-vv&quot;, &quot;-vvv&quot;,
+&quot;--silent&quot; smoother than before. fetchmail is a long way from my calling
+it thoroughly logging though.
+
+I hope that clears more multidrop concerns up a bit. It pretty much
+looks to me like your configuration (based on &quot;aka&quot;) will be supported
+by future fetchmail versions.
+
+Kind regards,
+
+-- 
+Matthias Andree
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000350.html">[fetchmail-users] Re: [fetchmail]fetchmail 6.3.4 stable release
+</A></li>
+	<LI>Next message: <A HREF="000343.html">[fetchmail-users] Getting only messages older than X days
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#351">[ date ]</a>
+              <a href="thread.html#351">[ thread ]</a>
+              <a href="subject.html#351">[ subject ]</a>
+              <a href="author.html#351">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

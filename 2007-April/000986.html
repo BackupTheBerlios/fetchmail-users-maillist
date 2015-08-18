@@ -1,0 +1,161 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] fetchmail: message .....:1 was not the expected length (30792 actual != 30347 expected), not flushed
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2007-April/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%3A%20message%20.....%3A1%20was%20not%20the%20expected%0A%20length%20%2830792%20actual%20%21%3D%2030347%20expected%29%2C%20not%20flushed&In-Reply-To=%3C461F7928.30307%40applied.com.sg%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000978.html">
+   <LINK REL="Next"  HREF="000987.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] fetchmail: message .....:1 was not the expected length (30792 actual != 30347 expected), not flushed</H1>
+    <B>Otto Rodusek (AP-SGP)</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%3A%20message%20.....%3A1%20was%20not%20the%20expected%0A%20length%20%2830792%20actual%20%21%3D%2030347%20expected%29%2C%20not%20flushed&In-Reply-To=%3C461F7928.30307%40applied.com.sg%3E"
+       TITLE="[fetchmail-users] fetchmail: message .....:1 was not the expected length (30792 actual != 30347 expected), not flushed">otto at applied.com.sg
+       </A><BR>
+    <I>Fri Apr 13 14:35:52 CEST 2007</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000978.html">[fetchmail-users] Fetchmail Socket error on a satellite	connection
+</A></li>
+        <LI>Next message: <A HREF="000987.html">[fetchmail-users] fetchmail: message .....:1 was not the expected length (30792 actual != 30347 expected), not flushed
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#986">[ date ]</a>
+              <a href="thread.html#986">[ thread ]</a>
+              <a href="subject.html#986">[ subject ]</a>
+              <a href="author.html#986">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>HI,
+
+I'm having some minor problems issues with fetchmail v6.3.5.
+
+(My system is a SUSE 10.2 server, I connect to my ISP every 10 minutes 
+and use fetchmail to download all mail from the ISP server. The ISP 
+server is FREEBSD using QMAIL/SPAMASSASSIN/CLAMAV. I use a single 
+&quot;catchall&quot; account on the ISP side, use fetchmail to retrieve to my 
+server and then distribute to correct users.
+
+This only happens on junk mails and never on &quot;real&quot; mail. Is there any 
+parameter in fetchmail (that I'm not aware of or undocumented) that will 
+ignore the size error, download the mail to my server and delete the 
+message from the ISP after download?? I have read the FAQ regarding this 
+error and QMAIL - but unfortunately changing ISP is not an option and 
+the ISP is not about to make major changes just for me.
+
+Is there any possible solution to this?? (Currently I have to regularly 
+login to the webmail access on the ISP and manually clean those emails).
+
+Any useful suggestions would be appreciated.
+
+Much Thanks.
+
+Regards. Otto Rodusek.
+
+Contents of fetchmailrc:
+================
+poll mail.sg.gs     protocol pop3 username <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">rootbag at amb.com.sg</A> password 
+mypassword to <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">rootbag at amb.com.sg</A>
+
+Log of fetchmail -vvv
+===============
+# fetchmail -vvv -K -F -f /menu/fetchmailrc.amb.com.sg
+
+fetchmail: 6.3.5 querying mail.sg.gs (protocol POP3) at Fri Apr 13 
+20:12:52 2007: poll started
+Trying to connect to 203.175.172.6/110...connected.
+fetchmail: POP3&lt; +OK &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">47037.1176466369 at sg.gs</A>&gt;
+fetchmail: POP3&gt; CAPA
+fetchmail: POP3&lt; -ERR authorization first
+fetchmail: authorization first
+fetchmail: Repoll immediately on <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">rootbag at amb.com.sg</A>@mail.sg.gs
+Trying to connect to 203.175.172.6/110...connected.
+fetchmail: POP3&lt; +OK &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">47039.1176466369 at sg.gs</A>&gt;
+fetchmail: POP3&gt; USER <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">rootbag at amb.com.sg</A>
+fetchmail: POP3&lt; +OK
+fetchmail: POP3&gt; PASS *
+fetchmail: POP3&lt; +OK
+fetchmail: selecting or re-polling default folder
+fetchmail: POP3&gt; STAT
+fetchmail: POP3&lt; +OK 1 30347
+fetchmail: POP3&gt; LAST
+fetchmail: POP3&lt; +OK 0
+1 message for <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">rootbag at amb.com.sg</A> at mail.sg.gs (30347 octets).
+fetchmail: POP3&gt; LIST 1
+fetchmail: POP3&lt; +OK 1 30347
+fetchmail: POP3&gt; TOP 1 99999999
+fetchmail: POP3&lt; +OK
+reading message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">rootbag at amb.com.sg</A>@mail.sg.gs:1 of 1 (30347 octets)
+About to rewrite Return-Path: &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">allhailjeinny at click4solutions.com</A>&gt;
+Rewritten version is Return-Path: &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">allhailjeinny at click4solutions.com</A>&gt;
+
+About to rewrite From: &quot;Joya Webb&quot; &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">allhailjeinny at click4solutions.com</A>&gt;
+Rewritten version is From: &quot;Joya Webb&quot; &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">allhailjeinny at click4solutions.com</A>&gt;
+
+About to rewrite To: &quot;Linda Freeman&quot; &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">qc2 at amb.com.sg</A>&gt;
+Rewritten version is To: &quot;Linda Freeman&quot; &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">qc2 at amb.com.sg</A>&gt;
+
+Trying to connect to 127.0.0.1/25...connected.
+fetchmail: SMTP&lt; 220 amb.com.sg ESMTP
+fetchmail: SMTP&gt; EHLO amb.com.sg
+fetchmail: SMTP&lt; 250-amb.com.sg
+fetchmail: SMTP&lt; 250-STARTTLS
+fetchmail: SMTP&lt; 250-PIPELINING
+fetchmail: SMTP&lt; 250-8BITMIME
+fetchmail: SMTP&lt; 250-SIZE 0
+fetchmail: SMTP&lt; 250 AUTH LOGIN PLAIN CRAM-MD5
+fetchmail: forwarding to localhost
+fetchmail: SMTP&gt; MAIL FROM:&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">allhailjeinny at click4solutions.com</A>&gt; SIZE=30347
+fetchmail: SMTP&lt; 451 DNS temporary failure (#4.5.1 - chkuser)
+fetchmail: SMTP error: 451 DNS temporary failure (#4.5.1 - chkuser)
+fetchmail: SMTP&gt; RSET
+fetchmail: SMTP&lt; 250 flushed
+............................fetchmail: message 
+<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">rootbag at amb.com.sg</A>@mail.sg.gs:1 was not the expected length (30792 
+actual != 30347 expected)
+ not flushed
+fetchmail: POP3&gt; QUIT
+fetchmail: POP3&lt; +OK
+fetchmail: SMTP&gt; QUIT
+fetchmail: SMTP&lt; 221 amb.com.sg
+fetchmail: 6.3.5 querying mail.sg.gs (protocol POP3) at Fri Apr 13 
+20:12:55 2007: poll completed
+fetchmail: not swapping UID lists, no UIDs seen this query
+fetchmail: Deleting fetchids file.
+fetchmail: normal termination, status 0
+fetchmail: Deleting fetchids file.
+===============================================================================================
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000978.html">[fetchmail-users] Fetchmail Socket error on a satellite	connection
+</A></li>
+	<LI>Next message: <A HREF="000987.html">[fetchmail-users] fetchmail: message .....:1 was not the expected length (30792 actual != 30347 expected), not flushed
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#986">[ date ]</a>
+              <a href="thread.html#986">[ thread ]</a>
+              <a href="subject.html#986">[ subject ]</a>
+              <a href="author.html#986">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

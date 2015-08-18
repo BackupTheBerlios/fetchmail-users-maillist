@@ -1,0 +1,76 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] IMAP fetch from MS Exchange
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2012-October/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20IMAP%20fetch%20from%20MS%20Exchange&In-Reply-To=%3C235313F907EF584E973D144CCE180B1B1ED569C053%40EMEADALEXMB1.corp.nai.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003265.html">
+   <LINK REL="Next"  HREF="003268.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] IMAP fetch from MS Exchange</H1>
+    <B>Jonathan_Oulds at McAfee.com</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20IMAP%20fetch%20from%20MS%20Exchange&In-Reply-To=%3C235313F907EF584E973D144CCE180B1B1ED569C053%40EMEADALEXMB1.corp.nai.org%3E"
+       TITLE="[fetchmail-users] IMAP fetch from MS Exchange">Jonathan_Oulds at McAfee.com
+       </A><BR>
+    <I>Wed Oct 31 14:10:38 CET 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003265.html">[fetchmail-users] fetchmail apprently uses mboxo format, which irrecoverably corrupts mail (NOTABUG... in fetchmail)
+</A></li>
+        <LI>Next message: <A HREF="003268.html">[fetchmail-users] IMAP fetch from MS Exchange
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3267">[ date ]</a>
+              <a href="thread.html#3267">[ thread ]</a>
+              <a href="subject.html#3267">[ subject ]</a>
+              <a href="author.html#3267">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hello,
+
+I am new to fetchmail, so please bear with me if I am making a silly mistake here.
+
+I wish to retrieve e-mail from a Microsoft Exchange server that has been configured for IMAP.  In my fetchmailrc file I can specify the remote server, user and password however the e-mail I wish to access is not simply <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">user at server.</A>
+
+In our setup service accounts are given access to one or more mailboxes, but I don't see how I can specify the mailbox I wish to access e.g. <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">svcacct at myorg.com</A>&lt;mailto:<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">svcacct at myorg.com</A>&gt;  may have access to <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">mailbox1 at orga.com</A>&lt;mailto:<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">mailbox1 at orga.com</A>&gt;, <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">mailbox2 at orgb.com</A>&lt;mailto:<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">mailbox2 at orgb.com</A>&gt; etc.
+
+My fetchmail looks something like this
+poll imap.server.uk protocol IMAP user <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">svcacct at myorg.com</A>&lt;mailto:<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">svcacct at myorg.com</A>&gt; pass &quot;12345&quot; is local-user
+
+This obviously fails as there is no mail account for <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">svcacct at myorg.com</A>&lt;mailto:<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">svcacct at myorg.com</A>&gt; or even <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">svcacct at imap.server.uk</A>&lt;mailto:<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">svcacct at imap.server.uk</A>&gt;, however there is mail waiting to be picked up in <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">mailbox1 at orga.com</A>
+
+I'm sure I am missing something here, is there any solution to this?
+Regards
+</PRE>
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003265.html">[fetchmail-users] fetchmail apprently uses mboxo format, which irrecoverably corrupts mail (NOTABUG... in fetchmail)
+</A></li>
+	<LI>Next message: <A HREF="003268.html">[fetchmail-users] IMAP fetch from MS Exchange
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3267">[ date ]</a>
+              <a href="thread.html#3267">[ thread ]</a>
+              <a href="subject.html#3267">[ subject ]</a>
+              <a href="author.html#3267">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

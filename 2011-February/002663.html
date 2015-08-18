@@ -1,0 +1,103 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] log file care and maintenance
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2011-February/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20log%20file%20care%20and%20maintenance&In-Reply-To=%3C20110219074351.4357fb11%40scorpio%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002662.html">
+   <LINK REL="Next"  HREF="002664.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] log file care and maintenance</H1>
+    <B>Jerry</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20log%20file%20care%20and%20maintenance&In-Reply-To=%3C20110219074351.4357fb11%40scorpio%3E"
+       TITLE="[fetchmail-users] log file care and maintenance">fetchmail.user at seibercom.net
+       </A><BR>
+    <I>Sat Feb 19 13:43:51 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002662.html">[fetchmail-users] .fetchmailrc syntax
+</A></li>
+        <LI>Next message: <A HREF="002664.html">[fetchmail-users] syntax error
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2663">[ date ]</a>
+              <a href="thread.html#2663">[ thread ]</a>
+              <a href="subject.html#2663">[ subject ]</a>
+              <a href="author.html#2663">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>According to the man page:
+
+The -L &lt;filename&gt; or --logfile &lt;filename&gt; option (keyword: set logfile)
+       is only effective when fetchmail is detached and in daemon  mode.  Note
+       that  the  logfile  must exist before fetchmail is run, you can use the
+       touch(1) command with the filename as its sole argument to create it.
+       This option allows you to redirect status  messages  into  a  specified
+       logfile  (follow  the  option  with  the logfile name).  The logfile is
+       opened for append, so previous messages aren't deleted.  This  is  pri-
+       marily  useful  for  debugging configurations. Note that fetchmail does
+       not detect if the logfile is rotated, the logfile is only  opened  once
+       when fetchmail starts. You need to restart fetchmail after rotating the
+       logfile and before compressing it (if applicable).
+
+I have had problems in the past with either forgetting to create the
+log file prior to running fetchmail or creating it with the wrong user
+or permissions, or rotating the file and not restarting fetchmail. I
+doubt if I am the only one to have made those stupid mistakes either;
+although it is possible.
+
+Since fetchmail does notice if the config file has been changed and
+takes the appropriate action if it has, why can it not also take the
+same approach to its log file. Most programs I use create a log file if
+it does not all ready exist. Why does fetchmail lack this ability?
+
+Programs such as dovecot which are running as daemon have no problem if
+there log file is rotated as long as they receive the correct signal
+number; in this case &quot;30&quot;. Couldn't fetchmail be made to operate in a
+similar manner?
+
+By the way, I love fetchmail. I was just wondering why it seems to
+operate in a manner not consistent with other *.nix products.
+
+
+-- 
+Jerry &#9996;
+<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">Fetchmail.user at seibercom.net</A>
+
+Disclaimer: off-list followups get on-list replies or get ignored.
+Please do not ignore the Reply-To header.
+__________________________________________________________________
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002662.html">[fetchmail-users] .fetchmailrc syntax
+</A></li>
+	<LI>Next message: <A HREF="002664.html">[fetchmail-users] syntax error
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2663">[ date ]</a>
+              <a href="thread.html#2663">[ thread ]</a>
+              <a href="subject.html#2663">[ subject ]</a>
+              <a href="author.html#2663">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

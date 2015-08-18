@@ -1,0 +1,313 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Yahoo Plus SSL Issue
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2010-June/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Yahoo%20Plus%20SSL%20Issue&In-Reply-To=%3C20100630115749.GA9344%40stryder.lamafam.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002397.html">
+   <LINK REL="Next"  HREF="002399.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Yahoo Plus SSL Issue</H1>
+    <B>Gerry LaMontagne</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Yahoo%20Plus%20SSL%20Issue&In-Reply-To=%3C20100630115749.GA9344%40stryder.lamafam.org%3E"
+       TITLE="[fetchmail-users] Yahoo Plus SSL Issue">gjlama94 at gmail.com
+       </A><BR>
+    <I>Wed Jun 30 13:57:50 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002397.html">[fetchmail-users] fetchmail stops unexpected
+</A></li>
+        <LI>Next message: <A HREF="002399.html">[fetchmail-users] Is fetchmail GPLv2 or v3?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2398">[ date ]</a>
+              <a href="thread.html#2398">[ thread ]</a>
+              <a href="subject.html#2398">[ subject ]</a>
+              <a href="author.html#2398">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Greetings-
+
+I'm having an intermittent issue with establishing an SSL connection to
+the pop server for Yahoo's Plus Mail.  First, the introductions:
+
+System- Debian/Squeeze running fetchmail v6.3.17-1 and openssl v0.9.8o-1
+
+The error is simply a common name mismatch.  The fetchmailrc line is as
+follows:
+
+    poll plus.pop.mail.yahoo.com with proto POP3 port 995
+            user '<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">user at yahoo.com</A>' there with password 'password' is 'user' here options keep ssl sslcertck sslcertpath /etc/ssl/certs/
+
+It is setup as a cron job that runs every hour. The crontab entry is as
+follows:
+
+    53 * * * * fetchmail -s || [ $? -eq 1 ]
+
+
+The error I get from cron is as follows:
+
+    fetchmail: Server CommonName mismatch: pop.mail.yahoo.com != plus.pop.mail.yahoo.com
+    4818:error:14090086:SSL routines:SSL3_GET_SERVER_CERTIFICATE:certificate verify failed:s3_clnt.c:982:
+    fetchmail: SSL connection failed. i
+    fetchmail: socket error while fetching from <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">user at yahoo.com</A>@plus.pop.mail.yahoo.com
+    fetchmail: Query status=2 (SOCKET)
+
+If I use the following openssl command:
+
+    openssl s_client -connect plus.pop.mail.yahoo.com:995 -CApath /etc/ssl/certs
+
+The server certificate appears to verify OK.
+
+In my testing, I've noticed a pattern where the error occurs and it is
+repeatable, even from the command line.  But once I execute the openssl
+command as above, that seems to uncork the system for a period of time,
+thought not permanently as it does recur.  One thing I did note is that
+when everything works, the server common name is seen as
+*.pop.mail.yahoo.com, whereas when it doesn't the common name is as
+pop.mail.yahoo.com.
+
+Further background- I know that SSL works generally.  I have fetchmail
+working with several other POP servers using SSL with the identical
+sslcertpath setting.  (Note that the openssl command uses the same cert
+path- just to make sure it's OK).  The Yahoo Plus account worked fine
+for many years now, until this.  I did work with a Yahoo tech person for
+a bit, but they weren't of much help.  I actually thought that Yahoo
+might have created errant certificates, but after some searching, it
+seems that the wildcard in the common name is allowed.
+
+The output for 'env LC_ALL=C fetchmail -V' is attached as diag1 (I've
+modified passwords and usernames to protect the innocent).  The output
+for 'env LC_ALL=C fetchmail --nodetach -vvv --nosyslog' is included as
+diag2- thought this particular grab does not show the error(I had
+uncorked it using the openssl command).
+
+I'll be happy to provide more information if you require it.
+
+Regards-
+Gerry LaMontagne
+
+
+-------------- next part --------------
+This is fetchmail release 6.3.17+GSS+NTLM+SDPS+SSL+NLS+KRB5.
+
+Copyright (C) 2002, 2003 Eric S. Raymond
+Copyright (C) 2004 Matthias Andree, Eric S. Raymond,
+                   Robert M. Funk, Graham Wilson
+Copyright (C) 2005 - 2006, 2010 Sunil Shetye
+Copyright (C) 2005 - 2010 Matthias Andree
+Fetchmail comes with ABSOLUTELY NO WARRANTY. This is free software, and you
+are welcome to redistribute it under certain conditions. For details,
+please see the file COPYING in the source or documentation directory.
+
+Fallback MDA: (none)
+Linux stryder 2.6.32-5-amd64 #1 SMP Tue Jun 1 04:34:03 UTC 2010 x86_64 GNU/Linux
+Taking options from command line and /home/user/.fetchmailrc
+Idfile is /home/user/.fetchids
+Fetchmail will forward misaddressed multidrop messages to root.
+Fetchmail will direct error mail to the postmaster.
+Fetchmail will treat permanent errors as temporary (keep messages).
+Options for retrieving from <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">user at yahoo.com</A>@plus.pop.mail.yahoo.com:
+  True name of server is plus.pop.mail.yahoo.com.
+  This host will be queried when no host is specified.
+  Password = &quot;password&quot;.
+  Protocol is POP3 (using service 995).
+  All available authentication methods will be tried.
+  SSL encrypted sessions enabled.
+  SSL server certificate checking enabled.
+  SSL trusted certificate directory: /etc/ssl/certs/
+  Server nonresponse timeout is 300 seconds (default).
+  Default mailbox selected.
+  Only new messages will be retrieved (--all off).
+  Fetched messages will be kept on the server (--keep on).
+  Old messages will not be flushed before message retrieval (--flush off).
+  Oversized messages will not be flushed before message retrieval (--limitflush off).
+  Rewrite of server-local addresses is enabled (--norewrite off).
+  Carriage-return stripping is disabled (stripcr off).
+  Carriage-return forcing is disabled (forcecr off).
+  Interpretation of Content-Transfer-Encoding is enabled (pass8bits off).
+  MIME decoding is disabled (mimedecode off).
+  Idle after poll is disabled (idle off).
+  Nonempty Status lines will be kept (dropstatus off)
+  Delivered-To lines will be kept (dropdelivered off)
+  No received-message limit (--fetchlimit 0).
+  Fetch message size limit is 100 (--fetchsizelimit 100).
+  Do binary search of UIDs during 3 out of 4 polls (--fastuidl 4).
+  No SMTP message batch limit (--batchlimit 0).
+  No forced expunges (--expunge 0).
+  Messages will be SMTP-forwarded to: localhost (default)
+  Spam-blocking disabled
+  No pre-connection command.
+  No post-connection command.
+  Single-drop mode: 1 local name recognized.
+	user
+  No interface requirement specified.
+  No monitor interface specified.
+  No plugin command specified.
+  No plugout command specified.
+  No UIDs saved from this host.
+  No poll trace information will be added to the Received header.
+  Messages with bad headers will be rejected.
+Options for retrieving from <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">user at gmail.com</A>@pop.gmail.com:
+  True name of server is pop.gmail.com.
+  This host will be queried when no host is specified.
+  Password = &quot;password&quot;.
+  Protocol is POP3 (using default port).
+  All available authentication methods will be tried.
+  SSL encrypted sessions enabled.
+  SSL server certificate checking enabled.
+  SSL trusted certificate directory: /etc/ssl/certs/
+  Server nonresponse timeout is 300 seconds (default).
+  Default mailbox selected.
+  Only new messages will be retrieved (--all off).
+  Fetched messages will be kept on the server (--keep on).
+  Old messages will not be flushed before message retrieval (--flush off).
+  Oversized messages will not be flushed before message retrieval (--limitflush off).
+  Rewrite of server-local addresses is enabled (--norewrite off).
+  Carriage-return stripping is disabled (stripcr off).
+  Carriage-return forcing is disabled (forcecr off).
+  Interpretation of Content-Transfer-Encoding is enabled (pass8bits off).
+  MIME decoding is disabled (mimedecode off).
+  Idle after poll is disabled (idle off).
+  Nonempty Status lines will be kept (dropstatus off)
+  Delivered-To lines will be kept (dropdelivered off)
+  No received-message limit (--fetchlimit 0).
+  Fetch message size limit is 100 (--fetchsizelimit 100).
+  Do binary search of UIDs during 3 out of 4 polls (--fastuidl 4).
+  No SMTP message batch limit (--batchlimit 0).
+  No forced expunges (--expunge 0).
+  Messages will be SMTP-forwarded to: localhost (default)
+  Spam-blocking disabled
+  No pre-connection command.
+  No post-connection command.
+  Single-drop mode: 1 local name recognized.
+	user
+  No interface requirement specified.
+  No monitor interface specified.
+  No plugin command specified.
+  No plugout command specified.
+  1 UIDs saved.
+	GmailId129799cdb3897ad6
+  No poll trace information will be added to the Received header.
+  Messages with bad headers will be rejected.
+Options for retrieving from <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">wife at lamafam.org</A>@host384.hostmonster.com:
+  True name of server is host384.hostmonster.com.
+  This host will be queried when no host is specified.
+  Password = &quot;password&quot;.
+  Protocol is POP3 (using default port).
+  All available authentication methods will be tried.
+  SSL encrypted sessions enabled.
+  SSL server certificate checking enabled.
+  SSL trusted certificate directory: /etc/ssl/certs/
+  Server nonresponse timeout is 300 seconds (default).
+  Default mailbox selected.
+  Only new messages will be retrieved (--all off).
+  Fetched messages will be kept on the server (--keep on).
+  Old messages will not be flushed before message retrieval (--flush off).
+  Oversized messages will not be flushed before message retrieval (--limitflush off).
+  Rewrite of server-local addresses is enabled (--norewrite off).
+  Carriage-return stripping is disabled (stripcr off).
+  Carriage-return forcing is disabled (forcecr off).
+  Interpretation of Content-Transfer-Encoding is enabled (pass8bits off).
+  MIME decoding is disabled (mimedecode off).
+  Idle after poll is disabled (idle off).
+  Nonempty Status lines will be kept (dropstatus off)
+  Delivered-To lines will be kept (dropdelivered off)
+  No received-message limit (--fetchlimit 0).
+  Fetch message size limit is 100 (--fetchsizelimit 100).
+  Do binary search of UIDs during 3 out of 4 polls (--fastuidl 4).
+  No SMTP message batch limit (--batchlimit 0).
+  No forced expunges (--expunge 0).
+  Messages will be SMTP-forwarded to: localhost (default)
+  Spam-blocking disabled
+  No pre-connection command.
+  No post-connection command.
+  Single-drop mode: 1 local name recognized.
+	user
+  No interface requirement specified.
+  No monitor interface specified.
+  No plugin command specified.
+  No plugout command specified.
+  No UIDs saved from this host.
+  No poll trace information will be added to the Received header.
+  Messages with bad headers will be rejected.
+-------------- next part --------------
+Old UID list from plus.pop.mail.yahoo.com: &lt;empty&gt;
+Old UID list from pop.gmail.com: GmailId129799cdb3897ad6
+Old UID list from host384.hostmonster.com: &lt;empty&gt;
+Scratch list of UIDs: &lt;empty&gt;
+fetchmail: 6.3.17 querying plus.pop.mail.yahoo.com (protocol POP3) at Tue Jun 29 22:58:17 2010: poll started
+Trying to connect to 206.190.53.40/995...connected.
+fetchmail: Certificate chain, from root to peer, starting at depth 1:
+fetchmail: Issuer Organization: Equifax
+fetchmail: Unknown Issuer CommonName
+fetchmail: Issuer Organization: Equifax
+fetchmail: Unknown Issuer CommonName
+fetchmail: Subject CommonName: *.pop.mail.yahoo.com
+fetchmail: plus.pop.mail.yahoo.com key fingerprint: F6:0D:A4:CA:91:A9:AC:88:4C:BF:D6:70:02:61:87:86
+fetchmail: POP3&lt; +OK hello from popgate 2.45.2 on pop109.plus.mail.re2.yahoo.com
+fetchmail: POP3&gt; CAPA
+fetchmail: POP3&lt; +OK CAPA list follows
+fetchmail: POP3&lt; EXPIRE NEVER
+fetchmail: POP3&lt; IMPLEMENTATION popgate 2.45.2
+fetchmail: POP3&lt; PIPELINING
+fetchmail: POP3&lt; RESP-CODES
+fetchmail: POP3&lt; TOP
+fetchmail: POP3&lt; UIDL
+fetchmail: POP3&lt; USER
+fetchmail: POP3&lt; .
+fetchmail: POP3&gt; USER <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">cnkl77 at yahoo.com</A>
+fetchmail: POP3&lt; +OK password required.
+fetchmail: POP3&gt; PASS *
+fetchmail: POP3&lt; +OK maildrop ready, 9211 messages (412797961 octets) (413404679)
+fetchmail: selecting or re-polling default folder
+fetchmail: POP3&gt; STAT
+fetchmail: POP3&lt; +OK 9211 412797961
+fetchmail: POP3&gt; LAST
+fetchmail: POP3&lt; +OK 9211
+9211 messages (9211 seen) for <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">cnkl77 at yahoo.com</A> at plus.pop.mail.yahoo.com (412797961 octets).
+fetchmail: POP3&gt; QUIT
+fetchmail: POP3&lt; +OK server signing off.
+fetchmail: 6.3.17 querying plus.pop.mail.yahoo.com (protocol POP3) at Tue Jun 29 22:58:17 2010: poll completed
+New UID list from plus.pop.mail.yahoo.com: &lt;empty&gt;
+fetchmail: not swapping UID lists, no UIDs seen this query
+fetchmail: Query status=1 (NOMAIL)
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: signature.asc
+Type: application/pgp-signature
+Size: 230 bytes
+Desc: Digital signature
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/fetchmail-users/attachments/20100630/79a7c9f9/attachment.pgp">https://lists.berlios.de/pipermail/fetchmail-users/attachments/20100630/79a7c9f9/attachment.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002397.html">[fetchmail-users] fetchmail stops unexpected
+</A></li>
+	<LI>Next message: <A HREF="002399.html">[fetchmail-users] Is fetchmail GPLv2 or v3?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2398">[ date ]</a>
+              <a href="thread.html#2398">[ thread ]</a>
+              <a href="subject.html#2398">[ subject ]</a>
+              <a href="author.html#2398">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

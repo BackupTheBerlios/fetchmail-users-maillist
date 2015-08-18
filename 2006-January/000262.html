@@ -1,0 +1,142 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] fetchmail 6.3.2 stable release with security relevant bugfixes
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2006-January/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%206.3.2%20stable%20release%20with%20security%20relevant%20bugfixes&In-Reply-To=%3C20060122131427.GA30391%40merlin.emma.line.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000261.html">
+   <LINK REL="Next"  HREF="000263.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] fetchmail 6.3.2 stable release with security relevant bugfixes</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%206.3.2%20stable%20release%20with%20security%20relevant%20bugfixes&In-Reply-To=%3C20060122131427.GA30391%40merlin.emma.line.org%3E"
+       TITLE="[fetchmail-users] fetchmail 6.3.2 stable release with security relevant bugfixes">matthias.andree at gmx.de
+       </A><BR>
+    <I>Sun Jan 22 14:14:27 CET 2006</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000261.html">[fetchmail-users] Exit Codes, a script and daemon
+</A></li>
+        <LI>Next message: <A HREF="000263.html">[fetchmail-users] fetchmail security announcement 2006-01 (CVE-2006-0321)
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#262">[ date ]</a>
+              <a href="thread.html#262">[ thread ]</a>
+              <a href="subject.html#262">[ subject ]</a>
+              <a href="author.html#262">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA1
+
+Greetings,
+
+I am announcing the release of fetchmail 6.3.2.
+
+This release fixes a denial of service bug/fetchmail crash after sending
+a bounce, adds a Maillennium (Comcast) workaround and fixes other bugs.
+(The security announcement will be mailed separately.)
+
+This is a recommended upgrade for all users of any previous fetchmail versions.
+
+The software is available from:
+&lt;<A HREF="https://developer.berlios.de/project/showfiles.php?group_id=1824&amp;release_id=8784">https://developer.berlios.de/project/showfiles.php?group_id=1824&amp;release_id=8784</A>&gt;
+
+These are the relevant changes in 6.3.2 since 6.3.1,
+unless otherwise noted, changes to this release were made by Matthias Andree.
+
+# SECURITY FIX IN THIS RELEASE
+* CVE-2006-0321: Fix segfault or bus error after bouncing a message.  This bug
+  was introduced into 6.3.0 when removing alloca(); it caused fetchmail to free
+  random memory.  Reported by Nathaniel W. Turner, Debian Bug#348747.
+  See fetchmail-SA-2006-01.txt
+
+# DEPRECATED FEATURES AND MAJOR INCOMPATIBLE CHANGE ADVANCE WARNINGS
+* The --enable-fallback (fall back to MDA if MTA unavailable) may be removed
+  from a future fetchmail release.
+
+# INCOMPATIBLE CHANGES
+* Automatically disable the POP3 TOP command if the greeting string contains
+  &quot;Maillennium POP3/PROXY server&quot;, which is used by comcast and known to
+  truncate messages after 80 kByte. Fall back to RETR, and complain if we had
+  used TOP otherwise (the warning is printed only once per server in daemon
+  mode).  Suggested by Ed Wilts.
+  *Note* that this means messages are marked read on these servers, which is a
+  deviation from how 6.3.1 behaved, but we have no alternative, comcast haven't
+  fixed this bug in years.  Preventing the loss of the remainder of the message
+  justifies this incompatible fix.
+* fetchmail, since 6.3.0, requires write permission to the directory holding the
+  idfile. See the amendment in the 6.3.0 MAJOR INCOMPATIBLE CHANGES section
+  below for details. The manual page was updated.
+
+# CHANGES RELEVANT TO PACKAGERS
+* The outdated BUGS document was removed from the distribution.
+* Added fetchmail-SA-2006-01.txt to the distribution.
+
+# BUG FIXES
+* SMTP/LMTP cleanup to fix these two bugs:
+  - switch back to SMTP after having tried LMTP hosts (multiple smtphost hosts)
+  - switch back to LMTP after sending a bounce.
+  The patch removes the global state variable that was the root of this problem.
+  Patch by Sunil Shetye. (MA)
+* Don't complain about fetchall keep in --configdump mode. Bug introduced in
+  6.3.0.
+* fetchmailconf.py: Fix novice help for Poll interval and fetchall.
+  Reported by Justin Pryzby, Debian Bug #344978.
+* Some verbose output disappeared in debug mode. Adding further -v options would
+  alternate between verbose and debug mode. debug mode now comprises all verbose
+  output, and adding more -v options does not switch back from debug to verbose
+  mode.
+* fetchmail.man: Fix accented characters in H&#233;ctor Garc&#237;a's name. Merged from
+  downstream debian/patches/01_man_page.dpatch.
+* Add missing --help text for &quot;--sslcertck&quot; option.
+* fetchmailconf.py: Accept --help and --version.
+* fetchmail --version  now prints the copyright notice.
+* don't complain about READ-ONLY IMAP folders in --fetchall --keep mode.
+  Reported Alexander Zangerl, Debian Bug#348964.
+* the RPM .spec file now generates a -debuginfo package on newer RPM versions.
+
+Regards,
+
+- -- 
+Matthias Andree
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1.4.0 (GNU/Linux)
+
+iD8DBQFD04UzvmGDOQUufZURApk+AJ46zXfGAd0jHsbxziZ7JQpPugjJKwCeM2xW
+DSAxh7uWlnM7Teolv4wF+BE=
+=hrZ0
+-----END PGP SIGNATURE-----
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000261.html">[fetchmail-users] Exit Codes, a script and daemon
+</A></li>
+	<LI>Next message: <A HREF="000263.html">[fetchmail-users] fetchmail security announcement 2006-01 (CVE-2006-0321)
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#262">[ date ]</a>
+              <a href="thread.html#262">[ thread ]</a>
+              <a href="subject.html#262">[ subject ]</a>
+              <a href="author.html#262">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

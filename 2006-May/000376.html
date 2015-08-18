@@ -1,0 +1,151 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> fetchmail/qmail/-scanner/SpamAss. integration (was: [fetchmail-users] Hello i have problem :()
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2006-May/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20fetchmail/qmail/-scanner/SpamAss.%20integration%20%28was%3A%20%5Bfetchmail-users%5D%20Hello%20i%20have%20problem%20%3A%28%29&In-Reply-To=%3C23a498510605040127v5f92528csdabd891788649ddd%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000374.html">
+   <LINK REL="Next"  HREF="000377.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>fetchmail/qmail/-scanner/SpamAss. integration (was: [fetchmail-users] Hello i have problem :()</H1>
+    <B>Ozgur YILMAZ</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20fetchmail/qmail/-scanner/SpamAss.%20integration%20%28was%3A%20%5Bfetchmail-users%5D%20Hello%20i%20have%20problem%20%3A%28%29&In-Reply-To=%3C23a498510605040127v5f92528csdabd891788649ddd%40mail.gmail.com%3E"
+       TITLE="fetchmail/qmail/-scanner/SpamAss. integration (was: [fetchmail-users] Hello i have problem :()">mrucan at gmail.com
+       </A><BR>
+    <I>Thu May  4 10:27:40 CEST 2006</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000374.html">[fetchmail-users] help needed - BCC problem
+</A></li>
+        <LI>Next message: <A HREF="000377.html">[fetchmail-users] Re: fetchmail/qmail/-scanner/SpamAss. integration
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#376">[ date ]</a>
+              <a href="thread.html#376">[ thread ]</a>
+              <a href="subject.html#376">[ subject ]</a>
+              <a href="author.html#376">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On 5/4/06, Ozgur YILMAZ &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">mrucan at gmail.com</A>&gt; wrote:
+&gt;<i>
+</I>&gt;<i>  Hello
+</I>&gt;<i>
+</I>&gt;<i> firstly thanks for your answer.
+</I>&gt;<i> i have not one user it is only my test user
+</I>&gt;<i> if it works, i will add a lot of domains and user
+</I>&gt;<i>
+</I>&gt;<i> i use fetchmail ---&gt; fetch mail from external mail server
+</I>&gt;<i> qmail ---&gt; mda and pop3 server
+</I>&gt;<i> SA ---&gt; spam filter
+</I>&gt;<i>
+</I>&gt;<i> i want to fetch mail from external server to my internal server ( for 150
+</I>&gt;<i> user).
+</I>&gt;<i> and then i use spam filter and my user connect pop3 server and then
+</I>&gt;<i> recieve mail.
+</I>&gt;<i> is is possible
+</I>&gt;<i> it setup one and they work alone
+</I>&gt;<i>
+</I>&gt;<i> .fethmailrc use this settings
+</I>&gt;<i>
+</I>&gt;<i> poll 72.29.74.211 protocol pop3
+</I>&gt;<i>
+</I>&gt;<i> user '<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">ozgury at netelektronik.com</A>' there with password 'mypass' is
+</I>&gt;<i> '<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">deneme at cocukozgur.com</A>' here
+</I>&gt;<i>
+</I>&gt;<i>  my mail in my inbox but not scanning spamm :(
+</I>&gt;<i>
+</I>&gt;<i> what do i do ?
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> On 5/3/06, Matthias Andree &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">matthias.andree at gmx.de</A>&gt; wrote:
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; &quot;Ozgur YILMAZ&quot; &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">mrucan at gmail.com</A>&gt; writes:
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; &gt; i want to local spam scanner for office
+</I>&gt;<i> &gt; &gt; i setup fetchmail + qmail + vpopmail + qmailscanner + SA
+</I>&gt;<i> &gt; &gt;
+</I>&gt;<i> &gt; &gt; i fetch mail by fetchmail and i recived qmail pop3
+</I>&gt;<i> &gt; &gt; and SA works test command but my fetch mail is not scanned by SA
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; &#214;zg&#252;r,
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; qmail is not a modern MTA by any standard and full of flaws that other
+</I>&gt;<i> &gt; MTAs do not share. &lt;<A HREF="http://home.pages.de/~mandree/qmail-bugs.html">http://home.pages.de/~mandree/qmail-bugs.html</A>&gt;
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; &gt; here my .fetchmailrc
+</I>&gt;<i> &gt; &gt;
+</I>&gt;<i> &gt; &gt; poll my.externalserver.com protocol pop3
+</I>&gt;<i> &gt; &gt; user '<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">ozgury at netelektronik.com</A>' there with password 'mypass' is
+</I>&gt;<i> &gt; &gt; '<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">deneme at cocukozgur.com</A>' here
+</I>&gt;<i> &gt; &gt; mda &quot;/usr/bin/spamc -e | /var/spool/qmailscan/qmail-queue&quot; ( i have
+</I>&gt;<i> &gt; problem this line i do not write )
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; What do you need vpopmail for if there is only one user?
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; The MDA option doesn't look correct. Spamc expects a command after -e,
+</I>&gt;<i> &gt; and qmail-queue programs (and substitutes) expect two file descriptors
+</I>&gt;<i> &gt; for input. One for the envelope, one for the data.
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; Is there a particular reason why you're using the &quot;mda&quot; option?
+</I>&gt;<i> &gt; And then in a way that loses envelope information?
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; I wonder how you are getting messages at all with this setup, you should
+</I>&gt;<i> &gt; get something like:  /usr/bin/spamc: option requires an argument -- e
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; Besides that, qmail-scanner claims to integrate with SpamAssassin - so
+</I>&gt;<i> &gt; there should be some qmail-scanner documentation on that topic.
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; Try checking the documentation and understanding or describing to
+</I>&gt;<i> &gt; somebody
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; - what you want to achieve
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; - how you can get there
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; rather than taking lines out of a context and trying them out.
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; A systematic approach will probably be more successful than guessing
+</I>&gt;<i> &gt; here.
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; --
+</I>&gt;<i> &gt; Matthias Andree
+</I>&gt;<i> &gt;
+</I>&gt;<i>
+</I>&gt;<i>
+</I>-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/fetchmail-users/attachments/20060504/784b4938/attachment.html">https://lists.berlios.de/pipermail/fetchmail-users/attachments/20060504/784b4938/attachment.html</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000374.html">[fetchmail-users] help needed - BCC problem
+</A></li>
+	<LI>Next message: <A HREF="000377.html">[fetchmail-users] Re: fetchmail/qmail/-scanner/SpamAss. integration
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#376">[ date ]</a>
+              <a href="thread.html#376">[ thread ]</a>
+              <a href="subject.html#376">[ subject ]</a>
+              <a href="author.html#376">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,219 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] comcast.net pop3 broken after 5.9.12 upgraded
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2005-December/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20comcast.net%20pop3%20broken%20after%205.9.12%20upgraded&In-Reply-To=%3C20051215220802.GA1301%40cs.brandeis.edu%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000170.html">
+   <LINK REL="Next"  HREF="000172.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] comcast.net pop3 broken after 5.9.12 upgraded</H1>
+    <B>Denis Hainsworth</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20comcast.net%20pop3%20broken%20after%205.9.12%20upgraded&In-Reply-To=%3C20051215220802.GA1301%40cs.brandeis.edu%3E"
+       TITLE="[fetchmail-users] comcast.net pop3 broken after 5.9.12 upgraded">denis at alumni.brandeis.edu
+       </A><BR>
+    <I>Thu Dec 15 23:08:02 CET 2005</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000170.html">[fetchmail-users] fetchmail 6.3.1-pre1 snapshot - please test
+</A></li>
+        <LI>Next message: <A HREF="000172.html">[fetchmail-users] comcast.net pop3 broken after 5.9.12 upgraded
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#171">[ date ]</a>
+              <a href="thread.html#171">[ thread ]</a>
+              <a href="subject.html#171">[ subject ]</a>
+              <a href="author.html#171">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>hello all,
+fetchmail has been awesome and worked flawlessly for years for me, thats
+why this is so odd.  my system is redhat fedora core 3ish (i upgrade
+packages as I need to) anyway I had an rpm of fetchmail 5.9.12 installed
+which was working fine.  I did something dumb with postfix and stopped
+receiving mail, while troubleshooting it I upgraded fetchmail to 
+fetchmail-6.2.5-7.fc4.1.i386.rpm.  Once I found my problem with postfix
+I verified that fetchmail could connect to my univeristy IMAP account
+and it started downloading my mail.  Great.  Several days later I
+realized I was no longer receiving mail from my comcast.new pop3 acocunt
+which is AFTER my IMAP account in my fetchmailrc file.
+
+After trying a number of different RPMs I grabbed my old working
+fetchmail binary from a backup and low and behold everything was fine
+again.  As you can see from the enclosed files there is not much of an
+error.  More like a lack of anything.  I tried to capture the pop3
+packets with ethereal and never saw anything after the host lookup.
+
+So anyway I was curious if anyone had any ideas. Right now I am fine
+running 5.9.12. I have tried the earliest RPM I can find which is
+fetchmail-5.9.13-1.i386.rpm and it has the same problems.  Output from
+both the working and non-working versions is included below.
+
+-- fetchmailrc file --
+
+poll mail.comcast.net with proto pop3:
+  user xxxxxxxxx is xxxxxxxx here pass xxxxxxxxx options fetchall
+
+
+-- output of fetchmail -v -v version 5.9.12
+
+[620] christmas /home/denis% fetchmail -v -v
+fetchmail: 5.9.12 querying mail.comcast.net (protocol POP3) at Thu, 15
+Dec 2005 16:54:21 -0500 (EST): poll started
+fetchmail: POP3&lt; +OK (rwcrpxc60) Maillennium POP3/PROXY server #176
+fetchmail: POP3&gt; USER xxxxxxxxxx
+fetchmail: POP3&lt; +OK
+fetchmail: POP3&gt; PASS 
+fetchmail: POP3&lt; +OK ready
+fetchmail: selecting or re-polling default folder
+fetchmail: POP3&gt; STAT
+fetchmail: POP3&lt; +OK 0 0
+fetchmail: No mail for xxxxxxxxx at mail.comcast.net
+fetchmail: POP3&gt; QUIT
+fetchmail: POP3&lt; +OK comcast.net
+fetchmail: 5.9.12 querying mail.comcast.net (protocol POP3) at Thu, 15
+Dec 2005 16:54:24 -0500 (EST): poll completed
+fetchmail: not swapping UID lists, no UIDs seen this query
+fetchmail: Query status=1 (NOMAIL)
+fetchmail: Deleting fetchids file.
+fetchmail: normal termination, status 1
+fetchmail: Deleting fetchids file.
+
+-- output of fetchmail -v -v version 5.9.13
+
+[624] christmas /home/denis% fetchmail -v -v
+fetchmail: 5.9.13 querying mail.comcast.net (protocol POP3) at Thu, 15
+Dec 2005 16:56:18 -0500 (EST): poll started
+fetchmail: fetchmail: getaddrinfo(mail.comcast.net.pop3)
+fetchmail: 5.9.13 querying mail.comcast.net (protocol POP3) at Thu, 15
+Dec 2005 16:56:18 -0500 (EST): poll completed
+fetchmail: Query status=2 (SOCKET)
+fetchmail: Deleting fetchids file.
+fetchmail: normal termination, status 2
+fetchmail: Deleting fetchids file.
+
+-- output of fetchmail -V version 5.9.12
+
+[637] christmas /home/denis% fetchmail -V
+This is fetchmail release 5.9.12
+Linux christmas.auspice.net 2.6.6 #7 Sun Jun 27 15:44:05 EDT 2004 i686
+i686 i386 GNU/Linux
+Taking options from command line and /home/denis/.fetchmailrc
+Idfile is /home/denis/.fetchids
+Fetchmail will forward misaddressed multidrop messages to denis.
+Options for retrieving from <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">denis.hainsworth at mail.comcast.net</A>:
+  True name of server is mail.comcast.net.
+  Protocol is POP3.
+  All available authentication methods will be tried.
+  Server nonresponse timeout is 300 seconds (default).
+  Default mailbox selected.
+  All messages will be retrieved (--all on).
+  Fetched messages will not be kept on the server (--keep off).
+  Old messages will not be flushed before message retrieval (--flush
+off).
+  Rewrite of server-local addresses is enabled (--norewrite off).
+  Carriage-return stripping is disabled (stripcr off).
+  Carriage-return forcing is disabled (forcecr off).
+  Interpretation of Content-Transfer-Encoding is enabled (pass8bits
+off).
+  MIME decoding is disabled (mimedecode off).
+  Idle after poll is disabled (idle off).
+  Nonempty Status lines will be kept (dropstatus off)
+  Delivered-To lines will be kept (dropdelivered off)
+  Messages will be SMTP-forwarded to: localhost (default)
+  Recognized listener spam block responses are: 571 550 501 554
+  Single-drop mode: 1 local name(s) recognized.
+  No UIDs saved from this host.
+
+
+-- output of fetchmail -V version 5.9.13
+
+[635] christmas /home/denis% fetchmail -V
+This is fetchmail release 5.9.13+INET6
+Fallback MDA: (none)
+Linux christmas.auspice.net 2.6.6 #7 Sun Jun 27 15:44:05 EDT 2004 i686
+i686 i386 GNU/Linux
+Taking options from command line and /home/denis/.fetchmailrc
+Idfile is /home/denis/.fetchids
+Fetchmail will forward misaddressed multidrop messages to denis.
+Options for retrieving from <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">denis.hainsworth at mail.comcast.net</A>:
+  True name of server is mail.comcast.net.
+  Protocol is POP3.
+  All available authentication methods will be tried.
+  Server nonresponse timeout is 300 seconds (default).
+  Default mailbox selected.
+  All messages will be retrieved (--all on).
+  Fetched messages will not be kept on the server (--keep off).
+  Old messages will not be flushed before message retrieval (--flush
+off).
+  Rewrite of server-local addresses is enabled (--norewrite off).
+  Carriage-return stripping is disabled (stripcr off).
+  Carriage-return forcing is disabled (forcecr off).
+  Interpretation of Content-Transfer-Encoding is enabled (pass8bits
+off).
+  MIME decoding is disabled (mimedecode off).
+  Idle after poll is disabled (idle off).
+  Nonempty Status lines will be kept (dropstatus off)
+  Delivered-To lines will be kept (dropdelivered off)
+  Messages will be SMTP-forwarded to: localhost (default)
+  Recognized listener spam block responses are: 571 550 501 554
+  Single-drop mode: 1 local name(s) recognized.
+  No UIDs saved from this host.
+
+
+Final bit of info is that I believe this is the info for the RPM I have
+of 5.9.12
+
+[585] christmas /mnt/mac/var/lib/rpm% rpm -qi fetchmail-5.9.12-1
+--dbpath /mnt/mac/var/lib/rpm
+Name        : fetchmail                    Relocations: (not relocateable)
+Version     : 5.9.12                            Vendor: Eric Conspiracy Secret Labs
+Release     : 1                             Build Date: Tue Jun  4 15:20:29 2002
+Install Date: Sat Jun 15 15:05:26 2002      Build Host: snark.thyrsus.com
+Group       : Applications/Mail             Source RPM: fetchmail-5.9.12-1.src.rpm
+Size        : 752644                           License: GPL
+Signature   : (none)
+Packager    : Eric S. Raymond &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">esr at thyrsus.com</A>&gt;
+URL         : <A HREF="http://www.tuxedo.org/~esr/fetchmail">http://www.tuxedo.org/~esr/fetchmail</A>
+Summary     : Full-featured POP/IMAP mail retrieval daemon
+
+
+-denis
+
+-- 
+____________________________________________________________
+Denis Alan Hainsworth     | <A HREF="http://www.cs.brandeis.edu/~denis/">http://www.cs.brandeis.edu/~denis/</A>  
+<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">denis at alumni.brandeis.edu</A> | &quot;Life is just one big sad christmas.&quot;
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000170.html">[fetchmail-users] fetchmail 6.3.1-pre1 snapshot - please test
+</A></li>
+	<LI>Next message: <A HREF="000172.html">[fetchmail-users] comcast.net pop3 broken after 5.9.12 upgraded
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#171">[ date ]</a>
+              <a href="thread.html#171">[ thread ]</a>
+              <a href="subject.html#171">[ subject ]</a>
+              <a href="author.html#171">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

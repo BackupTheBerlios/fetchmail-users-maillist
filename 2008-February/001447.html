@@ -1,0 +1,152 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] fetchmail: Query status=2 (SOCKET) on Cygwin]
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2008-February/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%3A%20Query%20status%3D2%20%28SOCKET%29%20on%20Cygwin%5D&In-Reply-To=%3C1456.212.199.169.34.1201824714.squirrel%40mail.phpclub.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   
+   <LINK REL="Next"  HREF="001448.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] fetchmail: Query status=2 (SOCKET) on Cygwin]</H1>
+    <B>avi at phpclub.org</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%3A%20Query%20status%3D2%20%28SOCKET%29%20on%20Cygwin%5D&In-Reply-To=%3C1456.212.199.169.34.1201824714.squirrel%40mail.phpclub.org%3E"
+       TITLE="[fetchmail-users] fetchmail: Query status=2 (SOCKET) on Cygwin]">avi at phpclub.org
+       </A><BR>
+    <I>Fri Feb  1 01:11:54 CET 2008</I>
+    <P><UL>
+        
+        <LI>Next message: <A HREF="001448.html">[fetchmail-users] fetchmail: Query status=2 (SOCKET) on Cygwin]
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1447">[ date ]</a>
+              <a href="thread.html#1447">[ thread ]</a>
+              <a href="subject.html#1447">[ subject ]</a>
+              <a href="author.html#1447">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>
+I give my greatest thanks to all of you who tired to help me.
+
+Apparently the problem was that qmail-pop3d was dumping the connection while it
+had a memory softlimit of only 2mb.
+Once I increased it to 4.5Mb everything seems to work properly.
+
+I accidently blamed fetchmail for doing nothing wrong and I am sorry to have
+bothered you all with this issue needlessly.
+
+One strange thing I found that pop3d was working properly with even 30mb files
+and the 2mb limit, while those problematic emails were only 400-500kb and failed
+to work.
+
+Again, thank you all, I am very glad to have some place I can resort to in the
+case of trouble.
+
+Avi.
+
+&gt;<i> Matthias,
+</I>&gt;<i>
+</I>&gt;<i> On Tue, Jan 29, 2008 at 10:35:45AM +0100, Matthias Andree wrote:
+</I>&gt;&gt;<i> [CC:'ing Jason Tishler as the Cygwin fetchmail packager]
+</I>&gt;<i>
+</I>&gt;<i> Thanks for waking me up. :,)
+</I>&gt;<i>
+</I>&gt;&gt;<i> Jason, was there ever any feedback to your discussion (link below)?
+</I>&gt;&gt;<i> The list archives don't contain direct followups.
+</I>&gt;<i>
+</I>&gt;<i> Yes, see the following:
+</I>&gt;<i>
+</I>&gt;<i>     <A HREF="http://cygwin.com/ml/cygwin/2002-03/msg00238.html">http://cygwin.com/ml/cygwin/2002-03/msg00238.html</A>
+</I>&gt;<i>
+</I>&gt;&gt;<i> &gt; fetchmail: SMTP&lt; 354 Start mail input; end with &lt;CRLF&gt;.&lt;CRLF&gt;
+</I>&gt;&gt;<i> &gt; #******fetchmail: Cygwin socket read retry
+</I>&gt;&gt;<i> &gt; *******************.*****fetchmail: Cygwin socket read retry
+</I>&gt;<i>
+</I>&gt;<i> The above indicates that my Cygwin (i.e., Windows) MSG_PEEK workaround
+</I>&gt;<i> is being triggered.
+</I>&gt;<i>
+</I>&gt;&gt;<i> &gt; [snip]
+</I>&gt;&gt;<i> &gt; fetchmail: socket error while fetching from
+</I>&gt;&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">main at rubinrid.co.il</A>@192.168.253.253
+</I>&gt;<i>
+</I>&gt;<i> Avi, do you always get the error when the workaround is triggered?  Can
+</I>&gt;<i> you get the error without triggering the workaround.  Does the retrieval
+</I>&gt;<i> work sometimes even though the workaround is triggered?
+</I>&gt;<i>
+</I>&gt;&gt;<i> &gt; [snip]
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> As far as I read the comments in the source code (socket.c, c. line 1026ff.):
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> | #ifdef __CYGWIN__
+</I>&gt;&gt;<i> | /*
+</I>&gt;&gt;<i> |  * Workaround Microsoft Winsock recv/WSARecv(..., MSG_PEEK) bug.
+</I>&gt;&gt;<i> |  * See <A HREF="http://sources.redhat.com/ml/cygwin/2001-08/msg00628.html">http://sources.redhat.com/ml/cygwin/2001-08/msg00628.html</A>
+</I>&gt;&gt;<i> |  * for more details.
+</I>&gt;&gt;<i> |  */
+</I>&gt;&gt;<i> | static ssize_t cygwin_read(int sock, void *buf, size_t count)
+</I>&gt;&gt;<i> [...]
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> And this pretty much looks like a severe Windows operating system bug.
+</I>&gt;<i>
+</I>&gt;<i> Agreed!
+</I>&gt;<i>
+</I>&gt;&gt;<i> [snip]
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> I need to think about this a bit and see if we can restructure socket.c
+</I>&gt;&gt;<i> and perhaps use external libraries or wrapper code to avoid peeking
+</I>&gt;&gt;<i> altogether,
+</I>&gt;<i>
+</I>&gt;<i> This would be greatly appreciated.
+</I>&gt;<i>
+</I>&gt;&gt;<i> but there's a strong inclination to shove this up to Cygwin and claim
+</I>&gt;&gt;<i> that Cygwin as the interfacing layer should work around Winsock/BSD
+</I>&gt;&gt;<i> socket incompatibilities.
+</I>&gt;<i>
+</I>&gt;<i> Unfortunately, this Windows problem cannot be worked around in the
+</I>&gt;<i> Cygwin layer.
+</I>&gt;<i>
+</I>&gt;<i> Thanks,
+</I>&gt;<i> Jason
+</I>&gt;<i>
+</I>&gt;<i> --
+</I>&gt;<i> PGP/GPG Key: <A HREF="http://www.tishler.net/jason/pubkey.asc">http://www.tishler.net/jason/pubkey.asc</A> or key servers
+</I>&gt;<i> Fingerprint: 7A73 1405 7F2B E669 C19D  8784 1AFD E4CC ECF4 8EF6
+</I>&gt;<i> _______________________________________________
+</I>&gt;<i> fetchmail-users mailing list
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">fetchmail-users at lists.berlios.de</A>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">https://lists.berlios.de/mailman/listinfo/fetchmail-users</A>
+</I>&gt;<i>
+</I>
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	
+	<LI>Next message: <A HREF="001448.html">[fetchmail-users] fetchmail: Query status=2 (SOCKET) on Cygwin]
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1447">[ date ]</a>
+              <a href="thread.html#1447">[ thread ]</a>
+              <a href="subject.html#1447">[ subject ]</a>
+              <a href="author.html#1447">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

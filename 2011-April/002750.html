@@ -1,0 +1,91 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] softbounce and antispam
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2011-April/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20softbounce%20and%20antispam&In-Reply-To=%3C4DB08752.2020607%40gmx.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002749.html">
+   <LINK REL="Next"  HREF="002751.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] softbounce and antispam</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20softbounce%20and%20antispam&In-Reply-To=%3C4DB08752.2020607%40gmx.de%3E"
+       TITLE="[fetchmail-users] softbounce and antispam">matthias.andree at gmx.de
+       </A><BR>
+    <I>Thu Apr 21 21:36:50 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002749.html">[fetchmail-users] softbounce and antispam
+</A></li>
+        <LI>Next message: <A HREF="002751.html">[fetchmail-users] Plus (+)  Addressing Problem
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2750">[ date ]</a>
+              <a href="thread.html#2750">[ thread ]</a>
+              <a href="subject.html#2750">[ subject ]</a>
+              <a href="author.html#2750">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Am 21.04.2011 11:57, schrieb Martin Koeppe:
+
+&gt;<i> I don't think of oversized messages due to some limit setting (I don't
+</I>&gt;<i> use a limit setting), but a smtp error from the receiving server that
+</I>&gt;<i> the mail is too big. In this case, it shouldn't (for me) be bounced and
+</I>&gt;<i> deleted, but instead left alone on the POP3 server. I think this is what
+</I>&gt;<i> softbounce is useful for.
+</I>
+Limits are deterministic or temporary (due to &quot;out of disk space&quot;).
+Either case is handled properly.
+
+&gt;<i> So, apparently, (1) antispam and softbounce are (currently) not useable
+</I>&gt;<i> together, and (2) the limit setting is probably handled differently from
+</I>&gt;<i> the error condition that the smtp server rejects a message due to a size
+</I>&gt;<i> limit.  (2) might be reasonable because when using limit there is no
+</I>&gt;<i> transfer of the message to fetchmail.  But (1) seems misdesigned
+</I>&gt;<i> somehow.  Also: if softbounce overrides antispam, then it's confusing
+</I>&gt;<i> that the SMTP error (invalid From: address in my case) is only logged if
+</I>&gt;<i> antispam is not enabled. So antispam always influences log output, but
+</I>&gt;<i> is honored only if no softbounce.
+</I>
+Just set the fetchmail message size limit to the maximum that your
+destination SMTP or LMTP server can handle, and you'll never bump into a
+condition where fetchmail pulls a message too large for the SMTP behind
+to handle. Leave 1 kB of room for added headers.
+
+HTH
+
+-- 
+Matthias Andree
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002749.html">[fetchmail-users] softbounce and antispam
+</A></li>
+	<LI>Next message: <A HREF="002751.html">[fetchmail-users] Plus (+)  Addressing Problem
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2750">[ date ]</a>
+              <a href="thread.html#2750">[ thread ]</a>
+              <a href="subject.html#2750">[ subject ]</a>
+              <a href="author.html#2750">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

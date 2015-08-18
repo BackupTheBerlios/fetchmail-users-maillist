@@ -1,0 +1,129 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] fetchmail lets mails disappear
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2010-November/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%20lets%20mails%20disappear&In-Reply-To=%3CPine.LNX.4.62.1011290058090.26215%40vmdebian.local.koeppe-net.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002580.html">
+   <LINK REL="Next"  HREF="002582.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] fetchmail lets mails disappear</H1>
+    <B>Martin Koeppe</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%20lets%20mails%20disappear&In-Reply-To=%3CPine.LNX.4.62.1011290058090.26215%40vmdebian.local.koeppe-net.de%3E"
+       TITLE="[fetchmail-users] fetchmail lets mails disappear">mkoeppe at gmx.de
+       </A><BR>
+    <I>Mon Nov 29 01:46:44 CET 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002580.html">[fetchmail-users] fetchmail lets mails disappear
+</A></li>
+        <LI>Next message: <A HREF="002582.html">[fetchmail-users] fetchmail lets mails disappear
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2581">[ date ]</a>
+              <a href="thread.html#2581">[ thread ]</a>
+              <a href="subject.html#2581">[ subject ]</a>
+              <a href="author.html#2581">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>
+Hi Rob, hi Jerry,
+
+thanks for your answers.
+
+@Jerry: Yes, I have configured my Exchange to accept the mails now 
+without auth from fetchmail's ip address. This was not the point of my 
+mail to this list, however.
+
+The problem I see is that the mails can disappear while finding the 
+correct configuration! So even if misconfigured, IMO the mails 
+shouldn't disappear, according to man page:
+
+&quot;Return codes which fetchmail treats as antispam responses and 
+discards the message can be set with the 'antispam' option.  This is 
+one of the only three circumstance under which fetchmail ever discards 
+mail (the others are the 552 and 553 errors described below, and the 
+suppression of multidropped messages with a message-ID already seen).&quot;
+
+
+On Sun, 28 Nov 2010, Rob MacGregor wrote:
+
+&gt;<i> On Sun, Nov 28, 2010 at 17:55, Martin Koeppe &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">mkoeppe at gmx.de</A>&gt; wrote:
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Hi all,
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> I'm using fetchmail to fetch mails from ISP and forward them to Exchange
+</I>&gt;&gt;<i> 2007 and 2010 server.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> With that configuration I now saw different cases where fetchmail eats the
+</I>&gt;&gt;<i> mails, without further notice.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> The problem is when the Exchange server doesn't accept the mail for some
+</I>&gt;&gt;<i> reason, e.g. mail too big, or client (fetchmail) ip isn't allowed to send
+</I>&gt;&gt;<i> mail to Exchange, or ...
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> In all these cases I would expect fetchmail to leave the message on the POP3
+</I>&gt;&gt;<i> server, but it gets flushed nevertheless. As Exchange (in one of the cases
+</I>&gt;&gt;<i> above, ip address) doesn't accept any mail from fetchmail, fetchmail might
+</I>&gt;&gt;<i> have tried to send an error mail back, but obviously that can't be
+</I>&gt;&gt;<i> delivered. So the mail is lost.
+</I>&gt;<i>
+</I>&gt;<i> Your Exchange logs show a 5xx series error, which is a permanent
+</I>&gt;<i> error.  Fetchmail has no reason to believe that the email will ever be
+</I>&gt;<i> accepted.
+</I>
+Yes, maybe. But why thinks fetchmail it should - silently - delete the 
+mail then? It should at least ensure that the non-delivery report is 
+accepted by the SMTP server. (But even this doesn't ensure that the 
+sender gets it, as the internal SMTP server might not be able to send 
+the report back, but instead only queues it, maybe forever.)
+
+So I would like to configure fetchmail to leave the mails alone on the 
+POP3 server, maybe mark it as seen, which is what I would expect in 
+this case. As it is fetched from POP3 or IMAP accouts, it might be 
+useful there for e.g. web mail access even if fetchmail can't deliver 
+it for some reason (e.g. size too big).
+
+The behaviour should be similar to that of --limit and --warnings, 
+only that (in case of too big) the limit condition is autodetected 
+from what the SMTP server says. This behaviour could also be used when 
+delivery fails for other reasons, i.e. not touching the mail and issue 
+warnings that it could not be delivered for the reasons the SMTP 
+server gave, and so wasn't fetched.
+
+Is this already possible?
+
+Martin
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002580.html">[fetchmail-users] fetchmail lets mails disappear
+</A></li>
+	<LI>Next message: <A HREF="002582.html">[fetchmail-users] fetchmail lets mails disappear
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2581">[ date ]</a>
+              <a href="thread.html#2581">[ thread ]</a>
+              <a href="subject.html#2581">[ subject ]</a>
+              <a href="author.html#2581">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,175 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] feedback on failed delivery
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2005-November/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20feedback%20on%20failed%20delivery&In-Reply-To=%3C0ML2Dk-1EeKCc0beI-0000Tx%40mrelayeu.kundenserver.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000137.html">
+   <LINK REL="Next"  HREF="000142.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] feedback on failed delivery</H1>
+    <B>Thomas Wolff</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20feedback%20on%20failed%20delivery&In-Reply-To=%3C0ML2Dk-1EeKCc0beI-0000Tx%40mrelayeu.kundenserver.de%3E"
+       TITLE="[fetchmail-users] feedback on failed delivery">towo at towo.net
+       </A><BR>
+    <I>Mon Nov 21 23:29:44 CET 2005</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000137.html">[fetchmail-users] Re: fetchmail-6.2.6 please test
+</A></li>
+        <LI>Next message: <A HREF="000142.html">[fetchmail-users] feedback on failed delivery
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#141">[ date ]</a>
+              <a href="thread.html#141">[ thread ]</a>
+              <a href="subject.html#141">[ subject ]</a>
+              <a href="author.html#141">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>About the stdout/stderr merging issue with error messages I made some 
+experiments as I had been asked to.
+Fetchmail was always invoked without additional option (no verbose 
+mode), .fetchmailrc defines &quot;mda false&quot;.
+With some variations in invoking fetchmail, I got all kinds of order 
+of appearance of the 4 messages. Below you find some examples.
+
+Please also note my later remarks on the messages themselves.
+
+
+-------------------------------------------------------
+Local invocation seems to produce a stable result:
+&gt;&gt;<i> fetchmail
+</I>&gt;<i>1 message for deblnss01a/demsn702 at blnss35a.
+</I>&gt;<i>reading message deblnss01a/<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">demsn702 at blnss35a</A>:1 of 1 (903 header octets)  (5 body octets) fetchmail: SIGPIPE thrown from an MDA or a stream socket error
+</I>&gt;<i>fetchmail: socket error while fetching from deblnss01a/<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">demsn702 at blnss35a</A>
+</I>&gt;<i>fetchmail: Query status=2 (SOCKET)
+</I>
+
+With an stdout pipe, it looks quite weird:
+&gt;&gt;<i> fetchmail | cat
+</I>&gt;<i>1 message for deblnss01a/demsn702 at blnss35a.
+</I>&gt;<i>reading message deblnss01a/<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">demsn702 at blnss35a</A>:1 of 1 (903 header octets) ...fetchmail: socket error while fetching from deblnss01a/<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">demsn702 at blnss35a</A>
+</I>&gt;<i> (5 body octets) fetchmail: SIGPIPE thrown from an MDA or a stream socket error
+</I>&gt;<i>fetchmail: Query status=2 (SOCKET)
+</I>
+
+With simple remote fetchmail, I even got 3 different versions:
+&gt;&gt;<i> rsh ... fetchmail
+</I>&gt;<i>1 message for deblnss01a/demsn702 at blnss35a.
+</I>&gt;<i>reading message deblnss01a/<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">demsn702 at blnss35a</A>:1 of 1 (903 header octets)  (5 body octets) fetchmail: socket error while fetching from deblnss01a/<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">demsn702 at blnss35a</A>
+</I>&gt;<i>fetchmail: SIGPIPE thrown from an MDA or a stream socket error
+</I>&gt;<i>fetchmail: Query status=2 (SOCKET)
+</I>
+&gt;&gt;<i> rsh ... fetchmail
+</I>&gt;<i>1 message for deblnss01a/demsn702 at blnss35a.
+</I>&gt;<i>reading message deblnss01a/<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">demsn702 at blnss35a</A>:1 of 1 (903 header octets)  (5 body octets) fetchmail: SIGPIPE thrown from an MDA or a stream socket error
+</I>&gt;<i>fetchmail: Query status=2 (SOCKET)
+</I>&gt;<i>fetchmail: socket error while fetching from deblnss01a/<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">demsn702 at blnss35a</A>
+</I>
+&gt;&gt;<i> rsh ... fetchmail
+</I>&gt;<i>1 message for deblnss01a/demsn702 at blnss35a.
+</I>&gt;<i>reading message deblnss01a/<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">demsn702 at blnss35a</A>:1 of 1 (903 header octets)  (5 body octets) fetchmail: SIGPIPE thrown from an MDA or a stream socket error
+</I>&gt;<i>fetchmail: socket error while fetching from deblnss01a/<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">demsn702 at blnss35a</A>
+</I>&gt;<i>fetchmail: Query status=2 (SOCKET)
+</I>
+
+With a remote stdout pipe, it looks quite weird again (like with local pipe):
+&gt;&gt;<i> rsh ... &quot;fetchmail | cat&quot;
+</I>&gt;<i>1 message for deblnss01a/demsn702 at blnss35a.
+</I>&gt;<i>reading message deblnss01a/<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">demsn702 at blnss35a</A>:1 of 1 (903 header octets) fetchmail: socket error while fetching from deblnss01a/<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">demsn702 at blnss35a</A>
+</I>&gt;<i> (5 body octets) fetchmail: SIGPIPE thrown from an MDA or a stream socket error
+</I>&gt;<i>fetchmail: Query status=2 (SOCKET)
+</I>
+But not always:
+&gt;&gt;<i> rsh ... &quot;fetchmail | cat&quot;
+</I>&gt;<i>1 message for deblnss01a/demsn702 at blnss35a.
+</I>&gt;<i>reading message deblnss01a/<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">demsn702 at blnss35a</A>:1 of 1 (903 header octets)  (5 body octets) fetchmail: SIGPIPE thrown from an MDA or a stream socket error
+</I>&gt;<i>fetchmail: Query status=2 (SOCKET)
+</I>&gt;<i>fetchmail: socket error while fetching from deblnss01a/<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">demsn702 at blnss35a</A>
+</I>
+
+Joining stderr with stdout can stabilise the result:
+&gt;&gt;<i> rsh ... &quot;fetchmail 2&gt;&amp;1&quot;
+</I>&gt;<i>1 message for deblnss01a/demsn702 at blnss35a.
+</I>&gt;<i>reading message deblnss01a/<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">demsn702 at blnss35a</A>:1 of 1 (903 header octets)  (5 body octets) fetchmail: SIGPIPE thrown from an MDA or a stream socket error
+</I>&gt;<i>fetchmail: socket error while fetching from deblnss01a/<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">demsn702 at blnss35a</A>
+</I>&gt;<i>fetchmail: Query status=2 (SOCKET)
+</I>
+So we would have the local appearance again.
+
+
+-------------------------------------------------------
+Some comments about the messages themselves:
+
+They are now (6.2.9-rc9) actually the same as with 6.2.9-rc5, when 
+I had commented:
+&gt;<i> If you look exactly, you find MDA mentioned and can draw your conclusion, 
+</I>&gt;<i> but it's not really while &quot;reading&quot; the message or while &quot;fetching&quot; it 
+</I>&gt;<i> (at least it's not in the process of fetching, so this is confusing), 
+</I>&gt;<i> and it's not a socket error either, I think.
+</I>
+While with 6.2.9-rc8 there was a much different and better message:
+&gt;<i> 1 message for deblnss01a/demsn702 at blnss35a.
+</I>&gt;<i> reading message deblnss01a/<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">demsn702 at blnss35a</A>:1 of 1 (3257 header octets) ... (2542 body octets) ..fetchmail: MDA returned nonzero status 255
+</I>&gt;<i>  not flushed
+</I>
+So why does rc9 revert to the confusing previous messages here?
+
+Also, in either case, the indication of the MDA as the cause is quite 
+hidden in the far end of a line. It should really be ensured to be 
+a separate line.
+In this respect I don't understand your comment:
+
+From: Matthias Andree &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">matthias.andree at gmx.de</A>&gt;
+&gt;<i> &gt; Now it's:
+</I>&gt;<i> &gt; &gt; 1 message for deblnss01a/demsn702 at blnss35a.
+</I>&gt;<i> &gt; &gt; reading message deblnss01a/<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">demsn702 at blnss35a</A>:1 of 1 (3257 header octets) ... (2542 body octets) ..fetchmail: MDA returned nonzero status 255
+</I>&gt;<i> &gt; &gt;  not flushed
+</I>&gt;<i> &gt; which is fine. Just make it better visible by putting the error notice 
+</I>&gt;<i> &gt; on a new line.
+</I>&gt;<i> 
+</I>&gt;<i> Well - fetchmail is actually behaving as was originally intended. It
+</I>&gt;<i> prints the error message at the earliest possible time, and the &quot;not
+</I>&gt;<i> flushed&quot; is a consequence of the error.
+</I>The message would not be printed significantly less early if you just 
+flush stdout first as there is no noticeable delay and no error situation 
+to be expected by that. This flushing would do the safety of the error 
+message no harm - it would in contrast ensure its logically correct 
+placement and its reliable appearance and thus improve the user feedback.
+
+
+Kind regards,
+Thomas Wolff
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000137.html">[fetchmail-users] Re: fetchmail-6.2.6 please test
+</A></li>
+	<LI>Next message: <A HREF="000142.html">[fetchmail-users] feedback on failed delivery
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#141">[ date ]</a>
+              <a href="thread.html#141">[ thread ]</a>
+              <a href="subject.html#141">[ subject ]</a>
+              <a href="author.html#141">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

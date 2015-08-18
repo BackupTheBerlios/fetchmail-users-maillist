@@ -1,0 +1,148 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Fetchmail doesn't create and deletes fetchids file
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2011-May/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Fetchmail%20doesn%27t%20create%20and%20deletes%20fetchids%0A%20file&In-Reply-To=%3C20110525134252.GA4178%40acer.ci.uc.pt%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002832.html">
+   <LINK REL="Next"  HREF="002835.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Fetchmail doesn't create and deletes fetchids file</H1>
+    <B>Luis P. Mendes</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Fetchmail%20doesn%27t%20create%20and%20deletes%20fetchids%0A%20file&In-Reply-To=%3C20110525134252.GA4178%40acer.ci.uc.pt%3E"
+       TITLE="[fetchmail-users] Fetchmail doesn't create and deletes fetchids file">luislupe at gmail.com
+       </A><BR>
+    <I>Wed May 25 15:42:52 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002832.html">[fetchmail-users] Fetchmail doesn't create and deletes fetchids file
+</A></li>
+        <LI>Next message: <A HREF="002835.html">[fetchmail-users] Fetchmail doesn't create and deletes fetchids file
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2834">[ date ]</a>
+              <a href="thread.html#2834">[ thread ]</a>
+              <a href="subject.html#2834">[ subject ]</a>
+              <a href="author.html#2834">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+Thank you very much for your explanation.
+
+Now I have to worry about sendmail, although it was working some days
+ago, I didn't change dns configs and when I issue this command:
+# sendmail -bv <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">ll at openbsd.org</A>
+<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">ll at openbsd.org...</A> deliverable: mailer esmtp, host openbsd.org., user
+<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">ll at openbsd.org</A>
+It says deliverable...
+
+Thank you once again!
+
+
+Luis
+
+
+On 2011.05.24 22:37:28 +0200, Matthias Andree wrote:
+&gt;<i> Am 24.05.2011 17:12, schrieb luis:
+</I>&gt;<i> &gt; Hi,
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; I'm using 
+</I>&gt;<i> &gt; $ /usr/bin/fetchmail --version
+</I>&gt;<i> &gt; This is fetchmail release 6.3.19+NTLM+SSL+NLS.
+</I>&gt;<i> &gt;                    Fallback MDA: (none)
+</I>&gt;<i> &gt;                    Linux acer 2.6.37.6 #3 SMP Sat Apr 9 22:49:32 CDT
+</I>&gt;<i> &gt;                    ...
+</I>&gt;<i> &gt;                    Taking options from command line
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; and have a problem because file fetchids is not created.
+</I>&gt;<i> 
+</I>&gt;<i> No, you don't. Your problem is that your SMTP server does sender callout
+</I>&gt;<i> verifications, and these fail:
+</I>&gt;<i> 
+</I>&gt;<i> ...
+</I>&gt;<i> &gt; fetchmail: POP3&gt; UIDL
+</I>&gt;<i> &gt; fetchmail: POP3&lt; +OK
+</I>&gt;<i> &gt; fetchmail: POP3&lt; 1 1306244874.23225_0.,S=2413
+</I>&gt;<i> &gt; fetchmail: 1 is unseen
+</I>&gt;<i> ...
+</I>&gt;<i> &gt; fetchmail: 6 messages for <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">llupe at gawab.com</A> at pop.gawab.com (23796 octets).
+</I>&gt;<i> &gt; fetchmail: POP3&gt; LIST 1
+</I>&gt;<i> &gt; fetchmail: POP3&lt; +OK 1 2413
+</I>&gt;<i> &gt; fetchmail: POP3&gt; RETR 1
+</I>&gt;<i> &gt; fetchmail: POP3&lt; +OK 2413 octets follow.
+</I>&gt;<i> ...
+</I>&gt;<i> 
+</I>&gt;<i> &gt; fetchmail: forwarding to localhost
+</I>&gt;<i> &gt; fetchmail: SMTP&gt; MAIL FROM:&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">owner-www at openbsd.org</A>&gt; SIZE=2413
+</I>&gt;<i> &gt; fetchmail: SMTP&lt; 451 4.1.8 Domain of sender address <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">owner-www at openbsd.org</A> does not resolve
+</I>&gt;<i> 
+</I>&gt;<i> Your SMTP server cannot resolve openbsd.org and temporarily refuses to
+</I>&gt;<i> accept the mail.
+</I>&gt;<i> 
+</I>&gt;<i> &gt; fetchmail: SMTP&gt; RSET
+</I>&gt;<i> &gt; fetchmail: SMTP&lt; 250 2.0.0 Reset state
+</I>&gt;<i> 
+</I>&gt;<i> Fetchmail sees that and treats the message as unfetched, so that it can
+</I>&gt;<i> retry later.  Because all of the messages get refused that way, there
+</I>&gt;<i> are no UIDs of &quot;seen&quot; messages to store, and fetchmail removes the empty
+</I>&gt;<i> file.
+</I>&gt;<i> 
+</I>&gt;<i> You need to make sure that the SMTP server can resolve the sender
+</I>&gt;<i> domains, but there is nothing you can do around fetchmail to fix that.
+</I>&gt;<i> 
+</I>&gt;<i> Typical places to check are (not all are present on all systems):
+</I>&gt;<i> 
+</I>&gt;<i> - /etc/host.conf
+</I>&gt;<i> - /etc/resolv.conf
+</I>&gt;<i> - /etc/nsswitch.conf
+</I>&gt;<i> - Name server (DNS) configuration beyond these three files
+</I>&gt;<i> - Name server (DNS) access permissions for the SMTP server
+</I>&gt;<i> - SMTP server chroot setup, if running chrooted
+</I>&gt;<i> 
+</I>&gt;<i> HTH
+</I>&gt;<i> 
+</I>&gt;<i> -- 
+</I>&gt;<i> Matthias Andree
+</I>&gt;<i> _______________________________________________
+</I>&gt;<i> fetchmail-users mailing list
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">fetchmail-users at lists.berlios.de</A>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">https://lists.berlios.de/mailman/listinfo/fetchmail-users</A>
+</I>
+-- 
+
+Luis P. Mendes
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002832.html">[fetchmail-users] Fetchmail doesn't create and deletes fetchids file
+</A></li>
+	<LI>Next message: <A HREF="002835.html">[fetchmail-users] Fetchmail doesn't create and deletes fetchids file
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2834">[ date ]</a>
+              <a href="thread.html#2834">[ thread ]</a>
+              <a href="subject.html#2834">[ subject ]</a>
+              <a href="author.html#2834">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

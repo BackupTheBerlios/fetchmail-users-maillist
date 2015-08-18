@@ -1,0 +1,115 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Authorization failure message in syslog
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2009-August/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Authorization%20failure%20message%20in%20syslog&In-Reply-To=%3CCOL120-W21EC800CE06D8C41D914C1B3FE0%40phx.gbl%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002031.html">
+   <LINK REL="Next"  HREF="002037.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Authorization failure message in syslog</H1>
+    <B>Charles Chat</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Authorization%20failure%20message%20in%20syslog&In-Reply-To=%3CCOL120-W21EC800CE06D8C41D914C1B3FE0%40phx.gbl%3E"
+       TITLE="[fetchmail-users] Authorization failure message in syslog">charleschat at hotmail.com
+       </A><BR>
+    <I>Wed Aug 19 18:02:31 CEST 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002031.html">[fetchmail-users] regression bug fix for fetchmail 6.3.11 security	release
+</A></li>
+        <LI>Next message: <A HREF="002037.html">[fetchmail-users] Authorization failure message in syslog
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2036">[ date ]</a>
+              <a href="thread.html#2036">[ thread ]</a>
+              <a href="subject.html#2036">[ subject ]</a>
+              <a href="author.html#2036">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>
+Hi,
+
+
+
+I'm using fetchmail to download mail into users' mailboxes via postfix.
+
+
+
+Every message that comes in results in an error message in syslog.
+
+
+
+   Authorization failure on &lt;user&gt;@&lt;my domain&gt;
+
+   fetchmail[5074]: Query status=3 (AUTHFAIL) 
+
+
+
+Even with this error message, the mail seems to getting in!?
+
+
+
+I'm just nervous about the error and afraid that some mail may be lost.
+
+Here's a snippit from syslog with the error message:
+
+Aug 19 11:45:04 &lt;mydomain&gt; fetchmail[29107]: 1 message for patty@&lt;mydomain&gt;.com at pop.&lt;mydomain&gt;.com (7333 octets). 
+Aug 19 11:45:05 &lt;mydomain&gt; fetchmail[29107]: reading message patty@&lt;mydomain&gt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">.com at mail-01.name-services.com</A>:1 of 1 (7333 octets) (log message incomplete)
+
+******* Here's the error line ********
+Aug 19 11:45:05 &lt;mydomain&gt; fetchmail[29107]: connection to localhost:smtp [::1/25] failed: Connection refused. 
+
+Aug 19 11:45:05 &lt;mydomain&gt; postfix/smtpd[4250]: connect from &lt;mydomain&gt;.com[127.0.0.1]
+Aug 19 11:45:05 &lt;mydomain&gt; postfix/smtpd[4250]: 2D01B1302B7: client=&lt;mydomain&gt;.com[127.0.0.1]
+Aug 19 11:45:05 &lt;mydomain&gt; postfix/cleanup[4253]: 2D01B1302B7: message-id=&lt;001a01ca20e2$e5fc85f0$<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">3d637405 at PTIHP1</A>&gt;
+Aug 19 11:45:05 &lt;mydomain&gt; fetchmail[29107]:  flushed 
+Aug 19 11:45:05 &lt;mydomain&gt; postfix/qmgr[14300]: 2D01B1302B7: from=&lt;patty@&lt;mydomain&gt;.com&gt;, size=7650, nrcpt=2 (queue active)
+Aug 19 11:45:05 &lt;mydomain&gt; postfix/smtpd[4250]: disconnect from &lt;mydomain&gt;.com[127.0.0.1]
+Aug 19 11:45:05 &lt;mydomain&gt; fetchmail[29107]: sleeping at Wed 19 Aug 2009 11:45:05 AM EDT for 200 seconds 
+
+
+In addition to the &quot;connection refused&quot; message, what does &quot;log message incomplete&quot; mean?
+
+
+
+Thanks for your help.
+
+Chuck
+
+
+
+_________________________________________________________________
+Windows Live: Make it easier for your friends to see what you&#8217;re up to on Facebook.
+<A HREF="http://windowslive.com/Campaign/SocialNetworking?ocid=PID23285::T:WLMTAGL:ON:WL:en-US:SI_SB_facebook:082009">http://windowslive.com/Campaign/SocialNetworking?ocid=PID23285::T:WLMTAGL:ON:WL:en-US:SI_SB_facebook:082009</A>
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002031.html">[fetchmail-users] regression bug fix for fetchmail 6.3.11 security	release
+</A></li>
+	<LI>Next message: <A HREF="002037.html">[fetchmail-users] Authorization failure message in syslog
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2036">[ date ]</a>
+              <a href="thread.html#2036">[ thread ]</a>
+              <a href="subject.html#2036">[ subject ]</a>
+              <a href="author.html#2036">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

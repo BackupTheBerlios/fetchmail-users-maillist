@@ -1,0 +1,91 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Fetchmail doesn't create and deletes fetchids	file
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2011-May/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Fetchmail%20doesn%27t%20create%20and%20deletes%20fetchids%0A%09file&In-Reply-To=%3CBANLkTimtxJ%3D5mstug-b2jFi2ssFGJQww2g%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002830.html">
+   <LINK REL="Next"  HREF="002832.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Fetchmail doesn't create and deletes fetchids	file</H1>
+    <B>Rob MacGregor</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Fetchmail%20doesn%27t%20create%20and%20deletes%20fetchids%0A%09file&In-Reply-To=%3CBANLkTimtxJ%3D5mstug-b2jFi2ssFGJQww2g%40mail.gmail.com%3E"
+       TITLE="[fetchmail-users] Fetchmail doesn't create and deletes fetchids	file">rob.macgregor at gmail.com
+       </A><BR>
+    <I>Tue May 24 19:06:17 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002830.html">[fetchmail-users] Fetchmail doesn't create and deletes fetchids file
+</A></li>
+        <LI>Next message: <A HREF="002832.html">[fetchmail-users] Fetchmail doesn't create and deletes fetchids file
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2831">[ date ]</a>
+              <a href="thread.html#2831">[ thread ]</a>
+              <a href="subject.html#2831">[ subject ]</a>
+              <a href="author.html#2831">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Tue, May 24, 2011 at 16:12, luis &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">luislupe at gmail.com</A>&gt; wrote:
+&gt;<i> Hi,
+</I>&gt;<i>
+</I>&gt;<i> I'm using
+</I>&gt;<i> $ /usr/bin/fetchmail --version
+</I>&gt;<i> This is fetchmail release 6.3.19+NTLM+SSL+NLS.
+</I>&gt;<i> &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; Fallback MDA: (none)
+</I>&gt;<i> &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; Linux acer 2.6.37.6 #3 SMP Sat Apr 9 22:49:32 CDT
+</I>&gt;<i> &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; ...
+</I>&gt;<i> &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; Taking options from command line
+</I>&gt;<i>
+</I>&gt;<i> and have a problem because file fetchids is not created.
+</I>&gt;<i>
+</I>&gt;<i> $ head fetchmailrc | grep -v '^#'
+</I>&gt;<i> set postmaster &quot;lupe&quot;
+</I>&gt;<i> set bouncemail
+</I>&gt;<i> set no spambounce
+</I>&gt;<i> set properties &quot;&quot;
+</I>&gt;<i> set logfile /home/lupe/.fetchmail/fetchmail.log
+</I>
+I don't see any indication you've enabled UIDL support. You've nether
+specified UIDL support or set the idfile parameter in your
+.fetchmailrc.
+
+-- 
+&#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160;&#160; Please keep list traffic on the list.
+
+Rob MacGregor
+&#160; &#160; &#160; Whoever fights monsters should see to it that in the process he
+&#160; &#160; &#160; &#160; doesn't become a monster.&#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; Friedrich Nietzsche
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002830.html">[fetchmail-users] Fetchmail doesn't create and deletes fetchids file
+</A></li>
+	<LI>Next message: <A HREF="002832.html">[fetchmail-users] Fetchmail doesn't create and deletes fetchids file
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2831">[ date ]</a>
+              <a href="thread.html#2831">[ thread ]</a>
+              <a href="subject.html#2831">[ subject ]</a>
+              <a href="author.html#2831">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

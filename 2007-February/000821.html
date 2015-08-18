@@ -1,0 +1,104 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] CommonName mismatch after fetchmail upgrade
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2007-February/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20CommonName%20mismatch%20after%20fetchmail%20upgrade&In-Reply-To=%3C43ea8d070702171259r2b9ef738y405cde23e6aadf72%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000820.html">
+   <LINK REL="Next"  HREF="000822.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] CommonName mismatch after fetchmail upgrade</H1>
+    <B>Rob MacGregor</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20CommonName%20mismatch%20after%20fetchmail%20upgrade&In-Reply-To=%3C43ea8d070702171259r2b9ef738y405cde23e6aadf72%40mail.gmail.com%3E"
+       TITLE="[fetchmail-users] CommonName mismatch after fetchmail upgrade">rob.macgregor at gmail.com
+       </A><BR>
+    <I>Sat Feb 17 21:59:37 CET 2007</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000820.html">[fetchmail-users] CommonName mismatch after fetchmail upgrade
+</A></li>
+        <LI>Next message: <A HREF="000822.html">[fetchmail-users] CommonName mismatch after fetchmail upgrade
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#821">[ date ]</a>
+              <a href="thread.html#821">[ thread ]</a>
+              <a href="subject.html#821">[ subject ]</a>
+              <a href="author.html#821">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On 2/17/07, thomas &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">thomas.bsd at gmail.com</A>&gt; wrote:
+&gt;<i> Hello,
+</I>&gt;<i>
+</I>&gt;<i> I have upgraded to fetchmail &quot;6.3.6+NTLM+SDPS+SSL+NLS&quot; (the one
+</I>&gt;<i> shipped with Debian Etch). My setup always worked sofar, but since I
+</I>&gt;<i> get the following error :
+</I>&gt;<i>
+</I>&gt;<i> fetchmail: 6.3.6 querying pop.myuniversity.tld (protocol POP3) at sam
+</I>&gt;<i> 17 f&#233;v 2007 21:40:46 CET: poll started
+</I>&lt;---SNIP---&gt;
+&gt;<i> fetchmail: POP3&lt; +OK start TLS negotiation
+</I>&gt;<i> fetchmail: Issuer Organization: Stalker Software, Inc.
+</I>&gt;<i> fetchmail: Issuer CommonName: stalker.com
+</I>&gt;<i> fetchmail: Server CommonName: myuniversity.tld
+</I>&gt;<i> fetchmail: Server CommonName mismatch: myuniversity.tld != pop.myuniversity.tld
+</I>&gt;<i> fetchmail: pop.myuniversity.tld key fingerprint:
+</I>&gt;<i> 17:A5:89:D2:05:6F:41:6B:32:4C:9E:14:78:02:59:B6
+</I>&gt;<i> fetchmail: Server certificate verification error: unable to get local
+</I>&gt;<i> issuer certificate
+</I>&gt;<i> fetchmail: Server certificate verification error: certificate not trusted
+</I>&gt;<i> fetchmail: Server certificate verification error: unable to verify the
+</I>&gt;<i> first certificate
+</I>&gt;<i> fetchmail: pop.myuniversity.tld: upgrade to TLS succeeded.
+</I>&gt;<i> fetchmail: POP3&gt; USER MYLOGIN
+</I>&gt;<i> fetchmail: POP3&lt; +OK please send the PASS
+</I>&gt;<i> fetchmail: POP3&gt; PASS *
+</I>&gt;<i> fetchmail: POP3&lt; -ERR secure access to this account is disabled
+</I>&gt;<i> fetchmail: secure access to this account is disabled
+</I>&lt;----SNIP---&gt;
+&gt;<i> Maybe the certificate of my university is wrong, but the old version
+</I>&gt;<i> of fetchmail had no problem to fetch the emails, so there must be a
+</I>&gt;<i> workaround.
+</I>
+The &quot;old version&quot; (you don't say which, but I suspect a pretty old
+one) obviously didn't attempt to support TLS.  Simply disable TLS:
+
+<A HREF="http://www.fetchmail.info/fetchmail-FAQ.html#K6">http://www.fetchmail.info/fetchmail-FAQ.html#K6</A>
+
+-- 
+                 Please keep list traffic on the list.
+
+Rob MacGregor
+      Whoever fights monsters should see to it that in the process he
+        doesn't become a monster.                  Friedrich Nietzsche
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000820.html">[fetchmail-users] CommonName mismatch after fetchmail upgrade
+</A></li>
+	<LI>Next message: <A HREF="000822.html">[fetchmail-users] CommonName mismatch after fetchmail upgrade
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#821">[ date ]</a>
+              <a href="thread.html#821">[ thread ]</a>
+              <a href="subject.html#821">[ subject ]</a>
+              <a href="author.html#821">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

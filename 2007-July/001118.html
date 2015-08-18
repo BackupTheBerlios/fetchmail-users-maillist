@@ -1,0 +1,82 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Invalid SSL certificate
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2007-July/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Invalid%20SSL%20certificate&In-Reply-To=%3C469D0900.6060902%40iradimed.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001117.html">
+   <LINK REL="Next"  HREF="001119.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Invalid SSL certificate</H1>
+    <B>Phillip Susi</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Invalid%20SSL%20certificate&In-Reply-To=%3C469D0900.6060902%40iradimed.com%3E"
+       TITLE="[fetchmail-users] Invalid SSL certificate">psusi at iradimed.com
+       </A><BR>
+    <I>Tue Jul 17 20:22:56 CEST 2007</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001117.html">[fetchmail-users] Invalid SSL certificate
+</A></li>
+        <LI>Next message: <A HREF="001119.html">[fetchmail-users] Fetchmail retrieving message body of only &quot;OK	FETCH completed&quot;?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1118">[ date ]</a>
+              <a href="thread.html#1118">[ thread ]</a>
+              <a href="subject.html#1118">[ subject ]</a>
+              <a href="author.html#1118">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Matthias Andree wrote:
+&gt;<i> 1. Fetchmail does not offer direct control over the supported ciphers, but
+</I>&gt;<i> you might want to try --sslproto SSL3  (or SSL2; SSL23 is the default, no
+</I>&gt;<i> need to try that) to see if that improves your situation.
+</I>&gt;<i> 
+</I>&gt;<i> 2. Can I ask you to file a BerliOS bug report against fetchmail stating
+</I>&gt;<i> that fetchmail does not report SSL negotiation errors properly using
+</I>&gt;<i> ERR_error_string(3ssl), and a pointer to this subject?
+</I>
+I will go file that bug report on launchpad now.
+
+In the mean time, I have recompiled openssl with support for the 
+TLS_RSA_WITH_RC4_128_MD5 ( 0x0004 ) cipher, but fetchmail still has its 
+connection rejected.  When comparing the CLIENT HELLO SSL frames sent by 
+thunderbird and fetchmail, I see that fetchmail offers a few additional 
+ciphers that thunderbird does not, and support for zlib compression, 
+which thunderbird does not.  The only thing I see that thunderbird is 
+sending that fetchmail is not, is an extension header of type 
+server_name (0x0000).  Would it be possible to have fetchmail send this 
+extension as well?
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001117.html">[fetchmail-users] Invalid SSL certificate
+</A></li>
+	<LI>Next message: <A HREF="001119.html">[fetchmail-users] Fetchmail retrieving message body of only &quot;OK	FETCH completed&quot;?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1118">[ date ]</a>
+              <a href="thread.html#1118">[ thread ]</a>
+              <a href="subject.html#1118">[ subject ]</a>
+              <a href="author.html#1118">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,104 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Spam gets left behind
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2012-August/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Spam%20gets%20left%20behind&In-Reply-To=%3CCAJCMLO9cy%2BfyROU%3D5BZJuNw%3DdTdt_TwAE-h%2BsW4J7sNKFsQqMQ%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003205.html">
+   <LINK REL="Next"  HREF="003208.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Spam gets left behind</H1>
+    <B>Rob MacGregor</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Spam%20gets%20left%20behind&In-Reply-To=%3CCAJCMLO9cy%2BfyROU%3D5BZJuNw%3DdTdt_TwAE-h%2BsW4J7sNKFsQqMQ%40mail.gmail.com%3E"
+       TITLE="[fetchmail-users] Spam gets left behind">rob.macgregor at gmail.com
+       </A><BR>
+    <I>Sun Aug  5 20:01:41 CEST 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003205.html">[fetchmail-users] Spam gets left behind
+</A></li>
+        <LI>Next message: <A HREF="003208.html">[fetchmail-users] Spam gets left behind
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3206">[ date ]</a>
+              <a href="thread.html#3206">[ thread ]</a>
+              <a href="subject.html#3206">[ subject ]</a>
+              <a href="author.html#3206">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Sun, Aug 5, 2012 at 6:36 PM, Ed Hochman &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">charleschat at hotmail.com</A>&gt; wrote:
+&gt;<i>
+</I>&gt;<i> Hi,
+</I>&gt;<i>
+</I>&gt;<i> I regularly fetchmail from the inbox at my registrar.
+</I>&gt;<i>
+</I>&gt;<i> Occasionally fetchmail finds a bit of spam.  The most recent was a message from: <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">a8il2 at dynamic.vdc.vn</A>
+</I>&gt;<i>
+</I>&gt;<i> The trouble is that messages like this get left at the registrar.  Here's a snippet from syslog:
+</I>&gt;<i>
+</I>&gt;<i> Aug  5 13:11:27 &lt;my server&gt; fetchmail[24682]: 1 message for &lt;me&gt;@&lt;my domain&gt; at &lt;my ip&gt; (3098 octets).
+</I>&gt;<i> Aug  5 13:11:28 &lt;my server&gt; postfix/smtpd[26484]: connect from localhost[127.0.0.1]
+</I>&gt;<i> Aug  5 13:11:28 &lt;my server&gt; postfix/smtpd[26484]: NOQUEUE: reject: RCPT from localhost[127.0.0.1]: 450 4.1.8 &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">a8il2 at dynamic.vdc.vn</A>&gt;: Sender address rejected: Domain not found; from=&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">a8il2 at dynamic.vdc.vn</A>&gt; to=&lt;&lt;me&gt;@localhost&gt; proto=ESMTP helo=&lt;&lt;my server&gt;&gt;
+</I>&gt;<i> Aug  5 13:11:28 &lt;my server&gt; fetchmail[24682]: reading message &lt;me&gt;@&lt;my domain&gt;@&lt;my ip&gt;:1 of 1 (3098 octets) (log message incomplete)
+</I>&gt;<i> Aug  5 13:11:28 &lt;my server&gt; fetchmail[24682]: SMTP error: 450 4.1.8 &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">a8il2 at dynamic.vdc.vn</A>&gt;: Sender address rejected: Domain not found
+</I>&gt;<i> Aug  5 13:11:28 &lt;my server&gt; fetchmail[24682]:  not flushed
+</I>&gt;<i>
+</I>&gt;<i> So the messages stay at the registrar and are continuously queried by fetchmail and postfix creating un-necessary activity.
+</I>&gt;<i>
+</I>&gt;<i> Not only that, these messages sometimes have large attachments which clutter up the mailbox.
+</I>&gt;<i>
+</I>&gt;<i> I would prefer not to have to monitor for this and go to the registrar's mailbox to delete them.
+</I>&gt;<i>
+</I>&gt;<i> Wouldn't it be preferable to flush these messages and possibly send them to a catch-all mailbox on &lt;my server&gt;?
+</I>
+If you configure fetchmail with the &quot;antispam&quot; option and set it to
+&quot;450&quot; then, for problems like the above, fetchmail will discard the
+message - see the manual
+(<A HREF="http://fetchmail.berlios.de/fetchmail-man.html">http://fetchmail.berlios.de/fetchmail-man.html</A>) for details. Of
+course, it will also delete email when there is a transient DNS
+failure.
+
+Your other option is to configure your mail server to accept such
+email, since your mail provider was silly enough to, and then handle
+the problem locally. That is almost certainly a more sensible option.
+
+-- 
+                 Please keep list traffic on the list.
+
+Rob MacGregor
+      Whoever fights monsters should see to it that in the process he
+        doesn't become a monster.                  Friedrich Nietzsche
+</PRE>
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003205.html">[fetchmail-users] Spam gets left behind
+</A></li>
+	<LI>Next message: <A HREF="003208.html">[fetchmail-users] Spam gets left behind
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3206">[ date ]</a>
+              <a href="thread.html#3206">[ thread ]</a>
+              <a href="subject.html#3206">[ subject ]</a>
+              <a href="author.html#3206">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

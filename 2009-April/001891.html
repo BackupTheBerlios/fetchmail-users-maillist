@@ -1,0 +1,89 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Silencing &quot;CommonName mismatch&quot; warnings
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2009-April/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Silencing%20%22CommonName%20mismatch%22%20warnings&In-Reply-To=%3C20090426092619.GC2841%40acerrimo%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001890.html">
+   <LINK REL="Next"  HREF="001892.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Silencing &quot;CommonName mismatch&quot; warnings</H1>
+    <B>Andrea R.</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Silencing%20%22CommonName%20mismatch%22%20warnings&In-Reply-To=%3C20090426092619.GC2841%40acerrimo%3E"
+       TITLE="[fetchmail-users] Silencing &quot;CommonName mismatch&quot; warnings">dev at undeadlinks.com
+       </A><BR>
+    <I>Sun Apr 26 11:26:19 CEST 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001890.html">[fetchmail-users] New install, fetchmail not connecting FIXED.
+</A></li>
+        <LI>Next message: <A HREF="001892.html">[fetchmail-users] Silencing &quot;CommonName mismatch&quot; warnings
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1891">[ date ]</a>
+              <a href="thread.html#1891">[ thread ]</a>
+              <a href="subject.html#1891">[ subject ]</a>
+              <a href="author.html#1891">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hello,
+
+I have succeeded in getting fetchmail (6.3.6) to talk to a POP3+TLS
+mailserver that uses a self-signed certificate, by passing the
+&quot;sslfingerprint&quot; option.
+
+However, at every download, cron is now filling up my mbox with
+fetchmail errors like:
+
+
+fetchmail: Server CommonName mismatch: localhost.localdomain != mail.***.com
+fetchmail: Server CommonName mismatch: localhost.localdomain != mail.***.com
+fetchmail: Server CommonName mismatch: localhost.localdomain != mail.***.com
+
+
+These warnings are not being suppressed by the '-s' option, which I'm
+already using. Is there a way to get rid of them, short of redirecting
+stderr to /dev/null, which would prevent me from seeing all other
+warnings?
+
+Thanks for your help,
+Andrea
+
+
+-- 
+~&gt; uname -srvmp
+Linux 2.6.18-92.1.22.el5 #1 SMP Tue Dec 16 06:50:02 EST 2008 i686 athlon
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001890.html">[fetchmail-users] New install, fetchmail not connecting FIXED.
+</A></li>
+	<LI>Next message: <A HREF="001892.html">[fetchmail-users] Silencing &quot;CommonName mismatch&quot; warnings
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1891">[ date ]</a>
+              <a href="thread.html#1891">[ thread ]</a>
+              <a href="subject.html#1891">[ subject ]</a>
+              <a href="author.html#1891">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

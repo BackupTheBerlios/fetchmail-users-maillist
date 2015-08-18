@@ -1,0 +1,200 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] questions using fetchmail with ssl
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2009-July/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20questions%20using%20fetchmail%20with%20ssl&In-Reply-To=%3CE3B6059F-FD94-443C-B05D-FC4BB2A140E7%40os-plus.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001983.html">
+   <LINK REL="Next"  HREF="001985.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] questions using fetchmail with ssl</H1>
+    <B>chris</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20questions%20using%20fetchmail%20with%20ssl&In-Reply-To=%3CE3B6059F-FD94-443C-B05D-FC4BB2A140E7%40os-plus.de%3E"
+       TITLE="[fetchmail-users] questions using fetchmail with ssl">info at os-plus.de
+       </A><BR>
+    <I>Mon Jul  6 14:25:44 CEST 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001983.html">[fetchmail-users] fetchmail 6.3.10 release available (STABLE)
+</A></li>
+        <LI>Next message: <A HREF="001985.html">[fetchmail-users] questions using fetchmail with ssl
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1984">[ date ]</a>
+              <a href="thread.html#1984">[ thread ]</a>
+              <a href="subject.html#1984">[ subject ]</a>
+              <a href="author.html#1984">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>hello,
+
+i am using fetchmail 6.3.8 on a os x server (10.5.7).
+when testing fetchmail using ssl for a customer some questions came up.
+
+my .fetchmailrc file looks like:
+
+poll SSL_SERVER with
+      protocol pop3
+      uidl
+      username &quot;USER&quot;
+      password &quot;PASSWORD&quot;
+      ssl
+      sslcertck
+      sslcertpath &quot;/Users/chris/.certs&quot;
+      keep
+
+my .certs directory looks like
+
+lrwxr-xr-x   1 chris  staff    15 Jul  6 11:38 164c8de9.0 -&gt;  
+sslmailpool.pem
+lrwxr-xr-x   1 chris  staff    23 Jul  6 11:38 57692373.0 -&gt;  
+GeoTrust_Global_CA2.pem
+lrwxr-xr-x   1 chris  staff    40 Jul  6 11:38 594f1775.0 -&gt;  
+Equifax_Secure_Certificate_Authority.pem
+lrwxr-xr-x   1 chris  staff    40 Jul  6 11:38 74c26bd0.0 -&gt;  
+Equifax_Secure_Global_eBusiness_CA-1.pem
+lrwxr-xr-x   1 chris  staff    22 Jul  6 11:38 7999be0d.0 -&gt;  
+GeoTrust_Global_CA.pem
+lrwxr-xr-x   1 chris  staff    44 Jul  6 11:38 84f41b78.0 -&gt;  
+GeoTrust_Mobile_Device_Root_-_Privileged.pem
+lrwxr-xr-x   1 chris  staff    26 Jul  6 11:38 87753b0d.0 -&gt;  
+GeoTrust_Universal_CA2.pem
+lrwxr-xr-x   1 chris  staff    33 Jul  6 11:38 8f7b96c4.0 -&gt;  
+Equifax_Secure_eBusiness_CA-2.pem
+lrwxr-xr-x   1 chris  staff     9 Jul  6 11:38 9772ca32.0 -&gt; GTPCA.pem
+-rw-r--r--   1 chris  staff  1162 Jul  6 11:28  
+Equifax_Secure_Certificate_Authority.pem
+-rw-r--r--   1 chris  staff   964 Jul  6 11:28  
+Equifax_Secure_Global_eBusiness_CA-1.pem
+-rw-r--r--   1 chris  staff   948 Jun 30 07:35  
+Equifax_Secure_eBusiness_CA-1.pem
+-rw-r--r--   1 chris  staff  1162 Jul  6 11:28  
+Equifax_Secure_eBusiness_CA-2.pem
+-rw-r--r--   1 chris  staff  1686 Jul  6 11:29 GTEVCA.pem
+-rw-r--r--   1 chris  staff  1308 Jul  6 11:29 GTPCA.pem
+-rw-r--r--   1 chris  staff  1752 Jul  6 11:28 GeoTrust_CA_for_Adobe.pem
+-rw-r--r--   1 chris  staff  1236 Jul  6 11:28 GeoTrust_Global_CA.pem
+-rw-r--r--   1 chris  staff  1264 Jul  6 11:28 GeoTrust_Global_CA2.pem
+-rw-r--r--   1 chris  staff  1434 Jul  6 11:28  
+GeoTrust_Mobile_Device_Root_-_Privileged.pem
+-rw-r--r--   1 chris  staff  1442 Jul  6 11:28  
+GeoTrust_Mobile_Device_Root_-_Unprivileged.pem
+-rw-r--r--   1 chris  staff  1018 Jul  6 11:28  
+GeoTrust_True_Credentials_CA_2.pem
+-rw-r--r--   1 chris  staff  1968 Jul  6 11:28 GeoTrust_Universal_CA.pem
+-rw-r--r--   1 chris  staff  1968 Jul  6 11:28  
+GeoTrust_Universal_CA2.pem
+lrwxr-xr-x   1 chris  staff    10 Jul  6 11:38 b06f9739.0 -&gt; GTEVCA.pem
+lrwxr-xr-x   1 chris  staff    34 Jul  6 11:38 c82831b2.0 -&gt;  
+GeoTrust_True_Credentials_CA_2.pem
+lrwxr-xr-x   1 chris  staff    46 Jul  6 11:38 e57260b1.0 -&gt;  
+GeoTrust_Mobile_Device_Root_-_Unprivileged.pem
+lrwxr-xr-x   1 chris  staff    25 Jul  6 11:38 e775ed2d.0 -&gt;  
+GeoTrust_Universal_CA.pem
+lrwxr-xr-x   1 chris  staff    33 Jul  6 11:38 e7b8d656.0 -&gt;  
+Equifax_Secure_eBusiness_CA-1.pem
+lrwxr-xr-x   1 chris  staff    25 Jul  6 11:38 f47a93e0.0 -&gt;  
+GeoTrust_CA_for_Adobe.pem
+
+when i use fetchmail i get the following result
+
+mini:~ chris$ fetchmail -c -v -Nd0
+fetchmail: 6.3.8 querying SSL_SERVER (protocol POP3) at Mon, 06 Jul  
+2009 13:58:23 +0200 (CEST): poll started
+Trying to connect to IP_SSL_SERVER/995...connected.
+fetchmail: Issuer Organization: Equifax
+fetchmail: Unknown Issuer CommonName
+fetchmail: Server CommonName:SSL_SERVER
+fetchmail: SSL_SERVER key fingerprint:  
+D5:AB:D8:87:93:12:97:08:90:13:29:A4:97:CC:BC:DD
+fetchmail: POP3&lt; +OK Dovecot ready.
+fetchmail: POP3&gt; CAPA
+fetchmail: POP3&lt; +OK
+fetchmail: POP3&lt; CAPA
+fetchmail: POP3&lt; TOP
+fetchmail: POP3&lt; UIDL
+fetchmail: POP3&lt; RESP-CODES
+fetchmail: POP3&lt; PIPELINING
+fetchmail: POP3&lt; USER
+fetchmail: POP3&lt; SASL PLAIN LOGIN
+fetchmail: POP3&lt; .
+fetchmail: POP3&gt; USER &quot;USER&quot;
+fetchmail: POP3&lt; +OK
+fetchmail: POP3&gt; PASS *
+fetchmail: POP3&lt; +OK Logged in.
+fetchmail: POP3&gt; STAT
+fetchmail: POP3&lt; +OK 7 13341
+fetchmail: POP3&gt; UIDL
+fetchmail: POP3&lt; +OK
+fetchmail: POP3&lt; 1 1243924889.H980090P8587.mousika.ispgateway.de,S=1890
+fetchmail: POP3&lt; 2 1244011756.H997805P1095.mousika.ispgateway.de,S=1889
+
+fetchmail: POP3&lt; 3 1244012001.H715330P7408.mousika.ispgateway.de,S=1890
+fetchmail: POP3&lt; 4 1244012414.H856050P19552.mousika.ispgateway.de,S=1890
+fetchmail: POP3&lt; 5 1244012461.H946446P21384.mousika.ispgateway.de,S=2042
+fetchmail: POP3&lt; 6 1244012656.H749327P26886.mousika.ispgateway.de,S=2041
+fetchmail: POP3&lt; 7 1244012856.H83990P32759.mousika.ispgateway.de,S=1699
+fetchmail: POP3&lt; .
+7 messages for &quot;USER at SSL_SERVER (13341 octets).
+fetchmail: POP3&gt; QUIT
+fetchmail: POP3&lt; +OK Logging out.
+fetchmail: 6.3.8 querying SSL_SERVER (protocol POP3) at Mon, 06 Jul  
+2009 13:58:24 +0200 (CEST): poll completed
+fetchmail: normal termination, status 0
+
+now my questions
+
+1) how can i see/check that i am using ssl?
+2) does the content of line &quot;fetchmail: POP3&lt; SASL PLAIN LOGIN&quot; means  
+that i am using plain text for authentication?
+3) how can i see which certificate was used/tried for a connection?
+
+i guess i configured ssl but i am not using it.
+
+regards
+
+christian
+
+
+---
+christian jeannot
+email: <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">info at os-plus.de</A>
+phone: +49 821 9998438
+mobile: +49 179 6946446
+
+vogelmauer 17
+86152 augsburg
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001983.html">[fetchmail-users] fetchmail 6.3.10 release available (STABLE)
+</A></li>
+	<LI>Next message: <A HREF="001985.html">[fetchmail-users] questions using fetchmail with ssl
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1984">[ date ]</a>
+              <a href="thread.html#1984">[ thread ]</a>
+              <a href="subject.html#1984">[ subject ]</a>
+              <a href="author.html#1984">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

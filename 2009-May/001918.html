@@ -1,0 +1,156 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] 4 multidrop but one destination server
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2009-May/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%204%20multidrop%20but%20one%20destination%20server&In-Reply-To=%3Cop.uteposmy1e62zd%40balu.cs.uni-paderborn.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001915.html">
+   <LINK REL="Next"  HREF="001919.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] 4 multidrop but one destination server</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%204%20multidrop%20but%20one%20destination%20server&In-Reply-To=%3Cop.uteposmy1e62zd%40balu.cs.uni-paderborn.de%3E"
+       TITLE="[fetchmail-users] 4 multidrop but one destination server">matthias.andree at gmx.de
+       </A><BR>
+    <I>Mon May  4 15:13:30 CEST 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001915.html">[fetchmail-users] 4 multidrop but one destination server
+</A></li>
+        <LI>Next message: <A HREF="001919.html">[fetchmail-users] 4 multidrop but one destination server
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1918">[ date ]</a>
+              <a href="thread.html#1918">[ thread ]</a>
+              <a href="subject.html#1918">[ subject ]</a>
+              <a href="author.html#1918">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Am 03.05.2009, 12:39 Uhr, schrieb Michelle Konzack  
+&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">linux4michelle at tamay-dogan.net</A>&gt;:
+
+&gt;<i> Hello,
+</I>&gt;<i>
+</I>&gt;<i> I have currently 4 domains and one catchall, which is fine,  if  I  work
+</I>&gt;<i> alone but not realy funny, if I get users on the 4 domains with the same
+</I>&gt;<i> name...
+</I>
+I find it very hard to understand the problem at hand.
+
+&gt;<i> Now the problem is, that incoming messages will have NO DOMAIN PART. :-(
+</I>
+Can you show example messages, once how they are on the upstream's POP3  
+server (for instance, log in with mutt and show all headers), and then  
+what your fetchmail -vvv and your SMTP server log?
+
+&gt;<i> So, now my friend created 4 multidrop boxes (own for  each  domain)  and
+</I>&gt;<i> now the Delivered-To: looks like
+</I>&gt;<i>
+</I>&gt;<i>   tamay-dogan.net-some-weird-catchall-${LOCALPART}@friendsdomain.com
+</I>&gt;<i>
+</I>&gt;<i> but this does not more work with SMTP transfer.
+</I>
+What's the issue here? Loop detection or not being able to tell the  
+domains apart?
+
+If you mean there are four multidrop boxes per domain, how come these all  
+have &quot;Delivered-TO: <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">foobar at friendsdomain.com</A>&quot;? I should think that there  
+is rather <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">... at friendsdomain1.com</A>, <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">... at friendsotherdomain.com</A>,  
+<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">... at friendsthirddomain.com</A> and <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">... at friends4.example.org.</A>
+
+&gt;<i> Now what would you do?  --  Not using qvirtual/envelope  and  forwarding
+</I>&gt;<i> to procmail which then correct the &quot;Delivered-To:&quot; and forward it to the
+</I>&gt;<i> MTA (courier)?
+</I>
+If I understand your description correctly - as above -, this needs  
+changes to the mail server's configuration so that the upstream server  
+does NOT fold all four domains into the same  
+&quot;tamay-dogan.net-some-weird-catchall-&quot;, but to a different one for each  
+domain.
+
+I find this is undocumented, but I'm willing to make this official for the  
+sake of whoever has a use for such configurations, so here goes:
+
+1. (assumption) qmail-style virtual addresses (as supported by qmail [1]  
+and courier [2]) work this way: a domain is mapped to a user, and a prefix  
+is prepended. Say, we are mapping one.example and two.example to alice. We  
+can write (this is Courier aliases syntax; for qmail, omit the @ and the  
+blanks and use it in virtuals rather than aliases - I stopped using qmail  
+ages ago, see the link below for details.)
+
+# GOOD EXAMPLE:
+@one.example: alice-one
+@two.example: alice-two
+
+This maps <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">LOCAL at one.example</A> to <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">alice-one-LOCAL at serversdomain</A> and  
+<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">OTHER at two.example</A> to <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">alice-two-OTHER at serversdomain.</A> serversdomain is the  
+&quot;me&quot; domain of the MX server for one.example and two.example, thus,  
+usually the ISP server's name.
+
+In your particular case, make sure that the right-hand side is distinct  
+for any two of the four domains. Don't just put identical right-hand sides  
+like in this bad example:
+
+# vvv BAD EXAMPLE vvv
+@one.example: friend
+@two.example: friend
+# ^^^ BAD EXAMPLE ^^^
+
+
+2. qvirtual mapping in fetchmail is applied very early, before  
+localdomains checks, and before user mappings. So you can go like:
+
+qvirtual &quot;alice-&quot;
+user login pass foo is one-info=bla1 two-info=bla2 ...
+
+You cannot use a &quot;*&quot; here.
+
+This would make fetchmail deliver messages for <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">info at one.example</A> to bla1,  
+<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">info at two.example</A> to bla2 and anything. Since wildmats, globs and regexps  
+are not supported here, this isn't practical if either of the virtual  
+domains has catchall addresses by itself (I think that's a bad idea  
+anyways), but it works for a reasonably small set of users in each virtual  
+domain.
+
+HTH
+Matthias
+
+
+[1] <A HREF="http://cr.yp.to/qmail/faq/incominghost.html#virtual">http://cr.yp.to/qmail/faq/incominghost.html#virtual</A>
+[2] <A HREF="http://www.courier-mta.org/makealiases.html">http://www.courier-mta.org/makealiases.html</A>
+
+-- 
+Matthias Andree
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001915.html">[fetchmail-users] 4 multidrop but one destination server
+</A></li>
+	<LI>Next message: <A HREF="001919.html">[fetchmail-users] 4 multidrop but one destination server
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1918">[ date ]</a>
+              <a href="thread.html#1918">[ thread ]</a>
+              <a href="subject.html#1918">[ subject ]</a>
+              <a href="author.html#1918">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

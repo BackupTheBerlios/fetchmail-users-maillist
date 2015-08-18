@@ -1,0 +1,137 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] download mail and stere it
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2011-August/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20download%20mail%20and%20stere%20it&In-Reply-To=%3C4E50C874.6040909%40gmx.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002907.html">
+   <LINK REL="Next"  HREF="002911.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] download mail and stere it</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20download%20mail%20and%20stere%20it&In-Reply-To=%3C4E50C874.6040909%40gmx.de%3E"
+       TITLE="[fetchmail-users] download mail and stere it">matthias.andree at gmx.de
+       </A><BR>
+    <I>Sun Aug 21 10:57:24 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002907.html">[fetchmail-users] download mail and stere it
+</A></li>
+        <LI>Next message: <A HREF="002911.html">[fetchmail-users] download mail and stere it
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2910">[ date ]</a>
+              <a href="thread.html#2910">[ thread ]</a>
+              <a href="subject.html#2910">[ subject ]</a>
+              <a href="author.html#2910">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Am 21.08.2011 10:36, schrieb Xavier:
+
+&gt;<i> Secondly commented, in principle I know I have no mail server installed.
+</I>
+That explains a bit, but let's see in detail.
+
+&gt;<i> In the case of my fetchmail, I have a minimum initial configuration:
+</I>&gt;<i> 
+</I>&gt;<i> set logfile &quot;/home/fetchmail_user/fetchmail.log&quot;
+</I>&gt;<i>    set postmaster &quot;$USER&quot;
+</I>
+Fetchmail does NOT expand shell variables. You cannot use $USER here...
+
+&gt;<i>    set bouncemail
+</I>&gt;<i>    set no spambounce
+</I>&gt;<i>    set properties &quot;&quot;
+</I>&gt;<i>    poll pop.gmail.com with proto POP3
+</I>&gt;<i>    user '<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">MAIL at SERVER.COM</A>' there with password 'PASSWORD' is '$USER' here
+</I>
+...or here, but you need to spell it out, like &quot;hans&quot; or &quot;xavier&quot; or
+however your user is called.
+
+&gt;<i>    options flush no rewrite ssl sslkey
+</I>&gt;<i> '/home/fetchmail_user/privkey.pem' sslcert
+</I>&gt;<i> '/home/fetchmail_user/cacert.pem'
+</I>
+You are using certificates to authenticate with Google?  I find that
+hard to believe.  Since when do they support that?
+
+&gt;<i> I did a test and I sent an e-mail account back to test I created and was
+</I>&gt;<i> successful, then I download to my computer using the following command
+</I>&gt;<i> and on screen tells me:
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> % fetchmail -k
+</I>&gt;<i> fetchmail: Server certificate verification error: unable to get local
+</I>&gt;<i> issuer cer
+</I>&gt;<i> tificate
+</I>&gt;<i> fetchmail: This means that the root signing certificate (issued for
+</I>&gt;<i> /C=US/O=Goog
+</I>&gt;<i> le Inc/CN=Google Internet Authority) is not in the trusted CA
+</I>&gt;<i> certificate locati
+</I>&gt;<i> ons, or that c_rehash needs to be run on the certificate directory. For
+</I>&gt;<i> details,
+</I>&gt;<i>  please see the documentation of --sslcertpath and --sslcertfile in the
+</I>&gt;<i> manual p
+</I>&gt;<i> age.
+</I>&gt;<i> fetchmail: Server certificate verification error: certificate not trusted
+</I>&gt;<i> fetchmail: Warning: the connection is insecure, continuing anyways.
+</I>&gt;<i> (Better use
+</I>&gt;<i> --sslcertck!)
+</I>&gt;<i> fetchmail: 1 message for <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">MAIL at SERVER.COM</A> at pop.gmail.com (1716 octets).
+</I>&gt;<i> fetchmail: reading message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">MAIL at SERVER.COM</A>@gmail-pop.l.google.com:1 of 1
+</I>&gt;<i>  (1716 octets) (log message incomplete)
+</I>&gt;<i> fetchmail: SMTP error: 550 5.1.1 &lt;$<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">USER at localhost</A>&gt;... User unknown
+</I>&gt;<i> fetchmail: mail from <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">MAILER-DAEMON at casa.localdomain</A> bounced to
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">MAIL at SERVER.COM.</A>
+</I>&gt;<i> com
+</I>&gt;<i> fetchmail: can't even send to $USER!
+</I>&gt;<i> fetchmail:  not flushed
+</I>
+Your distribution might offer a package of root certificates (many do),
+like ca-roots, or ca-root-certificates, or similar.  Install it, then
+you can also add --sslcertck.
+
+&gt;<i> I think even if that solves download fetchmail the mail or not, is not
+</I>&gt;<i> correct to ask whether or not stre the mail, therefore, this point of my
+</I>&gt;<i> query on leave for later, when fetchmail download clarify whether or not
+</I>&gt;<i> the mail .
+</I>
+Fetchmail downloaded the mail, but could not ship it anywhere because
+your local SMTP server refused to accept mail for $USER.
+
+You may want to consider installing maildrop or another local delivery
+agent (they often have filter capabilities) and use fetchmail's --mda
+option (or mda in the rcfile, see the manual page) to store mail.
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002907.html">[fetchmail-users] download mail and stere it
+</A></li>
+	<LI>Next message: <A HREF="002911.html">[fetchmail-users] download mail and stere it
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2910">[ date ]</a>
+              <a href="thread.html#2910">[ thread ]</a>
+              <a href="subject.html#2910">[ subject ]</a>
+              <a href="author.html#2910">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

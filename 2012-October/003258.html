@@ -1,0 +1,142 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] fetchmail apprently uses mboxo format, which irrecoverably corrupts mail
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2012-October/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%20apprently%20uses%20mboxo%20format%2C%0A%20which%20irrecoverably%20corrupts%20mail&In-Reply-To=%3C1351214082.7173.12.camel%40heisenberg.scientia.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003266.html">
+   <LINK REL="Next"  HREF="003259.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] fetchmail apprently uses mboxo format, which irrecoverably corrupts mail</H1>
+    <B>Christoph Anton Mitterer</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%20apprently%20uses%20mboxo%20format%2C%0A%20which%20irrecoverably%20corrupts%20mail&In-Reply-To=%3C1351214082.7173.12.camel%40heisenberg.scientia.net%3E"
+       TITLE="[fetchmail-users] fetchmail apprently uses mboxo format, which irrecoverably corrupts mail">calestyo at scientia.net
+       </A><BR>
+    <I>Fri Oct 26 03:14:42 CEST 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003266.html">[fetchmail-users] How to deal with &quot;undisclosed recipients&quot;?
+</A></li>
+        <LI>Next message: <A HREF="003259.html">[fetchmail-users] fetchmail apprently uses mboxo format, which irrecoverably corrupts mail
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3258">[ date ]</a>
+              <a href="thread.html#3258">[ thread ]</a>
+              <a href="subject.html#3258">[ subject ]</a>
+              <a href="author.html#3258">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi.
+
+With version 6.3.22.
+
+I think fetchmail uses the mboxo format of the mbox-family of formats,
+which inherently may irrecoverably corrupt mails.
+
+A solution to this would be using the mboxrd or mboxcl format (the
+mboxcl2 format would work, too, but would also be incompatible with non
+supporting tools/clients), which are compatible even with tools/clients
+that don't support them.
+
+
+What happens in short:
+Attached are two versions of the same mail, the transcript as I send it
+via SMTP and what fetchmail stores in the mbox.
+
+You will note that fetchmail replaces any lines matching (regexp):
+&quot;^From (.*)$&quot;
+with:
+&quot;&gt;From \1&quot;
+
+The problem now is, that it does not quote From_ lines already starting
+with one or more &quot;&gt;&quot; as this is required in the mboxrd format; i.e.:
+&quot;^&gt;(&gt;*)From (.*)$&quot;
+would need to be replaced by
+&quot;&gt;&gt;\1From \2&quot;
+
+The effect now is, that mails cannot be unquoted anymore and the
+corruption added above is obviously irrecoverably.
+
+
+Please:
+a) fix the issue, by switching to one of the other formats
+b) ideally, warn all users via the
+release-notes/change-log/-announce-mailing-list about this most highly
+severe corruption.
+
+It may be helpful to tell them that any mails stored into mbox via
+fetchmail, that contained lines matching &quot;^From (.*)$&quot; may be corrupted.
+Further, the way to find the places of possible corruptions is by
+matching:
+&quot;^&gt;From (.*)$&quot; (note the single &gt; which is needed here, as THESE are the
+cases that may either be quoted From_ lines or just lines that were the
+text &quot;&gt;From ...&quot;.
+
+
+Cheers,
+Chris.
+
+
+PS: Please keep me CCed in case you need my, as I'll unsubscribe from
+the list again.
+-------------- next part --------------
+EHLO a.mail.srv.scientia.net
+MAIL FROM:&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">mail at christoph.anton.mitterer.name</A>&gt;
+RCPT TO:&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">mail at christoph.anton.mitterer.name</A>&gt;
+DATA
+From: <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">mail at christoph.anton.mitterer.name</A>
+To: <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">mail at christoph.anton.mitterer.name</A>
+Subject: testmail
+
+From
+From 
+From 0
+
+&gt;<i>From
+</I>&gt;<i>From 
+</I>&gt;<i>From 1
+</I>
+&gt;&gt;<i>From 2
+</I>&gt;&gt;&gt;<i>From 3
+</I>
+
+from
+from 
+=46rom 
+=46rom 0
+.
+QUIT
+</PRE>
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003266.html">[fetchmail-users] How to deal with &quot;undisclosed recipients&quot;?
+</A></li>
+	<LI>Next message: <A HREF="003259.html">[fetchmail-users] fetchmail apprently uses mboxo format, which irrecoverably corrupts mail
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3258">[ date ]</a>
+              <a href="thread.html#3258">[ thread ]</a>
+              <a href="subject.html#3258">[ subject ]</a>
+              <a href="author.html#3258">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,163 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] fetchmail apprently uses mboxo format,	which irrecoverably corrupts mail
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2012-October/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%20apprently%20uses%20mboxo%20format%2C%0A%09which%20irrecoverably%20corrupts%20mail&In-Reply-To=%3C201210261129.12542.gheskett%40wdtv.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003260.html">
+   <LINK REL="Next"  HREF="003262.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] fetchmail apprently uses mboxo format,	which irrecoverably corrupts mail</H1>
+    <B>Gene Heskett</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%20apprently%20uses%20mboxo%20format%2C%0A%09which%20irrecoverably%20corrupts%20mail&In-Reply-To=%3C201210261129.12542.gheskett%40wdtv.com%3E"
+       TITLE="[fetchmail-users] fetchmail apprently uses mboxo format,	which irrecoverably corrupts mail">gheskett at wdtv.com
+       </A><BR>
+    <I>Fri Oct 26 17:29:12 CEST 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003260.html">[fetchmail-users] fetchmail apprently uses mboxo format, which irrecoverably corrupts mail
+</A></li>
+        <LI>Next message: <A HREF="003262.html">[fetchmail-users] fetchmail apprently uses mboxo format, which irrecoverably corrupts mail
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3261">[ date ]</a>
+              <a href="thread.html#3261">[ thread ]</a>
+              <a href="subject.html#3261">[ subject ]</a>
+              <a href="author.html#3261">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Friday 26 October 2012 10:59:20 Christoph Anton Mitterer did opine:
+
+&gt;<i> On Fri, 2012-10-26 at 10:19 +0100, Rob MacGregor wrote:
+</I>&gt;<i> &gt; Fetchmail doesn't use any format
+</I>&gt;<i> 
+</I>&gt;<i> Well it must... the mailserver gives you a mail with header and body via
+</I>&gt;<i> pop3 or imap ... and &quot;you&quot; store it then either as mbox, maildir etc.
+</I>&gt;<i> And it's not the mail server that tells you how the From_ lines look (in
+</I>&gt;<i> case of mbox) or how to name the single maildir files.
+</I>&gt;<i> 
+</I>&gt;<i> &gt; my emails are
+</I>&gt;<i> &gt; unmodified
+</I>&gt;<i> 
+</I>&gt;<i> Have you tried it with the transcript I've attached? And are you using
+</I>&gt;<i> mbox?
+</I>&gt;<i> 
+</I>&gt;<i> &gt; so I'm guessing your problem relates to the MTA or MDA
+</I>&gt;<i> &gt; you've configured Fetchmail to use.
+</I>&gt;<i> 
+</I>&gt;<i> Well...
+</I>&gt;<i> a) fetchmail doesn't contact a MTA or MDA, I use it with pop3 or
+</I>&gt;<i> IMAP,... and that's the mail server's business, not the MTA's or MDA's.
+</I>&gt;<i> 
+</I>I don't recall when I ever ran fetchmail without a defined MTA, in this 
+case procmail.  I didn't know it was usable by itself.  And this is since 
+the late 90's!  '98 IIRC.  fetchmail also runs mailfilter, which can kill 
+spam right on the server, but needs wrappers to absorb its return status 
+for best fetchmail results.
+
+I use procmail as the MTA, which in turn filters the mail through both 
+spamassassin AND clamd.  That which survives that gauntlet is appended to 
+the usually empty /var/spool/mail/gene in mailfile format by procmail.
+
+That file being closed caused inotifywait to exit with the filename closed 
+as a return value, which in turn triggers a script that sends kmail a &quot;get 
+local mail' command over kmails dbus interface, which empties that file a 
+millisecond later and the script starts a new session of inotifywait to 
+watch for more incoming mail.  And I see it in kmail 2 or 3 seconds after 
+fetchmail pulled it, and with only 1% of the lags kmail would have if it 
+did its own mail suckage from the net.  And far better filtering.
+
+There have been no formatting problems that kmail showed me in over a 
+decade.
+
+&gt;<i> b) It cannot be either of those, because when using other clients (e.g.
+</I>&gt;<i> KMail, mutt) or when speaking plain pop3 via telnet the mail comes as it
+</I>&gt;<i> should. And it's not the business of a mailserver to do any
+</I>&gt;<i> quoting/formatting for the format that is used to store mails on the
+</I>&gt;<i> client side.
+</I>
+My guess is that you may have something funkity in your postfix, qmail, 
+maildrop or sieve configuration.  And why are you running qmail, its a 
+server, not a client.
+
+I deal with a qmail server at one of my accounts, and it very occasionally 
+will give mailfilter a funkity timestamp that chokes mailfilter, so those 
+usually spammish msgs I go ahead and let fetchmail fetch just to unclog the 
+server.  That's why the wrapper that returns 0 to fetchmail regardless of 
+how much of an upset tummy mailfilter claims to have.
+ 
+&gt;<i> &gt; As however you've not provided any
+</I>&gt;<i> &gt; details on your configuration that's about all I can guess - section
+</I>&gt;<i> &gt; G3 of the FAQ details the information we need to help you.
+</I>&gt;<i> 
+</I>&gt;<i> I saw that but haven't though it would be necessary, as the issue seems
+</I>&gt;<i> simply to be that fetchmail uses the broken mboxo format, nevertheless:
+</I>&gt;<i> 1) Debian sid
+</I>&gt;<i> 2) fetchmail package from Debian sid
+</I>&gt;<i> 3) postifx, qmail  ... maildrop, sieve
+</I>&gt;<i> 4) fetchmail with the fecthmailrc:
+</I>&gt;<i> poll pop3.example.org with proto POP3
+</I>&gt;<i> user <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">foo at example.org</A> there with password &quot;bar&quot; is &quot;foo&quot; here
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> Cheers,
+</I>&gt;<i> Chris.
+</I>&gt;<i> 
+</I>&gt;<i> &gt;Please keep list traffic on the list.
+</I>&gt;<i> 
+</I>&gt;<i> Well the thing is... I don't use fetchmail myself, but reported this
+</I>&gt;<i> issue just out of courtesy.... and I'm already subscribed to far too
+</I>&gt;<i> many mailing lists.
+</I>
+So am I. :)
+
+&gt;<i> Unfortunately one can only post as subscriber.
+</I>&gt;<i> I thought my initial post would already explain everything in detail and
+</I>&gt;<i> how to reproduce and solve it.
+</I>&gt;<i> 
+</I>&gt;<i> But apart from that, I didn't remove any traffic from the list, did I?
+</I>
+You've added traffic to the fetchmail list that probably belongs on another 
+list.  Shrug.
+
+Cheers, Gene
+-- 
+&quot;There are four boxes to be used in defense of liberty:
+ soap, ballot, jury, and ammo. Please use in that order.&quot;
+-Ed Howdershelt (Author)
+My web page: &lt;<A HREF="http://coyoteden.dyndns-free.com:85/gene">http://coyoteden.dyndns-free.com:85/gene</A>&gt; is up!
+Surprise your boss.  Get to work on time.
+</PRE>
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003260.html">[fetchmail-users] fetchmail apprently uses mboxo format, which irrecoverably corrupts mail
+</A></li>
+	<LI>Next message: <A HREF="003262.html">[fetchmail-users] fetchmail apprently uses mboxo format, which irrecoverably corrupts mail
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3261">[ date ]</a>
+              <a href="thread.html#3261">[ thread ]</a>
+              <a href="subject.html#3261">[ subject ]</a>
+              <a href="author.html#3261">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

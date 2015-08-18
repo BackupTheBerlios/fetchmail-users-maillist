@@ -1,0 +1,165 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Very frequent AUTHFAILs
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2011-October/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Very%20frequent%20AUTHFAILs&In-Reply-To=%3C4E9764B6.2030806%40gmx.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002968.html">
+   <LINK REL="Next"  HREF="002970.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Very frequent AUTHFAILs</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Very%20frequent%20AUTHFAILs&In-Reply-To=%3C4E9764B6.2030806%40gmx.de%3E"
+       TITLE="[fetchmail-users] Very frequent AUTHFAILs">matthias.andree at gmx.de
+       </A><BR>
+    <I>Fri Oct 14 00:22:46 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002968.html">[fetchmail-users] Very frequent AUTHFAILs
+</A></li>
+        <LI>Next message: <A HREF="002970.html">[fetchmail-users] Very frequent AUTHFAILs
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2969">[ date ]</a>
+              <a href="thread.html#2969">[ thread ]</a>
+              <a href="subject.html#2969">[ subject ]</a>
+              <a href="author.html#2969">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Am 13.10.2011 23:47, schrieb Rob MacGregor:
+&gt;<i> On Thu, Oct 13, 2011 at 21:25, Ed Hochman &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">charleschat at hotmail.com</A>&gt; wrote:
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Sorry in advance for the length of this message; but it contains the information requested.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> The problem appears to be that passwords are being rejected by the MDA.  BUT the passwords are correct.  If they were not correct they would ALWAYS be rejected.  But that is not the case.  Rejections are frequent but not consistent.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Per FAQ # G2
+</I>&gt;&gt;<i> 1.  Your operating system:  Ubuntu 11.04
+</I>&gt;&gt;<i> 2.  name and origin of the RPM or other binary package you
+</I>&gt;&gt;<i> installed:  From Ubuntu repository.
+</I>&gt;&gt;<i> 3.  MDA you are
+</I>&gt;&gt;<i> forwarding to:  pop.homapump.com
+</I>&gt;<i> 
+</I>&gt;<i> The MDA is the Message Delivery Agent, not your POP server. In this
+</I>&gt;<i> case you are defaulting to using your local SMTP server by the looks
+</I>&gt;<i> of things.
+</I>&gt;<i> 
+</I>&gt;&gt;<i> 4.  command-line options you used.  -f /etc/fetchmailrc
+</I>&gt;&gt;<i> 5.  output of env LC_ALL=C fetchmail -V
+</I>&gt;<i> 
+</I>&gt;&gt;<i> ****** again, just for one user.  ********
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Old UID list from pop.homapump.com: &lt;empty&gt;  {this line repeats several times}
+</I>&gt;&gt;<i> Scratch list of UIDs: &lt;empty&gt;
+</I>&gt;&gt;<i> fetchmail: starting fetchmail 6.3.18 daemon
+</I>&gt;&gt;<i> fetchmail: 6.3.18 querying pop.homapump.com (protocol POP3) at Thu Oct 13 13:16:55 2011: poll started
+</I>&gt;&gt;<i> Trying to connect to 208.76.82.67/110...connected.
+</I>&gt;&gt;<i> fetchmail: POP3&lt; +OK Hello there.
+</I>&gt;&gt;<i> fetchmail: POP3&gt; CAPA
+</I>&gt;&gt;<i> fetchmail: POP3&lt; +OK Here's what I can do:
+</I>&gt;&gt;<i> fetchmail: POP3&lt; STLS
+</I>&gt;&gt;<i> fetchmail: POP3&lt; TOP
+</I>&gt;&gt;<i> fetchmail: POP3&lt; USER
+</I>&gt;&gt;<i> fetchmail: POP3&lt; LOGIN-DELAY 10
+</I>&gt;&gt;<i> fetchmail: POP3&lt; PIPELINING
+</I>&gt;&gt;<i> fetchmail: POP3&lt; UIDL
+</I>&gt;&gt;<i> fetchmail: POP3&lt; IMPLEMENTATION Courier Mail Server
+</I>&gt;&gt;<i> fetchmail: POP3&lt; .
+</I>&gt;&gt;<i> fetchmail: POP3&gt; STLS
+</I>&gt;&gt;<i> fetchmail: POP3&lt; +OK Begin SSL/TLS negotiation now.
+</I>&gt;&gt;<i> fetchmail: Certificate chain, from root to peer, starting at depth 2:
+</I>&gt;&gt;<i> fetchmail: Issuer Organization: AddTrust AB
+</I>&gt;&gt;<i> fetchmail: Issuer CommonName: AddTrust External CA Root
+</I>&gt;&gt;<i> fetchmail: Subject CommonName: AddTrust External CA Root
+</I>&gt;&gt;<i> fetchmail: Certificate at depth 1:
+</I>&gt;&gt;<i> fetchmail: Issuer Organization: AddTrust AB
+</I>&gt;&gt;<i> fetchmail: Issuer CommonName: AddTrust External CA Root
+</I>&gt;&gt;<i> fetchmail: Subject CommonName: UTN-USERFirst-Hardware
+</I>&gt;&gt;<i> fetchmail: Issuer Organization: The USERTRUST Network
+</I>&gt;&gt;<i> fetchmail: Issuer CommonName: UTN-USERFirst-Hardware
+</I>&gt;&gt;<i> fetchmail: Subject CommonName: *.snhdns.com
+</I>&gt;&gt;<i> fetchmail: Subject Alternative Name: *.snhdns.com
+</I>&gt;&gt;<i> fetchmail: Subject Alternative Name: snhdns.com
+</I>&gt;&gt;<i> fetchmail: pop.homapump.com key fingerprint: 3A:4C:5F:D4:68:D3:99:76:3B:72:B0:20:D1:FF:52:01
+</I>&gt;&gt;<i> fetchmail: POP3&gt; CAPA
+</I>&gt;&gt;<i> fetchmail: POP3&lt; +OK Here's what I can do:
+</I>&gt;&gt;<i> fetchmail: POP3&lt; TOP
+</I>&gt;&gt;<i> fetchmail: POP3&lt; USER
+</I>&gt;&gt;<i> fetchmail: POP3&lt; LOGIN-DELAY 10
+</I>&gt;&gt;<i> fetchmail: POP3&lt; PIPELINING
+</I>&gt;&gt;<i> fetchmail: POP3&lt; UIDL
+</I>&gt;&gt;<i> fetchmail: POP3&lt; IMPLEMENTATION Courier Mail Server
+</I>&gt;&gt;<i> fetchmail: POP3&lt; .
+</I>&gt;&gt;<i> fetchmail: pop.homapump.com: upgrade to TLS succeeded.
+</I>&gt;&gt;<i> fetchmail: POP3&gt; USER ed
+</I>&gt;&gt;<i> fetchmail: POP3&lt; +OK Password required.
+</I>&gt;&gt;<i> fetchmail: POP3&gt; PASS *
+</I>&gt;&gt;<i> fetchmail: POP3&lt; -ERR Login failed.
+</I>&gt;&gt;<i> fetchmail: POP3&gt; QUIT
+</I>&gt;&gt;<i> fetchmail: POP3&lt; +OK Better luck next time.
+</I>&gt;&gt;<i> ***** end of listing ******
+</I>&gt;<i> 
+</I>&gt;<i> Looks pretty simple - pop.homapump.com is refusing your password. The
+</I>&gt;<i> problem, based on what you've posted, can only be one of:
+</I>&gt;<i> 
+</I>&gt;<i> a) In incorrect password for the user in your fetchmail config
+</I>&gt;<i> b) A problem with the POP server
+</I>&gt;<i> 
+</I>&gt;<i> Given that the problem is intermittent, if all failures look like the
+</I>&gt;<i> sample you've provided then the problem can only be (b).
+</I>
+Rob, Ed,
+
+I'd concur.  Given past experience with Courier-related stuff, it's
+usually reliable. However, chances are that either:
+
+- the POP service Ed is using has set up load balancing, and a sub set
+of servers behind the balancer are malfunctioning and/or misconfigured; or
+
+- there's a malfunction/misconfiguration/overload between Courier's
+authlib/authdaemon stuff on one hand, and Courier-IMAP as the real
+IMAP/POP3 server on the other hand.
+
+
+Ed,
+
+this should be taken up with your failing POP server's user support in
+either case, and make it very clear that the failures is intermittent
+without your changing anything on your end, particularly you're not
+changing username/password.
+
+HTH,
+Matthias
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002968.html">[fetchmail-users] Very frequent AUTHFAILs
+</A></li>
+	<LI>Next message: <A HREF="002970.html">[fetchmail-users] Very frequent AUTHFAILs
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2969">[ date ]</a>
+              <a href="thread.html#2969">[ thread ]</a>
+              <a href="subject.html#2969">[ subject ]</a>
+              <a href="author.html#2969">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

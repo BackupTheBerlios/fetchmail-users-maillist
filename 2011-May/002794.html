@@ -1,0 +1,127 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] how to make fetchmail not to check the mail with seen flag of my gmail?
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2011-May/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20how%20to%20make%20fetchmail%20not%20to%20check%20the%20mail%0A%20with%20seen%20flag%20of%20my%20gmail%3F&In-Reply-To=%3C4DC17CB4.3040009%40gmx.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002793.html">
+   <LINK REL="Next"  HREF="002795.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] how to make fetchmail not to check the mail with seen flag of my gmail?</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20how%20to%20make%20fetchmail%20not%20to%20check%20the%20mail%0A%20with%20seen%20flag%20of%20my%20gmail%3F&In-Reply-To=%3C4DC17CB4.3040009%40gmx.de%3E"
+       TITLE="[fetchmail-users] how to make fetchmail not to check the mail with seen flag of my gmail?">matthias.andree at gmx.de
+       </A><BR>
+    <I>Wed May  4 18:20:04 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002793.html">[fetchmail-users] how to make fetchmail not to check the mail	with seen flag of my gmail?
+</A></li>
+        <LI>Next message: <A HREF="002795.html">[fetchmail-users] how to make fetchmail not to check the mail with seen flag of my gmail?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2794">[ date ]</a>
+              <a href="thread.html#2794">[ thread ]</a>
+              <a href="subject.html#2794">[ subject ]</a>
+              <a href="author.html#2794">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Am 04.05.2011 17:16, schrieb Yunfan Jiang:
+&gt;<i> hi, tried fetchmail after i decide to use mutt
+</I>&gt;<i> and found its very quick than web interface with my gmail
+</I>&gt;<i> but there's a problem(the only one) bored me
+</I>&gt;<i> 
+</I>&gt;<i> i use imap protocol to fetch my gmail
+</I>&gt;<i> and i use cmd  fetchmail -v to check by manual
+</I>&gt;<i> 
+</I>&gt;<i> each time it will check lots of mail with flag 'Seen', as gmail's huge
+</I>&gt;<i> storage usage, i stored so many mails
+</I>&gt;<i> in it,so each time its a long time to wait fetchmail told me skip thousands
+</I>&gt;<i> of mails like this:
+</I>
+You can suppress the messages with -s.
+
+&gt;<i> skipping message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">jyf1987 at gmail-imap.l.google.com</A>:3997 not flushed
+</I>&gt;<i> skipping message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">jyf1987 at gmail-imap.l.google.com</A>:3998 not flushed
+</I>&gt;<i> fetchmail: IMAP&gt; A0043 LOGOUT
+</I>&gt;<i> fetchmail: IMAP&lt; * BYE LOGOUT Requested
+</I>&gt;<i> fetchmail: IMAP&lt; A0043 OK 73 good day (Success)
+</I>&gt;<i> fetchmail: 6.3.9-rc2 querying imap.gmail.com (protocol IMAP) at Wed May  4
+</I>&gt;<i> 22:25:37 2011: poll completed
+</I>&gt;<i> fetchmail: normal termination, status 0
+</I>&gt;<i> 
+</I>&gt;<i> as i know, imap4 support cmd 'SEARCH UNSEEN' , and i have verified that
+</I>&gt;<i> imap.gmail.com support this cmd by using python's imaplib
+</I>&gt;<i> so how to enable fetchmail to use 'SEARCH UNSEEN' cmd at work? its really
+</I>&gt;<i> important to me, currently fetchmail will skip about 20k mails
+</I>&gt;<i> each time i run it.
+</I>&gt;<i> 
+</I>&gt;<i> here is my G3 info:
+</I>
+Thanks a lot.  I appreciate getting a mostly complete report.
+
+&gt;<i> system: ubuntu 10.04
+</I>&gt;<i> software version: fetchmail v6.3.9-rc2 (download from software source which
+</I>&gt;<i> is pre-built)
+</I>
+Hi Jun-Fang,
+
+we've recently changed fetchmail to speed the IMAP code up - however,
+that is code that will probably not be released for Ubuntu 10.04.
+
+If you're happy with building from source and bootstrapping the code,
+grab the git master branch from
+&lt;<A HREF="http://gitorious.org/fetchmail/fetchmail">http://gitorious.org/fetchmail/fetchmail</A>&gt; and run
+
+autoreconf -isvf
+./configure --with-ssl
+make -j4
+make install
+
+and then use /usr/local/bin/fetchmail. I am oblivious to the required
+packages though.
+
+You may want auto-apt to assist with installing them (though I've never
+used it myself).
+
+&gt;<i> mda: procmail v3.22
+</I>&gt;<i> cmd options: i use fetchmail -v
+</I>&gt;<i> the output is so huge so wont paste here
+</I>
+Alright.  6.3.20-pre1 (what you get in Git) isn't 6.3.9~rc2 anyways. :-)
+
+HTH
+Matthias
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002793.html">[fetchmail-users] how to make fetchmail not to check the mail	with seen flag of my gmail?
+</A></li>
+	<LI>Next message: <A HREF="002795.html">[fetchmail-users] how to make fetchmail not to check the mail with seen flag of my gmail?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2794">[ date ]</a>
+              <a href="thread.html#2794">[ thread ]</a>
+              <a href="subject.html#2794">[ subject ]</a>
+              <a href="author.html#2794">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

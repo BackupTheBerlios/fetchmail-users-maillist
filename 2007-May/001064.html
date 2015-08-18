@@ -1,0 +1,224 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Fetchmail not working as expected
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2007-May/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Fetchmail%20not%20working%20as%20expected&In-Reply-To=%3C20070531020339.52D7A4EAA%40bellona.xo.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001069.html">
+   <LINK REL="Next"  HREF="001066.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Fetchmail not working as expected</H1>
+    <B>Tejas Jin</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Fetchmail%20not%20working%20as%20expected&In-Reply-To=%3C20070531020339.52D7A4EAA%40bellona.xo.com%3E"
+       TITLE="[fetchmail-users] Fetchmail not working as expected">txjin at intelliepi.com
+       </A><BR>
+    <I>Thu May 31 04:03:39 CEST 2007</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001069.html">[fetchmail-users] Fetchmail not working as expected
+</A></li>
+        <LI>Next message: <A HREF="001066.html">[fetchmail-users] Fetchmail not working as expected
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1064">[ date ]</a>
+              <a href="thread.html#1064">[ thread ]</a>
+              <a href="subject.html#1064">[ subject ]</a>
+              <a href="author.html#1064">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>I ran fetchmail -v 
+and included the output at the bottom of this message.   If I read this correctly it is deliverying the email to an smtp server.  I just can't find it.
+
+---- Tejas Jin &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">txjin at intelliepi.com</A>&gt; wrote:
+&gt;<i>
+</I>&gt;<i> 
+</I>&gt;<i> ---- Tejas Jin &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">txjin at intelliepi.com</A>&gt; wrote:
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; I setup the following on my computer and run fetchmail as a user &quot;testjin&quot;
+</I>&gt;<i> 
+</I>&gt;<i> Sorry that was an error and should be txjin
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i>  on my computer.  Fetchmail appears to connect and get mails, it is deleting the mails off of the pop server.  But I can't find them.  I look in /var/spool/mail and don't see them there.  I have been watching /var/spool/maillog on my computer and nothing appears to be happening while I have fetchmail running.
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; I checked 'netstat -lnp' and postfix appears to be listening to port 25.
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; Right now my big concern is that the mail is disappearing out of my mailbox on my ISP, but it isn't showing up anywhere.
+</I>&gt;<i> &gt; ------------------------------------------------------
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; .fetchmailrc
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; poll pop3.intelliepi.com proto pop3
+</I>&gt;<i> &gt;         user '<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">txjin at intelliepi.com</A>' there with password 'mypass' is txjin
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; ------------------------------------------
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; postfix main.cf
+</I>&gt;<i> &gt; -----------------------------------------
+</I>&gt;<i> &gt; alias_database = hash:/etc/aliases
+</I>&gt;<i> &gt; alias_maps = hash:/etc/aliases
+</I>&gt;<i> &gt; command_directory = /usr/sbin
+</I>&gt;<i> &gt; config_directory = /etc/postfix
+</I>&gt;<i> &gt; daemon_directory = /usr/libexec/postfix
+</I>&gt;<i> &gt; debug_peer_level = 2
+</I>&gt;<i> &gt; html_directory = no
+</I>&gt;<i> &gt; inet_interfaces = all
+</I>&gt;<i> &gt; mail_owner = postfix
+</I>&gt;<i> &gt; mailq_path = /usr/bin/mailq.postfix
+</I>&gt;<i> &gt; manpage_directory = /usr/share/man
+</I>&gt;<i> &gt; mydestination = $myhostname, localhost.$mydomain, localhost, $myhostname.$mydomain, $mydomain, localhost.localdomain
+</I>&gt;<i> &gt; mydomain = internal.com
+</I>&gt;<i> &gt; myhostname = test
+</I>&gt;<i> &gt; mynetworks = 192.168.5.0/24, 127.0.0.0/8
+</I>&gt;<i> &gt; newaliases_path = /usr/bin/newaliases.postfix
+</I>&gt;<i> &gt; queue_directory = /var/spool/postfix
+</I>&gt;<i> &gt; readme_directory = /usr/share/doc/postfix-2.2.10/README_FILES
+</I>&gt;<i> &gt; sample_directory = /usr/share/doc/postfix-2.2.10/samples
+</I>&gt;<i> &gt; sendmail_path = /usr/sbin/sendmail.postfix
+</I>&gt;<i> &gt; setgid_group = postdrop
+</I>&gt;<i> &gt; unknown_local_recipient_reject_code = 550
+</I>&gt;<i> &gt; --------------------------------------------------------
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; virtual
+</I>&gt;<i> &gt; -----------------------------------------------------
+</I>&gt;<i> &gt; <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">txjin at intelliepi.com</A>        txjin
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; _______________________________________________
+</I>&gt;<i> &gt; fetchmail-users mailing list
+</I>&gt;<i> &gt; <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">fetchmail-users at lists.berlios.de</A>
+</I>&gt;<i> &gt; <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">https://lists.berlios.de/mailman/listinfo/fetchmail-users</A>
+</I>&gt;<i> &gt; 
+</I>&gt;<i> 
+</I>fetchmail: 6.2.5 querying pop3.intelliepi.com (protocol POP3) at Wed 30 May 2007 09:02:17 PM CDT: poll started
+fetchmail: POP3&lt; +OK POP3 Server Ready.
+fetchmail: POP3&gt; CAPA
+fetchmail: POP3&lt; -ERR Unknown command
+fetchmail: Unknown command
+fetchmail: Repoll immediately on <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">txjin at intelliepi.com</A>@pop3.intelliepi.com
+fetchmail: POP3&lt; +OK POP3 Server Ready.
+fetchmail: POP3&gt; USER <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">txjin at intelliepi.com</A>
+fetchmail: POP3&lt; +OK Password required for <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">txjin at intelliepi.com.</A>
+fetchmail: POP3&gt; PASS *
+fetchmail: POP3&lt; +OK txjin has 4236 message(s) (42351582 octets).
+fetchmail: POP3&gt; STAT
+fetchmail: POP3&lt; +OK 4236 42351582
+fetchmail: POP3&gt; LAST
+fetchmail: POP3&lt; +OK 0 is the last read message.
+4236 messages for <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">txjin at intelliepi.com</A> at pop3.intelliepi.com (42351582 octets).
+fetchmail: POP3&gt; LIST 1
+fetchmail: POP3&lt; +OK 1 2323
+fetchmail: POP3&gt; TOP 1 99999999
+fetchmail: POP3&lt; +OK 2323 octets
+reading message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">txjin at intelliepi.com</A>@pop3.intelliepi.com:1 of 4236 (2323 octets)
+fetchmail: SMTP&lt; 220 localhost.localdomain ESMTP Sendmail 8.13.1/8.13.1; Wed, 30 May 2007 21:02:22 -0500
+fetchmail: SMTP&gt; EHLO localhost
+fetchmail: SMTP&lt; 250-localhost.localdomain Hello IET013 [127.0.0.1], pleased to meet you
+fetchmail: SMTP&lt; 250-ENHANCEDSTATUSCODES
+fetchmail: SMTP&lt; 250-PIPELINING
+fetchmail: SMTP&lt; 250-8BITMIME
+fetchmail: SMTP&lt; 250-SIZE
+fetchmail: SMTP&lt; 250-DSN
+fetchmail: SMTP&lt; 250-ETRN
+fetchmail: SMTP&lt; 250-AUTH DIGEST-MD5 CRAM-MD5
+fetchmail: SMTP&lt; 250-DELIVERBY
+fetchmail: SMTP&lt; 250 HELP
+fetchmail: SMTP&gt; MAIL FROM:&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">apeoples at coolmail.ch</A>&gt; SIZE=2323
+fetchmail: SMTP&lt; 250 2.1.0 &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">apeoples at coolmail.ch</A>&gt;... Sender ok
+fetchmail: SMTP&gt; RCPT TO:&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">txjin at localhost</A>&gt;
+fetchmail: SMTP&lt; 250 2.1.5 &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">txjin at localhost</A>&gt;... Recipient ok
+fetchmail: SMTP&gt; DATA
+fetchmail: SMTP&lt; 354 Enter mail, end with &quot;.&quot; on a line by itself
+#*******************************.*************fetchmail: SMTP&gt;. (EOM)
+fetchmail: SMTP&lt; 250 2.0.0 l4V22MkQ013966 Message accepted for delivery
+ flushed
+fetchmail: POP3&gt; DELE 1
+fetchmail: POP3&lt; +OK Message 1 has been deleted.
+fetchmail: POP3&gt; LIST 2
+fetchmail: POP3&lt; +OK 2 8190
+fetchmail: POP3&gt; TOP 2 99999999
+fetchmail: POP3&lt; +OK 8190 octets
+reading message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">txjin at intelliepi.com</A>@pop3.intelliepi.com:2 of 4236 (8190 octets)
+fetchmail: SMTP&gt; MAIL FROM:&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">zatwwcfczo at rr.com</A>&gt; SIZE=8190
+fetchmail: SMTP&lt; 250 2.1.0 &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">zatwwcfczo at rr.com</A>&gt;... Sender ok
+fetchmail: SMTP&gt; RCPT TO:&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">txjin at localhost</A>&gt;
+fetchmail: SMTP&lt; 250 2.1.5 &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">txjin at localhost</A>&gt;... Recipient ok
+fetchmail: SMTP&gt; DATA
+fetchmail: SMTP&lt; 354 Enter mail, end with &quot;.&quot; on a line by itself
+#************************************.********************************************.*********************************.*************.**************.**************.**************.*******fetchmail: SMTP&gt;. (EOM)
+fetchmail: SMTP&lt; 250 2.0.0 l4V22MkR013966 Message accepted for delivery
+ flushed
+fetchmail: POP3&gt; DELE 2
+fetchmail: POP3&lt; +OK Message 2 has been deleted.
+fetchmail: POP3&gt; LIST 3
+fetchmail: POP3&lt; +OK 3 3204
+fetchmail: POP3&gt; TOP 3 99999999
+fetchmail: POP3&lt; +OK 3204 octets
+reading message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">txjin at intelliepi.com</A>@pop3.intelliepi.com:3 of 4236 (3204 octets)
+fetchmail: SMTP&gt; MAIL FROM:&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">MAILER-DAEMON at xo.com</A>&gt; SIZE=3204
+fetchmail: SMTP&lt; 250 2.1.0 &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">MAILER-DAEMON at xo.com</A>&gt;... Sender ok
+fetchmail: SMTP&gt; RCPT TO:&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">txjin at localhost</A>&gt;
+fetchmail: SMTP&lt; 250 2.1.5 &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">txjin at localhost</A>&gt;... Recipient ok
+fetchmail: SMTP&gt; DATA
+fetchmail: SMTP&lt; 354 Enter mail, end with &quot;.&quot; on a line by itself
+#***********************.************.*************fetchmail: SMTP&gt;. (EOM)
+fetchmail: SMTP&lt; 250 2.0.0 l4V22MkS013966 Message accepted for delivery
+ flushed
+fetchmail: POP3&gt; DELE 3
+fetchmail: POP3&lt; +OK Message 3 has been deleted.
+fetchmail: POP3&gt; LIST 4
+fetchmail: POP3&lt; +OK 4 6299
+fetchmail: POP3&gt; TOP 4 99999999
+fetchmail: POP3&lt; +OK 6299 octets
+reading message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">txjin at intelliepi.com</A>@pop3.intelliepi.com:4 of 4236 (6299 octets)
+fetchmail: SMTP&gt; MAIL FROM:&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">pofchlorocarpatyd at chlorocarpa.com</A>&gt; SIZE=6299
+fetchmail: SMTP&lt; 250 2.1.0 &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">pofchlorocarpatyd at chlorocarpa.com</A>&gt;... Sender ok
+fetchmail: SMTP&gt; RCPT TO:&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">txjin at localhost</A>&gt;
+fetchmail: SMTP&lt; 250 2.1.5 &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">txjin at localhost</A>&gt;... Recipient ok
+fetchmail: SMTP&gt; DATA
+fetchmail: SMTP&lt; 354 Enter mail, end with &quot;.&quot; on a line by itself
+#******************************.*********************************.******************************.**********************************************************.******************************************.***************fetchmail: SMTP&gt;. (EOM)
+fetchmail: SMTP&lt; 250 2.0.0 l4V22MkT013966 Message accepted for delivery
+ flushed
+fetchmail: POP3&gt; DELE 4
+fetchmail: POP3&lt; +OK Message 4 has been deleted.
+fetchmail: POP3&gt; LIST 5
+fetchmail: POP3&lt; +OK 5 2788
+fetchmail: POP3&gt; TOP 5 99999999
+fetchmail: POP3&lt; +OK 2788 octets
+reading message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">txjin at intelliepi.com</A>@pop3.intelliepi.com:5 of 4236 (2788 octets)
+fetchmail: SMTP&gt; MAIL FROM:&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">habhy62fqnze at gloryroad.net</A>&gt; BODY=7BIT SIZE=2788
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001069.html">[fetchmail-users] Fetchmail not working as expected
+</A></li>
+	<LI>Next message: <A HREF="001066.html">[fetchmail-users] Fetchmail not working as expected
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1064">[ date ]</a>
+              <a href="thread.html#1064">[ thread ]</a>
+              <a href="subject.html#1064">[ subject ]</a>
+              <a href="author.html#1064">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

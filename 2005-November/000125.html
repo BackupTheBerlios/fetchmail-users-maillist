@@ -1,0 +1,91 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] feedback on failed delivery
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2005-November/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20feedback%20on%20failed%20delivery&In-Reply-To=%3C200511161317.jAGDHZDm007701%40ns-srv-2.bln1.siemens.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000121.html">
+   <LINK REL="Next"  HREF="000129.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] feedback on failed delivery</H1>
+    <B>Thomas Wolff</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20feedback%20on%20failed%20delivery&In-Reply-To=%3C200511161317.jAGDHZDm007701%40ns-srv-2.bln1.siemens.de%3E"
+       TITLE="[fetchmail-users] feedback on failed delivery">towo at towo.net
+       </A><BR>
+    <I>Wed Nov 16 14:17:35 CET 2005</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000121.html">[fetchmail-users] RE: Fetchmail error!
+</A></li>
+        <LI>Next message: <A HREF="000129.html">[fetchmail-users] feedback on failed delivery
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#125">[ date ]</a>
+              <a href="thread.html#125">[ thread ]</a>
+              <a href="subject.html#125">[ subject ]</a>
+              <a href="author.html#125">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hello,
+I'm bothering you again with the issue of error behaviour, this time 
+it is indeed about fetchmail.
+As I'm still trying to achieve a reliable overall mail configuration, 
+I just tried the following in .fetchmailrc:
+mda &quot;false&quot;
+
+As expected, fetchmail leaves the mail on the server but user feedback 
+is not good, and there is even a crash:
+
+With fetchmail release 6.2.9-rc5+SSL:
+
+&gt;<i> 1 message for deblnss01a/demsn702 at blnss35a.
+</I>&gt;<i> reading message deblnss01a/<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">demsn702 at blnss35a</A>:1 of 1 (902 header octets)  (6 body octets) fetchmail: SIGPIPE thrown from an MDA or a stream socket error
+</I>&gt;<i> fetchmail: socket error while fetching from blnss35a
+</I>&gt;<i> fetchmail: Query status=2 (SOCKET)
+</I>If you look exactly, you find MDA mentioned and can draw your conclusion, 
+but it's not really while &quot;reading&quot; the message or while &quot;fetching&quot; it 
+(at least it's not in the process of fetching, so this is confusing), 
+and it's not a socket error either, I think.
+
+With fetchmail release 6.2.9-rc8+SSL
+
+&gt;<i> 1 message for deblnss01a/demsn702 at blnss35a.
+</I>&gt;<i> reading message deblnss01a/<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">demsn702 at blnss35a</A>:1 of 1 (902 header octets)  (6 body octets) Segmentation Fault
+</I>Crash.
+
+
+Kind regards,
+Thomas Wolff
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000121.html">[fetchmail-users] RE: Fetchmail error!
+</A></li>
+	<LI>Next message: <A HREF="000129.html">[fetchmail-users] feedback on failed delivery
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#125">[ date ]</a>
+              <a href="thread.html#125">[ thread ]</a>
+              <a href="subject.html#125">[ subject ]</a>
+              <a href="author.html#125">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

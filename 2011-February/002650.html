@@ -1,0 +1,86 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] fetchmail gmail setup problem
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2011-February/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%20gmail%20setup%20problem&In-Reply-To=%3C20110212181348.GA29970%40merlin.emma.line.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002649.html">
+   <LINK REL="Next"  HREF="002651.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] fetchmail gmail setup problem</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%20gmail%20setup%20problem&In-Reply-To=%3C20110212181348.GA29970%40merlin.emma.line.org%3E"
+       TITLE="[fetchmail-users] fetchmail gmail setup problem">matthias.andree at gmx.de
+       </A><BR>
+    <I>Sat Feb 12 19:13:48 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002649.html">[fetchmail-users] fetchmail gmail setup problem
+</A></li>
+        <LI>Next message: <A HREF="002651.html">[fetchmail-users] compile errs in md5c.c
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2650">[ date ]</a>
+              <a href="thread.html#2650">[ thread ]</a>
+              <a href="subject.html#2650">[ subject ]</a>
+              <a href="author.html#2650">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Jude DaShiell schrieb am 2011-02-12:
+
+&gt;<i> On slackware systems /usr/share/curl/ has ca-bundle.crt.  I found several 
+</I>&gt;<i> Thawte certificates in that file and an Equifax certificate too.  Would 
+</I>&gt;<i> use of anything in that file be at all helpful?
+</I>
+Hi Jude,
+
+Quite likely so, providing that the Thawte(?) certificate that signed
+the gmail server certificate is included.  To use it, a *recent* fetchmail
+version (the feature was a recent addition) can be configured to look in
+that place by --sslcertfile /usr/share/curl/ca-bundle.crt (omit the --
+if putting this in the rcfile).  Note that outdated fetchmail versions
+don't offer that option.
+
+Note also that using such bundled certificate files
+(a) does not require to use c_rehash, as opposed to directories that use
+one-file-and-one-symlink-per-certificate (with --sslcertpath)
+(b) loads all certificates on startup.  Not a problem on halfway modern
+computers, but possibly slow on ancient hardware.
+
+HTH.
+
+Good speed,
+Matthias
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002649.html">[fetchmail-users] fetchmail gmail setup problem
+</A></li>
+	<LI>Next message: <A HREF="002651.html">[fetchmail-users] compile errs in md5c.c
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2650">[ date ]</a>
+              <a href="thread.html#2650">[ thread ]</a>
+              <a href="subject.html#2650">[ subject ]</a>
+              <a href="author.html#2650">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

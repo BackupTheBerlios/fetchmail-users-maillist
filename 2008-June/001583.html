@@ -1,0 +1,136 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] &quot;sslcert&quot; not found
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2008-June/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20%22sslcert%22%20not%20found&In-Reply-To=%3C20080629154904.GP12731%40freenet.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001581.html">
+   <LINK REL="Next"  HREF="001582.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] &quot;sslcert&quot; not found</H1>
+    <B>Michelle Konzack</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20%22sslcert%22%20not%20found&In-Reply-To=%3C20080629154904.GP12731%40freenet.de%3E"
+       TITLE="[fetchmail-users] &quot;sslcert&quot; not found">linux4michelle at tamay-dogan.net
+       </A><BR>
+    <I>Sun Jun 29 17:49:04 CEST 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001581.html">[fetchmail-users] fetchmail 6.3.9-rc2 release candidate
+</A></li>
+        <LI>Next message: <A HREF="001582.html">[fetchmail-users] fetchmail drives me crazy... [I do not want	output on STDERR]
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1583">[ date ]</a>
+              <a href="thread.html#1583">[ thread ]</a>
+              <a href="subject.html#1583">[ subject ]</a>
+              <a href="author.html#1583">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hello,
+
+I am running a program which need its own fetchmail process, fetchmailrc
+and procmailrc.
+
+OK, normaly I have used
+
+sslcertpath	/home/michelle.konzack/.certs/
+
+in my fetchmailrc but in the new case I do not want  to  have  the  cert
+there but in the config directory of my program.  So I  have  downloaded
+the certificat with mutt and saved it there.  Then I have setup
+
+----[ '~/.XXXXXXXX/fetchmailrc' ]---------------------------------------
+&lt;snip&gt;
+sslcert		/home/michelle.konzack/.XXXXXXXX/fetchmailcert
+ssl
+sslproto	tls1
+sslfingerprint	&quot;B6:12:DD:96:5B:76:4A:B1:5C:14:41:9A:00:05:4D:92&quot;
+&lt;snip&gt;
+------------------------------------------------------------------------
+
+but fetchmail tell me, that it can not find the certificat:
+
+----[ '~/.XXXXXXXX/fetchmailcert' ]-------------------------------------
+-----BEGIN CERTIFICATE-----
+MIIEmzCCA4OgAwIBAgIRAIsoEb95w/Fto6fCruBRNDEwDQYJKoZIhvcNAQEFBQAw
+cTELMAkGA1UEBhMCR0IxGzAZBgNVBAgTEkdyZWF0ZXIgTWFuY2hlc3RlcjEQMA4G
+A1UEBxMHU2FsZm9yZDEaMBgGA1UEChMRQ29tb2RvIENBIExpbWl0ZWQxFzAVBgNV
+BAMTDlBvc2l0aXZlU1NMIENBMB4XDTA3MTIxNjAwMDAwMFoXDTA5MDQwNDIzNTk1
+OVowXjEhMB8GA1UECxMYRG9tYWluIENvbnRyb2wgVmFsaWRhdGVkMRQwEgYDVQQL
+EwtQb3NpdGl2ZVNTTDEjMCEGA1UEAxMac2VydmVyNC5waW5ndWluLWhvc3Rpbmcu
+ZGUwgZ8wDQYJKoZIhvcNAQEBBQADgY0AMIGJAoGBAMUOFGzor25AE4D90gEkeSk5
+TyFyp5nc3xWxalNCJXpAjF68gceL3CHEpb7a8PxwsRgEsDoFLIFvQfiUxMLZ0NV6
+fa5cbWOkWPFjsfUmUAzfQ8SmLOf/Syj5FHZxBsKO+hzj2ki4qonIyORoCIoooY1Z
+mUsWnHKI0ZOm/eAqVCfZAgMBAAGjggHDMIIBvzAfBgNVHSMEGDAWgBS4yhHpBjF5
+28OUxugZKry7NRYxpDAdBgNVHQ4EFgQUN1mq2gbNPbX+P11ObGYg/pBwNVcwDgYD
+VR0PAQH/BAQDAgWgMAwGA1UdEwEB/wQCMAAwHQYDVR0lBBYwFAYIKwYBBQUHAwEG
+CCsGAQUFBwMCMBEGCWCGSAGG+EIBAQQEAwIGwDBGBgNVHSAEPzA9MDsGCysGAQQB
+sjEBAgIHMCwwKgYIKwYBBQUHAgEWHmh0dHA6Ly93d3cucG9zaXRpdmVzc2wuY29t
+L0NQUzBpBgNVHR8EYjBgMC+gLaArhilodHRwOi8vY3JsLmNvbW9kb2NhLmNvbS9Q
+b3NpdGl2ZVNTTENBLmNybDAtoCugKYYnaHR0cDovL2NybC5jb21vZG8ubmV0L1Bv
+c2l0aXZlU1NMQ0EuY3JsMHoGCCsGAQUFBwEBBG4wbDA1BggrBgEFBQcwAoYpaHR0
+cDovL2NydC5jb21vZG9jYS5jb20vUG9zaXRpdmVTU0xDQS5jcnQwMwYIKwYBBQUH
+MAKGJ2h0dHA6Ly9jcnQuY29tb2RvLm5ldC9Qb3NpdGl2ZVNTTENBLmNydDANBgkq
+hkiG9w0BAQUFAAOCAQEADAbSVknjHxoXkjIXON7QPcj8m4bqcKz75tpDt01Z7PNZ
+c+0GCN1SvlcN4P2kQtioB2crFrpOTACSqtnILHnUnpxf2t6DFnpIMIczCuEvyhJv
+/iVrcguWl+mXNIUaXwICi5XJJojS40aP+wTPZF1SNUsohcWRshUC+S/+DPgCivJM
+BdZb+Y3BoxnObXq+BkgHa8uM0nnicqp3uY1sbDXZHgobOtEFik21DVO7GMVS8ALx
+XXsejoA6uOBWLlxvoAS712m7Zdnd1lyGNrUnZfYEastHAA7F28ieokm1r/z659KC
+vr9vrq8IVCn2BdJUrbUg/dX70IpM3W/sbNX0CdPpkw==
+-----END CERTIFICATE-----
+------------------------------------------------------------------------
+
+
+What I am missing?
+
+
+
+Thanks, Greetings and nice Day/Evening
+    Michelle Konzack
+
+
+-- 
+Linux-User #280138 with the Linux Counter, <A HREF="http://counter.li.org/">http://counter.li.org/</A>
+##################### Debian GNU/Linux Consultant #####################
+Michelle Konzack   Apt. 917                  ICQ #328449886
++49/177/9351947    50, rue de Soultz         MSN LinuxMichi
++33/6/61925193     67100 Strasbourg/France   IRC #Debian (irc.icq.com)
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: signature.pgp
+Type: application/pgp-signature
+Size: 189 bytes
+Desc: Digital signature
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/fetchmail-users/attachments/20080629/9cad5df3/attachment.pgp">https://lists.berlios.de/pipermail/fetchmail-users/attachments/20080629/9cad5df3/attachment.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001581.html">[fetchmail-users] fetchmail 6.3.9-rc2 release candidate
+</A></li>
+	<LI>Next message: <A HREF="001582.html">[fetchmail-users] fetchmail drives me crazy... [I do not want	output on STDERR]
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1583">[ date ]</a>
+              <a href="thread.html#1583">[ thread ]</a>
+              <a href="subject.html#1583">[ subject ]</a>
+              <a href="author.html#1583">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

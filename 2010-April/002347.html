@@ -1,0 +1,166 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] sperate servers[SOLVED-with luck]
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2010-April/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20sperate%20servers%5BSOLVED-with%20luck%5D&In-Reply-To=%3Cop.va9n7oxo1e62zd%40balu.cs.uni-paderborn.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002346.html">
+   <LINK REL="Next"  HREF="002345.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] sperate servers[SOLVED-with luck]</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20sperate%20servers%5BSOLVED-with%20luck%5D&In-Reply-To=%3Cop.va9n7oxo1e62zd%40balu.cs.uni-paderborn.de%3E"
+       TITLE="[fetchmail-users] sperate servers[SOLVED-with luck]">matthias.andree at gmx.de
+       </A><BR>
+    <I>Fri Apr 16 18:58:26 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002346.html">[fetchmail-users] sperate servers[SOLVED-with luck]
+</A></li>
+        <LI>Next message: <A HREF="002345.html">[fetchmail-users] sperate servers
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2347">[ date ]</a>
+              <a href="thread.html#2347">[ thread ]</a>
+              <a href="subject.html#2347">[ subject ]</a>
+              <a href="author.html#2347">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Robert Holtzman wrote on 2010-04-14:
+
+&gt;<i> On Wed, 14 Apr 2010, Matthias Andree wrote:
+</I>&gt;<i>
+</I>&gt;&gt;<i> Am 14.04.2010, 07:54 Uhr, schrieb Michael Banack:
+</I>&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> I'm not sure there's currently a way to specify different delivery
+</I>&gt;&gt;&gt;<i> mechanisms per account from fetchmail.
+</I>&gt;&gt;&gt;<i>  Here are some ideas though:
+</I>&gt;&gt;&gt;<i>  1. Procmail can be set to deliver messages wherever you want.
+</I>&gt;&gt;&gt;<i>    Fetchmail can be set to tag messages by account (tracepolls), and
+</I>&gt;&gt;&gt;<i> you can use procmail to make rules matching these criteria.
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Yet configuring procmail properly so it doesn't produce surprises is  
+</I>&gt;&gt;<i> somewhat of an arcane art, voids the &quot;e&quot; recipe, and requires spraying
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> :0e
+</I>&gt;&gt;<i> { EXITCODE=75 HOST }
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> between all the regular recipes.
+</I>&gt;<i>
+</I>&gt;<i> Haven't run into this before. I'll have to check it out.
+</I>
+Or just ditch it and use maildrop instead, which is much nicer WRT error  
+handling.
+You're not doing anything fancy here.
+
+&gt;&gt;<i> These would share the .fetchids and .fetchmail.pid lock files, so for  
+</I>&gt;&gt;<i> them to be really separate, the FETCHMAILHOME environment variable  
+</I>&gt;&gt;<i> could be used.
+</I>&gt;&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> You lost me with this one. Could you expand on it?
+</I>
+Already done, in the manpage:
+
+
+ENVIRONMENT
+[...]
+        FETCHMAILHOME: If the environment variable FETCHMAILHOME is  set   
+to  a
+        valid  and  existing  directory  name,  fetchmail will read  
+$FETCHMAIL-
+        HOME/fetchmailrc  (the  dot  is  missing  in  this  case),   
+$FETCHMAIL-
+        HOME/.fetchids  and  $FETCHMAILHOME/.fetchmail.pid rather than from  
+the
+        user&#8217;s home directory.  The .netrc file is always looked for in the  
+the
+        invoking user&#8217;s home directory regardless of FETCHMAILHOME&#8217;s  
+setting.
+
+        HOME_ETC:  If  the  HOME_ETC  variable  is  set,  fetchmail  will   
+read
+        $HOME_ETC/.fetchmailrc instead of ~/.fetchmailrc.
+
+        If HOME_ETC and FETCHMAILHOME are both set, HOME_ETC will be  
+ignored.
+
+If you use separate FETCHMAILHOME settings for your fetchmail instances,  
+you can run several fetchmail processes in parallel. It's not normally  
+possible.
+
+&gt;&gt;<i> But fetchmail must surely have passed them somewhere (run with -v to  
+</I>&gt;&gt;<i> see if it talks SMTP, LMTP, to a command) - possibly a default  
+</I>&gt;&gt;<i> exim/postfix/sendmail installation from the distribution Robert is  
+</I>&gt;&gt;<i> using? Is fetchmail configured for a &quot;fallback&quot; MDA?
+</I>&gt;<i>
+</I>&gt;<i> I'm running Alpine which communicates directly with the smtp server,  
+</I>&gt;<i> hence no need for an mda. Also I'm running Ubuntu which doesn't install  
+</I>&gt;<i> a default mda.
+</I>
+I think there's a misunderstanding here; fetchmail has nothing to do with  
+how you *SEND* mail (SMTP), but how it gets onto your system. There are:
+
+Mail Transfer Agents (MTA): Postfix, Exim, Sendmail, Courier, ZMailer...
+Some of these include a local delivery agent, or can deliver locally,  
+traditionally to /var/(spool/)mail/$LOGNAME.
+
+Mail Delivery Agents (MDA): Procmail (decrepit), Maildrop, ...
+These can only deliver locally and sometimes also filter.
+
+
+Regarding Ubuntu: If there isn't a mail-transfer-agent installed on your  
+system, and you're not configuring an mda, then fetchmail would have to  
+leave messages on the server because there's nowhere it can deliver to. I  
+don't have pristine Ubuntu systems to test this though.
+
+On a related note, fetchmail is way outdated on all Ubuntu versions,  
+including Lucid Lynx (10.04) Beta.  I'd appreciate if Ubuntu users could  
+push them to release an up-to-date package for LTS, perhaps even provide  
+patches to update the Ubuntu package to what is in Debian/unstable...
+
+&gt;<i> Finally got it to work with a procmail filter looking at the Received  
+</I>&gt;<i> header. From the procmail log:
+</I>&gt;<i>
+</I>&gt;<i>   69  ## procmail: Match on &quot;^Received: from pop.sonic.net&quot;
+</I>&gt;<i>
+</I>&gt;<i> Thanks to you and Michael for your patience.
+</I>&gt;<i>
+</I>
+
+-- 
+Matthias Andree
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002346.html">[fetchmail-users] sperate servers[SOLVED-with luck]
+</A></li>
+	<LI>Next message: <A HREF="002345.html">[fetchmail-users] sperate servers
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2347">[ date ]</a>
+              <a href="thread.html#2347">[ thread ]</a>
+              <a href="subject.html#2347">[ subject ]</a>
+              <a href="author.html#2347">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

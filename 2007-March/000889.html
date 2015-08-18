@@ -1,0 +1,137 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] fetchmail 6.3.8-rc1 release candidate
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2007-March/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%206.3.8-rc1%20release%20candidate&In-Reply-To=%3C20070317211640.GA24468%40merlin.emma.line.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000876.html">
+   <LINK REL="Next"  HREF="000890.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] fetchmail 6.3.8-rc1 release candidate</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%206.3.8-rc1%20release%20candidate&In-Reply-To=%3C20070317211640.GA24468%40merlin.emma.line.org%3E"
+       TITLE="[fetchmail-users] fetchmail 6.3.8-rc1 release candidate">matthias.andree at gmx.de
+       </A><BR>
+    <I>Sat Mar 17 22:16:40 CET 2007</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000876.html">[fetchmail-users] TR:  fetchmail header (undisclosed recipients)
+</A></li>
+        <LI>Next message: <A HREF="000890.html">[fetchmail-users] Can fetchmail leave email on the POP3 srever for	(say) 10 days?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#889">[ date ]</a>
+              <a href="thread.html#889">[ thread ]</a>
+              <a href="subject.html#889">[ subject ]</a>
+              <a href="author.html#889">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA1
+
+Greetings,
+
+I have uploaded the first fetchmail 6.3.8 release candidate to the usual
+download location: &lt;<A HREF="http://home.pages.de/~mandree/fetchmail/">http://home.pages.de/~mandree/fetchmail/</A>&gt;.
+
+One more workaround was added to support repolling after failure of
+opportunistic TLS upgrade - this time when the server refused
+authentication.
+
+Several parts of the documentation have been corrected and the Received:
+format that fetchmail expects was documented. There is also a new
+contrib/ script, delete-later.
+
+Details:
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+fetchmail 6.3.8 changes since 6.3.7:
+
+# BUG FIXES:
+* Fix pluralization of oversized-message warning mails.
+* Fix manual page: --sslcheck -&gt; --sslcertck, and do not set trailing 
+  &quot;recommended:&quot; in bold. Fixes Debian Bug #413059, reported by Rafal Czlonka.
+* Repoll immediately if a protocol error happens during the authentication 
+  attempt after a failed opportunistic TLS upgrade.
+  Fixes comment #9 in Gentoo Bug #163782, reported by Takuto Matsuu.
+* Fix rendering of the &quot;24 - 26, 28, 29&quot; paragraph in the exit codes section. 
+  Reported by Nico Golde.
+
+# DOCUMENTATION:
+* Extend --mda documentation, discourage use of qmail-inject.
+  Based on a patch by Rob MacGregor.
+* Document SOCKS configuration facility (SOCKS_CONF environment variable).
+  Thanks to Jochen Hayek, Michael Shuldman and Rob MacGregor.
+* Use envelope option in multidrop example. Patch by Rob MacGregor.
+* Document expected Received: line format when parsing for envelope addressees.
+* Stripped option documentation from sample.rcfile, since this is bound to go
+  out of synch with the manual page, which is the only reference on options.
+
+# CONTRIB:
+* Add delete-later and delete-later.README, a script and documentation for
+  a MySQL/Tcl-based client-side &quot;delete-after&quot; feature.
+  Kindly donated by Yoo GmbH, Gro&#223;voigtsberg, Germany (Carsten Ralle).
+
+# KNOWN BUGS AND WORKAROUNDS:
+  (this section floats upwards through the NEWS file so it stays with the
+  current release information)
+* fetchmail does not handle messages without Message-ID header well
+  (See sourceforge.net bug #780933)
+* Sun Workshop 6 (SPARC) is known to miscompile the configuration file lexer in
+  64-bit mode.  Either compile 32-bit code or use GCC to compile 64-bit
+  fetchmail.  Note that fetchmail doesn't take advantage of 64-bit code,
+  so compiling 32-bit SPARC code should not cause any difficulties.
+* fetchmail does not track pending deletes over crashes
+* the command line interface is a bit narrow-minded sometimes, for instance,
+  fetchmail -s doesn't work with a running daemon
+* some of the logging output is not very helpful
+* some of the documentation is still not up to date
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+WARNING: This message sets the Reply-To: header.
+When replying to me personally, you need to edit the To: header!
+
+Thank you.
+
+Happy fetching,
+Matthias Andree
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1.4.5 (GNU/Linux)
+
+iD8DBQFF/Fq4vmGDOQUufZURAh5CAJ9eVxplbQV1HJmEo1cIFFMrPIn+bACeJPm/
+0dtsJenupmlzyECQ4KNmYEI=
+=qutF
+-----END PGP SIGNATURE-----
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000876.html">[fetchmail-users] TR:  fetchmail header (undisclosed recipients)
+</A></li>
+	<LI>Next message: <A HREF="000890.html">[fetchmail-users] Can fetchmail leave email on the POP3 srever for	(say) 10 days?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#889">[ date ]</a>
+              <a href="thread.html#889">[ thread ]</a>
+              <a href="subject.html#889">[ subject ]</a>
+              <a href="author.html#889">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

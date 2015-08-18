@@ -1,0 +1,223 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] multidrop problem
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2009-May/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20multidrop%20problem&In-Reply-To=%3C142847.64018.qm%40web52707.mail.re2.yahoo.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001948.html">
+   <LINK REL="Next"  HREF="001950.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] multidrop problem</H1>
+    <B>Peter Macko</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20multidrop%20problem&In-Reply-To=%3C142847.64018.qm%40web52707.mail.re2.yahoo.com%3E"
+       TITLE="[fetchmail-users] multidrop problem">peter_macko at yahoo.com
+       </A><BR>
+    <I>Sat May 30 20:12:53 CEST 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001948.html">[fetchmail-users] fetchmail 6.3.10-beta1 test version
+</A></li>
+        <LI>Next message: <A HREF="001950.html">[fetchmail-users] multidrop problem
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1949">[ date ]</a>
+              <a href="thread.html#1949">[ thread ]</a>
+              <a href="subject.html#1949">[ subject ]</a>
+              <a href="author.html#1949">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>I would like to ask for an advice. I am deploying a mail server and cannot make fetchmail to 
+deliver emails from a multidrop account. This is my setup:
+&#160;
+1. Mail server mail.domain.sk accepts emails for domain.sk (e.g. for <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">user at domain.sk</A>).
+&#160;&#160; This user has a forwad in the /etc/aliases: &quot;user: <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">user at domain.eu</A>&quot;
+&#160;
+2. Mail server mail.domain.eu accepts emails for domain.eu (e.g. for <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">user at domain.eu</A>).
+&#160;&#160; This server accepts emails directly (SMTP) and by fetchmail from multidrop
+&#160;&#160; account pop3.xxx.sk.
+&#160;&#160; MX record for domain.eu: 10 mail.domain.eu, 100 smtp.xxx.sk (multidrop)
+&#160;
+Questions:
+A. Why fetchmail reports:
+&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; fetchmail: warning: multidrop for pop3.xxx.sk requires envelope option!
+
+&#160;&#160; Plese, see an email listing that follows. Shell I ask the pop3.xxx.sk provider
+&#160;&#160; to set the envelope option up? I guess that pop3.xxx.sk has envelope option
+&#160;&#160; switched off, but what about
+&#160;
+&#160;&#160;&#160;&#160;&#160; Received: from mail.domain.sk (mail.domain.sk [194.111.111.111])
+&#160;&#160;&#160;&#160;&#160;&#160; by mailhost.xx.xx.sk (Postfix) with ESMTP id DF09733C52
+&#160;&#160; &#160;&#160;&#160;&#160;&#160;&#160; for &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">user at domain.eu</A>&gt;; Sat, 30 May 2009 08:31:15 +0200 (CEST)
+&#160;
+&#160;&#160; Is not this sufficient for fetchmail to find out that <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">user at domain.eushould</A>
+&#160;&#160; receive the email?
+&#160;
+B. Imagine, I send an email to <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">user at domain.sk.</A> This email is forwarded to <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">user at domain.eu.</A>
+&#160;&#160; Imagine, the mail.domain.eu is not accessible, so email is delivered to multidrop domain
+&#160;&#160; account by smtp.xxx.sk. Later the mail.domain.eu downloads email from pop3.xxx.sk.
+&#160;&#160; This time the email gets delivered to fetchmail's account. Please, see the email listing,
+&#160;&#160; there is line:
+&#160;
+&#160;&#160;&#160;&#160;&#160; Received: from mail.domain.sk (mail.domain.sk [194.111.111.111])
+&#160;&#160;&#160;&#160;&#160;&#160; by mailhost.xx.xx.sk (Postfix) with ESMTP id DF09733C52
+&#160;&#160; &#160;&#160;&#160;&#160;&#160;&#160; for &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">user at domain.eu</A>&gt;; Sat, 30 May 2009 08:31:15 +0200 (CEST)
+&#160;
+&#160;&#160; Why is this email delivered to the fetchmail's account and not to the user's accout?
+&#160;
+C. Emails sent directly to <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">user at domain.eu</A>, not forwarded from <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">user at domain.sk</A>,
+&#160;&#160; are download by fetchmail and delivered to the user's local account correctly.
+&#160;
+Thank you for any help.
+&#160;
+//////////////////////////////////////////////////////////////////////////
+/////////////&#160;&#160;&#160; Fetchmail config&#160;&#160; //////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////
+[<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">root at mail</A> ~]# cat /etc/fetchmailrc
+poll pop3.xxx.sk
+&#160;&#160;&#160;&#160;&#160;&#160;&#160; localdomains domain.eu mail.domain.eu
+&#160;&#160;&#160;&#160;&#160;&#160;&#160; proto pop3
+&#160;&#160;&#160;&#160;&#160;&#160;&#160; auth password
+&#160;&#160;&#160;&#160;&#160;&#160;&#160; user &quot;pop3user&quot;
+&#160;&#160;&#160;&#160;&#160;&#160;&#160; pass &quot;pop3pass&quot;
+&#160;&#160;&#160;&#160;&#160;&#160;&#160; is *
+&#160;&#160;&#160;&#160;&#160;&#160;&#160; fetchall
+&#160;&#160;&#160;&#160;&#160;&#160;&#160; ssl
+&#160;
+//////////////////////////////////////////////////////////////////////////
+/////////////&#160;&#160;&#160; Fetchmail output&#160;&#160; //////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////
+[<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">root at mail</A> ~]# less /var/fetchmail/fetchmail_output.log
+fetchmail: warning: multidrop for pop3.xxx.sk requires envelope option!
+fetchmail: warning: Do not ask for support if all mail goes to postmaster!
+fetchmail: 6.3.6 querying pop3.xxx.sk (protocol POP3) at Sat May 30 08:35:01 20
+09: poll started
+Trying to connect to 212.11.111.11/995...connected.
+fetchmail: Issuer Organization: Mail Server
+fetchmail: Issuer CommonName: pop3.xxx.sk
+fetchmail: Server CommonName: pop3.xxx.sk
+fetchmail: pop3.xxx.sk key fingerprint: AA:AA:AA:AA:AA:AA:AA:AA:AA:AA:AA:AA:AA:
+AA:AA:AA:
+fetchmail: Server certificate verification error: self signed certificate
+fetchmail: POP3&lt; +OK POP3 Ready mailhost.xx.xx.sk 000200b3
+fetchmail: POP3&gt; USER user
+fetchmail: POP3&lt; +OK USER user set, mate
+fetchmail: POP3&gt; PASS *
+fetchmail: POP3&lt; +OK Mailbox locked and ready
+fetchmail: POP3&gt; STAT
+fetchmail: POP3&lt; +OK 1 3488
+1 message for domain at pop3.xxx.sk (3488 octets).
+fetchmail: POP3&gt; LIST 1
+fetchmail: POP3&lt; +OK 1 3488
+fetchmail: POP3&gt; RETR 1
+fetchmail: POP3&lt; +OK Message follows
+&#160;
+//////////////////////////////////////////////////////////////////////////
+/////////////&#160;&#160;&#160; Email listing&#160;&#160; /////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////
+Return-Path: &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">sender at yahoo.com</A>&gt;
+X-Original-To: <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">fetchmail at localhost</A>
+Delivered-To: <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">fetchmail at localhost.domain.eu</A>
+Received: from mail.domain.eu (mail.domain.eu [127.0.0.1])
+&#160;by mail.domain.eu (Postfix) with ESMTP id EC6A8276CBF
+&#160;for &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">fetchmail at localhost</A>&gt;; Sat, 30 May 2009 08:35:01 +0200 (CEST)
+Received: from pop3.xxx.sk
+&#160;by mail.domain.eu with POP3 (fetchmail-6.3.6)
+&#160;for &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">fetchmail at localhost</A>&gt; (multi-drop); Sat, 30 May 2009 08:35:01 +0200 (CEST)
+Received: from mailhost.xx.xx.sk ([192.168.0.4])
+&#160; by mailhost.xx.xx.sk (Cyrus v2.2.13-Debian-2.2.13-10) with LMTPA;
+&#160; Sat, 30 May 2009 08:31:16 +0200
+X-Sieve: CMU Sieve 2.2
+Received: from localhost (localhost [127.0.0.1])
+&#160;by mailhost.xx.xx.sk (Postfix) with ESMTP id 1DF6033C53
+&#160;for &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">domain_domain_eu at mailhost.xx.xx.sk</A>&gt;; Sat, 30 May 2009 08:31:16 +0200 (CEST)
+X-Virus-Scanned: Debian amavisd-new at mailhost.xx.xx.sk
+Received: from mailhost.xx.xx.sk ([127.0.0.1])
+&#160;by localhost (mailhost2.xx.xx.sk [127.0.0.1]) (amavisd-new, port 10024)
+&#160;with LMTP id Baxqr5djMAis for &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">domain_domain_eu at mailhost.xx.xx.sk</A>&gt;;
+&#160;Sat, 30 May 2009 08:31:15 +0200 (CEST)
+Received: from mail.domain.sk (mail.domain.sk [194.111.111.111])
+&#160;by mailhost.xx.xx.sk (Postfix) with ESMTP id DF09733C52
+&#160;for &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">user at domain.eu</A>&gt;; Sat, 30 May 2009 08:31:15 +0200 (CEST)
+Received: by mail.domain.sk (Postfix)
+&#160;id D4E6E3203AF; Sat, 30 May 2009 08:30:17 +0200 (CEST)
+Delivered-To: <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">user at domain.sk</A>
+Received: from mail.domain.sk ([127.0.0.1])
+&#160;by localhost (proxy.domain.sk [127.0.0.1]) (amavisd-new, port 10024)
+&#160;with LMTP id nv+ZDj-w2T1O for &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">user at domain.sk</A>&gt;;
+&#160;Sat, 30 May 2009 08:30:17 +0200 (CEST)
+Received: from web52704.mail.re2.yahoo.com (web52704.mail.re2.yahoo.com [206.190.48.227])
+&#160;by mail.domain.sk (Postfix) with SMTP id 224703203AF
+&#160;for &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">user at domain.sk</A>&gt;; Sat, 30 May 2009 08:29:56 +0200 (CEST)
+Received: (qmail 10138 invoked by uid 60001); 30 May 2009 06:29:56 -0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s1024; t=1243664996; 
+bh=DlWM700u1pRS++G1gZuXIDA2qhSRB0wtUgzcTA+F7TQ=; h=Message-ID:X-YMail-OSG:Received:X-
+Mailer:Date:From:Subject:To:MIME-Version:Content-Type; 
+b=khCKaQXT9TVyUmkqNc+rA4b4tR9Tlpzjun15nD5DcESJUPChDFRS/bXwYeOkQWDk0wTDNWHJKAAEt7qIwr1GzJk8G0R8
+bl6/emRkFg8KYQak2r3oU6bQdnTGO7T38YViGXWbF4+TnDkB8iRZImdTDpFAhdKja2YgjGBRJBmnZOI=
+DomainKey-Signature:a=rsa-sha1; q=dns; c=nofws;
+&#160; s=s1024; d=yahoo.com;
+&#160; h=Message-ID:X-YMail-OSG:Received:X-Mailer:Date:From:Subject:To:MIME-Version:Content-Type;
+&#160; 
+b=4webTs9XraRzW5BhQunx0DdHk/fC7ZO6HieCkqcQpS/PJifH2JSBd/IeU0Y/AMphjt5TUIkAXMO4lJb9Up/2p4M+ddgE
+3hmuM3YaWbZvnIeofjiyahiOXLh97HTp3JP8JmJ5Jg3hdYRlT8JXeYcnWc3mGGGaDzrbuJif1UWFhTM=;
+Message-ID: &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">216808.8900.qm at web52704.mail.re2.yahoo.com</A>&gt;
+X-YMail-OSG: 
+Gm3UTtcVM1n4IoPQT0CLVNajVndvPet8tS18o5x8g17bUsqNiVlsWHhEPZ3l1bpRNNMsgYo44dE1bzmyLjsPxU7oFxUYft
+CQAKocEpGIIdfZmJU7BzVXufBHiiWYA4MkLqarNCoEpkvXFHQSPbgY6kc3emZNlsGMhDygSmv7ZrIGm8r1.Sc751zGhAib
+uPDjXj4Ul0rYqVdXHVZTw_aYDlcuJ29BBo5PxAIh58W.HNit1dGJ0I9Pz8HWDvWWEOq2qyZJVbbB3OdQQLAuv6Z21bTcsC
+WBtSlW3beA7GG6zKQ-
+Received: from [89.111.111.111] by web52704.mail.re2.yahoo.com via HTTP; Fri, 29 May 2009 
+23:29:55 PDT
+X-Mailer: YahooMailRC/1277.43 YahooMailWebService/0.7.289.10
+Date: Fri, 29 May 2009 23:29:55 -0700 (PDT)
+From: Sender &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">sender at yahoo.com</A>&gt;
+Subject: test sk eu h3
+To: <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">user at domain.sk</A>
+MIME-Version: 1.0
+Content-Type: multipart/alternative; boundary=&quot;0-102328143-1243664995=:8900&quot;
+X-Fetchmail-Warning: recipient address <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">user at domain.skdidn</A>'t match any local name
+X-DOMAIN-MailScanner-Information: Please contact the ISP for more information
+X-DOMAIN-MailScanner-ID: EC6A8276CBF.AA676
+X-DOMAIN-MailScanner: Found to be clean
+X-DOMAIN-MailScanner-From: <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">sender at yahoo.com</A>
+X-Spam-Status: No
+
+--0-102328143-1243664995=:8900
+Content-Type: text/plain; charset=us-ascii
+test sk eu h3
+--0-102328143-1243664995=:8900--
+
+
+      
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001948.html">[fetchmail-users] fetchmail 6.3.10-beta1 test version
+</A></li>
+	<LI>Next message: <A HREF="001950.html">[fetchmail-users] multidrop problem
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1949">[ date ]</a>
+              <a href="thread.html#1949">[ thread ]</a>
+              <a href="subject.html#1949">[ subject ]</a>
+              <a href="author.html#1949">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

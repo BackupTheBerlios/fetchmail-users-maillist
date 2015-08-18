@@ -1,0 +1,324 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] fetchmail bad header problem
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2011-August/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%20bad%20header%20problem&In-Reply-To=%3C20110802132723.00001645%40unknown%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002895.html">
+   <LINK REL="Next"  HREF="002902.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] fetchmail bad header problem</H1>
+    <B>Dirk Schleicher</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%20bad%20header%20problem&In-Reply-To=%3C20110802132723.00001645%40unknown%3E"
+       TITLE="[fetchmail-users] fetchmail bad header problem">dirk.schleicher at gmx.de
+       </A><BR>
+    <I>Tue Aug  2 13:27:23 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002895.html">[fetchmail-users] fetchmail bad header problem
+</A></li>
+        <LI>Next message: <A HREF="002902.html">[fetchmail-users] fetchmail 7.0.0-alpha2+MAPI alpha preview release
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2877">[ date ]</a>
+              <a href="thread.html#2877">[ thread ]</a>
+              <a href="subject.html#2877">[ subject ]</a>
+              <a href="author.html#2877">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Am Tue, 02 Aug 2011 12:59:45 +0200
+schrieb Matthias Andree &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">matthias.andree at gmx.de</A>&gt;:
+
+&gt;<i> Hi Dirk,
+</I>&gt;<i> 
+</I>&gt;<i> be sure to use Debian squeeze (not lenny) as &quot;stable&quot;. The fetchmail
+</I>&gt;<i> version that shipped with lenny was way outdated.
+</I>&gt;<i> 
+</I>&gt;<i> You can configure a bad-headers option in recent versions of
+</I>&gt;<i> fetchmail, but chances are that Postfix dislikes the message and
+</I>&gt;<i> bounces them anyways.
+</I>&gt;<i> 
+</I>&gt;<i> In that situation, you need to provide exact logs, see
+</I>&gt;<i> <A HREF="http://www.fetchmail.info/fetchmail-FAQ.html#G3">http://www.fetchmail.info/fetchmail-FAQ.html#G3</A>
+</I>
+I use Debian squeeze with postfix 2.7.1 and sieve
+
+Hope it help
+
+
+$ env LC_ALL=C fetchmail -V
+This is fetchmail release 6.3.18+GSS+NTLM+SDPS+SSL+NLS+KRB5.
+
+Copyright (C) 2002, 2003 Eric S. Raymond
+Copyright (C) 2004 Matthias Andree, Eric S. Raymond,
+                   Robert M. Funk, Graham Wilson
+Copyright (C) 2005 - 2006, 2010 Sunil Shetye
+Copyright (C) 2005 - 2010 Matthias Andree
+Fetchmail comes with ABSOLUTELY NO WARRANTY. This is free software, and you
+are welcome to redistribute it under certain conditions. For details,
+please see the file COPYING in the source or documentation directory.
+This product includes software developed by the OpenSSL Project
+for use in the OpenSSL Toolkit. (<A HREF="http://www.openssl.org/">http://www.openssl.org/</A>)
+
+Fallback MDA: (none)
+Linux mail-proxy 2.6.32-5-686 #1 SMP Wed May 18 07:08:50 UTC 2011 i686 GNU/Linux
+Taking options from command line and /home/vmail/.fetchmailrc
+Poll interval is 300 seconds
+Logfile is /var/log/fetchmail.log
+Idfile is /home/vmail/.fetchids
+Fetchmail will forward misaddressed multidrop messages to <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">dirk at mail-proxy.lan</A>
+
+Options for retrieving from <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">dirk at eids.de</A>@eids.de:
+  True name of server is eids.de.
+  Protocol is POP3.
+  All available authentication methods will be tried.
+  SSL protocol: ssl23.
+  Server nonresponse timeout is 300 seconds (default).
+  Default mailbox selected.
+  Only new messages will be retrieved (--all off).
+  Fetched messages will not be kept on the server (--keep off).
+  Old messages will not be flushed before message retrieval (--flush off).
+  Oversized messages will not be flushed before message retrieval (--limitflush off).
+  Rewrite of server-local addresses is enabled (--norewrite off).
+  Carriage-return stripping is disabled (stripcr off).
+  Carriage-return forcing is disabled (forcecr off).
+  Interpretation of Content-Transfer-Encoding is enabled (pass8bits off).
+  MIME decoding is disabled (mimedecode off).
+  Idle after poll is disabled (idle off).
+  Nonempty Status lines will be kept (dropstatus off)
+  Delivered-To lines will be kept (dropdelivered off)
+  Fetch message size limit is 100 (--fetchsizelimit 100).
+  Do binary search of UIDs during 3 out of 4 polls (--fastuidl 4).
+  Messages will be SMTP-forwarded to: localhost (default)
+  Single-drop mode: 1 local name recognized.
+  No UIDs saved from this host.
+  Messages with bad headers will be passed on.
+
+
+
+$ env LC_ALL=C fetchmail --nodetach -vvv --nosyslog
+fetchmail: Old UID list from pop.gmx.de: 187fe3e554ed3510a785ba1e66d2d51
+ 0c61955d938762314171eea64935785
+ 12719a46c7fe3a0380a05d7d6962958
+ 0633e4592d17664f09d4b6201fa05f2
+ 3c545ea98be3f90bae4a80b8b38c304
+ cfa89c1010e80aa9b2b6e91a5ec7aad
+ 792738f54b5e877066df906dc04d96b
+ fc85b7b308dc8a825e9425e0487ff60
+ 94bc6585bdb2d9afad683ea1070f22d
+ d420a4828483e7f149aa0a66c23edd3
+ b2cc7bde8895147d272317f8d4bc89f
+ fcb62b014a860ba997485a7d342c608
+ 8b12a353a620fde06d6499c2ccb9cbb
+ 2a488e9c7f03bce00e145a01ee2d777
+ d377651abc26b25191bc04284a4c40a
+ 084815c776e79d66b2438742962cf0b
+ bd17d4aca01d996c2a4e6f51d3c7013
+ c218559bbcab6f7219b86e2d123de73
+ 30314d279ea7c93b10fefb984bf1286
+ 8f6aa470a009a2ac2cff430d43f9160
+ de6c00bc60f0230ac9e4fb43cffd7bb
+ 16eabdb60c4d3f8605daa197f5f9908
+ abbcbcfd959f754f8aa6e061e209b80
+ a697be48a756c3b3ef0476201cd823d
+ c7e6be74d59d366ac95b7804e994e67
+ dc9ee5ed2cc235dd4adc61bef3ad3f9
+ 46fff72b0a72de2ef667cd3225940b5
+ ec5efd9f04cf5a6a72788c578a8a67d
+ 7f591099f2b39b97f20d3a5d993f034
+ e3509ac038a0137460682e42e1696ac
+ 06ec72bb3c00774046dba90bf188fd2
+
+fetchmail: Old UID list from eids.de: &lt;empty&gt;
+fetchmail: Old UID list from eids.de: &lt;empty&gt;
+fetchmail: Old UID list from eids.de: UID93-111670603
+ UID94-111670603
+ UID95-111670603
+ UID96-111670603
+
+fetchmail: Old UID list from eids.de: UID580-112359656
+ UID581-112359656
+
+fetchmail: Old UID list from kleine-messerwerkstatt.de: &lt;empty&gt;
+fetchmail: Scratch list of UIDs: <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">dirk at sterbai.de</A>@sterbai.de UID153684-1107067715
+ <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">dirk at sterbai.de</A>@sterbai.de UID153685-1107067715
+ <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">dirk at sterbai.de</A>@sterbai.de UID153686-1107067715
+ <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">dirk at sterbai.de</A>@sterbai.de UID153687-1107067715
+ <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">dirk at sterbai.de</A>@sterbai.de UID153688-1107067715
+ <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">dirk at sterbai.de</A>@sterbai.de UID153689-1107067715
+ <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">dirk at sterbai.de</A>@sterbai.de UID153690-1107067715
+ <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">dirk at sterbai.de</A>@sterbai.de UID153691-1107067715
+ <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">dirk at sterbai.de</A>@sterbai.de UID153692-1107067715
+ <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">dirk at sterbai.de</A>@sterbai.de UID153693-1107067715
+ <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">dirk at sterbai.de</A>@sterbai.de UID153694-1107067715
+ <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">dirk at sterbai.de</A>@sterbai.de UID153695-1107067715
+ <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">dirk at sterbai.de</A>@sterbai.de UID153696-1107067715
+ <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">dirk at sterbai.de</A>@sterbai.de UID153697-1107067715
+ <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">dirk at sterbai.de</A>@sterbai.de UID153698-1107067715
+ <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">dirk at sterbai.de</A>@sterbai.de UID153699-1107067715
+ <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">dirk at sterbai.de</A>@sterbai.de UID153700-1107067715
+ <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">dirk at sterbai.de</A>@sterbai.de UID153701-1107067715
+ <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">dirk at sterbai.de</A>@sterbai.de UID153702-1107067715
+ <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">dirk at sterbai.de</A>@sterbai.de UID153703-1107067715
+ <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">dirk at sterbai.de</A>@sterbai.de UID153704-1107067715
+ <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">dirk at sterbai.de</A>@sterbai.de UID153705-1107067715
+ <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">dirk at sterbai.de</A>@sterbai.de UID153706-1107067715
+ <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">dirk at sterbai.de</A>@sterbai.de UID153707-1107067715
+ <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">dirk at sterbai.de</A>@sterbai.de UID153708-1107067715
+ <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">dirk at sterbai.de</A>@sterbai.de UID153709-1107067715
+ <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">dirk at sterbai.de</A>@sterbai.de UID153710-1107067715
+ <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">dirk at sterbai.de</A>@sterbai.de UID153711-1107067715
+ <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">dirk at sterbai.de</A>@sterbai.de UID153712-1107067715
+ <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">dirk at sterbai.de</A>@sterbai.de UID153713-1107067715
+ <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">dirk at sterbai.de</A>@sterbai.de UID153714-1107067715
+ <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">dirk at sterbai.de</A>@sterbai.de UID153715-1107067715
+ <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">dirk at sterbai.de</A>@sterbai.de UID153716-1107067715
+ <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">dirk at sterbai.de</A>@sterbai.de UID153717-1107067715
+ <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">dirk at sterbai.de</A>@sterbai.de UID153718-1107067715
+ <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">dirk at sterbai.de</A>@sterbai.de UID153719-1107067715
+ <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">dirk at sterbai.de</A>@sterbai.de UID153720-1107067715
+ <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">dirk at sterbai.de</A>@sterbai.de UID153721-1107067715
+ <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">dirk at sterbai.de</A>@sterbai.de UID153722-1107067715
+ <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">dirk at sterbai.de</A>@sterbai.de UID153723-1107067715
+ <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">dirk at sterbai.de</A>@sterbai.de UID153724-1107067715
+ <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">dirk at sterbai.de</A>@sterbai.de UID153725-1107067715
+ <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">dirk at sterbai.de</A>@sterbai.de UID153726-1107067715
+ <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">dirk at sterbai.de</A>@sterbai.de UID153727-1107067715
+ <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">dirk at sterbai.de</A>@sterbai.de UID153728-1107067715
+ <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">dirk at sterbai.de</A>@sterbai.de UID153729-1107067715
+ <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">dirk at sterbai.de</A>@sterbai.de UID153730-1107067715
+ <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">dirk at sterbai.de</A>@sterbai.de UID153731-1107067715
+ <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">dirk at sterbai.de</A>@sterbai.de UID153732-1107067715
+ <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">dirk at sterbai.de</A>@sterbai.de UID153733-1107067715
+ <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">dirk at sterbai.de</A>@sterbai.de UID153734-1107067715
+ <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">dirk at sterbai.de</A>@sterbai.de UID153735-1107067715
+ <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">dirk at sterbai.de</A>@sterbai.de UID153736-1107067715
+ <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">dirk at sterbai.de</A>@sterbai.de UID153737-1107067715
+ <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">dirk at sterbai.de</A>@sterbai.de UID153738-1107067715
+ <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">dirk at sterbai.de</A>@sterbai.de UID153739-1107067715
+ <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">dirk at sterbai.de</A>@sterbai.de UID153740-1107067715
+ <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">dirk at sterbai.de</A>@sterbai.de UID153741-1107067715
+ <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">dirk at sterbai.de</A>@sterbai.de UID153742-1107067715
+ <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">dirk at sterbai.de</A>@sterbai.de UID153743-1107067715
+ <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">dirk at sterbai.de</A>@sterbai.de UID153744-1107067715
+ <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">dirk at sterbai.de</A>@sterbai.de UID153745-1107067715
+ <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">dirk at sterbai.de</A>@sterbai.de UID153746-1107067715
+ <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">dirk at sterbai.de</A>@sterbai.de UID153747-1107067715
+ <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">dirk at sterbai.de</A>@sterbai.de UID153748-1107067715
+ <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">dirk at sterbai.de</A>@sterbai.de UID153749-1107067715
+ <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">dirk at sterbai.de</A>@sterbai.de UID153750-1107067715
+ <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">dirk at sterbai.de</A>@sterbai.de UID153751-1107067715
+ <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">dirk at sterbai.de</A>@sterbai.de UID153752-1107067715
+ <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">dirk at sterbai.de</A>@sterbai.de UID153753-1107067715
+ <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">dirk at sterbai.de</A>@sterbai.de UID153754-1107067715
+ <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">dirk at sterbai.de</A>@sterbai.de UID153755-1107067715
+ <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">dirk at sterbai.de</A>@sterbai.de UID153756-1107067715
+ <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">dirk at sterbai.de</A>@sterbai.de UID153757-1107067715
+ <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">dirk at sterbai.de</A>@sterbai.de UID153758-1107067715
+ <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">dirk at sterbai.de</A>@sterbai.de UID153759-1107067715
+ <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">dirk at sterbai.de</A>@sterbai.de UID153760-1107067715
+ <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">dirk at sterbai.de</A>@sterbai.de UID153761-1107067715
+ <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">dirk at sterbai.de</A>@sterbai.de UID153762-1107067715
+ <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">dirk at sterbai.de</A>@sterbai.de UID153763-1107067715
+ <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">dirk at sterbai.de</A>@sterbai.de UID153764-1107067715
+ <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">dirk at sterbai.de</A>@sterbai.de UID153765-1107067715
+ <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">dirk at sterbai.de</A>@sterbai.de UID153766-1107067715
+ <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">dirk at sterbai.de</A>@sterbai.de UID153767-1107067715
+ <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">dirk at sterbai.de</A>@sterbai.de UID153768-1107067715
+ <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">dirk at sterbai.de</A>@sterbai.de UID153769-1107067715
+ <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">dirk at sterbai.de</A>@sterbai.de UID153770-1107067715
+ <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">dirk at sterbai.de</A>@sterbai.de UID153771-1107067715
+ <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">dirk at sterbai.de</A>@sterbai.de UID153772-1107067715
+ <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">dirk at sterbai.de</A>@sterbai.de UID153773-1107067715
+ <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">dirk at sterbai.de</A>@sterbai.de UID153774-1107067715
+ <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">dirk at sterbai.de</A>@sterbai.de UID153775-1107067715
+ <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">dirk at sterbai.de</A>@sterbai.de UID153776-1107067715
+ <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">dirk at sterbai.de</A>@sterbai.de UID153777-1107067715
+ <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">dirk at sterbai.de</A>@sterbai.de UID153778-1107067715
+ <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">dirk at sterbai.de</A>@sterbai.de UID153779-1107067715
+ <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">dirk at sterbai.de</A>@sterbai.de UID153780-1107067715
+ <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">dirk at sterbai.de</A>@sterbai.de UID153781-1107067715
+ <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">dirk at sterbai.de</A>@sterbai.de UID153782-1107067715
+ <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">dirk at sterbai.de</A>@sterbai.de UID153783-1107067715
+ <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">dirk at sterbai.de</A>@sterbai.de UID153784-1107067715
+ <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">dirk at sterbai.de</A>@sterbai.de UID153785-1107067715
+ <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">dirk at sterbai.de</A>@sterbai.de UID153786-1107067715
+ <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">dirk at sterbai.de</A>@sterbai.de UID153787-1107067715
+ <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">dirk at sterbai.de</A>@sterbai.de UID153788-1107067715
+ <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">dirk at sterbai.de</A>@sterbai.de UID153789-1107067715
+ <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">dirk at sterbai.de</A>@sterbai.de UID153790-1107067715
+ <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">dirk at sterbai.de</A>@sterbai.de UID153791-1107067715
+ <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">dirk at sterbai.de</A>@sterbai.de UID153792-1107067715
+ <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">dirk at sterbai.de</A>@sterbai.de UID153793-1107067715
+ <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">dirk at sterbai.de</A>@sterbai.de UID153794-1107067715
+ <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">dirk at sterbai.de</A>@sterbai.de UID153795-1107067715
+ <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">dirk at sterbai.de</A>@sterbai.de UID153796-1107067715
+ <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">dirk at sterbai.de</A>@sterbai.de UID153797-1107067715
+ <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">dirk at sterbai.de</A>@sterbai.de UID153798-1107067715
+ <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">dirk at sterbai.de</A>@sterbai.de UID153799-1107067715
+ <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">dirk at sterbai.de</A>@sterbai.de UID153800-1107067715
+ <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">dirk at sterbai.de</A>@sterbai.de UID153801-1107067715
+ <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">dirk at sterbai.de</A>@sterbai.de UID153802-1107067715
+ <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">dirk at sterbai.de</A>@sterbai.de UID153803-1107067715
+ <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">dirk at sterbai.de</A>@sterbai.de UID153804-1107067715
+ <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">dirk at sterbai.de</A>@sterbai.de UID153805-1107067715
+ <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">dirk at sterbai.de</A>@sterbai.de UID153806-1107067715
+ <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">dirk at sterbai.de</A>@sterbai.de UID153807-1107067715
+ <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">dirk at sterbai.de</A>@sterbai.de UID153808-1107067715
+ <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">dirk at sterbai.de</A>@sterbai.de UID153809-1107067715
+ <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">dirk at sterbai.de</A>@sterbai.de UID153810-1107067715
+ <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">dirk at sterbai.de</A>@sterbai.de UID153811-1107067715
+ <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">dirk at sterbai.de</A>@sterbai.de UID153812-1107067715
+ <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">dirk at sterbai.de</A>@sterbai.de UID153813-1107067715
+ <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">dirk at sterbai.de</A>@sterbai.de UID153814-1107067715
+ <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">dirk at sterbai.de</A>@sterbai.de UID153815-1107067715
+ <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">dirk at sterbai.de</A>@sterbai.de UID153816-1107067715
+ <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">dirk at sterbai.de</A>@sterbai.de UID153817-1107067715
+ <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">dirk at sterbai.de</A>@sterbai.de UID153818-1107067715
+ <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">dirk at sterbai.de</A>@sterbai.de UID153819-1107067715
+ <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">dirk at sterbai.de</A>@sterbai.de UID153820-1107067715
+ <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">dirk at sterbai.de</A>@sterbai.de UID153821-1107067715
+ <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">dirk at sterbai.de</A>@sterbai.de UID153822-1107067715
+ <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">dirk at sterbai.de</A>@sterbai.de UID153823-1107067715
+ <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">dirk at sterbai.de</A>@sterbai.de UID153824-1107067715
+ <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">dirk at sterbai.de</A>@sterbai.de UID153825-1107067715
+ <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">dirk at sterbai.de</A>@sterbai.de UID153826-1107067715
+ <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">dirk at sterbai.de</A>@sterbai.de UID153827-1107067715
+ <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">dirk at sterbai.de</A>@sterbai.de UID153828-1107067715
+
+fetchmail: can't accept options while a background fetchmail is running.
+$
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002895.html">[fetchmail-users] fetchmail bad header problem
+</A></li>
+	<LI>Next message: <A HREF="002902.html">[fetchmail-users] fetchmail 7.0.0-alpha2+MAPI alpha preview release
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2877">[ date ]</a>
+              <a href="thread.html#2877">[ thread ]</a>
+              <a href="subject.html#2877">[ subject ]</a>
+              <a href="author.html#2877">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

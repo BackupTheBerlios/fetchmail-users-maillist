@@ -1,0 +1,243 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] ssl troubles
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2012-July/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20ssl%20troubles&In-Reply-To=%3C20120724140521.GA35175%40mech-cluster241.men.bris.ac.uk%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003188.html">
+   <LINK REL="Next"  HREF="003190.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] ssl troubles</H1>
+    <B>Anton Shterenlikht</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20ssl%20troubles&In-Reply-To=%3C20120724140521.GA35175%40mech-cluster241.men.bris.ac.uk%3E"
+       TITLE="[fetchmail-users] ssl troubles">mexas at bristol.ac.uk
+       </A><BR>
+    <I>Tue Jul 24 16:05:22 CEST 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003188.html">[fetchmail-users] Authorization Failiure:	user at domain.com@domain.com
+</A></li>
+        <LI>Next message: <A HREF="003190.html">[fetchmail-users] ssl troubles
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3189">[ date ]</a>
+              <a href="thread.html#3189">[ thread ]</a>
+              <a href="subject.html#3189">[ subject ]</a>
+              <a href="author.html#3189">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi, I've read
+<A HREF="http://fetchmail.berlios.de/fetchmail-FAQ.html#K5,">http://fetchmail.berlios.de/fetchmail-FAQ.html#K5,</A>
+<A HREF="http://www.fetchmail.info/fetchmail-FAQ.html#R15,">http://www.fetchmail.info/fetchmail-FAQ.html#R15,</A>
+but still don't understand how to use ssl
+with fetchmail.
+
+I have:
+
+$ cat .fetchmailrc 
+poll imap.gmail.com protocol imap user &quot;mexas&quot; password &quot;xxx&quot; ssl fetchall
+
+$ fetchmail
+fetchmail: Server certificate verification error: unable to get local issuer certificate
+fetchmail: This means that the root signing certificate (issued for /C=US/O=Google Inc/CN=Google Internet Authority) is not in the trusted CA certificate locations, or that c_rehash needs to be run on the certificate directory. For details, please see the documentation of --sslcertpath and --sslcertfile in the manual page.
+fetchmail: Server certificate verification error: certificate not trusted
+fetchmail: Warning: the connection is insecure, continuing anyways. (Better use --sslcertck!)
+fetchmail: Authorization failure on <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">mexas at gmail-imap.l.google.com</A>
+fetchmail: For help, see <A HREF="http://www.fetchmail.info/fetchmail-FAQ.html#R15">http://www.fetchmail.info/fetchmail-FAQ.html#R15</A>
+fetchmail: Query status=3 (AUTHFAIL)
+
+This is on FreeBSD 10.0-CURRENT #6 r237134 ia64
+with fetchmail built from ports with these options:
+
+$ make -C /usr/ports/mail/fetchmail/ showconfig
+===&gt; The following configuration options are available for fetchmail-6.3.21:
+     X11=off: Python/Tkinter dependencies for fetchmailconf
+     NLS=on: National language support (NLS).
+     NTLM=on: Build in support for NTLM/MSN authentication.
+     GSSAPI=on: Build GSSAPI/Kerberos 5 support
+===&gt; Use 'make config' to modify these settings
+$
+
+
+$ fetchmail -v
+fetchmail: 6.3.21 querying imap.gmail.com (protocol IMAP) at Tue Jul 24 14:50:13 2012: poll started
+Trying to connect to 173.194.66.109/993...connected.
+fetchmail: Server certificate verification error: unable to get local issuer certificate
+fetchmail: This means that the root signing certificate (issued for /C=US/O=Google Inc/CN=Google Internet Authority) is not in the trusted CA certificate locations, or that c_rehash needs to be run on the certificate directory. For details, please see the documentation of --sslcertpath and --sslcertfile in the manual page.
+fetchmail: Server certificate verification error: certificate not trusted
+fetchmail: Server certificate:
+fetchmail: Issuer Organization: Google Inc
+fetchmail: Issuer CommonName: Google Internet Authority
+fetchmail: Subject CommonName: imap.gmail.com
+fetchmail: imap.gmail.com key fingerprint: 93:2E:0F:BA:58:EA:CD:CB:04:33:97:9D:23:2A:0A:77
+fetchmail: Warning: the connection is insecure, continuing anyways. (Better use --sslcertck!)
+fetchmail: IMAP&lt; * OK Gimap ready for requests from 137.222.187.241 st8if9832461wib.20
+fetchmail: IMAP&gt; A0001 CAPABILITY
+fetchmail: IMAP&lt; * CAPABILITY IMAP4rev1 UNSELECT IDLE NAMESPACE QUOTA ID XLIST CHILDREN X-GM-EXT-1 XYZZY SASL-IR AUTH=XOAUTH
+fetchmail: IMAP&lt; A0001 OK Thats all she wrote! st8if9832461wib.20
+fetchmail: IMAP&gt; A0002 LOGIN &quot;mexas&quot; *
+fetchmail: IMAP&lt; A0002 NO Invalid credentials st8if9832461wib.20
+fetchmail: Authorization failure on <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">mexas at gmail-imap.l.google.com</A>
+fetchmail: For help, see <A HREF="http://www.fetchmail.info/fetchmail-FAQ.html#R15">http://www.fetchmail.info/fetchmail-FAQ.html#R15</A>
+fetchmail: IMAP&gt; A0003 LOGOUT
+fetchmail: IMAP&lt; * BYE Logout Requested st8if9832461wib.20
+fetchmail: IMAP&lt; A0003 OK Quoth the raven, nevermore... st8if9832461wib.20
+fetchmail: 6.3.21 querying imap.gmail.com (protocol IMAP) at Tue Jul 24 14:50:13 2012: poll completed
+fetchmail: Query status=3 (AUTHFAIL)
+fetchmail: normal termination, status 3
+$ 
+
+$ env LC_ALL=C fetchmail -V
+This is fetchmail release 6.3.21+GSS+RPA+NTLM+SDPS+SSL+OPIE+NLS.
+
+Copyright (C) 2002, 2003 Eric S. Raymond
+Copyright (C) 2004 Matthias Andree, Eric S. Raymond,
+                   Robert M. Funk, Graham Wilson
+Copyright (C) 2005 - 2006, 2010 - 2011 Sunil Shetye
+Copyright (C) 2005 - 2011 Matthias Andree
+Fetchmail comes with ABSOLUTELY NO WARRANTY. This is free software, and you
+are welcome to redistribute it under certain conditions. For details,
+please see the file COPYING in the source or documentation directory.
+This product includes software developed by the OpenSSL Project
+for use in the OpenSSL Toolkit. (<A HREF="http://www.openssl.org/">http://www.openssl.org/</A>)
+
+Fallback MDA: (none)
+FreeBSD mech-cluster241.men.bris.ac.uk 10.0-CURRENT FreeBSD 10.0-CURRENT #6 r237134: Mon Jun 18 09:2:17 BST 2012     <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">root at mech-cluster241.men.bris.ac.uk</A>:/usr/obj/usr/src/sys/TZAV  ia64
+Taking options from command line and /home/mexas/.fetchmailrc
+Idfile is /home/mexas/.fetchids
+Fetchmail will forward misaddressed multidrop messages to mexas.
+Options for retrieving from <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">mexas at imap.gmail.com</A>:
+  True name of server is imap.gmail.com.
+  Protocol is IMAP.
+  All available authentication methods will be tried.
+  SSL encrypted sessions enabled.
+  Server nonresponse timeout is 300 seconds (default).
+  Default mailbox selected.
+  All messages will be retrieved (--all on).
+  Fetched messages will not be kept on the server (--keep off).
+  Old messages will not be flushed before message retrieval (--flush off).
+  Oversized messages will not be flushed before message retrieval (--limitflush off).
+  Rewrite of server-local addresses is enabled (--norewrite off).
+  Carriage-return stripping is disabled (stripcr off).
+  Carriage-return forcing is disabled (forcecr off).
+  Interpretation of Content-Transfer-Encoding is enabled (pass8bits off).
+  MIME decoding is disabled (mimedecode off).
+  Idle after poll is disabled (idle off).
+  Nonempty Status lines will be kept (dropstatus off)
+  Delivered-To lines will be kept (dropdelivered off)
+  Fetch message size limit is 100 (--fetchsizelimit 100).
+  Do binary search of UIDs during 3 out of 4 polls (--fastuidl 4).
+  Messages will be SMTP-forwarded to: localhost (default)
+  Single-drop mode: 1 local name recognized.
+  No UIDs saved from this host.
+$ 
+
+$ env LC_ALL=C fetchmail --nodetach -vvv --nosyslog
+Old UID list from imap.gmail.com: &lt;empty&gt;
+Scratch list of UIDs: &lt;empty&gt;
+fetchmail: 6.3.21 querying imap.gmail.com (protocol IMAP) at Tue Jul 24 15:04:13 2012: poll started
+Trying to connect to 173.194.78.109/993...connected.
+fetchmail: Certificate chain, from root to peer, starting at depth 1:
+fetchmail: Issuer Organization: Equifax
+fetchmail: Unknown Issuer CommonName
+fetchmail: Subject CommonName: Google Internet Authority
+fetchmail: Server certificate verification error: unable to get local issuer certificate
+fetchmail: This means that the root signing certificate (issued for /C=US/O=Google Inc/CN=Google Internet Authority) is not in the trusted CA certificate locations, or that c_rehash needs to be run on the certificate directory. For details, please see the documentation of --sslcertpath and --sslcertfile in the manual page.
+fetchmail: Certificate at depth 1:
+fetchmail: Issuer Organization: Equifax
+fetchmail: Unknown Issuer CommonName
+fetchmail: Subject CommonName: Google Internet Authority
+fetchmail: Server certificate verification error: certificate not trusted
+fetchmail: Server certificate:
+fetchmail: Issuer Organization: Google Inc
+fetchmail: Issuer CommonName: Google Internet Authority
+fetchmail: Subject CommonName: imap.gmail.com
+fetchmail: imap.gmail.com key fingerprint: 93:2E:0F:BA:58:EA:CD:CB:04:33:97:9D:23:2A:0A:77
+fetchmail: Warning: the connection is insecure, continuing anyways. (Better use --sslcertck!)
+fetchmail: IMAP&lt; * OK Gimap ready for requests from 137.222.187.241 q3if4503080wif.28
+fetchmail: IMAP&gt; A0001 CAPABILITY
+fetchmail: IMAP&lt; * CAPABILITY IMAP4rev1 UNSELECT IDLE NAMESPACE QUOTA ID XLIST CHILDREN X-GM-EXT-1 XYZZY SASL-IR AUTH=XOAUTH
+fetchmail: IMAP&lt; A0001 OK Thats all she wrote! q3if4503080wif.28
+fetchmail: Protocol identified as IMAP4 rev 1
+fetchmail: GSSAPI error gss_inquire_cred:  No credentials were supplied, or the credentials were unavailable or inaccessible.
+fetchmail: GSSAPI error gss_inquire_cred: unknown mech-code 0 for mech unknown
+fetchmail: No suitable GSSAPI credentials found. Skipping GSSAPI authentication.
+fetchmail: If you want to use GSSAPI, you need credentials first, possibly from kinit.
+fetchmail: IMAP&gt; A0002 LOGIN &quot;mexas&quot; *
+fetchmail: IMAP&lt; A0002 NO Invalid credentials q3if4503080wif.28
+fetchmail: Authorization failure on <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">mexas at gmail-imap.l.google.com</A>
+fetchmail: For help, see <A HREF="http://www.fetchmail.info/fetchmail-FAQ.html#R15">http://www.fetchmail.info/fetchmail-FAQ.html#R15</A>
+fetchmail: IMAP&gt; A0003 LOGOUT
+fetchmail: IMAP&lt; * BYE Logout Requested q3if4503080wif.28
+fetchmail: IMAP&lt; A0003 OK Quoth the raven, nevermore... q3if4503080wif.28
+fetchmail: 6.3.21 querying imap.gmail.com (protocol IMAP) at Tue Jul 24 15:04:13 2012: poll completed
+Merged UID list from imap.gmail.com: &lt;empty&gt;
+fetchmail: Query status=3 (AUTHFAIL)
+fetchmail: normal termination, status 3
+$
+
+I have a university certificate file
+at $HOME/cert/uob-net-ca.crt, but I'm not
+sure if that's what is needed.
+
+OpenSSL&gt; verify uob-net-ca.crt
+uob-net-ca.crt: /O=University of Bristol/OU=IT Services (Networks)/emailAddress=<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">service-desk at bristol.ac.uk</A>/L=Bristol/ST=Avon/C=GB/CN=University of Bristol Net CA
+error 18 at 0 depth lookup:self signed certificate
+OK
+OpenSSL&gt; 
+
+Anyway, I tried using this file with --sslcertfile,
+but still no luck.
+
+I think I don't really understand how the certificates
+should work.
+
+Finally, I'm not particularly bothered about security,
+I just need to be able to get my mail from imap.gmail.com
+somehow. My local IT support are not really helpful
+(It's all about windows these days), so I'm asking
+for help in this list.
+
+Many thanks
+
+-- 
+Anton Shterenlikht
+Room 2.6, Queen's Building
+Mech Eng Dept
+Bristol University
+University Walk, Bristol BS8 1TR, UK
+Tel: +44 (0)117 331 5944
+Fax: +44 (0)117 929 4423
+</PRE>
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003188.html">[fetchmail-users] Authorization Failiure:	user at domain.com@domain.com
+</A></li>
+	<LI>Next message: <A HREF="003190.html">[fetchmail-users] ssl troubles
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3189">[ date ]</a>
+              <a href="thread.html#3189">[ thread ]</a>
+              <a href="subject.html#3189">[ subject ]</a>
+              <a href="author.html#3189">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,114 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Procmail callup
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2010-November/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Procmail%20callup&In-Reply-To=%3C4CE32F28.3090907%40gmx.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002556.html">
+   <LINK REL="Next"  HREF="002559.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Procmail callup</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Procmail%20callup&In-Reply-To=%3C4CE32F28.3090907%40gmx.de%3E"
+       TITLE="[fetchmail-users] Procmail callup">matthias.andree at gmx.de
+       </A><BR>
+    <I>Wed Nov 17 02:26:00 CET 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002556.html">[fetchmail-users] Procmail callup
+</A></li>
+        <LI>Next message: <A HREF="002559.html">[fetchmail-users] Procmail callup
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2557">[ date ]</a>
+              <a href="thread.html#2557">[ thread ]</a>
+              <a href="subject.html#2557">[ subject ]</a>
+              <a href="author.html#2557">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Am 16.11.2010 15:41, schrieb Carlos E. R.:
+&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> On Tuesday, 2010-11-16 at 09:25 -0500, Jerry wrote:
+</I>&gt;<i> 
+</I>&gt;&gt;<i> Unless I am mistaken, procmail has been orphaned for nearly 10 years.
+</I>&gt;<i> 
+</I>&gt;<i> I wasn't aware of that.
+</I>&gt;<i> 
+</I>&gt;&gt;<i> While it is still serviceable, its days are numbers. There are newer
+</I>&gt;&gt;<i> applications available that serve the same function as procmail with
+</I>&gt;&gt;<i> more versatility.
+</I>&gt;<i> 
+</I>&gt;<i> Yes, here I think maildir is recomended. Unfortunately, in my distro it
+</I>&gt;<i> brings the entire courier-imap package as a dependency, and that is a
+</I>&gt;<i> no-no, I'm using dovecot.
+</I>
+Does it?  On OpenSUSE 11.3, I see libcourierauth.so, but not the -imap
+stuff, as
+a dependency.  The auth stuff is for virtual user support. And you could
+certainly disable Courier-IMAP even if it were installed. &quot;insserv -r
+courierwhatever&quot; should do the trick.  Trace below.
+
+$ rpm -q maildrop --requires
+rpmlib(PayloadFilesHavePrefix) &lt;= 4.0-1
+rpmlib(CompressedFileNames) &lt;= 3.0.4-1
+/bin/sh
+libc.so.6
+libc.so.6(GLIBC_2.0)
+libc.so.6(GLIBC_2.1)
+libc.so.6(GLIBC_2.1.3)
+libc.so.6(GLIBC_2.2)
+libc.so.6(GLIBC_2.3)
+libc.so.6(GLIBC_2.3.4)
+libc.so.6(GLIBC_2.4)
+libc.so.6(GLIBC_2.7)
+libcourierauth.so
+libfam.so.0
+libgcc_s.so.1
+libgcc_s.so.1(GCC_3.0)
+libgdbm.so.3
+libm.so.6
+libpcre.so.0
+libstdc++.so.6
+libstdc++.so.6(CXXABI_1.3)
+libstdc++.so.6(GLIBCXX_3.4)
+libstdc++.so.6(GLIBCXX_3.4.9)
+rpmlib(PayloadIsLzma) &lt;= 4.4.2-1
+$ rpm -q --whatprovides libcourierauth.so
+courier-authlib-0.63.0-3.2.i586
+
+-- 
+Matthias Andree
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002556.html">[fetchmail-users] Procmail callup
+</A></li>
+	<LI>Next message: <A HREF="002559.html">[fetchmail-users] Procmail callup
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2557">[ date ]</a>
+              <a href="thread.html#2557">[ thread ]</a>
+              <a href="subject.html#2557">[ subject ]</a>
+              <a href="author.html#2557">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

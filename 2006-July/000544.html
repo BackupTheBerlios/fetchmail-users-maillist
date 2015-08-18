@@ -1,0 +1,111 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Simple fetch and forward
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2006-July/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Simple%20fetch%20and%20forward&In-Reply-To=%3CNEBBLNPIODEEBMMBMLHJIECDMBAB.fetchmail%40jelmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000542.html">
+   <LINK REL="Next"  HREF="000545.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Simple fetch and forward</H1>
+    <B>John</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Simple%20fetch%20and%20forward&In-Reply-To=%3CNEBBLNPIODEEBMMBMLHJIECDMBAB.fetchmail%40jelmail.com%3E"
+       TITLE="[fetchmail-users] Simple fetch and forward">fetchmail at jelmail.com
+       </A><BR>
+    <I>Sat Jul 29 00:58:19 CEST 2006</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000542.html">[fetchmail-users] Simple fetch and forward
+</A></li>
+        <LI>Next message: <A HREF="000545.html">[fetchmail-users] Simple fetch and forward
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#544">[ date ]</a>
+              <a href="thread.html#544">[ thread ]</a>
+              <a href="subject.html#544">[ subject ]</a>
+              <a href="author.html#544">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>
+&gt;<i>If your inbound server writes X-Original-To: headers, why is a script
+</I>needed?
+
+&gt;<i>--
+</I>&gt;<i>Matthias Andree
+</I>
+Hi Matthias,
+
+X-Original-To isn't always there. If I get a mail directed at a mailing list
+or sent as a bcc then it isn't always obvious what the sender was.
+
+I'm using fetchmail to receive the mail and drop it to a user on my server.
+When
+my Postfix gets that mail it can add an X-Original-To but this will be the
+name of
+the account specified in the &quot;here&quot; clause in fetchmail conf. This is not of
+much
+use so I don't do that. I did do this originally but soon realised there was
+little point.
+
+When the message hits procmail, I run a little script and this extracts a
+likely
+original destination address, irrespective if it was sent Bcc or via a list,
+by
+extracting the &quot;Received:&quot; header containing a &quot;for&quot; nearest the mail's
+origin.
+Procmail then delivers the mail into a user folder based on the address that
+was
+extracted: if the mail was destined for &quot;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">address at domain.com</A>&quot; it hits a
+folder called
+domain.com/address. This is great as it sorts all my incoming mail from
+various
+services I subscribe to (I subscribe with a unique address to each one so I
+can
+track where my address is leaked from as I get spam).
+
+I was originally trying to use Fetchmail's multidrop mode to do what I
+wanted but
+I didn't fully understand the anatomy of an email so I read the RFC and
+re-thought
+what I was doing. I don't know if I am doing this the best way, but what
+I've got
+works for me - it's just a prototype but it seems to be ok.
+
+Thanks for your interest,
+John
+
+
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000542.html">[fetchmail-users] Simple fetch and forward
+</A></li>
+	<LI>Next message: <A HREF="000545.html">[fetchmail-users] Simple fetch and forward
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#544">[ date ]</a>
+              <a href="thread.html#544">[ thread ]</a>
+              <a href="subject.html#544">[ subject ]</a>
+              <a href="author.html#544">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,116 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Setting up e-mail capability
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2009-September/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Setting%20up%20e-mail%20capability&In-Reply-To=%3Cop.uzl9x4ab1e62zd%40merlin.emma.line.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002058.html">
+   <LINK REL="Next"  HREF="002060.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Setting up e-mail capability</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Setting%20up%20e-mail%20capability&In-Reply-To=%3Cop.uzl9x4ab1e62zd%40merlin.emma.line.org%3E"
+       TITLE="[fetchmail-users] Setting up e-mail capability">matthias.andree at gmx.de
+       </A><BR>
+    <I>Wed Sep  2 08:35:54 CEST 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002058.html">[fetchmail-users] Setting up e-mail capability
+</A></li>
+        <LI>Next message: <A HREF="002060.html">[fetchmail-users] -S &lt;hosts&gt; | --smtphost &lt;hosts&gt;
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2059">[ date ]</a>
+              <a href="thread.html#2059">[ thread ]</a>
+              <a href="subject.html#2059">[ subject ]</a>
+              <a href="author.html#2059">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Am 01.09.2009, 08:42 Uhr, schrieb Rob MacGregor &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">rob.macgregor at gmail.com</A>&gt;:
+
+&gt;<i> On Tue, Sep 1, 2009 at 01:48, Dave Beach&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">drbeach at rogers.com</A>&gt; wrote:
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> I haven't been able to find one yet that describes itself as  
+</I>&gt;&gt;<i> incorporating
+</I>&gt;&gt;<i> the ability to pop my mail from my ISP, in a manner similar to how  
+</I>&gt;&gt;<i> Fetchmail
+</I>&gt;&gt;<i> describes itself. Am I missing something? Is there a package you would
+</I>&gt;&gt;<i> recommend by name?
+</I>&gt;<i>
+</I>&gt;<i> Even if none of them include fetchmail, adding fetchmail is trivial.
+</I>&gt;<i> Packages I'm aware of (I've not used any of them) include Zimbra and
+</I>&gt;<i> OpenGroupware.
+</I>
+XMail perhaps - I don't know its feature set.
+
+&gt;<i> The process for inbound email, in general is:
+</I>&gt;<i>
+</I>&gt;<i> Sender -&gt; Their ISP's SMTP -&gt; Your ISP's SMTP -&gt; Your ISP's POP/IMAP
+</I>&gt;<i>
+</I>&gt;<i> When you add fetchmail this adds the following to the end of that:
+</I>&gt;<i>
+</I>&gt;<i> -&gt; fetchmail -&gt; Your SMTP -&gt; Your POP/IMAP
+</I>&gt;<i>
+</I>&gt;<i> Fetchmail simply collects the email from a remote POP/IMAP host and
+</I>&gt;<i> then hands it over to another SMTP server (MTA).
+</I>&gt;<i>
+</I>&gt;&gt;<i> Okay, but mail has to be stored somewhere, right, by something?
+</I>&gt;<i>
+</I>&gt;<i> By your POP/IMAP server.
+</I>
+Well - actually the MTA (SMTP server) (Postfix, Sendmail, Exim, Courier)  
+-- stores mail that arrives initially (no matter how). To be even more  
+precise, the MDA does. It is either an integral part of the MTA (Postfix's  
+local and virtual are MDAs, Exim itself represents one) or a separate  
+software (the discouraged procmail or the better maildrop).
+
+&gt;&gt;<i> Okay, then perhaps I really have a terminology problem here. As above,  
+</I>&gt;&gt;<i> I've
+</I>&gt;&gt;<i> been using &quot;mail server&quot; as synonymous with &quot;SMTP server&quot; or &quot;MTA&quot;. It
+</I>&gt;&gt;<i> sounds like I need to think of the IMAP software (courier-imap, etc) as  
+</I>&gt;&gt;<i> the
+</I>&gt;&gt;<i> &quot;mail server&quot;. Am I more correct now?
+</I>&gt;<i>
+</I>&gt;<i> Maybe ;)
+</I>
+Well - it depends on how you define &quot;server&quot;. If it's the tangible machine  
+in itself or one abstractly one particular piece of software that you're  
+running. The first can comprise several of the latter.
+
+HTH
+
+-- 
+Matthias Andree
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002058.html">[fetchmail-users] Setting up e-mail capability
+</A></li>
+	<LI>Next message: <A HREF="002060.html">[fetchmail-users] -S &lt;hosts&gt; | --smtphost &lt;hosts&gt;
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2059">[ date ]</a>
+              <a href="thread.html#2059">[ thread ]</a>
+              <a href="subject.html#2059">[ subject ]</a>
+              <a href="author.html#2059">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

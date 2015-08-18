@@ -1,0 +1,86 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] [PATCH] Re: IMAP problem (fetchmail 6.3.1-pre1)
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2005-December/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20%5BPATCH%5D%20Re%3A%20IMAP%20problem%20%28fetchmail%206.3.1-pre1%29&In-Reply-To=%3Cm3slsrhj2p.fsf%40merlin.emma.line.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000180.html">
+   <LINK REL="Next"  HREF="000182.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] [PATCH] Re: IMAP problem (fetchmail 6.3.1-pre1)</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20%5BPATCH%5D%20Re%3A%20IMAP%20problem%20%28fetchmail%206.3.1-pre1%29&In-Reply-To=%3Cm3slsrhj2p.fsf%40merlin.emma.line.org%3E"
+       TITLE="[fetchmail-users] [PATCH] Re: IMAP problem (fetchmail 6.3.1-pre1)">matthias.andree at gmx.de
+       </A><BR>
+    <I>Sat Dec 17 15:52:30 CET 2005</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000180.html">[fetchmail-users] [PATCH] Re: IMAP problem (fetchmail 6.3.1-pre1)
+</A></li>
+        <LI>Next message: <A HREF="000182.html">[fetchmail-users] [PATCH] Re: IMAP problem (fetchmail 6.3.1-pre1)
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#181">[ date ]</a>
+              <a href="thread.html#181">[ thread ]</a>
+              <a href="subject.html#181">[ subject ]</a>
+              <a href="author.html#181">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Sunil Shetye &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">shetye at bombay.retortsoft.com</A>&gt; writes:
+
+&gt;<i> Matthias, please consider this patch for 6.3.1.
+</I>
+I wonder if it's the right thing to do, or if the server of the day
+might return the flags or some other information along with the size. I
+had a quick glance at the standard, and I'm not at all sure if it's
+allowed for the server to return excess information. 
+
+At any case, if a server does that, we're dead in the water again. I'd
+rather use a bit more of a parser to take the fetch response apart.
+
+If we choose not to do that, the patch can be simplified and use this
+structure:
+
+   if (sscanf(s, &quot;pattern&quot;, ...) == 2
+    || sscanf(s, &quot;other pattern&quot;, ...) == 2)
+   {
+      do whatever is appropriate
+   }
+
+What do you think?
+
+-- 
+Matthias Andree
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000180.html">[fetchmail-users] [PATCH] Re: IMAP problem (fetchmail 6.3.1-pre1)
+</A></li>
+	<LI>Next message: <A HREF="000182.html">[fetchmail-users] [PATCH] Re: IMAP problem (fetchmail 6.3.1-pre1)
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#181">[ date ]</a>
+              <a href="thread.html#181">[ thread ]</a>
+              <a href="subject.html#181">[ subject ]</a>
+              <a href="author.html#181">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

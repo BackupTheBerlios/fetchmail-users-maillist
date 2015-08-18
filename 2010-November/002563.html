@@ -1,0 +1,84 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Which certificate to use
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2010-November/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Which%20certificate%20to%20use&In-Reply-To=%3C1290560591.1733.92.camel%40localhost.localdomain%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002559.html">
+   <LINK REL="Next"  HREF="002564.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Which certificate to use</H1>
+    <B>Chris</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Which%20certificate%20to%20use&In-Reply-To=%3C1290560591.1733.92.camel%40localhost.localdomain%3E"
+       TITLE="[fetchmail-users] Which certificate to use">cpollock at embarqmail.com
+       </A><BR>
+    <I>Wed Nov 24 02:03:11 CET 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002559.html">[fetchmail-users] Procmail callup
+</A></li>
+        <LI>Next message: <A HREF="002564.html">[fetchmail-users] Which certificate to use
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2563">[ date ]</a>
+              <a href="thread.html#2563">[ thread ]</a>
+              <a href="subject.html#2563">[ subject ]</a>
+              <a href="author.html#2563">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>I noticed again today the key fingerprint mismatch when fetching my mail
+from my domain toadnet.com which is hosted elsewhere. When I ran 
+
+openssl s_client -connect toadnet.com:993 -showcerts
+
+I got four certificates and I'm not sure now which one to put in my
+~/certs/.certs folder. How would I determine which one to use? Or is it
+necessary since one of the certs in the chain is self-signed and I have
+the valid ssl fingerprint in my .fetchmailrc file.
+
+Thanks
+Chris
+
+-- 
+Chris
+KeyID 0xE372A7DA98E6705C
+
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: signature.asc
+Type: application/pgp-signature
+Size: 197 bytes
+Desc: This is a digitally signed message part
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/fetchmail-users/attachments/20101123/6694f301/attachment.pgp">https://lists.berlios.de/pipermail/fetchmail-users/attachments/20101123/6694f301/attachment.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002559.html">[fetchmail-users] Procmail callup
+</A></li>
+	<LI>Next message: <A HREF="002564.html">[fetchmail-users] Which certificate to use
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2563">[ date ]</a>
+              <a href="thread.html#2563">[ thread ]</a>
+              <a href="subject.html#2563">[ subject ]</a>
+              <a href="author.html#2563">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

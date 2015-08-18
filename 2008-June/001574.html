@@ -1,0 +1,125 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] .fetchids file doesn't grow pass the	2.0Meg size.
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2008-June/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20.fetchids%20file%20doesn%27t%20grow%20pass%20the%092.0Meg%0A%20size.&In-Reply-To=%3C4858E4F3.9050701%40oyco.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001573.html">
+   <LINK REL="Next"  HREF="001575.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] .fetchids file doesn't grow pass the	2.0Meg size.</H1>
+    <B>Tony Kivits</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20.fetchids%20file%20doesn%27t%20grow%20pass%20the%092.0Meg%0A%20size.&In-Reply-To=%3C4858E4F3.9050701%40oyco.com%3E"
+       TITLE="[fetchmail-users] .fetchids file doesn't grow pass the	2.0Meg size.">tony.kivits at oyco.com
+       </A><BR>
+    <I>Wed Jun 18 12:35:31 CEST 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001573.html">[fetchmail-users] .fetchids file doesn't grow pass the	2.0Meg	size.
+</A></li>
+        <LI>Next message: <A HREF="001575.html">[fetchmail-users] unable to get local issuer
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1574">[ date ]</a>
+              <a href="thread.html#1574">[ thread ]</a>
+              <a href="subject.html#1574">[ subject ]</a>
+              <a href="author.html#1574">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Matthias Andree wrote:
+&gt;<i> Tony Kivits schrieb am 2008-06-17:
+</I>&gt;<i>
+</I>&gt;<i>   
+</I>&gt;&gt;&gt;<i> Usually what your operating system and hardware can handle - it is kept in
+</I>&gt;&gt;&gt;<i> memory with a reasonable overhead per line; but no artificial limits are
+</I>&gt;&gt;&gt;<i> imposed by fetchmail itself. 
+</I>&gt;&gt;&gt;<i>       
+</I>&gt;&gt;<i> The OS is CentOS 5 and the hardware is a Dell PowerEdge in a production 
+</I>&gt;&gt;<i> environment with no gui's installed so there should be more then enough 
+</I>&gt;&gt;<i> memory.  Currently Fetchmail is pulling email for many different email 
+</I>&gt;&gt;<i>     
+</I>&gt;<i>
+</I>&gt;<i> So - given it's a PowerEdge, does it use ECC memory and hardware
+</I>&gt;<i> (temperature) surveillance facilities and kill your ears with some kind
+</I>&gt;<i> of alarm if something goes wrong?
+</I>&gt;<i>   
+</I>Yes, alarms will sound on the server.  As well, emails will be sent to 
+the sys admins if there is a problem.
+&gt;<i>   
+</I>&gt;&gt;<i> addresses but always running as the same user.  (IE it may pull email 
+</I>&gt;&gt;<i> for you or me but the program that calls it always starts it as the same 
+</I>&gt;&gt;<i> user regardless of who it is pulling email for)
+</I>&gt;&gt;<i>     
+</I>&gt;<i>
+</I>&gt;<i> Should not influence that situation, except if you share the .fetchids
+</I>&gt;<i> file between accounts - I don't know how you would manage to do that
+</I>&gt;<i> though, because fetchmail records the login and target host along with
+</I>&gt;<i> the UIDs.
+</I>&gt;<i>
+</I>&gt;<i>   
+</I>&gt;&gt;<i> Is there a maximum number of lines that can be process in the .fetchids 
+</I>&gt;&gt;<i> file?  (IE is this handled by an array that has an upper limit?)
+</I>&gt;&gt;<i>     
+</I>&gt;<i>
+</I>&gt;<i> No fixed limits, as long as it can allocate memory, no problem there.
+</I>&gt;<i>
+</I>&gt;<i>   
+</I>&gt;&gt;<i> Our userbase is growing so I think that this should be growing too.  
+</I>&gt;&gt;<i> Does the .fetchids file stay in sync with the external servers that it 
+</I>&gt;&gt;<i> gets its information from? (IE If an email is removed from an external 
+</I>&gt;&gt;<i> server, will fetchmail see that and remove the unique id from the 
+</I>&gt;&gt;<i> .fetchids file?)
+</I>&gt;&gt;<i>     
+</I>&gt;<i>
+</I>&gt;<i> Yes, it will. Anything suspicious in the mail logs?
+</I>&gt;<i> Notices, Warnings, Errors?
+</I>&gt;<i>   
+</I>Nothing suspicious in the logs.
+&gt;<i> What kind of upstream server is fetchmail getting its mail from, might
+</I>&gt;<i> that one goof up UIDs?
+</I>&gt;<i>   
+</I>Pulling mail from a variety of external mail servers but the one that 
+gives us the most problems is secureservers.net (godaddy) and domains 
+that are hosted by it.
+
+As the duplication does seem to be limited to one isp, I don't think 
+that the problem is caused outside its own server.
+&gt;<i> Best regards
+</I>&gt;<i>
+</I>&gt;<i>   
+</I>
+Thanks again,
+Tony
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001573.html">[fetchmail-users] .fetchids file doesn't grow pass the	2.0Meg	size.
+</A></li>
+	<LI>Next message: <A HREF="001575.html">[fetchmail-users] unable to get local issuer
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1574">[ date ]</a>
+              <a href="thread.html#1574">[ thread ]</a>
+              <a href="subject.html#1574">[ subject ]</a>
+              <a href="author.html#1574">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,91 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] fetchmail gets stuck because of malformed spam
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2005-November/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%20gets%20stuck%20because%20of%20malformed%20spam&In-Reply-To=%3C43ea8d070511100843p1eaf920dv%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000112.html">
+   <LINK REL="Next"  HREF="000117.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] fetchmail gets stuck because of malformed spam</H1>
+    <B>Rob MacGregor</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%20gets%20stuck%20because%20of%20malformed%20spam&In-Reply-To=%3C43ea8d070511100843p1eaf920dv%40mail.gmail.com%3E"
+       TITLE="[fetchmail-users] fetchmail gets stuck because of malformed spam">rob.macgregor at gmail.com
+       </A><BR>
+    <I>Thu Nov 10 17:43:23 CET 2005</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000112.html">[fetchmail-users] fetchmail gets stuck because of malformed spam
+</A></li>
+        <LI>Next message: <A HREF="000117.html">[fetchmail-users] WARNING: Running as root is discouraged.
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#116">[ date ]</a>
+              <a href="thread.html#116">[ thread ]</a>
+              <a href="subject.html#116">[ subject ]</a>
+              <a href="author.html#116">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On 10/11/05, Thomas Wolff &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">towo at towo.net</A>&gt; wrote:
+&gt;<i>
+</I>&gt;<i> Then I switched to fetchmail 6.2.9rc7 and it fetched all mails as it
+</I>&gt;<i> should do, except the affected message, on which it still reported:
+</I>&gt;<i> fetchmail: message delimiter found while scanning headers
+</I>&gt;<i>
+</I>&gt;<i> What still concerns me, however, is that it discarded that message
+</I>&gt;<i> completely and wrote no trace of it to the mailbox, so messages with
+</I>&gt;<i> that kind of problem (whatever it may be) can not be checked or
+</I>&gt;<i> analysed anymore with fetchmail.
+</I>
+The message is illegally formatted (in this case, has no blank line
+between headers and body) and should never have been accepted by 1&amp;1's
+mail server (though from personal experience I'm not surprised). 
+Fetchmail is doing the correct thing and discarding this email.
+
+Previously it has been suggested that one option might be to wrap the
+entire of the illegal mail and forward it to the postmaster.  Nobody
+however was willing to put the effort into a patch to do this, and
+frankly given that every occurence to date has been identified as spam
+I'm not surprised.
+
+I am however happy to see that the forthcoming 6.3.0 release will
+handle this more gracefully than previous versions :)
+
+--
+                 Please keep list traffic on the list.
+Rob MacGregor
+      Whoever fights monsters should see to it that in the process he
+        doesn't become a monster.                  Friedrich Nietzsche
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000112.html">[fetchmail-users] fetchmail gets stuck because of malformed spam
+</A></li>
+	<LI>Next message: <A HREF="000117.html">[fetchmail-users] WARNING: Running as root is discouraged.
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#116">[ date ]</a>
+              <a href="thread.html#116">[ thread ]</a>
+              <a href="subject.html#116">[ subject ]</a>
+              <a href="author.html#116">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

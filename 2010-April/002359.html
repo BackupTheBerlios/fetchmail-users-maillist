@@ -1,0 +1,96 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] User poll CLOSED: how do you expect --sslcertpath to behave?
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2010-April/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20User%20poll%20CLOSED%3A%20how%20do%20you%20expect%0A%20--sslcertpath%20to%20behave%3F&In-Reply-To=%3C4BD0E0D9.70005%40gmx.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002358.html">
+   <LINK REL="Next"  HREF="002360.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] User poll CLOSED: how do you expect --sslcertpath to behave?</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20User%20poll%20CLOSED%3A%20how%20do%20you%20expect%0A%20--sslcertpath%20to%20behave%3F&In-Reply-To=%3C4BD0E0D9.70005%40gmx.de%3E"
+       TITLE="[fetchmail-users] User poll CLOSED: how do you expect --sslcertpath to behave?">matthias.andree at gmx.de
+       </A><BR>
+    <I>Fri Apr 23 01:50:49 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002358.html">[fetchmail-users] User poll: how do you expect --sslcertpath to	behave?
+</A></li>
+        <LI>Next message: <A HREF="002360.html">[fetchmail-users] Possible improvements in future Fetchmail	versions.
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2359">[ date ]</a>
+              <a href="thread.html#2359">[ thread ]</a>
+              <a href="subject.html#2359">[ subject ]</a>
+              <a href="author.html#2359">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Greetings,
+
+I'm closing the poll - the input was convincingly argued.
+
+As per the recent commit to Git
+&lt;<A HREF="http://gitorious.org/fetchmail/fetchmail/commit/e87f96bd9730e2bdb407d0a9cca2a05ee0dabce5">http://gitorious.org/fetchmail/fetchmail/commit/e87f96bd9730e2bdb407d0a9cca2a05ee0dabce5</A>&gt;,
+fetchmail 6.3.17-pre1 (not formally available as tarball) now behaves as
+follows:
+
+- if --sslcertfile or --sslcertpath or both options are given, fetchmail
+  uses only these locations for OpenSSL X.509 CA certificate trust.
+  Either option is available from the rcfile, too.
+
+- if the environment variable FETCHMAIL_INCLUDE_DEFAULT_X509_CA_CERTS
+  is set and is not empty, fetchmail also loads the default locations,
+  that is /etc/ssl/cert.pem and /etc/ssl/certs/ on my computers.
+  --sslcert???? options retain precedence over the default store, to
+  avoid user astonishment, and along the policies that specifics should
+  override the generics.
+
+I hope that's one little step towards cleaning up the SSL mess.
+
+On Sunday, I had already added some extensions to SSL error reporting,
+&lt;<A HREF="http://gitorious.org/fetchmail/fetchmail/commit/d73d7527142850442b16883628de5e87f99a57ea">http://gitorious.org/fetchmail/fetchmail/commit/d73d7527142850442b16883628de5e87f99a57ea</A>&gt;
+- this needs testing, for instance against SSL sites that provide an
+incomplete certificate chain, to see if we get the right error message.
+
+Thanks for all your input.
+
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: signature.asc
+Type: application/pgp-signature
+Size: 196 bytes
+Desc: OpenPGP digital signature
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/fetchmail-users/attachments/20100423/2489fd59/attachment.pgp">https://lists.berlios.de/pipermail/fetchmail-users/attachments/20100423/2489fd59/attachment.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002358.html">[fetchmail-users] User poll: how do you expect --sslcertpath to	behave?
+</A></li>
+	<LI>Next message: <A HREF="002360.html">[fetchmail-users] Possible improvements in future Fetchmail	versions.
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2359">[ date ]</a>
+              <a href="thread.html#2359">[ thread ]</a>
+              <a href="subject.html#2359">[ subject ]</a>
+              <a href="author.html#2359">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

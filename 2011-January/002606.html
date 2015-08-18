@@ -1,0 +1,88 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] do not log skipped messages when option &quot;keep&quot; is	used
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2011-January/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20do%20not%20log%20skipped%20messages%20when%20option%20%22keep%22%20is%0A%09used&In-Reply-To=%3C4D232B93.7050306%40sfroemken.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   
+   <LINK REL="Next"  HREF="002607.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] do not log skipped messages when option &quot;keep&quot; is	used</H1>
+    <B>Stefan Fr&#246;mken</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20do%20not%20log%20skipped%20messages%20when%20option%20%22keep%22%20is%0A%09used&In-Reply-To=%3C4D232B93.7050306%40sfroemken.de%3E"
+       TITLE="[fetchmail-users] do not log skipped messages when option &quot;keep&quot; is	used">firma at sfroemken.de
+       </A><BR>
+    <I>Tue Jan  4 15:15:47 CET 2011</I>
+    <P><UL>
+        
+        <LI>Next message: <A HREF="002607.html">[fetchmail-users] do not log skipped messages when option &quot;keep&quot; is used
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2606">[ date ]</a>
+              <a href="thread.html#2606">[ thread ]</a>
+              <a href="subject.html#2606">[ subject ]</a>
+              <a href="author.html#2606">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hello list,
+
+some of my users want to have access to their mailaccount from outside 
+of our network. So I have to configure these two users with additional 
+option &quot;keep&quot; in my fetchmailrc-file.
+This change results in a never-ending list of &quot;fetchmail: skipping&quot;-rows 
+in my logfile /var/log/fetchmail.
+
+I have started fetchmail as daemon every 10 minutes and all mails of 
+both users reaches an amount of 2000. So I have much fun to find the 
+realy interesting informations in my logfile. So, do you know an 
+option/setting in fetchmail which informations has to be written in 
+logfile? I don't want all these &quot;skipping&quot;-rows in my logfile.
+
+For now I helped me a little bit with following command:
+
+cat /var/log/fetchmail | grep -v &quot;fetchmail: skipping&quot;
+
+Server: SuSE Linux 9.3 (i586)
+Fetchmail: This is fetchmail release 
+6.2.5+POP2+IMAP-GSS+RPA+NTLM+SDPS+SSL+OPIE+SOCKS+NLS
+
+myMailServer:/etc # ps hx | grep fetchmail
+6060 ?        S      2:12 /usr/bin/fetchmail -d 600 -f /etc/fetchmailrc 
+-L /var/log/fetchmail
+
+Any ideas?
+
+Stefan
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	
+	<LI>Next message: <A HREF="002607.html">[fetchmail-users] do not log skipped messages when option &quot;keep&quot; is used
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2606">[ date ]</a>
+              <a href="thread.html#2606">[ thread ]</a>
+              <a href="subject.html#2606">[ subject ]</a>
+              <a href="author.html#2606">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

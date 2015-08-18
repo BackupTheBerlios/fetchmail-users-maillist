@@ -1,0 +1,123 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] fetchmail 6.3.8 suddenly very slow to	 fetch.
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2008-November/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%206.3.8%20suddenly%20very%20slow%20to%09%20fetch.&In-Reply-To=%3C492E93B9.4010406%40gmx.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001768.html">
+   <LINK REL="Next"  HREF="001767.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] fetchmail 6.3.8 suddenly very slow to	 fetch.</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%206.3.8%20suddenly%20very%20slow%20to%09%20fetch.&In-Reply-To=%3C492E93B9.4010406%40gmx.de%3E"
+       TITLE="[fetchmail-users] fetchmail 6.3.8 suddenly very slow to	 fetch.">matthias.andree at gmx.de
+       </A><BR>
+    <I>Thu Nov 27 13:34:01 CET 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001768.html">[fetchmail-users] fetchmail 6.3.8 suddenly very slow to	 fetch.
+</A></li>
+        <LI>Next message: <A HREF="001767.html">[fetchmail-users] fetchmail 6.3.8 suddenly very slow to	 fetch.
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1769">[ date ]</a>
+              <a href="thread.html#1769">[ thread ]</a>
+              <a href="subject.html#1769">[ subject ]</a>
+              <a href="author.html#1769">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE><A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">joea at j4computers.com</A> schrieb:
+&gt;&gt;&gt;&gt;<i> On 11/27/2008 at 7:04 AM, Matthias Andree &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">matthias.andree at gmx.de</A>&gt;
+</I>&gt;&gt;&gt;&gt;<i> wrote:
+</I>&gt;&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">joea at j4computers.com</A> schrieb:
+</I>&gt;&gt;&gt;<i> Working fine until today.  No apparent changes.   Suddenly fetch
+</I>&gt;&gt;&gt;<i> became very
+</I>&gt;&gt;<i> slow, to the point of appearing frozen.  Running in daemon mode, 120
+</I>&gt;&gt;<i> second cycle.
+</I>&gt;&gt;&gt;<i> Suse 9.x (OES1).  Yes, but it works for me.  Well, worked.
+</I>&gt;&gt;<i> Well, since you aren't using the latest version of fetchmail, and
+</I>&gt;&gt;<i> you've paid Novell to support for your older fetchmail version, I'm
+</I>&gt;&gt;<i> afraid I cannot help you.
+</I>
+Please keep list traffic on the list, using &quot;group reply&quot;, &quot;list reply&quot; or
+similar. I've taken the liberty of redirecting things to the list.
+
+&gt;<i> Yes, but, but . . .  I did download and compile 6.3.8 from &quot;your place&quot;,
+</I>&gt;<i> in an earlier go round of issues and for security concerns.   Novell,
+</I>&gt;<i> last I tried, cared not to deal with the later versions of fetchmail.
+</I>
+Hum, I've seen Novell OES fetchmail security updates. If they haven't fixed
+CVE-2008-2711 or CVE-2007-4565 yet, you might want to send a gentle request
+to include those, and perhaps the two critical fixes from 6.3.9, in an
+update. There were not too intrusive and the SVN repo where they can pull
+from is freely accessible.
+
+Having said that, 6.3.8 is - for the nonce - recent enough to qualify for
+support on this list until I request that you try 6.3.9.
+
+BTW, have you seen the FAQ? Particularly question and answer G3 are relevant:
+
+<A HREF="http://www.fetchmail.info/fetchmail-FAQ.html#G3">http://www.fetchmail.info/fetchmail-FAQ.html#G3</A>
+
+&gt;<i> So, in their view, there is no support.   Last I checked.
+</I>
+I'm not a Novell customer, so I don't care. The alternative is going with
+the latest version(s) that are supported on the list, these today are
+6.3.9, and 6.3.8 to some extent.
+
+I for one don't have the resources to keep a zoo of old distributions
+around; I rather have to see to replacing my development computer in the
+not too distant future. /Usually/ distributions aren't the culprit if you
+compile a recent version of fetchmail yourself. The quick starting point,
+barring special requirements is the usual &quot;./configure --with-ssl &amp;&amp; make&quot;
+as unprivileged user and then &quot;make install&quot; as super user.
+
+&gt;<i> There are two things I am going to try.  The fetchmail I use at &quot;my
+</I>&gt;<i> place&quot; is an identical setup, save only the destination host and user
+</I>&gt;<i> names.   Will try to &quot;overload&quot; here.
+</I>&gt;<i> 
+</I>&gt;<i> Will try the command line switches you suggested at the problem site.
+</I>
+Do check the mail and system logs at the problem site, /var/log/messages,
+/var/log/mail*, perhaps /var/log/warn for a quick glance. If there are any
+SMTP/bind/DNS/resolv/sendmail/postfix deferrals, errors, warnings - these
+are the ones to deal with first.
+
+HTH
+
+-- 
+Matthias Andree
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001768.html">[fetchmail-users] fetchmail 6.3.8 suddenly very slow to	 fetch.
+</A></li>
+	<LI>Next message: <A HREF="001767.html">[fetchmail-users] fetchmail 6.3.8 suddenly very slow to	 fetch.
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1769">[ date ]</a>
+              <a href="thread.html#1769">[ thread ]</a>
+              <a href="subject.html#1769">[ subject ]</a>
+              <a href="author.html#1769">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,130 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Add headers in notification for	oversized	messages deletet by limitflush
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2008-November/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Add%20headers%20in%20notification%20for%0A%09oversized%09messages%20deletet%20by%20limitflush&In-Reply-To=%3C20081126092325.GA9925%40merlin.emma.line.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001757.html">
+   <LINK REL="Next"  HREF="001759.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Add headers in notification for	oversized	messages deletet by limitflush</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Add%20headers%20in%20notification%20for%0A%09oversized%09messages%20deletet%20by%20limitflush&In-Reply-To=%3C20081126092325.GA9925%40merlin.emma.line.org%3E"
+       TITLE="[fetchmail-users] Add headers in notification for	oversized	messages deletet by limitflush">matthias.andree at gmx.de
+       </A><BR>
+    <I>Wed Nov 26 10:23:25 CET 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001757.html">[fetchmail-users] Add headers in notification for oversized	messages deletet by limitflush
+</A></li>
+        <LI>Next message: <A HREF="001759.html">[fetchmail-users] Add headers in notification for	oversized	messages deletet by limitflush
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1758">[ date ]</a>
+              <a href="thread.html#1758">[ thread ]</a>
+              <a href="subject.html#1758">[ subject ]</a>
+              <a href="author.html#1758">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>bernhard Boxhorn wrote, quoting Matthias Andree first:
+
+&gt;<i> &gt;&gt;&gt; Fetchmail uses the ESMTP SIZE extension if advertised by the SMTP sink,
+</I>&gt;<i> &gt;&gt;&gt; so it might see the rejection before the DATA phaset already -- and
+</I>&gt;<i> &gt;&gt;&gt; waiving the &quot;attempt the delivery&quot; part of your assumption.
+</I>
+&gt;<i> Actually fetchmail is fetching the whole mail (if no --limitflush is 
+</I>&gt;<i> set), including the big attachement, then it trys to deliver to MTA, get 
+</I>&gt;<i> the 421 error, then skips the message and redownloads it next run.
+</I>
+That's deliberate. 452 (see below) means &quot;try later&quot; (for situations
+where the server is temporarily out of space, for instance &quot;disk full&quot;
+condition).  If the SMTP server means to say &quot;no use trying it again&quot;,
+it needs to issue 552.  See RFC1870.
+
+Are you using Postfix's soft_bounce feature? Postfix 2.5.X should issue
+552 without -- just tried with 2.5.1.
+
+&gt;<i> fetchmail: forwarding to localhost
+</I>&gt;<i> fetchmail: SMTP&gt; MAIL FROM:&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">bbx at gmx.net</A>&gt; SIZE=3438
+</I>&gt;<i> fetchmail: SMTP&lt; 452 4.3.4 Message size exceeds fixed limit
+</I>&gt;<i> fetchmail: SMTP error: 452 4.3.4 Message size exceeds fixed limit
+</I>
+&gt;<i> If --limitflush is set then the message is deleted before downloading. 
+</I>&gt;<i> As far as I understand the setence before, the headers are part of DATA 
+</I>&gt;<i> and are not downloaded before deleting the mail.
+</I>
+Well, fetchmail has downloaded the message headers at that time, since
+it needs it to extract the envelope sender (from the Return-Path:), but
+indeed WRT SMTP, headers would be sent in the DATA phase.
+
+&gt;<i> Is there no chance to download only the headers and the information of 
+</I>&gt;<i> the size of the mail (aren't mobile phones doing exactly this to save 
+</I>&gt;<i> bandwith), and then make up the decision, if the mail is bigger than the 
+</I>&gt;<i> --limitflush then delete the message and inform the user with the mail 
+</I>&gt;<i> headers?
+</I>
+Not with the current code, but with some code changes, that should be
+doable.
+
+&gt;<i> Hi Matthias, thank you for all your formal hints, it was Outlook and I
+</I>&gt;<i> just didn't know. Now I installed Thunderbird and now I can see
+</I>&gt;<i> difference. 
+</I>
+Looks like no new formatting errors were added. Outlook is unusable with
+plain text formatting IMO. The &quot;quotefix&quot; tools rectify this to some
+extent, but it all remains hackish and only works under very specific
+circumstances; so if one has the choice, NOT using Outlook is doing the
+network a favor. I haven't checked Outlook 2007, but Outlook 2003 still
+didn't fix issues from Microsoft's KB that had been known for a decade.
+
+&gt;<i> &gt; Yup. Can I see the accompanying /etc/fetchmailrc for this particular
+</I>&gt;<i> &gt; account? If you paste your .fetchmailrc, remember to strip out passwords.
+</I>&gt;<i> &gt; The <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">no-ip at boxhorn-edv.com</A> account and global settings suffice.
+</I>
+&gt;<i> set postmaster &quot;postmaster&quot;
+</I>&gt;<i> set bouncemail
+</I>&gt;<i> set daemon 60
+</I>&gt;<i> [...]
+</I>&gt;<i> poll post.strato.de proto pop3:
+</I>&gt;<i> user '<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">no-ip at boxhorn-edv.com</A>' there is <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">root at idefix.no-ip.org</A> here
+</I>&gt;<i> password &quot;XXX&quot;
+</I>&gt;<i> 
+</I>&gt;<i> Just a &quot;regluar&quot; fetchmailrc, nothing extraordinary in my opinion.
+</I>
+Looks pretty sane indeed.
+
+-- 
+Matthias Andree
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001757.html">[fetchmail-users] Add headers in notification for oversized	messages deletet by limitflush
+</A></li>
+	<LI>Next message: <A HREF="001759.html">[fetchmail-users] Add headers in notification for	oversized	messages deletet by limitflush
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1758">[ date ]</a>
+              <a href="thread.html#1758">[ thread ]</a>
+              <a href="subject.html#1758">[ subject ]</a>
+              <a href="author.html#1758">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

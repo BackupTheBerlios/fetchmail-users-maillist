@@ -1,0 +1,115 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] fetchmail with keep , get only newer messages
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2008-May/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%20with%20keep%20%2C%20get%20only%20newer%20messages&In-Reply-To=%3C20080529081225.GA8690%40merlin.emma.line.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001555.html">
+   <LINK REL="Next"  HREF="001557.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] fetchmail with keep , get only newer messages</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%20with%20keep%20%2C%20get%20only%20newer%20messages&In-Reply-To=%3C20080529081225.GA8690%40merlin.emma.line.org%3E"
+       TITLE="[fetchmail-users] fetchmail with keep , get only newer messages">matthias.andree at gmx.de
+       </A><BR>
+    <I>Thu May 29 10:12:25 CEST 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001555.html">[fetchmail-users] fetchmail with keep , get only newer messages
+</A></li>
+        <LI>Next message: <A HREF="001557.html">[fetchmail-users] [fetchmail-devel] delete keeped message after	X day
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1556">[ date ]</a>
+              <a href="thread.html#1556">[ thread ]</a>
+              <a href="subject.html#1556">[ subject ]</a>
+              <a href="author.html#1556">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>ram schrieb am 2008-05-29:
+
+&gt;<i> Can I run fetchmail just to mark all the UIDL's  , but not download the
+</I>&gt;<i> mails 
+</I>
+Not at the moment. You could download the UIDL (just run fetchmail -vvv
+--keep --fastuidl 0 --nosyslog 2&gt;&amp;1 | tee /tmp/myuids.txt) and use sed
+or awk or a macro-capable text editor to reformat these to make the
+.fetchids format of it.
+
+The format of the .fetchids file is line-wise,
+
+<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">login at server</A> UID
+
+(separated by one space character (ASCII 0x20 = 32 = 040), followed by
+the UID) and order doesn't matter.
+
+
+NOTE! The UID code is not optimized for large lists like yours and can
+get painfully slow unless you have a fast CPU, because fetchmail keeps
+the code in a linear list, thus parsing of the UIDL is of O(n^2)
+complexity.
+
+Optimized code (which is not available at this point in time) could
+parse the list in O(n log n) complexity.
+
+I think &quot;30,000 messages&quot; is going to hurt even on the fastest
+mainstream single core processors you could buy (Xeon, Athlon 64,
+Opteron, Pentium D) - and fetchmail doesn't profit from multicore CPUs,
+as it's single-threaded.
+
+Note these are not exact because the O(...) notation drops all constants
+and factors and the likes, but as a rough idea to show the growth (OK,
+I'm cheating, I use the log_10 here)
+
+Number of computational operations over number of messages, roughly:
+
+n     O(n log n)    O(n^2)
+    10      10         100
+   100     200      10,000
+ 1,000   3,000   1,000,000
+10,000  40,000 100,000,000
+
+In my experience, on somewhat recent CPUs (past five years or so), 1,000
+messages in a maildrop works without noticeable delay, but 5,000
+messages on an AMD K6/Pentium II/UltraSPARC II-class computer hurt a
+bit. 30,000 messages are going to hurt big time. I'd not be surprised if
+the server disconnected while fetchmail parsed the UID list on such
+large spools.
+
+I've made a note in TODO.txt that this needs to be improved for 6.4.
+
+-- 
+Matthias Andree
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001555.html">[fetchmail-users] fetchmail with keep , get only newer messages
+</A></li>
+	<LI>Next message: <A HREF="001557.html">[fetchmail-users] [fetchmail-devel] delete keeped message after	X day
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1556">[ date ]</a>
+              <a href="thread.html#1556">[ thread ]</a>
+              <a href="subject.html#1556">[ subject ]</a>
+              <a href="author.html#1556">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

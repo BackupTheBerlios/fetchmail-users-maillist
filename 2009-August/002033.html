@@ -1,0 +1,116 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Authentication failure against an	ssl-enabled	MS-Exchange server
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2009-August/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Authentication%20failure%20against%20an%09ssl-enabled%0A%09MS-Exchange%20server&In-Reply-To=%3C20090818020811.GA29903%40cja.vc%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002020.html">
+   <LINK REL="Next"  HREF="002034.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Authentication failure against an	ssl-enabled	MS-Exchange server</H1>
+    <B>Charlie Ambrose</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Authentication%20failure%20against%20an%09ssl-enabled%0A%09MS-Exchange%20server&In-Reply-To=%3C20090818020811.GA29903%40cja.vc%3E"
+       TITLE="[fetchmail-users] Authentication failure against an	ssl-enabled	MS-Exchange server">C.Ambrose at latrobe.edu.au
+       </A><BR>
+    <I>Tue Aug 18 04:08:11 CEST 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002020.html">[fetchmail-users] Authentication failure against an ssl-enabled MS-Exchange server
+</A></li>
+        <LI>Next message: <A HREF="002034.html">[fetchmail-users] Authentication failure against an ssl-enabled MS-Exchange server
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2033">[ date ]</a>
+              <a href="thread.html#2033">[ thread ]</a>
+              <a href="subject.html#2033">[ subject ]</a>
+              <a href="author.html#2033">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Matthias Andree wrote:
+--- snip : start ---
+&gt;<i> For the nonce, you can try playing with the --auth option. For instance,  
+</I>&gt;<i> since you're using ssl, you could try adding &quot;--sslcertck --auth password&quot; 
+</I>&gt;<i> on the command line (without the quotes) and see if that helps.
+</I>--- snip : stop ---
+
+Hi Matthius (/all),
+Thanks for looking into this. FYI:
+&gt;<i> fetchmail --sslcertck --auth password --nodetach -vvv --nosyslog 
+</I>returns . . . 
+--- snip : start ---
+fetchmail: 6.3.11 querying owa.latrobe.edu.au (protocol IMAP) at Tue 18 Aug
+2009 11:40:53 EST: poll started
+fetchmail: Trying to connect to 131.172.7.36/993...connected.
+fetchmail: Issuer Organization: Entrust, Inc.
+fetchmail: Issuer CommonName: Entrust Certification Authority - L1B
+fetchmail: Server CommonName: owa.latrobe.edu.au
+fetchmail: Subject Alternative Name: owa.latrobe.edu.au
+fetchmail: Subject Alternative Name: autodiscover.latrobe.edu.au
+fetchmail: Subject Alternative Name: autodiscover.ltu.edu.au
+fetchmail: Subject Alternative Name: htcas1.ltu.edu.au
+fetchmail: Subject Alternative Name: htcas2.ltu.edu.au
+fetchmail: Subject Alternative Name: htcas3dr.ltu.edu.au
+fetchmail: Subject Alternative Name: sip.latrobe.edu.au
+fetchmail: owa.latrobe.edu.au key fingerprint:
+A8:1F:A4:F2:E5:55:EE:DF:AB:B3:3C:EC:3C:AA:33:52
+fetchmail: owa.latrobe.edu.au fingerprints match.
+fetchmail: IMAP&lt; * OK The Microsoft Exchange IMAP4 service is ready.
+fetchmail: IMAP&gt; A0001 CAPABILITY
+fetchmail: IMAP&lt; * CAPABILITY IMAP4 IMAP4rev1 AUTH=NTLM AUTH=GSSAPI AUTH=PLAIN
+IDLE NAMESPACE LITERAL+
+fetchmail: IMAP&lt; A0001 OK CAPABILITY completed.
+fetchmail: Protocol identified as IMAP4 rev 1
+fetchmail: IMAP&gt; A0002 LOGIN &quot;&lt;username&gt;&quot;*
+fetchmail: Authorization failure on &lt;username&gt;@owa.latrobe.edu.au
+fetchmail: IMAP&lt; A0002 NO LOGIN failed.
+fetchmail: IMAP&gt; A0003 *
+fetchmail: IMAP&gt; A0004 LOGOUT
+fetchmail: IMAP&lt; A0003 BAD Command Error. 12
+fetchmail: IMAP&lt; * BYE Microsoft Exchange Server 2007 IMAP4 server signing
+off.
+fetchmail: IMAP&lt; A0004 OK LOGOUT completed.
+fetchmail: 6.3.11 querying owa.latrobe.edu.au (protocol IMAP) at Tue 18 Aug
+2009 11:40:54 EST: poll completed
+fetchmail: Query status=3 (AUTHFAIL)
+fetchmail: normal termination, status 3
+--- snip : stop ---
+
+Retrieval via POP3s is fine (=change IMAP port 993 ---&gt; POP3 port 995 in .fetchmailrc)
+
+Thanks again,
+
+--Charlie Ambrose
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002020.html">[fetchmail-users] Authentication failure against an ssl-enabled MS-Exchange server
+</A></li>
+	<LI>Next message: <A HREF="002034.html">[fetchmail-users] Authentication failure against an ssl-enabled MS-Exchange server
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2033">[ date ]</a>
+              <a href="thread.html#2033">[ thread ]</a>
+              <a href="subject.html#2033">[ subject ]</a>
+              <a href="author.html#2033">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

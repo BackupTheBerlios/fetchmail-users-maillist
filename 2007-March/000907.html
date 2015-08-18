@@ -1,0 +1,109 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] fetchmail 6.3.8-rc2 release candidate
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2007-March/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%206.3.8-rc2%20release%20candidate&In-Reply-To=%3C20070319223128.GB32136%40merlin.emma.line.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000906.html">
+   <LINK REL="Next"  HREF="000914.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] fetchmail 6.3.8-rc2 release candidate</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%206.3.8-rc2%20release%20candidate&In-Reply-To=%3C20070319223128.GB32136%40merlin.emma.line.org%3E"
+       TITLE="[fetchmail-users] fetchmail 6.3.8-rc2 release candidate">matthias.andree at gmx.de
+       </A><BR>
+    <I>Mon Mar 19 23:31:28 CET 2007</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000906.html">[fetchmail-users] SSL Ceritficate errors in sendmail log
+</A></li>
+        <LI>Next message: <A HREF="000914.html">[fetchmail-users] Fetchmail 6.3.7+NLS not deleting one specific	message from server
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#907">[ date ]</a>
+              <a href="thread.html#907">[ thread ]</a>
+              <a href="subject.html#907">[ subject ]</a>
+              <a href="author.html#907">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA1
+
+Greetings,
+
+I have uploaded the second fetchmail 6.3.8 release candidate to the usual
+download location: &lt;<A HREF="http://home.pages.de/~mandree/fetchmail/">http://home.pages.de/~mandree/fetchmail/</A>&gt;.
+
+This release candidates adds strict verification of the POP3 APOP
+timestamp for RFC-822 syntax to make an MD5 collision attack more
+difficult - details:
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+fetchmail 6.3.8 (not yet released) - CHANGES IN RC2 SINCE RC1
+
+# SECURITY STRENGTHENING:
+* Make the APOP challenge parser more distrustful and have it reject challenges
+  that do not conform to RFC-822 msg-id format, in the hope to make mounting
+  man-in-the-middle attacks (MITM) against APOP a bit more difficult.
+
+  APOP is claimed insecure by Ga&#235;tan Leurent for MITM scenarios for typical
+  setups: based on MD5 collisions, it is purportedly possible to recover the
+  first three characters of the shared secret (password), which would then make
+  recovery of the shared secret a matter of hours or minutes; this would then
+  enable the attacker to impersonate the client vis-&#224;-vis the server.
+
+  For further details, check
+  * Ga&#235;tan Leurent, &quot;Message Freedom in MD4 and MD5 Collisions: Application
+  to APOP&quot;, Fast Software Encryption 2007, Luxembourg. (Proceedings to appear in
+  Springer's Lecture Notes on Computer Science.)
+  * The mailing list discussion thread at
+  &lt;<A HREF="http://lists.berlios.de/pipermail/fetchmail-devel/2007-March/000887.html">http://lists.berlios.de/pipermail/fetchmail-devel/2007-March/000887.html</A>&gt;
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+WARNING: This message sets the Reply-To: header.
+When replying to me personally, you need to edit the To: header!
+
+Thank you.
+
+Happy fetching,
+Matthias Andree
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1.4.5 (GNU/Linux)
+
+iD8DBQFF/w9AvmGDOQUufZURAtWHAKCsM234Qe7gh8C9z1MsuH43wA4hiQCg0xOy
+wrxZO6Dpj4P7XtDO4MuvzDo=
+=5+Nu
+-----END PGP SIGNATURE-----
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000906.html">[fetchmail-users] SSL Ceritficate errors in sendmail log
+</A></li>
+	<LI>Next message: <A HREF="000914.html">[fetchmail-users] Fetchmail 6.3.7+NLS not deleting one specific	message from server
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#907">[ date ]</a>
+              <a href="thread.html#907">[ thread ]</a>
+              <a href="subject.html#907">[ subject ]</a>
+              <a href="author.html#907">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

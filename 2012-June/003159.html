@@ -1,0 +1,117 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] how to set up fetchmail for inbox.com POP3
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2012-June/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20how%20to%20set%20up%20fetchmail%20for%20inbox.com%20POP3&In-Reply-To=%3C1340215388.990.YahooMailClassic%40web39403.mail.mud.yahoo.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003158.html">
+   <LINK REL="Next"  HREF="003161.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] how to set up fetchmail for inbox.com POP3</H1>
+    <B>Globe Trotter</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20how%20to%20set%20up%20fetchmail%20for%20inbox.com%20POP3&In-Reply-To=%3C1340215388.990.YahooMailClassic%40web39403.mail.mud.yahoo.com%3E"
+       TITLE="[fetchmail-users] how to set up fetchmail for inbox.com POP3">itsme_410 at yahoo.com
+       </A><BR>
+    <I>Wed Jun 20 20:03:08 CEST 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003158.html">[fetchmail-users] how to set up fetchmail for inbox.com POP3
+</A></li>
+        <LI>Next message: <A HREF="003161.html">[fetchmail-users] how to set up fetchmail for inbox.com POP3
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3159">[ date ]</a>
+              <a href="thread.html#3159">[ thread ]</a>
+              <a href="subject.html#3159">[ subject ]</a>
+              <a href="author.html#3159">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Thanks very much to both Schrieb and Jurgen for your help!
+
+However, I have tried all sorts of things and I can not get it to work. 
+
+Following instructions in: <A HREF="http://www.inbox.com/faq_email.aspx?id=3859">http://www.inbox.com/faq_email.aspx?id=3859</A>
+I even put the certificate available for download at <A HREF="https://knowledge.rapidssl.com/library/VERISIGN/INTERNATIONAL_AFFILIATES/RapidSSL/AR1548/RapidSSLPKCS7.p7b">https://knowledge.rapidssl.com/library/VERISIGN/INTERNATIONAL_AFFILIATES/RapidSSL/AR1548/RapidSSLPKCS7.p7b</A>
+in my local directory, but to no avail.
+
+Here is what I put in my .fetchmailrc:
+
+
+
+poll <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">John.Doe at inbox.com</A>
+     via my.inbox.com 
+     protocol POP3 
+     authenticate password
+     username &quot;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">John.Doe at inbox.com</A>&quot;
+     password &quot;mypasswd&quot; 
+     ssl 
+     sslcertpath /home/doejohn/ssl/certs/
+     sslcertfile &quot;/home/doejohn/ssl/certs/RapidSSLPKCS7.p7b&quot;
+    sslfingerprint &quot;65:FB:3E:7A:25:7D:CD:02:3A:27:30:54:21:EE:25:A6&quot;
+mda 'procmail -d %s'
+keep
+
+
+and here is what I get using fetchmail -cvvv (after a long time: almost 4 minutes):
+
+fetchmail: --check mode enabled, not fetching mail
+fetchmail: 6.3.21 querying <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">John.Doe at my.inbox.com</A> (protocol POP3) at Wed 20 Jun 2012 12:55:02 PM CDT: poll started
+Trying to connect to 64.135.83.10/995...connected.
+fetchmail: Server certificate:
+fetchmail: Issuer Organization: GeoTrust, Inc.
+fetchmail: Issuer CommonName: RapidSSL CA
+fetchmail: Subject CommonName: *.inbox.com
+fetchmail: Subject Alternative Name: *.inbox.com
+fetchmail: Subject Alternative Name: inbox.com
+fetchmail: <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">John.Doe at my.inbox.com</A> key fingerprint: 65:FB:3E:7A:25:7D:CD:02:3A:27:30:54:21:EE:25:A6
+fetchmail: <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">John.Doe at my.inbox.com</A> fingerprints match.
+fetchmail: Server certificate verification error: unable to get local issuer certificate
+fetchmail: This means that the root signing certificate (issued for /serialNumber=N-5PUN3n3ooFG8R8QqVU8dG9v-gxxa6U/C=US/O=*.inbox.com/OU=GT56839057/OU=See www.rapidssl.com/resources/cps (c)12/OU=Domain Control Validated - RapidSSL(R)/CN=*.inbox.com) is not in the trusted CA certificate locations, or that c_rehash needs to be run on the certificate directory. For details, please see the documentation of --sslcertpath and --sslcertfile in the manual page.
+140218832394080:error:14090086:SSL routines:SSL3_GET_SERVER_CERTIFICATE:certificate verify failed:s3_clnt.c:1063:
+fetchmail: SSL connection failed.
+fetchmail: socket error while fetching from <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">John.Doe at inbox.com</A>@<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">John.Doe at my.inbox.com</A>
+fetchmail: 6.3.21 querying <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">John.Doe at my.inbox.com</A> (protocol POP3) at Wed 20 Jun 2012 12:55:02 PM CDT: poll completed
+Merged UID list from <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">John.Doe at my.inbox.com</A>: &lt;empty&gt;
+fetchmail: normal termination, status 2
+
+I created and put the directory ssl/certs in my local home directory and then put in the certificate there. I also obtained c_rehash from <A HREF="http://openfsg.com/index.php/Running_fetchmail_with_SSL_support">http://openfsg.com/index.php/Running_fetchmail_with_SSL_support</A> and ran it there to no avail yet.
+
+What am I doing wrong? Thanks again for helping me sort out these challenges!
+
+Many thanks,
+Trotter
+
+</PRE>
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003158.html">[fetchmail-users] how to set up fetchmail for inbox.com POP3
+</A></li>
+	<LI>Next message: <A HREF="003161.html">[fetchmail-users] how to set up fetchmail for inbox.com POP3
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3159">[ date ]</a>
+              <a href="thread.html#3159">[ thread ]</a>
+              <a href="subject.html#3159">[ subject ]</a>
+              <a href="author.html#3159">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

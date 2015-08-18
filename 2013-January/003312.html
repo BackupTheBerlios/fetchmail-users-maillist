@@ -1,0 +1,143 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] unable to vrify certificate after provider renewed it.
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2013-January/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20unable%20to%20vrify%20certificate%20after%20provider%0A%20renewed%20it.&In-Reply-To=%3C20130115101529.GA5989%40straylight.m.ringlet.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003311.html">
+   <LINK REL="Next"  HREF="003313.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] unable to vrify certificate after provider renewed it.</H1>
+    <B>Peter Pentchev</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20unable%20to%20vrify%20certificate%20after%20provider%0A%20renewed%20it.&In-Reply-To=%3C20130115101529.GA5989%40straylight.m.ringlet.net%3E"
+       TITLE="[fetchmail-users] unable to vrify certificate after provider renewed it.">roam at ringlet.net
+       </A><BR>
+    <I>Tue Jan 15 11:15:29 CET 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003311.html">[fetchmail-users] unable to vrify certificate after provider	renewed it.
+</A></li>
+        <LI>Next message: <A HREF="003313.html">[fetchmail-users] unable to vrify certificate after provider	renewed it.
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3312">[ date ]</a>
+              <a href="thread.html#3312">[ thread ]</a>
+              <a href="subject.html#3312">[ subject ]</a>
+              <a href="author.html#3312">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Tue, Jan 15, 2013 at 11:08:49AM +0100, Peter van Nes wrote:
+&gt;<i> On 15 jan. 2013, at 10:34, J&#252;rgen Echter &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">j.echter at echter-kuechen-elektro.de</A>&gt; wrote:
+</I>&gt;<i> &gt; Hi,
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; im struggling with cert verification.
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; our provider has renewed its cert and since then fetchmail isn't able to verify it.
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; my fetchmail rc looks like this:
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; poll mailserver.burg-gmbh.de with proto POP3 interval 3
+</I>&gt;<i> &gt; user &quot;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">j.echter at echter-kuechen-elektro.de</A>&quot; there with password &quot;p4ssw0rd&quot; is &quot;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">j.echter at echter-kuechen-elektro.de</A>&quot; here ssl smtphost 127.0.0.1 sslcertck sslcertpath /etc/ssl/certs/ sslfingerprint &quot;BE:87:7A:D4:D1:07:7C:E9:B4:79:CB:A3:EC:F7:34:E5&quot;
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; fetchmail -v tells me:
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; fetchmail: mailserver.burg-gmbh.de-Key-Fingerprint: BE:87:7A:D4:D1:07:7C:E9:B4:79:CB:A3:EC:F7:34:E5
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; fetchmail: Server-Certificate:
+</I>&gt;<i> &gt; fetchmail: Issuer-Organisation: GeoTrust, Inc.
+</I>&gt;<i> &gt; fetchmail: Issuer-CommonName: GeoTrust SSL CA
+</I>&gt;<i> &gt; fetchmail: Subjekt-CommonName: *.burg-gmbh.de
+</I>&gt;<i> &gt; fetchmail: Subject Alternative Name: *.burg-gmbh.de
+</I>&gt;<i> &gt; fetchmail: Subject Alternative Name: burg-gmbh.de
+</I>&gt;<i> &gt; fetchmail: Fehler bei Server-Zertifikat-&#195;berpr&#195;&#188;fung: certificate not trusted
+</I>&gt;<i> &gt; fetchmail: Server-Zertifikat:
+</I>&gt;<i> &gt; fetchmail: Herausgeber-Organisation: GeoTrust, Inc.
+</I>&gt;<i> &gt; fetchmail: Herausgeber-CommonName: GeoTrust SSL CA
+</I>&gt;<i> &gt; fetchmail: Subjekt-CommonName: *.burg-gmbh.de
+</I>&gt;<i> &gt; fetchmail: Subject Alternative Name: *.burg-gmbh.de
+</I>&gt;<i> &gt; fetchmail: Subject Alternative Name: burg-gmbh.de
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; under /etc/ssl/certs i have:
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; GeoTrust_Global_CA_2.pem
+</I>&gt;<i> &gt; GeoTrust_Primary_Certification_Authority_-_G2.pem
+</I>&gt;<i> &gt; GeoTrust_Primary_Certification_Authority.pem
+</I>&gt;<i> &gt; GeoTrust_Universal_CA.pem
+</I>&gt;<i> &gt; GeoTrust_Global_CA.pem
+</I>&gt;<i> &gt; GeoTrust_Primary_Certification_Authority_-_G3.pem
+</I>&gt;<i> &gt; GeoTrust_Universal_CA_2.pem
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; i also tried to issue a c_rehash on the dir, but still no luck.
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; before the renewal of the cert it worked without sslcertpath &amp; sslfingerprint
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; my os is Ubuntu 12.04 server 64bit
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; any hints into the right direction?
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; thanks
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; juergen
+</I>&gt;<i> 
+</I>&gt;<i> Hi Jurgen,
+</I>&gt;<i> 
+</I>&gt;<i> Probably your certification chain is broken.
+</I>&gt;<i> When i validate the certificate for echter-kuechen-elektro.de, i get that it is issued by &quot;Thawte Premium Server CA&quot; and exired on Sunday August the 28th , so it is an expired certificate.
+</I>&gt;<i> Just open a browser and open the url <A HREF="https://echter-kuechen-elektro.de">https://echter-kuechen-elektro.de</A> and request the certificate details yourself.
+</I>&gt;<i> Seems that also the fingerprint mismatches.
+</I>
+Errr, you're talking about the certificate that the website uses when
+connecting through HTTPS; I believe that Juergen is talking about the
+certificate that the POP3 server uses when connecting through pop3s, but
+there is no way for me to verify that, since access to the POP3, IMAP4
+and the corresponding secure services on that host seems to be
+controlled by a firewall :)
+
+G'luck,
+Peter
+
+-- 
+Peter Pentchev	<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">roam at ringlet.net</A> <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">roam at FreeBSD.org</A> <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">p.penchev at storpool.com</A>
+PGP key:	<A HREF="http://people.FreeBSD.org/~roam/roam.key.asc">http://people.FreeBSD.org/~roam/roam.key.asc</A>
+Key fingerprint 2EE7 A7A5 17FC 124C F115  C354 651E EFB0 2527 DF13
+I had to translate this sentence into English because I could not read the original Sanskrit.
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: signature.asc
+Type: application/pgp-signature
+Size: 836 bytes
+Desc: Digital signature
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/fetchmail-users/attachments/20130115/44b6e161/attachment.pgp">https://lists.berlios.de/pipermail/fetchmail-users/attachments/20130115/44b6e161/attachment.pgp</A>&gt;
+</PRE>
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003311.html">[fetchmail-users] unable to vrify certificate after provider	renewed it.
+</A></li>
+	<LI>Next message: <A HREF="003313.html">[fetchmail-users] unable to vrify certificate after provider	renewed it.
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3312">[ date ]</a>
+              <a href="thread.html#3312">[ thread ]</a>
+              <a href="subject.html#3312">[ subject ]</a>
+              <a href="author.html#3312">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

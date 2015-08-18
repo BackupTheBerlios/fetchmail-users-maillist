@@ -1,0 +1,98 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] fetchmail bad header problem
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2011-August/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%20bad%20header%20problem&In-Reply-To=%3C4E3BB2D3.50400%40gmx.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002890.html">
+   <LINK REL="Next"  HREF="002893.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] fetchmail bad header problem</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%20bad%20header%20problem&In-Reply-To=%3C4E3BB2D3.50400%40gmx.de%3E"
+       TITLE="[fetchmail-users] fetchmail bad header problem">matthias.andree at gmx.de
+       </A><BR>
+    <I>Fri Aug  5 11:07:31 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002890.html">[fetchmail-users] fetchmail bad header problem
+</A></li>
+        <LI>Next message: <A HREF="002893.html">[fetchmail-users] fetchmail bad header problem
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2892">[ date ]</a>
+              <a href="thread.html#2892">[ thread ]</a>
+              <a href="subject.html#2892">[ subject ]</a>
+              <a href="author.html#2892">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Am 05.08.2011 10:54, schrieb Dirk Schleicher:
+&gt;<i> am 05.08.11 schrieb Matthias Andree
+</I>&gt;<i> 
+</I>&gt;&gt;&gt;<i>         user '<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">dirk.schleicher at eids.de</A>' there with password 'xxxx' is
+</I>&gt;&gt;&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">dirk at mail-proxy.lan</A> here nokeep options sslproto ssl23  
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> So you're defeating TLS?  Not advised unless you have a good reason.
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> Thanks for the explanation. But I do not understand what you mean with
+</I>&gt;<i> this? 
+</I>
+The ssl-related options in fetchmail &lt;= 6.x.y are awkward to use.
+
+There are two features to consider:
+
+- whether a connection is legacy SSL-wrapped (i. e. after connecting the
+sockets the SSL negotiation starts right away) or needs in-band
+negotiation of SSL/TLS (&quot;STARTTLS&quot; or &quot;STLS&quot; in IMAP/POP3,
+respectively); SSL-wrapped uses port 993/995 for IMAP/POP3 as opposed to
+the regular ports 143 and 110 for STARTTLS.
+
+- which SSL protocols to negotiate.
+
+For all practical purposes, these are independent of one another, but
+fetchmail lumps &quot;TLS is for STARTTLS and SSL implies legacy wrapper
+mode&quot; together.
+
+&quot;sslproto ssl23&quot; effectively disables TLS negotiation in versions &lt;=
+6.x.y, so unless you also use an &quot;ssl&quot; option, this _disables_ SSL/TLS.
+
+It's counterintuitive and will be fixed in 7.0.
+
+Hope it's clearer now.
+
+Best regards
+Matthias
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002890.html">[fetchmail-users] fetchmail bad header problem
+</A></li>
+	<LI>Next message: <A HREF="002893.html">[fetchmail-users] fetchmail bad header problem
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2892">[ date ]</a>
+              <a href="thread.html#2892">[ thread ]</a>
+              <a href="subject.html#2892">[ subject ]</a>
+              <a href="author.html#2892">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

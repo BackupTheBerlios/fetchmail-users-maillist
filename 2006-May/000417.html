@@ -1,0 +1,176 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Re: fix lost POP3 deletes
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2006-May/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Re%3A%20fix%20lost%20POP3%20deletes&In-Reply-To=%3C446D8E37.3090502%40wowcompany.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000415.html">
+   <LINK REL="Next"  HREF="000419.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Re: fix lost POP3 deletes</H1>
+    <B>Frederic Marchal</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Re%3A%20fix%20lost%20POP3%20deletes&In-Reply-To=%3C446D8E37.3090502%40wowcompany.com%3E"
+       TITLE="[fetchmail-users] Re: fix lost POP3 deletes">frederic.marchal at wowcompany.com
+       </A><BR>
+    <I>Fri May 19 11:21:59 CEST 2006</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000415.html">[fetchmail-users] Re: fix lost POP3 deletes
+</A></li>
+        <LI>Next message: <A HREF="000419.html">[fetchmail-users] Re: fix lost POP3 deletes
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#417">[ date ]</a>
+              <a href="thread.html#417">[ thread ]</a>
+              <a href="subject.html#417">[ subject ]</a>
+              <a href="author.html#417">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Matthias Andree wrote:
+&gt;<i> (collecting replies to two postings)
+</I>&gt;<i>   
+</I>&gt;&gt;<i> - Some mailservers keep the flags of a mail in the mail itself by
+</I>&gt;&gt;<i>   adding a header like Status:. So, the size of a mail may actually
+</I>&gt;&gt;<i>   change when it turns from 'new' to 'old'. Due to size mismatch,
+</I>&gt;&gt;<i>   mails from such mailservers will get downloaded again.
+</I>&gt;&gt;<i>     
+</I>&gt;<i>
+</I>&gt;<i> That is a rather important concern.
+</I>&gt;<i>
+</I>&gt;<i> The refinement of the suggestion would be to hash all but a few
+</I>&gt;<i> non-constant headers with some decent hash function. MD5 would be
+</I>&gt;<i> simple, but we shouldn't hardcode anything here.
+</I>&gt;<i>   
+</I>You are right. This is a better.
+
+To reduce the load, the hash could be used only when both the UID and 
+the size of a previously deleted message are found again on the next 
+poll. That would not occur too often and, therefore, it should not 
+increase significantly the load on a relatively stable connection with a 
+server that uses good UID and reports valid constant mail size.
+
+The user could also choose to use the hash instead of the size when the 
+size reported by the server is unreliable.
+
+&gt;&gt;&gt;<i> - Some mailservers keep the flags of a mail in the mail itself by
+</I>&gt;&gt;&gt;<i>   adding a header like Status:. So, the size of a mail may actually
+</I>&gt;&gt;&gt;<i>   change when it turns from 'new' to 'old'. Due to size mismatch,
+</I>&gt;&gt;&gt;<i>   mails from such mailservers will get downloaded again.
+</I>&gt;&gt;&gt;<i>       
+</I>&gt;<i>
+</I>&gt;<i>   
+</I>&gt;&gt;<i> You got me there :-) In that case, the mail would be downloaded a second
+</I>&gt;&gt;<i> time and deleted.
+</I>&gt;&gt;<i>     
+</I>&gt;<i>
+</I>&gt;<i> The &quot;message of same size&quot; (say, automated messages in a fixed format,
+</I>&gt;<i> stock reports, particular logs) problem isn't solved though - and they
+</I>&gt;<i> might even get the same UID if the server used just the MD5 or a file
+</I>&gt;<i> name with a recycled inode number...
+</I>&gt;<i>   
+</I>I don't think so. If two messages are really different, the date and the 
+message ID should at least be different. Even for a badly formated mail 
+with a constant date and message ID sent, for instance, by a crontab 
+running sendmail <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">user at exemple.com</A> &lt; fixed_mail.txt, the received headers 
+should be different. If the two mails are completely identical and lead 
+to the same hash, then they are the same mail.
+
+The hash of the significant headers looks safe to me if the &quot;significant 
+headers&quot; are carefully chosen.
+
+&gt;<i> The question is (1) if it's worth the added effort to track sizes, or
+</I>&gt;<i> (2) if we should rather go Sunil's simple &quot;play it safe and redownload
+</I>&gt;<i> if in doubt&quot; route; or (3) refine my patch to assume QUIT succeeded the
+</I>&gt;<i> moment it is handed off to the write() call. That also has the effect of
+</I>&gt;<i> redownloading messages if the QUIT fails, but will retry the DELEte if
+</I>&gt;<i> fetchmail doesn't reach the point where it would send QUIT.
+</I>&gt;<i>   
+</I>Fetchmail should not (1) leave the mails on the server forever, (2) 
+download the mails again and again because it chokes on one mail, (3) 
+drop one mail because it could not distinguish it from a previously 
+deleted mail.
+
+Now, to make things clearer, let me tell you a problem that occurred to 
+me. It explain the reason I add point (2) above and is a concrete 
+example of something that can go wrong.
+
+We have a pop3 proxy (p3scan) through which fetchmail downloads the 
+mails from the external pop3 server. p3scan get the whole mail and hand 
+it to clamd to scan it for a virus. If everything is ok, the mail is 
+passed to fetchmail. Therefore, fetchmail receives the mail after some 
+delay depending on the size of the mail but it can send it successfully 
+to postfix. Then, fetchmail tries to send the dele command and it fails 
+because the scanning of the mail by clamd took too much time and the 
+pop3 server timed out.
+
+If fetchmail can discover that the mail was delivered but it could not 
+be deleted on the previous poll (remember the dele command was never 
+acknowledged by the server) and delete it without downloading it again, 
+then the problem is solved. In my case, I received a 32MB mails and it 
+took 13 minutes to scan it. It is far beyond the patience of the most 
+patient server... Therefore, the mail kept being downloaded over and 
+over and delivered to the two users on the To field... Yes it is rather 
+painful when you open you mailbox and discover 15 copies of a 32MB mail :-)
+
+&gt;&gt;<i> And this, only if the connection is dropped after the delete command
+</I>&gt;&gt;<i> is sent AND the size of the mail is changed by the server on the next
+</I>&gt;&gt;<i> poll.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> The worst case occurs if the size of the mail keeps changing at every
+</I>&gt;&gt;<i> poll. I have no solution here. It's not funny at all to have to deal
+</I>&gt;&gt;<i> with broken servers :-(
+</I>&gt;&gt;<i>     
+</I>&gt;<i>
+</I>&gt;<i> I think I might just charge users for adding more workarounds. Then they
+</I>&gt;<i> have the cheap route of complaining to the server's operator, or the
+</I>&gt;<i> expensive one of having the fix. :-P
+</I>&gt;<i>
+</I>&gt;<i> I think size isn't necessarily the best complement here to detect
+</I>&gt;<i> changes. I like the hash approach better, but this seems quite intrusive
+</I>&gt;<i> as well.
+</I>&gt;<i>
+</I>&gt;<i> A hash that precludes some dynamic headers such as [X-]Status and
+</I>&gt;<i> similar may be needed anyways to emulate UIDL for --keep setups on
+</I>&gt;<i> servers that don't support UIDL -- but if they lack all UIDL and TOP,
+</I>&gt;<i> the network impact of --keep will be rather painful.
+</I>&gt;<i> (Perhaps fetchmail should just refuse --keep on such servers.)
+</I>&gt;<i>   
+</I>Or it might be documented. The user would then have to choose between 
+the &quot;cheap route&quot; or the time consuming one :-)
+
+Frederic
+
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000415.html">[fetchmail-users] Re: fix lost POP3 deletes
+</A></li>
+	<LI>Next message: <A HREF="000419.html">[fetchmail-users] Re: fix lost POP3 deletes
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#417">[ date ]</a>
+              <a href="thread.html#417">[ thread ]</a>
+              <a href="subject.html#417">[ subject ]</a>
+              <a href="author.html#417">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

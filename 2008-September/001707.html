@@ -1,0 +1,106 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] losing mails because of &quot;incorrect header	line found&quot;
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2008-September/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%0A%09%3D%3Fiso-8859-15%3Fq%3Flosing_mails_because_of_%3D22inco%3F%3D%0A%09%3D%3Fiso-8859-15%3Fq%3Frrect_header%3D09line_found%3D22%3F%3D&In-Reply-To=%3C200809250923.45086.frederic.marchal%40wowcompany.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001703.html">
+   <LINK REL="Next"  HREF="001709.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] losing mails because of &quot;incorrect header	line found&quot;</H1>
+    <B>Fr&#233;d&#233;ric Marchal</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%0A%09%3D%3Fiso-8859-15%3Fq%3Flosing_mails_because_of_%3D22inco%3F%3D%0A%09%3D%3Fiso-8859-15%3Fq%3Frrect_header%3D09line_found%3D22%3F%3D&In-Reply-To=%3C200809250923.45086.frederic.marchal%40wowcompany.com%3E"
+       TITLE="[fetchmail-users] losing mails because of &quot;incorrect header	line found&quot;">frederic.marchal at wowcompany.com
+       </A><BR>
+    <I>Thu Sep 25 09:23:44 CEST 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001703.html">[fetchmail-users] losing mails because of &quot;incorrect	header	line found&quot;
+</A></li>
+        <LI>Next message: <A HREF="001709.html">[fetchmail-users] losing mails because of &quot;incorrect header	line found&quot;
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1707">[ date ]</a>
+              <a href="thread.html#1707">[ thread ]</a>
+              <a href="subject.html#1707">[ subject ]</a>
+              <a href="author.html#1707">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Tuesday 23 September 2008, Michelle Konzack wrote:
+&gt;<i> &gt; Frederic Marchal wrote:
+</I>&gt;<i> &gt; &gt; Passing the mail unmodified to Postfix never made any problem
+</I>&gt;<i> &gt; &gt; here. It looks like it just ignores the invalid headers which, in my
+</I>&gt;<i> &gt; &gt; case, never were necessary for the proper delivery of the mails.
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; Exactly my opinion :-)
+</I>&gt;<i>
+</I>&gt;<i> Interesting since here (Debian GNU/Linux Etch) with postfix
+</I>&gt;<i>
+</I>&gt;<i> postfix:
+</I>&gt;<i>   Installiert:2.3.8-2+b1
+</I>&gt;<i>   M&#246;gliche Pakete:2.3.8-2+b1
+</I>&gt;<i>   Versions-Tabelle:
+</I>&gt;<i>  *** 2.3.8-2+b1 0
+</I>&gt;<i>         500 file: etch/main Packages
+</I>&gt;<i>         100 /var/lib/dpkg/status
+</I>&gt;<i>
+</I>&gt;<i> it REJECT by default (I have installed  postfix  in  a  XEN  engine  for
+</I>&gt;<i> migration issues since I use courier-mta on all of my machines).
+</I>&gt;<i>
+</I>&gt;<i> The same things happen for exim4
+</I>
+The purpose of fetchmail is, basically, to re-encapsulate the mail in an 
+SMTP &quot;message&quot; by giving the proper EHLO, MAIL FROM, RCPT TO and DATA when 
+talking to the MTA. Then your MTA will deliver the e-mail based on the SMTP 
+enveloppe and should not look into the DATA part. The offending header lines 
+are part of the header of the DATA part. If fetchmail got the SMTP enveloppe 
+right (i.e. the EHLO, the MAIL FROM and the RCPT TO), your MTA should deliver 
+the mail without any complain.
+
+Now, the RCPT TO or the MAIL FROM may be rejected by your MTA since they are 
+taken from the mail header and may be unknown or invalid but that's part of 
+your delivery policy. Any other invalid line in the header should not bother 
+the MTA unless you use some anti-spam software (like amavis-new) that will 
+analyse the e-mail's content and choke on the invalid header lines but again, 
+it is part of your delivery policy not fetchmail or your MTA's ability to 
+deliver the mail.
+
+Once your MTA delivers the e-mail to the final user's mailbox, the mail client 
+of your user may be unable to render the e-mail properly because of the 
+invalid header lines but, at least, the user got the message and can decide 
+what to do with it.
+
+Frederic Marchal
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001703.html">[fetchmail-users] losing mails because of &quot;incorrect	header	line found&quot;
+</A></li>
+	<LI>Next message: <A HREF="001709.html">[fetchmail-users] losing mails because of &quot;incorrect header	line found&quot;
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1707">[ date ]</a>
+              <a href="thread.html#1707">[ thread ]</a>
+              <a href="subject.html#1707">[ subject ]</a>
+              <a href="author.html#1707">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

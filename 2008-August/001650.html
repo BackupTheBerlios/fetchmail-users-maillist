@@ -1,0 +1,131 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] [leafnode-list]  fetchmail,	fetchnews can't get thru router
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2008-August/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20%5Bleafnode-list%5D%20%20fetchmail%2C%0A%09fetchnews%20can%27t%20get%20thru%20router&In-Reply-To=%3Cm3y73bx1b7.fsf%40merlin.emma.line.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001651.html">
+   <LINK REL="Next"  HREF="001652.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] [leafnode-list]  fetchmail,	fetchnews can't get thru router</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20%5Bleafnode-list%5D%20%20fetchmail%2C%0A%09fetchnews%20can%27t%20get%20thru%20router&In-Reply-To=%3Cm3y73bx1b7.fsf%40merlin.emma.line.org%3E"
+       TITLE="[fetchmail-users] [leafnode-list]  fetchmail,	fetchnews can't get thru router">matthias.andree at gmx.de
+       </A><BR>
+    <I>Tue Aug  5 11:23:40 CEST 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001651.html">[fetchmail-users] fetchmail, fetchnews can't get thru router
+</A></li>
+        <LI>Next message: <A HREF="001652.html">[fetchmail-users] fetchmail, fetchnews can't get thru router
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1650">[ date ]</a>
+              <a href="thread.html#1650">[ thread ]</a>
+              <a href="subject.html#1650">[ subject ]</a>
+              <a href="author.html#1650">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Christian Ebert &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">blacktrash at gmx.net</A>&gt; writes:
+
+&gt;<i> Hello,
+</I>&gt;<i>
+</I>&gt;<i> I apologize in advance for this probably being off topic, and the
+</I>&gt;<i> cross-post, but I am desperate for some kind of help: pointers to
+</I>&gt;<i> docs etc.
+</I>&gt;<i>
+</I>&gt;<i> The problem:
+</I>&gt;<i>
+</I>&gt;<i> I changed my internet access at home from dsl to vdsl, and am now
+</I>&gt;<i> connected via a router (Speedport W 701v). Everything works fine
+</I>&gt;<i> except fetchmail and fetchnews -- they just hang. Even smtp (via
+</I>&gt;<i> msmtp) works, also ssh, jabber, irc (both also via ssl) etc.
+</I>
+What do you see in tcpdump or tshark for the respective connection while
+it's still live?
+
+Any tools or web pages of the Speedport WRT link/line quality or any
+suspect logging in the Speedport's web interface?
+
+Does your Speedport have current firmware?
+
+Does your Apple have current kernel + network utilities?
+
+Do you have some sort of firewall on the local (Apple) computer?
+
+Do things start to work if you set your MTU of the computer's interface
+leading to the router to, say, 1400? (Not sure what overhead VDSL
+entails, if it's different from regular PPP over DSL.)
+
+&gt;<i> As my provider is not exactly helpful to say the least, I am
+</I>
+Are they still shuffling calls for the same case between different call
+centers with &quot;I have do call XYZ to ask...&quot; sort of replies as they used
+to a year ago?
+
+&gt;<i> The most annoying thing is that AppleMail *is* able to retrieve
+</I>&gt;<i> mail from all accounts; which led the hotline to say: well, use
+</I>&gt;<i> the standard mail program then ... of course there isn't any
+</I>&gt;<i> &quot;standard program&quot; to fetch news etc. etc. I refrain from
+</I>&gt;<i> ranting. This guy also said that this works for him with Linux,
+</I>&gt;<i> that it must be a Mac-Problem. But what kind of Mac-Problem?
+</I>&gt;<i> Nobody has any idea.
+</I>
+Broken Path MTU discovery through improper ICMP or TCP/IP flag filtering
+is a more common problem, but...
+
+&gt;<i> Here's also a log of an attempt that hung a tiny bit later in 1
+</I>&gt;<i> instance (passwords provided by .netrc):
+</I>&gt;<i>
+</I>&gt;<i> fetchmail: 6.3.9-rc2 querying milestone.prossl.de (protocol IMAP) at Sun, 03 Aug 2008 12:06:23 +0200 (CEST): poll started
+</I>&gt;<i> fetchmail: timeout after 60 seconds waiting to connect to server milestone.prossl.de.
+</I>&gt;<i> fetchmail: socket error while fetching from ***@milestone.prossl.de
+</I>
+...the fragments used to connect are not large enough to trigger path
+MTU problems.
+
+&gt;<i> $ leafnode-version
+</I>&gt;<i> version: leafnode-2.0.0.alpha20080624a
+</I>&gt;<i> current machine: Darwin krille.blacktrash.org 8.11.0 Darwin Kernel Version 8.11.0: Wed Oct 10 18:26:00 PDT 2007; root:xnu-792.24.17~1/RELEASE_PPC Power Macintosh powerpc
+</I>
+Hm. No fetchnews log provided - but I'm not sure if that would be
+any different from fetchmail's log (something like &quot;server went away
+while ...&quot; is likely).
+
+HTH
+
+-- 
+Matthias Andree
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001651.html">[fetchmail-users] fetchmail, fetchnews can't get thru router
+</A></li>
+	<LI>Next message: <A HREF="001652.html">[fetchmail-users] fetchmail, fetchnews can't get thru router
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1650">[ date ]</a>
+              <a href="thread.html#1650">[ thread ]</a>
+              <a href="subject.html#1650">[ subject ]</a>
+              <a href="author.html#1650">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

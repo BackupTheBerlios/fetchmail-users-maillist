@@ -1,0 +1,231 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] fetchmail not fetching new messages
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2007-May/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%20not%20fetching%20new%20messages&In-Reply-To=%3C1180132792.8259.127.camel%40wadesmart%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001060.html">
+   <LINK REL="Next"  HREF="001062.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] fetchmail not fetching new messages</H1>
+    <B>Wade Smart</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%20not%20fetching%20new%20messages&In-Reply-To=%3C1180132792.8259.127.camel%40wadesmart%3E"
+       TITLE="[fetchmail-users] fetchmail not fetching new messages">wade at wadesmart.com
+       </A><BR>
+    <I>Sat May 26 00:39:52 CEST 2007</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001060.html">[fetchmail-users] fetchmail not fetching new messages
+</A></li>
+        <LI>Next message: <A HREF="001062.html">[fetchmail-users] fetchmail not fetching new messages
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1061">[ date ]</a>
+              <a href="thread.html#1061">[ thread ]</a>
+              <a href="subject.html#1061">[ subject ]</a>
+              <a href="author.html#1061">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>05252007 1719 GMT-6 DST
+
+You mean this:
+Below is my rc file.
+
+# setup second email service provider -&gt; Gmail
+   poll pop.gmail.com
+   uidl 
+   proto pop3
+   port 995
+   auth password
+   user &quot;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">wadesmart at gmail.com</A>&quot; there
+	with password &quot;pass&quot; is &quot;wadesmart&quot; here
+        keep
+        no fetchall
+        ssl sslcertpath /etc/ssl/certs
+
+wade
+
+And here is the result of command you gave:
+<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">wadesmart at wadesmart</A>:~$ fetchmail -Nvvvd0 --nosyslog
+Old UID list from mail.wadesmart.com: &lt;empty&gt;
+Old UID list from pop.gmail.com: GmailId112c4a368ec246c6
+GmailId112c4a787bf4ad6b GmailId112c4ad1905943bd GmailId112c4bbc05987452
+GmailId112c4be5cf509954 GmailId112c4c56d610a724 GmailId112c4d17d9ef7d8e
+GmailId112c4e287e762735 GmailId112c4f7358d78ba7 GmailId112c4f74c2497b95
+GmailId112c50082d64fcf5 GmailId112c521bff9143bb GmailId112c532a74e88878
+GmailId112c5337b22cef97 GmailId112c54a28c085ccd &lt;empty&gt;
+Scratch list of UIDs: &lt;empty&gt;
+fetchmail: 6.3.6 querying mail.wadesmart.com (protocol POP3) at Fri 25
+May 2007 05:15:11 PM CDT: poll started
+Trying to connect to 64.202.165.92/110...connected.
+fetchmail: POP3&lt; +OK
+&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">29799.1180131326 at pop09.prod.mesa1.secureserver.net</A>&gt;
+fetchmail: POP3&gt; CAPA
+fetchmail: POP3&lt; -ERR authorization first
+fetchmail: authorization first
+fetchmail: Repoll immediately on <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">wade at wadesmart.com</A>@pop.secureserver.net
+Trying to connect to 64.202.165.92/110...connected.
+fetchmail: POP3&lt; +OK
+&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">27579.1180131329 at pop18.prod.mesa1.secureserver.net</A>&gt;
+fetchmail: POP3&gt; USER <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">wade at wadesmart.com</A>
+fetchmail: POP3&lt; +OK 
+fetchmail: POP3&gt; PASS *
+fetchmail: POP3&lt; +OK 
+fetchmail: selecting or re-polling default folder
+fetchmail: POP3&gt; STAT
+fetchmail: POP3&lt; +OK 0 0
+fetchmail: No mail for <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">wade at wadesmart.com</A> at mail.wadesmart.com
+fetchmail: POP3&gt; QUIT
+fetchmail: POP3&lt; +OK 
+fetchmail: 6.3.6 querying mail.wadesmart.com (protocol POP3) at Fri 25
+May 2007 05:15:15 PM CDT: poll completed
+New UID list from mail.wadesmart.com: &lt;empty&gt;
+fetchmail: not swapping UID lists, no UIDs seen this query
+fetchmail: Query status=1 (NOMAIL)
+fetchmail: 6.3.6 querying pop.gmail.com (protocol POP3) at Fri 25 May
+2007 05:15:15 PM CDT: poll started
+Trying to connect to 64.233.185.109/995...connected.
+fetchmail: Issuer Organization: Equifax
+fetchmail: Unknown Issuer CommonName
+fetchmail: Server CommonName: pop.gmail.com
+fetchmail: pop.gmail.com key fingerprint:
+59:51:61:89:CD:DD:B2:35:94:BB:44:97:A0:39:D5:B4
+fetchmail: POP3&lt; +OK Gpop ready for requests from 67.60.204.183
+67pf1382686wra
+fetchmail: POP3&gt; USER <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">wadesmart at gmail.com</A>
+fetchmail: POP3&lt; +OK send PASS
+fetchmail: POP3&gt; PASS *
+fetchmail: POP3&lt; +OK Welcome.
+fetchmail: selecting or re-polling default folder
+fetchmail: POP3&gt; STAT
+fetchmail: POP3&lt; +OK 15 72417
+fetchmail: POP3&gt; UIDL
+fetchmail: POP3&lt; +OK
+fetchmail: POP3&lt; 1 GmailId112c4a368ec246c6
+fetchmail: POP3&lt; 2 GmailId112c4a787bf4ad6b
+fetchmail: POP3&lt; 3 GmailId112c4ad1905943bd
+fetchmail: POP3&lt; 4 GmailId112c4bbc05987452
+fetchmail: POP3&lt; 5 GmailId112c4be5cf509954
+fetchmail: POP3&lt; 6 GmailId112c4c56d610a724
+fetchmail: POP3&lt; 7 GmailId112c4d17d9ef7d8e
+fetchmail: POP3&lt; 8 GmailId112c4e287e762735
+fetchmail: POP3&lt; 9 GmailId112c4f7358d78ba7
+fetchmail: POP3&lt; 10 GmailId112c4f74c2497b95
+fetchmail: POP3&lt; 11 GmailId112c50082d64fcf5
+fetchmail: POP3&lt; 12 GmailId112c521bff9143bb
+fetchmail: POP3&lt; 13 GmailId112c532a74e88878
+fetchmail: POP3&lt; 14 GmailId112c5337b22cef97
+fetchmail: POP3&lt; 15 GmailId112c54a28c085ccd
+fetchmail: POP3&lt; .
+15 messages (15 seen) for <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">wadesmart at gmail.com</A> at pop.gmail.com (72417
+octets).
+skipping message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">wadesmart at gmail.com</A>@gmail-pop.l.google.com:1 not
+flushed
+skipping message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">wadesmart at gmail.com</A>@gmail-pop.l.google.com:2 not
+flushed
+skipping message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">wadesmart at gmail.com</A>@gmail-pop.l.google.com:3 not
+flushed
+skipping message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">wadesmart at gmail.com</A>@gmail-pop.l.google.com:4 not
+flushed
+skipping message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">wadesmart at gmail.com</A>@gmail-pop.l.google.com:5 not
+flushed
+skipping message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">wadesmart at gmail.com</A>@gmail-pop.l.google.com:6 not
+flushed
+skipping message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">wadesmart at gmail.com</A>@gmail-pop.l.google.com:7 not
+flushed
+skipping message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">wadesmart at gmail.com</A>@gmail-pop.l.google.com:8 not
+flushed
+skipping message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">wadesmart at gmail.com</A>@gmail-pop.l.google.com:9 not
+flushed
+skipping message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">wadesmart at gmail.com</A>@gmail-pop.l.google.com:10 not
+flushed
+skipping message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">wadesmart at gmail.com</A>@gmail-pop.l.google.com:11 not
+flushed
+skipping message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">wadesmart at gmail.com</A>@gmail-pop.l.google.com:12 not
+flushed
+skipping message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">wadesmart at gmail.com</A>@gmail-pop.l.google.com:13 not
+flushed
+skipping message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">wadesmart at gmail.com</A>@gmail-pop.l.google.com:14 not
+flushed
+skipping message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">wadesmart at gmail.com</A>@gmail-pop.l.google.com:15 not
+flushed
+fetchmail: POP3&gt; QUIT
+fetchmail: POP3&lt; +OK Farewell.
+fetchmail: 6.3.6 querying pop.gmail.com (protocol POP3) at Fri 25 May
+2007 05:15:16 PM CDT: poll completed
+New UID list from pop.gmail.com: GmailId112c4a368ec246c6 = 1
+GmailId112c4a787bf4ad6b = 1 GmailId112c4ad1905943bd = 1
+GmailId112c4bbc05987452 = 1 GmailId112c4be5cf509954 = 1
+GmailId112c4c56d610a724 = 1 GmailId112c4d17d9ef7d8e = 1
+GmailId112c4e287e762735 = 1 GmailId112c4f7358d78ba7 = 1
+GmailId112c4f74c2497b95 = 1 GmailId112c50082d64fcf5 = 1
+GmailId112c521bff9143bb = 1 GmailId112c532a74e88878 = 1
+GmailId112c5337b22cef97 = 1 GmailId112c54a28c085ccd = 1 &lt;empty&gt;
+fetchmail: swapping UID lists
+fetchmail: Query status=1 (NOMAIL)
+fetchmail: Writing fetchids file.
+fetchmail: normal termination, status 1
+fetchmail: Writing fetchids file.
+<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">wadesmart at wadesmart</A>:~$ 
+
+
+Wade 
+
+
+On Sat, 2007-05-26 at 00:07 +0200, Matthias Andree wrote:
+&gt;<i> Am Freitag, den 25.05.2007, 16:53 -0500 schrieb Wade Smart:
+</I>&gt;<i> &gt; 05252007 1647 GMT-6 DST
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; I emailed recently about fetchmail not getting my gmail. 
+</I>&gt;<i> &gt; What I finally did was deleting all my mail and then just keeping
+</I>&gt;<i> &gt; whatever came into the box for fetchmail to get. 
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; Today at 14:45 this happened again. I get this message in my mail log
+</I>&gt;<i> &gt; that says
+</I>&gt;<i> &gt; May 25 16:48:44 wadesmart fetchmail[25764]: 14 messages (14 seen) for
+</I>&gt;<i> &gt; <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">wadesmart at gmail.com</A> at pop.gmail.com (67845 octets). 
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; Of the fourteen, 12 are new, 2 are old. So it shouldnt be seeing 14. 
+</I>&gt;<i> 
+</I>&gt;<i> Please show your current configuration (mask the password) and the
+</I>&gt;<i> output of:
+</I>&gt;<i> 
+</I>&gt;<i> fetchmail -Nvvvd0 --nosyslog
+</I>&gt;<i> 
+</I>&gt;<i> so that we can see what fetchmail and gmail are chatting.
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001060.html">[fetchmail-users] fetchmail not fetching new messages
+</A></li>
+	<LI>Next message: <A HREF="001062.html">[fetchmail-users] fetchmail not fetching new messages
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1061">[ date ]</a>
+              <a href="thread.html#1061">[ thread ]</a>
+              <a href="subject.html#1061">[ subject ]</a>
+              <a href="author.html#1061">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

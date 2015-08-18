@@ -1,0 +1,131 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Fwd: [fetchmail]Multidrop fetchmail bouncing	non-existing local addresses
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2006-July/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Fwd%3A%20%5Bfetchmail%5DMultidrop%20fetchmail%20bouncing%0A%09non-existing%20local%20addresses&In-Reply-To=%3C43ea8d070607170923p6592d693od19a220778c7e0e3%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000522.html">
+   <LINK REL="Next"  HREF="000524.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Fwd: [fetchmail]Multidrop fetchmail bouncing	non-existing local addresses</H1>
+    <B>Rob MacGregor</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Fwd%3A%20%5Bfetchmail%5DMultidrop%20fetchmail%20bouncing%0A%09non-existing%20local%20addresses&In-Reply-To=%3C43ea8d070607170923p6592d693od19a220778c7e0e3%40mail.gmail.com%3E"
+       TITLE="[fetchmail-users] Fwd: [fetchmail]Multidrop fetchmail bouncing	non-existing local addresses">rob.macgregor at gmail.com
+       </A><BR>
+    <I>Mon Jul 17 18:23:30 CEST 2006</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000522.html">[fetchmail-users] Fwd: [fetchmail]Multidrop fetchmail bouncing	non-existing local addresses
+</A></li>
+        <LI>Next message: <A HREF="000524.html">[fetchmail-users] Fwd: [fetchmail]Multidrop fetchmail bouncing	non-existing local addresses
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#523">[ date ]</a>
+              <a href="thread.html#523">[ thread ]</a>
+              <a href="subject.html#523">[ subject ]</a>
+              <a href="author.html#523">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On 7/17/06, Andy Hawkins &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">adhawkins at gmail.com</A>&gt; wrote:
+&gt;<i>
+</I>&gt;<i> Should we continue this here for now, or move to there?
+</I>
+Here :-)  Very few people watch the old lists.  As far as I can tell
+mostly only me.
+
+&gt;<i> &gt; On 7/17/06, Andy Hawkins &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">adhawkins at gmail.com</A>&gt; wrote:
+</I>&gt;<i> &gt; Upgrade to 6.3.4
+</I>&gt;<i>
+</I>&gt;<i> Ok, didn't want to do that as it involves building from source, but
+</I>&gt;<i> I've done that now.
+</I>
+Great.
+
+&gt;<i> &gt; Spam messages almost never have a legit return address.  All you'll
+</I>&gt;<i> &gt; end up doing is annoying some poor innocent sod, and possibly becoming
+</I>&gt;<i> &gt; a spam source yourself.  Better to drop them on the floor.
+</I>&gt;<i>
+</I>&gt;<i> True, but I want legitimate mail (but with invalid addresses) to be
+</I>&gt;<i> bounced so that the sender knows they've got it wrong.
+</I>
+As long as you're aware of the risks.  Keep an eye on the volume of
+bounces.  If/when people realise what you're doing they may target you
+for a spam run (basically using you to &quot;bounce&quot; the spam to the
+recipient).
+
+That isn't theory - that's a pretty standard spam tactic.
+
+&gt;<i> Below:
+</I>&gt;<i>
+</I>&lt;---SNIP---&gt;
+&gt;<i> fetchmail: SMTP&gt; RCPT TO:&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">yyy at yyy.yyy</A>&gt;
+</I>&gt;<i> fetchmail: SMTP&lt; 550 unknown user
+</I>&gt;<i> fetchmail: SMTP error: 550 unknown user
+</I>&gt;<i> fetchmail: SMTP listener doesn't like recipient address `<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">yyy at yyy.yyy</A>'
+</I>&gt;<i> fetchmail: SMTP&lt; 220 zzz.zzz.zzz ESMTP Exim 4.50 Mon, 17 Jul 2006 16:15:41 +0100
+</I>&gt;<i> fetchmail: SMTP&gt; HELO zzz.zzz.zzz
+</I>&gt;<i> fetchmail: SMTP&lt; 250 zzz.zzz.zzz Hello localhost [127.0.0.1]
+</I>&gt;<i> fetchmail: SMTP&gt; MAIL FROM:&lt;&gt;
+</I>&gt;<i> fetchmail: SMTP&lt; 250 OK
+</I>&gt;<i> fetchmail: SMTP&gt; RCPT TO:&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">xxx at xxx.xxx</A>&gt;
+</I>&gt;<i> fetchmail: SMTP&lt; 250 Accepted
+</I>&gt;<i> fetchmail: SMTP&gt; DATA
+</I>&gt;<i> fetchmail: SMTP&lt; 354 Enter message, ending with &quot;.&quot; on a line by itself
+</I>&gt;<i> fetchmail: SMTP: (bounce-message body)
+</I>&gt;<i> fetchmail: SMTP&gt;. (EOM)
+</I>&gt;<i> fetchmail: SMTP&lt; 250 OK id=1G2Uov-0005GD-HY
+</I>&gt;<i> fetchmail: SMTP&gt; QUIT
+</I>&gt;<i> fetchmail: SMTP&lt; 221 zzz.zzz.zzz closing connection
+</I>&gt;<i> fetchmail: SMTP&gt; RCPT TO:&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">postmaster at zzz.zzz.zzz</A>&gt;
+</I>&gt;<i> fetchmail: SMTP&lt; 250 Accepted
+</I>&gt;<i> fetchmail: no address matches; forwarding to postmaster.
+</I>&lt;---SNIP---&gt;
+&gt;<i>
+</I>&gt;<i> It looks like it has sent a bounce, but still forwarded the mail to
+</I>&gt;<i> the postmaster.
+</I>
+Not sure why it did that - hopefully one of the maintainers will come
+by and have an idea what's going on.
+
+It wouldn't hurt to provide the output of &quot;fetchmail --configdump&quot; so
+we can see what fetchmail thinks of it's config file.
+
+-- 
+                 Please keep list traffic on the list.
+
+Rob MacGregor
+      Whoever fights monsters should see to it that in the process he
+        doesn't become a monster.                  Friedrich Nietzsche
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000522.html">[fetchmail-users] Fwd: [fetchmail]Multidrop fetchmail bouncing	non-existing local addresses
+</A></li>
+	<LI>Next message: <A HREF="000524.html">[fetchmail-users] Fwd: [fetchmail]Multidrop fetchmail bouncing	non-existing local addresses
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#523">[ date ]</a>
+              <a href="thread.html#523">[ thread ]</a>
+              <a href="subject.html#523">[ subject ]</a>
+              <a href="author.html#523">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

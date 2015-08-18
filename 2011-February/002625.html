@@ -1,0 +1,141 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Fetchmail's bounce behavior - &quot;can't even	send to postmaster&quot;
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2011-February/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Fetchmail%27s%20bounce%20behavior%20-%20%22can%27t%20even%0A%09send%20to%20postmaster%22&In-Reply-To=%3C971800.81079.qm%40web95710.mail.in.yahoo.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002624.html">
+   <LINK REL="Next"  HREF="002629.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Fetchmail's bounce behavior - &quot;can't even	send to postmaster&quot;</H1>
+    <B>Sunil Shetye</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Fetchmail%27s%20bounce%20behavior%20-%20%22can%27t%20even%0A%09send%20to%20postmaster%22&In-Reply-To=%3C971800.81079.qm%40web95710.mail.in.yahoo.com%3E"
+       TITLE="[fetchmail-users] Fetchmail's bounce behavior - &quot;can't even	send to postmaster&quot;">sunilshetye at rocketmail.com
+       </A><BR>
+    <I>Thu Feb  3 08:40:20 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002624.html">[fetchmail-users] Fetchmail's bounce behavior - &quot;can't even	send to postmaster&quot;
+</A></li>
+        <LI>Next message: <A HREF="002629.html">[fetchmail-users] SMTP error: 501: domain missing or malformed
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2625">[ date ]</a>
+              <a href="thread.html#2625">[ thread ]</a>
+              <a href="subject.html#2625">[ subject ]</a>
+              <a href="author.html#2625">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>--- On Thu, 3/2/11, Matthias Andree &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">matthias.andree at gmx.de</A>&gt; wrote:
+&gt;<i> &gt; - Stop redirecting rejected mails to postmaster as a
+</I>&gt;<i> last-resort address.
+</I>&gt;<i> 
+</I>&gt;<i> Possible for protocols that allow leaving messages on the
+</I>&gt;<i> server (POP3,
+</I>&gt;<i> IMAP). Unsure for ODMR/ETRN/... because I'm not sure if we
+</I>&gt;<i> can reject
+</I>&gt;<i> messages in a way that the server keeps them and will
+</I>&gt;<i> re-try delivery later.
+</I>&gt;<i> 
+</I>&gt;<i> Only suitable for 7.X.
+</I>
+In ETRN, fetchmail is not involved in delivery at all. In ODMR, fetchmail is only acting like a pipe. In both cases, fetchmail is not involved in sending bounces. send_bouncemail() is indirectly called from fetch_messages() which is not invoked for ODMR and ETRN (count == -1).
+
+&gt;<i> &gt; - If 'softbounce' and 'no bouncemail', do not send any
+</I>&gt;<i> bounce mail to the postmaster. (as suggested by Martin
+</I>&gt;<i> Koeppe)
+</I>&gt;<i> 
+</I>&gt;<i> Yes, makes perfect sense. Suitable for 6.3.X and 7.X.
+</I>
+Okay.
+
+&gt;<i> &gt; - Undo documentation on setting postmaster to empty
+</I>&gt;<i> string. Ignore 'set postmaster &quot;&quot;' silently (for
+</I>&gt;<i> compatibility).
+</I>&gt;<i> 
+</I>&gt;<i> Hm. I understand you've introduced a feature but not
+</I>&gt;<i> thoroughly
+</I>&gt;<i> documented it. I'm not sure I understand what you're
+</I>&gt;<i> proposing.&#160; So 'set
+</I>&gt;<i> postmaster &quot;&quot;' was an overloaded feature to suppress
+</I>&gt;<i> postmaster mail,
+</I>&gt;<i> and you propose to silently ignore this setting? What would
+</I>&gt;<i> fetchmail
+</I>&gt;<i> use instead?&#160; This reads as though the user would be
+</I>&gt;<i> pulled in for nasty
+</I>&gt;<i> surprises though. :-/
+</I>
+I am not saying that the 'set postmaster &quot;&quot;' was an overloaded feature. The postmaster option itself is overloaded as it receives these mails:
+
+- warning messages (as sent by open_warning_by_mail()).
+- bounce mails (if 'set no bouncemail')
+- unknown user mails as a last-resort address.
+
+The 'set postmaster &quot;&quot;' was introduced by me to stop the mails sent as last-resort address. This stopped the forwarding of unknown user mails to the postmaster. Unfortunately, this also meant that the genuine warning messages (like AUTHFAIL messages) meant for the postmaster also got lost.
+
+Note that you have to look at this point in conjunction with point 1 above. If fetchmail stops sending mails to postmaster as a last-resort, there will be no reason for postmaster to be empty. postmaster will only get warning mails in that case. So, if point 1 is not implemented for 6.X, this too cannot be implemented.
+
+&gt;<i> &gt; - Add a failsafe mode to fetchmail. It should be
+</I>&gt;<i> activated when the fetchmailrc is new (say, less than 1 week
+</I>&gt;<i> old). In failsafe mode, fetchmail will essentially activate
+</I>&gt;<i> softbounce. In daemon mode, after a week of running time,
+</I>&gt;<i> switch off the failsafe mode.
+</I>&gt;<i> 
+</I>&gt;<i> No, this is definitely in the &quot;nasty surprises&quot;
+</I>&gt;<i> category.&#160; Definitely
+</I>&gt;<i> not suitable for 6.3.&#160; For 7.0, I want to get away
+</I>&gt;<i> from all the various
+</I>&gt;<i> automatisms that work this way today and another way
+</I>&gt;<i> tomorrow.
+</I>&gt;<i> 
+</I>&gt;<i> Softbounce should default to on, which will probably settle
+</I>&gt;<i> a lot of the
+</I>&gt;<i> issues already.
+</I>
+Yes, it will solve most of the issues. Only problem is that it could be viewed as an incompatibility as fetchmail will start leaving messages on the server.
+
+&gt;<i> Anything else that needs to be decided on?
+</I>
+Yes. When softbounce is on, should fetchmail send a cumulative warning mail to the postmaster (like send_size_warnings() does) so that the postmaster gets one warning mail instead of all the unknown user mails as a last-resort and the bounce mails?
+
+&gt;<i> Who is going to pick which work? :)
+</I>
+That will depend on the final list of points to be implemented!
+
+-- 
+Sunil Shetye.
+
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002624.html">[fetchmail-users] Fetchmail's bounce behavior - &quot;can't even	send to postmaster&quot;
+</A></li>
+	<LI>Next message: <A HREF="002629.html">[fetchmail-users] SMTP error: 501: domain missing or malformed
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2625">[ date ]</a>
+              <a href="thread.html#2625">[ thread ]</a>
+              <a href="subject.html#2625">[ subject ]</a>
+              <a href="author.html#2625">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

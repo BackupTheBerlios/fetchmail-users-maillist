@@ -1,0 +1,101 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Fetchmail retrieving message body of only &quot;OK	FETCH completed&quot;?
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2007-July/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Fetchmail%20retrieving%20message%20body%20of%20only%20%22OK%0A%09FETCH%20completed%22%3F&In-Reply-To=%3C43ea8d070707241459w49c8cecew1555e270482f7149%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001125.html">
+   <LINK REL="Next"  HREF="001127.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Fetchmail retrieving message body of only &quot;OK	FETCH completed&quot;?</H1>
+    <B>Rob MacGregor</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Fetchmail%20retrieving%20message%20body%20of%20only%20%22OK%0A%09FETCH%20completed%22%3F&In-Reply-To=%3C43ea8d070707241459w49c8cecew1555e270482f7149%40mail.gmail.com%3E"
+       TITLE="[fetchmail-users] Fetchmail retrieving message body of only &quot;OK	FETCH completed&quot;?">rob.macgregor at gmail.com
+       </A><BR>
+    <I>Tue Jul 24 23:59:29 CEST 2007</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001125.html">[fetchmail-users] Fetchmail retrieving message body of only &quot;OK FETCH completed&quot;?
+</A></li>
+        <LI>Next message: <A HREF="001127.html">[fetchmail-users] Fetchmail retrieving message body of only &quot;OK	FETCH completed&quot;?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1126">[ date ]</a>
+              <a href="thread.html#1126">[ thread ]</a>
+              <a href="subject.html#1126">[ subject ]</a>
+              <a href="author.html#1126">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On 7/24/07, Beau James &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">bjames at cisco.com</A>&gt; wrote:
+&gt;<i>
+</I>&gt;<i> I'll see if I can get that info.  If anyone knows how to ask Exchange
+</I>&gt;<i> for that info &quot;over the wire&quot;, please let me know - I don't have
+</I>&gt;<i> access to the machines on which Exchange is running.
+</I>
+You may want to simply ask the admins :)
+
+&gt;<i> I'm trying to convince the admins to upgrade the company-wide version.
+</I>
+Just point them to the list of known vulnerabilities, and the fact
+that support on this list will be little more than &quot;upgrade if you
+want any real help&quot; :)
+
+&gt;<i> In the meantime, I downloaded and installed the source package, built
+</I>&gt;<i> it myself, and tried to run the version I had built.  I worked through
+</I>&gt;<i> a number of issues but then ran into SSL errors:
+</I>&gt;<i>
+</I>&gt;<i> fetchmail: starting fetchmail 6.3.8 daemon
+</I>&gt;<i> 25839:error:140770FC:SSL routines:SSL23_GET_SERVER_HELLO:unknown protocol:s23_cl
+</I>&gt;<i> nt.c:567:
+</I>&gt;<i> fetchmail: SSL connection failed.
+</I>&gt;<i> fetchmail: socket error while fetching from <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">bjames at email.cisco.com</A>
+</I>&gt;<i> fetchmail: Query status=2 (SOCKET)
+</I>&gt;<i> fetchmail: sleeping at Sun Jul 22 21:24:36 2007 for 300 seconds
+</I>&gt;<i>
+</I>&gt;<i> at which point I decided I was getting in over my head.
+</I>
+If you run the diagnostic output (--nosyslog --nodetach -vvv) it may
+provide more to information to work with.  You may find section K6 of
+the FAQ useful.
+
+Alternatively, just configure it without SSL :)
+
+-- 
+                 Please keep list traffic on the list.
+
+Rob MacGregor
+      Whoever fights monsters should see to it that in the process he
+        doesn't become a monster.                  Friedrich Nietzsche
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001125.html">[fetchmail-users] Fetchmail retrieving message body of only &quot;OK FETCH completed&quot;?
+</A></li>
+	<LI>Next message: <A HREF="001127.html">[fetchmail-users] Fetchmail retrieving message body of only &quot;OK	FETCH completed&quot;?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1126">[ date ]</a>
+              <a href="thread.html#1126">[ thread ]</a>
+              <a href="subject.html#1126">[ subject ]</a>
+              <a href="author.html#1126">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

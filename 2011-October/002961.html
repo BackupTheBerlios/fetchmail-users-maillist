@@ -1,0 +1,142 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Pulling Gmail
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2011-October/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Pulling%20Gmail&In-Reply-To=%3C4E934AD7.6000308%40gmx.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002960.html">
+   <LINK REL="Next"  HREF="002963.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Pulling Gmail</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Pulling%20Gmail&In-Reply-To=%3C4E934AD7.6000308%40gmx.de%3E"
+       TITLE="[fetchmail-users] Pulling Gmail">matthias.andree at gmx.de
+       </A><BR>
+    <I>Mon Oct 10 21:43:19 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002960.html">[fetchmail-users] Pulling Gmail
+</A></li>
+        <LI>Next message: <A HREF="002963.html">[fetchmail-users] Pulling Gmail
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2961">[ date ]</a>
+              <a href="thread.html#2961">[ thread ]</a>
+              <a href="subject.html#2961">[ subject ]</a>
+              <a href="author.html#2961">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Am 10.10.2011 21:19, schrieb Bill Christensen:
+&gt;<i> On Mon, Oct 10, 2011 at 12:48 AM, Rob MacGregor &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">rob.macgregor at gmail.com</A>&gt;wrote:
+</I>&gt;<i> 
+</I>&gt;&gt;<i> On Mon, Oct 10, 2011 at 05:35, Bill Christensen
+</I>&gt;&gt;<i> &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">billc_lists at greenbuilder.com</A>&gt; wrote:
+</I>&gt;&gt;&gt;<i> Hi folks,
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> I just did a major upgrade of my system including an upgrade to Fetchmail
+</I>&gt;&gt;&gt;<i> 6.3.20 and managed to break my Fetchmail setup.
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> I'm running stuff like below in my fetchmailrc.   It's been working for a
+</I>&gt;&gt;&gt;<i> fair while like this:
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> poll imap.gmail.com protocol IMAP username &quot;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">NAME at domain.com</A>&quot;
+</I>&gt;&gt;&gt;<i> there with password &quot;xxxxxx&quot;  is &quot;mailman&quot; here nofetchall keep ssl
+</I>&gt;&gt;&gt;<i> sslcertck sslcertpath /opt/local/share/ssl/certs
+</I>&gt;&gt;&gt;<i> mda &quot;/opt/local/libexec/mailman/mail/mailman bounces NAME&quot; set daemon 900
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> I'm getting this error:
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> fetchmail:/etc/fetchmailrc:8: SSL is not enabled at ssl
+</I>&gt;&gt;&gt;<i> fetchmail:/etc/fetchmailrc:10: syntax error at --sslcertpath
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> It sounds like your version of fetchmail does not have SSL linked in.
+</I>&gt;&gt;<i> Please provide the details listed in section G3 of the FAQ
+</I>&gt;&gt;<i> (<A HREF="http://fetchmail.berlios.de/fetchmail-FAQ.html#G3">http://fetchmail.berlios.de/fetchmail-FAQ.html#G3</A>).
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> -
+</I>&gt;&gt;<i>
+</I>&gt;<i> 
+</I>&gt;<i> I'm not sure what you mean by &quot;does not have SSL linked in&quot;...  OpenSSL is
+</I>&gt;<i> installed and is working with other services on the machine.  How does one
+</I>&gt;<i> go about linking in SSL to Fetchmail? Could it be that the I need a
+</I>&gt;<i> different cert than the one that was working two days ago, because I've
+</I>&gt;<i> upgraded a newer version of Fetchmail (and the OS)?
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> $ env LC_ALL=C fetchmail -V
+</I>&gt;<i> This is fetchmail release 6.3.20+GSS+NLS+KRB5.
+</I>&gt;<i> 
+</I>&gt;<i> Copyright (C) 2002, 2003 Eric S. Raymond
+</I>&gt;<i> Copyright (C) 2004 Matthias Andree, Eric S. Raymond,
+</I>&gt;<i>                    Robert M. Funk, Graham Wilson
+</I>&gt;<i> Copyright (C) 2005 - 2006, 2010 - 2011 Sunil Shetye
+</I>&gt;<i> Copyright (C) 2005 - 2011 Matthias Andree
+</I>&gt;<i> Fetchmail comes with ABSOLUTELY NO WARRANTY. This is free software, and you
+</I>&gt;<i> are welcome to redistribute it under certain conditions. For details,
+</I>&gt;<i> please see the file COPYING in the source or documentation directory.
+</I>&gt;<i> 
+</I>&gt;<i> Fallback MDA: (none)
+</I>&gt;<i> Darwin (machine's hostname) 11.1.0 Darwin Kernel Version 11.1.0: Tue Jul 26
+</I>&gt;<i> 16:07:11 PDT 2011; root:xnu-1699.22.81~1/RELEASE_
+</I>&gt;<i> X86_64 x86_64
+</I>&gt;<i> Taking options from command line
+</I>&gt;<i> No mailservers set up -- perhaps /Users/billc/.fetchmailrc is missing?
+</I>&gt;<i> 
+</I>&gt;<i> **
+</I>&gt;<i> 
+</I>&gt;<i> This was set up using Macports, which installs most of Fetchmail in
+</I>&gt;<i> /opt/local.  As you can see from the first stuff I sent, fetchmailrc is at
+</I>&gt;<i> /etc/fetchmailrc, and it's obviously being read.
+</I>
+Does Macports build from source?  If so, you need to configure it so
+that it compiles and links SSL support for fetchmail.  If building from
+source, see below; if you want to install binary packages from MacPorts,
+check with the Macports support channels.
+
+&gt;<i> The purpose of this install is to pull down mail intended for a series of
+</I>&gt;<i> Mailman discussion lists from Gmail, which we use to run our domain name's
+</I>&gt;<i> mail.  Fetchmail hands the incoming mail to Mailman, which then processes it
+</I>&gt;<i> and sends it out to the appropriate discussion list. Therefore Fetchmail
+</I>&gt;<i> does not need an outgoing mailserver set up.
+</I>
+Note that GMail is peculiar in some respects - please check fetchmail's
+online FAQ for links to Google's documentation.
+
+Also, You need to run &quot;./configure --with-ssl --with-gssapi&quot; when
+building fetchmail, and since you're using IMAP, you'll also want to
+choose 6.3.21 instead:
+
+&lt;<A HREF="http://developer.berlios.de/project/shownotes.php?group_id=1824&amp;release_id=18743">http://developer.berlios.de/project/shownotes.php?group_id=1824&amp;release_id=18743</A>&gt;
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002960.html">[fetchmail-users] Pulling Gmail
+</A></li>
+	<LI>Next message: <A HREF="002963.html">[fetchmail-users] Pulling Gmail
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2961">[ date ]</a>
+              <a href="thread.html#2961">[ thread ]</a>
+              <a href="subject.html#2961">[ subject ]</a>
+              <a href="author.html#2961">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

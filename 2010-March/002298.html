@@ -1,0 +1,215 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] --nosoftbounce option no working in v6.3.14
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2010-March/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20--nosoftbounce%20option%20no%20working%20in%20v6.3.14&In-Reply-To=%3C20100305084512.GA29198%40titania.njm.me.uk%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   
+   <LINK REL="Next"  HREF="002299.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] --nosoftbounce option no working in v6.3.14</H1>
+    <B>N.J. Mann</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20--nosoftbounce%20option%20no%20working%20in%20v6.3.14&In-Reply-To=%3C20100305084512.GA29198%40titania.njm.me.uk%3E"
+       TITLE="[fetchmail-users] --nosoftbounce option no working in v6.3.14">njm at njm.me.uk
+       </A><BR>
+    <I>Fri Mar  5 09:45:12 CET 2010</I>
+    <P><UL>
+        
+        <LI>Next message: <A HREF="002299.html">[fetchmail-users] --nosoftbounce option no working in v6.3.14
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2298">[ date ]</a>
+              <a href="thread.html#2298">[ thread ]</a>
+              <a href="subject.html#2298">[ subject ]</a>
+              <a href="author.html#2298">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Good morning,
+
+
+I occasionally receive email from domains which fail DNS look ups.  My
+local MTA (sendmail) returns a 553 error response to fetchmail, but
+fetchmail does _not_ delete the message from my ISP's mail server if I
+am using the command line option --nosoftbounce rather than setting said
+option in .fetchmailrc.  If I do put the option in the RC file it does
+delete the message.
+
+I am using the latest fetchmail from the FreeBSD ports system:
+  6.3.14+RPA+SDPS+SSL+OPIE+NLS
+on
+  FreeBSD 7.3-PRERELEASE #5 r204509M
+and I run fetchmail from cron.
+
+Here is my RC file (I have changed three values for privacy reasons):
+
+  set logfile fetchmail.log
+  set postmaster &quot;njm&quot;
+  set no bouncemail
+  set no syslog
+  poll isp-mail-server proto pop3 uidl timeout 45
+	username remote-uid, with password remote-password, is &quot;njm&quot; here
+
+With the above I get the following when I execute 'fetchmail -vv
+--nosoftbounce':
+
+fetchmail: 6.3.14 querying ******** (protocol POP3) at Fri  5 Mar 08:13:47 2010: poll started
+fetchmail: Trying to connect to 85.119.248.104/110...connected.
+fetchmail: POP3&lt; +OK &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">58275.1267776827 at core001.apm-internet.net</A>&gt;
+fetchmail: POP3&gt; CAPA
+fetchmail: POP3&lt; -ERR authorization first
+fetchmail: authorization first
+fetchmail: Repoll immediately on ********
+fetchmail: Trying to connect to 85.119.248.105/110...connected.
+fetchmail: POP3&lt; +OK &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">27763.1267776827 at core002.apm-internet.net</A>&gt;
+fetchmail: POP3&gt; USER ********
+fetchmail: POP3&lt; +OK 
+fetchmail: POP3&gt; PASS *
+fetchmail: POP3&lt; +OK 
+fetchmail: selecting or re-polling default folder
+fetchmail: POP3&gt; STAT
+fetchmail: POP3&lt; +OK 1 1472
+fetchmail: POP3&gt; UIDL
+fetchmail: POP3&lt; +OK 
+fetchmail: POP3&lt; 1 1267747093.41989.mail001.apm-internet.net
+fetchmail: 1 is unseen
+fetchmail: POP3&lt; .
+fetchmail: 1 message for ******** at ******** (1472 octets).
+fetchmail: POP3&gt; LIST 1
+fetchmail: POP3&lt; +OK 1 1472
+fetchmail: POP3&gt; TOP 1 99999999
+fetchmail: POP3&lt; +OK 
+fetchmail: reading message ********:1 of 1 (1472 octets)Trying to connect to 127.0.0.1/25...connected.
+fetchmail: SMTP&lt; 220 oberon.njm.me.uk ESMTP Sendmail 8.14.4/8.14.4; Fri, 5 Mar 2010 08:13:47 GMT
+fetchmail: SMTP&gt; EHLO oberon.njm.me.uk
+fetchmail: SMTP&lt; 250-oberon.njm.me.uk Hello localhost [127.0.0.1], pleased to meet you
+fetchmail: SMTP&lt; 250-ENHANCEDSTATUSCODES
+fetchmail: SMTP&lt; 250-PIPELINING
+fetchmail: SMTP&lt; 250-EXPN
+fetchmail: SMTP&lt; 250-VERB
+fetchmail: SMTP&lt; 250-8BITMIME
+fetchmail: SMTP&lt; 250-SIZE
+fetchmail: SMTP&lt; 250-DSN
+fetchmail: SMTP&lt; 250-ETRN
+fetchmail: SMTP&lt; 250-AUTH GSSAPI DIGEST-MD5 CRAM-MD5 LOGIN PLAIN
+fetchmail: SMTP&lt; 250-DELIVERBY
+fetchmail: SMTP&lt; 250 HELP
+fetchmail: forwarding to localhost
+fetchmail: SMTP&gt; MAIL FROM:&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">ragipu3946 at ne.jp</A>&gt; BODY=8BITMIME SIZE=1472
+fetchmail: SMTP&lt; 553 5.1.8 &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">ragipu3946 at ne.jp</A>&gt;... Domain of sender address <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">ragipu3946 at ne.jp</A> does not exist
+fetchmail: SMTP error: 553 5.1.8 &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">ragipu3946 at ne.jp</A>&gt;... Domain of sender address <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">ragipu3946 at ne.jp</A> does not exist
+fetchmail: SMTP&gt; RSET
+fetchmail: SMTP&lt; 250 2.0.0 Reset state
+fetchmail: message ********:1 was not the expected length (1516 actual != 1472 expected)
+fetchmail:  not flushed
+fetchmail: POP3&gt; QUIT
+fetchmail: POP3&lt; +OK 
+fetchmail: SMTP&gt; QUIT
+fetchmail: SMTP&lt; 221 2.0.0 oberon.njm.me.uk closing connection
+fetchmail: 6.3.14 querying ******** (protocol POP3) at Fri  5 Mar 08:13:47 2010: poll completed
+fetchmail: New UID list from ******** 1267747093.41989.mail001.apm-internet.net = 0 &lt;empty&gt;
+fetchmail: swapping UID lists
+fetchmail: normal termination, status 0
+
+If I then add 'set no softbounce' to my RC file and execute 'fetchmail
+-vv' I get:
+
+fetchmail: 6.3.14 querying ******** (protocol POP3) at Fri  5 Mar 08:16:29 2010: poll started
+fetchmail: Trying to connect to 85.119.248.104/110...connected.
+fetchmail: POP3&lt; +OK &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">62728.1267776989 at core001.apm-internet.net</A>&gt;
+fetchmail: POP3&gt; CAPA
+fetchmail: POP3&lt; -ERR authorization first
+fetchmail: authorization first
+fetchmail: Repoll immediately on ********
+fetchmail: Trying to connect to 85.119.248.105/110...connected.
+fetchmail: POP3&lt; +OK &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">32496.1267776989 at core002.apm-internet.net</A>&gt;
+fetchmail: POP3&gt; USER ********
+fetchmail: POP3&lt; +OK 
+fetchmail: POP3&gt; PASS *
+fetchmail: POP3&lt; +OK 
+fetchmail: selecting or re-polling default folder
+fetchmail: POP3&gt; STAT
+fetchmail: POP3&lt; +OK 1 1472
+fetchmail: POP3&gt; UIDL
+fetchmail: POP3&lt; +OK 
+fetchmail: POP3&lt; 1 1267747093.41989.mail001.apm-internet.net
+fetchmail: 1 is unseen
+fetchmail: POP3&lt; .
+fetchmail: 1 message for ******** at ******** (1472 octets).
+fetchmail: POP3&gt; LIST 1
+fetchmail: POP3&lt; +OK 1 1472
+fetchmail: POP3&gt; TOP 1 99999999
+fetchmail: POP3&lt; +OK 
+fetchmail: reading message ********:1 of 1 (1472 octets)Trying to connect to 127.0.0.1/25...connected.
+fetchmail: SMTP&lt; 220 oberon.njm.me.uk ESMTP Sendmail 8.14.4/8.14.4; Fri, 5 Mar 2010 08:16:30 GMT
+fetchmail: SMTP&gt; EHLO oberon.njm.me.uk
+fetchmail: SMTP&lt; 250-oberon.njm.me.uk Hello localhost [127.0.0.1], pleased to meet you
+fetchmail: SMTP&lt; 250-ENHANCEDSTATUSCODES
+fetchmail: SMTP&lt; 250-PIPELINING
+fetchmail: SMTP&lt; 250-EXPN
+fetchmail: SMTP&lt; 250-VERB
+fetchmail: SMTP&lt; 250-8BITMIME
+fetchmail: SMTP&lt; 250-SIZE
+fetchmail: SMTP&lt; 250-DSN
+fetchmail: SMTP&lt; 250-ETRN
+fetchmail: SMTP&lt; 250-AUTH GSSAPI DIGEST-MD5 CRAM-MD5 LOGIN PLAIN
+fetchmail: SMTP&lt; 250-DELIVERBY
+fetchmail: SMTP&lt; 250 HELP
+fetchmail: forwarding to localhost
+fetchmail: SMTP&gt; MAIL FROM:&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">ragipu3946 at ne.jp</A>&gt; BODY=8BITMIME SIZE=1472
+fetchmail: SMTP&lt; 553 5.1.8 &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">ragipu3946 at ne.jp</A>&gt;... Domain of sender address <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">ragipu3946 at ne.jp</A> does not exist
+fetchmail: SMTP error: 553 5.1.8 &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">ragipu3946 at ne.jp</A>&gt;... Domain of sender address <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">ragipu3946 at ne.jp</A> does not exist
+fetchmail: SMTP&gt; RSET
+fetchmail: SMTP&lt; 250 2.0.0 Reset state
+fetchmail: message ********:1 was not the expected length (1516 actual != 1472 expected)
+fetchmail:  flushed
+fetchmail: POP3&gt; DELE 1
+fetchmail: POP3&lt; +OK 
+fetchmail: POP3&gt; QUIT
+fetchmail: POP3&lt; +OK 
+fetchmail: SMTP&gt; QUIT
+fetchmail: SMTP&lt; 221 2.0.0 oberon.njm.me.uk closing connection
+fetchmail: 6.3.14 querying ******** (protocol POP3) at Fri  5 Mar 08:16:30 2010: poll completed
+fetchmail: New UID list from ******** 1267747093.41989.mail001.apm-internet.net = 3 &lt;empty&gt;
+fetchmail: swapping UID lists
+fetchmail: normal termination, status 0
+
+Am I doing something wrong or is this a bug in fetchmail?
+
+
+Cheers,
+       Nick.
+-- 
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	
+	<LI>Next message: <A HREF="002299.html">[fetchmail-users] --nosoftbounce option no working in v6.3.14
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2298">[ date ]</a>
+              <a href="thread.html#2298">[ thread ]</a>
+              <a href="subject.html#2298">[ subject ]</a>
+              <a href="author.html#2298">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

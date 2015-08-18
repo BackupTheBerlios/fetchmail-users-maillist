@@ -1,0 +1,130 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Problem with Demon's new Exchange service and distribution lists. Can fetchmail be tested with e-mail on stdin?
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2012-May/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Problem%20with%20Demon%27s%20new%20Exchange%20service%20and%0A%20distribution%20lists.%20Can%20fetchmail%20be%20tested%20with%20e-mail%20on%20stdin%3F&In-Reply-To=%3C4FC5107D.1090205%40gmx.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003142.html">
+   <LINK REL="Next"  HREF="003144.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Problem with Demon's new Exchange service and distribution lists. Can fetchmail be tested with e-mail on stdin?</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Problem%20with%20Demon%27s%20new%20Exchange%20service%20and%0A%20distribution%20lists.%20Can%20fetchmail%20be%20tested%20with%20e-mail%20on%20stdin%3F&In-Reply-To=%3C4FC5107D.1090205%40gmx.de%3E"
+       TITLE="[fetchmail-users] Problem with Demon's new Exchange service and distribution lists. Can fetchmail be tested with e-mail on stdin?">matthias.andree at gmx.de
+       </A><BR>
+    <I>Tue May 29 20:07:57 CEST 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003142.html">[fetchmail-users] Problem with Demon's new Exchange service and distribution lists. Can fetchmail be tested with e-mail on stdin?
+</A></li>
+        <LI>Next message: <A HREF="003144.html">[fetchmail-users] Problem with Demon's new Exchange service and distribution lists. Can fetchmail be tested with e-mail on stdin?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3143">[ date ]</a>
+              <a href="thread.html#3143">[ thread ]</a>
+              <a href="subject.html#3143">[ subject ]</a>
+              <a href="author.html#3143">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Am 29.05.2012 18:40, schrieb Stanley Dziegiel:
+&gt;<i> Hello,
+</I>&gt;<i> 
+</I>&gt;<i> Demon migrated their users to Microsoft Exchange earlier this
+</I>&gt;<i> month and after reconfiguring /etc/fetchmailrc it is distributing
+</I>&gt;<i> all mail correctly apart from that sent to mailing lists e.g.
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">opensuse-secuity-announce at opensuse.org.</A>
+</I>&gt;<i> 
+</I>&gt;<i> I believe that I have finally got /etc/fetchmailrc correct but I cannot
+</I>&gt;<i> prove it yet as the distribution lists that I subscribe to only send
+</I>&gt;<i> mail infrequently so I am looking for a way to simulate such e-mails.
+</I>
+You have configured multidrop, meaning that you may (that depends on
+Demon's configuration that I do not know) receive mail for multiple
+users in your sub-domain through the same mailbox.
+
+Given the localdomains setting, fetchmail will take the local part of
+the destination address and assume that the user exists locally.
+
+Is that what you are doing?  Then you may need to add an &quot;envelope&quot;
+option, on the provision that Demon retains the envelope destination
+address.
+
+For details, I'd either need to see their documentation (if available to
+non-customers), or the unchanged headers as fetched from such an account.
+
+&gt;<i> As part of the Demon 'upgrade' all e-mails get the mail headers rewritten
+</I>&gt;<i> to <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">administrator at hostname.demon.co.uk</A> before being stored in Exchange. The
+</I>&gt;<i> Demon FAQ suggests using their web forms to register any addresses that
+</I>&gt;<i> you don't want rewritten which I have done. However, that still leaves
+</I>&gt;<i> mailing lists broken.
+</I>
+What headers exactly are rewritten?
+
+Is the original envelope retained in headers such as &quot;X-Delivered-To&quot;,
+&quot;X-Original-To&quot;, &quot;Envelope-To:&quot; or similar?
+
+Is the original envelope, if retained, rewritten to <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">administrator at ...</A> too?
+
+&gt;<i> What I want to be able to do:
+</I>&gt;<i> 
+</I>&gt;<i> is to take a 'failing' dlist e-mail and replay it through fetchmail to
+</I>&gt;<i> prove that mail to lists will work with the new fetchmailrc file. I am
+</I>&gt;<i> happy that the POP conversation has worked as all such e-mails end up
+</I>&gt;<i> in /var/mail/fetchmail. What I want to test is that I have configured
+</I>&gt;<i> /etc/fetchmailrc correctly.
+</I>
+Many mailing lists have an address that sends help texts back, and you
+get that by sending a message with &quot;help&quot; in the subject (without the
+quotes), and help as first and only line of the body to the -request
+address, such as fetchmail-users-request at lists.berlios.de. (replace
+the at).
+
+&gt;<i> I have read the FAQ but cannot see a way to replay a message in order to
+</I>&gt;<i> test configuration changes.
+</I>
+That is because fetchmail alone cannot achieve that, and I do not want
+to encourage people to randomly try around and possibly send dozens of
+test messages to the list post address when they goof up.
+
+The only recourse is to generate such mail - possibly with an IMAP
+client that just copies the message you want to test to your INBOX
+folder, else by sending such a test mail. Some clients (mutt, or
+Thunderbird with Add-Ons) can &quot;bounce&quot; instead of &quot;forward&quot; a message -
+if you bounce that to those of your Demon addresses that will receive
+list mail, it might get close enough.
+
+Best
+Matthias
+</PRE>
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003142.html">[fetchmail-users] Problem with Demon's new Exchange service and distribution lists. Can fetchmail be tested with e-mail on stdin?
+</A></li>
+	<LI>Next message: <A HREF="003144.html">[fetchmail-users] Problem with Demon's new Exchange service and distribution lists. Can fetchmail be tested with e-mail on stdin?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3143">[ date ]</a>
+              <a href="thread.html#3143">[ thread ]</a>
+              <a href="subject.html#3143">[ subject ]</a>
+              <a href="author.html#3143">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

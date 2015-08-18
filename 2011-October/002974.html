@@ -1,0 +1,181 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] fetchmail-users Digest, Vol 63, Issue 10
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2011-October/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail-users%20Digest%2C%20Vol%2063%2C%20Issue%2010&In-Reply-To=%3CCOL120-W50CDD1C597EEAB7B1FECACB3E40%40phx.gbl%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002978.html">
+   <LINK REL="Next"  HREF="002975.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] fetchmail-users Digest, Vol 63, Issue 10</H1>
+    <B>Ed Hochman</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail-users%20Digest%2C%20Vol%2063%2C%20Issue%2010&In-Reply-To=%3CCOL120-W50CDD1C597EEAB7B1FECACB3E40%40phx.gbl%3E"
+       TITLE="[fetchmail-users] fetchmail-users Digest, Vol 63, Issue 10">charleschat at hotmail.com
+       </A><BR>
+    <I>Mon Oct 17 02:38:25 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002978.html">[fetchmail-users] unable to get local issuer certificate
+</A></li>
+        <LI>Next message: <A HREF="002975.html">[fetchmail-users] fetchmail-users Digest, Vol 63, Issue 10
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2974">[ date ]</a>
+              <a href="thread.html#2974">[ thread ]</a>
+              <a href="subject.html#2974">[ subject ]</a>
+              <a href="author.html#2974">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>
+Thank you Peter.  I think you're on to something though I don't fully understand it.
+
+This is interesting.  I did a traceroute.  
+
+It turns out that within the LAN pop.&lt;mydomain&gt;.com resolves to darthmaul.tchmachines.com (208.76.82.67).
+
+Outside of the LAN and via a different ISP the same resolves to mail-01.name-services.com (69.64.155.193).
+
+The later is correct.  But the former seems to work some of the time.  It generally does respond to the fetchmail request.  It just usually fails to authenticate.
+
+If the former is a correct alternative server; how come it usually doesn't recognize my passwords?
+
+That's the part I don't understand.
+
+Thanks
+
+Ed
+
+
+
+
+&gt;<i> From: <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">fetchmail-users-request at lists.berlios.de</A>
+</I>&gt;<i> Subject: fetchmail-users Digest, Vol 63, Issue 10
+</I>&gt;<i> To: <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">fetchmail-users at lists.berlios.de</A>
+</I>&gt;<i> Date: Sat, 15 Oct 2011 12:00:02 +0200
+</I>&gt;<i> 
+</I>&gt;<i> Send fetchmail-users mailing list submissions to
+</I>&gt;<i> 	<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">fetchmail-users at lists.berlios.de</A>
+</I>&gt;<i> 
+</I>&gt;<i> To subscribe or unsubscribe via the World Wide Web, visit
+</I>&gt;<i> 	<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">https://lists.berlios.de/mailman/listinfo/fetchmail-users</A>
+</I>&gt;<i> or, via email, send a message with subject or body 'help' to
+</I>&gt;<i> 	<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">fetchmail-users-request at lists.berlios.de</A>
+</I>&gt;<i> 
+</I>&gt;<i> You can reach the person managing the list at
+</I>&gt;<i> 	<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">fetchmail-users-owner at lists.berlios.de</A>
+</I>&gt;<i> 
+</I>&gt;<i> When replying, please edit your Subject line so it is more specific
+</I>&gt;<i> than &quot;Re: Contents of fetchmail-users digest...&quot;
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> Today's Topics:
+</I>&gt;<i> 
+</I>&gt;<i>    1. Re: Very frequent AUTHFAILs (Peter Pentchev)
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> ----------------------------------------------------------------------
+</I>&gt;<i> 
+</I>&gt;<i> Message: 1
+</I>&gt;<i> Date: Sat, 15 Oct 2011 03:41:47 +0300
+</I>&gt;<i> From: Peter Pentchev &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">roam at ringlet.net</A>&gt;
+</I>&gt;<i> To: Rob MacGregor &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">rob.macgregor at gmail.com</A>&gt;
+</I>&gt;<i> Cc: Ed Hochman &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">charleschat at hotmail.com</A>&gt;,
+</I>&gt;<i> 	<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">fetchmail-users at lists.berlios.de</A>
+</I>&gt;<i> Subject: Re: [fetchmail-users] Very frequent AUTHFAILs
+</I>&gt;<i> Message-ID: &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">20111015004147.GA11053 at straylight.m.ringlet.net</A>&gt;
+</I>&gt;<i> Content-Type: text/plain; charset=utf-8
+</I>&gt;<i> 
+</I>&gt;<i> On Fri, Oct 14, 2011 at 06:55:55AM +0100, Rob MacGregor wrote:
+</I>&gt;<i> &gt; On Fri, Oct 14, 2011 at 02:06, Ed Hochman &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">charleschat at hotmail.com</A>&gt; wrote:
+</I>&gt;<i> &gt; &gt;
+</I>&gt;<i> &gt; &gt; Here's a bit more info.
+</I>&gt;<i> &gt; &gt;
+</I>&gt;<i> &gt; &gt; I discovered that Outlook exhibits the same problem ONLY when run from within the LAN.
+</I>&gt;<i> &gt; &gt;
+</I>&gt;<i> &gt; &gt; It makes the connection to the mail provider but doesn't authorize.
+</I>&gt;<i> &gt; &gt;
+</I>&gt;<i> &gt; &gt; When run from outside the LAN, it works.
+</I>&gt;<i> &gt; &gt;
+</I>&gt;<i> &gt; &gt; So what could be going on.
+</I>&gt;<i> &gt; &gt;
+</I>&gt;<i> &gt; &gt; It doesn't appear to be a firewall issue. ?In fact I dropped the firewall in order to test. ?Same result.
+</I>&gt;<i> &gt; &gt;
+</I>&gt;<i> &gt; &gt; If it's ?communication issue as Rob suggested; it's a very strange one. ?It consistently connects and pretty consistently fails to authorize.
+</I>&gt;<i> &gt; &gt;
+</I>&gt;<i> &gt; &gt; I'm lost!
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; That narrows the problem down considerably. It suggests that the
+</I>&gt;<i> &gt; problem lies between your LAN and the mail provider. It could be:
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; a) Your modem/router (some, like Cisco, are known to interfere in
+</I>&gt;<i> &gt; certain protocols)
+</I>&gt;<i> &gt; b) Your ISP
+</I>&gt;<i> &gt; c) Their connectivity
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; If you can try from another connection using your ISP, but a different
+</I>&gt;<i> &gt; modem/router, it will help.
+</I>&gt;<i> 
+</I>&gt;<i> There's also another option - if, as already suggested, &quot;pop&quot; in this
+</I>&gt;<i> case is a server farm, it is possible that they do some &quot;clever&quot; tricks
+</I>&gt;<i> with DNS views, too.
+</I>&gt;<i> 
+</I>&gt;<i> Ed, could you try several times - and, it would be best, over several
+</I>&gt;<i> hours or even days - to simply ping pop.homapump.com from your LAN and
+</I>&gt;<i> see what IP addresses it returns, then do the same from outside the
+</I>&gt;<i> network.  If it turns out that the IP address sets are different, this
+</I>&gt;<i> could still mean problems at their side - a clever trick that was
+</I>&gt;<i> somehow not done quite right and bit back.
+</I>&gt;<i> 
+</I>&gt;<i> G'luck,
+</I>&gt;<i> Peter
+</I>&gt;<i> 
+</I>&gt;<i> -- 
+</I>&gt;<i> Peter Pentchev	<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">roam at ringlet.net</A> <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">roam at FreeBSD.org</A> <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">peter at packetscale.com</A>
+</I>&gt;<i> PGP key:	<A HREF="http://people.FreeBSD.org/~roam/roam.key.asc">http://people.FreeBSD.org/~roam/roam.key.asc</A>
+</I>&gt;<i> Key fingerprint	FDBA FD79 C26F 3C51 C95E  DF9E ED18 B68D 1619 4553
+</I>&gt;<i> Nostalgia ain't what it used to be.
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> ------------------------------
+</I>&gt;<i> 
+</I>&gt;<i> _______________________________________________
+</I>&gt;<i> fetchmail-users mailing list
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">fetchmail-users at lists.berlios.de</A>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">https://lists.berlios.de/mailman/listinfo/fetchmail-users</A>
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> End of fetchmail-users Digest, Vol 63, Issue 10
+</I>&gt;<i> ***********************************************
+</I> 		 	   		  
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002978.html">[fetchmail-users] unable to get local issuer certificate
+</A></li>
+	<LI>Next message: <A HREF="002975.html">[fetchmail-users] fetchmail-users Digest, Vol 63, Issue 10
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2974">[ date ]</a>
+              <a href="thread.html#2974">[ thread ]</a>
+              <a href="subject.html#2974">[ subject ]</a>
+              <a href="author.html#2974">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

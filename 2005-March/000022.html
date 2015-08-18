@@ -1,0 +1,114 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] bouncing mail
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2005-March/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20bouncing%20mail&In-Reply-To=%3C953c12597790de073bae49ea6ecefdeb%40apple.mk.ua%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000023.html">
+   
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] bouncing mail</H1>
+    <B>Alexander S. Suslov</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20bouncing%20mail&In-Reply-To=%3C953c12597790de073bae49ea6ecefdeb%40apple.mk.ua%3E"
+       TITLE="[fetchmail-users] bouncing mail">salex at apple.mk.ua
+       </A><BR>
+    <I>Sat Mar  5 21:07:38 CET 2005</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000023.html">[fetchmail-users] Re: fetchmail only skipping seen messages when there are no unseen ones on imap
+</A></li>
+        
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#22">[ date ]</a>
+              <a href="thread.html#22">[ thread ]</a>
+              <a href="subject.html#22">[ subject ]</a>
+              <a href="author.html#22">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+I use fetchmail to get mail from multidrop mailbox at  ISP
+users have different e-mail and local adresses and i map them in 
+.fetchmailrc
+All mail that have adresees not listed in the map and don't exist on 
+the local mailserver are forwarded to postmaster
+is it possible to bounce it to the senders?
+there is no &quot;set no bouncemail&quot; option in my .fetchmailrc
+
+1) Version of fetchmail
+This is fetchmail release 6.2.5+POP2+RPA+SDPS+SSL+OPIE+INET6+NLS
+
+2) Contents of .fetchmailrc (passwords/usernames masked)
+
+poll 213.186.112.2 proto imap aka lactalis.com.ua:
+envelope &quot;X-Real-To:&quot;
+user USER with pass PASS to
+'1c'='<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">1c at mizar.lactalis.com.ua</A>'
+'Alain.Magnan'='<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">AMagnan at mizar.lactalis.com.ua</A>'
+'Alexandr.Kiselev'='<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">AKiselev at mizar.lactalis.com.ua</A>'
+'Alexandr.Kovalev'='<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">AKovalev at mizar.lactalis.com.ua</A>'
+'Alexandr.Mudrov'='<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">AMudrov at mizar.lactalis.com.ua</A>'
+here
+
+3) Output of &quot;fetchmail -v -v&quot; showing the problem
+
+Mar  5 10:44:45 mizar fetchmail[23443]: IMAP&gt; A0007 FETCH 1 RFC822.SIZE
+Mar  5 10:44:45 mizar fetchmail[23443]: IMAP&lt; * 1 FETCH (RFC822.SIZE 
+1201)
+Mar  5 10:44:45 mizar fetchmail[23443]: IMAP&lt; A0007 OK completed
+Mar  5 10:44:45 mizar fetchmail[23443]: IMAP&gt; A0008 FETCH 1 
+RFC822.HEADER
+Mar  5 10:44:45 mizar fetchmail[23443]: IMAP&lt; * 1 FETCH (RFC822.HEADER 
+{1192}
+Mar  5 10:44:45 mizar fetchmail[23443]: reading message 
+<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">USER at 213.186.112.2</A>:1 of 1 (1192 header octets)
+Mar  5 10:44:45 mizar fetchmail[23443]: About to rewrite Return-Path: 
+&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">salex at apple.mk.ua</A>&gt;^M Rewritten version is Return-Path: 
+&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">salex at apple.mk.ua</A>&gt;^M
+Mar  5 10:44:45 mizar fetchmail[23443]: About to rewrite To: 
+<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">asdasasdas at lactalis.com.ua</A>^M Rewritten version is To: 
+<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">asdasasdas at lactalis.com.ua</A>^M
+Mar  5 10:44:45 mizar fetchmail[23443]: About to rewrite From: 
+&quot;Alexander S. Suslov&quot; &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">salex at apple.mk.ua</A>&gt;^M Rewritten version is From: 
+&quot;Alexander S. Suslov&quot; &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">salex at apple.mk.ua</A>&gt;^M
+Mar  5 10:44:45 mizar fetchmail[23443]: no local matches, forwarding to 
+postmaster
+Mar  5 10:44:45 mizar fetchmail[23443]: SMTP&lt; 220 mizar.lactalis.com.ua 
+ESMTP Sendmail 8.12.10/8.12.10; Sat, 5 Mar 2005 10:44:45 +0200 (EET)
+Mar  5 10:44:45 mizar fetchmail[23443]: SMTP&gt; EHLO localhost
+
+weeling for help
+Alexander Suslov
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000023.html">[fetchmail-users] Re: fetchmail only skipping seen messages when there are no unseen ones on imap
+</A></li>
+	
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#22">[ date ]</a>
+              <a href="thread.html#22">[ thread ]</a>
+              <a href="subject.html#22">[ subject ]</a>
+              <a href="author.html#22">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

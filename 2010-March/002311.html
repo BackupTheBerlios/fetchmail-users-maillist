@@ -1,0 +1,173 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Not flushed
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2010-March/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Not%20flushed&In-Reply-To=%3C20100312221146.GA14528%40merlin.emma.line.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002309.html">
+   <LINK REL="Next"  HREF="002303.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Not flushed</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Not%20flushed&In-Reply-To=%3C20100312221146.GA14528%40merlin.emma.line.org%3E"
+       TITLE="[fetchmail-users] Not flushed">matthias.andree at gmx.de
+       </A><BR>
+    <I>Fri Mar 12 23:11:46 CET 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002309.html">[fetchmail-users] Not flushed
+</A></li>
+        <LI>Next message: <A HREF="002303.html">[fetchmail-users] Progress on MAPI
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2311">[ date ]</a>
+              <a href="thread.html#2311">[ thread ]</a>
+              <a href="subject.html#2311">[ subject ]</a>
+              <a href="author.html#2311">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Simon Williams wrote, on 2010-03-11
+(I'm quoting from two messages here):
+
+&gt;<i> I finally got round to checking today, and as I suspected there are
+</I>&gt;<i> 80 old mails (all read) dating back to before I setup fetchmail. The
+</I>&gt;<i> man page says (in the documentation for --all) that &quot;the  default is
+</I>&gt;<i> to fetch only messages the server has not marked seen&quot;. Is &quot;seen&quot;
+</I>&gt;<i> the same as &quot;read&quot;? Or is there some extra magic involved?
+</I>
+No magic.
+
+&gt;<i> I ask because I'm sure that fetchmail has retrieved &quot;read&quot; mail
+</I>&gt;<i> before. There must have been more than 80 emails in the box when I
+</I>&gt;<i> started using fetchmail. Also, I just did a quick test- I used the
+</I>&gt;<i> gmail interface to mark a message as &quot;read&quot; and then ran fetchmail.
+</I>&gt;<i> It got downloaded. Why?
+</I>
+Because you appear to be using POP3 and there fetchmail is supposed to
+track &quot;read&quot; by itself. However, as you discovered, that doesn't always
+work.
+
+&gt;<i> Are there extra rules for downloading that I'm missing? Maybe
+</I>&gt;<i> something based on dates?
+</I>
+None unless you configure them (such as message size limits).
+
+&gt;<i> Also, am I correct in thinking that there is no way of pushing these
+</I>&gt;<i> messages through fetchmail without them appearing as unread in the
+</I>&gt;<i> users mailbox?
+</I>
+Yes you are.  Technically, they are &quot;new&quot; messages, and there is no
+standard way that fetchmail could tell through an MDA or SMTP or LMTP
+server that it should stuff a &quot;read&quot; message into the mailbox.
+
+&gt;<i> Upon reviewing the information I spotted the LAST command. I'm
+</I>&gt;<i> actually downloading from 2 accounts: GMail and Yahoo. GMail doesn't
+</I>&gt;<i> support LAST, so it goes on to UIDL (which fetchmail stores in
+</I>&gt;<i> .fetchmailids). Yahoo supports both, but fetchmail just uses LAST.
+</I>&gt;<i> Why is LAST used in preference to UIDL? Everything I read says it's
+</I>&gt;<i> deprecated and a bad idea.
+</I>
+Because when we (meaning Rob, Graham, Sunil and yours truly) took over
+fetchmail 6.2.5 and I was polishing it for 6.3.0 that had dozens
+(literally) of bug fixes, I wanted it to be reasonably compatible to
+6.2.5, so that nobody had weird excuses not to upgrade and ask for 6.2.X
+releases. This meant 6.3.X would have to carry on using &quot;LAST&quot;.
+
+Beyond that, &quot;UIDL&quot; doesn't scale in fetchmail if you have really full
+mailboxes (thousands of messages kept) because the algorithms are
+O(n^2) complexity (meaning that 10 times the messages, 100 times the
+execution time).
+
+Luckily CPUs have become quite fast, and I tweaked the implementation a
+bit (without going for the major changes in data structures that would
+allow far greater speedups), so it's barely noticeable today.
+
+&gt;<i> I guess I've answered one of my questions myself. &quot;Seen&quot; in the
+</I>&gt;<i> documentation is not the same as &quot;read&quot;. Perhaps the docs could be
+</I>
+It might appear to be used inconsistently, but I consider these
+synonym(ou)s.
+
+&gt;<i> updated to clarify this. That said, in my understanding, if LAST is
+</I>&gt;<i> used, &quot;seen&quot; is by any POP client, so fetchmail may never have seen
+</I>&gt;<i> it. This seems undesirable.
+</I>
+I concur. I'd guess that fetchmail 7.0 (much later, not even started)
+would remove support for LAST altogether, have a quicker UIDL code and
+also support UID on IMAP servers (it currently doesn't, but unlike POP3,
+IMAP has a notion of if a message is &quot;\Seen&quot; or not).
+
+&gt;<i> The remaining question is how did it get into this state? Fetchmail
+</I>&gt;<i> is the only POP client that has ever been used on either of these
+</I>&gt;<i> accounts.
+</I>
+&quot;LAST&quot; is whatever the server feels like presenting. I'd suggest to
+check the &quot;uidl&quot; option (in the rcfile) or --uidl on the command line.
+More on state below.
+
+&gt;<i> Surely it should have downloaded and deleted these
+</I>&gt;<i> messages? I haven't been able to find any of these messages in the
+</I>&gt;<i> IMAP store, so I'm assuming that none of them were ever added,
+</I>&gt;<i> though it is possible that the users deleted them all. How likely is
+</I>&gt;<i> it that these are duplicates caused by something like fetchmail
+</I>&gt;<i> being killed for example?
+</I>
+Quite possible, especially &quot;not flushed&quot; symptoms can happen in such
+situations.
+
+Fetchmail will do this for each message:
+
+1. if the message was unseen, retrieve it and pass it to SMTP/LMTP/MDA.
+
+2. if not running with &quot;--keep&quot;, send a delete request for the message
+   /JUST RETRIEVED/. This doesn't become effective before fetchmail
+   sends &quot;QUIT&quot; (unless the server violates the POP3 standards, which
+   some are known to do in an ill-advised ISP attempt to prevent users
+   from keeping messages on the server).
+
+Now, if fetchmail, or the POP3 connection, gets interrupted before the
+server has received and processed the &quot;QUIT&quot;, the message is skipped.
+
+You CAN have fetchmail delete seen messages from the server with
+--flush, but use with caution, and never without --uidl.
+
+
+For purposes of tracking &quot;Seen&quot; flags and thereabouts on IMAP servers,
+consider offlineimap or imapsync for now. I have used neither, but have
+read reports that they both serve their advertised purpose.
+
+HTH
+Matthias
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002309.html">[fetchmail-users] Not flushed
+</A></li>
+	<LI>Next message: <A HREF="002303.html">[fetchmail-users] Progress on MAPI
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2311">[ date ]</a>
+              <a href="thread.html#2311">[ thread ]</a>
+              <a href="subject.html#2311">[ subject ]</a>
+              <a href="author.html#2311">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

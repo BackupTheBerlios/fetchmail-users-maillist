@@ -1,0 +1,311 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] fetchmail, fetchnews can't get thru router
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2008-August/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%2C%20fetchnews%20can%27t%20get%20thru%20router&In-Reply-To=%3C20080804122727.GC7128%40krille.blacktrash.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001647.html">
+   <LINK REL="Next"  HREF="001649.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] fetchmail, fetchnews can't get thru router</H1>
+    <B>Christian Ebert</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%2C%20fetchnews%20can%27t%20get%20thru%20router&In-Reply-To=%3C20080804122727.GC7128%40krille.blacktrash.org%3E"
+       TITLE="[fetchmail-users] fetchmail, fetchnews can't get thru router">blacktrash at gmx.net
+       </A><BR>
+    <I>Mon Aug  4 14:27:27 CEST 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001647.html">[fetchmail-users] Delivering mails to more users
+</A></li>
+        <LI>Next message: <A HREF="001649.html">[fetchmail-users] fetchmail, fetchnews can't get thru router
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1648">[ date ]</a>
+              <a href="thread.html#1648">[ thread ]</a>
+              <a href="subject.html#1648">[ subject ]</a>
+              <a href="author.html#1648">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hello,
+
+I apologize in advance for this probably being off topic, and the
+cross-post, but I am desperate for some kind of help: pointers to
+docs etc.
+
+The problem:
+
+I changed my internet access at home from dsl to vdsl, and am now
+connected via a router (Speedport W 701v). Everything works fine
+except fetchmail and fetchnews -- they just hang. Even smtp (via
+msmtp) works, also ssh, jabber, irc (both also via ssl) etc.
+
+The config at the of this mail works perfectly when I am
+connected eg. via AirPort and dsl-modem.
+
+As my provider is not exactly helpful to say the least, I am
+asking here for help with any kinds of info or experiences with
+using fetchmail and fetchnews via a router.
+
+The most annoying thing is that AppleMail *is* able to retrieve
+mail from all accounts; which led the hotline to say: well, use
+the standard mail program then ... of course there isn't any
+&quot;standard program&quot; to fetch news etc. etc. I refrain from
+ranting. This guy also said that this works for him with Linux,
+that it must be a Mac-Problem. But what kind of Mac-Problem?
+Nobody has any idea.
+
+Here's also a log of an attempt that hung a tiny bit later in 1
+instance (passwords provided by .netrc):
+
+
+fetchmail: 6.3.9-rc2 querying milestone.prossl.de (protocol IMAP) at Sun, 03 Aug 2008 12:06:23 +0200 (CEST): poll started
+fetchmail: timeout after 60 seconds waiting to connect to server milestone.prossl.de.
+fetchmail: socket error while fetching from ***@milestone.prossl.de
+No mails in /Users/chris/.msmtpqueue
+fetchmail: 6.3.9-rc2 querying milestone.prossl.de (protocol IMAP) at Sun, 03 Aug 2008 12:07:24 +0200 (CEST): poll completed
+fetchmail: Query status=2 (SOCKET)
+fetchmail: 6.3.9-rc2 querying milestone.prossl.de (protocol IMAP) at Sun, 03 Aug 2008 12:07:24 +0200 (CEST): poll started
+fetchmail: Trying to connect to 64.33.123.30/993...connected.
+fetchmail: Issuer Organization: Equifax Secure Inc.
+fetchmail: Issuer CommonName: Equifax Secure Global eBusiness CA-1
+fetchmail: Server CommonName: *.prossl.de
+fetchmail: milestone.prossl.de key fingerprint: 26:FE:E1:F1:FA:44:85:86:23:C7:CC:29:B9:F6:5C:70
+fetchmail: IMAP&lt; * OK [CAPABILITY IMAP4REV1 LITERAL+ SASL-IR LOGIN-REFERRALS AUTH=PLAIN AUTH=LOGIN] [64.33.123.30] IMAP4rev1 2007.398 at Sun, 3 Aug 2008 12:07:57 +0200 (CEST)
+fetchmail: IMAP&gt; A0001 CAPABILITY
+fetchmail: IMAP&lt; * CAPABILITY IMAP4REV1 LITERAL+ IDLE UIDPLUS NAMESPACE CHILDREN MAILBOX-REFERRALS BINARY UNSELECT ESEARCH WITHIN SCAN SORT THREAD=REFERENCES THREAD=ORDEREDSUBJECT MULTIAPPEND SASL-IR LOGIN-REFERRALS AUTH=PLAIN AUTH=LOGIN
+fetchmail: IMAP&lt; A0001 OK CAPABILITY completed
+fetchmail: Protocol identified as IMAP4 rev 1
+fetchmail: IMAP&gt; A0002 LOGIN &quot;bodown&quot; *
+fetchmail: IMAP&lt; A0002 OK [CAPABILITY IMAP4REV1 LITERAL+ IDLE UIDPLUS NAMESPACE CHILDREN MAILBOX-REFERRALS BINARY UNSELECT ESEARCH WITHIN SCAN SORT THREAD=REFERENCES THREAD=ORDEREDSUBJECT MULTIAPPEND] User bodown authenticated
+fetchmail: selecting or re-polling default folder
+fetchmail: IMAP&gt; A0003 SELECT &quot;INBOX&quot;
+fetchmail: IMAP&lt; * 8 EXISTS
+fetchmail: IMAP&lt; * 8 RECENT
+fetchmail: IMAP&lt; * OK [UIDVALIDITY 1177403421] UID validity status
+fetchmail: IMAP&lt; * OK [UIDNEXT 2316] Predicted next UID
+fetchmail: IMAP&lt; * FLAGS (\Answered \Flagged \Deleted \Draft \Seen)
+fetchmail: IMAP&lt; * OK [PERMANENTFLAGS (\* \Answered \Flagged \Deleted \Draft \Seen)] Permanent flags
+fetchmail: IMAP&lt; * OK [UNSEEN 1] first unseen message in /var/spool/mail/bodown
+fetchmail: IMAP&lt; A0003 OK [READ-WRITE] SELECT completed
+fetchmail: 8 messages waiting after first poll
+fetchmail: IMAP&gt; A0004 EXPUNGE
+fetchmail: IMAP&lt; A0004 OK No messages deleted, so no update needed
+fetchmail: 8 messages waiting after expunge
+fetchmail: 8 messages for bodown at milestone.prossl.de.
+fetchmail: IMAP&gt; A0005 FETCH 1:8 RFC822.SIZE
+fetchmail: IMAP&lt; * 1 FETCH (RFC822.SIZE 3343)
+fetchmail: IMAP&lt; * 2 FETCH (RFC822.SIZE 1810)
+fetchmail: IMAP&lt; * 3 FETCH (RFC822.SIZE 2970)
+fetchmail: IMAP&lt; * 4 FETCH (RFC822.SIZE 2516)
+fetchmail: IMAP&lt; * 5 FETCH (RFC822.SIZE 6661)
+fetchmail: IMAP&lt; * 6 FETCH (RFC822.SIZE 960)
+fetchmail: IMAP&lt; * 7 FETCH (RFC822.SIZE 17150)
+fetchmail: IMAP&lt; * 8 FETCH (RFC822.SIZE 2337)
+fetchmail: IMAP&lt; A0005 OK FETCH completed
+fetchmail: IMAP&gt; A0006 FETCH 1 RFC822.HEADER
+fetchmail: IMAP&lt; * 1 FETCH (RFC822.HEADER {909}
+fetchmail: reading message ***@milestone.prossl.de:1 of 8 (909 header octets)
+fetchmail: About to rewrite Return-Path: &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">torel1 at trinidadrancheria.com</A>&gt;
+Rewritten version is Return-Path: &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">torel1 at trinidadrancheria.com</A>&gt;
+
+fetchmail: About to rewrite From: &quot;Brianna Francis&quot; &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">torel1 at trinidadrancheria.com</A>&gt;
+Rewritten version is From: &quot;Brianna Francis&quot; &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">torel1 at trinidadrancheria.com</A>&gt;
+
+fetchmail: About to rewrite To: &lt;***@blacktrash.org&gt;
+Rewritten version is To: &lt;***@blacktrash.org&gt;
+
+fetchmail: timeout after 60 seconds waiting for listener to respond.
+fetchmail: socket error while fetching from ***@milestone.prossl.de and delivering to SMTP host krille
+fetchmail: 6.3.9-rc2 querying milestone.prossl.de (protocol IMAP) at Sun, 03 Aug 2008 12:08:59 +0200 (CEST): poll completed
+fetchmail: Query status=2 (SOCKET)
+fetchmail: 6.3.9-rc2 querying milestone.prossl.de (protocol IMAP) at Sun, 03 Aug 2008 12:08:59 +0200 (CEST): poll started
+fetchmail: timeout after 60 seconds waiting to connect to server milestone.prossl.de.
+fetchmail: socket error while fetching from ***@milestone.prossl.de
+fetchmail: 6.3.9-rc2 querying milestone.prossl.de (protocol IMAP) at Sun, 03 Aug 2008 12:09:59 +0200 (CEST): poll completed
+fetchmail: Query status=2 (SOCKET)
+fetchmail: 6.3.9-rc2 querying imap.gmx.net (protocol IMAP) at Sun, 03 Aug 2008 12:09:59 +0200 (CEST): poll started
+fetchmail: timeout after 60 seconds waiting to connect to server imap.gmx.net.
+fetchmail: socket error while fetching from ***@imap.gmx.net
+fetchmail: 6.3.9-rc2 querying imap.gmx.net (protocol IMAP) at Sun, 03 Aug 2008 12:11:00 +0200 (CEST): poll completed
+fetchmail: Query status=2 (SOCKET)
+fetchmail: normal termination, status 2
+
+
+Again, I am sorry to spam the lists with this, my despair is my
+only excuse ;) Feel free to also answer via pm, unfortunately
+I'll probably not be able to respond before tomorrow due to this
+issue.
+
+TIA
+
+c
+
+$ leafnode-version
+version: leafnode-2.0.0.alpha20080624a
+current machine: Darwin krille.blacktrash.org 8.11.0 Darwin Kernel Version 8.11.0: Wed Oct 10 18:26:00 PDT 2007; root:xnu-792.24.17~1/RELEASE_PPC Power Macintosh powerpc
+bindir: /usr/local/bin
+sysconfdir: /usr/local/etc/leafnode
+default spooldir: /usr/local/var/spool/news
+IPv6: yes
+default MTA: /usr/sbin/sendmail
+pcre version: 7.6 2008-01-28
+$ fetchmail -V
+This is fetchmail release 6.3.9-rc2+SSL.
+
+Copyright (C) 2002, 2003 Eric S. Raymond
+Copyright (C) 2004 Matthias Andree, Eric S. Raymond, Robert M. Funk, Graham Wilson
+Copyright (C) 2005 - 2006 Sunil Shetye
+Copyright (C) 2005 - 2008 Matthias Andree
+Fetchmail comes with ABSOLUTELY NO WARRANTY. This is free software, and you
+are welcome to redistribute it under certain conditions. For details,
+please see the file COPYING in the source or documentation directory.
+
+Fallback MDA: (none)
+Darwin krille.blacktrash.org 8.11.0 Darwin Kernel Version 8.11.0: Wed Oct 10 18:26:00 PDT 2007; root:xnu-792.24.17~1/RELEASE_PPC Power Macintosh powerpc
+Taking options from command line and /Users/chris/.fetchmailrc
+Idfile is /Users/chris/.fetchids
+Fetchmail will show progress dots even in logfiles.
+Fetchmail will forward misaddressed multidrop messages to chris.
+Options for retrieving from ***@milestone.prossl.de:
+  True name of server is milestone.prossl.de.
+  Protocol is IMAP.
+  Password authentication will be forced.
+  SSL encrypted sessions enabled.
+  SSL server certificate checking enabled.
+  Server nonresponse timeout is 60 seconds.
+  Default mailbox selected.
+  All messages will be retrieved (--all on).
+  Fetched messages will not be kept on the server (--keep off).
+  Old messages will not be flushed before message retrieval (--flush off).
+  Oversized messages will not be flushed before message retrieval (--limitflush off).
+  Rewrite of server-local addresses is enabled (--norewrite off).
+  Carriage-return stripping is disabled (stripcr off).
+  Carriage-return forcing is disabled (forcecr off).
+  Interpretation of Content-Transfer-Encoding is enabled (pass8bits off).
+  MIME decoding is disabled (mimedecode off).
+  Idle after poll is disabled (idle off).
+  Nonempty Status lines will be kept (dropstatus off)
+  Delivered-To lines will be kept (dropdelivered off)
+  Fetch message size limit is 100 (--fetchsizelimit 100).
+  Do binary search of UIDs during 3 out of 4 polls (--fastuidl 4).
+  Messages will be SMTP-forwarded to: krille
+  Server connection will be brought up with &quot;/Users/chris/Shell/mailcheck.sh&quot;.
+  Server connection will be taken down with &quot;/usr/local/bin/msmtp-runqueue.sh&quot;.
+  Single-drop mode: 1 local name recognized.
+  No UIDs saved from this host.
+Options for retrieving from ***@milestone.prossl.de:
+  True name of server is milestone.prossl.de.
+  Protocol is IMAP.
+  Password authentication will be forced.
+  SSL encrypted sessions enabled.
+  SSL server certificate checking enabled.
+  Server nonresponse timeout is 60 seconds.
+  Default mailbox selected.
+  All messages will be retrieved (--all on).
+  Fetched messages will not be kept on the server (--keep off).
+  Old messages will not be flushed before message retrieval (--flush off).
+  Oversized messages will not be flushed before message retrieval (--limitflush off).
+  Rewrite of server-local addresses is enabled (--norewrite off).
+  Carriage-return stripping is disabled (stripcr off).
+  Carriage-return forcing is disabled (forcecr off).
+  Interpretation of Content-Transfer-Encoding is enabled (pass8bits off).
+  MIME decoding is disabled (mimedecode off).
+  Idle after poll is disabled (idle off).
+  Nonempty Status lines will be kept (dropstatus off)
+  Delivered-To lines will be kept (dropdelivered off)
+  Fetch message size limit is 100 (--fetchsizelimit 100).
+  Do binary search of UIDs during 3 out of 4 polls (--fastuidl 4).
+  Messages will be SMTP-forwarded to: krille
+  Server connection will be brought up with &quot;/Users/chris/Shell/mailcheck.sh&quot;.
+  Single-drop mode: 1 local name recognized.
+  No UIDs saved from this host.
+Options for retrieving from ***@milestone.prossl.de:
+  True name of server is milestone.prossl.de.
+  Protocol is IMAP.
+  Password authentication will be forced.
+  SSL encrypted sessions enabled.
+  SSL server certificate checking enabled.
+  Server nonresponse timeout is 60 seconds.
+  Default mailbox selected.
+  All messages will be retrieved (--all on).
+  Fetched messages will not be kept on the server (--keep off).
+  Old messages will not be flushed before message retrieval (--flush off).
+  Oversized messages will not be flushed before message retrieval (--limitflush off).
+  Rewrite of server-local addresses is enabled (--norewrite off).
+  Carriage-return stripping is disabled (stripcr off).
+  Carriage-return forcing is disabled (forcecr off).
+  Interpretation of Content-Transfer-Encoding is enabled (pass8bits off).
+  MIME decoding is disabled (mimedecode off).
+  Idle after poll is disabled (idle off).
+  Nonempty Status lines will be kept (dropstatus off)
+  Delivered-To lines will be kept (dropdelivered off)
+  Fetch message size limit is 100 (--fetchsizelimit 100).
+  Do binary search of UIDs during 3 out of 4 polls (--fastuidl 4).
+  Messages will be SMTP-forwarded to: krille
+  Server connection will be brought up with &quot;/Users/chris/Shell/mailcheck.sh&quot;.
+  Single-drop mode: 1 local name recognized.
+  No UIDs saved from this host.
+Options for retrieving from ***@imap.gmx.net:
+  True name of server is imap.gmx.net.
+  Protocol is IMAP.
+  Password authentication will be forced.
+  SSL encrypted sessions enabled.
+  SSL server certificate checking enabled.
+  Server nonresponse timeout is 60 seconds.
+  Default mailbox selected.
+  All messages will be retrieved (--all on).
+  Fetched messages will not be kept on the server (--keep off).
+  Old messages will not be flushed before message retrieval (--flush off).
+  Oversized messages will not be flushed before message retrieval (--limitflush off).
+  Rewrite of server-local addresses is enabled (--norewrite off).
+  Carriage-return stripping is disabled (stripcr off).
+  Carriage-return forcing is disabled (forcecr off).
+  Interpretation of Content-Transfer-Encoding is enabled (pass8bits off).
+  MIME decoding is disabled (mimedecode off).
+  Idle after poll is disabled (idle off).
+  Nonempty Status lines will be kept (dropstatus off)
+  Delivered-To lines will be kept (dropdelivered off)
+  Fetch message size limit is 100 (--fetchsizelimit 100).
+  Do binary search of UIDs during 3 out of 4 polls (--fastuidl 4).
+  Messages will be SMTP-forwarded to: krille
+  Server connection will be brought up with &quot;/Users/chris/Shell/mailcheck.sh&quot;.
+  Single-drop mode: 1 local name recognized.
+  No UIDs saved from this host.
+-- 
+  Was hei&#223;t hier Dogma, ich bin Underdogma!
+[ What the hell do you mean dogma, I am underdogma. ]
+
+_F R E E_  _V I D E O S_  --&gt;&gt;  <A HREF="http://www.blacktrash.org/underdogma/">http://www.blacktrash.org/underdogma/</A>
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001647.html">[fetchmail-users] Delivering mails to more users
+</A></li>
+	<LI>Next message: <A HREF="001649.html">[fetchmail-users] fetchmail, fetchnews can't get thru router
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1648">[ date ]</a>
+              <a href="thread.html#1648">[ thread ]</a>
+              <a href="subject.html#1648">[ subject ]</a>
+              <a href="author.html#1648">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

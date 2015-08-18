@@ -1,0 +1,105 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Silencing &quot;CommonName mismatch&quot; warnings
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2009-April/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Silencing%20%22CommonName%20mismatch%22%20warnings&In-Reply-To=%3C20090426212126.GA2198%40straylight.m.ringlet.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001891.html">
+   <LINK REL="Next"  HREF="001893.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Silencing &quot;CommonName mismatch&quot; warnings</H1>
+    <B>Peter Pentchev</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Silencing%20%22CommonName%20mismatch%22%20warnings&In-Reply-To=%3C20090426212126.GA2198%40straylight.m.ringlet.net%3E"
+       TITLE="[fetchmail-users] Silencing &quot;CommonName mismatch&quot; warnings">roam at ringlet.net
+       </A><BR>
+    <I>Sun Apr 26 23:21:26 CEST 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001891.html">[fetchmail-users] Silencing &quot;CommonName mismatch&quot; warnings
+</A></li>
+        <LI>Next message: <A HREF="001893.html">[fetchmail-users] Silencing &quot;CommonName mismatch&quot; warnings
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1892">[ date ]</a>
+              <a href="thread.html#1892">[ thread ]</a>
+              <a href="subject.html#1892">[ subject ]</a>
+              <a href="author.html#1892">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Sun, Apr 26, 2009 at 11:26:19AM +0200, Andrea R. wrote:
+&gt;<i> Hello,
+</I>&gt;<i> 
+</I>&gt;<i> I have succeeded in getting fetchmail (6.3.6) to talk to a POP3+TLS
+</I>&gt;<i> mailserver that uses a self-signed certificate, by passing the
+</I>&gt;<i> &quot;sslfingerprint&quot; option.
+</I>[snip]
+&gt;<i> fetchmail: Server CommonName mismatch: localhost.localdomain != mail.***.com
+</I>[snip]
+&gt;<i> These warnings are not being suppressed by the '-s' option, which I'm
+</I>&gt;<i> already using. Is there a way to get rid of them, short of redirecting
+</I>&gt;<i> stderr to /dev/null, which would prevent me from seeing all other
+</I>&gt;<i> warnings?
+</I>
+Well, it's not just a self-signed certificate, it's a self-signed
+certificate for a... let's say, too generic a hostname :)
+
+There are two things you can do:
+
+1. Try something like:
+
+   fetchmail ... 2&gt;&amp;1 | fgrep -ve 'Server CommonName mismatch'
+
+...so that you filter out this line and this line alone.
+
+2. Talk to the people at ***.com and get them to issue another SSL
+   certificate for their server; it may still be self-signed
+   (as long as you find a way to get its fingerprint in a secure way),
+   but it really ought to be issued for CN=mail.***.com.
+
+G'luck,
+Peter
+
+-- 
+Peter Pentchev	<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">roam at ringlet.net</A>    <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">roam at space.bg</A>    <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">roam at FreeBSD.org</A>
+PGP key:	<A HREF="http://people.FreeBSD.org/~roam/roam.key.asc">http://people.FreeBSD.org/~roam/roam.key.asc</A>
+Key fingerprint	FDBA FD79 C26F 3C51 C95E  DF9E ED18 B68D 1619 4553
+This sentence contradicts itself - or rather - well, no, actually it doesn't!
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: not available
+Type: application/pgp-signature
+Size: 196 bytes
+Desc: not available
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/fetchmail-users/attachments/20090427/f702ef4e/attachment.pgp">https://lists.berlios.de/pipermail/fetchmail-users/attachments/20090427/f702ef4e/attachment.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001891.html">[fetchmail-users] Silencing &quot;CommonName mismatch&quot; warnings
+</A></li>
+	<LI>Next message: <A HREF="001893.html">[fetchmail-users] Silencing &quot;CommonName mismatch&quot; warnings
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1892">[ date ]</a>
+              <a href="thread.html#1892">[ thread ]</a>
+              <a href="subject.html#1892">[ subject ]</a>
+              <a href="author.html#1892">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

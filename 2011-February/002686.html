@@ -1,0 +1,111 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] strange polling errors
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2011-February/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20strange%20polling%20errors&In-Reply-To=%3C4D6BB051.6010808%40ericsson.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002685.html">
+   <LINK REL="Next"  HREF="002687.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] strange polling errors</H1>
+    <B>Jonathan Buschmann</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20strange%20polling%20errors&In-Reply-To=%3C4D6BB051.6010808%40ericsson.com%3E"
+       TITLE="[fetchmail-users] strange polling errors">jonathan.buschmann at ericsson.com
+       </A><BR>
+    <I>Mon Feb 28 15:25:21 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002685.html">[fetchmail-users] strange polling errors
+</A></li>
+        <LI>Next message: <A HREF="002687.html">[fetchmail-users] strange polling errors
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2686">[ date ]</a>
+              <a href="thread.html#2686">[ thread ]</a>
+              <a href="subject.html#2686">[ subject ]</a>
+              <a href="author.html#2686">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>In-line...
+
+At precisely 28/02/2011 15.01, with renowned erudition Matthias Andree 
+eloquently scribed:
+&gt;<i> Am 28.02.2011 11:43, schrieb Jonathan Buschmann:
+</I>&gt;&gt;<i> Hi Matthias,
+</I>&gt;&gt;<i> Your right that it is somehow a syslog problem. --nodetach --nosyslog
+</I>&gt;&gt;<i> behaves correctly with -vv
+</I>&gt;&gt;<i> OTOH I don't see anymore useful information compared with -v, as I sent
+</I>&gt;&gt;<i> earlier.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> FWIW my syslog is configed at mail.debug... must be a bug in my syslog
+</I>&gt;&gt;<i> daemon (IHTA my OS does suffer from some bitrot.)
+</I>&gt;<i> Basically the problem appears to be that the IDLE-ing connection gets
+</I>&gt;<i> somehow closed at socket level prematurely.
+</I>&gt;<i>
+</I>&gt;<i> How exactly needs to be established on a lower network layer, possibly
+</I>&gt;<i> with tcpdump, wireshark, or similar, and see if the connection gets
+</I>&gt;<i> reset, by whom, and when, or if there is a regular FIN/ACK sequence (in
+</I>&gt;<i> that case, Exchange would be the suspect).
+</I>&gt;<i>
+</I>&gt;<i> Possible reasons include:
+</I>&gt;<i>
+</I>&gt;<i> - some firewall on either end expiring stateful rules associated to the
+</I>&gt;<i> idling connection
+</I>Can exclude this.
+&gt;<i> - some masquerade/NAT device (possibly router, usually on the client
+</I>&gt;<i> side) expiring forwarding rules prematurely
+</I>Can exclude this.
+&gt;<i> - the Exchange server closing the connection after 5 minutes of idle
+</I>&gt;<i> time when it should allow 30 minutes.  I've never operated an Exchange
+</I>&gt;<i> server and know nothing about configuration options.
+</I>Likely. strange that no one else has seen it, if it's this. Unless it's 
+something configurable on Exchange.
+&gt;<i>
+</I>&gt;<i> If you can't find the reason, you can locally modify the imap.c source,
+</I>&gt;<i> look for the figure 1680 (28 * 60 seconds), lower that to 270 (4.5 * 60
+</I>&gt;<i> seconds), recompile and reinstall; however, I am not considering such a
+</I>&gt;<i> change upstream.
+</I>I'll give it a try.
+
+thanks!
+Jonathan
+&gt;<i> Hope that helps
+</I>&gt;<i> Matthias
+</I>&gt;<i> _______________________________________________
+</I>&gt;<i> fetchmail-users mailing list
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">fetchmail-users at lists.berlios.de</A>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">https://lists.berlios.de/mailman/listinfo/fetchmail-users</A>
+</I>
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002685.html">[fetchmail-users] strange polling errors
+</A></li>
+	<LI>Next message: <A HREF="002687.html">[fetchmail-users] strange polling errors
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2686">[ date ]</a>
+              <a href="thread.html#2686">[ thread ]</a>
+              <a href="subject.html#2686">[ subject ]</a>
+              <a href="author.html#2686">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

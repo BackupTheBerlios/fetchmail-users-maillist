@@ -1,0 +1,137 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Fetchmail - resent mails
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2007-March/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Fetchmail%20-%20resent%20mails&In-Reply-To=%3C43ea8d070703120008p4841b083i6e723c766b78f605%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000858.html">
+   <LINK REL="Next"  HREF="000862.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Fetchmail - resent mails</H1>
+    <B>Rob MacGregor</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Fetchmail%20-%20resent%20mails&In-Reply-To=%3C43ea8d070703120008p4841b083i6e723c766b78f605%40mail.gmail.com%3E"
+       TITLE="[fetchmail-users] Fetchmail - resent mails">rob.macgregor at gmail.com
+       </A><BR>
+    <I>Mon Mar 12 08:08:58 CET 2007</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000858.html">[fetchmail-users] Fetchmail - resent mails
+</A></li>
+        <LI>Next message: <A HREF="000862.html">[fetchmail-users] fetchmail multidrop problem
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#859">[ date ]</a>
+              <a href="thread.html#859">[ thread ]</a>
+              <a href="subject.html#859">[ subject ]</a>
+              <a href="author.html#859">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Please, no HTML emails.
+
+On 3/11/07, Sylvain Le Torrec &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">sylvain-letorrec at adswf.org</A>&gt; wrote:
+&gt;<i>
+</I>&gt;<i> I'm using fetchmail 6.2.4 (I know I have to upgrade it) with Qmail. They are
+</I>&gt;<i> installed on mandrake 9.2.
+</I>
+Time for that upgrade :)  Even if you ignore the security issues that
+have been fixed, it helps ensure that you're not running into
+something that's already been fixed.
+
+&gt;<i> I have 3 problems with my fetchmail (but I think it's the same, fetchmail
+</I>&gt;<i> doesn't read the right header), see 3 examples:
+</I>
+We really need to see a sample header that has this problem, and the
+rest of the information the FAQ asks for
+(<A HREF="http://www.fetchmail.info/fetchmail-FAQ.html#G3">http://www.fetchmail.info/fetchmail-FAQ.html#G3</A>).  Without the logs
+we're only guessing.
+
+&gt;<i> 1 &#8211; If someone (out of my network) send a mail to <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">user1 at mydomain.org</A> +
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">user2 at AnotherDomain.com.</A>
+</I>&gt;<i>
+</I>&gt;<i> Fetchmail sent this mail to Qmail.
+</I>&gt;<i> User1 receive the mail.
+</I>&gt;<i> Qmail re-treat this mail and sent it to user2.
+</I>
+Could be either down to the fetchmail or qmail config.
+
+&gt;<i> 2 &#8211; Sometimes I can see &quot;undisclosed-recipients&quot; in the recipient field in a
+</I>&gt;<i> mail in <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">account at domain.com</A>
+</I>&gt;<i>
+</I>&gt;<i>       Fetchmail doesn't know what to do, so it's blocked.
+</I>
+Sounds like your fetchmail config is wrong.
+
+&gt;<i> 3 &#8211; Someone send a mail from <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">account2 at domain.com</A> to :  <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">user at mydomain.org</A> +
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">account3 at domain.com</A> (same domain but different account).
+</I>&gt;<i>
+</I>&gt;<i>       Each recipient will receive 2 same mails.
+</I>
+Sounds similar to (1).
+
+&gt;<i> fetchmailrc :
+</I>&gt;<i>
+</I>&gt;<i> defaults
+</I>&gt;<i> set no bouncemail
+</I>&gt;<i>
+</I>&gt;<i> poll domain.mydomain.org protocol POP3
+</I>&gt;<i>   localdomains mydomain
+</I>&gt;<i>   tracepolls
+</I>&gt;<i>   #no envelope
+</I>&gt;<i>   #envelope &quot;X-Envelope-To:&quot;
+</I>&gt;<i>   envelope &quot;Delivered-To:&quot;
+</I>&gt;<i>   #qvirtual &quot;X-Envelope-To:&quot;
+</I>&gt;<i>   qvirtual &quot;Delivered-To:&quot;
+</I>&gt;<i>   username login
+</I>&gt;<i>   password loginpassword
+</I>&gt;<i>   is *
+</I>&gt;<i>   fetchall
+</I>&gt;<i>   mda &quot;sed 1,2d | /var/qmail/bin/qmail-inject&quot;
+</I>&gt;<i>
+</I>&gt;<i> poll domain.com
+</I>&gt;<i>         proto pop3
+</I>&gt;<i>         user &quot;exemple&quot;
+</I>&gt;<i>         pass &quot;*********&quot;
+</I>&gt;<i>         is <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">user at mydomain.org</A>
+</I>&gt;<i>         fetchall
+</I>
+In general it looks good, but we're missing all the information
+that'll help us help you :)
+
+-- 
+                 Please keep list traffic on the list.
+
+Rob MacGregor
+      Whoever fights monsters should see to it that in the process he
+        doesn't become a monster.                  Friedrich Nietzsche
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000858.html">[fetchmail-users] Fetchmail - resent mails
+</A></li>
+	<LI>Next message: <A HREF="000862.html">[fetchmail-users] fetchmail multidrop problem
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#859">[ date ]</a>
+              <a href="thread.html#859">[ thread ]</a>
+              <a href="subject.html#859">[ subject ]</a>
+              <a href="author.html#859">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

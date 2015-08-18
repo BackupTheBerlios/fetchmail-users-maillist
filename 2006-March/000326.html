@@ -1,0 +1,91 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Fetchmail crash (SIGSERV)
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2006-March/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Fetchmail%20crash%20%28SIGSERV%29&In-Reply-To=%3Cm38xr3xvmj.fsf%40merlin.emma.line.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000325.html">
+   <LINK REL="Next"  HREF="000327.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Fetchmail crash (SIGSERV)</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Fetchmail%20crash%20%28SIGSERV%29&In-Reply-To=%3Cm38xr3xvmj.fsf%40merlin.emma.line.org%3E"
+       TITLE="[fetchmail-users] Fetchmail crash (SIGSERV)">matthias.andree at gmx.de
+       </A><BR>
+    <I>Tue Mar 21 23:48:04 CET 2006</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000325.html">[fetchmail-users] Fetchmail crash (SIGSERV)
+</A></li>
+        <LI>Next message: <A HREF="000327.html">[fetchmail-users] Fetchmail socket error.
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#326">[ date ]</a>
+              <a href="thread.html#326">[ thread ]</a>
+              <a href="subject.html#326">[ subject ]</a>
+              <a href="author.html#326">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Voldemar &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">deka at itc.tsu.ru</A>&gt; writes:
+
+[crash with fetchmail 6.3.2 on FreeBSD 4.11-RELEASE i386]
+&gt;<i> $ cat .fetchmailrc
+</I>&gt;<i> poll inet.tsu.ru    
+</I>
+[...]
+
+&gt;<i> poll pop3.mail.ru   
+</I>
+[...]
+
+&gt;<i> poll 212.192.112.206
+</I>
+[...]
+
+&gt;<i> It seems to me, the function getaddrinfo returns 0 (no error),
+</I>&gt;<i> but thus res-&gt;ai_canonname == 0, that leads SIGSERV at attempt
+</I>&gt;<i> strcpy(0) in xmalloc.c:xstrdup.
+</I>
+Upon closer inspection in the FreeBSD sources found at
+&lt;<A HREF="http://www.freebsd.org/cgi/cvsweb.cgi/src/lib/libc/net/getaddrinfo.c">http://www.freebsd.org/cgi/cvsweb.cgi/src/lib/libc/net/getaddrinfo.c</A>&gt;,
+I think it's the numeric hostname that caused the problem.
+
+That particular issue was fixed in FreeBSD 5.4/6/7, with MFC
+getaddrinfo.c version 1.55 (January 2005). I am requesting a backport
+for 4.10, 4.11, 4-STABLE and 5.3 from the FreeBSD security officer.
+
+-- 
+Matthias Andree
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000325.html">[fetchmail-users] Fetchmail crash (SIGSERV)
+</A></li>
+	<LI>Next message: <A HREF="000327.html">[fetchmail-users] Fetchmail socket error.
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#326">[ date ]</a>
+              <a href="thread.html#326">[ thread ]</a>
+              <a href="subject.html#326">[ subject ]</a>
+              <a href="author.html#326">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

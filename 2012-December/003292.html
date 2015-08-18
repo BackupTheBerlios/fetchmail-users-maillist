@@ -1,0 +1,105 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Fetchmail --check
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2012-December/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Fetchmail%20--check&In-Reply-To=%3C50CBC1D3.8080101%40gmx.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003291.html">
+   <LINK REL="Next"  HREF="003293.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Fetchmail --check</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Fetchmail%20--check&In-Reply-To=%3C50CBC1D3.8080101%40gmx.de%3E"
+       TITLE="[fetchmail-users] Fetchmail --check">matthias.andree at gmx.de
+       </A><BR>
+    <I>Sat Dec 15 01:18:27 CET 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003291.html">[fetchmail-users] Fetchmail --check
+</A></li>
+        <LI>Next message: <A HREF="003293.html">[fetchmail-users] Fetchmail --check
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3292">[ date ]</a>
+              <a href="thread.html#3292">[ thread ]</a>
+              <a href="subject.html#3292">[ subject ]</a>
+              <a href="author.html#3292">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On 14.12.2012 16:30, Peter Hartman wrote:
+&gt;<i> Hi Folks:
+</I>&gt;<i> 
+</I>&gt;<i> I'm trying to abuse fetchmail to be an e-mail notifier, much as
+</I>&gt;<i> reported here[1].  Roughly, I run fetchmail --fetch --verbose |
+</I>&gt;<i> myscript.sh, where myscript.sh parses the output and updates xsetroot
+</I>&gt;<i> -name &quot;&quot; with the number of messages.  I've been able to get it to
+</I>&gt;<i> play nice with EXPUNGE, such that if I access my gmail account via the
+</I>&gt;<i> gmail interface and archive a message out of my INBOX, fetchmail /
+</I>&gt;<i> myscript.sh will be aware of this.  And, of course, fetchmail /
+</I>&gt;<i> myscript.sh are also aware of new messages when they arrive.  However,
+</I>&gt;<i> there is one piece of the puzzle that is missing:
+</I>&gt;<i> 
+</I>&gt;<i> If I access my gmail account and READ a new message, no notification
+</I>&gt;<i> is sent to fetchmail / myscript.sh.  So it will continue to think that
+</I>&gt;<i> there are, e.g., 13 messages (12 dj vus) pour <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">me at gmail.com</A> dans
+</I>&gt;<i> imap.gmail.com even though, in point of fact, there are 13 messages
+</I>&gt;<i> (13 dj vus).  So, is there a trick?
+</I>
+Salut Peter,
+
+Unfortunately, IMAP does not have such a thing - there is no &quot;email was
+read&quot; or &quot;\Recent flag unseen&quot; notification in IMAP.
+
+The server will, however, leave IDLE mode every 30 min or so, and
+fetchmail will leave it a bit earlier, so you should get those counts
+updated every ~28 min or so.
+
+Else the only way of updating the counts in order to detect &quot;mail was
+read&quot; updates is not using the --idle mode, at the expense of traffic.
+
+There may be an extension in one of the RFCs that I am currently unaware
+of that sends flag updates (like \Recent or \Seen) - tell me the RFC
+number if there is such a thing -, but that would still mean that code
+needed to be written and debugged, and it would not get integrated into
+fetchmail 6.3.X - but have to wait until a fetchmail 7.0.X version.
+
+
+Else I wonder what is so important to know that one of the messages got
+read... number cosmetics :)
+
+HTH
+Matthias
+
+</PRE>
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003291.html">[fetchmail-users] Fetchmail --check
+</A></li>
+	<LI>Next message: <A HREF="003293.html">[fetchmail-users] Fetchmail --check
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3292">[ date ]</a>
+              <a href="thread.html#3292">[ thread ]</a>
+              <a href="subject.html#3292">[ subject ]</a>
+              <a href="author.html#3292">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

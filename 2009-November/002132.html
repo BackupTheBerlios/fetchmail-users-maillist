@@ -1,0 +1,137 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] fetchmail fails to detect actual recipient
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2009-November/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%20fails%20to%20detect%20actual%20recipient&In-Reply-To=%3Ce41394ce0911071912k5b20221ey23bc666ee9d60dff%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   
+   <LINK REL="Next"  HREF="002133.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] fetchmail fails to detect actual recipient</H1>
+    <B>W Marifosque</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%20fails%20to%20detect%20actual%20recipient&In-Reply-To=%3Ce41394ce0911071912k5b20221ey23bc666ee9d60dff%40mail.gmail.com%3E"
+       TITLE="[fetchmail-users] fetchmail fails to detect actual recipient">wim1036 at gmail.com
+       </A><BR>
+    <I>Sun Nov  8 04:12:31 CET 2009</I>
+    <P><UL>
+        
+        <LI>Next message: <A HREF="002133.html">[fetchmail-users] fetchmail fails to detect actual recipient
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2132">[ date ]</a>
+              <a href="thread.html#2132">[ thread ]</a>
+              <a href="subject.html#2132">[ subject ]</a>
+              <a href="author.html#2132">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Dear All,
+
+I have this peculiar problem with multidrop messages if the source is
+from the googlegroups mailing list.
+
+For everyone's reference, here are the relevant fetchmailrc, message
+headers and transaction log info. I'm using Fetchmail 6.3.6 in CentOS
+5.2.
+
+### fetchmailrc
+-----------------------------------
+set logfile /u1/log/fetchmail.log
+
+set no bouncemail
+
+poll pop3.mydomain.com proto pop3 localdomains mydomain.com envelope 1 Received
+&#160;&#160;&#160;&#160;&#160;&#160;&#160; user &quot;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">mailpool at mydomain.com</A>&quot; with pass &quot;12345678&quot; is * here expunge 10
+-----------------------------------
+
+### message Received headers
+-----------------------------------
+Received: from mydomain by accord.websitewelcome.com with local-bsmtp
+(Exim 4.69)
+&#160;&#160;&#160;&#160; (envelope-from
+&lt;grbounce-MCDmzwUAAADWcZ4g5ZLNrX99TKSKZi-2=username=<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">mydomain.com at googlegroups.com</A>&gt;)
+&#160;&#160;&#160;&#160; id 1N2zOU-0002HB-JO
+&#160;&#160;&#160;&#160; for <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">mailpool at mydomain.com</A>; Tue, 27 Oct 2009 22:40:18 -0500
+X-Spam-Checker-Version: SpamAssassin 3.3.0-r613124 (2008-01-18) on
+&#160;&#160;&#160;&#160; accord.websitewelcome.com
+X-Spam-Level: ***
+X-Spam-Status: No, score=3.4 required=5.0 tests=AWL,FORGED_MUA_OUTLOOK,
+&#160;&#160;&#160;&#160; HTML_MESSAGE,SPF_PASS shortcircuit=no autolearn=disabled
+version=3.3.0-r613124
+Received: from mail-pw0-f66.google.com ([209.85.160.66]:60502)
+&#160;&#160;&#160;&#160; by accord.websitewelcome.com with esmtp (Exim 4.69)
+&#160;&#160;&#160;&#160; (envelope-from
+&lt;grbounce-MCDmzwUAAADWcZ4g5ZLNrX99TKSKZi-2=username=<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">mydomain.com at googlegroups.com</A>&gt;)
+&#160;&#160;&#160;&#160; id 1N2zOU-0002Gy-EE
+&#160;&#160;&#160;&#160; for <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">username at mydomain.com</A>; Tue, 27 Oct 2009 22:40:18 -0500
+Received: by pwj11 with SMTP id 11so144144pwj.5
+&#160;&#160;&#160;&#160; for &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">username at mydomain.com</A>&gt;; Tue, 27 Oct 2009 20:40:19 -0700 (PDT)
+-----------------------------------
+
+### fetchmail transaction log
+-----------------------------------
+fetchmail: POP3&gt; LIST 138
+fetchmail: POP3&lt; +OK 138 9009
+fetchmail: POP3&gt; RETR 138
+fetchmail: POP3&lt; +OK 9009 octets follow.
+fetchmail: reading message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">mailpool at mydomain.com</A>@pop3.mydomain.com:138
+of 141 (9009 octets)
+fetchmail: SMTP&gt; MAIL
+FROM:&lt;grbounce-MCDmzwUAAADWcZ4g5ZLNrX99TKSKZi-2=username=<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">mydomain.com at googlegroups.com</A>&gt;
+SIZE=9009
+fetchmail: SMTP&lt; 250 2.1.0 Ok
+fetchmail: SMTP&gt; RCPT TO:&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">service at localhost</A>&gt;
+fetchmail: SMTP&lt; 504 5.5.2 &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">service at localhost</A>&gt;: Recipient address
+rejected: need fully-qualified address
+fetchmail: SMTP error: 504 5.5.2 &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">service at localhost</A>&gt;: Recipient
+address rejected: need fully-qualified address
+fetchmail: SMTP listener doesn't like recipient address `<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">service at localhost</A>'
+-----------------------------------
+
+My problem is that fetchmail is missing the actual recipient because
+the second Received header (which I ask fetchmail to look into with
+'envelope 1 Received') contains 'username=mydomain.com' (note the
+'equals' symbol) which I think it mistook as the recipient instead of
+the '<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">username at mydomain.com</A>' after the 'for' keyword.
+
+The transaction file showed that it did not find a valid recipient and
+is sending it to the user I am running fetchmail with.
+
+My question is, is there a way to tell fetchmail to check for the
+actual recipient after the 'for' keyword?
+
+Thanks in advance for any help or hints for a solution.
+
+Willie
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	
+	<LI>Next message: <A HREF="002133.html">[fetchmail-users] fetchmail fails to detect actual recipient
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2132">[ date ]</a>
+              <a href="thread.html#2132">[ thread ]</a>
+              <a href="subject.html#2132">[ subject ]</a>
+              <a href="author.html#2132">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

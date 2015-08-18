@@ -1,0 +1,92 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Add response to &quot;SMTP listener refused delivery&quot; message
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2010-April/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Add%20response%20to%20%22SMTP%20listener%20refused%0A%20delivery%22%20message&In-Reply-To=%3Cop.vaq8ohka1e62zd%40merlin.emma.line.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002333.html">
+   <LINK REL="Next"  HREF="002335.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Add response to &quot;SMTP listener refused delivery&quot; message</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Add%20response%20to%20%22SMTP%20listener%20refused%0A%20delivery%22%20message&In-Reply-To=%3Cop.vaq8ohka1e62zd%40merlin.emma.line.org%3E"
+       TITLE="[fetchmail-users] Add response to &quot;SMTP listener refused delivery&quot; message">matthias.andree at gmx.de
+       </A><BR>
+    <I>Tue Apr  6 21:06:07 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002333.html">[fetchmail-users] Add response to &quot;SMTP listener refused delivery&quot;	message
+</A></li>
+        <LI>Next message: <A HREF="002335.html">[fetchmail-users] fetchmail 6.3.16 bugfix release
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2334">[ date ]</a>
+              <a href="thread.html#2334">[ thread ]</a>
+              <a href="subject.html#2334">[ subject ]</a>
+              <a href="author.html#2334">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Am 06.04.2010, 11:43 Uhr, schrieb Richard Brooksby:
+
+&gt;<i> Hello.
+</I>&gt;<i>
+</I>&gt;<i> I could not find a place to make a suggestion for an improvement to  
+</I>&gt;<i> fetchmail, so I joined this list.  Please let me know if there is a  
+</I>&gt;<i> better place.
+</I>&gt;<i>
+</I>&gt;<i> Fetchmail will produce a message like this:
+</I>&gt;<i>
+</I>&gt;<i>   fetchmail: SMTP listener refused delivery
+</I>&gt;<i>
+</I>&gt;<i> when a sendmail milter blocks a message for some reason.  (We use  
+</I>&gt;<i> SpamAssassin Clam-AV milters.)
+</I>&gt;<i>
+</I>&gt;<i> It would be useful if we could see the SMTP response code and message as  
+</I>&gt;<i> part of this message from fetchmail.  It is visible if you run fetchmail  
+</I>&gt;<i> with verbose output, but this would require extra parsing.  It seems  
+</I>&gt;<i> like a good idea to me if the response was always included in this  
+</I>&gt;<i> normal message, since I think anyone would want to know what caused the  
+</I>&gt;<i> message to be refused.
+</I>
+Indeed the proposition is useful, but is not trivial to do given how  
+information flows inside fetchmail; I doubt I can apply it to a fetchmail  
+6.3.X version easily.
+
+I'll note this in TODO.txt, but for a quick fix, somebody would have to  
+come up with a patch.
+
+-- 
+Matthias Andree
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002333.html">[fetchmail-users] Add response to &quot;SMTP listener refused delivery&quot;	message
+</A></li>
+	<LI>Next message: <A HREF="002335.html">[fetchmail-users] fetchmail 6.3.16 bugfix release
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2334">[ date ]</a>
+              <a href="thread.html#2334">[ thread ]</a>
+              <a href="subject.html#2334">[ subject ]</a>
+              <a href="author.html#2334">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

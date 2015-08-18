@@ -1,0 +1,87 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Error 550 fetchmail-postfix-cyrus
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2006-August/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Error%20550%20fetchmail-postfix-cyrus&In-Reply-To=%3C20060803103328.GA3375%40merlin.emma.line.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000549.html">
+   <LINK REL="Next"  HREF="000551.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Error 550 fetchmail-postfix-cyrus</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Error%20550%20fetchmail-postfix-cyrus&In-Reply-To=%3C20060803103328.GA3375%40merlin.emma.line.org%3E"
+       TITLE="[fetchmail-users] Error 550 fetchmail-postfix-cyrus">matthias.andree at gmx.de
+       </A><BR>
+    <I>Thu Aug  3 12:33:28 CEST 2006</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000549.html">[fetchmail-users] Error 550 fetchmail-postfix-cyrus
+</A></li>
+        <LI>Next message: <A HREF="000551.html">[fetchmail-users] Multi-drop problems
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#550">[ date ]</a>
+              <a href="thread.html#550">[ thread ]</a>
+              <a href="subject.html#550">[ subject ]</a>
+              <a href="author.html#550">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Kwadwo Owusu schrieb am 2006-08-03:
+
+&gt;<i>                        The Postfix program
+</I>&gt;<i> 
+</I>&gt;<i> &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">root at ox.anydomain.com</A>&gt; (expanded from
+</I>&gt;<i>    &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">postmaster at localhost.anydomain.com</A>&gt;): host
+</I>&gt;<i>    /var/lib/imap/socket/lmtp[/var/lib/imap/socket/lmtp] said: 550-Mailbox
+</I>&gt;<i>    unknown.  Either there is no mailbox associated with this 550-name or you
+</I>&gt;<i>    do not have authorization to see it. 550 5.1.1 User unknown (in reply to
+</I>&gt;<i>    RCPT TO command)
+</I>
+It's hard to tell what exactly went wrong. Generally, you have two
+options (I'm not sure if webmin supports one, the other, or both - in
+doubt, check with SUSE - you've got their commercial product after all).
+
+- map the postmaster to an existing user at your site with Postfix aliases,
+  check the Postfix configuration and manual
+
+- configure fetchmail to send root messages to the right user:
+  set postmaster &quot;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">user at domain.example</A>&quot; (put this before the first &quot;poll&quot;
+  stanza)
+
+HTH,
+
+-- 
+Matthias Andree
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000549.html">[fetchmail-users] Error 550 fetchmail-postfix-cyrus
+</A></li>
+	<LI>Next message: <A HREF="000551.html">[fetchmail-users] Multi-drop problems
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#550">[ date ]</a>
+              <a href="thread.html#550">[ thread ]</a>
+              <a href="subject.html#550">[ subject ]</a>
+              <a href="author.html#550">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,252 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] attachments
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2012-February/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20attachments&In-Reply-To=%3CCAMHfxkQbTyrYg4yzZfWwssBJRSe6Opw5tB3ZAMLBdBfHmi%2BFXw%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003048.html">
+   <LINK REL="Next"  HREF="003050.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] attachments</H1>
+    <B>Joaqu&#237;n Adauto Diaz Trepat</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20attachments&In-Reply-To=%3CCAMHfxkQbTyrYg4yzZfWwssBJRSe6Opw5tB3ZAMLBdBfHmi%2BFXw%40mail.gmail.com%3E"
+       TITLE="[fetchmail-users] attachments">jd at tekii.com.ar
+       </A><BR>
+    <I>Thu Feb  2 22:10:40 CET 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003048.html">[fetchmail-users] How to handle mail with broken headers?
+</A></li>
+        <LI>Next message: <A HREF="003050.html">[fetchmail-users] attachments
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3049">[ date ]</a>
+              <a href="thread.html#3049">[ thread ]</a>
+              <a href="subject.html#3049">[ subject ]</a>
+              <a href="author.html#3049">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hello, first of all i want to thank for anyone how's taking time to read
+this.
+I set up a Postfix MTA with a fetchmail retriving mail from a google
+account, everything was working fine but reacently i was reported that some
+mails were lost. So i check the logs and i discover that fetchmail was
+ignoring the new mail, all of them.
+
+i put my fetchmailrc here---------------------------------------------
+
+# Check mail every 300 seconds
+set daemon 300
+set syslog
+#set idfile /var/lib/fetchmail/.fetchids
+set postmaster USER
+
+poll pop.gmail.com with proto POP3 and options no dns uidl
+      user '<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">xxxxxx at tekii.com.ar</A>' with pass &quot;xxxxxxxx&quot; is 'USER' here
+options ssl keep fetchlimit 0 limit 0
+
+end of fetchmailrc here---------------------------------------------
+
+I run fetchmail manually turning off the daemon configuration with -v -v
+and this is the log
+
+fetchmail: 6.3.18 querying pop.gmail.com (protocol POP3) at Thu 02 Feb 2012
+04:54:07 PM ART: poll started
+fetchmail: Trying to connect to 74.125.45.109/995...connected.
+fetchmail: Certificate chain, from root to peer, starting at depth 2:
+fetchmail: Issuer Organization: Equifax
+fetchmail: Unknown Issuer CommonName
+fetchmail: Certificate at depth 1:
+fetchmail: Issuer Organization: Equifax
+fetchmail: Unknown Issuer CommonName
+fetchmail: Subject CommonName: Google Internet Authority
+fetchmail: Server certificate:
+fetchmail: Issuer Organization: Google Inc
+fetchmail: Issuer CommonName: Google Internet Authority
+fetchmail: Subject CommonName: pop.gmail.com
+fetchmail: pop.gmail.com key fingerprint:
+B8:AF:A7:80:CD:E2:31:50:6F:ED:0E:4F:C8:04:D6:CD
+fetchmail: POP3&lt; +OK Gpop ready for requests from 200.42.117.202
+w44pf9511334yhh.35
+fetchmail: POP3&gt; CAPA
+fetchmail: POP3&lt; +OK Capability list follows
+fetchmail: POP3&lt; USER
+fetchmail: POP3&lt; RESP-CODES
+fetchmail: POP3&lt; EXPIRE 0
+fetchmail: POP3&lt; LOGIN-DELAY 300
+fetchmail: POP3&lt; TOP
+fetchmail: POP3&lt; UIDL
+fetchmail: POP3&lt; X-GOOGLE-VERHOEVEN
+fetchmail: POP3&lt; X-GOOGLE-RICO
+fetchmail: POP3&lt; .
+fetchmail: POP3&gt; USER <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">xxxxxxx at tekii.com.ar</A>
+fetchmail: POP3&lt; +OK send PASS
+fetchmail: POP3&gt; PASS *
+fetchmail: POP3&lt; +OK Welcome.
+fetchmail: selecting or re-polling default folder
+fetchmail: POP3&gt; STAT
+fetchmail: POP3&lt; +OK 1 13048382
+fetchmail: POP3&gt; UIDL
+fetchmail: POP3&lt; +OK
+fetchmail: POP3&lt; 1 GmailId134394f057a0d211
+fetchmail: POP3&lt; .
+fetchmail: 1 message (1 seen) for <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">xxxxx at tekii.com.ar</A> at
+pop.gmail.com(13048382 octets).
+fetchmail: skipping message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">xxxxxx at tekii.com.ar</A>@pop.gmail.com:1 not flushed
+fetchmail: POP3&gt; QUIT
+fetchmail: POP3&lt; +OK Farewell.
+fetchmail: 6.3.18 querying pop.gmail.com (protocol POP3) at Thu 02 Feb 2012
+04:54:09 PM ART: poll completed
+fetchmail: New UID list from pop.gmail.com: GmailId134394f057a0d211 = SEEN
+fetchmail: swapping UID lists
+fetchmail: Query status=1 (NOMAIL)
+fetchmail: Writing fetchids file.
+fetchmail: normal termination, status 1
+fetchmail: Writing fetchids file.
+
+---------------------------------------------------------------------------
+
+I know that Google it's not fully POP3 compliant, but as far as i knew it
+was only to the DELE command.
+So i tryed to migrate to IMAP, just in case. And everything was good, until
+an attachment came and it seems that it's cutting the files.
+Spreadshits tables were cut in half, loosing data.
+
+My fetchmailrc was the same as before, but using &quot;proto IMAP and port 993&quot;.
+And the logs are this ones
+
+fetchmail: 6.3.18 querying imap.gmail.com (protocol IMAP) at Thu 02 Feb
+2012 02:30:25 PM ART: poll started
+fetchmail: Trying to connect to 74.125.47.108/993...connected.
+fetchmail: Server certificate:
+fetchmail: Issuer Organization: Google Inc
+fetchmail: Issuer CommonName: Google Internet Authority
+fetchmail: Subject CommonName: imap.gmail.com
+fetchmail: imap.gmail.com key fingerprint:
+93:2E:0F:BA:58:EA:CD:CB:04:33:97:9D:23:2A:0A:77
+fetchmail: IMAP&lt; * OK Gimap ready for requests from 200.42.117.202
+p3if3986197yhg.87
+fetchmail: IMAP&gt; A0001 CAPABILITY
+fetchmail: IMAP&lt; * CAPABILITY IMAP4rev1 UNSELECT IDLE NAMESPACE QUOTA ID
+XLIST CHILDREN X-GM-EXT-1 XYZZY SASL-IR AUTH=XOAUTH
+fetchmail: IMAP&lt; A0001 OK Thats all she wrote! p3if3986197yhg.87
+fetchmail: IMAP&gt; A0002 LOGIN &quot;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">xxxxxxx at tekii.com.ar</A>&quot; *
+fetchmail: IMAP&lt; * CAPABILITY IMAP4rev1 UNSELECT IDLE NAMESPACE QUOTA ID
+XLIST CHILDREN X-GM-EXT-1 UIDPLUS COMPRESS=DEFLATE
+fetchmail: IMAP&lt; A0002 OK <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">xxxxxx at tekii.com.ar</A> input queue authenticated
+(Success)
+fetchmail: IMAP&gt; A0003 SELECT &quot;INBOX&quot;
+fetchmail: IMAP&lt; * FLAGS (\Answered \Flagged \Draft \Deleted \Seen)
+fetchmail: IMAP&lt; * OK [PERMANENTFLAGS (\Answered \Flagged \Draft \Deleted
+\Seen \*)] Flags permitted.
+fetchmail: IMAP&lt; * OK [UIDVALIDITY 657661258] UIDs valid.
+fetchmail: IMAP&lt; * 13161 EXISTS
+fetchmail: IMAP&lt; * 0 RECENT
+fetchmail: IMAP&lt; * OK [UIDNEXT 23591] Predicted next UID.
+fetchmail: IMAP&lt; A0003 OK [READ-WRITE] INBOX selected. (Success)
+fetchmail: IMAP&gt; A0004 SEARCH 1:1000 UNSEEN UNDELETED
+fetchmail: IMAP&lt; * SEARCH (note: a bunch of numbers here)
+
+fetchmail: IMAP&lt; A0009 OK SEARCH completed (Success)
+fetchmail: IMAP&gt; A0010 SEARCH 6001:7000 UNSEEN UNDELETED
+fetchmail: IMAP&lt; * SEARCH (note: a bunch of numbers here)
+--------------
+a lot more of this time of messages, like 14000 of them
+fetchmail: IMAP&lt; * 7 FETCH (RFC822.SIZE 4514518)
+
+--------------
+fetchmail: IMAP&gt; A0020 FETCH 98 BODY.PEEK[TEXT]
+fetchmail: IMAP&lt; * 98 FETCH (BODY[TEXT] {877}
+fetchmail:  (877 body octets) (log message incomplete)
+fetchmail: IMAP&lt; )
+fetchmail: IMAP&lt; A0020 OK Success
+fetchmail: message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">xxxxxxx at tekii.com.ar</A>@imap.gmail.com:98 was not the
+expected length (2519 actual != 2488 expected)
+fetchmail: SMTP&gt;. (EOM)
+fetchmail: SMTP&lt; 250 2.0.0 Ok: queued as B51F78417F0
+fetchmail:  not flushed
+fetchmail: IMAP&gt; A0021 STORE 98 +FLAGS (\Seen)
+fetchmail: IMAP&lt; * 98 FETCH (FLAGS (\Seen))
+fetchmail: IMAP&lt; A0021 OK Success
+fetchmail: IMAP&gt; A0022 FETCH 99 RFC822.HEADER
+fetchmail: IMAP&lt; * 99 FETCH (RFC822.HEADER {1642}
+fetchmail: reading message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">xxxxxxx at tekii.com.ar</A>@imap.gmail.com:99 of 13161
+(1642 header octets)About to rewrite Return-Path: &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">xxxxxx at neuralsoft.com</A>&gt;...
+...rewritten version is Return-Path: &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">xxxxxxx at neuralsoft.com</A>&gt;.
+fetchmail: About to rewrite To: <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">xxxxxxxx at TEKII.COM.AR...</A>
+...rewritten version is To: <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">xxxxxxx at TEKII.COM.AR.</A>
+fetchmail: About to rewrite From: <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">xxxxxx at neuralsoft.com...</A>
+...rewritten version is From: <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">xxxxxx at neuralsoft.com.</A>
+fetchmail: forwarding to localhost
+fetchmail: SMTP&gt; MAIL FROM:&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">xxxxxxx at neuralsoft.com</A>&gt; SIZE=33210
+fetchmail: SMTP&lt; 250 2.1.0 Ok
+fetchmail: SMTP&gt; RCPT TO:&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">tekiiadmin at localhost</A>&gt;
+fetchmail: SMTP&lt; 250 2.1.5 Ok
+fetchmail: SMTP&gt; DATA
+fetchmail: SMTP&lt; 354 End data with &lt;CR&gt;&lt;LF&gt;.&lt;CR&gt;&lt;LF&gt;
+fetchmail: IMAP&lt; )
+fetchmail: IMAP&lt; A0040 OK Success
+
+
+My thanks from the start. ANY INFORMATION that you need, plis just ask.
+
+Greetings
+
+J
+
+-- 
+Antes de imprimir, piense en su responsabilidad y compromiso con el medio 
+ambiente.  
+La informaci&#243;n contenida en esta comunicaci&#243;n es confidencial, podr&#225; ser 
+objeto de privilegios legales, puede constituir una informaci&#243;n reservada, 
+y est&#225; destinada s&#243;lo para el uso del destinatario. Es propiedad de TEKii 
+S.R.L.. El uso no autorizado, divulgaci&#243;n o copia de esta comunicaci&#243;n o de 
+cualquier parte de la misma est&#225; estrictamente prohibida y puede ser 
+ilegal. Si usted ha recibido esta comunicaci&#243;n por error, por favor 
+notifique inmediatamente a TEKii S.R.L. contestando este correo electr&#243;nico 
+y destruya esta comunicaci&#243;n y todas sus copias, incluyendo todos los 
+archivos adjuntos.
+
+Before printing, keep in mind your responsibility and commitment with the 
+environment.
+The information contained in this communication is confidential, may be 
+subject to legal privileges, may constitute inside information, and is 
+intended only for the use of the addressee. It is the property of TEKii 
+S.R.L.. Unauthorized use, disclosure or copying of this communication or 
+any part thereof is strictly prohibited and may be unlawful. If you have 
+received this communication in error, please notify TEKii S.R.L. 
+immediately by return e-mail and destroy this communication and all copies 
+thereof, including all attachments.
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003048.html">[fetchmail-users] How to handle mail with broken headers?
+</A></li>
+	<LI>Next message: <A HREF="003050.html">[fetchmail-users] attachments
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3049">[ date ]</a>
+              <a href="thread.html#3049">[ thread ]</a>
+              <a href="subject.html#3049">[ subject ]</a>
+              <a href="author.html#3049">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

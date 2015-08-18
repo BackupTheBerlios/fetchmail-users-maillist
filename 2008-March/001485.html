@@ -1,0 +1,90 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Disabling SSL
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2008-March/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Disabling%20SSL&In-Reply-To=%3C7fedbc910803132350x2c2c1124yeefe5a0f003fb9d%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001490.html">
+   <LINK REL="Next"  HREF="001487.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Disabling SSL</H1>
+    <B>shacky</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Disabling%20SSL&In-Reply-To=%3C7fedbc910803132350x2c2c1124yeefe5a0f003fb9d%40mail.gmail.com%3E"
+       TITLE="[fetchmail-users] Disabling SSL">shacky83 at gmail.com
+       </A><BR>
+    <I>Fri Mar 14 07:50:10 CET 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001490.html">[fetchmail-users] password from the command line
+</A></li>
+        <LI>Next message: <A HREF="001487.html">[fetchmail-users] Disabling SSL
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1485">[ date ]</a>
+              <a href="thread.html#1485">[ thread ]</a>
+              <a href="subject.html#1485">[ subject ]</a>
+              <a href="author.html#1485">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>This is my fetchmailrc file:
+
+defaults
+        proto pop3
+        nokeep
+        fetchall
+poll <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">my at email.address</A>
+        via my.pop3.server
+        user &quot;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">my at email.address</A>&quot;
+        pass &quot;mypassword&quot;
+        is <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">me at domain.local</A>
+        no ssl
+
+The problem is that everytime fetchmail runs it tries to use a SSL
+connection to the pop3 server:
+
+fetchmail: Server certificate verification error: unable to get local
+issuer certificate
+fetchmail: Server certificate verification error: certificate not trusted
+fetchmail: Server certificate verification error: unable to verify the
+first certificate
+fetchmail: No mail for <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">my at email.address</A> at <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">my at email.address</A>
+
+Why, if I told fetchmail not to use SSL (&quot;no ssl&quot; in fetchmailrc)?
+This is not really a problem, because the mail fetching process works
+correctly, but the error lines in the log file are very boring...
+
+Thank you very much!
+Bye.
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001490.html">[fetchmail-users] password from the command line
+</A></li>
+	<LI>Next message: <A HREF="001487.html">[fetchmail-users] Disabling SSL
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1485">[ date ]</a>
+              <a href="thread.html#1485">[ thread ]</a>
+              <a href="subject.html#1485">[ subject ]</a>
+              <a href="author.html#1485">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

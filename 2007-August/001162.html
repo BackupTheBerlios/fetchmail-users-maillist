@@ -1,0 +1,90 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] fetchmail on server unable to connect to	postfix
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2007-August/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%20on%20server%20unable%20to%20connect%20to%0A%09postfix&In-Reply-To=%3C200708161049.30264.rfunk%40funknet.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001161.html">
+   <LINK REL="Next"  HREF="001163.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] fetchmail on server unable to connect to	postfix</H1>
+    <B>Rob Funk</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%20on%20server%20unable%20to%20connect%20to%0A%09postfix&In-Reply-To=%3C200708161049.30264.rfunk%40funknet.net%3E"
+       TITLE="[fetchmail-users] fetchmail on server unable to connect to	postfix">rfunk at funknet.net
+       </A><BR>
+    <I>Thu Aug 16 16:49:30 CEST 2007</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001161.html">[fetchmail-users] fetchmail on server unable to connect to postfix
+</A></li>
+        <LI>Next message: <A HREF="001163.html">[fetchmail-users] fetchmail on server unable to connect to	postfix
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1162">[ date ]</a>
+              <a href="thread.html#1162">[ thread ]</a>
+              <a href="subject.html#1162">[ subject ]</a>
+              <a href="author.html#1162">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>M. Fioretti wrote:
+&gt;<i> Rob wrote:
+</I>
+&gt;<i> &gt; Note that rejecting unqualified HELO values while being fully
+</I>&gt;<i> &gt; RFC compliant...
+</I>&gt;<i>
+</I>&gt;<i> Yes, we're aware of this and in _our_ particular case we should be
+</I>&gt;<i> fine. For now, at least.
+</I>
+Ideally in your smtpd restrictions you should tell postfix to 
+permit_mynetworks *before* reject_non_fqdn_hostname and 
+reject_invalid_hostname.  And be sure mynetworks includes 127.0.0.0/8.
+
+
+&gt;<i> smtphost the.full.machine.name
+</I>&gt;<i>
+</I>&gt;<i> still yelds (may this depend on the fetchmail version???):
+</I>&gt;<i>
+</I>&gt;<i> fetchmail: SMTP&gt; EHLO localhost
+</I>
+I'm pretty sure this depends on the fetchmail version; a check of the NEWS 
+file shows that there's been a lot of work on the smtphost feature since 
+6.2.  OTOH the current man page doesn't seem to clearly talk about 
+HELO/EHLO.
+
+-- 
+==============================|   &quot;A microscope locked in on one point
+ Rob Funk &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">rfunk at funknet.net</A>&gt; |Never sees what kind of room that it's in&quot;
+ <A HREF="http://www.funknet.net/rfunk">http://www.funknet.net/rfunk</A> |    -- Chris Mars, &quot;Stuck in Rewind&quot;
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001161.html">[fetchmail-users] fetchmail on server unable to connect to postfix
+</A></li>
+	<LI>Next message: <A HREF="001163.html">[fetchmail-users] fetchmail on server unable to connect to	postfix
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1162">[ date ]</a>
+              <a href="thread.html#1162">[ thread ]</a>
+              <a href="subject.html#1162">[ subject ]</a>
+              <a href="author.html#1162">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

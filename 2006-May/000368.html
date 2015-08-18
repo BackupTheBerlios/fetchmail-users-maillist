@@ -1,0 +1,117 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Exchange server and attachment
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2006-May/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Exchange%20server%20and%20attachment&In-Reply-To=%3Cm38xpk2cgb.fsf%40merlin.emma.line.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000366.html">
+   <LINK REL="Next"  HREF="000367.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Exchange server and attachment</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Exchange%20server%20and%20attachment&In-Reply-To=%3Cm38xpk2cgb.fsf%40merlin.emma.line.org%3E"
+       TITLE="[fetchmail-users] Exchange server and attachment">matthias.andree at gmx.de
+       </A><BR>
+    <I>Wed May  3 02:12:36 CEST 2006</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000366.html">[fetchmail-users] Exchange server and attachment
+</A></li>
+        <LI>Next message: <A HREF="000367.html">[fetchmail-users] fetchmail 6.3.4 now also available from ibiblio.org
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#368">[ date ]</a>
+              <a href="thread.html#368">[ thread ]</a>
+              <a href="subject.html#368">[ subject ]</a>
+              <a href="author.html#368">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Andres Baravalle &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">andres at baravalle.it</A>&gt; writes:
+
+&gt;<i> here is my configuration file:
+</I>&gt;<i>
+</I>&gt;<i> set postmaster &quot;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">andres at baravalle.it</A>&quot;
+</I>&gt;<i> set bouncemail
+</I>&gt;<i> set daemon 60
+</I>&gt;<i> set syslog
+</I>&gt;<i>
+</I>&gt;<i> poll *******
+</I>&gt;<i>      protocol imap
+</I>&gt;<i>      port 993
+</I>&gt;<i>      user '****'
+</I>&gt;<i>      pass '****'
+</I>&gt;<i>      is <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">andres-open at baravalle.it</A>
+</I>&gt;<i>      ssl
+</I>&gt;<i>      keep
+</I>&gt;<i>
+</I>&gt;&gt;<i> For the first, try &quot;fetchmail --nosyslog -v -v&quot;.  It's likely you're
+</I>&gt;&gt;<i> logging to syslog if there is not output on stdout.
+</I>&gt;<i>
+</I>&gt;<i> no output again...
+</I>
+Andres,
+
+Rob didn't know about the &quot;set daemon 60&quot; option which sends output to
+/dev/null. You can override that option with with &quot;-d0&quot; or &quot;--daemon 0&quot;
+on the command line, or, if you want to leave fetchmail in daemon mode,
+the &quot;--nodetach&quot; (-N) option keeps output on your screen while in daemon
+mode. (With syslog enabled, i. e. omitting the --nosyslog, the mail log
+file, often /var/log/mail or /var/log/maillog, will contain that
+information -- perhaps you need to tell syslog via /etc/syslog.conf to
+capture mail.debug logging.)
+
+Rob,
+
+I have adjusted the G3 item of the FAQ &lt;<A HREF="http://www.fetchmail.info/fetchmail-FAQ.html#G3">http://www.fetchmail.info/fetchmail-FAQ.html#G3</A>&gt;
+to suggest &quot;--nosyslog --nodetach -vvv&quot;
+(option merging is safe BTW since fetchmail ships a copy of GNU getopt,
+so the comand line capabilities do not depend on system libraries).
+
+&gt;<i> Connecting to my work server works with thunderbird, both on windows and
+</I>&gt;<i> on Linux.
+</I>
+Well, fetchmail appears to be doing something differently than
+Thunderbird then. The new command line (&quot;fetchmail --nosyslog -Nvv&quot; or 
+&quot;fetchmail --nosyslog -vvd0&quot;) will hopefully provide us with some detail.
+
+&gt;<i> Hope
+</I>
+yes?
+
+HTH,
+
+-- 
+Matthias Andree
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000366.html">[fetchmail-users] Exchange server and attachment
+</A></li>
+	<LI>Next message: <A HREF="000367.html">[fetchmail-users] fetchmail 6.3.4 now also available from ibiblio.org
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#368">[ date ]</a>
+              <a href="thread.html#368">[ thread ]</a>
+              <a href="subject.html#368">[ subject ]</a>
+              <a href="author.html#368">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

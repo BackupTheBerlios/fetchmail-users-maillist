@@ -1,0 +1,91 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] polling gmail with fetchmail
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2009-February/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20polling%20gmail%20with%20fetchmail&In-Reply-To=%3Cop.upvtrprz1e62zd%40merlin.emma.line.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001872.html">
+   <LINK REL="Next"  HREF="001874.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] polling gmail with fetchmail</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20polling%20gmail%20with%20fetchmail&In-Reply-To=%3Cop.upvtrprz1e62zd%40merlin.emma.line.org%3E"
+       TITLE="[fetchmail-users] polling gmail with fetchmail">matthias.andree at gmx.de
+       </A><BR>
+    <I>Wed Feb 25 01:46:30 CET 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001872.html">[fetchmail-users] polling gmail with fetchmail
+</A></li>
+        <LI>Next message: <A HREF="001874.html">[fetchmail-users] polling gmail with fetchmail
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1873">[ date ]</a>
+              <a href="thread.html#1873">[ thread ]</a>
+              <a href="subject.html#1873">[ subject ]</a>
+              <a href="author.html#1873">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Am 25.02.2009, 00:48 Uhr, schrieb Chris &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">cpollock at embarqmail.com</A>&gt;:
+
+&gt;<i> I'm trying to poll my gmail box using fetchmail. I've compiled fetchmail
+</I>&gt;<i> 6.3.9 with ./configure --with-ssl and saw no errors either in the
+</I>&gt;<i> compile, make or install. Here is my .fetchmailrc lines for gmail:
+</I>&gt;<i>
+</I>&gt;<i> poll pop.gmail.com with proto POP3 timeout 180 port 995
+</I>&gt;<i> user &quot;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">chris.pollock1948 at gmail.com</A>&quot; with pass &quot;xxxxxx&quot; is cpollock here
+</I>&gt;<i> options sslcertck  sslcertpath &quot;/home/chris/certs/.certs&quot;
+</I>&gt;<i>
+</I>&gt;<i> Here is what my fetchmaillog shows:
+</I>&gt;<i>
+</I>&gt;<i> fetchmail: 6.3.9 querying pop.gmail.com (protocol POP3) at Tue 24 Feb
+</I>&gt;<i> 2009 05:38:05 PM CST: poll started
+</I>&gt;<i> fetchmail: Trying to connect to 72.14.247.109/995...connected.
+</I>&gt;<i> fetchmail: socket error while fetching from
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">chris.pollock1948 at gmail.com</A>@pop.gmail.com
+</I>&gt;<i> fetchmail: 6.3.9 querying pop.gmail.com (protocol POP3) at Tue 24 Feb
+</I>&gt;<i> 2009 05:39:05 PM CST: poll completed
+</I>
+Hi Chris,
+
+Can you run fetchmail in verbose mode and show logging? fetchmail -vv  
+should suffice to reveal where exactly the connection breaks. It does not  
+seem to be an SSL issue, you'd usually get messages about that.
+
+Thanks
+
+-- 
+Matthias Andree
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001872.html">[fetchmail-users] polling gmail with fetchmail
+</A></li>
+	<LI>Next message: <A HREF="001874.html">[fetchmail-users] polling gmail with fetchmail
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1873">[ date ]</a>
+              <a href="thread.html#1873">[ thread ]</a>
+              <a href="subject.html#1873">[ subject ]</a>
+              <a href="author.html#1873">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,83 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Fetchmail 6.3.0 released
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2005-December/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Fetchmail%206.3.0%20released&In-Reply-To=%3Cm3d5k56ovj.fsf%40merlin.emma.line.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000157.html">
+   <LINK REL="Next"  HREF="000159.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Fetchmail 6.3.0 released</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Fetchmail%206.3.0%20released&In-Reply-To=%3Cm3d5k56ovj.fsf%40merlin.emma.line.org%3E"
+       TITLE="[fetchmail-users] Fetchmail 6.3.0 released">matthias.andree at gmx.de
+       </A><BR>
+    <I>Sat Dec 10 14:52:16 CET 2005</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000157.html">[fetchmail-users] Fetchmail 6.3.0 released
+</A></li>
+        <LI>Next message: <A HREF="000159.html">[fetchmail-users] Fetchmail 6.3.0 released
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#158">[ date ]</a>
+              <a href="thread.html#158">[ thread ]</a>
+              <a href="subject.html#158">[ subject ]</a>
+              <a href="author.html#158">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Rob MacGregor &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">rob.macgregor at gmail.com</A>&gt; writes:
+
+&gt;<i> So, finally digging through a truss shows that fetchmail/system
+</I>&gt;<i> openssl is looking in /etc/ssl/certs (which doesn't exist), not
+</I>&gt;<i> /usr/local/&lt;anything&gt;.  Nice consistency :-)
+</I>&gt;<i>
+</I>&gt;<i> One sym-link later and all is working as it should.  Not sure how you
+</I>&gt;<i> could patch for this though - the whole openssl install is a bit of a
+</I>&gt;<i> mess, with the system tools looking in 2 different locations and the
+</I>&gt;<i> port in another.
+</I>
+I'm very much inclined to see this as a FreeBSD system or port bug in
+OpenSSL - the same patch works for me on Linux, where /etc/ssl/certs is
+the right place to look.
+
+Can you file a FreeBSD PR against OpenSSL with your findings? Someone
+has to look after this, and c_rehash should also be installed (or
+rewritten if it's in Perl - which is no longer part of the base
+install).
+
+-- 
+Matthias Andree
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000157.html">[fetchmail-users] Fetchmail 6.3.0 released
+</A></li>
+	<LI>Next message: <A HREF="000159.html">[fetchmail-users] Fetchmail 6.3.0 released
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#158">[ date ]</a>
+              <a href="thread.html#158">[ thread ]</a>
+              <a href="subject.html#158">[ subject ]</a>
+              <a href="author.html#158">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

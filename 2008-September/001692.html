@@ -1,0 +1,131 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] losing mails because of &quot;incorrect	header	line found&quot;
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2008-September/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20losing%20mails%20because%20of%20%22incorrect%0A%09header%09line%20found%22&In-Reply-To=%3C20080917183715.GA11934%40spiegl.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001691.html">
+   <LINK REL="Next"  HREF="001693.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] losing mails because of &quot;incorrect	header	line found&quot;</H1>
+    <B>Andy Spiegl</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20losing%20mails%20because%20of%20%22incorrect%0A%09header%09line%20found%22&In-Reply-To=%3C20080917183715.GA11934%40spiegl.de%3E"
+       TITLE="[fetchmail-users] losing mails because of &quot;incorrect	header	line found&quot;">fetchmail.andy at spiegl.de
+       </A><BR>
+    <I>Wed Sep 17 20:37:15 CEST 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001691.html">[fetchmail-users] losing mails because of &quot;incorrect header line found&quot;
+</A></li>
+        <LI>Next message: <A HREF="001693.html">[fetchmail-users] losing mails because of &quot;incorrect	header	line found&quot;
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1692">[ date ]</a>
+              <a href="thread.html#1692">[ thread ]</a>
+              <a href="subject.html#1692">[ subject ]</a>
+              <a href="author.html#1692">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Matthias Andree wrote:
+
+&gt;<i> Well, fetchmail cannot make promises as to whether the next hop
+</I>&gt;<i> (MTA, LDA, whatever) will accept the message, so why bother?
+</I>No. I'd say the correct question would be: why not take a chance?
+In case that the next hop really cannot cope with the broken mail
+it will drop it itself or bounce it or something like that.
+But in the other case the mail will reach its recipient.
+I am sure you will agree that not 100% fall into the first category
+and therefore fetchmail should TRY to deliver it to the next hop
+instead of deliberately deleting it.
+
+In my case the invalid header was this line:
+&quot;This is a multi-part message in MIME format.&quot;
+The mail program of the sender just forgot to put an empty line before
+this line.  Really bad but NOT a reason to delete the otherwise
+good mail.  If fetchmail deletes it because the RFCs say that such
+a mail is invalid, fetchmail also has to comply with the part of the
+RFCs that (I am pretty sure that) say that a mail should never be
+dropped without at least notifying someone.
+
+&gt;<i> Leaving it on the server doesn't help either except for clogging up
+</I>&gt;<i> the inbox with more and more unfetchable messages over time, the
+</I>&gt;<i> invalid headers won't magically cure themselves.
+</I>Okay, I agree.  So the only solution is to try to pass it on to the
+next hop.
+
+&gt;<i> I wonder how much of the dumped mail is actually legitimate and how
+</I>&gt;<i> much stems from broken spam engines.
+</I>No spam, these mails are definitely HAMs (newsletter of the German
+food chain Penny).  I already wrote them about their misconfiguration.
+
+Frederic Marchal wrote:
+&gt;<i> Passing the mail unmodified to Postfix never made any problem
+</I>&gt;<i> here. It looks like it just ignores the invalid headers which, in my
+</I>&gt;<i> case, never were necessary for the proper delivery of the mails.
+</I>Exactly my opinion :-)
+
+&gt;<i> I don't have a patch you could easily apply to the last source of
+</I>&gt;<i> fetchmail but Franco Marenco posted a similar patch in a mail sent
+</I>&gt;<i> to the list in July 2008.
+</I>Quite a patch, hehe, but effective (c:
+Please please add it to the source!
+
+Franco Marenco wrote:
+&gt;&gt;<i> Is there any reason why NOT to do this?
+</I>
+&gt;&gt;<i>  ----
+</I>&gt;&gt;<i> Here is the patch:
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> --- transact.c.orig	2007-03-02 01:39:43.000000000 +0100
+</I>&gt;&gt;<i> +++ transact.c	2008-07-29 17:34:29.000000000 +0200
+</I>&gt;&gt;<i> @@ -582,7 +582,7 @@
+</I>&gt;&gt;<i>  			   GT_(&quot;incorrect header line found while scanning headers\n&quot;));
+</I>&gt;&gt;<i>  		if (outlevel &gt;= O_VERBOSE)
+</I>&gt;&gt;<i>  		    report (stdout, GT_(&quot;line: %s&quot;), line);
+</I>&gt;&gt;<i> -		refuse_mail = 1;
+</I>&gt;&gt;<i> +/*		refuse_mail = 1; DO NOT REFUSE MAIL!! */
+</I>&gt;&gt;<i>  	    }
+</I>&gt;&gt;<i>   	    /* check for RFC822 continuations */
+</I>&gt;&gt;<i>
+</I>
+Thanks,
+ Andy.
+
+-- 
+ Fotos: familie.spiegl.de   Info: peru.spiegl.de
+ Weblog: blog.spiegl.de     Mail: <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">andy at spiegl.de</A>
+-- 
+ Every once in a while, declare peace. It confuses the heck out of your enemies.
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001691.html">[fetchmail-users] losing mails because of &quot;incorrect header line found&quot;
+</A></li>
+	<LI>Next message: <A HREF="001693.html">[fetchmail-users] losing mails because of &quot;incorrect	header	line found&quot;
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1692">[ date ]</a>
+              <a href="thread.html#1692">[ thread ]</a>
+              <a href="subject.html#1692">[ subject ]</a>
+              <a href="author.html#1692">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

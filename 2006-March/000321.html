@@ -1,0 +1,95 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] fetchmail 6.3.3.rc2 release candidate
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2006-March/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%206.3.3.rc2%20release%20candidate&In-Reply-To=%3C20060315174430.GB12111%40merlin.emma.line.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000324.html">
+   <LINK REL="Next"  HREF="000323.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] fetchmail 6.3.3.rc2 release candidate</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%206.3.3.rc2%20release%20candidate&In-Reply-To=%3C20060315174430.GB12111%40merlin.emma.line.org%3E"
+       TITLE="[fetchmail-users] fetchmail 6.3.3.rc2 release candidate">matthias.andree at gmx.de
+       </A><BR>
+    <I>Wed Mar 15 18:44:30 CET 2006</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000324.html">[fetchmail-users] Re: O'Reilly DevCenter weighs in on fetchmail
+</A></li>
+        <LI>Next message: <A HREF="000323.html">[fetchmail-users] Fetchmail crash (SIGSERV)
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#321">[ date ]</a>
+              <a href="thread.html#321">[ thread ]</a>
+              <a href="subject.html#321">[ subject ]</a>
+              <a href="author.html#321">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA1
+
+Greetings,
+
+collecting a few more bugfixes and cleanups, I have uploaded a second
+and hopefully final release candidate for fetchmail 6.3.3 to
+<A HREF="http://mandree.home.pages.de/fetchmail/">http://mandree.home.pages.de/fetchmail/</A>
+
+Please test and see if it fixed the bug(s) you reported recently.
+
+My thanks go to Sunil Shetye for lots of the fixes.
+
+Changes in fetchmail 6.3.3.rc2 (from 6.3.3.rc1 - see previous
+announcement for differences between the latter and 6.3.2):
+
+* LMTP: fix bug in LMTP port validation (patch by Miloslav Trmac).
+* Miloslav Trmac's patch (with minor changes) to fix char * sign consistency,
+  unused arguments and variables.
+* SDPS: Warn and disable SDPS if POP3 is disabled to avoid compilation errors.
+* More signedness, unused argument/variable and other warning fixes.
+* IMAP: Stop sending EXPUNGE after NOOP-idling (patch by Sunil Shetye).
+* POP3: Lower default fastuidl span to 4 (i. e. every 4th run fetches the
+  whole UIDL list), patch by Sunil Shetye.
+
+Happy fetching,
+Matthias Andree
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1.4.0 (GNU/Linux)
+
+iD8DBQFEGFJ9vmGDOQUufZURAq/EAKDZ+DsoQ+NHT4QKfqHaehfgseaKLACgkZOd
+Y6Ev89Ek3IjB5UynHEHaHl8=
+=F7ox
+-----END PGP SIGNATURE-----
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000324.html">[fetchmail-users] Re: O'Reilly DevCenter weighs in on fetchmail
+</A></li>
+	<LI>Next message: <A HREF="000323.html">[fetchmail-users] Fetchmail crash (SIGSERV)
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#321">[ date ]</a>
+              <a href="thread.html#321">[ thread ]</a>
+              <a href="subject.html#321">[ subject ]</a>
+              <a href="author.html#321">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,147 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] fetchmail: Query status=2 (SOCKET) on Cygwin
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2008-January/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%3A%20Query%20status%3D2%20%28SOCKET%29%20on%20Cygwin&In-Reply-To=%3C20080129093545.GA8546%40merlin.emma.line.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001442.html">
+   <LINK REL="Next"  HREF="001446.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] fetchmail: Query status=2 (SOCKET) on Cygwin</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%3A%20Query%20status%3D2%20%28SOCKET%29%20on%20Cygwin&In-Reply-To=%3C20080129093545.GA8546%40merlin.emma.line.org%3E"
+       TITLE="[fetchmail-users] fetchmail: Query status=2 (SOCKET) on Cygwin">matthias.andree at gmx.de
+       </A><BR>
+    <I>Tue Jan 29 10:35:45 CET 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001442.html">[fetchmail-users] fetchmail: Query status=2 (SOCKET)
+</A></li>
+        <LI>Next message: <A HREF="001446.html">[fetchmail-users] fetchmail: Query status=2 (SOCKET) on Cygwin
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1443">[ date ]</a>
+              <a href="thread.html#1443">[ thread ]</a>
+              <a href="subject.html#1443">[ subject ]</a>
+              <a href="author.html#1443">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>[CC:'ing Jason Tishler as the Cygwin fetchmail packager]
+
+<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">avi at phpclub.org</A> schrieb am 2008-01-29:
+
+&gt;<i> I know I have asked this question once before and an argument has started that I
+</I>&gt;<i> am misbehaving or something.
+</I>&gt;<i> First of all, let me applogize (I am sure you hardly remember) and give my
+</I>&gt;<i> appreciation to all of you who help and keep these things opensourced while
+</I>&gt;<i> others charges us tons of bucks.
+</I>&gt;<i> 
+</I>&gt;<i> The problem that I am having is one stated on the subject line, this error does
+</I>&gt;<i> not occur because of communications or sockets errors, it occurs only in certain
+</I>&gt;<i> terms which took me a few months to figure out how to replicate it.
+</I>&gt;<i> 
+</I>&gt;<i> It seems that yahoo.com mail sends out some mails with attachments listed not as
+</I>&gt;<i> binary but as text/plain files, seems like a specific file type (that I
+</I>&gt;<i> encountered) .PLT while being sent as text/plain creates the following problem.
+</I>&gt;<i> 
+</I>&gt;<i> (For those of you who might not know, .PLT are plot files that contains
+</I>&gt;<i> construction diagrams usually made by Autocad and the like programs).
+</I>&gt;<i> 
+</I>&gt;<i> Platform is cygwin fetchmail 6.3.8 reading mail from qmail server (using pop3)
+</I>&gt;<i> and posting it to an exchange server (using smtp)
+</I>
+Avi, what Cygwin version, what Cygwin DLL version, and what Windows
+version does this happen on?
+
+Jason, was there ever any feedback to your discussion (link below)? The
+list archives don't contain direct followups.
+
+&gt;<i> fetchmail: SMTP&lt; 354 Start mail input; end with &lt;CRLF&gt;.&lt;CRLF&gt;
+</I>&gt;<i> #******fetchmail: Cygwin socket read retry
+</I>&gt;<i> *******************.*****fetchmail: Cygwin socket read retry
+</I>&gt;<i> ........*........*........*........*........*........*........*........*........
+</I>&gt;<i>                                                             
+</I>&gt;<i> *........*........*fetchmail: socket error while fetching from <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">main at rubinrid.co.</A>
+</I>&gt;<i>                                                              <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">il at 192.168.253.253</A>
+</I>&gt;<i> fetchmail: 6.3.8 querying 192.168.253.253 (protocol POP3) at Tue Jan 29 01:45:20
+</I>&gt;<i>                                                               2008: poll
+</I>&gt;<i> completed
+</I>
+
+&gt;<i> I believe this is something to do with the attachments headers since the same
+</I>&gt;<i> thing happens if I forward the mail from my email, but if I download the file
+</I>&gt;<i> and attach it on my own - it works flawlessly.
+</I>
+As far as I read the comments in the source code (socket.c, c. line 1026ff.):
+
+|<i> #ifdef __CYGWIN__
+</I>|<i> /*
+</I>|<i>  * Workaround Microsoft Winsock recv/WSARecv(..., MSG_PEEK) bug.
+</I>|<i>  * See <A HREF="http://sources.redhat.com/ml/cygwin/2001-08/msg00628.html">http://sources.redhat.com/ml/cygwin/2001-08/msg00628.html</A>
+</I>|<i>  * for more details.
+</I>|<i>  */
+</I>|<i> static ssize_t cygwin_read(int sock, void *buf, size_t count)
+</I>[...]
+
+And this pretty much looks like a severe Windows operating system bug.
+
+Be sure to read the English version  of:
+&lt;<A HREF="http://support.microsoft.com/?scid=kb%3Ben-us%3B192599&amp;x=10&amp;y=11">http://support.microsoft.com/?scid=kb%3Ben-us%3B192599&amp;x=10&amp;y=11</A>&gt;
+&lt;<A HREF="http://support.microsoft.com/?scid=kb%3Ben-us%3B140263&amp;x=12&amp;y=17">http://support.microsoft.com/?scid=kb%3Ben-us%3B140263&amp;x=12&amp;y=17</A>&gt;
+(the automated translations are barely readable,
+ Microsoft should rid the world of that crap)
+
+I need to think about this a bit and see if we can restructure socket.c
+and perhaps use external libraries or wrapper code to avoid peeking
+altogether, but there's a strong inclination to shove this up to Cygwin
+and claim that Cygwin as the interfacing layer should work around
+Winsock/BSD socket incompatibilities.
+
+If you want a QUICK solution, I'd suggest to go with Rob's first
+suggestion and use some decent Linux (Debian, Ubuntu Server, Mandriva,
+Fedora are reasonable starting points) or BSD (in lexicographical order
+DragonflyBSD, FreeBSD, NetBSD, OpenBSD) and run fetchmail there.
+
+If you cannot spare the hardware, there are several virtualization
+options. I don't know much of them and have only collected experience
+with VMware (server and workstation), but I do know that VMware server
+works for me and has a reasonable &quot;bridged network&quot; mode - VMware uses
+truckloads of RAM though for my deployments.
+
+HTH,
+
+-- 
+Matthias Andree
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001442.html">[fetchmail-users] fetchmail: Query status=2 (SOCKET)
+</A></li>
+	<LI>Next message: <A HREF="001446.html">[fetchmail-users] fetchmail: Query status=2 (SOCKET) on Cygwin
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1443">[ date ]</a>
+              <a href="thread.html#1443">[ thread ]</a>
+              <a href="subject.html#1443">[ subject ]</a>
+              <a href="author.html#1443">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

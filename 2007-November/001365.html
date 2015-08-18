@@ -1,0 +1,134 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Suddenly can't connect to Exchange server
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2007-November/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Suddenly%20can%27t%20connect%20to%20Exchange%20server&In-Reply-To=%3C7CB9BD32-F2BD-44EC-A87A-508AD92BA811%40clark-communications.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001364.html">
+   <LINK REL="Next"  HREF="001366.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Suddenly can't connect to Exchange server</H1>
+    <B>Don Jackson</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Suddenly%20can%27t%20connect%20to%20Exchange%20server&In-Reply-To=%3C7CB9BD32-F2BD-44EC-A87A-508AD92BA811%40clark-communications.com%3E"
+       TITLE="[fetchmail-users] Suddenly can't connect to Exchange server">fetchmail-users at clark-communications.com
+       </A><BR>
+    <I>Fri Nov  2 23:20:15 CET 2007</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001364.html">[fetchmail-users] Suddenly can't connect to Exchange server
+</A></li>
+        <LI>Next message: <A HREF="001366.html">[fetchmail-users] Suddenly can't connect to Exchange server
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1365">[ date ]</a>
+              <a href="thread.html#1365">[ thread ]</a>
+              <a href="subject.html#1365">[ subject ]</a>
+              <a href="author.html#1365">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>As Rob requested:
+
+$ fetchmail --nosyslog --nodetach -vvv
+fetchmail: 6.3.8 querying mail.bigco.com (protocol IMAP) at Fri Nov   
+2 14:38:08 2007: poll started
+Trying to connect to 1.2.3.4/143...connected.
+
+it just hangs here
+
+^C
+
+fetchmail: terminated with signal 2
+fetchmail: Deleting fetchids file.
+
+
+$ cat .fetchmailrc
+
+poll mail.bigco.com protocol imap service 143 user password ssl
+
+I also tried eliminating ssl, service 143, and there was no  
+difference to the results, except for the fact that when it tries ssl  
+it goes for port 993.
+
+
+On Nov 2, 2007, at 2:14 PM, Rob MacGregor wrote:
+
+&gt;<i> On 11/2/07, Don Jackson &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">fetchmail-users at clark-communications.com</A>&gt;  
+</I>&gt;<i> wrote:
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Further info on this problem:
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> When I connect to the same Exchange server using Thunderbird, tbird
+</I>&gt;&gt;<i> is configured to use TLS, and connects via TLS to port 143.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> So that is a bit different than what I have fetchmail doing below
+</I>&gt;&gt;<i> (although that USED to work!)
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> When I edit my .fetchmailrc to attempt to duplicate what tbird is
+</I>&gt;&gt;<i> doing, here is what happens:
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> $ fetchmail -v -v -c
+</I>&gt;&gt;<i> fetchmail: 6.3.8 querying mail.bigco.com (protocol IMAP) at Fri Nov
+</I>&gt;&gt;<i> 2 13:37:30 2007: poll started
+</I>&gt;&gt;<i> Trying to connect to 1.2.3.4/143...connected.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> But then it just hangs there.  I don't seem to receive an OK from the
+</I>&gt;&gt;<i> server to start the whole IMAP handshake.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Here is my .fetchmailrc
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i>         poll mail.bigco.com protocol imap service 143 user &quot;myuserid&quot;
+</I>&gt;&gt;<i> password &quot;mypassword&quot; ssl sslproto &quot;SSL3&quot;
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Changing &quot;SSL3&quot; to &quot;TLS1&quot; or SSL23 doesn't seem to change anything.
+</I>&gt;<i>
+</I>&gt;<i> Can you provide the output (as requested in the FAQ) of:
+</I>&gt;<i>
+</I>&gt;<i> fetchmail --nosyslog --nodetach -vvv
+</I>&gt;<i>
+</I>&gt;<i> You may want to drop all the ssl entries from your fetchmailrc and let
+</I>&gt;<i> fetchmail handle it.
+</I>&gt;<i>
+</I>&gt;<i> -- 
+</I>&gt;<i>                  Please keep list traffic on the list.
+</I>&gt;<i>
+</I>&gt;<i> Rob MacGregor
+</I>&gt;<i>       Whoever fights monsters should see to it that in the process he
+</I>&gt;<i>         doesn't become a monster.                  Friedrich Nietzsche
+</I>&gt;<i> _______________________________________________
+</I>&gt;<i> fetchmail-users mailing list
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">fetchmail-users at lists.berlios.de</A>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">https://lists.berlios.de/mailman/listinfo/fetchmail-users</A>
+</I>
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001364.html">[fetchmail-users] Suddenly can't connect to Exchange server
+</A></li>
+	<LI>Next message: <A HREF="001366.html">[fetchmail-users] Suddenly can't connect to Exchange server
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1365">[ date ]</a>
+              <a href="thread.html#1365">[ thread ]</a>
+              <a href="subject.html#1365">[ subject ]</a>
+              <a href="author.html#1365">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

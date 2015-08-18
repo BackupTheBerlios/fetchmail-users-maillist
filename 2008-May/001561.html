@@ -1,0 +1,97 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] smtp listener protocol error
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2008-May/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20smtp%20listener%20protocol%20error&In-Reply-To=%3C483FE4C4.4010305%40luminosity.co.uk%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001560.html">
+   
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] smtp listener protocol error</H1>
+    <B>Gary Lawton</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20smtp%20listener%20protocol%20error&In-Reply-To=%3C483FE4C4.4010305%40luminosity.co.uk%3E"
+       TITLE="[fetchmail-users] smtp listener protocol error">lists at luminosity.co.uk
+       </A><BR>
+    <I>Fri May 30 13:28:04 CEST 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001560.html">[fetchmail-users] smtp listener protocol error
+</A></li>
+        
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1561">[ date ]</a>
+              <a href="thread.html#1561">[ thread ]</a>
+              <a href="subject.html#1561">[ subject ]</a>
+              <a href="author.html#1561">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Thanks guys, i'll do some more research on the qmail error code
+
+Matthias Andree wrote:
+&gt;<i> Gary Lawton schrieb:
+</I>&gt;&gt;<i> Hi all
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> I have an occassional issue whereby fetchmail is pulling down an email 
+</I>&gt;&gt;<i> multiple times and not deleting the email from the server.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> I am using fetchmail 6.3.5 and with qmail although I have just updated 
+</I>&gt;&gt;<i> to 6.3.8 to see if this resolves the issue.
+</I>&gt;<i> 
+</I>&gt;<i> Good, but it looks like a qmail problem.
+</I>&gt;<i> 
+</I>&gt;&gt;<i> 2008-05-30 09:14:27.906562500 fetchmail: SMTP&gt; DATA
+</I>&gt;&gt;<i> 2008-05-30 09:14:27.925013500 fetchmail: SMTP&lt; 354 go ahead
+</I>&gt;&gt;<i> 2008-05-30 09:14:27.927412500 
+</I>&gt;&gt;<i> #*********************************************.**************************************.****************$
+</I>&gt;&gt;<i> 2008-05-30 09:19:29.636029500 fetchmail: smtp listener protocol error
+</I>&gt;&gt;<i> 2008-05-30 09:19:29.636049500  not flushed
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> qmail_smtp:
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> 2008-05-30 09:14:27.855293500 tcpserver: status: 1/20
+</I>&gt;&gt;<i> 2008-05-30 09:14:27.886063500 tcpserver: pid 9406 from 127.0.0.1
+</I>&gt;&gt;<i> 2008-05-30 09:14:27.886082500 tcpserver: ok 9406 
+</I>&gt;&gt;<i> mail.myserver.co.uk:127.0.0.1:25 localhost:127.0.0.1::33893
+</I>&gt;&gt;<i> 2008-05-30 09:19:30.815287500 tcpserver: end 9406 status 256
+</I>&gt;<i> 
+</I>&gt;<i> This is not success - it means whatever process was spawned (likely
+</I>&gt;<i> qmail-smtp) exited with a status code of 1 (on many systems, the lower 7
+</I>&gt;<i> bits are the signal, bit 7 signals a core dump, and bits 8-15 are the exit
+</I>&gt;<i> status), and apparently the SMTP process exited prematurely.
+</I>&gt;<i> 
+</I>&gt;<i> What kind of POP3 server is the upstream site using? Is it doing proper
+</I>&gt;<i> byte-stuffing and is its LIST command using proper sizes? qmail toasters
+</I>&gt;<i> and some Exchange configurations are known to provide bad SIZE numbers.
+</I>&gt;<i> 
+</I>
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001560.html">[fetchmail-users] smtp listener protocol error
+</A></li>
+	
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1561">[ date ]</a>
+              <a href="thread.html#1561">[ thread ]</a>
+              <a href="subject.html#1561">[ subject ]</a>
+              <a href="author.html#1561">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

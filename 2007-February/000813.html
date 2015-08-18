@@ -1,0 +1,211 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] IMAP problem
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2007-February/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20IMAP%20problem&In-Reply-To=%3COFCE707C00.0F65CB00-ONC1257280.006E0046-C1257280.006F2922%40them-is.fr%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000818.html">
+   <LINK REL="Next"  HREF="000814.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] IMAP problem</H1>
+    <B>Alain Chofardet</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20IMAP%20problem&In-Reply-To=%3COFCE707C00.0F65CB00-ONC1257280.006E0046-C1257280.006F2922%40them-is.fr%3E"
+       TITLE="[fetchmail-users] IMAP problem">Alain.Chofardet at them-is.fr
+       </A><BR>
+    <I>Mon Feb 12 21:14:09 CET 2007</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000818.html">[fetchmail-users] Fetchmail not working Fedora Core 3 and FC 4
+</A></li>
+        <LI>Next message: <A HREF="000814.html">[fetchmail-users] IMAP problem
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#813">[ date ]</a>
+              <a href="thread.html#813">[ thread ]</a>
+              <a href="subject.html#813">[ subject ]</a>
+              <a href="author.html#813">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi.
+
+I'm quite a newbie with Fetchmail, and I've read the FAQs before writing 
+to this list.
+
+This is my problem : I need to fetch mails from an IMAP account and direct 
+them to the local SMTP port. Fetchmail seems the perfect tool for that.
+However, the mails I fetch from the IMAP account are mainly composed with 
+an attached file.
+
+When using fetchmail, the downloaded mail contains only some text (an 
+hypertext link to the file).
+When using a mail reader (Outlook or Thunderbird), the mail seems to be 
+complete (ie the file is downloaded).
+
+To understand what happened, I ran telnet, and these are some 
+transcriptions for the IMAP dialog :
+
+
+-----------------------------------------------------------------------
+Talk-It:~ # telnet 192.168.1.2 143
+Trying 192.168.1.2...
+Connected to 192.168.1.2.
+Escape character is '^]'.
+* OK Talk_It IMAP4rev1 v10.210 server ready
+
+* BAD Null command
+login 100 100
+login BAD Command unrecognized/login please: 100
+LOGIN 100 100
+LOGIN BAD Command unrecognized/login please: 100
+0001 LOGIN 100 100
+0001 OK LOGIN completed
+0002 list
+0002 BAD Missing required argument to LIST
+0002 list &quot;*&quot; &quot;*&quot;
+* LIST (\NoInferiors) NIL INBOX
+0002 OK LIST completed
+0003 select INBOX
+* NO Mailbox is open by another process, access is readonly
+* 15 EXISTS
+* OK [UIDVALIDITY 1038355870] UID validity status
+* OK [UIDNEXT 21] Predicted next UID
+* FLAGS (\Answered \Flagged \Deleted \Draft \Seen)
+* OK [PERMANENTFLAGS ()] Permanent flags
+* 0 RECENT
+0003 OK [READ-ONLY] SELECT completed
+0004 fetch 1 body[text]
+* 1 FETCH (BODY[TEXT] {684}
+This is a multi-part message in MIME format.
+
+--Part.0001_32C9D122_000AF8A4.00E0BB00C727
+Content-Type: message/external-body; access-type=local-file;
+        name=&quot;/htfs0/data/0/5/7/5/8/10517515.113&quot;;
+        size=6472;
+        xtype=&quot;audio/wav&quot;
+
+Content-Type: audio/wav
+Content-ID: &lt;0001_32C9D122_000AF8A4.00E0BB00C727&gt;
+Content-Transfer-Encoding: binary
+
+--Part.0001_32C9D122_000AF8A4.00E0BB00C727
+Content-Type: application/octet-stream;
+        name=&quot;message.url&quot;
+Content-Transfer-Encoding: 7bit
+Content-Disposition: attachment;
+        filename=&quot;message.url&quot;
+
+[InternetShortcut]
+URL=<A HREF="http://192.168.1.2:8889/htfs0/data/0/5/7/5/8/10517515.113.wav">http://192.168.1.2:8889/htfs0/data/0/5/7/5/8/10517515.113.wav</A>
+
+--Part.0001_32C9D122_000AF8A4.00E0BB00C727--
+
+)
+0004 OK FETCH completed
+-------------------------------------------------------------------------
+
+The fetch body[text] command seems to be the one used by fetchmail and 
+doesn't download the file.
+
+
+Continuing with another fetch command :
+
+
+
+
+-----------------------------------------------------------------------------
+0005 fetch BODY[]
+0005 BAD Missing required argument to FETCH
+0005 fetch 1 BODY[]
+* 1 FETCH (BODY[] {9885}
+Received: via tmail-4.1(5) for uid202; Wed, 1 Jan 1997 03:51:15 +0100 
+(MET)
+From: &lt;anonymous&gt;
+To: &quot;Talk-It&quot; &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">100 at 192.168.1.2</A>&gt;
+Date: Wed, 1 Jan 1997 03:51:14 +0100 (MET)
+Subject: Call Answering Message from Ligne_1/820222180
+MIME-Version: 1.0 (Voice 2.0)
+Content-Type: multipart/voice-message; 
+boundary=&quot;Part.0001_32C9D122_000AF8A4.00E0BB00C727&quot;
+Content-Transfer-Encoding: 7bit
+Message-ID: &lt;0001_32C9D122_000AF8A4.00E0BB00C727&gt;
+
+This is a multi-part message in MIME format.
+
+--Part.0001_32C9D122_000AF8A4.00E0BB00C727
+Content-Type: audio/wav; name=&quot;10517515x113.wav&quot;
+Content-Transfer-Encoding: base64
+Content-Disposition: inline; filename=&quot;10517515x113.wav&quot;
+
+UklGRjQZAABXQVZFZm10IBQAAAARAAEAQB8AANcPAAAAAQQAAgD5AWZhY3QEAAAAUTEAAGRh
+dGEAGQAAuQEnAMuaMSWRzIoxJZG8m1EkkcyKMCWB25owNJHbmzE1gcyaMDWBvJwwNILrqjBE
+gdqbMDSC26swJpLLqzE1gtqrIDWC25wgNAHqmhA0Acq7ODaByqs4NQLqqyBEgsm7IEQCyqwg
+U4LKqyg1EturIEQCypwoQwLaqjlEAcqrKEUBuqwoNAPqmyhEAbqdGDSC2ps4NQHanCAzg+uq
+
+(...)
+MNCAgAQIwIAAAAAECAwIQIAAwIAABAjAgECAAMCAAAQIwIAABAjAgAAECAwIQIAM7P8BADAR
+DAhAgAAMCAQIwIBACwkAQIDAgECAAAwIQMAACAAEDAMNCEjAAJM80ICABAjAgAAECMCAAAQI
+DAhAgAAMCAQIwIAABAjAgAAECAwIQIDAgABAgADAgECAAAwIQIDAgECAAAwIBAjAgECAAAwI
+QIAADAhAgAAMCECAAAwIBAgMCAQIwIBAgAAMCECAAAwIQIAADAhAgAAMCECAAAwIQIDAgECA
+wIBAgAAMCECAAAwIQIAADAhAgAAMCAAECAAAwIAABAgADEiAAMCAQDvAgAATAZsJEwGbCRMB
+mwkAEwGwmQATsZkAEwGwmTARAJsJMBEAmwkwEQCwmQATAXJmY3QEAAAAAQAAAA==
+
+--Part.0001_32C9D122_000AF8A4.00E0BB00C727
+Content-Type: application/octet-stream;
+        name=&quot;message.url&quot;
+Content-Transfer-Encoding: 7bit
+Content-Disposition: attachment;
+        filename=&quot;message.url&quot;
+
+[InternetShortcut]
+URL=<A HREF="http://192.168.1.2:8889/htfs0/data/0/5/7/5/8/10517515.113.wav">http://192.168.1.2:8889/htfs0/data/0/5/7/5/8/10517515.113.wav</A>
+
+--Part.0001_32C9D122_000AF8A4.00E0BB00C727--
+
+)
+0005 OK FETCH completed
+--------------------------------------------------------------------
+
+The &quot;fetch body[]&quot; command works for what I have to do.
+
+Well, at this time, I don't really what or who is wrong in my case. Does 
+that mean that the IMAP server is not clean regarding protocol ?
+Could someone help me to solve my problem.
+
+Regards.
+
+Alain CHOFARDET
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/fetchmail-users/attachments/20070212/fba3cd56/attachment.html">https://lists.berlios.de/pipermail/fetchmail-users/attachments/20070212/fba3cd56/attachment.html</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000818.html">[fetchmail-users] Fetchmail not working Fedora Core 3 and FC 4
+</A></li>
+	<LI>Next message: <A HREF="000814.html">[fetchmail-users] IMAP problem
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#813">[ date ]</a>
+              <a href="thread.html#813">[ thread ]</a>
+              <a href="subject.html#813">[ subject ]</a>
+              <a href="author.html#813">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

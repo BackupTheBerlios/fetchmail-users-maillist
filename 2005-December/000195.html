@@ -1,0 +1,184 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] fetchmail security announcement 2005-03 (CVE-2005-4348)
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2005-December/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%20security%20announcement%202005-03%20%28CVE-2005-4348%29&In-Reply-To=%3C20051221234422.GA27445%40merlin.emma.line.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000194.html">
+   <LINK REL="Next"  HREF="000196.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] fetchmail security announcement 2005-03 (CVE-2005-4348)</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%20security%20announcement%202005-03%20%28CVE-2005-4348%29&In-Reply-To=%3C20051221234422.GA27445%40merlin.emma.line.org%3E"
+       TITLE="[fetchmail-users] fetchmail security announcement 2005-03 (CVE-2005-4348)">matthias.andree at gmx.de
+       </A><BR>
+    <I>Thu Dec 22 00:44:22 CET 2005</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000194.html">[fetchmail-users] fetchmail 6.3.1 stable release with security relevant bugfixes
+</A></li>
+        <LI>Next message: <A HREF="000196.html">[fetchmail-users] message was not the expected length errors
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#195">[ date ]</a>
+              <a href="thread.html#195">[ thread ]</a>
+              <a href="subject.html#195">[ subject ]</a>
+              <a href="author.html#195">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA1
+
+fetchmail-SA-2005-03: security announcement
+
+Topics:		#1 crash retrieving headerless message in multidrop mode
+		#2 fetchmail 6.2.5.X end of life
+
+Author:		Matthias Andree
+Version:	1.00
+Announced:	2005-12-19
+Type:		null pointer dereference
+Impact:		fetchmail crashes
+Danger:		low
+Credits:	Daniel Drake, Gentoo (bug report)
+		Sunil Shetye (bug fix)
+CVE Name:	CVE-2005-4348
+URL:		<A HREF="http://fetchmail.berlios.de/fetchmail-SA-2005-03.txt">http://fetchmail.berlios.de/fetchmail-SA-2005-03.txt</A>
+		<A HREF="http://article.gmane.org/gmane.mail.fetchmail.user/7573">http://article.gmane.org/gmane.mail.fetchmail.user/7573</A>
+		<A HREF="http://bugs.debian.org/343836">http://bugs.debian.org/343836</A>
+Project URL:	<A HREF="http://fetchmail.berlios.de/">http://fetchmail.berlios.de/</A>
+
+Affects:	fetchmail version 6.2.5.4
+		fetchmail version 6.3.0
+
+Not affected:	fetchmail 6.3.1
+		fetchmail 6.2.5.5
+		other versions not mentioned here or in the previous
+		sections have not been checked
+
+Corrected:	2005-12-19 - released fetchmail 6.3.1
+		2005-12-18 - released fetchmail 6.3.1-rc1
+		2005-12-19 - released fetchmail 6.2.5.5
+
+
+0. Release history
+==================
+
+2005-12-19	1.00 - initial version
+
+
+1. Background
+=============
+
+fetchmail is a software package to retrieve mail from remote POP2, POP3,
+IMAP, ETRN or ODMR servers and forward it to local SMTP, LMTP servers or
+message delivery agents.
+
+fetchmail ships with a graphical, Python/Tkinter based configuration
+utility named &quot;fetchmailconf&quot; to help the user create configuration (run
+control) files for fetchmail.
+
+
+2. Problem description and Impact
+=================================
+
+Fetchmail contains a bug that causes an application crash when fetchmail
+is configured for multidrop mode and the upstream mail server sends a
+message without headers.  As fetchmail does not record this message as
+&quot;previously fetched&quot;, it will crash with the same message if it is
+re-executed, so it cannot make progress. A malicious or broken-into
+upstream server could thus cause a denial of service in fetchmail
+clients.
+
+Note that such messages are not RFC-822 conformant, so if the server has
+not been tampered with, the server software is faulty.
+
+
+3. Workaround
+=============
+
+Where possible, singledrop mode may be an alternative.
+
+For sites, where multidrop mode is required, no workaround is known.
+
+
+4. Solution
+===========
+
+Download and install fetchmail 6.3.1 or a newer stable release from
+fetchmail's project site at
+&lt;<A HREF="http://developer.berlios.de/project/showfiles.php?group_id=1824">http://developer.berlios.de/project/showfiles.php?group_id=1824</A>&gt;.
+
+The fix has also been backported to the 6.2.5.5 legacy release which is
+available from the same site.
+
+Note however that 6.3.X has very few incompatible changes since 6.2.5.X
+so 6.3.X should be viable for most sites.  It is therefore recommended
+that every user and distributor upgrade to 6.3.1 or newer.
+
+
+5. End of life announcement
+===========================
+
+The fetchmail 6.2.5.X branch will be discontinued early in 2006.
+
+The new 6.3.X stable branch has been available since 2005-11-30
+and will not change except for bugfixes, documentation and translations.
+
+
+A. Copyright, License and Warranty
+==================================
+
+(C) Copyright 2005 by Matthias Andree, &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">matthias.andree at gmx.de</A>&gt;.
+Some rights reserved.
+
+This work is licensed under the Creative Commons
+Attribution-NonCommercial-NoDerivs German License. To view a copy of
+this license, visit <A HREF="http://creativecommons.org/licenses/by-nc-nd/2.0/de/">http://creativecommons.org/licenses/by-nc-nd/2.0/de/</A>
+or send a letter to Creative Commons; 559 Nathan Abbott Way;
+Stanford, California 94305; USA.
+
+THIS WORK IS PROVIDED FREE OF CHARGE AND WITHOUT ANY WARRANTIES.
+Use the information herein at your own risk.
+
+END OF fetchmail-SA-2005-03.txt
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1.4.0 (GNU/Linux)
+
+iD8DBQFDqejWvmGDOQUufZURArTuAJ9/6xIB+DU4e0CAKNCGC3xE8pRzwwCeKLLT
+CtudIJhoxM7h/HBsPgpnetg=
+=pI3F
+-----END PGP SIGNATURE-----
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000194.html">[fetchmail-users] fetchmail 6.3.1 stable release with security relevant bugfixes
+</A></li>
+	<LI>Next message: <A HREF="000196.html">[fetchmail-users] message was not the expected length errors
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#195">[ date ]</a>
+              <a href="thread.html#195">[ thread ]</a>
+              <a href="subject.html#195">[ subject ]</a>
+              <a href="author.html#195">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

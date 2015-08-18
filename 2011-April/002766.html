@@ -1,0 +1,109 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Plus (+) Addressing Problem
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2011-April/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Plus%20%28%2B%29%20Addressing%20Problem&In-Reply-To=%3C20110424115830.1b9aee10%40scorpio%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002765.html">
+   <LINK REL="Next"  HREF="002768.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Plus (+) Addressing Problem</H1>
+    <B>Jerry</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Plus%20%28%2B%29%20Addressing%20Problem&In-Reply-To=%3C20110424115830.1b9aee10%40scorpio%3E"
+       TITLE="[fetchmail-users] Plus (+) Addressing Problem">fetchmail.user at seibercom.net
+       </A><BR>
+    <I>Sun Apr 24 17:58:30 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002765.html">[fetchmail-users] Plus (+) Addressing Problem
+</A></li>
+        <LI>Next message: <A HREF="002768.html">[fetchmail-users] Plus (+) Addressing Problem
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2766">[ date ]</a>
+              <a href="thread.html#2766">[ thread ]</a>
+              <a href="subject.html#2766">[ subject ]</a>
+              <a href="author.html#2766">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Sun, 24 Apr 2011 16:30:29 +0100
+Rob MacGregor &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">rob.macgregor at gmail.com</A>&gt; articulated:
+
+&gt;<i> On Sun, Apr 24, 2011 at 14:25, Jerry &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">fetchmail.user at seibercom.net</A>&gt;
+</I>&gt;<i> wrote: &lt;---SNIP---&gt;
+</I>&gt;<i> &gt; fetchmail: Parsing envelope &quot;Delivered-To&quot; names &quot;Delivered-To:
+</I>&gt;<i> &gt; <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">jerry+fbsd at seibercom.net</A>&quot;
+</I>&gt;<i> 
+</I>&gt;<i> Fetchmail correctly identified the local host to deliver to.
+</I>&gt;<i> 
+</I>&gt;<i> &gt; fetchmail: no local matches, forwarding to postmaster
+</I>&gt;<i> 
+</I>&gt;<i> However it wasn't recognised. This is where the log from the SMTP
+</I>&gt;<i> server for the same session would have helped. It may be that
+</I>&gt;<i> explicitly listing seibercom.net as a local domain may help, or it may
+</I>&gt;<i> be that the problem is elsewhere. If you can provide that SMTP log we
+</I>&gt;<i> should be able to help further ;)
+</I>
+This is the log from that transaction:
+
+Apr 24 08:55:41 scorpio postfix/smtpd[53479]: 3QHVzK3yTZz2CG4h: client=zeus[192.168.1.1]
+Apr 24 08:55:41 scorpio postfix/cleanup[53482]: 3QHVzK3yTZz2CG4h: message-id=&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">4DB418A3.8030501 at loicp.eu</A>&gt;
+Apr 24 08:55:41 scorpio postfix/qmgr[22802]: 3QHVzK3yTZz2CG4h: from=&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">owner-freebsd-questions at freebsd.org</A>&gt;, size=4336, nrcpt=1 (queue active)
+Apr 24 08:55:41 scorpio postfix/pipe[53483]: 3QHVzK3yTZz2CG4h: to=&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">postmaster at seibercom.net</A>&gt;, relay=dovecot, delay=0.35, delays=0.32/0.01/0/0.01, dsn=2.0.0, status=sent (delivered via dovecot service)
+Apr 24 08:55:41 scorpio postfix/qmgr[22802]: 3QHVzK3yTZz2CG4h: removed
+
+I was wondering if this could be the problem. &quot;jerry&quot; is a virtual user
+on this system. Actually, every user is a virtual user on this system.
+I always set up Postfix to use virtual users. It does deliver mail
+correctly, sans &quot;plus addressing&quot; if I give it a specific &quot;To or is&quot; to
+send to.
+
+Neither Postfix nor dovecot have any problem with that, but then again
+they have a list of acceptable recipients sans any plus specific
+information.
+
+By the way, I really appreciate your assistance. This is driving me
+nuts since I know the &quot;plus&quot; thing works when fetchmail is removed from
+the equation.
+
+-- 
+Jerry &#9996;
+<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">Fetchmail.user at seibercom.net</A>
+
+Disclaimer: off-list followups get on-list replies or get ignored.
+Please do not ignore the Reply-To header.
+__________________________________________________________________
+It's sweet to be remembered, but it's often cheaper to be forgotten.
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002765.html">[fetchmail-users] Plus (+) Addressing Problem
+</A></li>
+	<LI>Next message: <A HREF="002768.html">[fetchmail-users] Plus (+) Addressing Problem
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2766">[ date ]</a>
+              <a href="thread.html#2766">[ thread ]</a>
+              <a href="subject.html#2766">[ subject ]</a>
+              <a href="author.html#2766">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,312 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Fetchmail not collecting HTML messages using	IMAP
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2008-February/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Fetchmail%20not%20collecting%20HTML%20messages%20using%0A%09IMAP&In-Reply-To=%3CC07C343F-C276-46AD-BEA0-144EADD5FE76%40telinformix.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001467.html">
+   <LINK REL="Next"  HREF="001469.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Fetchmail not collecting HTML messages using	IMAP</H1>
+    <B>Barnaby Garrett</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Fetchmail%20not%20collecting%20HTML%20messages%20using%0A%09IMAP&In-Reply-To=%3CC07C343F-C276-46AD-BEA0-144EADD5FE76%40telinformix.com%3E"
+       TITLE="[fetchmail-users] Fetchmail not collecting HTML messages using	IMAP">barney at telinformix.com
+       </A><BR>
+    <I>Mon Feb 18 22:14:35 CET 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001467.html">[fetchmail-users] Fetchmail not collecting HTML messages using	IMAP
+</A></li>
+        <LI>Next message: <A HREF="001469.html">[fetchmail-users] Fetchmail not collecting HTML messages using	IMAP
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1468">[ date ]</a>
+              <a href="thread.html#1468">[ thread ]</a>
+              <a href="subject.html#1468">[ subject ]</a>
+              <a href="author.html#1468">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>
+On 18 Feb 2008, at 19:57, Rob MacGregor wrote:
+
+&gt;<i> On Feb 18, 2008 6:13 PM, Barnaby Garrett &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">barney at telinformix.com</A>&gt;  
+</I>&gt;<i> wrote:
+</I>&gt;&gt;<i> Hi there,
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> I've just been switching over too google apps for my domain's email
+</I>&gt;&gt;<i> and discovered a problem when I use IMAP to collect the mail
+</I>&gt;&gt;<i> everything is fine until it hits an HTML message at which point it
+</I>&gt;&gt;<i> just stops until the next collection when it gets interrupted and the
+</I>&gt;&gt;<i> process starts again.  Obviously any mail after the HTML one is not
+</I>&gt;&gt;<i> collected.
+</I>&gt;<i>
+</I>&gt;<i> Fetchmail doesn't know or care about the content of the emails.  If
+</I>&gt;<i> you search the list archive you'll find that Google's IMAP and POP
+</I>&gt;<i> implementations aren't exactly standard and it appears to be common to
+</I>&gt;<i> have intermittent problems with no apparent cause.
+</I>
+It might not know about the content but I've tested with plain text  
+(with and without attachments), rich text and html emails and it only  
+affects html ones.
+It looks to me like something about the way the google IMAP servers  
+respond to the request for a message causes fetchmail to not send the  
+&lt;EOM&gt; to the SMTP server causing a timeout.
+
+&gt;<i>
+</I>&gt;<i>
+</I>&gt;&gt;<i> If I switch to using POP3 everything works fine.  Extract
+</I>&gt;&gt;<i> from the log file is :
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Feb 18 17:49:16 dora fetchmail: PID 5328: message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">LALALALALA at googlemail-imap.l.google.com</A>
+</I>&gt;&gt;<i> :7 was not the expected length (1575 actual != 1570 expected)
+</I>&gt;&gt;<i> Feb 18 17:49:16 dora fetchmail: PID 5328: SMTP&gt;. (EOM)
+</I>&gt;&gt;<i> Feb 18 17:54:16 dora fetchmail: PID 5328: smtp listener protocol  
+</I>&gt;&gt;<i> error
+</I>&gt;<i>
+</I>&gt;<i> That says that your local SMTP server had a problem with the message.
+</I>
+Indeed but why does it only happen when the message is picked up using  
+IMAP ?  Same message gets delivered to the SMTP server fine when  
+picked up using POP3
+
+&gt;<i>
+</I>&gt;<i>
+</I>&gt;&gt;<i> Feb 18 17:54:16 dora fetchmail: PID 5328:  not flushed
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> This is delivering to an Exchange 2003 server an the logs show a  
+</I>&gt;&gt;<i> MAIL,
+</I>&gt;&gt;<i> RCPT and then a QUIT commands  but it gets no DATA command.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Any ideas ?
+</I>&gt;<i>
+</I>&gt;<i> More details would be required.  At a minimum you need to run
+</I>&gt;<i> &quot;fetchmail --nosyslog --nodetach -vvv&quot; (plus any other command line
+</I>&gt;<i> options you normally use), provide the matching entries from your
+</I>&gt;<i> Exchange log, the contents of the .fetchmailrc file and details of the
+</I>&gt;<i> platform you're running fetchmail on (fetchmail under Cygwin is also
+</I>&gt;<i> known to have problems).
+</I>
+Yep running under Cygwin on Windows server 2003 ( The same one that is  
+running the Exchange server )
+
+Logs from fetchmail :
+fetchmail: 6.3.6 querying imap.googlemail.com (protocol IMAP) at Mon  
+Feb 18 20:45:50 2008: poll started
+Trying to connect to 66.249.93.29/993...connected.
+fetchmail: Issuer Organization: Thawte Consulting cc
+fetchmail: Issuer CommonName: Thawte Premium Server CA
+fetchmail: Server CommonName: imap.googlemail.com
+fetchmail: imap.googlemail.com key fingerprint: BF:AE:5E: 
+52:B6:B9:56:E5:1C:29:35:5B:6B:B8:0A:26
+fetchmail: IMAP&lt; * OK Gimap ready for requests from 194.106.52.61  
+i40if43186ugf.0
+fetchmail: IMAP&gt; A0001 CAPABILITY
+fetchmail: IMAP&lt; * CAPABILITY IMAP4rev1 UNSELECT IDLE NAMESPACE QUOTA  
+XLIST CHILDREN XYZZY
+fetchmail: IMAP&lt; A0001 OK Thats all she wrote! i40if43186ugf.0
+fetchmail: Protocol identified as IMAP4 rev 1
+fetchmail: IMAP&gt; A0002 LOGIN &quot;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">USER at DOMAIN.COM</A>&quot; *
+fetchmail: IMAP&lt; A0002 OK <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">USER at DOMAIN.COM</A> authenticated (Success)
+fetchmail: selecting or re-polling default folder
+fetchmail: IMAP&gt; A0003 SELECT &quot;INBOX&quot;
+fetchmail: IMAP&lt; * FLAGS (\Answered \Flagged \Draft \Deleted \Seen)
+fetchmail: IMAP&lt; * OK [PERMANENTFLAGS (\Answered \Flagged \Draft  
+\Deleted \Seen \*)]
+fetchmail: IMAP&lt; * OK [UIDVALIDITY 601644635]
+fetchmail: IMAP&lt; * 11 EXISTS
+fetchmail: IMAP&lt; * 0 RECENT
+fetchmail: IMAP&lt; * OK [UNSEEN 1]
+fetchmail: IMAP&lt; * OK [UIDNEXT 15]
+fetchmail: IMAP&lt; A0003 OK [READ-WRITE] INBOX selected. (Success)
+fetchmail: 11 messages waiting after first poll
+fetchmail: IMAP&gt; A0004 SEARCH UNSEEN NOT DELETED
+fetchmail: IMAP&lt; * SEARCH 7
+fetchmail: 7 is unseen
+fetchmail: IMAP&lt; A0004 OK SEARCH completed (Success)
+fetchmail: 7 is first unseen
+11 messages (10 seen) for <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">USER at DOMAIN.COM</A> at imap.googlemail.com.
+skipping message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">USER at DOMAIN.COM</A>@googlemail-imap.l.google.com:1 not  
+flushed
+skipping message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">USER at DOMAIN.COM</A>@googlemail-imap.l.google.com:2 not  
+flushed
+skipping message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">USER at DOMAIN.COM</A>@googlemail-imap.l.google.com:3 not  
+flushed
+skipping message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">USER at DOMAIN.COM</A>@googlemail-imap.l.google.com:4 not  
+flushed
+skipping message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">USER at DOMAIN.COM</A>@googlemail-imap.l.google.com:5 not  
+flushed
+skipping message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">USER at DOMAIN.COM</A>@googlemail-imap.l.google.com:6 not  
+flushed
+fetchmail: IMAP&gt; A0005 FETCH 7:11 RFC822.SIZE
+fetchmail: IMAP&lt; * 7 FETCH (RFC822.SIZE 1570)
+fetchmail: IMAP&lt; * 8 FETCH (RFC822.SIZE 2805)
+fetchmail: IMAP&lt; * 9 FETCH (RFC822.SIZE 3025)
+fetchmail: IMAP&lt; * 10 FETCH (RFC822.SIZE 5022)
+fetchmail: IMAP&lt; * 11 FETCH (RFC822.SIZE 2912)
+fetchmail: IMAP&lt; A0005 OK Success
+fetchmail: IMAP&gt; A0006 FETCH 7 RFC822.HEADER
+fetchmail: IMAP&lt; * 7 FETCH (RFC822.HEADER {1445}
+reading message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">USER at DOMAIN.COM</A>@googlemail-imap.l.google.com:7 of 11  
+(1445 header octets)
+About to rewrite Return-Path: &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">SENDER at SENDER.DOMAIN.COM</A>&gt;
+Rewritten version is Return-Path: &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">SENDER at SENDER.DOMAIN.COM</A>&gt;
+
+About to rewrite From: Barney Garrett &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">SENDER at SENDER.DOMAIN.COM</A>&gt;
+Rewritten version is From: Barney Garrett &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">SENDER at SENDER.DOMAIN.COM</A>&gt;
+
+About to rewrite Reply-To: <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">SENDER at SENDER.DOMAIN.COM</A>
+Rewritten version is Reply-To: <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">SENDER at SENDER.DOMAIN.COM</A>
+
+About to rewrite To: Barney Garrett &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">USER at DOMAIN.COM</A>&gt;
+Rewritten version is To: Barney Garrett &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">USER at DOMAIN.COM</A>&gt;
+
+fetchmail: passed through <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">USER at DOMAIN.COM</A> matching DOMAIN.COM
+Trying to connect to 127.0.0.1/25...connected.
+fetchmail: SMTP&lt; 220 HOST.DOMAIN.COM Microsoft ESMTP MAIL Service,  
+Version: 6.0.3790.3959 ready at  Mon, 18 Feb 2008 20:45:53 +0000
+fetchmail: SMTP&gt; EHLO HOST.DOMAIN.COM
+fetchmail: SMTP&lt; 250-HOST.DOMAIN.COM Hello [127.0.0.1]
+fetchmail: SMTP&lt; 250-TURN
+fetchmail: SMTP&lt; 250-SIZE
+fetchmail: SMTP&lt; 250-ETRN
+fetchmail: SMTP&lt; 250-PIPELINING
+fetchmail: SMTP&lt; 250-DSN
+fetchmail: SMTP&lt; 250-ENHANCEDSTATUSCODES
+fetchmail: SMTP&lt; 250-8bitmime
+fetchmail: SMTP&lt; 250-BINARYMIME
+fetchmail: SMTP&lt; 250-CHUNKING
+fetchmail: SMTP&lt; 250-VRFY
+fetchmail: SMTP&lt; 250-X-EXPS GSSAPI NTLM LOGIN
+fetchmail: SMTP&lt; 250-X-EXPS=LOGIN
+fetchmail: SMTP&lt; 250-AUTH GSSAPI NTLM LOGIN
+fetchmail: SMTP&lt; 250-AUTH=LOGIN
+fetchmail: SMTP&lt; 250-X-LINK2STATE
+fetchmail: SMTP&lt; 250-XEXCH50
+fetchmail: SMTP&lt; 250 OK
+fetchmail: forwarding to localhost
+fetchmail: SMTP&gt; MAIL FROM:&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">SENDER at SENDER.DOMAIN.COM</A>&gt; BODY=7BIT  
+SIZE=1570
+fetchmail: SMTP&lt; 250 2.1.0 <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">SENDER at SENDER.DOMAIN.COM....Sender</A> OK
+fetchmail: SMTP&gt; RCPT TO:&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">USER at DOMAIN.COM</A>&gt;
+fetchmail: SMTP&lt; 250 2.1.5 <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">USER at DOMAIN.COM</A>
+fetchmail: SMTP&gt; DATA
+fetchmail: SMTP&lt; 354 Start mail input; end with &lt;CRLF&gt;.&lt;CRLF&gt;
+fetchmail: IMAP&lt; )
+fetchmail: IMAP&lt; A0006 OK Success
+fetchmail: IMAP&gt; A0007 FETCH 7 BODY.PEEK[TEXT]
+fetchmail: IMAP&lt; * 7 FETCH (BODY[TEXT] {130}
+  (130 body octets)fetchmail: IMAP&lt; )
+fetchmail: IMAP&lt; A0007 OK Success
+fetchmail: message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">USER at DOMAIN.COM</A>@googlemail-imap.l.google.com:7 was  
+not the expected length (1575 actual != 1570 expected)
+fetchmail: SMTP&gt;. (EOM)
+smtp listener protocol error
+  not flushed
+skipping message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">USER at DOMAIN.COM</A>@googlemail-imap.l.google.com:8 not  
+flushed
+skipping message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">USER at DOMAIN.COM</A>@googlemail-imap.l.google.com:9 not  
+flushed
+skipping message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">USER at DOMAIN.COM</A>@googlemail-imap.l.google.com:10 not  
+flushed
+skipping message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">USER at DOMAIN.COM</A>@googlemail-imap.l.google.com:11 not  
+flushed
+fetchmail: IMAP&gt; A0008 LOGOUT
+fetchmail: IMAP&lt; * BYE LOGOUT Requested
+fetchmail: IMAP&lt; A0008 OK 73 good day (Success)
+fetchmail: 6.3.6 querying imap.googlemail.com (protocol IMAP) at Mon  
+Feb 18 20:50:53 2008: poll completed
+fetchmail: not swapping UID lists, no UIDs seen this query
+fetchmail: Writing fetchids file.
+fetchmail: normal termination, status 0
+fetchmail: Writing fetchids file.
+
+
+Logs from Exchange 2003 SMTP :  (They don't look too useful to me  
+though - as I said before mails that are accepted have a DATA message  
+after the RCPT.
+
+2008-02-18 20:45:53 127.0.0.1 HOST.DOMAIN.COM SMTPSVC1 HOST 127.0.0.1  
+0 EHLO - +HOST.DOMAIN.COM 250 0 309 25 0 SMTP - - - -
+2008-02-18 20:45:53 127.0.0.1 HOST.DOMAIN.COM SMTPSVC1 HOST 127.0.0.1  
+0 MAIL - +FROM:&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">SENDER at SENDER.DOMAIN.COM</A>&gt; 250 0 48 55 0 SMTP - - - -
+2008-02-18 20:45:53 127.0.0.1 HOST.DOMAIN.COM SMTPSVC1 HOST 127.0.0.1  
+0 RCPT - +TO:&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">USER at DOMAIN.COM</A>&gt; 250 0 0 32 10 SMTP - - - -
+2008-02-18 20:50:53 127.0.0.1 HOST.DOMAIN.COM SMTPSVC1 HOST 127.0.0.1  
+0 QUIT - HOST.DOMAIN.COM 240 300372 46 4 300352 SMTP - - - -
+
+
+fetchmailrc :
+
+# /etc/fetchmailrc for system-wide daemon mode
+# This file must be chmod 0600, owner fetchmail
+
+# Daemon configuration
+# These two are set in /etc/default/fetchmail
+#set daemon	300		# Pool every 5 minutes
+#set syslog			# log through syslog facility
+
+#set no bouncemail		# avoid loss on 4xx errors
+				# on the other hand, 5xx errors get
+				# more dangerous...
+
+set bouncemail
+
+##########################################################################
+# Hosts to pool
+##########################################################################
+
+# Defaults  
+===============================================================
+# Set antispam to -1, since it is far safer to use that together with
+# no bouncemail
+defaults:
+   antispam -1
+   batchlimit 100
+
+poll &quot;imap.googlemail.com&quot;
+protocol imap
+localdomains DOMAIN.COM
+no envelope
+username &quot;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">USER at DOMAIN.COM</A>&quot;
+password &quot;PASSWORD&quot;
+is *
+ssl
+keep
+
+Hope these help
+
+Thanks again
+Barney
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001467.html">[fetchmail-users] Fetchmail not collecting HTML messages using	IMAP
+</A></li>
+	<LI>Next message: <A HREF="001469.html">[fetchmail-users] Fetchmail not collecting HTML messages using	IMAP
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1468">[ date ]</a>
+              <a href="thread.html#1468">[ thread ]</a>
+              <a href="subject.html#1468">[ subject ]</a>
+              <a href="author.html#1468">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

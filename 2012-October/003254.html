@@ -1,0 +1,141 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] fetchmail vs Maillenium
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2012-October/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%20vs%20Maillenium&In-Reply-To=%3C507B1E1F.7040808%40attglobal.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003253.html">
+   <LINK REL="Next"  HREF="003255.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] fetchmail vs Maillenium</H1>
+    <B>Eddie</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%20vs%20Maillenium&In-Reply-To=%3C507B1E1F.7040808%40attglobal.net%3E"
+       TITLE="[fetchmail-users] fetchmail vs Maillenium">stunnel at attglobal.net
+       </A><BR>
+    <I>Sun Oct 14 22:18:39 CEST 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003253.html">[fetchmail-users] fetchmail vs Maillenium
+</A></li>
+        <LI>Next message: <A HREF="003255.html">[fetchmail-users] How to deal with &quot;undisclosed recipients&quot;?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3254">[ date ]</a>
+              <a href="thread.html#3254">[ thread ]</a>
+              <a href="subject.html#3254">[ subject ]</a>
+              <a href="author.html#3254">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>
+On 10/13/2012 3:06 PM, Matthias Andree wrote:
+&gt;<i> Am 13.10.2012 00:02, schrieb Eddie:
+</I>&gt;&gt;<i> I really don't want to resurrect the discussions from 2004 about the
+</I>&gt;&gt;<i> stupidity of, then Comcast, or now as I have discovered, AT&amp;T Business
+</I>&gt;&gt;<i> Internet Services (attglobal dot net), regarding the usage of the
+</I>&gt;&gt;<i> Maillennium server.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> But, just to point out, that AT&amp;T have a slightly different greeting,
+</I>&gt;&gt;<i> which fetchmail fails to recognise as a broken server. Here are a couple
+</I>&gt;&gt;<i> of the responses it spits out when tracing:
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Old UID list from pop5.attglobal.net: &lt;empty&gt;
+</I>&gt;&gt;<i> Scratch list of UIDs: &lt;empty&gt;
+</I>&gt;&gt;<i> fetchmail: starting fetchmail 6.3.9-rc2 daemon
+</I>&gt;&gt;<i> fetchmail: 6.3.9-rc2 querying pop5.attglobal.net (protocol POP3) at Wed
+</I>&gt;&gt;<i> 10 Oct 2012 01:54:36 PM PDT: poll started
+</I>&gt;&gt;<i> Trying to connect to 12.154.55.20/110...connected.
+</I>&gt;&gt;<i> fetchmail: POP3&lt; +OK (kcpop01) Maillennium POP3/UNIBOX #18
+</I>&gt;&gt;<i> fetchmail: POP3&gt; CAPA
+</I>&gt;&gt;<i> fetchmail: POP3&lt; +OK Capability list follows
+</I>&gt;&gt;<i> fetchmail: POP3&lt; AUTH-RESP-CODE
+</I>&gt;&gt;<i> fetchmail: POP3&lt; EXPIRE NEVER
+</I>&gt;&gt;<i> fetchmail: POP3&lt; IMPLEMENTATION Maillennium V05.00c++ [16-Nov-05]
+</I>&gt;&gt;<i> cpu_sparc.os_s
+</I>&gt;&gt;<i> fetchmail: POP3&lt; olaris_bsd.comp_gnu
+</I>&gt;&gt;<i> fetchmail: POP3&lt; LOGIN-DELAY 0
+</I>&gt;&gt;<i> fetchmail: POP3&lt; PIPELINING
+</I>&gt;&gt;<i> fetchmail: POP3&lt; RESP-CODES
+</I>&gt;&gt;<i> fetchmail: POP3&lt; TOP
+</I>&gt;&gt;<i> fetchmail: POP3&lt; UIDL
+</I>&gt;&gt;<i> fetchmail: POP3&lt; USER
+</I>&gt;&gt;<i> fetchmail: POP3&lt; .
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Note the greeting is different from the one used by Comcast, but the
+</I>&gt;&gt;<i> server has the same brain-dead implementation of TOP.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Cheers,
+</I>&gt;&gt;<i> Eddie
+</I>&gt;<i> Hi Eddie,
+</I>&gt;<i>
+</I>&gt;<i> thanks for the heads-up. Does the server really spread the
+</I>&gt;<i> IMPLEMENTATION across two lines, where the second starts with
+</I>&gt;<i> &quot;olaris_bsd.comp_gnu&quot;?
+</I>&gt;<i>
+</I>&gt;<i> Or is this an artifact of your mailer/editor/copy-and-paste?
+</I>&gt;<i>
+</I>&gt;<i> Thank you.
+</I>&gt;<i>
+</I>&gt;<i> Best regards
+</I>&gt;<i> Matthias
+</I>&gt;<i>
+</I>&gt;<i>
+</I>It's an artifact of using fetchmail with &quot;-v -v&quot;.  :-)
+
+If I telnet directly to the server, I get this:
+
+<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">zentyal at The-Vault</A>:~$ telnet pop5.attglobal.net 110
+Trying 12.154.55.20...
+Connected to postoffice.prserv.net.
+Escape character is '^]'.
++OK (kcpop01) Maillennium POP3/UNIBOX #979
+capa
++OK Capability list follows
+AUTH-RESP-CODE
+EXPIRE NEVER
+IMPLEMENTATION Maillennium V05.00c++ [16-Nov-05] 
+cpu_sparc.os_solaris_bsd.comp_gnu
+LOGIN-DELAY 0
+PIPELINING
+RESP-CODES
+TOP
+UIDL
+USER
+.
+
+
+Cheers,
+Eddie
+
+</PRE>
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003253.html">[fetchmail-users] fetchmail vs Maillenium
+</A></li>
+	<LI>Next message: <A HREF="003255.html">[fetchmail-users] How to deal with &quot;undisclosed recipients&quot;?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3254">[ date ]</a>
+              <a href="thread.html#3254">[ thread ]</a>
+              <a href="subject.html#3254">[ subject ]</a>
+              <a href="author.html#3254">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

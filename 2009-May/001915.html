@@ -1,0 +1,128 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] 4 multidrop but one destination server
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2009-May/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%204%20multidrop%20but%20one%20destination%20server&In-Reply-To=%3C20090503103920.GA25226%40tamay-dogan.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001914.html">
+   <LINK REL="Next"  HREF="001918.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] 4 multidrop but one destination server</H1>
+    <B>Michelle Konzack</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%204%20multidrop%20but%20one%20destination%20server&In-Reply-To=%3C20090503103920.GA25226%40tamay-dogan.net%3E"
+       TITLE="[fetchmail-users] 4 multidrop but one destination server">linux4michelle at tamay-dogan.net
+       </A><BR>
+    <I>Sun May  3 12:39:20 CEST 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001914.html">[fetchmail-users] fetchmailrc overwritten and now errors...
+</A></li>
+        <LI>Next message: <A HREF="001918.html">[fetchmail-users] 4 multidrop but one destination server
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1915">[ date ]</a>
+              <a href="thread.html#1915">[ thread ]</a>
+              <a href="subject.html#1915">[ subject ]</a>
+              <a href="author.html#1915">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hello,
+
+I have currently 4 domains and one catchall, which is fine,  if  I  work
+alone but not realy funny, if I get users on the 4 domains with the same
+name...
+
+My current config is
+
+----[ '/etc/fetchmailrc' ]----------------------------------------------
+###########################  GLOBAL OPTIONS  ###########################
+set     no bouncemail
+set     postmaster      <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">michelle.konzack at tamay-dogan.net</A>
+set     invisible
+set     no syslog
+
+###########################  SERVER OPTIONS  ###########################
+poll            webmail.friendsdomain.com
+proto           imap
+timeout         30
+qvirtual        &quot;some-weird-name-catchall-&quot;
+envelope        0 &quot;Delivered-To:&quot;
+
+############################  USER OPTIONS  ############################
+user            some-weird-name-catchall
+pass            shouldnotinterstyou
+is              *
+antispam        -1
+batchlimit      100
+fetchall
+expunge         10
+dropstatus
+nokeep
+------------------------------------------------------------------------
+
+and this is working.
+
+Now the problem is, that incoming messages will have NO DOMAIN PART. :-(
+
+So, now my friend created 4 multidrop boxes (own for  each  domain)  and
+now the Delivered-To: looks like
+
+  tamay-dogan.net-some-weird-catchall-${LOCALPART}@friendsdomain.com
+
+but this does not more work with SMTP transfer.
+
+Now what would you do?  --  Not using qvirtual/envelope  and  forwarding
+to procmail which then correct the &quot;Delivered-To:&quot; and forward it to the
+MTA (courier)?
+
+Thanks, Greetings and nice Day/Evening
+    Michelle Konzack
+
+-- 
+Linux-User #280138 with the Linux Counter, <A HREF="http://counter.li.org/">http://counter.li.org/</A>
+##################### Debian GNU/Linux Consultant #####################
+&lt;<A HREF="http://www.tamay-dogan.net/">http://www.tamay-dogan.net/</A>&gt;                 Michelle Konzack
+&lt;<A HREF="http://www.can4linux.org/">http://www.can4linux.org/</A>&gt;                   Apt. 917
+&lt;<A HREF="http://www.flexray4linux.org/">http://www.flexray4linux.org/</A>&gt;               50, rue de Soultz
+Jabber <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">linux4michelle at jabber.ccc.de</A>           67100 Strasbourg/France
+IRC #Debian (irc.icq.com)                     Tel. DE: +49 177 9351947
+ICQ #328449886                                Tel. FR: +33  6  61925193
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: signature.pgp
+Type: application/pgp-signature
+Size: 189 bytes
+Desc: Digital signature
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/fetchmail-users/attachments/20090503/45585e86/attachment.pgp">https://lists.berlios.de/pipermail/fetchmail-users/attachments/20090503/45585e86/attachment.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001914.html">[fetchmail-users] fetchmailrc overwritten and now errors...
+</A></li>
+	<LI>Next message: <A HREF="001918.html">[fetchmail-users] 4 multidrop but one destination server
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1915">[ date ]</a>
+              <a href="thread.html#1915">[ thread ]</a>
+              <a href="subject.html#1915">[ subject ]</a>
+              <a href="author.html#1915">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

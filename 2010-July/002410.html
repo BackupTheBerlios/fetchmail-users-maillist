@@ -1,0 +1,112 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Yahoo Plus SSL Issue
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2010-July/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Yahoo%20Plus%20SSL%20Issue&In-Reply-To=%3C20100704204609.GA27815%40stryder.lamafam.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002409.html">
+   <LINK REL="Next"  HREF="002411.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Yahoo Plus SSL Issue</H1>
+    <B>Gerry LaMontagne</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Yahoo%20Plus%20SSL%20Issue&In-Reply-To=%3C20100704204609.GA27815%40stryder.lamafam.org%3E"
+       TITLE="[fetchmail-users] Yahoo Plus SSL Issue">gjlama94 at gmail.com
+       </A><BR>
+    <I>Sun Jul  4 22:46:09 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002409.html">[fetchmail-users] Yahoo Plus SSL Issue
+</A></li>
+        <LI>Next message: <A HREF="002411.html">[fetchmail-users] Yahoo Plus SSL Issue
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2410">[ date ]</a>
+              <a href="thread.html#2410">[ thread ]</a>
+              <a href="subject.html#2410">[ subject ]</a>
+              <a href="author.html#2410">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Matthias-
+
+On Sun, Jul 04, 2010 at 10:09:50PM +0200, Matthias Andree wrote:
+&gt;<i> Fetchmail should complain rather noisily about incorrect
+</I>&gt;<i> certificates and refuse to connect to those servers that present
+</I>&gt;<i> invalid servers, but it does not loop retrying until it gets a good
+</I>&gt;<i> one - it has no idea that (or if so, how) load balancing is done on
+</I>&gt;<i> the other end unless they put multiple IPs into the DNS.  So
+</I>&gt;<i> --sslcertck might make things worse.  --sslfingerprint is OK as long
+</I>&gt;<i> as you only get that one fingerprint back from the certificates.  Is
+</I>&gt;<i> that the case?  I'd be somewhat surprised if it was.
+</I>&gt;<i> 
+</I>
+Alright, I had to go back and check the &quot;sslcertck&quot; option definition.
+I've had that one set from the start.  For some reason, I got it in my
+head that it forced the strict comparison of the common name, but I now
+see that I misread/misunderstood the definition.
+
+As for the rest, yes I understand that fetchmail isn't going to
+continuously retry upon certificate failure.
+
+I've just started using the sslfingerprint (as a result of this
+experience, actually) option and, since the original problem settled
+down, I've yet to see any errors related to invalid fingerprints.  I'm
+surprised to learn that a POP provider would issue different
+certificates with different fingerprints.  Even though there might be
+multiple IP's behind it, there's still only 1 &quot;plus.pop.mail.yahoo.com&quot;,
+right?  I figured a fingerprint error would alert me, at the best, to a
+new certificate so that I might take the time to verify it myself.
+Obviously, at the worst, a MITM attack, but at least I'd have a heads
+up.  
+
+I verified the certificate by comparing the results from here:
+<A HREF="http://www.digicert.com/help/.">http://www.digicert.com/help/.</A>  
+
+with results from the openssl command.  I figured the above URL would
+use sufficiently different routing to get to the Yahoo servers that if I
+WAS seeing a MITM, I would get different results.  Perhaps I'm being naive
+though.  I did look for a Yahoo page listing the fingerprints, but was
+unsuccessful.
+
+Again, thanks for the comments. 
+
+Regards-
+Gerry LaMontagne
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: signature.asc
+Type: application/pgp-signature
+Size: 230 bytes
+Desc: Digital signature
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/fetchmail-users/attachments/20100704/4a156526/attachment.pgp">https://lists.berlios.de/pipermail/fetchmail-users/attachments/20100704/4a156526/attachment.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002409.html">[fetchmail-users] Yahoo Plus SSL Issue
+</A></li>
+	<LI>Next message: <A HREF="002411.html">[fetchmail-users] Yahoo Plus SSL Issue
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2410">[ date ]</a>
+              <a href="thread.html#2410">[ thread ]</a>
+              <a href="subject.html#2410">[ subject ]</a>
+              <a href="author.html#2410">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

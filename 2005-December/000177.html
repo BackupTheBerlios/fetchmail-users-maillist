@@ -1,0 +1,137 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Re: IMAP problem (fetchmail 6.3.1-pre1)
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2005-December/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Re%3A%20IMAP%20problem%20%28fetchmail%206.3.1-pre1%29&In-Reply-To=%3C20051216113157.GA2669%40session.bombay.retortsoft.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000176.html">
+   <LINK REL="Next"  HREF="000179.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Re: IMAP problem (fetchmail 6.3.1-pre1)</H1>
+    <B>Sunil Shetye</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Re%3A%20IMAP%20problem%20%28fetchmail%206.3.1-pre1%29&In-Reply-To=%3C20051216113157.GA2669%40session.bombay.retortsoft.com%3E"
+       TITLE="[fetchmail-users] Re: IMAP problem (fetchmail 6.3.1-pre1)">shetye at bombay.retortsoft.com
+       </A><BR>
+    <I>Fri Dec 16 12:31:58 CET 2005</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000176.html">[fetchmail-users] IMAP problem (fetchmail 6.3.1-pre1)
+</A></li>
+        <LI>Next message: <A HREF="000179.html">[fetchmail-users] Re: IMAP problem (fetchmail 6.3.1-pre1)
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#177">[ date ]</a>
+              <a href="thread.html#177">[ thread ]</a>
+              <a href="subject.html#177">[ subject ]</a>
+              <a href="author.html#177">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Quoting from Jason White's mail on Fri, Dec 16, 2005:
+&gt;<i> I am quite confident this is a protocol issue, but I don't know IMAP and
+</I>&gt;<i> Fetchmail well enough to debug it. For some reason, it appears that Fetchmail
+</I>&gt;<i> doesn't detect the final &quot;OK&quot; message from the server and simply times out
+</I>&gt;<i> after retrieving the headers. Using an MUA (e.g., muttng), I can successfully
+</I>&gt;<i> retrieve messages via IMAP from this server. For the moment, I have configured
+</I>&gt;<i> fetchmail to use pop3 instead as a work-around so I can read mail easily from
+</I>&gt;<i> this account.
+</I>
+Your IMAP server is also sending UID information in the response. It
+needs to be checked if sending UIDs in response is valid or not.
+
+&gt;<i> From syslog:
+</I>
+...
+
+&gt;<i> Dec 16 18:40:03 jdc fetchmail[13415]: IMAP&gt; A0005 FETCH 1 RFC822.SIZE 
+</I>&gt;<i> Dec 16 18:40:03 jdc fetchmail[13415]: IMAP&lt; * 1 FETCH (UID 16 RFC822.SIZE 1447) 
+</I>                                                         ^^^^^^
+&gt;<i> Dec 16 18:40:03 jdc fetchmail[13415]: IMAP&lt; A0005 OK FETCH completed 
+</I>
+&gt;<i> Dec 16 18:40:03 jdc fetchmail[13415]: IMAP&gt; A0006 FETCH 1 RFC822.HEADER 
+</I>&gt;<i> Dec 16 18:40:03 jdc fetchmail[13415]: IMAP&lt; * 1 FETCH (UID 16 RFC822.HEADER {1360} 
+</I>                                                         ^^^^^^
+
+...
+
+&gt;<i> Dec 16 18:40:03 jdc fetchmail[13415]: IMAP&lt; A0006 OK FETCH completed 
+</I>
+fetchmail is not expecting UIDs in the response. Hence the protocol
+error. Could you try this patch and tell me if it works for you? Note
+that you may get more errors if UIDs are sent in further responses
+(like RFC822.TEXT) which have not been reached yet.
+
+Here's the patch:
+
+Index: fetchmail/imap.c
+===================================================================
+--- fetchmail/imap.c	(revision 4550)
++++ fetchmail/imap.c	(working copy)
+@@ -880,8 +880,18 @@
+ 	    if (num &gt;= first &amp;&amp; num &lt;= last)
+ 	        sizes[num - first] = size;
+ 	    else
+-		report(stderr, &quot;Warning: ignoring bogus data for message sizes returned by the server.\n&quot;);
++		report(stderr,
++			GT_(&quot;Warning: ignoring bogus data for message sizes returned by the server.\n&quot;));
+ 	}
++	/* some servers return UID information here */
++	else if (sscanf(buf, &quot;* %u FETCH (UID %*s RFC822.SIZE %u)&quot;, &amp;num, &amp;size) == 2)
++	{
++	    if (num &gt;= first &amp;&amp; num &lt;= last)
++	        sizes[num - first] = size;
++	    else
++		report(stderr,
++			GT_(&quot;Warning: ignoring bogus data for message sizes returned by the server.\n&quot;));
++	}
+     }
+ 
+     return(PS_SUCCESS);
+@@ -948,8 +958,11 @@
+ 	if ((ok = gen_recv(sock, buf, sizeof(buf))))
+ 	    return(ok);
+  	ptr = skip_token(buf);	/* either &quot;* &quot; or &quot;AXXXX &quot; */
+- 	if (sscanf(ptr, &quot;%d FETCH (%*s {%d}&quot;, &amp;num, lenp) == 2)
++	if (sscanf(ptr, &quot;%d FETCH (RFC822.HEADER {%d}&quot;, &amp;num, lenp) == 2)
+   	    break;
++	/* some servers return UID information here */
++	else if (sscanf(ptr, &quot;%d FETCH (UID %*s RFC822.HEADER {%d}&quot;, &amp;num, lenp) == 2)
++	    break;
+ 	/* try to recover from chronically fucked-up M$ Exchange servers */
+  	else if (!strncmp(ptr, &quot;NO&quot;, 2))
+ 	{
+
+-- 
+Sunil Shetye.
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000176.html">[fetchmail-users] IMAP problem (fetchmail 6.3.1-pre1)
+</A></li>
+	<LI>Next message: <A HREF="000179.html">[fetchmail-users] Re: IMAP problem (fetchmail 6.3.1-pre1)
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#177">[ date ]</a>
+              <a href="thread.html#177">[ thread ]</a>
+              <a href="subject.html#177">[ subject ]</a>
+              <a href="author.html#177">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

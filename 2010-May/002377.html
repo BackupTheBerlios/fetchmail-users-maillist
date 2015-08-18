@@ -1,0 +1,87 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Leave the message unread on the exchange	server when fetchmail execute.
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2010-May/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Leave%20the%20message%20unread%20on%20the%0A%20exchange%09server%20when%20fetchmail%20execute.&In-Reply-To=%3C4BDEF616.6040602%40gmx.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002376.html">
+   <LINK REL="Next"  HREF="002378.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Leave the message unread on the exchange	server when fetchmail execute.</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Leave%20the%20message%20unread%20on%20the%0A%20exchange%09server%20when%20fetchmail%20execute.&In-Reply-To=%3C4BDEF616.6040602%40gmx.de%3E"
+       TITLE="[fetchmail-users] Leave the message unread on the exchange	server when fetchmail execute.">matthias.andree at gmx.de
+       </A><BR>
+    <I>Mon May  3 18:13:10 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002376.html">[fetchmail-users] Leave the message unread on the exchange	server when fetchmail execute.
+</A></li>
+        <LI>Next message: <A HREF="002378.html">[fetchmail-users] fetchmail 6.3.17 security/regression fix release
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2377">[ date ]</a>
+              <a href="thread.html#2377">[ thread ]</a>
+              <a href="subject.html#2377">[ subject ]</a>
+              <a href="author.html#2377">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Am 03.05.2010 17:31, schrieb Rob MacGregor:
+&gt;<i> On Mon, May 3, 2010 at 15:56, Marco Moncada &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">mmoncada2 at uh.edu</A>&gt; wrote:
+</I>&gt;&gt;<i> Hello,
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> I configured fetchmail has my backup mail server for my department. I think it works great.  I would like to know if there is a way to leave the message unread on the exchange server.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Every time it execute fetchmail on my CentOS server to retrieve the new messages it marks them read on the exchange server.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> This is my .fetchmailrc configuration:
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i>  poll exchange.uh.edu
+</I>&gt;&gt;<i>        user &quot;USERNAME&#8221;
+</I>&gt;&gt;<i>        pass &quot;PASSWD&quot;
+</I>&gt;&gt;<i>        is username
+</I>&gt;&gt;<i>        keep
+</I>&gt;&gt;<i>        no fetchall
+</I>&gt;&gt;<i>        folder Inbox
+</I>&gt;&gt;<i>        ssl
+</I>&gt;<i> 
+</I>&gt;<i> Try using IMAP instead of POP and see if that helps.  If it doesn't then no.
+</I>
+I guess he's already doing that, because IMAP must set \Seen flags (it doesn't
+track seen state on the client side). In that case, &quot;proto pop3 uidl&quot; might help.
+
+-- 
+Matthias Andree
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002376.html">[fetchmail-users] Leave the message unread on the exchange	server when fetchmail execute.
+</A></li>
+	<LI>Next message: <A HREF="002378.html">[fetchmail-users] fetchmail 6.3.17 security/regression fix release
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2377">[ date ]</a>
+              <a href="thread.html#2377">[ thread ]</a>
+              <a href="subject.html#2377">[ subject ]</a>
+              <a href="author.html#2377">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

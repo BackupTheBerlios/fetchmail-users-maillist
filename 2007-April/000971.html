@@ -1,0 +1,198 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] fetchmail 6.3.8 security fix release
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2007-April/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%206.3.8%20security%20fix%20release&In-Reply-To=%3C20070406203404.GA31390%40merlin.emma.line.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000970.html">
+   <LINK REL="Next"  HREF="000972.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] fetchmail 6.3.8 security fix release</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%206.3.8%20security%20fix%20release&In-Reply-To=%3C20070406203404.GA31390%40merlin.emma.line.org%3E"
+       TITLE="[fetchmail-users] fetchmail 6.3.8 security fix release">matthias.andree at gmx.de
+       </A><BR>
+    <I>Fri Apr  6 22:34:04 CEST 2007</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000970.html">[fetchmail-users] Bug#416282: Fetchmail oversized-messages	warning could say more
+</A></li>
+        <LI>Next message: <A HREF="000972.html">[fetchmail-users] Exchange Server 2003 IMAP NTLM
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#971">[ date ]</a>
+              <a href="thread.html#971">[ thread ]</a>
+              <a href="subject.html#971">[ subject ]</a>
+              <a href="author.html#971">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA1
+
+Greetings,
+
+I am announcing the release of fetchmail 6.3.8. This new stable version
+of fetchmail strengthens the APOP validator to make the
+man-in-the-middle attack to be presented as CVE-2007-1558 more
+difficult. It also fixes a regression from the 6.3.6 security patches
+and further long-standing bugs.
+
+Note that 6.3.8 is the last planned release on the 6.3 branch, further
+planned fetchmail releases will take some time to appear and contain
+larger changes.
+
+The software is available from:
+&lt;<A HREF="http://developer.berlios.de/project/showfiles.php?group_id=1824">http://developer.berlios.de/project/showfiles.php?group_id=1824</A>&gt;
+
+The fetchmail home pages are:
+&lt;<A HREF="http://www.fetchmail.info/">http://www.fetchmail.info/</A>&gt;  or  &lt;<A HREF="http://fetchmail.berlios.de/">http://fetchmail.berlios.de/</A>&gt;
+
+These are the relevant changes in 6.3.8 since 6.3.7;
+unless otherwise noted, changes to this release were made by Matthias Andree:
+
+# ADVANCE WARNING OF FEATURES TO BE REMOVED OR CHANGED IN FUTURE VERSIONS
+(There are no plans to remove these features from a 6.3.X release, but they may
+be removed from a 6.4.0 or newer release.)
+* The MX and host alias DNS lookups that fetchmail performs in multidrop mode
+  are based on assumptions that are rarely met in practice, somewhat defective,
+  deprecated and may be removed from a future fetchmail version.  They have
+  never supported IPv6 (including IPv6-mapped IPv4).
+  Non-DNS based alias keywords such as &quot;aka&quot; will remain in fetchmail.
+* The monitor and interface options may be removed from a future fetchmail
+  version as they are not reasonably portable.
+* POP2 is obsolete, support will be removed from a future fetchmail version.
+* RPOP is obsolete, support will be removed from a future fetchmail release.
+* --sslcertck will become a default setting in a future fetchmail version.
+* The multidrop To/Cc guessing code along with the fragile duplicate suppressor
+  is deprecated and may be removed from a future release.
+* The &quot;envelope Received&quot; option may be removed from a future release, because
+  the Received header was never meant to be machine-readable, the format varies
+  widely, and various other differences in behavior make parsing Received an
+  unreliable undertaking. The envelope option as such will remain though, in
+  order to support Delivered-To, X-Envelope-To, X-Original-To and similar.
+  See also &lt;<A HREF="http://home.pages.de/~mandree/mail/multidrop">http://home.pages.de/~mandree/mail/multidrop</A>&gt;.
+* The --enable-fallback (fall back to MDA if MTA unavailable) will be removed
+  from a future fetchmail release, because it makes fetchmail's behavior
+  inconsistent and confusing.
+* The &quot;protocol auto&quot; default inside fetchmail may be removed from a future
+  fetchmail release. Explicit configuration of the protocol is recommended.
+* Kerberos IV support may be removed from a future fetchmail release.
+* SIGHUP wakeup support may be removed from a future fetchmail release and
+  cause fetchmail to terminate - it was broken for many years.
+* Support for operating systems that are not sufficiently POSIX compliant may be
+  removed or operation on such systems may be suboptimal for future releases.
+
+# SECURITY STRENGTHENING:
+* Make the APOP challenge parser more distrustful and have it reject challenges
+  that do not conform to RFC-822 msg-id format, in the hope to make mounting
+  man-in-the-middle attacks (MITM) against APOP a bit more difficult.
+  (CVE-2007-1558, reported by Ga&#235;tan Leurent, published 2007-04-02 on Bugtraq)
+
+  APOP is claimed insecure by Ga&#235;tan Leurent for MITM scenarios for typical
+  setups: based on MD5 collisions, it is purportedly possible to recover the
+  first three characters of the shared secret (password), which would then make
+  recovery of the shared secret a matter of hours or minutes; this would then
+  enable the attacker to impersonate the client vis-&#224;-vis the server.
+
+  For further details, check
+  * Ga&#235;tan Leurent, &quot;Message Freedom in MD4 and MD5 Collisions: Application
+  to APOP&quot;, Fast Software Encryption 2007, Luxembourg. (Proceedings to appear in
+  Springer's Lecture Notes on Computer Science.)
+  * The mailing list discussion thread at
+  &lt;<A HREF="http://lists.berlios.de/pipermail/fetchmail-devel/2007-March/000887.html">http://lists.berlios.de/pipermail/fetchmail-devel/2007-March/000887.html</A>&gt;
+
+# BUG FIXES:
+* Fix pluralization of oversized-message warning mails.
+* Fix manual page: --sslcheck -&gt; --sslcertck, and do not set trailing 
+  &quot;recommended:&quot; in bold. Fixes Debian Bug #413059, reported by Rafal Czlonka.
+* Repoll immediately if a protocol error happens during the authentication 
+  attempt after a failed opportunistic TLS upgrade.
+  Fixes comment #9 in Gentoo Bug #163782, reported by Takuto Matsuu.
+* Fix rendering of the &quot;24 - 26, 28, 29&quot; paragraph in the exit codes section. 
+  Reported by Nico Golde.
+* If SOCKS support was compiled in, add 'socks' to the feature_options Python
+  list emitted in --configdump. Reported by Rob MacGregor.
+* Do not crash with a null pointer dereference when opening the BSMTP file 
+  fails. Improve error checking and reporting. Reported by Reto Sch&#252;ttel,
+  Debian Bug#416625. Fix based on a patch by Nico Golde.
+* Make BSMTP output actually work, it would persistently fail with SOCKET error
+  after writing the first header. Bug independently found and reported in
+  excellent detail by Reto Sch&#252;ttel, Debian Bug#416812.
+
+# DOCUMENTATION:
+* Add fetchmail-SA-2007-01.txt
+* Extend --mda documentation, discourage use of qmail-inject.
+  Based on a patch by Rob MacGregor.
+* Document SOCKS configuration facility (SOCKS_CONF environment variable).
+  Thanks to Jochen Hayek, Michael Shuldman and Rob MacGregor.
+* Use envelope option in multidrop example. Patch by Rob MacGregor.
+* Document expected Received: line format when parsing for envelope addressees.
+* Stripped option documentation from sample.rcfile, since this is bound to go
+  out of synch with the manual page, which is the only reference on options.
+* Mention that --limit default is 0 bytes, which is special for &quot;no limit&quot;.
+* Corrected Robert M. Funk's name that I misspelled. My sincere apologies
+  -- Matthias Andree.
+
+# CONTRIB:
+* Add delete-later and delete-later.README, a script and documentation for
+  a MySQL/Tcl-based client-side &quot;delete-after&quot; feature.
+  Kindly donated by Yoo GmbH, Gro&#223;voigtsberg, Germany (Carsten Ralle).
+
+# KNOWN BUGS AND WORKAROUNDS:
+  (this section floats upwards through the NEWS file so it stays with the
+  current release information)
+* fetchmail does not handle messages without Message-ID header well
+  (See sourceforge.net bug #780933)
+* BSMTP is mostly untested and errors can cause corrupt output.
+* Sun Workshop 6 (SPARC) is known to miscompile the configuration file lexer in
+  64-bit mode.  Either compile 32-bit code or use GCC to compile 64-bit
+  fetchmail.  Note that fetchmail doesn't take advantage of 64-bit code,
+  so compiling 32-bit SPARC code should not cause any difficulties.
+* fetchmail does not track pending deletes over crashes
+* the command line interface is a bit narrow-minded sometimes, for instance,
+  fetchmail -s doesn't work with a running daemon
+* some of the logging output is not very helpful
+* some of the documentation is still not up to date
+
+- -- 
+Matthias Andree
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1.4.5 (GNU/Linux)
+
+iD8DBQFGFq68vmGDOQUufZURAidjAKCG9+TAjmMz7l/9KWFROKBqhyBLPgCg9hbo
+KAMMlF17J1XRbB/rGR9uiSA=
+=orbA
+-----END PGP SIGNATURE-----
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000970.html">[fetchmail-users] Bug#416282: Fetchmail oversized-messages	warning could say more
+</A></li>
+	<LI>Next message: <A HREF="000972.html">[fetchmail-users] Exchange Server 2003 IMAP NTLM
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#971">[ date ]</a>
+              <a href="thread.html#971">[ thread ]</a>
+              <a href="subject.html#971">[ subject ]</a>
+              <a href="author.html#971">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

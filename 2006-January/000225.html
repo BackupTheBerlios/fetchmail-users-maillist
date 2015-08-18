@@ -1,0 +1,110 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] SSL authentication problems with Gmail
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2006-January/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20SSL%20authentication%20problems%20with%20Gmail&In-Reply-To=%3Cm3r77nh7fo.fsf%40merlin.emma.line.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000222.html">
+   <LINK REL="Next"  HREF="000227.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] SSL authentication problems with Gmail</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20SSL%20authentication%20problems%20with%20Gmail&In-Reply-To=%3Cm3r77nh7fo.fsf%40merlin.emma.line.org%3E"
+       TITLE="[fetchmail-users] SSL authentication problems with Gmail">matthias.andree at gmx.de
+       </A><BR>
+    <I>Thu Jan  5 00:58:19 CET 2006</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000222.html">[fetchmail-users] SSL authentication problems with Gmail
+</A></li>
+        <LI>Next message: <A HREF="000227.html">[fetchmail-users] SSL authentication problems with Gmail
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#225">[ date ]</a>
+              <a href="thread.html#225">[ thread ]</a>
+              <a href="subject.html#225">[ subject ]</a>
+              <a href="author.html#225">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Sebastian Tennant &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">sebyte at smolny.plus.com</A>&gt; writes:
+
+&gt;<i> Doh!  Just when you think you've wrapped something up...
+</I>&gt;<i>
+</I>&gt;<i> I didn't attach the init script did I?  I attached my fetchmailrc,
+</I>&gt;<i> including my password!
+</I>&gt;<i>
+</I>&gt;<i> I've changed the password, and there were no other account details
+</I>&gt;<i> included, so no harm done... luckily!
+</I>&gt;<i>
+</I>&gt;<i> Take two.  Init script attached.
+</I>
+OK, that, and the relevant syslog except allow me to write a concluding
+report, Sebastian's problems are completely solved.
+
+1. grabbing the certificate from the server dialogue failed; although
+   c_rehash had worked properly, it was the wrong certificate
+   apparently. (&quot;unable to get local issuer certificate&quot;)
+
+   There are certainly people with a deeper understanding of the SSL
+   certification process that can explain this better than I can.
+
+2. Debian's ca-certificates package has the Thawte root certificate in
+   the default place, this proved sufficient to verify Google's
+   certificate (which is signed by Thawte) in fetchmail 6.3.1 even with
+   --sslcertck (which I recommend to use, as it's safer).
+
+   NOTE: older fetchmail versions fail to set the SSL default
+   certificate path, you must set &quot;--sslcertpath /etc/ssl/certs&quot;
+   manually (or whichever the path is; you can also specify this in the
+   fetchmailrc file.).
+
+3. Debian's init script diverts logging to syslog by default, and the
+   reporter's syslog.conf split error messages out to a separate file,
+   where they went unnoticed.
+   
+   I therefore take the right to advise against using the &quot;=&quot; and &quot;!&quot;
+   operators in syslog.conf. &quot;mail.info&quot; is the correct left-hand-side
+   to use in syslog.conf for fetchmail 6.2.5.X and 6.3.X.
+
+4. Debian's init script supports an operation &quot;debug-run&quot;, which avoids
+   syslog, and logs everything on the console in verbose mode. This
+   appears to be a simple way to procure all necessary debug information
+   on Debian systems.
+
+Happy fetchmailing,
+
+-- 
+Matthias Andree
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000222.html">[fetchmail-users] SSL authentication problems with Gmail
+</A></li>
+	<LI>Next message: <A HREF="000227.html">[fetchmail-users] SSL authentication problems with Gmail
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#225">[ date ]</a>
+              <a href="thread.html#225">[ thread ]</a>
+              <a href="subject.html#225">[ subject ]</a>
+              <a href="author.html#225">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

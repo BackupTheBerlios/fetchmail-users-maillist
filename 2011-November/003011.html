@@ -1,0 +1,85 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] the message fetch should be completed before quitting
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2011-November/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20the%20message%20fetch%20should%20be%20completed%20before%0A%20quitting&In-Reply-To=%3C17415058.5024181322417864045.JavaMail.root%40wmail2.libero.it%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003010.html">
+   
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] the message fetch should be completed before quitting</H1>
+    <B>rossi.f at inwind.it</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20the%20message%20fetch%20should%20be%20completed%20before%0A%20quitting&In-Reply-To=%3C17415058.5024181322417864045.JavaMail.root%40wmail2.libero.it%3E"
+       TITLE="[fetchmail-users] the message fetch should be completed before quitting">rossi.f at inwind.it
+       </A><BR>
+    <I>Sun Nov 27 19:17:44 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003010.html">[fetchmail-users] the message fetch should be completed before quitting
+</A></li>
+        
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3011">[ date ]</a>
+              <a href="thread.html#3011">[ thread ]</a>
+              <a href="subject.html#3011">[ subject ]</a>
+              <a href="author.html#3011">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>&gt;&gt;<i> I have tried with the attached patch (-pid is not the group process id). The
+</I>&gt;&gt;<i> effect seems different than killing the process via CTRL-C at the 
+</I>terminal. 
+&gt;&gt;<i> The
+</I>&gt;&gt;<i> maildrop child process is not killed and the message is accordingly 
+</I>delivered.
+&gt;&gt;<i> Something is still not working correctly: might it be due to the fact that 
+</I>the
+&gt;&gt;<i> parent process is killed before the child? If this is the case the signal
+</I>&gt;&gt;<i> handler in fetchmail should kill its children before dying
+</I>&gt;<i>
+</I>&gt;<i>The problem is that fetchmail uses popen(), thus does not know the PID
+</I>&gt;<i>of its child (and uses pclose() to reap the zombie process), so we'll
+</I>&gt;<i>have to rely on process group signalling.  Does maildrop respond
+</I>&gt;<i>differently to SIGTERM than to SIGINT?  I haven't got time to check that
+</I>&gt;<i>now, will do some time during the week.
+</I>
+I have also tried to put SIGINT as signal to be sent by fetchmail on response 
+to --quit, nothing changes :-(
+
+I'm attaching a stupid program for testing the killpg() function. On my 
+system, if I leave the program terminating by itself, the parent process is 
+always killed before the child one (so this is what happens also with the 
+patched fetchmail). If I send a manual CTRL-C command on the terminal it might 
+happen that the signal handler for the child is called before the other.
+
+Fabio
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003010.html">[fetchmail-users] the message fetch should be completed before quitting
+</A></li>
+	
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3011">[ date ]</a>
+              <a href="thread.html#3011">[ thread ]</a>
+              <a href="subject.html#3011">[ subject ]</a>
+              <a href="author.html#3011">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

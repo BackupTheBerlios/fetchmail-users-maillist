@@ -1,0 +1,231 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] fetchmail 7.0.0-alpha5 alpha preview release -	SSL cipher setting/info
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2013-August/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%207.0.0-alpha5%20alpha%20preview%20release%20-%0A%09SSL%20cipher%20setting/info&In-Reply-To=%3C5209519E.1080902%40gmx.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003452.html">
+   <LINK REL="Next"  HREF="003454.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] fetchmail 7.0.0-alpha5 alpha preview release -	SSL cipher setting/info</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%207.0.0-alpha5%20alpha%20preview%20release%20-%0A%09SSL%20cipher%20setting/info&In-Reply-To=%3C5209519E.1080902%40gmx.de%3E"
+       TITLE="[fetchmail-users] fetchmail 7.0.0-alpha5 alpha preview release -	SSL cipher setting/info">matthias.andree at gmx.de
+       </A><BR>
+    <I>Mon Aug 12 23:20:30 CEST 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003452.html">[fetchmail-users] failed to download mail from Gmail with IMAP
+</A></li>
+        <LI>Next message: <A HREF="003454.html">[fetchmail-users] [fetchmail-devel] fetchmail 7.0.0-alpha5 alpha preview release - SSL cipher setting/info
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3453">[ date ]</a>
+              <a href="thread.html#3453">[ thread ]</a>
+              <a href="subject.html#3453">[ subject ]</a>
+              <a href="author.html#3453">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Greetings,
+
+in an effort to get sufficient testing, I have released the next alpha
+version of fetchmail 7.0.0. This merges post-6.3.23 changes in, and
+should have all relevant fixes from releases up to, and including, 6.3.26.
+
+The notable changes beyond that are
+
+1. cleanup and change of SSL options to make them easier to understand,
+and separate concerns (the protocol no longer overloads the connection
+mode), and enable sslcertck by default (this should all be in the manual
+page already, if bits are missing, let me know)
+
+2. the addition of an option to print the SSL cipher in verbose mode,
+and the ability to specify the offered ciphers through the environment
+variable FETCHMAIL_SSL_CIPHERS. This is only documented here and in the
+NEWS file for now.  There are several SSL/TLS code cleanups I need to
+make before adding this feature formally, and on a per-server basis.
+
+   Example:
+
+   env FETCHMAIL_SSL_CIPHERS='ECDH:DH:!MEDIUM:!LOW:!EXP' fetchmail -vv
+
+Note that fetchmail continues to be very chatty in debug mode (with two
+-v options, or a -vv option), and note that some popular services
+(Microsoft's and O2, for one) fail to set up a connection with the
+setting above, whilst some others (notably, Google, Yahoo!,
+Domainfactory) are happy with DH.
+
+
+I am soliciting feedback on the new SSL option design and use, and yes I
+know that certificate pinning, multiple certificate fingerprint, SHA1
+certificate fingerprint checking are still pending.
+
+
+The alpha version is available for download from these sites:
+&lt;<A HREF="http://home.pages.de/~mandree/fetchmail/">http://home.pages.de/~mandree/fetchmail/</A>&gt;
+&lt;<A HREF="https://sourceforge.net/projects/fetchmail/files/branch_7-alpha/">https://sourceforge.net/projects/fetchmail/files/branch_7-alpha/</A>&gt;
+
+It is not available for download from BerliOS, its file release system
+is too cumbersome to use for non-formal previews.
+
+The fetchmail sources are also available via Git.
+
+The corresponding git tag is SNAPSHOT_7-0-0-alpha5, the branch is
+&quot;sslrevolution1&quot;. The repository browsers (these show the clone URLs):
+&lt;<A HREF="http://gitorious.org/fetchmail">http://gitorious.org/fetchmail</A>&gt;
+&lt;<A HREF="http://git.berlios.de/cgi-bin/cgit.cgi/fetchmail/">http://git.berlios.de/cgi-bin/cgit.cgi/fetchmail/</A>&gt;
+&lt;<A HREF="http://git.berlios.de/cgi-bin/gitweb.cgi?p=fetchmail;a=summary">http://git.berlios.de/cgi-bin/gitweb.cgi?p=fetchmail;a=summary</A>&gt;
+
+Please send feedback to <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">fetchmail-devel at lists.berlios.de.</A>
+
+Happy fetches!
+Matthias
+
+--------------------------------------------------------------------------------
+&gt;<i> # INCOMPATIBLE CHANGES
+</I>&gt;<i> * The SSL/TLS options were massively changed and disentangled, to be clearer.
+</I>&gt;<i> * --sslcertck is now the default, to aggressively request and validate X.509
+</I>&gt;<i>   (SSL/TLS) certificates from the servers.
+</I>&gt;<i>   Note: Several distributions offer ca-roots or ca-root-certificates
+</I>&gt;<i>   or similarly named packages that contain the CA certificates of major trust
+</I>&gt;<i>   agencies such as Verisign, Equifax, Thawte, and Deutsche Telekom. These are
+</I>&gt;<i>   convenient to install if you're pulling mail from major freemailer sites.
+</I>&gt;<i> * --sslmode starttls=must is now the default as a consequence of the
+</I>&gt;<i>   previous sslcertck default.
+</I>&gt;<i>   If you need an unencrypted connection, use --sslmode none.
+</I>&gt;<i> * See the REMOVED FEATURES section below for further incompatibilities.
+</I>&gt;<i> 
+</I>&gt;<i> # MAJOR CHANGES
+</I>&gt;<i> * The UIDL handler code is now much faster, especially noticable with lots of
+</I>&gt;<i>   mail kept on a POP3 server. Where the 6.3.X code was of O(n^2) complexity,
+</I>&gt;<i>   we're down to O(n log n).
+</I>&gt;<i>   Contributed by Rainer Weikusat, MAD Partners Ltd./MSS GmbH.
+</I>&gt;<i> * The POP3 code now always uses UIDL, except if &quot;fetchall&quot; is in effect.
+</I>&gt;<i>   Fixes BerliOS Bug #16172. Fixes Debian Bug#345788.
+</I>&gt;<i> * Fetchmail now enables SSL support by default. If this is undesired,
+</I>&gt;<i>   ./configure --without-ssl should help.
+</I>&gt;<i> * The OpenSSL code now excludes the SSL_OP_DONT_INSERT_EMPTY_FRAGMENTS option.
+</I>&gt;<i>   This can cause interoperability problems with certain buggy servers, but is
+</I>&gt;<i>   required to defang chosen-plaintext attacks against AES.  While probably hard
+</I>&gt;<i>   to mount against fetchmail, let's play it safe rather than be sorry later.
+</I>&gt;<i> 
+</I>&gt;<i> # FEATURES ADDED
+</I>&gt;<i> * Fetchmail can now retrieve credentials from PWMD. This needs to be enabled at
+</I>&gt;<i>   compile-time and requires run-time configuration. See README.PWMD for details.
+</I>&gt;<i>   Contributed by Ben Kibbey, author of libpwmd and pwmd.
+</I>&gt;<i> * Fetchmail now supports a retrieve-error command line or rcfile option that
+</I>&gt;<i>   takes exactly one argument, abort (default), continue or markseen.  This
+</I>&gt;<i>   specifies the policy used by fetchmail to handle messages whose bodies
+</I>&gt;<i>   fail to be retrieved due to server errors.  Both the continue and markseen
+</I>&gt;<i>   options will skip the message with errors and allow the session to
+</I>&gt;<i>   continue so that subsequent messages can be retrieved.  The markseen
+</I>&gt;<i>   option will also mark the message with errors as seen.
+</I>&gt;<i>   The default policy is to abort the session whenever a server error occurs.
+</I>&gt;<i>   Contributed by Craig Brown.
+</I>&gt;<i> * Fetchmailconf offers cram-md5 and apop authentication.
+</I>&gt;<i> * The SSL/TLS/STARTTLS operation mode is now selected through a new --sslmode
+</I>&gt;<i>   option, which cleans up the incomprehensible --ssl and --sslproto mess of
+</I>&gt;<i>   fetchmail versions before v7.0.0.
+</I>&gt;<i> * The SSL/TLS/STARTTLS protocol version can now be selected through a new
+</I>&gt;<i>   --sslprotocolversion switch.
+</I>&gt;<i> * The SSL/TLS cipher in used is now reported in verbose mode.
+</I>&gt;<i> * Temporary and experimental feature to specify SSL/TLS ciphers. This is done
+</I>&gt;<i>   through the global FETCHMAIL_SSL_CIPHERS environment variable, which is set
+</I>&gt;<i>   to a string that is understood by OpenSSL's cipher(1) command. In debug mode
+</I>&gt;<i>   (-vv), the ordered list of client-side ciphers is printed.
+</I>&gt;<i> 
+</I>&gt;<i> # REMOVED FEATURES
+</I>&gt;<i> * IMAP2 protocol support was removed.
+</I>&gt;<i> * POP2 protocol support was removed.
+</I>&gt;<i> * RPOP (not actually a protocol, but a variant of POP3) was removed
+</I>&gt;<i> * POP3: the uidl option has been removed. It is always on.
+</I>&gt;<i> * POP3: LAST is no longer used. It was removed from POP3 in 1994, and it could
+</I>&gt;<i>   cause mail loss when the connection was interrupted or if clients besides
+</I>&gt;<i>   fetchmail polled the mailbox.
+</I>&gt;<i> * Trio was removed, fetchmail expects reasonable stdio.h quality levels.
+</I>&gt;<i> * Support for systems that do not conform to C89 and POSIX 2001 was removed,
+</I>&gt;<i>   this means that BeOS, EMX, NeXTSTEP quirks are no longer worked around.
+</I>&gt;<i> * The MX and host alias DNS lookups that fetchmail performs in multidrop mode
+</I>&gt;<i>   have been removed. They were based on the mistaken assumption that the
+</I>&gt;<i>   IMAP/POP3 server was also the MX server, which is rarely the case.  They have
+</I>&gt;<i>   never supported IPv6 (including IPv6-mapped IPv4) either.
+</I>&gt;<i>   Non-DNS based alias keywords such as &quot;aka&quot; remain.
+</I>&gt;<i> * Kerberos IV support was removed.
+</I>&gt;<i> * fetchmail no longer supports SSL v2. SSLv2 is insecure and had been deprecated
+</I>&gt;<i>   15 years ago. fetchmail will actively forbid SSLv2 negotiation by means of
+</I>&gt;<i>   SSL_OP_NO_SSLv2.  To fix Debian Bug#622054.
+</I>&gt;<i> * The --ssl option is obsolescent and triggers a warning that users should use
+</I>&gt;<i>   --sslmode wrapped instead. It is understood as an alias for --sslmode wrapped.
+</I>&gt;<i> * The --sslproto option was removed. Two new options were added in its place,
+</I>&gt;<i>   --sslmode and --sslprotocolversion.
+</I>&gt;<i> * A lot of outdated and/or unsafe-to-use material got dropped from contrib/.
+</I>&gt;<i> 
+</I>&gt;<i> # REGRESSION FIXES
+</I>&gt;<i> * The mimedecode feature now properly detects multipart/mixed-type matches, so
+</I>&gt;<i>   that quoted-printable-encoded multipart messages can get decoded.
+</I>&gt;<i>   (Regression in 5.0.0 on 1999-03-27, as a side effect of a PGP-mimedecode fix
+</I>&gt;<i>   attributed to Henrik Storner.)
+</I>&gt;<i> 
+</I>&gt;<i> # BUG FIXES
+</I>&gt;<i> * The mimedecode feature failed to ship the last line of the body if it was
+</I>&gt;<i>   encoded as quoted-printable and had a MIME soft line break in the very last
+</I>&gt;<i>   line.  Reported by Lars Hecking in June 2011.
+</I>&gt;<i>   Bug introduced on 1998-03-20 when the mimedecode support was added by ESR
+</I>&gt;<i>   before release 4.4.1 through code contributed by Henrik Storner.
+</I>&gt;<i>   Workaround for older releases: do not use mimedecode feature.
+</I>&gt;<i> * Fetchmail now detects singly-quoted % expansions in the mda option and refuses
+</I>&gt;<i>   to deliver for safety reasons. Fixes Debian Bug#347909.
+</I>&gt;<i> * The Server certificate: message in verbose mode now appears on stdout like the
+</I>&gt;<i>   remainder of the output. Reported by Henry Jensen, to fix Debian Bug #639807.
+</I>&gt;<i> 
+</I>&gt;<i> # CHANGES
+</I>&gt;<i> * A foreground fetchmail can now accept a few more options while another copy is
+</I>&gt;<i>   running in the background.
+</I>&gt;<i> * APOP is no longer a protocol, but an authentication method. In order to use
+</I>&gt;<i>   it, use protocol POP3 auth APOP, or on the commandline, -p pop3 --auth apop.
+</I>&gt;<i>   If no authentication method is specified, APOP is automatically tried if
+</I>&gt;<i>   offered by the server before we resort to sending the password as clear text.
+</I>
+--------------------------------------------------------------------------------
+
+
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: signature.asc
+Type: application/pgp-signature
+Size: 261 bytes
+Desc: OpenPGP digital signature
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/fetchmail-users/attachments/20130812/28b5bf31/attachment.pgp">https://lists.berlios.de/pipermail/fetchmail-users/attachments/20130812/28b5bf31/attachment.pgp</A>&gt;
+</PRE>
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003452.html">[fetchmail-users] failed to download mail from Gmail with IMAP
+</A></li>
+	<LI>Next message: <A HREF="003454.html">[fetchmail-users] [fetchmail-devel] fetchmail 7.0.0-alpha5 alpha preview release - SSL cipher setting/info
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3453">[ date ]</a>
+              <a href="thread.html#3453">[ thread ]</a>
+              <a href="subject.html#3453">[ subject ]</a>
+              <a href="author.html#3453">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

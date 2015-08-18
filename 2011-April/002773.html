@@ -1,0 +1,90 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Fetchmail using 2 envelope options
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2011-April/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Fetchmail%20using%202%20envelope%20options&In-Reply-To=%3CBANLkTimH9h6o%2Bd0RwKoaXR-DKRL5VQrPCg%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002772.html">
+   <LINK REL="Next"  HREF="002774.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Fetchmail using 2 envelope options</H1>
+    <B>Rob MacGregor</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Fetchmail%20using%202%20envelope%20options&In-Reply-To=%3CBANLkTimH9h6o%2Bd0RwKoaXR-DKRL5VQrPCg%40mail.gmail.com%3E"
+       TITLE="[fetchmail-users] Fetchmail using 2 envelope options">rob.macgregor at gmail.com
+       </A><BR>
+    <I>Tue Apr 26 19:22:23 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002772.html">[fetchmail-users] Fetchmail using 2 envelope options
+</A></li>
+        <LI>Next message: <A HREF="002774.html">[fetchmail-users] Fetchmail using 2 envelope options
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2773">[ date ]</a>
+              <a href="thread.html#2773">[ thread ]</a>
+              <a href="subject.html#2773">[ subject ]</a>
+              <a href="author.html#2773">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Tue, Apr 26, 2011 at 08:57, Hary Nurmansyah &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">rhein_onizuka at yahoo.com</A>&gt; wrote:
+&gt;<i> Dear Peter,
+</I>&gt;<i>
+</I>&gt;<i> I am using fetchmail 6.3.9 rc2&#160;to retrieve email from&#160;catchall account ( <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">main at example.com</A>) and then distributed to <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">user1 at example.com</A><A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">,user2 at example.com</A>, etc,
+</I>
+Please upgrade - not only are you running a pre-release version of
+fetchmail, but you're many versions behind current. While it may not
+resolve your current problem, it will resolve other problems and fix
+many security holes.
+
+&gt;<i> Now i am using envelope&#160;&quot;Envelope-to&quot;. All email from TO dan CC are okay.
+</I>&gt;<i>
+</I>&gt;<i> The problem is that&#160;fetchmail cannot fetch header from BCC and mailing list email.
+</I>&gt;<i>
+</I>&gt;<i> And then I analyzed the header, and i found that all email from BCC and mailing list email flagged with &quot;X-Apparently-To&quot;.
+</I>&gt;<i>
+</I>&gt;<i> How can fetchmail read two header, so if header envelope-to are not found then it's automatically found header X-Apparently-To?
+</I>
+I'd suggest you talk to your mail provider and ask them to fix their
+broken setup. Their mail server should only be using a single header,
+not 2 different ones depending on how the email was sent. Fetchmail
+does not support multiple Envelope headers.
+
+-- 
+&#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160;&#160; Please keep list traffic on the list.
+
+Rob MacGregor
+&#160; &#160; &#160; Whoever fights monsters should see to it that in the process he
+&#160; &#160; &#160; &#160; doesn't become a monster.&#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; Friedrich Nietzsche
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002772.html">[fetchmail-users] Fetchmail using 2 envelope options
+</A></li>
+	<LI>Next message: <A HREF="002774.html">[fetchmail-users] Fetchmail using 2 envelope options
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2773">[ date ]</a>
+              <a href="thread.html#2773">[ thread ]</a>
+              <a href="subject.html#2773">[ subject ]</a>
+              <a href="author.html#2773">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

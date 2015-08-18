@@ -1,0 +1,322 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] how to config fetchmail for www.inbox.com email
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2006-October/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20how%20to%20config%20fetchmail%20for%20www.inbox.com%20email&In-Reply-To=%3C20061002141522.GA3858%40localdomain%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000639.html">
+   <LINK REL="Next"  HREF="000631.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] how to config fetchmail for www.inbox.com email</H1>
+    <B>Weidong Cui</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20how%20to%20config%20fetchmail%20for%20www.inbox.com%20email&In-Reply-To=%3C20061002141522.GA3858%40localdomain%3E"
+       TITLE="[fetchmail-users] how to config fetchmail for www.inbox.com email">cuiwd at inbox.com
+       </A><BR>
+    <I>Mon Oct  2 16:15:22 CEST 2006</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000639.html">[fetchmail-users] Fetchmail forwarding
+</A></li>
+        <LI>Next message: <A HREF="000631.html">[fetchmail-users] how to config fetchmail for www.inbox.com	email
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#630">[ date ]</a>
+              <a href="thread.html#630">[ thread ]</a>
+              <a href="subject.html#630">[ subject ]</a>
+              <a href="author.html#630">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi, All,
+I have a email account at www.inbox.com, but I can not use fetchmail to
+received my email from there. Belowed are informations for my fetchmail
+configuration and running output. So I read my email via webpage now.
+
+Thanks in advance.
+
+Weidong Cui
+<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">cuiwd at inbox.com</A>
+Mon Oct  2 14:08:30 UTC 2006
+
+
+********************************************************************************
+My .fetchmailrc file:
+
+# Configuration created Fri Sep 29 20:37:49 2006 by fetchmailconf 1.52 $Revision: 4740 $
+set postmaster &quot;weidong&quot;
+set bouncemail
+set no spambounce
+set properties &quot;&quot;
+
+poll my.inbox.com proto pop3 and options no dns
+       user '<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">cuiwd at inbox.com</A>' there with password 'passwordxxxxx' is 'weidong' here
+
+
+fetchmail: 6.3.4 querying my.inbox.com (protocol POP3) at Mon Oct  2 14:12:43 2006: poll started
+fetchmail: POP3&lt; +OK WM29.inbox.com POP3 server ready &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">3864.632953598109062500 at WM29.inbox.com</A>&gt;
+fetchmail: POP3&gt; CAPA
+fetchmail: POP3&lt; +OK Capability list follows
+fetchmail: POP3&lt; USER
+fetchmail: POP3&lt; SASL CRAM-MD5
+fetchmail: POP3&lt; UIDL
+fetchmail: POP3&lt; APOP
+fetchmail: POP3&lt; .
+fetchmail: POP3&gt; AUTH CRAM-MD5
+fetchmail: POP3&lt; + PDY4MDM0OUE3RjFCM0M4MDhAV00yOS5pbmJveC5jb20+
+fetchmail: POP3&gt; Y3Vpd2RAaW5ib3guY29tIGY4MWRhNjZiZGVmNDQ5YTgzNzhlOWQ3YzZmN2VmYmQx
+fetchmail: POP3&lt; +OK Authentication successful
+fetchmail: POP3&gt; STAT
+fetchmail: POP3&lt; +OK 30 101088
+fetchmail: POP3&gt; LAST
+fetchmail: POP3&lt; -ERR Syntax error, command unrecognized
+fetchmail: Syntax error, command unrecognized
+fetchmail: POP3&gt; UIDL
+fetchmail: POP3&lt; +OK unique-id listing follows
+fetchmail: POP3&lt; 1 19
+fetchmail: POP3&lt; 2 21
+fetchmail: POP3&lt; 3 23
+fetchmail: POP3&lt; 4 28
+fetchmail: POP3&lt; 5 31
+fetchmail: POP3&lt; 6 33
+fetchmail: POP3&lt; 7 34
+fetchmail: POP3&lt; 8 35
+fetchmail: POP3&lt; 9 36
+fetchmail: POP3&lt; 10 37
+fetchmail: POP3&lt; 11 38
+fetchmail: POP3&lt; 12 39
+fetchmail: POP3&lt; 13 40
+fetchmail: POP3&lt; 14 41
+fetchmail: POP3&lt; 15 42
+fetchmail: POP3&lt; 16 43
+fetchmail: POP3&lt; 17 44
+fetchmail: POP3&lt; 18 45
+fetchmail: POP3&lt; 19 48
+fetchmail: POP3&lt; 20 50
+fetchmail: POP3&lt; 21 54
+fetchmail: POP3&lt; 22 55
+fetchmail: POP3&lt; 23 57
+fetchmail: POP3&lt; 24 58
+fetchmail: POP3&lt; 25 60
+fetchmail: POP3&lt; 26 68
+fetchmail: POP3&lt; 27 69
+fetchmail: POP3&lt; 28 71
+fetchmail: POP3&lt; 29 76
+fetchmail: POP3&lt; 30 77
+fetchmail: POP3&lt; .
+30 messages for <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">cuiwd at inbox.com</A> at my.inbox.com (101088 octets).
+fetchmail: POP3&gt; LIST 1
+fetchmail: POP3&lt; +OK 1 1086
+fetchmail: POP3&gt; TOP 1 99999999
+fetchmail: POP3&lt; -ERR Syntax error, command unrecognized
+fetchmail: Syntax error, command unrecognized
+fetchmail: couldn't fetch headers, message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">cuiwd at inbox.com</A>@my.inbox.com:1 (1086 octets)
+fetchmail: POP3&gt; LIST 2
+fetchmail: POP3&lt; +OK 2 4863
+fetchmail: POP3&gt; TOP 2 99999999
+fetchmail: POP3&lt; -ERR Syntax error, command unrecognized
+fetchmail: Syntax error, command unrecognized
+fetchmail: couldn't fetch headers, message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">cuiwd at inbox.com</A>@my.inbox.com:2 (4863 octets)
+fetchmail: POP3&gt; LIST 3
+fetchmail: POP3&lt; +OK 3 1910
+fetchmail: POP3&gt; TOP 3 99999999
+fetchmail: POP3&lt; -ERR Syntax error, command unrecognized
+fetchmail: Syntax error, command unrecognized
+fetchmail: couldn't fetch headers, message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">cuiwd at inbox.com</A>@my.inbox.com:3 (1910 octets)
+fetchmail: POP3&gt; LIST 4
+fetchmail: POP3&lt; +OK 4 3888
+fetchmail: POP3&gt; TOP 4 99999999
+fetchmail: POP3&lt; -ERR Syntax error, command unrecognized
+fetchmail: Syntax error, command unrecognized
+fetchmail: couldn't fetch headers, message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">cuiwd at inbox.com</A>@my.inbox.com:4 (3888 octets)
+fetchmail: POP3&gt; LIST 5
+fetchmail: POP3&lt; +OK 5 8147
+fetchmail: POP3&gt; TOP 5 99999999
+fetchmail: POP3&lt; -ERR Syntax error, command unrecognized
+fetchmail: Syntax error, command unrecognized
+fetchmail: couldn't fetch headers, message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">cuiwd at inbox.com</A>@my.inbox.com:5 (8147 octets)
+fetchmail: POP3&gt; LIST 6
+fetchmail: POP3&lt; +OK 6 2100
+fetchmail: POP3&gt; TOP 6 99999999
+fetchmail: POP3&lt; -ERR Syntax error, command unrecognized
+fetchmail: Syntax error, command unrecognized
+fetchmail: couldn't fetch headers, message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">cuiwd at inbox.com</A>@my.inbox.com:6 (2100 octets)
+fetchmail: POP3&gt; LIST 7
+fetchmail: POP3&lt; +OK 7 2699
+fetchmail: POP3&gt; TOP 7 99999999
+fetchmail: POP3&lt; -ERR Syntax error, command unrecognized
+fetchmail: Syntax error, command unrecognized
+fetchmail: couldn't fetch headers, message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">cuiwd at inbox.com</A>@my.inbox.com:7 (2699 octets)
+fetchmail: POP3&gt; LIST 8
+fetchmail: POP3&lt; +OK 8 5581
+fetchmail: POP3&gt; TOP 8 99999999
+fetchmail: POP3&lt; -ERR Syntax error, command unrecognized
+fetchmail: Syntax error, command unrecognized
+fetchmail: couldn't fetch headers, message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">cuiwd at inbox.com</A>@my.inbox.com:8 (5581 octets)
+fetchmail: POP3&gt; LIST 9
+fetchmail: POP3&lt; +OK 9 2733
+fetchmail: POP3&gt; TOP 9 99999999
+fetchmail: POP3&lt; -ERR Syntax error, command unrecognized
+fetchmail: Syntax error, command unrecognized
+fetchmail: couldn't fetch headers, message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">cuiwd at inbox.com</A>@my.inbox.com:9 (2733 octets)
+fetchmail: POP3&gt; LIST 10
+fetchmail: POP3&lt; +OK 10 2574
+fetchmail: POP3&gt; TOP 10 99999999
+fetchmail: POP3&lt; -ERR Syntax error, command unrecognized
+fetchmail: Syntax error, command unrecognized
+fetchmail: couldn't fetch headers, message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">cuiwd at inbox.com</A>@my.inbox.com:10 (2574 octets)
+fetchmail: POP3&gt; LIST 11
+fetchmail: POP3&lt; +OK 11 2272
+fetchmail: POP3&gt; TOP 11 99999999
+fetchmail: POP3&lt; -ERR Syntax error, command unrecognized
+fetchmail: Syntax error, command unrecognized
+fetchmail: couldn't fetch headers, message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">cuiwd at inbox.com</A>@my.inbox.com:11 (2272 octets)
+fetchmail: POP3&gt; LIST 12
+fetchmail: POP3&lt; +OK 12 2619
+fetchmail: POP3&gt; TOP 12 99999999
+fetchmail: POP3&lt; -ERR Syntax error, command unrecognized
+fetchmail: Syntax error, command unrecognized
+fetchmail: couldn't fetch headers, message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">cuiwd at inbox.com</A>@my.inbox.com:12 (2619 octets)
+fetchmail: POP3&gt; LIST 13
+fetchmail: POP3&lt; +OK 13 2141
+fetchmail: POP3&gt; TOP 13 99999999
+fetchmail: POP3&lt; -ERR Syntax error, command unrecognized
+fetchmail: Syntax error, command unrecognized
+fetchmail: couldn't fetch headers, message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">cuiwd at inbox.com</A>@my.inbox.com:13 (2141 octets)
+fetchmail: POP3&gt; LIST 14
+fetchmail: POP3&lt; +OK 14 3577
+fetchmail: POP3&gt; TOP 14 99999999
+fetchmail: POP3&lt; -ERR Syntax error, command unrecognized
+fetchmail: Syntax error, command unrecognized
+fetchmail: couldn't fetch headers, message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">cuiwd at inbox.com</A>@my.inbox.com:14 (3577 octets)
+fetchmail: POP3&gt; LIST 15
+fetchmail: POP3&lt; +OK 15 3430
+fetchmail: POP3&gt; TOP 15 99999999
+fetchmail: POP3&lt; -ERR Syntax error, command unrecognized
+fetchmail: Syntax error, command unrecognized
+fetchmail: couldn't fetch headers, message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">cuiwd at inbox.com</A>@my.inbox.com:15 (3430 octets)
+fetchmail: POP3&gt; LIST 16
+fetchmail: POP3&lt; +OK 16 2461
+fetchmail: POP3&gt; TOP 16 99999999
+fetchmail: POP3&lt; -ERR Syntax error, command unrecognized
+fetchmail: Syntax error, command unrecognized
+fetchmail: couldn't fetch headers, message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">cuiwd at inbox.com</A>@my.inbox.com:16 (2461 octets)
+fetchmail: POP3&gt; LIST 17
+fetchmail: POP3&lt; +OK 17 2145
+fetchmail: POP3&gt; TOP 17 99999999
+fetchmail: POP3&lt; -ERR Syntax error, command unrecognized
+fetchmail: Syntax error, command unrecognized
+fetchmail: couldn't fetch headers, message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">cuiwd at inbox.com</A>@my.inbox.com:17 (2145 octets)
+fetchmail: POP3&gt; LIST 18
+fetchmail: POP3&lt; +OK 18 5079
+fetchmail: POP3&gt; TOP 18 99999999
+fetchmail: POP3&lt; -ERR Syntax error, command unrecognized
+fetchmail: Syntax error, command unrecognized
+fetchmail: couldn't fetch headers, message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">cuiwd at inbox.com</A>@my.inbox.com:18 (5079 octets)
+fetchmail: POP3&gt; LIST 19
+fetchmail: POP3&lt; +OK 19 3480
+fetchmail: POP3&gt; TOP 19 99999999
+fetchmail: POP3&lt; -ERR Syntax error, command unrecognized
+fetchmail: Syntax error, command unrecognized
+fetchmail: couldn't fetch headers, message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">cuiwd at inbox.com</A>@my.inbox.com:19 (3480 octets)
+fetchmail: POP3&gt; LIST 20
+fetchmail: POP3&lt; +OK 20 2166
+fetchmail: POP3&gt; TOP 20 99999999
+fetchmail: POP3&lt; -ERR Syntax error, command unrecognized
+fetchmail: Syntax error, command unrecognized
+fetchmail: couldn't fetch headers, message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">cuiwd at inbox.com</A>@my.inbox.com:20 (2166 octets)
+fetchmail: POP3&gt; LIST 21
+fetchmail: POP3&lt; +OK 21 2123
+fetchmail: POP3&gt; TOP 21 99999999
+fetchmail: POP3&lt; -ERR Syntax error, command unrecognized
+fetchmail: Syntax error, command unrecognized
+fetchmail: couldn't fetch headers, message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">cuiwd at inbox.com</A>@my.inbox.com:21 (2123 octets)
+fetchmail: POP3&gt; LIST 22
+fetchmail: POP3&lt; +OK 22 2280
+fetchmail: POP3&gt; TOP 22 99999999
+fetchmail: POP3&lt; -ERR Syntax error, command unrecognized
+fetchmail: Syntax error, command unrecognized
+fetchmail: couldn't fetch headers, message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">cuiwd at inbox.com</A>@my.inbox.com:22 (2280 octets)
+fetchmail: POP3&gt; LIST 23
+fetchmail: POP3&lt; +OK 23 4069
+fetchmail: POP3&gt; TOP 23 99999999
+fetchmail: POP3&lt; -ERR Syntax error, command unrecognized
+fetchmail: Syntax error, command unrecognized
+fetchmail: couldn't fetch headers, message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">cuiwd at inbox.com</A>@my.inbox.com:23 (4069 octets)
+fetchmail: POP3&gt; LIST 24
+fetchmail: POP3&lt; +OK 24 4070
+fetchmail: POP3&gt; TOP 24 99999999
+fetchmail: POP3&lt; -ERR Syntax error, command unrecognized
+fetchmail: Syntax error, command unrecognized
+fetchmail: couldn't fetch headers, message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">cuiwd at inbox.com</A>@my.inbox.com:24 (4070 octets)
+fetchmail: POP3&gt; LIST 25
+fetchmail: POP3&lt; +OK 25 8202
+fetchmail: POP3&gt; TOP 25 99999999
+fetchmail: POP3&lt; -ERR Syntax error, command unrecognized
+fetchmail: Syntax error, command unrecognized
+fetchmail: couldn't fetch headers, message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">cuiwd at inbox.com</A>@my.inbox.com:25 (8202 octets)
+fetchmail: POP3&gt; LIST 26
+fetchmail: POP3&lt; +OK 26 2249
+fetchmail: POP3&gt; TOP 26 99999999
+fetchmail: POP3&lt; -ERR Syntax error, command unrecognized
+fetchmail: Syntax error, command unrecognized
+fetchmail: couldn't fetch headers, message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">cuiwd at inbox.com</A>@my.inbox.com:26 (2249 octets)
+fetchmail: POP3&gt; LIST 27
+fetchmail: POP3&lt; +OK 27 2249
+fetchmail: POP3&gt; TOP 27 99999999
+fetchmail: POP3&lt; -ERR Syntax error, command unrecognized
+fetchmail: Syntax error, command unrecognized
+fetchmail: couldn't fetch headers, message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">cuiwd at inbox.com</A>@my.inbox.com:27 (2249 octets)
+fetchmail: POP3&gt; LIST 28
+fetchmail: POP3&lt; +OK 28 2496
+fetchmail: POP3&gt; TOP 28 99999999
+fetchmail: POP3&lt; -ERR Syntax error, command unrecognized
+fetchmail: Syntax error, command unrecognized
+fetchmail: couldn't fetch headers, message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">cuiwd at inbox.com</A>@my.inbox.com:28 (2496 octets)
+fetchmail: POP3&gt; LIST 29
+fetchmail: POP3&lt; +OK 29 4344
+fetchmail: POP3&gt; TOP 29 99999999
+fetchmail: POP3&lt; -ERR Syntax error, command unrecognized
+fetchmail: Syntax error, command unrecognized
+fetchmail: couldn't fetch headers, message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">cuiwd at inbox.com</A>@my.inbox.com:29 (4344 octets)
+fetchmail: POP3&gt; LIST 30
+fetchmail: POP3&lt; +OK 30 4055
+fetchmail: POP3&gt; TOP 30 99999999
+fetchmail: POP3&lt; -ERR Syntax error, command unrecognized
+fetchmail: Syntax error, command unrecognized
+fetchmail: couldn't fetch headers, message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">cuiwd at inbox.com</A>@my.inbox.com:30 (4055 octets)
+fetchmail: POP3&gt; QUIT
+fetchmail: POP3&lt; +OK WM29.inbox.com POP3 server signing off
+fetchmail: 6.3.4 querying my.inbox.com (protocol POP3) at Mon Oct  2 14:13:37 2006: poll completed
+fetchmail: normal termination, status 1
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000639.html">[fetchmail-users] Fetchmail forwarding
+</A></li>
+	<LI>Next message: <A HREF="000631.html">[fetchmail-users] how to config fetchmail for www.inbox.com	email
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#630">[ date ]</a>
+              <a href="thread.html#630">[ thread ]</a>
+              <a href="subject.html#630">[ subject ]</a>
+              <a href="author.html#630">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

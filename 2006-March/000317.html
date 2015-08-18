@@ -1,0 +1,95 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] [PATCH] Re: Bug in imap_idle() with mail servers not supporting &quot;idle&quot;
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2006-March/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20%5BPATCH%5D%20Re%3A%20Bug%20in%20imap_idle%28%29%20with%20mail%20servers%20not%20supporting%20%22idle%22&In-Reply-To=%3Cm3zmjugcpo.fsf%40merlin.emma.line.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000316.html">
+   <LINK REL="Next"  HREF="000311.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] [PATCH] Re: Bug in imap_idle() with mail servers not supporting &quot;idle&quot;</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20%5BPATCH%5D%20Re%3A%20Bug%20in%20imap_idle%28%29%20with%20mail%20servers%20not%20supporting%20%22idle%22&In-Reply-To=%3Cm3zmjugcpo.fsf%40merlin.emma.line.org%3E"
+       TITLE="[fetchmail-users] [PATCH] Re: Bug in imap_idle() with mail servers not supporting &quot;idle&quot;">matthias.andree at gmx.de
+       </A><BR>
+    <I>Tue Mar 14 00:13:39 CET 2006</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000316.html">[fetchmail-users] [PATCH] Re: Bug in imap_idle() with mail servers not supporting &quot;idle&quot;
+</A></li>
+        <LI>Next message: <A HREF="000311.html">[fetchmail-users] fetchmail 6.3.3.rc1 release candidate
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#317">[ date ]</a>
+              <a href="thread.html#317">[ thread ]</a>
+              <a href="subject.html#317">[ subject ]</a>
+              <a href="author.html#317">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Brendan Lynch &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">brendanplynch at aim.com</A>&gt; writes:
+
+&gt;<i> That seem to be intentional first-pass behaviour (i.e. not really the general
+</I>&gt;<i> Idle polling case).  Look at these lines from imap_getrange():
+</I>&gt;<i>
+</I>&gt;<i>     732          * We should have an expunge here to
+</I>&gt;<i>     733          * a) avoid fetching deleted mails during 'fetchall'
+</I>&gt;<i>     734          * b) getting a wrong count of mails during 'no fetchall'
+</I>&gt;<i>     735          */
+</I>&gt;<i>     736         if (!check_only &amp;&amp; !ctl-&gt;keep &amp;&amp; count &gt; 0)
+</I>&gt;<i>     737         {
+</I>&gt;<i>     738             ok = internal_expunge(sock);
+</I>&gt;<i>     739             if (ok)
+</I>&gt;<i>
+</I>&gt;<i> This generates the EXPUNGE you see.  However this only happens for the first
+</I>&gt;<i> message, since this is the &quot;else&quot; case of the if statement:
+</I>&gt;<i>
+</I>&gt;<i>     672     if (pass &gt; 1)
+</I>&gt;<i>     673     {
+</I>&gt;<i>     674         /* deleted mails have already been expunged by
+</I>&gt;<i>     675          * end_mailbox_poll().
+</I>&gt;<i>
+</I>&gt;<i> and will only be taken before the first message has been seen. After the first
+</I>&gt;<i> message has been seen no EXPUNGE is sent (and the comment suggests why the
+</I>&gt;<i> code does not do an EXPUNGE in this case).
+</I>
+Well, yes, but I think it's pointless to run EXPUNGE in this particular
+context. We might only expunge the deletions of another process, and
+that's probably not what fetchmail should be doing.
+
+I'll probably merge Sunil's patch tomorrow.
+
+-- 
+Matthias Andree
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000316.html">[fetchmail-users] [PATCH] Re: Bug in imap_idle() with mail servers not supporting &quot;idle&quot;
+</A></li>
+	<LI>Next message: <A HREF="000311.html">[fetchmail-users] fetchmail 6.3.3.rc1 release candidate
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#317">[ date ]</a>
+              <a href="thread.html#317">[ thread ]</a>
+              <a href="subject.html#317">[ subject ]</a>
+              <a href="author.html#317">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

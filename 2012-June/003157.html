@@ -1,0 +1,106 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] how to set up fetchmail for inbox.com POP3
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2012-June/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20how%20to%20set%20up%20fetchmail%20for%20inbox.com%20POP3&In-Reply-To=%3CCAD2Ti2-xEx43p3BuZCo6TqStiDqtYrNTSRO2%3DkycVJHrkDdD7w%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003156.html">
+   <LINK REL="Next"  HREF="003158.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] how to set up fetchmail for inbox.com POP3</H1>
+    <B>grarpamp</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20how%20to%20set%20up%20fetchmail%20for%20inbox.com%20POP3&In-Reply-To=%3CCAD2Ti2-xEx43p3BuZCo6TqStiDqtYrNTSRO2%3DkycVJHrkDdD7w%40mail.gmail.com%3E"
+       TITLE="[fetchmail-users] how to set up fetchmail for inbox.com POP3">grarpamp at gmail.com
+       </A><BR>
+    <I>Wed Jun 20 10:24:32 CEST 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003156.html">[fetchmail-users] how to set up fetchmail for inbox.com POP3
+</A></li>
+        <LI>Next message: <A HREF="003158.html">[fetchmail-users] how to set up fetchmail for inbox.com POP3
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3157">[ date ]</a>
+              <a href="thread.html#3157">[ thread ]</a>
+              <a href="subject.html#3157">[ subject ]</a>
+              <a href="author.html#3157">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>&gt;<i> set daemon 611
+</I>&gt;<i> poll &#160;my.inbox.com with proto POP3 user auth password uidl ssl
+</I>&gt;<i> user John.Doe there is doejohn here warnings 3600
+</I>&gt;<i> mda 'procmail -d %s'
+</I>&gt;<i> keep
+</I>
+You should put each config item on a
+separate line. And you should quote
+things like usernames and passwords.
+Read the man page again, the examples
+that ship with it, and the internet search.
+Then run it in debug mode to be sure.
+
+I have abused the 'poll' string because fetchmail doesn't
+seem to support my need for multiple accounts
+on a provider and multiple providers in an rc.
+And fetchmail wants to be a single process,
+so I'll be hacking it all differently real soon now.
+And getting rid of procmail :)
+
+fetchmail -v -v -f fmrc -d 300 -N -K -a -n string
+set invisible
+poll <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">username at example.com</A>
+ via imap.example.com
+ service 993
+ protocol imap
+ authenticate password
+ username &quot;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">username at example.com</A>&quot;
+ password &quot;password&quot;
+ ssl
+ sslcertck
+ sslfingerprint &quot;M:D:5&quot;
+ mda &quot;procmail -m HOME=$HOME/mail/<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">username at example.com</A> $HOME/mail/procmailrc&quot;
+ keep
+ folder &quot;INBOX&quot;
+
+
+VERBOSE=on
+LOGFILE=log
+LOGABSTRACT=all
+COMSAT=no
+:<i>0 c
+</I>Maildir_archive/
+:<i>0
+</I>Maildir/
+</PRE>
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003156.html">[fetchmail-users] how to set up fetchmail for inbox.com POP3
+</A></li>
+	<LI>Next message: <A HREF="003158.html">[fetchmail-users] how to set up fetchmail for inbox.com POP3
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3157">[ date ]</a>
+              <a href="thread.html#3157">[ thread ]</a>
+              <a href="subject.html#3157">[ subject ]</a>
+              <a href="author.html#3157">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

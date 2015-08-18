@@ -1,0 +1,275 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] fetchmail-users Digest, Vol 83, Issue 4
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2013-July/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail-users%20Digest%2C%20Vol%2083%2C%20Issue%204&In-Reply-To=%3C51BDC13E3C3CA24B8767DECA7CAB674A0D1E61%40exch1.MK.local%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   
+   <LINK REL="Next"  HREF="003418.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] fetchmail-users Digest, Vol 83, Issue 4</H1>
+    <B>Shane Vedvik</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail-users%20Digest%2C%20Vol%2083%2C%20Issue%204&In-Reply-To=%3C51BDC13E3C3CA24B8767DECA7CAB674A0D1E61%40exch1.MK.local%3E"
+       TITLE="[fetchmail-users] fetchmail-users Digest, Vol 83, Issue 4">shane at markentsolutions.com
+       </A><BR>
+    <I>Mon Jul  1 17:10:22 CEST 2013</I>
+    <P><UL>
+        
+        <LI>Next message: <A HREF="003418.html">[fetchmail-users] fetchmail-users Digest, Vol 83, Issue 4
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3417">[ date ]</a>
+              <a href="thread.html#3417">[ thread ]</a>
+              <a href="subject.html#3417">[ subject ]</a>
+              <a href="author.html#3417">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Am 27.06.2013 16:58, schrieb Shane Vedvik:
+&gt;&gt;<i> I use Fetchmail 6.3.25+NTLM+SSL+NLS to get email from our Exchange 2010 Server, but for some reason I keep getting an error on attempting to connect:
+</I>&gt;&gt;<i> 
+</I>
+&gt;<i> Please provide more logging from fetchmail running with -vvvv flags.
+</I>
+fetchmail: POP3&lt; +OK
+fetchmail: reading message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">support at portal.markentsolutions.com</A>:5 of 5 (2755 octets)About to rewrite From: &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">support at markentsolutions.com</A>&gt;...
+...rewritten version is From: &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">support at markentsolutions.com</A>&gt;.
+fetchmail: About to rewrite To: &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">support at markentsolutions.com</A>&gt;...
+...rewritten version is To: &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">support at markentsolutions.com</A>&gt;.
+fetchmail: About to rewrite Return-Path: <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">support at markentsolutions.com...</A>
+...rewritten version is Return-Path: <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">support at markentsolutions.com.</A>
+fetchmail: about to deliver with: /opt/rt4/bin/rt-mailgate --url <A HREF="https://127.0.0.1/rt/">https://127.0.0.1/rt/</A> --queue support --action correspond
+fetchmail: message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">support at portal.markentsolutions.com</A>:5 was not the expected length (4743 actual != 2755 expected)
+An Error Occurred
+=================
+
+500 Can't connect to 127.0.0.1:443 (certificate
+verify failed)
+fetchmail: MDA returned nonzero status 75
+fetchmail:  not flushed
+fetchmail: POP3&gt; QUIT
+fetchmail: POP3&lt; +OK Microsoft Exchange Server 2010 POP3 server signing off.
+fetchmail: 6.3.25 querying portal.markentsolutions.com (protocol POP3) at Mon 01 Jul 2013 04:43:07 AM CDT: poll completed
+fetchmail: New UID list from portal.markentsolutions.com: 70 = UNSEEN, 71 = UNSEEN, 72 = UNSEEN, 73 = UNSEEN, 74 = UNSEEN
+fetchmail: swapping UID lists
+fetchmail: sleeping at Mon 01 Jul 2013 04:43:07 AM CDT for 15 seconds
+fetchmail: awakened at Mon 01 Jul 2013 04:43:22 AM CDT
+fetchmail: 6.3.25 querying portal.markentsolutions.com (protocol POP3) at Mon 01 Jul 2013 04:43:22 AM CDT: poll started
+fetchmail: Trying to connect to 192.168.16.9/110...connected.
+fetchmail: POP3&lt; +OK The Microsoft Exchange POP3 service is ready.
+fetchmail: POP3&gt; CAPA
+fetchmail: POP3&lt; +OK
+fetchmail: POP3&lt; TOP
+fetchmail: POP3&lt; UIDL
+fetchmail: POP3&lt; STLS
+fetchmail: POP3&lt; .
+fetchmail: POP3&gt; STLS
+fetchmail: POP3&lt; +OK Begin TLS negotiation.
+fetchmail: Server certificate:
+fetchmail: Unknown Organization
+fetchmail: Issuer CommonName: exch1
+fetchmail: Subject CommonName: exch1
+fetchmail: Subject Alternative Name: exch1
+fetchmail: Subject Alternative Name: exch1.MK.local
+fetchmail: Server CommonName mismatch: exch1 != portal.markentsolutions.com
+fetchmail: portal.markentsolutions.com key fingerprint: 47:ED:24:27:AD:36:50:AD:93:93:57:8C:E3:7E:B4:BB
+fetchmail: Server certificate verification error: unable to get local issuer certificate
+fetchmail: Broken certification chain at: /CN=exch1
+fetchmail: This could mean that the server did not provide the intermediate CA's certificate(s), which is nothing fetchmail could do anything about.  For details, please see the README.SSL-SERVER document that ships with fetchmail.
+fetchmail: This could mean that the root CA's signing certificate is not in the trusted CA certificate location, or that c_rehash needs to be run on the certificate directory. For details, please see the documentation of --sslcertpath and --sslcertfile in the manual page.
+fetchmail: Server certificate:
+fetchmail: Unknown Organization
+fetchmail: Issuer CommonName: exch1
+fetchmail: Subject CommonName: exch1
+fetchmail: Subject Alternative Name: exch1
+fetchmail: Subject Alternative Name: exch1.MK.local
+fetchmail: Server CommonName mismatch: exch1 != portal.markentsolutions.com
+fetchmail: Server certificate verification error: unable to verify the first certificate
+fetchmail: Warning: the connection is insecure, continuing anyways. (Better use --sslcertck!)
+fetchmail: POP3&gt; CAPA
+fetchmail: POP3&lt; +OK
+fetchmail: POP3&lt; TOP
+fetchmail: POP3&lt; UIDL
+fetchmail: POP3&lt; SASL GSSAPI PLAIN
+fetchmail: POP3&lt; USER
+fetchmail: POP3&lt; .
+fetchmail: portal.markentsolutions.com: upgrade to TLS succeeded.
+fetchmail: POP3&gt; USER support
+fetchmail: POP3&lt; +OK
+fetchmail: POP3&gt; PASS *
+fetchmail: POP3&lt; +OK User successfully logged on.
+fetchmail: selecting or re-polling default folder
+fetchmail: POP3&gt; STAT
+fetchmail: POP3&lt; +OK 5 15436
+fetchmail: POP3&gt; LAST
+fetchmail: POP3&lt; -ERR Protocol error. 19
+fetchmail: Protocol error. 19
+fetchmail: POP3&gt; UIDL
+fetchmail: POP3&lt; +OK
+fetchmail: POP3&lt; 1 70
+fetchmail: 1 is unseen
+fetchmail: POP3&lt; 2 71
+fetchmail: 2 is unseen
+fetchmail: POP3&lt; 3 72
+fetchmail: 3 is unseen
+fetchmail: POP3&lt; 4 73
+fetchmail: 4 is unseen
+fetchmail: POP3&lt; 5 74
+fetchmail: 5 is unseen
+fetchmail: POP3&lt; .
+fetchmail: 5 messages for support at portal.markentsolutions.com (15436 octets).
+fetchmail: POP3&gt; LIST 1
+fetchmail: POP3&lt; +OK 1 2755
+fetchmail: POP3&gt; TOP 1 99999999
+fetchmail: POP3&lt; +OK
+fetchmail: reading message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">support at portal.markentsolutions.com</A>:1 of 5 (2755 octets)About to rewrite From: &quot;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">support at markentsolutions.com</A>&quot; &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">support at markentsolutions.com</A>&gt;...
+...rewritten version is From: &quot;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">support at markentsolutions.com</A>&quot; &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">support at markentsolutions.com</A>&gt;.
+fetchmail: About to rewrite To: support &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">support at markentsolutions.com</A>&gt;...
+...rewritten version is To: support &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">support at markentsolutions.com</A>&gt;.
+fetchmail: about to deliver with: /opt/rt4/bin/rt-mailgate --url <A HREF="https://127.0.0.1/rt/">https://127.0.0.1/rt/</A> --queue support --action correspond
+fetchmail: message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">support at portal.markentsolutions.com</A>:1 was not the expected length (5619 actual != 2755 expected)
+An Error Occurred
+=================
+
+500 Can't connect to 127.0.0.1:443 (certificate
+verify failed)
+fetchmail: MDA returned nonzero status 75
+fetchmail:  not flushed
+fetchmail: POP3&gt; LIST 2
+fetchmail: POP3&lt; +OK 2 2755
+fetchmail: POP3&gt; TOP 2 99999999
+fetchmail: POP3&lt; +OK
+fetchmail: reading message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">support at portal.markentsolutions.com</A>:2 of 5 (2755 octets)About to rewrite From: &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">support at markentsolutions.com</A>&gt;...
+...rewritten version is From: &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">support at markentsolutions.com</A>&gt;.
+fetchmail: About to rewrite To: &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">support at markentsolutions.com</A>&gt;...
+...rewritten version is To: &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">support at markentsolutions.com</A>&gt;.
+fetchmail: About to rewrite Return-Path: <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">support at markentsolutions.com...</A>
+...rewritten version is Return-Path: <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">support at markentsolutions.com.</A>
+fetchmail: about to deliver with: /opt/rt4/bin/rt-mailgate --url <A HREF="https://127.0.0.1/rt/">https://127.0.0.1/rt/</A> --queue support --action correspond
+fetchmail: message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">support at portal.markentsolutions.com</A>:2 was not the expected length (4739 actual != 2755 expected)
+An Error Occurred
+=================
+
+500 Can't connect to 127.0.0.1:443 (certificate
+verify failed)
+fetchmail: MDA returned nonzero status 75
+fetchmail:  not flushed
+fetchmail: POP3&gt; LIST 3
+fetchmail: POP3&lt; +OK 3 2755
+fetchmail: POP3&gt; TOP 3 99999999
+fetchmail: POP3&lt; +OK
+fetchmail: reading message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">support at portal.markentsolutions.com</A>:3 of 5 (2755 octets)About to rewrite From: &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">support at markentsolutions.com</A>&gt;...
+...rewritten version is From: &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">support at markentsolutions.com</A>&gt;.
+fetchmail: About to rewrite To: &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">support at markentsolutions.com</A>&gt;...
+...rewritten version is To: &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">support at markentsolutions.com</A>&gt;.
+fetchmail: About to rewrite Return-Path: <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">support at markentsolutions.com...</A>
+...rewritten version is Return-Path: <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">support at markentsolutions.com.</A>
+fetchmail: about to deliver with: /opt/rt4/bin/rt-mailgate --url <A HREF="https://127.0.0.1/rt/">https://127.0.0.1/rt/</A> --queue support --action correspond
+fetchmail: message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">support at portal.markentsolutions.com</A>:3 was not the expected length (4739 actual != 2755 expected)
+An Error Occurred
+=================
+
+500 Can't connect to 127.0.0.1:443 (certificate
+verify failed)
+fetchmail: MDA returned nonzero status 75
+fetchmail:  not flushed
+fetchmail: POP3&gt; LIST 4
+fetchmail: POP3&lt; +OK 4 4416
+fetchmail: POP3&gt; TOP 4 99999999
+fetchmail: POP3&lt; +OK
+fetchmail: reading message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">support at portal.markentsolutions.com</A>:4 of 5 (4416 octets)About to rewrite From: &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">FSC2526 at markentsolutions.com</A>&gt;...
+...rewritten version is From: &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">FSC2526 at markentsolutions.com</A>&gt;.
+fetchmail: About to rewrite To: &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">support at markentsolutions.com</A>&gt;, &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">alec at markentsolutions.com</A>&gt;...
+...rewritten version is To: &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">support at markentsolutions.com</A>&gt;, &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">alec at markentsolutions.com</A>&gt;.
+fetchmail: About to rewrite Return-Path: <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">FSC2526 at markentsolutions.com...</A>
+...rewritten version is Return-Path: <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">FSC2526 at markentsolutions.com.</A>
+fetchmail: about to deliver with: /opt/rt4/bin/rt-mailgate --url <A HREF="https://127.0.0.1/rt/">https://127.0.0.1/rt/</A> --queue support --action correspond
+fetchmail: message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">support at portal.markentsolutions.com</A>:4 was not the expected length (3350 actual != 4416 expected)
+An Error Occurred
+=================
+
+500 Can't connect to 127.0.0.1:443 (certificate
+verify failed)
+fetchmail: MDA returned nonzero status 75
+fetchmail:  not flushed
+fetchmail: POP3&gt; LIST 5
+fetchmail: POP3&lt; +OK 5 2755
+fetchmail: POP3&gt; TOP 5 99999999
+fetchmail: POP3&lt; +OK
+fetchmail: reading message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">support at portal.markentsolutions.com</A>:5 of 5 (2755 octets)About to rewrite From: &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">support at markentsolutions.com</A>&gt;...
+...rewritten version is From: &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">support at markentsolutions.com</A>&gt;.
+fetchmail: About to rewrite To: &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">support at markentsolutions.com</A>&gt;...
+...rewritten version is To: &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">support at markentsolutions.com</A>&gt;.
+fetchmail: About to rewrite Return-Path: <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">support at markentsolutions.com...</A>
+...rewritten version is Return-Path: <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">support at markentsolutions.com.</A>
+fetchmail: about to deliver with: /opt/rt4/bin/rt-mailgate --url <A HREF="https://127.0.0.1/rt/">https://127.0.0.1/rt/</A> --queue support --action correspond
+fetchmail: message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">support at portal.markentsolutions.com</A>:5 was not the expected length (4743 actual != 2755 expected)
+An Error Occurred
+=================
+
+500 Can't connect to 127.0.0.1:443 (certificate
+verify failed)
+fetchmail: MDA returned nonzero status 75
+fetchmail:  not flushed
+fetchmail: POP3&gt; QUIT
+fetchmail: POP3&lt; +OK Microsoft Exchange Server 2010 POP3 server signing off.
+fetchmail: 6.3.25 querying portal.markentsolutions.com (protocol POP3) at Mon 01 Jul 2013 04:43:23 AM CDT: poll completed
+fetchmail: New UID list from portal.markentsolutions.com: 70 = UNSEEN, 71 = UNSEEN, 72 = UNSEEN, 73 = UNSEEN, 74 = UNSEEN
+fetchmail: swapping UID lists
+fetchmail: sleeping at Mon 01 Jul 2013 04:43:23 AM CDT for 15 seconds
+
+&gt;<i> The log is too terse to discern the required information about your setup, and appears to contain information from different runs.
+</I>
+&gt;<i> I see two errors, though:
+</I>
+&gt;<i> 1. your mda, the rt-mailgate, is apparently malfunctioning, returns a temporary condition (75 is EX_TEMPFAIL on most computers) and causes fetchmail to leave the message on server, without processing it;
+</I>
+No idea how to proceed on this front - I think that's a question for the folks on the rt mailing list.
+
+&gt;<i> 2. fetchmail itself cannot establish SSL/TLS-based trust to the Exchange server.  This might be a hint that Exchange uses improperly configured certificates, possibly self-signed.  What you are seeing are warnings only, &quot;Warning: the connection is insecure, continuing anyways.&quot;.
+</I>
+&gt;<i> If it does that deliberately, the self-signed certificates must be installed on the computer running fetchmail, usually in /etc/ssl/certs/, or /usr/ssl/certs, or you can also use them in PEM format and store them in a file you designate with --sslcertfile.  (Conversion from DER to PEM format is possible with:
+</I>
+&gt;<i> openssl x509 -inform DER -outform PEM -in inputcert.der outputcert.pem
+</I>
+&gt;<i> and then fetchmail --sslcertfile outputcert.pem)
+</I>
+
+&gt;<i> Talk to the Exchange server's operator to have them provide you with the certfication authority's (CA) certificate of the CA that signed the Exchange &quot;exch1&quot; server certificate.  If they are clueless, mail them the README.SSL-SERVER that shipped with fetchmail.
+</I>
+
+ &gt; Regarding --sslcertck, you just specify that on the fetchmail command line, or you put the word sslcertck into your .fetchmailrc file, after the &quot;user/pass&quot; specifications and before the next poll or skip.  It will make fetchmail drop the connection until trust is properly established.
+
+HTH
+</PRE>
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	
+	<LI>Next message: <A HREF="003418.html">[fetchmail-users] fetchmail-users Digest, Vol 83, Issue 4
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3417">[ date ]</a>
+              <a href="thread.html#3417">[ thread ]</a>
+              <a href="subject.html#3417">[ subject ]</a>
+              <a href="author.html#3417">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

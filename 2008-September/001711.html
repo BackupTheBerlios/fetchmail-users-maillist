@@ -1,0 +1,127 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] R:  imap and subfolder download
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2008-September/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20R%3A%20%20imap%20and%20subfolder%20download&In-Reply-To=%3C20080927001941.GJ17284%40tamay-dogan.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001701.html">
+   <LINK REL="Next"  HREF="001714.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] R:  imap and subfolder download</H1>
+    <B>Michelle Konzack</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20R%3A%20%20imap%20and%20subfolder%20download&In-Reply-To=%3C20080927001941.GJ17284%40tamay-dogan.net%3E"
+       TITLE="[fetchmail-users] R:  imap and subfolder download">linux4michelle at tamay-dogan.net
+       </A><BR>
+    <I>Sat Sep 27 02:19:41 CEST 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001701.html">[fetchmail-users] R:  imap and subfolder download
+</A></li>
+        <LI>Next message: <A HREF="001714.html">[fetchmail-users] deferred mail from fetchmail
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1711">[ date ]</a>
+              <a href="thread.html#1711">[ thread ]</a>
+              <a href="subject.html#1711">[ subject ]</a>
+              <a href="author.html#1711">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Am 2008-09-22 17:59:18, schrieb Stefano Toni:
+&gt;<i> Hello Rob, I would like to know if exist an automatic retrieved. I cannot
+</I>&gt;<i> known all the subfolder of all users. 
+</I>
+The only way to do this is to use a smapp perl script using
+
+    &quot;libnet-imap-simple-perl&quot; (Debian Package)
+
+to get a list of packages and then add them dynamicaly to  the  command-
+line.  This is, what I do if I have to migrate a  Winsuck  server  to  a
+Linux one.
+
+----[ '~/bin/get_imap_folders' ]----------------------------------------
+#!/usr/bin/perl
+
+use Net::IMAP::Simple;
+use strict;
+
+my $PASS=&quot;&quot;;
+my $USER=&quot;&quot;;
+my $HOST=&quot;&quot;;
+my $SEPARATOR=&quot;,&quot;;
+
+my $imap = Net::IMAP::Simple-&gt;new($HOST) || die
+$Net::IMAP::Simple::errstr.&quot;\n&quot;;
+
+unless($imap-&gt;login($USER, $PASS)){
+        die &quot;Login failed: &quot; . $imap-&gt;errstr() . &quot;\n&quot;;
+}
+
+my @mb=$imap-&gt;mailboxes;
+
+foreach (@mb){
+	print &quot;$_$SEPARATOR&quot;;
+}
+
+$imap-&gt;quit;
+------------------------------------------------------------------------
+
+So the command
+
+    fetchmail --folder $(get_imap_folders)
+
+should do the trick.
+
+
+Thanks, Greetings and nice Day/Evening
+    Michelle Konzack
+    Systemadministrator
+    24V Electronic Engineer
+    Tamay Dogan Network
+    Debian GNU/Linux Consultant
+
+
+-- 
+Linux-User #280138 with the Linux Counter, <A HREF="http://counter.li.org/">http://counter.li.org/</A>
+##################### Debian GNU/Linux Consultant #####################
+Michelle Konzack   Apt. 917                  ICQ #328449886
++49/177/9351947    50, rue de Soultz         MSN LinuxMichi
++33/6/61925193     67100 Strasbourg/France   IRC #Debian (irc.icq.com)
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: signature.pgp
+Type: application/pgp-signature
+Size: 189 bytes
+Desc: Digital signature
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/fetchmail-users/attachments/20080927/189dd6d6/attachment.pgp">https://lists.berlios.de/pipermail/fetchmail-users/attachments/20080927/189dd6d6/attachment.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001701.html">[fetchmail-users] R:  imap and subfolder download
+</A></li>
+	<LI>Next message: <A HREF="001714.html">[fetchmail-users] deferred mail from fetchmail
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1711">[ date ]</a>
+              <a href="thread.html#1711">[ thread ]</a>
+              <a href="subject.html#1711">[ subject ]</a>
+              <a href="author.html#1711">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

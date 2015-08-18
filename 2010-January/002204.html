@@ -1,0 +1,101 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Network time-outs when handling IMAP IDLE
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2010-January/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Network%20time-outs%20when%20handling%20IMAP%20IDLE&In-Reply-To=%3C4B4ED798.7060603%40papercut.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002198.html">
+   <LINK REL="Next"  HREF="002205.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Network time-outs when handling IMAP IDLE</H1>
+    <B>Matt Doran</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Network%20time-outs%20when%20handling%20IMAP%20IDLE&In-Reply-To=%3C4B4ED798.7060603%40papercut.com%3E"
+       TITLE="[fetchmail-users] Network time-outs when handling IMAP IDLE">matt.doran at papercut.com
+       </A><BR>
+    <I>Thu Jan 14 09:36:40 CET 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002198.html">[fetchmail-users] fetchmail IMAP bug - causes some mails to not be delivered when using IDLE
+</A></li>
+        <LI>Next message: <A HREF="002205.html">[fetchmail-users] Where does fetchmail store the messages?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2204">[ date ]</a>
+              <a href="thread.html#2204">[ thread ]</a>
+              <a href="subject.html#2204">[ subject ]</a>
+              <a href="author.html#2204">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Matthias Andree wrote:
+&gt;<i> Am 13.01.2010, 12:55 Uhr, schrieb Matt Doran &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">matt.doran at papercut.com</A>&gt;:
+</I>&gt;<i>
+</I>&gt;&gt;<i> Any thoughts on this?
+</I>&gt;<i>
+</I>&gt;<i> Hi Matt,
+</I>&gt;<i>
+</I>&gt;<i> thanks for your interest and ideas, and sorry for not getting back to 
+</I>&gt;<i> you earlier, but I have not had time to inspect your findings and the 
+</I>&gt;<i> source code in more detail yet - for lack of time. Your findings and 
+</I>&gt;<i> logs are very useful though, and your suggestion...
+</I>&gt;<i>
+</I>&gt;&gt;<i> Maybe the timeout for IDLE could just be set to the global timeout?  
+</I>&gt;&gt;<i> e.g. 300 seconds.    It would cause more IDLE/DONE cycles, but it 
+</I>&gt;&gt;<i> would mean that it would be much faster to recover.    Having a 
+</I>&gt;&gt;<i> separate timeout config for idle would be nice, but that might be 
+</I>&gt;&gt;<i> overkill.      What other things could be done?
+</I>&gt;<i>
+</I>&gt;<i> ...is sound, and I'd thought along the same lines already.
+</I>&gt;<i>
+</I>&gt;<i> There is also a related bug report, namely that fetchmail ignores the 
+</I>&gt;<i> repoll signal (SIGUSR2 IIRC) while an IMAP connection is IDLE-ing that 
+</I>&gt;<i> might/should be fixed in the same go.
+</I>&gt;<i>
+</I>&gt;<i> In the meanwhile, Jakob Hirsch has also provided demo code for setting 
+</I>&gt;<i> the TCP (stream socket) keepalive parameters (as a standalone 
+</I>&gt;<i> program), which may also help to detect connection loss easier. If you 
+</I>&gt;<i> want to play with it, find the code attached - but note I've not yet 
+</I>&gt;<i> checked how portable it is or if it even compiles for me.
+</I>&gt;<i>
+</I>&gt;<i>
+</I>I too am stretched for time, and would struggle to contribute dev time 
+right now.     I'm tempted to run a custom version of fetchmail that 
+changes the hard-coded IMAP idle time down to something smaller.    
+Hopefully a longer term fix can be done at some point. :)
+
+Thanks for your efforts .... and support of a great little tool!
+Matt
+
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002198.html">[fetchmail-users] fetchmail IMAP bug - causes some mails to not be delivered when using IDLE
+</A></li>
+	<LI>Next message: <A HREF="002205.html">[fetchmail-users] Where does fetchmail store the messages?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2204">[ date ]</a>
+              <a href="thread.html#2204">[ thread ]</a>
+              <a href="subject.html#2204">[ subject ]</a>
+              <a href="author.html#2204">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

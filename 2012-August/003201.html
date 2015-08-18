@@ -1,0 +1,129 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] fetchmail gotcha,	one that needs fixed I believe
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2012-August/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%20gotcha%2C%0A%09one%20that%20needs%20fixed%20I%20believe&In-Reply-To=%3C501AB2FA.9050908%40gmx.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003200.html">
+   <LINK REL="Next"  HREF="003202.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] fetchmail gotcha,	one that needs fixed I believe</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%20gotcha%2C%0A%09one%20that%20needs%20fixed%20I%20believe&In-Reply-To=%3C501AB2FA.9050908%40gmx.de%3E"
+       TITLE="[fetchmail-users] fetchmail gotcha,	one that needs fixed I believe">matthias.andree at gmx.de
+       </A><BR>
+    <I>Thu Aug  2 19:03:54 CEST 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003200.html">[fetchmail-users] fetchmail gotcha,	one that needs fixed I believe
+</A></li>
+        <LI>Next message: <A HREF="003202.html">[fetchmail-users] fetchmail gotcha,	one that needs fixed I believe
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3201">[ date ]</a>
+              <a href="thread.html#3201">[ thread ]</a>
+              <a href="subject.html#3201">[ subject ]</a>
+              <a href="author.html#3201">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Am 31.07.2012 17:52, schrieb Gene Heskett:
+
+&gt;<i> I also use mailfilter-0.8.2 in my attempts to control the spam that qmail 
+</I>&gt;<i> lets through.
+</I>
+I've figured that mailfilter appears to run from preconnect.
+
+&gt;<i> One of the mail servers I have a lifetime access to is running qmail, and 
+</I>&gt;<i> it will occasionally cause mailfilter to output a usually bogus bad 
+</I>&gt;<i> timestamp error and bail out, returning a -1 which causes fetchmail to 
+</I>&gt;<i> report a syntax error and skip the fetch.  
+</I>
+&quot;      The  'preconnect'  keyword  allows you to specify a shell command
+       to be executed just before each time fetchmail establishes
+       a mailserver  con&#8208; nection.  This may be useful if you
+       are attempting to set up secure POP connections with the aid
+       of ssh(1).  If the command returns  a  nonzero status, the poll
+       of that mailserver will be aborted.&quot;
+
+Well, the /syntax/ error can and probably should be changed to something
+else, particularly PS_ERROR, which isn't an exact match either but at
+least not that misleading, if other users see a value in that.  The
+behaviour &quot;report error and skip the poll&quot;, however, will need to remain
+the same, and I will not change the interface in a 6.X release.
+
+I've put this in my TODO-for-7.0 list, and may change the error code for
+that release.
+
+&gt;<i> If mailfilter is launched with the -r option on the cli, it returns the 
+</I>&gt;<i> number of good msgs to pull.  Seems rather handy.
+</I>
+Useless in fetchmail's context if used uncooked.
+
+&gt;<i> However, any non-zero return seems to be interpreted by fetchmail, freshly 
+</I>&gt;<i> downloaded and built 3 days back, as a failure.
+</I>
+Exactly as advertised.
+
+&gt;<i> It should, IMO treat any zero _or_ _positive_ _value_ as success.
+</I>
+What it should do is to preserve existing interfaces and not randomly
+change that, because changing an interface will earn us nothing but a
+truckload full of ifs and buts in the documentation, and angry users
+because they need to rework their scripts.
+
+I'd prefer to keep it the way it is, which is simple:
+preconnect fails -&gt; poll skipped with error.
+
+&gt;<i> So, in order to stop hammering the servers by doing a double poll but 
+</I>&gt;<i> without the preconnect option the 2nd time, I have had to write wrapper 
+</I>&gt;<i> scripts that gobble up mailfilters return value so that the defective msgs 
+</I>&gt;<i> is pulled, otherwise that server never gets the bad msg pulled.  This is 
+</I>&gt;<i> true even if I remove the -r from the mailfilter invocation wrapper.
+</I>
+Exactly what I would have suggested.
+You've already solved it with the wrapper script.
+
+&gt;<i> Can this be fixed in a subsequent fetchmail release?
+</I>
+I don't see anything to &quot;fix&quot; here, and I'm loathe to make such a
+change, for the given reasons.
+
+I understand this may be disappointing for you, but please understand
+that the drawbacks for the many, to me, outweigh the needs of the few
+(who appear to be quite capable of helping themselves to the solution).
+
+Best regards,
+Matthias
+</PRE>
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003200.html">[fetchmail-users] fetchmail gotcha,	one that needs fixed I believe
+</A></li>
+	<LI>Next message: <A HREF="003202.html">[fetchmail-users] fetchmail gotcha,	one that needs fixed I believe
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3201">[ date ]</a>
+              <a href="thread.html#3201">[ thread ]</a>
+              <a href="subject.html#3201">[ subject ]</a>
+              <a href="author.html#3201">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

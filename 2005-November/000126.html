@@ -1,0 +1,170 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Re: unsafe MDA procmail recommended by fetchmail
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2005-November/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Re%3A%20unsafe%20MDA%20procmail%20recommended%20by%20fetchmail&In-Reply-To=%3C20051117094033.GA4097%40merlin.emma.line.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000127.html">
+   <LINK REL="Next"  HREF="000109.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Re: unsafe MDA procmail recommended by fetchmail</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Re%3A%20unsafe%20MDA%20procmail%20recommended%20by%20fetchmail&In-Reply-To=%3C20051117094033.GA4097%40merlin.emma.line.org%3E"
+       TITLE="[fetchmail-users] Re: unsafe MDA procmail recommended by fetchmail">matthias.andree at gmx.de
+       </A><BR>
+    <I>Thu Nov 17 10:40:33 CET 2005</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000127.html">[fetchmail-users] Re: unsafe MDA procmail recommended by fetchmail
+</A></li>
+        <LI>Next message: <A HREF="000109.html">[fetchmail-users] Re: unsafe MDA procmail recommended by fetchmail
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#126">[ date ]</a>
+              <a href="thread.html#126">[ thread ]</a>
+              <a href="subject.html#126">[ subject ]</a>
+              <a href="author.html#126">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>It is a well-known fact that procmail is too demanding to configure
+properly for the average user, and the documentation is insufficient in
+this respect.
+
+What have the procmail maintainers done in the past four years to remedy
+this? Nothing. No documentation, no code changes, no new release.
+
+With my system administrator hat on, I have taken procmail away from
+my users and given them maildrop instead, years ago, and I think
+fetchmail 6.3.0 should go this route, as suggested by Thomas Wolff.
+
+To use procmail safely, you have to add something after every delivering
+recipe, that either you or Philip posted to the postfix-users list ages
+ago when I complained:
+
+:<i>0e
+</I>{
+  EXITCODE=75
+  HOST
+}
+
+This is cumbersome, unintuitive, in none of the prominent tutorials, and
+ugly as sin. The ugliness at that time caused embarrassed silence...
+
+To the user: use maildrop, it does The Right Thing[TM] out of the box,
+namely exiting with EX_TEMPFAIL as per /usr/include/sysexits.h
+
+What's worse, procmail shows many incomplete examples that confuse the
+user.
+
+This procmail fallthrough behavior that makes the many popular and
+shipped (see procmailex!) examples so unusable that users have to start
+chasing their mail in bad weather is what makes me support Thomas's
+original suggestion in spite of the problem being his own fault.
+
+The problem gets worse when multiple rules may match a message. In that
+case, the order of matches makes a difference, and mail may end up in
+the wrong box, when, for instance by a POP3 or IMAP server shuffling its
+mailbox around, /var/mail is TEMPORARILY out of space - the first rule
+matches, attempt FOR DELIVERY fails, the mail server lets go of the
+temporary file of the other user, meanwhile procmail falls through, the
+second rule matches and delivery succeeds -&gt; boom, the mail is in the
+wrong destination.
+
+Just unsetting DEFAULT/ORGMAIL as you suggest below is not sufficient to
+fix this. It's also a long shot from being anywhere close to a solution.
+
+&gt;<i> &gt; User feedback and documentation should be improved,
+</I>&gt;<i> 
+</I>&gt;<i> Please provide suggestions as to what wording in the logfile would have made
+</I>&gt;<i> it more clear?
+</I>
+The logfile should be enabled by default, and right in the face of the
+user: $HOME/procmail.log
+
+&gt;<i> Same question for the manpage; in what way should we rephrase it?
+</I>
+The code must change, not the manual page. In order not to break
+existing setups, you should make new &quot;EX_TEMPFAIL right away&quot; behavior a
+compile-time switch that defaults to off, or you should make it a
+feature that is so prominently documented it warrants a version bump to
+procmail 4.
+
+&gt;<i> &gt; though, and maybe
+</I>&gt;<i> &gt; this case of redirection should not be applied at all
+</I>&gt;<i> 
+</I>&gt;<i> Mail wants to arrive.  That means, if we can salvage the mail, instead of
+</I>&gt;<i> bouncing it, then that is the preferred solution.  Rescueing instead of
+</I>&gt;<i> giving up is the proper action.  It basically guards the user from his
+</I>&gt;<i> own lack of knowledge on the situation (and since the user can't
+</I>&gt;<i> be asked at that point, procmail has to make an intelligent decision).
+</I>
+procmail's undeterministic behavior is worse than a bounce.
+
+A message that is delivered to the wrong place is a message lost for the
+user, and at best one that causes additional work. Why use a filter at
+all if it doesn't work?  procmail's &quot;intelligence&quot; is a disservice to
+users. We've been through this before, and you fail to see the point.
+
+Imagine someone filtering his important messages (from VIP, with special
+subject) to a particular &quot;important&quot; mailbox, to see the mail early, and
+only checks his default mailbox once in a while. He'll &quot;lose&quot; that
+important mail and only find it later. Is *that* smart? No, it isn't.
+
+maildrop takes care to exit with EX_TEMPFAIL unless there is a really
+clear permanent problem (such as user not found in virtual setups). That
+makes the message stay in the queue, and fetchmail will thus leave it on
+the server and retry later, and that is what users expect.
+
+&gt;<i> &gt; (or be configurable)
+</I>&gt;<i> 
+</I>&gt;<i> It is, just put the following lines anywhere in your .procmailrc file:
+</I>&gt;<i>   DEFAULT
+</I>&gt;<i>   ORGMAIL
+</I>&gt;<i> 
+</I>&gt;<i> Which will unset the DEFAULT and ORGMAIL variables (and prevent
+</I>&gt;<i> evasive action in case of system or user error).
+</I>
+As shown above, this does not work for any setups except perhaps (full
+example) this trivial one:
+
+DEFAULT
+ORGMAIL
+
+:<i>0:
+</I>everything
+
+-- 
+Matthias Andree
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000127.html">[fetchmail-users] Re: unsafe MDA procmail recommended by fetchmail
+</A></li>
+	<LI>Next message: <A HREF="000109.html">[fetchmail-users] Re: unsafe MDA procmail recommended by fetchmail
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#126">[ date ]</a>
+              <a href="thread.html#126">[ thread ]</a>
+              <a href="subject.html#126">[ subject ]</a>
+              <a href="author.html#126">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

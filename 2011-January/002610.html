@@ -1,0 +1,84 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Authorization failure against Microsoft Exchange	2010
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2011-January/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Authorization%20failure%20against%20Microsoft%20Exchange%0A%092010&In-Reply-To=%3CSNT137-w483FC9D813817DE747317EB7F90%40phx.gbl%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002609.html">
+   <LINK REL="Next"  HREF="002611.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Authorization failure against Microsoft Exchange	2010</H1>
+    <B>Pa Ba</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Authorization%20failure%20against%20Microsoft%20Exchange%0A%092010&In-Reply-To=%3CSNT137-w483FC9D813817DE747317EB7F90%40phx.gbl%3E"
+       TITLE="[fetchmail-users] Authorization failure against Microsoft Exchange	2010">bapa at hotmail.ch
+       </A><BR>
+    <I>Thu Jan 20 14:08:34 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002609.html">[fetchmail-users] Thanks
+</A></li>
+        <LI>Next message: <A HREF="002611.html">[fetchmail-users] Authorization failure against Microsoft Exchange 2010
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2610">[ date ]</a>
+              <a href="thread.html#2610">[ thread ]</a>
+              <a href="subject.html#2610">[ subject ]</a>
+              <a href="author.html#2610">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>
+Hi
+ 
+We are currently running fetchmail-6.3.2-15.16 and have updated our main mailing system to Microsoft Exchange 2010.
+ 
+/etc/fetchmailrc:
+poll &quot;imap.ckw&quot; protocol IMAP : user &quot;CED/ckw-rmb-nfs_meteo&quot; there with password &quot;PASSWORD&quot; is &quot;nfs_meteo&quot; here ;
+ 
+We are getting following messages:
+fetchmail: Authorization failure on CED/<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">ckw-rmb-nfs_meteo at imap.ckw</A>
+fetchmail: Query status=3 (AUTHFAIL)
+ 
+How can we prevent that fetchmail is sending @imap.ckw to our Exchange server?
+The user simply needs to be  CED/ckw-rmb-nfs_meteo  in order to get a proper login.
+ 
+We tried to reach the Exchange server by using telnet and were successful.
+# telnet imap.ckw 143
+ 
+a Login CED/ckw-rmb-nfs_meteo PASSWORD 
+b logout
+ 
+With best regards
+ 
+Paul 		 	   		  
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002609.html">[fetchmail-users] Thanks
+</A></li>
+	<LI>Next message: <A HREF="002611.html">[fetchmail-users] Authorization failure against Microsoft Exchange 2010
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2610">[ date ]</a>
+              <a href="thread.html#2610">[ thread ]</a>
+              <a href="subject.html#2610">[ subject ]</a>
+              <a href="author.html#2610">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

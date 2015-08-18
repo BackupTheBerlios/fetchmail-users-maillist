@@ -1,0 +1,132 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] query state=2 (SOCKET)
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2006-September/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20query%20state%3D2%20%28SOCKET%29&In-Reply-To=%3C9bfbfec30609131413l4f2523c4ja4224f5d9d76e85c%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000591.html">
+   <LINK REL="Next"  HREF="000593.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] query state=2 (SOCKET)</H1>
+    <B>Roberto Meyer</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20query%20state%3D2%20%28SOCKET%29&In-Reply-To=%3C9bfbfec30609131413l4f2523c4ja4224f5d9d76e85c%40mail.gmail.com%3E"
+       TITLE="[fetchmail-users] query state=2 (SOCKET)">roberto.s.meyer at gmail.com
+       </A><BR>
+    <I>Wed Sep 13 23:13:06 CEST 2006</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000591.html">[fetchmail-users] query state=2 (SOCKET)
+</A></li>
+        <LI>Next message: <A HREF="000593.html">[fetchmail-users] query state=2 (SOCKET)
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#592">[ date ]</a>
+              <a href="thread.html#592">[ thread ]</a>
+              <a href="subject.html#592">[ subject ]</a>
+              <a href="author.html#592">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>2006/9/13, Rob MacGregor &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">rob.macgregor at gmail.com</A>&gt;:
+
+&gt;<i> On 9/12/06, Roberto Meyer &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">roberto.s.meyer at gmail.com</A>&gt; wrote:
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; Still having problems with it, I decided to put tcpdump in action. The
+</I>&gt;<i> &gt; problem is I don't really know much about it. I read the man pages and
+</I>&gt;<i> &gt; understood a little about flags, etc. but don't know a lot of tcp/ip.
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; I've attached the output of two connections triggered at the same time
+</I>&gt;<i> &gt; for two different users through cron jobs. One of them was successful,
+</I>&gt;<i> &gt; the other one failed with a socket, status=2 result.
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; The command I issued was:
+</I>&gt;<i> &gt; &quot;tcpdump -v -s1500 -i eth0 -n tcp port 110 -w /tmp/tcpdump.raw&quot;
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; I've attached the 'text' version of it which I rescued through
+</I>&gt;<i> &gt; &quot;tcpdump -r /tmp/tcpdump.raw&quot;
+</I>&gt;<i>
+</I>&gt;<i> Separating the 2 is, sadly, not possible.  If you could capture one
+</I>&gt;<i> working run and one failed run then I *may* be able to help work out
+</I>&gt;<i> what's going wrong.  It would help to have the binary pcap of the
+</I>&gt;<i> failed run, though obviously you'd need to change passwords
+</I>&gt;<i> immediately afterwards (or before and after) for security reasons.
+</I>
+Finally I got a couple of errors with single connections.
+
+I've attached a .tgz file with the logs of fetchmail and tcpdump at
+the moment of the errors, and both logs for a well done connection
+too.
+
+
+&gt;<i> Can you provide the output of &quot;ifconfig eth0&quot; (feel free to mangle MAC
+</I>&gt;<i> and IP addresses) and &quot;cat /proc/sys/net/ipv4/tcp_ecn&quot;?
+</I>
+&quot;cat /proc/sys/net/ipv4/tcp_ecn&quot; returns &quot;0&quot; (zero)
+
+&quot;ifconfig eth0&quot; returns:
+
+eth0    Link encap:Ethernet  HWaddr 11:50:24:64:09:BE
+          inet addr:201.65.9.43  Bcast:201.65.9.255  Mask:255.255.255.224
+                                                   ^^^^^^^^^^^^^^^^
+I noticed here broadcast address is wrong... could this be hurting
+packets or fetchmail connections? It should be 201.65.9.63 because of
+the netmask...
+
+          UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
+          RX packets:1240552 errors:34 dropped:0 overruns:0 frame:34
+          TX packets:636714 errors:0 dropped:0 overruns:0 carrier:105
+          collisions:0 txqueuelen:1000
+          RX bytes:397976183 (379.5 MiB)  TX bytes:78105812 (74.4 MiB)
+          Interrupt:14 Base address:0xdc00
+
+Carrier error were due to a cable unplug a week ago.
+
+As far as I checked, frame errors don't seem to be directly related to
+fetchmail problems.
+
+I'll change broadcast setup, though I didn't write it in
+/etc/init.d/interfaces, I only specified address, network and
+gateway... I'm surprised Linux didn't calculate it well...
+
+Thanx a lot for your help.
+
+-- 
+Roberto
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: fetchmail_socket_errors.tgz
+Type: application/x-gzip
+Size: 4633 bytes
+Desc: not available
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/fetchmail-users/attachments/20060913/4ec97801/attachment.bin">https://lists.berlios.de/pipermail/fetchmail-users/attachments/20060913/4ec97801/attachment.bin</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000591.html">[fetchmail-users] query state=2 (SOCKET)
+</A></li>
+	<LI>Next message: <A HREF="000593.html">[fetchmail-users] query state=2 (SOCKET)
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#592">[ date ]</a>
+              <a href="thread.html#592">[ thread ]</a>
+              <a href="subject.html#592">[ subject ]</a>
+              <a href="author.html#592">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

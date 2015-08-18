@@ -1,0 +1,149 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Poll: fetchmail &quot;mimedecode&quot; feature issues
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2011-June/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Poll%3A%20fetchmail%20%22mimedecode%22%20feature%20issues&In-Reply-To=%3C4DFB2745.6010602%40gmx.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002864.html">
+   <LINK REL="Next"  HREF="002866.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Poll: fetchmail &quot;mimedecode&quot; feature issues</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Poll%3A%20fetchmail%20%22mimedecode%22%20feature%20issues&In-Reply-To=%3C4DFB2745.6010602%40gmx.de%3E"
+       TITLE="[fetchmail-users] Poll: fetchmail &quot;mimedecode&quot; feature issues">matthias.andree at gmx.de
+       </A><BR>
+    <I>Fri Jun 17 12:07:01 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002864.html">[fetchmail-users] 'set daemon' and 'idle'
+</A></li>
+        <LI>Next message: <A HREF="002866.html">[fetchmail-users] Poll: fetchmail &quot;mimedecode&quot; feature issues
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2865">[ date ]</a>
+              <a href="thread.html#2865">[ thread ]</a>
+              <a href="subject.html#2865">[ subject ]</a>
+              <a href="author.html#2865">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Greetings,
+
+fetchmail's mimedecode feature, contributed by Henrik Storner and added
+by ESR in 1998 and shipped in release 4.4.1 for the first time, can
+damage MIME parts in various ways, so I consider it broken.
+
+
+During debugging I found quite a few limitations in the source code that
+make the whole mimedecode feature (the way it is in fetchmail 6.3.20)
+rather questionable to me, and I am seriously considering removing
+mimedecode altogether, rather than fixing the many bugs and flaws.
+
+Details are given below the questions:
+
+1. WHO is using the mimedecode feature? If you do, please reply; either
+to the list, or if you're not subscribed and don't feel like
+subscribing, directly to my mail address. Please keep the Subject.
+
+2. WHAT purposes are you using mimedecode for?  Can you abstain from
+fetchmail's mimedecode feature with reasonable effort?
+
+3. HAVE YOU HAD ISSUES with mimedecode yet, such as wrong character
+sets, corrupted messages, and similar?
+
+4. Is someone capable and willing to contribute high-quality bug fixes
+and code additions to get this feature to work? The resulting code
+should be license compatible with GPL v2 or later, and ideally with
+Affero GPL v3 or later.
+
+
+Limitations of the mimedecode feature as of fetchmail 6.3.20 as I see
+them today:
+
+
+1. headers: mimedecode does not convert character sets. Documented in
+the source code, but the code makes unwarranted assumptions.  Corruption
+likely if the message uses an incompatible character set.
+
+Effort to fix: medium, probably &lt;10 hours for a minimal fix (convert to
+one single charset/encoding, such as UTF-8).
+
+
+2. header quoting: There is a related Debian bug #475239 documenting a
+lack of quoting when decoding ends up with special characters, for
+instance, commas in a &quot;Doe, John&quot; notation.  This causes
+misinterpretation of decoded headers in the mailer later on.
+
+Effort to fix unclear, probably 10...100 hours.
+
+
+3. body soft line breaks: MIME quoted-printable supports line
+continuations (a trailing &quot;=&quot;), designating &quot;here was /no/ line ending
+in the original text&quot;. Fetchmail
+
+  a. inserts CRLF roughly every 8 K of text if the input lines are
+longer than that;
+
+Effort to fix unclear, likely easier in next (C++-based) major release
+and then &lt; 10 hours, possibly &lt; 20 h in 6.X releases with some code
+reshuffling.
+
+  b. forgets to ship the last line of a single-part message if it ends
+in a soft (i. e. &quot;no&quot;) line break.
+
+Fix works for me and sent to original reporter for confirmation.
+
+
+4. body nesting: I have skimmed through the code and, without conducting
+a full audit, have reason to assume that the mimedecode feature cannot
+handle nested multipart messages and will fail and possibly mutilate the
+messages after the end of the first inner nested part. This affects
+multipart messages forwarded as attachments, for instance.
+
+Medium effort to fix, probably ~30 hours.
+
+
+
+For me as programmer, there is a good opportunity to remove
+the &quot;mimedecode&quot; feature, rather than spend substantial amounts of time
+into getting this right.
+
+There will be a cleanup release of fetchmail anyways that will drop
+support for outdated pre-SUSv3 systems (not compliant to 2001's IEEE Std
+1003.1), POP2/POP3 LAST (superseded by POP3 UIDL more than 10 years
+ago), IMAP2 (superseded by IMAP4rev1), SSLv2 (superseded by SSLv3 and
+TLSv1), Kerberos IV/5 (superseded by GSS/GSSAPI) and various other
+(mis)features in order to make the code more robust and maintainable,
+and enable some modernizations that overcome older limitations in the code.
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002864.html">[fetchmail-users] 'set daemon' and 'idle'
+</A></li>
+	<LI>Next message: <A HREF="002866.html">[fetchmail-users] Poll: fetchmail &quot;mimedecode&quot; feature issues
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2865">[ date ]</a>
+              <a href="thread.html#2865">[ thread ]</a>
+              <a href="subject.html#2865">[ subject ]</a>
+              <a href="author.html#2865">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

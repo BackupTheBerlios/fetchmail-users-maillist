@@ -1,0 +1,94 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] What is a &quot;local issuer certificate&quot;?
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2006-July/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20What%20is%20a%20%22local%20issuer%20certificate%22%3F&In-Reply-To=%3Cm38xndekbd.fsf%40merlin.emma.line.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000485.html">
+   <LINK REL="Next"  HREF="000487.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] What is a &quot;local issuer certificate&quot;?</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20What%20is%20a%20%22local%20issuer%20certificate%22%3F&In-Reply-To=%3Cm38xndekbd.fsf%40merlin.emma.line.org%3E"
+       TITLE="[fetchmail-users] What is a &quot;local issuer certificate&quot;?">matthias.andree at gmx.de
+       </A><BR>
+    <I>Sat Jul  1 11:38:46 CEST 2006</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000485.html">[fetchmail-users] What is a &quot;local issuer certificate&quot;?
+</A></li>
+        <LI>Next message: <A HREF="000487.html">[fetchmail-users] What is a &quot;local issuer certificate&quot;?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#486">[ date ]</a>
+              <a href="thread.html#486">[ thread ]</a>
+              <a href="subject.html#486">[ subject ]</a>
+              <a href="author.html#486">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Paul Elliott &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">pelliott at io.com</A>&gt; writes:
+
+&gt;<i> When I run fetchmail to get mail from my IMAP server
+</I>&gt;<i> I get the following messages:
+</I>&gt;<i>
+</I>&gt;<i> fetchmail: Server certificate verification error: unable to get local issuer certificate
+</I>&gt;<i> fetchmail: Server certificate verification error: certificate not trusted
+</I>&gt;<i> fetchmail: Server certificate verification error: unable to verify the first certificate
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> My question is: what is a &quot;local issuer certificate&quot;?
+</I>&gt;<i>
+</I>&gt;<i> Is it the public key associated with my IMAP server?
+</I>&gt;<i> Or is it the public key associated with my local fetchmail
+</I>&gt;<i> client?
+</I>&gt;<i>
+</I>&gt;<i> In any case how do I create and/or get one to make the error go
+</I>&gt;<i> away?
+</I>
+That depends. Usually the fix to is make sure that fetchmail can find
+the root certificate. Some self-signed certificates are provided without
+the signing root certificate; ask the operator of the server.
+
+Older fetchmail versions did not set the certificate authorities' path
+properly, updating to 6.3.4 should then fix that.
+
+As a workaround, run fetchmail with -v to see the MD5 fingerprint, call
+the server's operator to verify the fingerprint, and use the
+--sslfingerprint option. This, too, needs a recent fetchmail version to
+work properly.
+
+-- 
+Matthias Andree
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000485.html">[fetchmail-users] What is a &quot;local issuer certificate&quot;?
+</A></li>
+	<LI>Next message: <A HREF="000487.html">[fetchmail-users] What is a &quot;local issuer certificate&quot;?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#486">[ date ]</a>
+              <a href="thread.html#486">[ thread ]</a>
+              <a href="subject.html#486">[ subject ]</a>
+              <a href="author.html#486">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

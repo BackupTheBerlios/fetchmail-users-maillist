@@ -1,0 +1,98 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] fetchmail 6.3.2-rc4 final release candidate
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2006-January/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%206.3.2-rc4%20final%20release%20candidate&In-Reply-To=%3C20060119040901.GA18173%40merlin.emma.line.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000252.html">
+   <LINK REL="Next"  HREF="000256.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] fetchmail 6.3.2-rc4 final release candidate</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%206.3.2-rc4%20final%20release%20candidate&In-Reply-To=%3C20060119040901.GA18173%40merlin.emma.line.org%3E"
+       TITLE="[fetchmail-users] fetchmail 6.3.2-rc4 final release candidate">matthias.andree at gmx.de
+       </A><BR>
+    <I>Thu Jan 19 05:09:01 CET 2006</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000252.html">[fetchmail-users] fetchmail 6.3.2-rc3 final release candidate
+</A></li>
+        <LI>Next message: <A HREF="000256.html">[fetchmail-users] Re: message was not the expected length errors
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#253">[ date ]</a>
+              <a href="thread.html#253">[ thread ]</a>
+              <a href="subject.html#253">[ subject ]</a>
+              <a href="author.html#253">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA1
+
+Greetings,
+
+a recently reported Debian bug spoiled my plans to have -rc3 as the
+final release candidate, but I hope it was the penultimate - to avoid
+embarrassment with the final 6.3.2, I've chosen to insert -rc4.
+
+This release candidate fixes a segfault after sending a bounce.
+
+This release candidate (#4) for 6.3.2 is available from
+<A HREF="http://mandree.home.pages.de/fetchmail/">http://mandree.home.pages.de/fetchmail/</A>
+
+I have requested a CVE Id from MITRE to track this problem and will add
+it to the security announcement before 6.3.2 release.
+
+Changes in fetchmail 6.3.2-rc4 (from -rc3):
+
+# SECURITY FIX IN THIS RELEASE
+* CVE-2006-XXXX: Fix segfault or bus error after bouncing a message.  This bug
+  was introduced into 6.3.0 when removing alloca(); it caused fetchmail to free
+  random memory.  Reported by Nathaniel W. Turner, Debian Bug#348747.
+  See fetchmail-SA-2006-01.txt
+
+# CHANGES RELEVANT TO PACKAGERS:
+* Added fetchmail-SA-2006-01.txt to the distribution.
+
+Happy fetchmailing,
+Matthias Andree
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1.4.0 (GNU/Linux)
+
+iD8DBQFDzxDdvmGDOQUufZURAiVYAJ4q2xxCuGVrxcP+VJ/fronZz7R/twCgsJXS
+jVwe62uMCA+5wYN2iIQ5F1Y=
+=V2fc
+-----END PGP SIGNATURE-----
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000252.html">[fetchmail-users] fetchmail 6.3.2-rc3 final release candidate
+</A></li>
+	<LI>Next message: <A HREF="000256.html">[fetchmail-users] Re: message was not the expected length errors
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#253">[ date ]</a>
+              <a href="thread.html#253">[ thread ]</a>
+              <a href="subject.html#253">[ subject ]</a>
+              <a href="author.html#253">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

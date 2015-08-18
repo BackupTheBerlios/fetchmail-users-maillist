@@ -1,0 +1,99 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] strange polling errors
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2011-February/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20strange%20polling%20errors&In-Reply-To=%3C4D6BAAD3.3060602%40gmx.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002684.html">
+   <LINK REL="Next"  HREF="002686.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] strange polling errors</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20strange%20polling%20errors&In-Reply-To=%3C4D6BAAD3.3060602%40gmx.de%3E"
+       TITLE="[fetchmail-users] strange polling errors">matthias.andree at gmx.de
+       </A><BR>
+    <I>Mon Feb 28 15:01:55 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002684.html">[fetchmail-users] strange polling errors
+</A></li>
+        <LI>Next message: <A HREF="002686.html">[fetchmail-users] strange polling errors
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2685">[ date ]</a>
+              <a href="thread.html#2685">[ thread ]</a>
+              <a href="subject.html#2685">[ subject ]</a>
+              <a href="author.html#2685">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Am 28.02.2011 11:43, schrieb Jonathan Buschmann:
+&gt;<i> Hi Matthias,
+</I>&gt;<i> Your right that it is somehow a syslog problem. --nodetach --nosyslog
+</I>&gt;<i> behaves correctly with -vv
+</I>&gt;<i> OTOH I don't see anymore useful information compared with -v, as I sent
+</I>&gt;<i> earlier.
+</I>&gt;<i> 
+</I>&gt;<i> FWIW my syslog is configed at mail.debug... must be a bug in my syslog
+</I>&gt;<i> daemon (IHTA my OS does suffer from some bitrot.)
+</I>
+Basically the problem appears to be that the IDLE-ing connection gets
+somehow closed at socket level prematurely.
+
+How exactly needs to be established on a lower network layer, possibly
+with tcpdump, wireshark, or similar, and see if the connection gets
+reset, by whom, and when, or if there is a regular FIN/ACK sequence (in
+that case, Exchange would be the suspect).
+
+Possible reasons include:
+
+- some firewall on either end expiring stateful rules associated to the
+idling connection
+
+- some masquerade/NAT device (possibly router, usually on the client
+side) expiring forwarding rules prematurely
+
+- the Exchange server closing the connection after 5 minutes of idle
+time when it should allow 30 minutes.  I've never operated an Exchange
+server and know nothing about configuration options.
+
+
+If you can't find the reason, you can locally modify the imap.c source,
+look for the figure 1680 (28 * 60 seconds), lower that to 270 (4.5 * 60
+seconds), recompile and reinstall; however, I am not considering such a
+change upstream.
+
+Hope that helps
+Matthias
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002684.html">[fetchmail-users] strange polling errors
+</A></li>
+	<LI>Next message: <A HREF="002686.html">[fetchmail-users] strange polling errors
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2685">[ date ]</a>
+              <a href="thread.html#2685">[ thread ]</a>
+              <a href="subject.html#2685">[ subject ]</a>
+              <a href="author.html#2685">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

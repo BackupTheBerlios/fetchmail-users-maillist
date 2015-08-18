@@ -1,0 +1,124 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Mails lost due to --flush option ?
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2006-May/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Mails%20lost%20due%20to%20--flush%20option%20%3F&In-Reply-To=%3Cm3sln8wz2d.fsf%40merlin.emma.line.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000427.html">
+   <LINK REL="Next"  HREF="000410.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Mails lost due to --flush option ?</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Mails%20lost%20due%20to%20--flush%20option%20%3F&In-Reply-To=%3Cm3sln8wz2d.fsf%40merlin.emma.line.org%3E"
+       TITLE="[fetchmail-users] Mails lost due to --flush option ?">matthias.andree at gmx.de
+       </A><BR>
+    <I>Wed May 17 15:39:06 CEST 2006</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000427.html">[fetchmail-users] Re: fix lost POP3 deletes
+</A></li>
+        <LI>Next message: <A HREF="000410.html">[fetchmail-users] Mails lost due to --flush option ?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#408">[ date ]</a>
+              <a href="thread.html#408">[ thread ]</a>
+              <a href="subject.html#408">[ subject ]</a>
+              <a href="author.html#408">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Frederic Marchal &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">frederic.marchal at wowcompany.com</A>&gt; writes:
+
+&gt;<i> I quote the man page of version 6.3.2:
+</I>&gt;<i>
+</I>&gt;<i>       -F | --flush
+</I>&gt;<i>              POP3/IMAP only.  Delete old (previously retrieved)
+</I>&gt;<i>              messages from the mailserver before retrieving new
+</I>&gt;<i>              messages.  This option does not work with ETRN or ODMR.
+</I>&gt;<i>              Warning: if your local MTA hangs and fetchmail is
+</I>&gt;<i>              aborted, the next time you run fetchmail, it will delete
+</I>&gt;<i>              mail that was never delivered to you.  What you probably
+</I>&gt;<i>              want is the default setting: if you don't specify `-k',
+</I>&gt;<i>              then fetchmail will automatically delete messages after
+</I>&gt;<i>              successful delivery.
+</I>&gt;<i>
+</I>&gt;<i> Is it still true that a mail is lost if the MTA hangs  ? It sounds like
+</I>&gt;<i> a known bug and may have been fixed in the code but not in the man page.
+</I>
+Well, it indeed appears the bug got fixed. Messages will get delete:
+
+1. if --flush is _en_abled and an &quot;old&quot; message is encountered
+   (--flush also disables fastUIDL code in POP3)
+
+2. if --keep is _dis_abled and a message has successfully been shipped
+
+I don't see how a local MTA hang could cause message deletion --
+delivery problems inhibit deletion and marking a message as old.  EXCEPT
+if the server implicitly marks a message seen (IMAP2 and POP3 without
+UIDL)
+
+&gt;<i> I explain my situation: if the connection with the pop3 server drops,
+</I>&gt;<i> all the DELE commands are forgotten (as required by the pop3 protocol if
+</I>&gt;<i> I understand it right)
+</I>
+correct.
+
+&gt;<i> and the mails reappear on the next poll.
+</I>
+That's a problem I can confirm looking at the code. POP3 delete attempts
+mark a message seen (rather than deleted), and thus the message is
+skipped.
+
+If you are using ONLY &quot;POP3 + UIDL&quot; configurations, --flush should be safe.
+
+
+
+Frederic Marchal &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">frederic.marchal at wowcompany.com</A>&gt; later answered:
+
+&gt;<i> I tested it on the test server and it worked as expected. Now, it is in
+</I>&gt;<i> production but I may have to wait until next Monday for the flood of
+</I>&gt;<i> mails from the week-end to know if it is ok (and hope the connection
+</I>&gt;<i> drops :-) ).
+</I>&gt;<i>
+</I>&gt;<i> BTW, isn't it another way of doing the flush you said was a scary thing ?
+</I>
+Well, it is in fact fishing in --flush's pond functionality-wise,
+so I am not going to apply that patch now.
+
+I'll post an experimental test patch to fix the original bug later, but
+it's fairly intrusive, so it needs testing and review.
+
+-- 
+Matthias Andree
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000427.html">[fetchmail-users] Re: fix lost POP3 deletes
+</A></li>
+	<LI>Next message: <A HREF="000410.html">[fetchmail-users] Mails lost due to --flush option ?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#408">[ date ]</a>
+              <a href="thread.html#408">[ thread ]</a>
+              <a href="subject.html#408">[ subject ]</a>
+              <a href="author.html#408">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

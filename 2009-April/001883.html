@@ -1,0 +1,116 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Issue with (no)fetchall and attachemnts in outlook web access
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2009-April/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Issue%20with%20%28no%29fetchall%20and%20attachemnts%20in%0A%20outlook%20web%20access&In-Reply-To=%3Cop.ur4cmfii1e62zd%40balu.cs.uni-paderborn.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001882.html">
+   <LINK REL="Next"  HREF="001884.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Issue with (no)fetchall and attachemnts in outlook web access</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Issue%20with%20%28no%29fetchall%20and%20attachemnts%20in%0A%20outlook%20web%20access&In-Reply-To=%3Cop.ur4cmfii1e62zd%40balu.cs.uni-paderborn.de%3E"
+       TITLE="[fetchmail-users] Issue with (no)fetchall and attachemnts in outlook web access">matthias.andree at gmx.de
+       </A><BR>
+    <I>Thu Apr  9 14:21:42 CEST 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001882.html">[fetchmail-users] Issue with (no)fetchall and attachemnts in	outlook web access
+</A></li>
+        <LI>Next message: <A HREF="001884.html">[fetchmail-users] Fetchmail and GMail IMAP service.
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1883">[ date ]</a>
+              <a href="thread.html#1883">[ thread ]</a>
+              <a href="subject.html#1883">[ subject ]</a>
+              <a href="author.html#1883">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Am 08.04.2009, 18:28 Uhr, schrieb Steve Ladendorf &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">steve at ladendorfs.com</A>&gt;:
+
+&gt;<i> Hello,
+</I>&gt;<i>
+</I>&gt;<i> I have been trying to set up fetchmail as an imap to smtp gateway to  
+</I>&gt;<i> deliver voicemail messages from a cisco callmanager business edition to  
+</I>&gt;<i> exchange for a customer and have run into two problems.  The first is  
+</I>&gt;<i> that when I don't use the fetchall option the imap server bombs out on  
+</I>&gt;<i> the search command.
+</I>&gt;<i>
+</I>&gt;<i> fetchmail: IMAP&gt; A0006 SEARCH UNSEEN NOT DELETED
+</I>&gt;<i> fetchmail: IMAP&lt; * BAD The command is not valid in the current state
+</I>&gt;<i>
+</I>&gt;<i> I've looked around (even read RFC3501) and can't find the reason for  
+</I>&gt;<i> this error.  Using fetchall work fine but if anything changes on the  
+</I>&gt;<i> imap server the users get all of their old messages delivered again.   
+</I>&gt;<i> Does anyone know why this happens?
+</I>
+Hi Steve,
+
+this looks like a server bug.
+
+I've seen serveral servers over time that do not properly implement the  
+SEARCH command. If IMAP is part of Cisco's product, complain to Cisco and  
+have them add RFC-3501 support.
+
+As a workaround, you can try to change this line in imap.c
+
+         gen_send(sock, &quot;SEARCH UNSEEN NOT DELETED&quot;);
+
+to
+
+         gen_send(sock, &quot;SEARCH (UNSEEN NOT DELETED)&quot;);
+
+Let me know if it works, but I doubt that.
+
+As to the &quot;get all of their old messages delivered again&quot;: are you  
+combining fetchall with keep?
+
+
+&gt;<i> The second issue has to do with the voicemail message as an attachment.   
+</I>&gt;<i> The users can see it and play it in Outlook but not in Outlook Web  
+</I>&gt;<i> Access - paperclip shows there is an attachment but it does not show up  
+</I>&gt;<i> when opening the email.  This seems to be an issue with Exchange  
+</I>&gt;<i> (customer has 2003 SP2).  I found a hotfix at microsoft but it only  
+</I>&gt;<i> applies to the RFM edition.  I tried the pass8bits, stripcr, forcecr,  
+</I>&gt;<i> etc. options but nothing worked (it's obviously an issue with the  
+</I>&gt;<i> encoding of the attachments as far as I can tell).  Does anyone have a  
+</I>&gt;<i> work around for this issue other than it's a microsoft &quot;feature&quot;?
+</I>
+I fear I can't help with Outlook Web Access.
+Do other IMAP clients work with your Exchange server, such as Thunderbird?
+
+-- 
+Matthias Andree
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001882.html">[fetchmail-users] Issue with (no)fetchall and attachemnts in	outlook web access
+</A></li>
+	<LI>Next message: <A HREF="001884.html">[fetchmail-users] Fetchmail and GMail IMAP service.
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1883">[ date ]</a>
+              <a href="thread.html#1883">[ thread ]</a>
+              <a href="subject.html#1883">[ subject ]</a>
+              <a href="author.html#1883">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

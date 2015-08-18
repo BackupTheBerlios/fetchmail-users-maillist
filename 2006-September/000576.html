@@ -1,0 +1,145 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] No mail
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2006-September/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20No%20mail&In-Reply-To=%3C44FA0953.7050600%40monet.no%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   
+   <LINK REL="Next"  HREF="000577.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] No mail</H1>
+    <B>Helge</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20No%20mail&In-Reply-To=%3C44FA0953.7050600%40monet.no%3E"
+       TITLE="[fetchmail-users] No mail">helge.opsjon at monet.no
+       </A><BR>
+    <I>Sun Sep  3 00:44:35 CEST 2006</I>
+    <P><UL>
+        
+        <LI>Next message: <A HREF="000577.html">[fetchmail-users] No mail
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#576">[ date ]</a>
+              <a href="thread.html#576">[ thread ]</a>
+              <a href="subject.html#576">[ subject ]</a>
+              <a href="author.html#576">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>I am using fetchmail 6.3.4-5 together with exim4 4.63-3, on a Debian 
+system. I have problems with getting e-mail from my ISP's server.
+fetchmail --nosyslog -v gives:
+fetchmail: 6.3.4 querying mail.monet.no (protocol POP3) at s&#248;n 
+03-09-2006 00:14:13 CEST: poll started
+fetchmail: POP3&lt; +OK Hello there.
+fetchmail: POP3&gt; CAPA
+fetchmail: POP3&lt; +OK Here's what I can do:
+fetchmail: POP3&lt; STLS
+fetchmail: POP3&lt; TOP
+fetchmail: POP3&lt; USER
+fetchmail: POP3&lt; LOGIN-DELAY 10
+fetchmail: POP3&lt; PIPELINING
+fetchmail: POP3&lt; UIDL
+fetchmail: POP3&lt; IMPLEMENTATION Courier Mail Server
+fetchmail: POP3&lt; .
+fetchmail: POP3&gt; STLS
+fetchmail: POP3&lt; +OK Begin SSL/TLS negotiation now.
+fetchmail: Repoll immediately on <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">hopsjo01 at mail.monet.no</A>
+fetchmail: POP3&lt; +OK Hello there.
+fetchmail: POP3&gt; CAPA
+fetchmail: POP3&lt; +OK Here's what I can do:
+fetchmail: POP3&lt; STLS
+fetchmail: POP3&lt; TOP
+fetchmail: POP3&lt; USER
+fetchmail: POP3&lt; LOGIN-DELAY 10
+fetchmail: POP3&lt; PIPELINING
+fetchmail: POP3&lt; UIDL
+fetchmail: POP3&lt; IMPLEMENTATION Courier Mail Server
+fetchmail: POP3&lt; .
+fetchmail: POP3&gt; USER myself
+fetchmail: POP3&lt; +OK Password required.
+fetchmail: POP3&gt; PASS *
+fetchmail: POP3&lt; +OK logged in.
+fetchmail: POP3&gt; STAT
+fetchmail: POP3&lt; +OK 1 689
+1 message for hopsjo01 at mail.monet.no (689 octets).
+fetchmail: POP3&gt; LIST 1
+fetchmail: POP3&lt; +OK 1 689
+fetchmail: POP3&gt; RETR 1
+fetchmail: POP3&lt; +OK 689 octets follow.
+reading message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">myself at mail.monet.no</A>:1 of 1 (689 octets)
+fetchmail: SMTP&lt; 220 helge.monet.no ESMTP Exim 4.63 Sun, 03 Sep 2006 
+00:14:14 +0200
+fetchmail: SMTP&gt; EHLO helge.monet.no
+fetchmail: SMTP&lt; 250-helge.monet.no Hello localhost [127.0.0.1]
+fetchmail: SMTP&lt; 250-SIZE 52428800
+fetchmail: SMTP&lt; 250-PIPELINING
+fetchmail: SMTP&lt; 250 HELP
+fetchmail: SMTP&gt; MAIL FROM:&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">helge.opsjon at monet.no</A>&gt; SIZE=689
+fetchmail: SMTP&lt; 250 OK
+fetchmail: SMTP&gt; RCPT TO:&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">helge at localhost</A>&gt;
+fetchmail: SMTP&lt; 250 Accepted
+fetchmail: SMTP&gt; DATA
+fetchmail: SMTP&lt; 354 Enter message, ending with &quot;.&quot; on a line by itself
+#*****fetchmail: SMTP&gt;. (EOM)
+fetchmail: SMTP&lt; 250 OK id=1GJdkk-0001vb-9p
+ not flushed
+fetchmail: POP3&gt; QUIT
+fetchmail: POP3&lt; +OK Bye-bye.
+fetchmail: SMTP&gt; QUIT
+fetchmail: SMTP&lt; 221 helge.monet.no closing connection
+fetchmail: 6.3.4 querying mail.monet.no (protocol POP3) at s&#248;n 
+03-09-2006 00:14:14 CEST: poll completed
+fetchmail: normal termination, status 0
+
+# Configuration created Sat Sep  2 23:35:40 2006 by fetchmailconf 1.52 
+$Revision: 4740 $
+set postmaster &quot;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">helge at localhost</A>&quot;
+set bouncemail
+set no spambounce
+set properties &quot;&quot;
+poll mail.monet.no with proto pop3
+       user 'myself' there with password '*****' is 'helge' here options 
+keep fetchall
+
+Every time I run fetchmail, the e-mails are returned back again to the 
+server, and doubles.
+
+Can anybody see any clues her to solve my problem? Is this a fetchmail 
+or a exim4-problem?
+
+
+-- 
+Helge Opsj&#248;n
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	
+	<LI>Next message: <A HREF="000577.html">[fetchmail-users] No mail
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#576">[ date ]</a>
+              <a href="thread.html#576">[ thread ]</a>
+              <a href="subject.html#576">[ subject ]</a>
+              <a href="author.html#576">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

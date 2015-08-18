@@ -1,0 +1,96 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] After reading the FAQ, a question about lost/mangled attachments
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2006-March/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20After%20reading%20the%20FAQ%2C%20a%20question%20about%20lost/mangled%20attachments&In-Reply-To=%3C20060302024115.GA331%40www.ewilts.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000285.html">
+   <LINK REL="Next"  HREF="000287.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] After reading the FAQ, a question about lost/mangled attachments</H1>
+    <B>Ed Wilts</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20After%20reading%20the%20FAQ%2C%20a%20question%20about%20lost/mangled%20attachments&In-Reply-To=%3C20060302024115.GA331%40www.ewilts.org%3E"
+       TITLE="[fetchmail-users] After reading the FAQ, a question about lost/mangled attachments">ewilts at ewilts.org
+       </A><BR>
+    <I>Thu Mar  2 03:41:15 CET 2006</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000285.html">[fetchmail-users] After reading the FAQ, a question about lost/mangled attachments
+</A></li>
+        <LI>Next message: <A HREF="000287.html">[fetchmail-users] After reading the FAQ, a question about lost/mangled attachments
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#286">[ date ]</a>
+              <a href="thread.html#286">[ thread ]</a>
+              <a href="subject.html#286">[ subject ]</a>
+              <a href="author.html#286">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Wed, Mar 01, 2006 at 08:58:52PM -0500, Peter N. Spotts wrote:
+&gt;<i> After reading the FAQ, I'm hip to fetchmail's &quot;neutrality&quot; on whether an 
+</I>&gt;<i> incoming email has an attachment or not. So I'm hoping for some guidance 
+</I>&gt;<i> on where to look for the source of a recurring problem of randomly lost 
+</I>&gt;<i> or &quot;damaged&quot; pdf attachments. Typically (though not always), the pdfs 
+</I>&gt;<i> that come through unscathed are one-page, sent one per email. The lost 
+</I>&gt;<i> or damaged attachments tend to be larger pdf files and emails with 
+</I>&gt;<i> multiple attachments.
+</I>&gt;<i> 
+</I>&gt;<i> When I noticed the damaged attachments, I set up my clients for POP3 to 
+</I>&gt;<i> pull the mail directly from the ISP. Then I had the senders resend the 
+</I>&gt;<i> email. All the attachments arrived cleanly from ISP straight into email 
+</I>&gt;<i> client. So although my ISP is Comcast (I noted the Comcast caveats on 
+</I>&gt;<i> the FAQ page), Comcast does not seem to be the problem either. And I've 
+</I>&gt;<i> deactivated clamav, thinking it might not like the attachments for some 
+</I>&gt;<i> reason. But the attachments still come in damaged via the fetchmail et 
+</I>&gt;<i> al route.
+</I>&gt;<i> 
+</I>&gt;<i> So, if Comcast isn't the problem and fetchmail doesn't give a hoot if an 
+</I>&gt;<i> email bears an attachment or not, where else should I look?
+</I>
+But Comcast *is* the problem.  I have this in my .fetchmailrc and it
+works fine, with attachments.  
+
+poll mail.comcast.net
+        proto POP3
+        user 'ewilts'
+        password 'noneofyourbusiness!'
+        fetchall
+
+Without the &quot;fetchall&quot;, any attachments over 70k were mangled.
+
+-- 
+Ed Wilts, Mounds View, MN, USA
+mailto:<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">ewilts at ewilts.org</A>
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000285.html">[fetchmail-users] After reading the FAQ, a question about lost/mangled attachments
+</A></li>
+	<LI>Next message: <A HREF="000287.html">[fetchmail-users] After reading the FAQ, a question about lost/mangled attachments
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#286">[ date ]</a>
+              <a href="thread.html#286">[ thread ]</a>
+              <a href="subject.html#286">[ subject ]</a>
+              <a href="author.html#286">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

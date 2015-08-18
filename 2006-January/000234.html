@@ -1,0 +1,90 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Re: [fetchmail-announce] fetchmail 6.3.0 contained incompatible idfile change
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2006-January/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Re%3A%20%5Bfetchmail-announce%5D%20fetchmail%206.3.0%20contained%20incompatible%20idfile%20change&In-Reply-To=%3C20060105013909.GB2027%40zi025.glh.mhn.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000226.html">
+   <LINK REL="Next"  HREF="000236.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Re: [fetchmail-announce] fetchmail 6.3.0 contained incompatible idfile change</H1>
+    <B>Simon Barner</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Re%3A%20%5Bfetchmail-announce%5D%20fetchmail%206.3.0%20contained%20incompatible%20idfile%20change&In-Reply-To=%3C20060105013909.GB2027%40zi025.glh.mhn.de%3E"
+       TITLE="[fetchmail-users] Re: [fetchmail-announce] fetchmail 6.3.0 contained incompatible idfile change">barner at gmx.de
+       </A><BR>
+    <I>Thu Jan  5 02:39:09 CET 2006</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000226.html">[fetchmail-users] Re: [fetchmail-announce] fetchmail 6.3.0 contained incompatible idfile change
+</A></li>
+        <LI>Next message: <A HREF="000236.html">[fetchmail-users] Re: [fetchmail-announce] fetchmail 6.3.0 contained incompatible idfile change
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#234">[ date ]</a>
+              <a href="thread.html#234">[ thread ]</a>
+              <a href="subject.html#234">[ subject ]</a>
+              <a href="author.html#234">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Matthias Andree wrote:
+&gt;<i> &gt; What about using one of the system-wide temporary directories instead?
+</I>&gt;<i> 
+</I>
+[ Nice explanation skipped -- thanks! ]
+
+&gt;<i> 
+</I>&gt;<i> Debian for instance uses a fetchmail user for the system wide fetchmail
+</I>&gt;<i> daemon, home directory is /var/run/fetchmail, yet they use
+</I>&gt;<i> /var/mail/.i-forgot-the-UIDL-name for their idfile. If they used
+</I>&gt;<i> /var/run/fetchmail/.i-forgot-the-UIDL-name, everything would be fine. No
+</I>&gt;<i> need for ${TMPDIR-/tmp}.
+</I>
+I thought about adding something similar to the FreeBSD port, but I thought
+of having one fetchmail instance per user (if that is possible). OTOH, this
+will not work if there are many users.
+
+Do you think, a system-wide fetchmail is worth the trouble? (I know, you are
+biased since you are the current maintainer ;-)
+
+-- 
+Best regards / Viele Gr&#252;&#223;e,                             <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">barner at FreeBSD.org</A>
+ Simon Barner                                                <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">barner at gmx.de</A>
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: not available
+Type: application/pgp-signature
+Size: 187 bytes
+Desc: not available
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/fetchmail-users/attachments/20060105/df4eb2b8/attachment.pgp">https://lists.berlios.de/pipermail/fetchmail-users/attachments/20060105/df4eb2b8/attachment.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000226.html">[fetchmail-users] Re: [fetchmail-announce] fetchmail 6.3.0 contained incompatible idfile change
+</A></li>
+	<LI>Next message: <A HREF="000236.html">[fetchmail-users] Re: [fetchmail-announce] fetchmail 6.3.0 contained incompatible idfile change
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#234">[ date ]</a>
+              <a href="thread.html#234">[ thread ]</a>
+              <a href="subject.html#234">[ subject ]</a>
+              <a href="author.html#234">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

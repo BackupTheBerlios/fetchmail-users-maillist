@@ -1,0 +1,138 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Configure .fetchmailrc for hotwayd
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2013-March/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Configure%20.fetchmailrc%20for%20hotwayd&In-Reply-To=%3CCAJCMLO81OhhWZWQo7XQNYPr6eMW68V_n-29_bE34%3DOc-TRBicA%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003366.html">
+   <LINK REL="Next"  HREF="003369.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Configure .fetchmailrc for hotwayd</H1>
+    <B>Rob MacGregor</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Configure%20.fetchmailrc%20for%20hotwayd&In-Reply-To=%3CCAJCMLO81OhhWZWQo7XQNYPr6eMW68V_n-29_bE34%3DOc-TRBicA%40mail.gmail.com%3E"
+       TITLE="[fetchmail-users] Configure .fetchmailrc for hotwayd">rob.macgregor at gmail.com
+       </A><BR>
+    <I>Sat Mar  2 19:49:05 CET 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003366.html">[fetchmail-users] Configure .fetchmailrc for hotwayd
+</A></li>
+        <LI>Next message: <A HREF="003369.html">[fetchmail-users] Configure .fetchmailrc for hotwayd
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3367">[ date ]</a>
+              <a href="thread.html#3367">[ thread ]</a>
+              <a href="subject.html#3367">[ subject ]</a>
+              <a href="author.html#3367">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Sat, Mar 2, 2013 at 6:29 PM, Haines Brown &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">haines at histomat.net</A>&gt; wrote:
+&gt;&gt;<i> Well, for a start your webmail service is on port 443.
+</I>&gt;<i>
+</I>&gt;<i> I seemed to get a bit further by using that port any by relying on the
+</I>&gt;<i> running hotwayd demon. At least I connect to the server. Here is the
+</I>&gt;<i> .fetchmailrc configuration I tried:
+</I>&gt;<i>
+</I>&gt;<i>   poll webmail.ccsu.edu
+</I>&gt;<i>     service 443
+</I>&gt;<i>     proto POP3
+</I>&gt;<i>     user &quot;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">brownh at webmail.ccsu.edu</A>&quot;
+</I>&gt;<i>     password ...
+</I>&gt;<i>
+</I>&gt;<i> And the return was:
+</I>&gt;<i>
+</I>&gt;<i>   fetchmail: 6.3.18 querying webmail.ccsu.edu (protocol POP3) at Sat
+</I>&gt;<i>         02 Mar 2013 12:45:29 PM EST: poll started
+</I>&gt;<i>   Trying to connect to 149.152.18.110/443...connected.
+</I>&gt;<i>   fetchmail: timeout after 300 seconds waiting for server webmail.ccsu.edu.
+</I>&gt;<i>   fetchmail: socket error while fetching from <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">brownh at webmail.ccsu.edu</A>@webmail.ccsu.edu
+</I>&gt;<i>   fetchmail: 6.3.18 querying webmail.ccsu.edu (protocol POP3) at Sat 02
+</I>&gt;<i>         Mar 2013 12:50:29 PM EST: poll completed
+</I>&gt;<i>   fetchmail: Query status=2 (SOCKET)
+</I>&gt;<i>   fetchmail: normal termination, status 2
+</I>
+That's to be expected - you're trying to talk POP3 to an HTTPS server.
+That's like trying to talk Swahili to somebody who only speaks
+Japanese...
+
+&gt;<i> No idea and I doubt I can find out. In any case you seem to imply that
+</I>&gt;<i> if I use hotwayd daemon I needn't worrry about it:
+</I>
+Yes - configure Hotwayd (Google gave me a bunch of examples)  to run
+in daemon mode and act as the &quot;proxy&quot; for Fetchmail. Then you just
+configure fetchmail to talk POP3 to the local port.  For example:
+
+service hotwayd
+{
+socket_type = stream
+wait = no
+user = nobody
+port = 11100
+server = /usr/sbin/hotwayd
+log_on_success += USERID
+log_on_failure += USERID
+disable = no
+}
+
+In your inetd/xinetd configuration file.
+
+Then in Fetchmail:
+
+poll localhost
+port 11100
+proto pop3
+user &quot; your-webmail-username&quot;
+pass &quot;your-webmail-password&quot;
+
+&gt;<i> I was unable to find direction here. Implied is that hotwayd can be
+</I>&gt;<i> configured to poll the webmail server, and then .fetchmailrc be
+</I>&gt;<i> configured to look for mail on the port it offers. But I found no
+</I>&gt;<i> reference to any confituration file, and in any case no idea how to
+</I>&gt;<i> configure it. Not sure what local port to use.
+</I>
+Google is always a good starting point - try &quot;hotwayd fetchmail&quot;,
+that's what I used to find the above. Note that I've never used
+Hotwayd so if you have problems with it I can provide absolutely no
+assistance beyond what I find in Google, which you can do as well as I
+can ;)
+
+--
+                 Please keep list traffic on the list.
+
+Rob MacGregor
+      Whoever fights monsters should see to it that in the process he
+        doesn't become a monster.                  Friedrich Nietzsche
+</PRE>
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003366.html">[fetchmail-users] Configure .fetchmailrc for hotwayd
+</A></li>
+	<LI>Next message: <A HREF="003369.html">[fetchmail-users] Configure .fetchmailrc for hotwayd
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3367">[ date ]</a>
+              <a href="thread.html#3367">[ thread ]</a>
+              <a href="subject.html#3367">[ subject ]</a>
+              <a href="author.html#3367">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

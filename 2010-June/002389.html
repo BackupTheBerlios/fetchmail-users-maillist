@@ -1,0 +1,167 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] multi-drop problem on osx,	duplicate emails  received.
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2010-June/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20multi-drop%20problem%20on%20osx%2C%0A%09duplicate%20emails%20%20received.&In-Reply-To=%3C59D058C7-C463-46AC-97D2-B66EE2322112%40bergehenegouwen.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002388.html">
+   <LINK REL="Next"  HREF="002390.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] multi-drop problem on osx,	duplicate emails  received.</H1>
+    <B>Erick van Rijk</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20multi-drop%20problem%20on%20osx%2C%0A%09duplicate%20emails%20%20received.&In-Reply-To=%3C59D058C7-C463-46AC-97D2-B66EE2322112%40bergehenegouwen.com%3E"
+       TITLE="[fetchmail-users] multi-drop problem on osx,	duplicate emails  received.">erick at bergehenegouwen.com
+       </A><BR>
+    <I>Tue Jun 15 00:12:04 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002388.html">[fetchmail-users] multi-drop problem on osx,	duplicate emails 	received.
+</A></li>
+        <LI>Next message: <A HREF="002390.html">[fetchmail-users] multi-drop problem on osx,	duplicate emails 	received.
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2389">[ date ]</a>
+              <a href="thread.html#2389">[ thread ]</a>
+              <a href="subject.html#2389">[ subject ]</a>
+              <a href="author.html#2389">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Rob,
+
+On Jun 14, 2010, at 6:51 PM, Rob MacGregor wrote:
+
+&gt;<i> On Mon, Jun 14, 2010 at 14:24, Erick van Rijk &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">erick at bergehenegouwen.com</A>&gt; wrote:
+</I>&gt;&gt;<i> Hi All,
+</I>&gt;&gt;<i> new to fetchmail and this list of course.
+</I>&gt;&gt;<i> I've setup fetchmail to gather emails from a multi-drop email box on an external server.
+</I>&gt;&gt;<i> But I have been having some issues:
+</I>&gt;&gt;<i> 1. duplicate emails are coming in when I have multiple recipients in the same multi-drop (tricky I know).
+</I>&gt;&gt;<i> 2. BCC seems to be going to postmaster always.
+</I>&gt;<i> 
+</I>&gt;<i> Both of those suggest either that your provider isn't providing an
+</I>&gt;<i> X-Envelope-To header, or you're not using the one that's there.
+</I>Attached raw header info below. Indeed there is no X-Envelope-To header
+&gt;<i> 
+</I>&gt;&gt;<i> fetchmail: WARNING: Running as root is discouraged.
+</I>&gt;&gt;<i> fetchmail: 6.3.11 querying mail.myserver.com (protocol POP3) at Mon, 14 Jun 2010 15:18:11 +0200 (CEST): poll started
+</I>&gt;<i> 
+</I>&gt;<i> Please update to the current release
+</I>&gt;<i> 
+</I>&gt;<i> A copy of the config file would have been a lot easier to parse  ;)
+</I>&gt;<i> From what I can tell it looks like you haven't configured an
+</I>&gt;<i> Envelope-To header - see the man page under &quot;THE USE AND ABUSE OF
+</I>&gt;<i> MULTIDROP MAILBOXES&quot;.  If you believe you have then please provide the
+</I>&gt;<i> actual .fetchmailrc file and the full headers of any sample email.
+</I>
+So I'm sort of wondering if I the upstream server is actually usable for multi-drop?
+
+
+fetchmailrc config below. I tried different settings for the envelope, but none of them worked. most of them started to bounce the catch_all email address
+set postmaster &quot;admin&quot;
+set bouncemail
+set no spambounce
+set softbounce
+set properties &quot;&quot;
+set daemon 60
+poll mail. myserver.com with proto POP3 envelope Received: and options no dns uidl
+    localdomains myserver.com
+       user 'catch_all@ myserver.com' there with password 'xxxxx' is 'admin' 'test' 'one' 'two' here options flush fetchall
+
+Thanks
+Erick
+
+Return-Path: &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">Erick at otherserver.com</A>&gt;
+Delivered-To: <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">admin at myserver.com</A>
+Received: from localhost (localhost [127.0.0.1])
+	by myserver.private (Postfix) with ESMTP id 2611B7D79F0;
+	Mon, 14 Jun 2010 16:52:39 +0200 (CEST)
+X-Virus-Scanned: amavisd-new at myserver.com
+Received: from myserver.private ([127.0.0.1])
+	by localhost (myserver.private [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id n32KwN5CuLPb; Mon, 14 Jun 2010 16:52:32 +0200 (CEST)
+Received: from myserver.private (localhost [127.0.0.1])
+	by myserver.private (Postfix) with ESMTP id 5E2697D79E1;
+	Mon, 14 Jun 2010 16:52:32 +0200 (CEST)
+X-Original-To: catch_all@ myserver.com
+Delivered-To: catch_all@ myserver.com
+Received: from mail.motoryachtair.com
+	by myserver.private with POP3 (fetchmail-6.3.11)
+	Mon, 14 Jun 2010 16:52:32 +0200 (CEST)
+Received: from relay02.cluster.nxs.nl (relay02.cluster.nxs.nl [217.115.197.169])
+	by maildrop02.cluster.nxs.nl (Postfix) with ESMTP id 41CC978DF7;
+	Mon, 14 Jun 2010 16:35:47 +0200 (CEST)
+Received: from mailscanner10.cluster.nxs.nl (mailscanner10.cluster.nxs.nl [217.115.197.66])
+	by relay02.cluster.nxs.nl (Postfix) with ESMTPS id 24C82337E9;
+	Mon, 14 Jun 2010 16:35:47 +0200 (CEST)
+Received: from smtp1.bbeyond.nl ([82.204.126.15])
+	by mailscanner10.cluster.nxs.nl with esmtp (Exim 4.71)
+	(envelope-from &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">Erick at otherserver.com</A>&gt;)
+	id 1OOAlM-0006Bc-95; Mon, 14 Jun 2010 16:35:47 +0200
+Received: from amavisd-new (smtp1.bbeyond.nl [82.204.126.15])
+	by smtp1.bbeyond.nl (Postfix) with ESMTP id 07F4FE23BF;
+	Mon, 14 Jun 2010 16:35:34 +0200 (CEST)
+X-Virus-Scanned: BBeyond amavisd-new at smtp1.bbeyond.nl
+Received: from smtp1.bbeyond.nl ([82.204.126.15])
+	by amavisd-new (smtp1.bbeyond.nl [82.204.126.15]) (amavisd-new, port 10024)
+	with ESMTP id PBTaRwYE1-U2; Mon, 14 Jun 2010 16:35:33 +0200 (CEST)
+Received: from bergehenegouwen.com (62-177-171-130.dsl.bbeyond.nl [62.177.171.130])
+	by smtp1.bbeyond.nl (Postfix) with ESMTP id 8DC07E245A;
+	Mon, 14 Jun 2010 16:35:33 +0200 (CEST)
+Thread-Index: AcsLzq2V83dAeCQNQlSwp+0I/dOB4w==
+Received: from [10.10.100.95] ([10.10.100.95]) by otherserver.com over TLS secured channel with Microsoft SMTPSVC(6.0.3790.3959); Mon, 14 Jun 2010 16:34:21 +0200
+From: &quot;Erick van Rijk&quot; &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">erick at otherserver.com</A>&gt;
+Content-Type: text/plain;
+	charset=&quot;utf-8&quot;
+Content-Class: urn:content-classes:message
+Content-Transfer-Encoding: quoted-printable
+Importance: normal
+Priority: normal
+x-mimeole: Produced By Microsoft MimeOLE V6.00.3790.4325
+Subject: 43445
+Date: Mon, 14 Jun 2010 16:34:48 +0200
+Message-ID: &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">FF1C24AE-9206-45D7-9769-13D2E9065440 at otherserver.com</A>&gt;
+Cc: &lt;test@ myserver.com&gt;
+To: &lt;admin@ myserver.com&gt;
+MIME-Version: 1.0
+X-Mailer: Apple Mail (2.1078)
+X-OriginalArrivalTime: 14 Jun 2010 14:34:21.0312 (UTC) FILETIME=[AD8DF000:01CB0BCE]
+X-NxsInternetB.V.-Class: ham;
+X-NxsInternetB.V.-Score: 0.0133803656722
+X-NxsInternetB.V.-Evidence: 'ole': 0.50; 'crm114': 0.50; 'direct': 0.50;
+ 'spambayes.global_tokens': 0.00; 'pyzor': 0.50; 'sa': 0.22; 'dnsbl': 0.50;
+ 'sender': 0.50
+X-NxsInternetB.V.-Thermostat: -----
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002388.html">[fetchmail-users] multi-drop problem on osx,	duplicate emails 	received.
+</A></li>
+	<LI>Next message: <A HREF="002390.html">[fetchmail-users] multi-drop problem on osx,	duplicate emails 	received.
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2389">[ date ]</a>
+              <a href="thread.html#2389">[ thread ]</a>
+              <a href="subject.html#2389">[ subject ]</a>
+              <a href="author.html#2389">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

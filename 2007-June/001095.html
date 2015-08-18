@@ -1,0 +1,141 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] 2 Fetchmail Questions
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2007-June/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%202%20Fetchmail%20Questions&In-Reply-To=%3C3b7e1c8d0706202043q36f7cbf2r3733c853302f8a69%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001093.html">
+   <LINK REL="Next"  HREF="001096.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] 2 Fetchmail Questions</H1>
+    <B>Andrew</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%202%20Fetchmail%20Questions&In-Reply-To=%3C3b7e1c8d0706202043q36f7cbf2r3733c853302f8a69%40mail.gmail.com%3E"
+       TITLE="[fetchmail-users] 2 Fetchmail Questions">andrew.david.45 at gmail.com
+       </A><BR>
+    <I>Thu Jun 21 05:43:39 CEST 2007</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001093.html">[fetchmail-users] Socket error with IMAP
+</A></li>
+        <LI>Next message: <A HREF="001096.html">[fetchmail-users] 2 Fetchmail Questions
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1095">[ date ]</a>
+              <a href="thread.html#1095">[ thread ]</a>
+              <a href="subject.html#1095">[ subject ]</a>
+              <a href="author.html#1095">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+ I am in the process of setting up ssmtp / mutt / fetchmail and
+procmail to read and send email using gmail as a relay. Version of
+fetchmail is  6.3.8+SSL+NLS (compiled with ssl support. Can I ask a
+few questions about the test run below:
+
+<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">andrew at ilium</A>:~$ fetchmail -v
+fetchmail: 6.3.8 querying pop.gmail.com (protocol POP3) at Thu 21 Jun
+2007 13:35:01 EST: poll started
+Trying to connect to 72.14.253.109/995...connected.
+fetchmail: Issuer Organization: Equifax
+fetchmail: Unknown Issuer CommonName
+fetchmail: Server CommonName: pop.gmail.com
+fetchmail: pop.gmail.com key fingerprint:
+59:51:61[.....]5:94:BB:44:97:A0:39:D5:B4
+fetchmail: pop.gmail.com fingerprints match.
+fetchmail: POP3&lt; +OK Gpop ready for requests from 210.10.170.80 y25pf2111901pod
+fetchmail: POP3&gt; CAPA
+fetchmail: POP3&lt; +OK Capability list follows
+fetchmail: POP3&lt; USER
+fetchmail: POP3&lt; RESP-CODES
+fetchmail: POP3&lt; EXPIRE 0
+fetchmail: POP3&lt; LOGIN-DELAY 300
+fetchmail: POP3&lt; X-GOOGLE-VERHOEVEN
+fetchmail: POP3&lt; UIDL
+fetchmail: POP3&lt; .
+fetchmail: POP3&gt; USER an[.........]@gmail.com
+fetchmail: POP3&lt; +OK send PASS
+fetchmail: POP3&gt; PASS *
+fetchmail: POP3&lt; +OK Welcome.
+fetchmail: POP3&gt; STAT
+fetchmail: POP3&lt; +OK 1 544
+fetchmail: POP3&gt; LAST
+fetchmail: POP3&lt; -ERR Not supported
+fetchmail: Not supported
+fetchmail: POP3&gt; UIDL
+fetchmail: POP3&lt; +OK
+fetchmail: POP3&lt; 1 GmailId1134c589ccc5e979
+fetchmail: POP3&lt; .
+1 message for andan[.........]@<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">gmail.com at gmail.com</A> at pop.gmail.com
+(544 octets).
+fetchmail: POP3&gt; LIST 1
+fetchmail: POP3&lt; +OK 1 544
+fetchmail: POP3&gt; TOP 1 99999999
+fetchmail: POP3&lt; +OK message follows
+reading message
+aan[.........]@<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">gmail.com5 at gmail.com</A>@gmail-pop.l.google.com:1 of 1 (544
+octets)
+#***** flushed
+fetchmail: POP3&gt; DELE 1
+fetchmail: POP3&lt; +OK marked for deletion
+fetchmail: POP3&gt; QUIT
+fetchmail: POP3&lt; +OK Farewell.
+fetchmail: 6.3.8 querying pop.gmail.com (protocol POP3) at Thu 21 Jun
+2007 13:35:04 EST: poll completed
+fetchmail: normal termination, status 0
+
+1. It looks to me as if I have achieved an ssl connection. Is this true?
+2. I don't understand the error message in the middle:
+
+fetchmail: POP3&lt; +OK 1 544
+fetchmail: POP3&gt; LAST
+fetchmail: POP3&lt; -ERR Not supported
+fetchmail: Not supported
+
+ Is this something I should be addressing?
+
+3. I don't understand 'flushing'? I have set fetchmail to _not_ keep
+messages which activates this message but the messages remain on the
+gmail server. I suspect that this is a noob question :-)
+
+      Thanks for your trouble,
+
+              Andrew
+
+
+-- 
+Andrew
+<A HREF="http://people.aapt.net.au/~adjlstrong/dapper.html">http://people.aapt.net.au/~adjlstrong/dapper.html</A>
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001093.html">[fetchmail-users] Socket error with IMAP
+</A></li>
+	<LI>Next message: <A HREF="001096.html">[fetchmail-users] 2 Fetchmail Questions
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1095">[ date ]</a>
+              <a href="thread.html#1095">[ thread ]</a>
+              <a href="subject.html#1095">[ subject ]</a>
+              <a href="author.html#1095">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

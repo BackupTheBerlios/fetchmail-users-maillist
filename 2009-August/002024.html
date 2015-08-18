@@ -1,0 +1,177 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Multiple sslfingerprint options and digests
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2009-August/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Multiple%20sslfingerprint%20options%20and%20digests&In-Reply-To=%3Cd2e731a10908101525u1c6b65farff5b4847d039ea25%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002032.html">
+   <LINK REL="Next"  HREF="002025.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Multiple sslfingerprint options and digests</H1>
+    <B>grarpamp</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Multiple%20sslfingerprint%20options%20and%20digests&In-Reply-To=%3Cd2e731a10908101525u1c6b65farff5b4847d039ea25%40mail.gmail.com%3E"
+       TITLE="[fetchmail-users] Multiple sslfingerprint options and digests">grarpamp at gmail.com
+       </A><BR>
+    <I>Tue Aug 11 00:25:49 CEST 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002032.html">[fetchmail-users] fetchmail 6.3.11 security fix release available (STABLE)
+</A></li>
+        <LI>Next message: <A HREF="002025.html">[fetchmail-users] [fetchmail-devel] Multiple sslfingerprint	options and digests
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2024">[ date ]</a>
+              <a href="thread.html#2024">[ thread ]</a>
+              <a href="subject.html#2024">[ subject ]</a>
+              <a href="author.html#2024">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi all :)
+
+Fetchmail needs the ability to specify multiple 'sslfingerprint'
+options and digests per 'poll' stanza.
+
+I noticed this when connecting to gmail. I think it's a load sharing
+thing providers use. Google also has their own intermediate CA now
+so more cert deployments could be expected.
+
+At the moment, if you specify multiple sslfingerprint rc lines or
+command line options, only the last one specified is checked. Any
+prior sslfingerprint options are silently ignored. And the only
+digest available is md5.
+
+This is obviously frustrating users mail collection attempts :(
+
+
+To reproduce the problem, run this and examine the certs and hashes.
+The gmail certs happen to verify back to the root CA's. The
+44a8...f1a9 cert occurs more frequently, the 9273...9f33 cert is
+rarer. I've attached them both and the CA's involved.
+
+If you are not seeing multiple certs, you may need to 'travel' and
+debug with different source ip addresses... such as provided with
+a worldwide proxy network like Tor.
+
+i=10 ; while : ; do
+ LD_PRELOAD=/tmp/tor/libtsocks.so.1 TSOCKS_CONF_FILE=/tmp/tor/tsocks.conf \
+  openssl s_client -connect pop.gmail.com:pop3s &lt; /dev/null &gt; tcert$i 2&gt;&amp;1
+ echo -n &quot;$i: &quot;
+ openssl x509 -noout -fingerprint -md5 -in tcert$i
+ i=`expr $i + 1`
+done
+
+
+Also related... from the BRANCH_6-3 NEWS file:
+
+* --sslfingerprint may be removed from a future fetchmail version,
+ because it's just too easily abused to create a false sense of
+ security.
+
+PLEASE don't remove this feature. I like it a lot and use it
+everywhere possible, with --ssl and --sslcertck at the same time
+as well, from trusted sources beforehand of course. Knowing when
+the cert changes out from under you is very useful, even if only
+for debugging or system verification. Especially if you connect
+from untrusted locations or paths. Or you want to know about and
+resolve them. It's also handy if the machine a user is connecting
+from has a poor, untrusted or nonexistent collection of CA certs.
+In that case, just the digest can be imported and used. Note that
+openssl does not ship with a CA cert collection... admins usually
+have to get it from mozilla... if they value PKI enough to think
+of and bother with it.
+
+There are blurbs in the man page that even talk about self-signed
+certs being accepted with 'sslcertck'.
+
+
+Overall, it would be good to see this feature enhanced to do both
+md5 and sha1 to make cert collision attacks much more improbable
+going forward... at least until the NIST 'SHA-3' hash competition
+is done and that trickles down to the CA's and apps years from now.
+Usage in the case of a single cert, where both must match, might
+be like...
+
+poll
+ sslfingerprint-md5 &lt;fp_md5&gt;
+ sslfingerprint-sha1 &lt;fp_sha1&gt;
+
+In the case where multiple certs may be presented, group the hashes
+as a set. Both hashes in the set must match. First check set cert1,
+then set cert2, then set cert[n] until one set, or none, match the
+presented cert...
+
+poll
+ sslfingerprint-cert1-md5 &lt;fp_md5&gt;
+ sslfingerprint-cert1-sha1 &lt;fp_sha1&gt;
+ sslfingerprint-cert2-md5 &lt;fp_md5&gt;
+ sslfingerprint-cert2-sha1 &lt;fp_sha1&gt;
+ sslfingerprint-cert[n]-md5 &lt;fp_md5&gt;
+ sslfingerprint-cert[n]-sha1 &lt;fp_sha1&gt;
+
+The '--' command line version of this should also do the right
+thing.
+
+Fetchmail should also print both the md5 and sha1 fingerprints from
+the received certificate in the debug output.
+
+Note that openssl supports mdc2, md2, md5, sha1. I understand that
+some CA's also used, or may still use, the non-sha1 digests. Though
+I guess sha1 is the only one used by sane CA's for new certs these
+days. I don't know how many old ones are still in use on hosts. md5
+and sha1 are enough until SHA-3.
+
+And since the past always seems to apply to some future scenario
+with new twists, this is surely not the last of the breed to be
+proven out: <A HREF="http://www.win.tue.nl/hashclash/rogue-ca/">http://www.win.tue.nl/hashclash/rogue-ca/</A>
+
+Extra checks are always good thing to have available.
+Openssl probably has simple library routines to do this.
+
+Thanks guys, and for fetchmail too, been using it for years :)
+
+
+Hashes for people googling this:
+MD5 Fingerprint=92:73:17:4C:34:4B:68:F7:B2:17:71:42:0D:7F:9F:33
+SHA1 Fingerprint=30:36:A5:96:52:B6:64:18:12:E0:2C:98:82:1B:A4:C2:81:4F:BB:B5
+34ceaf75
+MD5 Fingerprint=44:A8:E9:2C:FB:A9:7E:6D:F9:DB:F3:62:B2:9E:F1:A9
+SHA1 Fingerprint=51:21:45:CE:CE:99:19:87:7D:CE:3F:52:C0:31:0F:7E:FB:B4:6A:6F
+7f549ca4
+MD5 Fingerprint=67:CB:9D:C0:13:24:8A:82:9B:B2:17:1E:D1:1B:EC:D4
+SHA1 Fingerprint=D2:32:09:AD:23:D3:14:23:21:74:E4:0D:7F:9D:62:13:97:86:63:3A
+594f1775
+MD5 Fingerprint=4E:5F:E4:78:5F:B5:68:37:DC:A1:C3:26:F9:F6:73:0B
+SHA1 Fingerprint=F8:DF:AB:A0:BF:37:48:24:5B:4E:46:E7:6E:89:82:13:1F:ED:D7:46
+d9b7a851
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002032.html">[fetchmail-users] fetchmail 6.3.11 security fix release available (STABLE)
+</A></li>
+	<LI>Next message: <A HREF="002025.html">[fetchmail-users] [fetchmail-devel] Multiple sslfingerprint	options and digests
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2024">[ date ]</a>
+              <a href="thread.html#2024">[ thread ]</a>
+              <a href="subject.html#2024">[ subject ]</a>
+              <a href="author.html#2024">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

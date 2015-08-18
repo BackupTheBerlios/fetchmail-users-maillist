@@ -1,0 +1,111 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] how to config fetchmail for www.inbox.com email
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2006-October/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20how%20to%20config%20fetchmail%20for%20www.inbox.com%0A%20email&In-Reply-To=%3C40920838430.00000235cuiwd%40inbox.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000631.html">
+   <LINK REL="Next"  HREF="000634.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] how to config fetchmail for www.inbox.com email</H1>
+    <B>Weidong Cui</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20how%20to%20config%20fetchmail%20for%20www.inbox.com%0A%20email&In-Reply-To=%3C40920838430.00000235cuiwd%40inbox.com%3E"
+       TITLE="[fetchmail-users] how to config fetchmail for www.inbox.com email">cuiwd at inbox.com
+       </A><BR>
+    <I>Mon Oct  2 17:11:33 CEST 2006</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000631.html">[fetchmail-users] how to config fetchmail for www.inbox.com	email
+</A></li>
+        <LI>Next message: <A HREF="000634.html">[fetchmail-users] how to config fetchmail for www.inbox.com	email
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#633">[ date ]</a>
+              <a href="thread.html#633">[ thread ]</a>
+              <a href="subject.html#633">[ subject ]</a>
+              <a href="author.html#633">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Thanks,
+
+I did it as you said, ( fetchmail -a , and add &quot;options fetchall&quot; in my config file). but it output:
+
+fetchmail: 6.3.4 querying my.inbox.com (protocol POP3) at Mon Oct  2 17:23:10 2006: poll started
+fetchmail: POP3&lt; +OK WM29.inbox.com POP3 server ready &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">3864.632953690675312500 at WM29.inbox.com</A>&gt;
+fetchmail: POP3&gt; CAPA
+fetchmail: POP3&lt; +OK Capability list follows
+fetchmail: POP3&lt; USER
+fetchmail: POP3&lt; SASL CRAM-MD5
+fetchmail: POP3&lt; UIDL
+fetchmail: POP3&lt; APOP
+fetchmail: POP3&lt; .
+fetchmail: POP3&gt; AUTH CRAM-MD5
+fetchmail: POP3&lt; + PDAyMzU5OTM0MDdCNEM4MDhAV00yOS5pbmJveC5jb20+
+fetchmail: decoded as &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">0235993407B4C808 at WM29.inbox.com</A>&gt;
+fetchmail: POP3&gt; Y3Vpd2RAaW5ib3guY29tIDQ5NzJmNDg0ZTYyOGUyODM5MDBkZGRlYjQ3YTJhNzU0
+fetchmail: POP3&lt; +OK Authentication successful
+fetchmail: selecting or re-polling default folder
+fetchmail: POP3&gt; STAT
+fetchmail: POP3&lt; +OK 33 119345
+33 messages for <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">cuiwd at inbox.com</A> at my.inbox.com (119345 octets).
+fetchmail: POP3&gt; LIST 1
+fetchmail: POP3&lt; -ERR error during operation
+fetchmail: POP3&gt; QUIT
+fetchmail: POP3&lt; +OK WM29.inbox.com POP3 server signing off                     fetchmail: 6.3.4 querying my.inbox.com (protocol POP3) at Mon Oct  2 17:23:15 2006: poll completed
+fetchmail: Query status=4 (PROTOCOL)
+fetchmail: Deleting fetchids file.
+fetchmail: normal termination, status 4
+fetchmail: Deleting fetchids file.
+
+
+&gt;<i> -----Original Message-----
+</I>&gt;<i> From: <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">jh at plonk.de</A>
+</I>&gt;<i> Sent: Mon, 02 Oct 2006 14:52:59 +0200
+</I>&gt;<i> To: <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">cuiwd at inbox.com</A>
+</I>&gt;<i> Subject: Re: [fetchmail-users] how to config fetchmail for www.inbox.com
+</I>&gt;<i> email
+</I>&gt;<i> 
+</I>&gt;<i> Quoting Weidong Cui:
+</I>&gt;<i> 
+</I>&gt;&gt;<i> fetchmail: POP3&gt; TOP 1 99999999
+</I>&gt;&gt;<i> fetchmail: POP3&lt; -ERR Syntax error, command unrecognized
+</I>&gt;<i> 
+</I>&gt;<i> use the &quot;fetchall&quot; option to make fetmail use RETR instead if the
+</I>&gt;<i> default TOP.
+</I>&gt;<i> 
+</I>&gt;<i> Hm, TOP is an optional POP3 command (even though strongly encouraged by
+</I>&gt;<i> the RFC), so maybe fetchmail should fall back if it's not working... or
+</I>&gt;<i> use RETR by default, using TOP by default is stupid, IMO...
+</I>
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000631.html">[fetchmail-users] how to config fetchmail for www.inbox.com	email
+</A></li>
+	<LI>Next message: <A HREF="000634.html">[fetchmail-users] how to config fetchmail for www.inbox.com	email
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#633">[ date ]</a>
+              <a href="thread.html#633">[ thread ]</a>
+              <a href="subject.html#633">[ subject ]</a>
+              <a href="author.html#633">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

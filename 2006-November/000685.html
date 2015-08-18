@@ -1,0 +1,99 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] fetchmail authorization and socket errors
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2006-November/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%20authorization%20and%20socket%20errors&In-Reply-To=%3C43ea8d070611111228o523f897avc72e032327c925d9%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000684.html">
+   <LINK REL="Next"  HREF="000686.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] fetchmail authorization and socket errors</H1>
+    <B>Rob MacGregor</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%20authorization%20and%20socket%20errors&In-Reply-To=%3C43ea8d070611111228o523f897avc72e032327c925d9%40mail.gmail.com%3E"
+       TITLE="[fetchmail-users] fetchmail authorization and socket errors">rob.macgregor at gmail.com
+       </A><BR>
+    <I>Sat Nov 11 21:28:32 CET 2006</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000684.html">[fetchmail-users] fetchmail authorization and socket errors
+</A></li>
+        <LI>Next message: <A HREF="000686.html">[fetchmail-users] fetchmail authorization and socket errors
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#685">[ date ]</a>
+              <a href="thread.html#685">[ thread ]</a>
+              <a href="subject.html#685">[ subject ]</a>
+              <a href="author.html#685">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Keep this on the list.
+
+On 11/11/06, <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">wade at wadesmart.com</A> &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">wade at wadesmart.com</A>&gt; wrote:
+&gt;<i> 11112006 1316 GMT-6
+</I>&gt;<i>
+</I>&gt;<i> I changed the username but still an error. I checked gmail settings and
+</I>&gt;<i> pop is turned on. I checked the password (many times because I thought
+</I>&gt;<i> that was the problem to) and that isnt it either.
+</I>&gt;<i>
+</I>&gt;<i> But the thing is, it was checking before 1300 on the 9th and after 1300
+</I>&gt;<i> it wasnt.
+</I>
+Which means that *something* changed.  If it wasn't local (you didn't
+upgrade fetchmail, change anything else on the box
+
+&gt;<i> Of course, that doesnt say why I cant get mail from my own servers.
+</I>
+That would the in the dozens of lines you quoted on your first post?
+Look like another auth error suggesting a username/password mismatch.
+
+To work to the bottom of this I need you to post:
+
+1) Contents of fetchmailrc (mangle usernames/passwords)
+
+1a) The command line used to call fetchmail
+
+2) Output of &quot;fetchmail -v -v --nosyslog&quot;
+
+3) Output of &quot;fetchmail -V&quot;
+
+4) Details of your OS, including kernel version
+
+-- 
+                 Please keep list traffic on the list.
+
+Rob MacGregor
+      Whoever fights monsters should see to it that in the process he
+        doesn't become a monster.                  Friedrich Nietzsche
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000684.html">[fetchmail-users] fetchmail authorization and socket errors
+</A></li>
+	<LI>Next message: <A HREF="000686.html">[fetchmail-users] fetchmail authorization and socket errors
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#685">[ date ]</a>
+              <a href="thread.html#685">[ thread ]</a>
+              <a href="subject.html#685">[ subject ]</a>
+              <a href="author.html#685">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

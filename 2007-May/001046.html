@@ -1,0 +1,106 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Error messages with fetchmail 6.3.8
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2007-May/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Error%20messages%20with%20fetchmail%206.3.8&In-Reply-To=%3C43ea8d070705150858qf33d7f4m827a1e62a95bd790%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001045.html">
+   <LINK REL="Next"  HREF="001049.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Error messages with fetchmail 6.3.8</H1>
+    <B>Rob MacGregor</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Error%20messages%20with%20fetchmail%206.3.8&In-Reply-To=%3C43ea8d070705150858qf33d7f4m827a1e62a95bd790%40mail.gmail.com%3E"
+       TITLE="[fetchmail-users] Error messages with fetchmail 6.3.8">rob.macgregor at gmail.com
+       </A><BR>
+    <I>Tue May 15 17:58:47 CEST 2007</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001045.html">[fetchmail-users] Error messages with fetchmail 6.3.8
+</A></li>
+        <LI>Next message: <A HREF="001049.html">[fetchmail-users] Error messages with fetchmail 6.3.8
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1046">[ date ]</a>
+              <a href="thread.html#1046">[ thread ]</a>
+              <a href="subject.html#1046">[ subject ]</a>
+              <a href="author.html#1046">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On 5/15/07, Pongthep Kulkrisada &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">ptkrisada at gmail.com</A>&gt; wrote:
+&gt;<i> It should be kinda encryption, my password or messages are encoded and can't be read by any intermediate persons. And only the server has an algorithm to decode it. So nobody can steal my password or messages. If I'm wrong, pls correct me.
+</I>
+Well sort of.
+
+Only your connection to the remote server is encrypted by SSL/TLS.
+The email will make its way to the server unencrypted and is stored in
+the clear on the server, so it is only the last hop that you're
+protecting.
+
+Of course, that does protect your username and password, if you are
+using PLAIN or LOGIN authentication.  If you can it is better to use
+one of the stronger methods, but that's down to what the remote
+POP/IMAP server supports (and what you have compiled into fetchmail)
+
+&gt;<i> Can I skip step 1) and carry on with steps 2), 3) and 4)?
+</I>&gt;<i> I have the binary of /usr/local/bin/cvsup
+</I>
+Yup, that will be fine.
+
+&gt;<i> But I only use text mode no GUI.
+</I>
+Never used the GUI version so I can assure you that is ok.
+
+&gt;<i> I still question.
+</I>&gt;<i> after updating port and make install under /usr/ports/security/ca-roots,
+</I>&gt;<i> what shall i do next with my .fetchmailrc?
+</I>
+You may not have to do anything, try restarting fetchmail (or stopping
+it and running &quot;fetchmail --nosyslog --nodetach -vvv -c&quot; to do a mail
+check).  If everything is in the expected locations then the error
+will go away.
+
+&gt;<i> BTW I shall read fetchmail(1) anyway, but I can say that it is very hard for noobies to understand.
+</I>
+That is something others have said and I have already said that, when
+I have the time, I will help the project re-write it.  Having a one
+year old child means I have little free time :)
+
+-- 
+                 Please keep list traffic on the list.
+
+Rob MacGregor
+      Whoever fights monsters should see to it that in the process he
+        doesn't become a monster.                  Friedrich Nietzsche
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001045.html">[fetchmail-users] Error messages with fetchmail 6.3.8
+</A></li>
+	<LI>Next message: <A HREF="001049.html">[fetchmail-users] Error messages with fetchmail 6.3.8
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1046">[ date ]</a>
+              <a href="thread.html#1046">[ thread ]</a>
+              <a href="subject.html#1046">[ subject ]</a>
+              <a href="author.html#1046">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

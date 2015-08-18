@@ -1,0 +1,89 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] [PATCH 2] Re: only one message gets fetched using IMAP idle
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2006-May/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20%5BPATCH%202%5D%20Re%3A%20only%20one%20message%20gets%20fetched%20using%20IMAP%20idle&In-Reply-To=%3Cm3mzdbmin9.fsf%40merlin.emma.line.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000418.html">
+   <LINK REL="Next"  HREF="000400.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] [PATCH 2] Re: only one message gets fetched using IMAP idle</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20%5BPATCH%202%5D%20Re%3A%20only%20one%20message%20gets%20fetched%20using%20IMAP%20idle&In-Reply-To=%3Cm3mzdbmin9.fsf%40merlin.emma.line.org%3E"
+       TITLE="[fetchmail-users] [PATCH 2] Re: only one message gets fetched using IMAP idle">matthias.andree at gmx.de
+       </A><BR>
+    <I>Sun May 21 18:45:14 CEST 2006</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000418.html">[fetchmail-users] [PATCH 2] Re: only one message gets fetched using IMAP idle
+</A></li>
+        <LI>Next message: <A HREF="000400.html">[fetchmail-users] Marking messages 'unread' in fetchmail
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#422">[ date ]</a>
+              <a href="thread.html#422">[ thread ]</a>
+              <a href="subject.html#422">[ subject ]</a>
+              <a href="author.html#422">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Sunil Shetye &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">shetye at bombay.retortsoft.com</A>&gt; writes:
+
+&gt;<i> Quoting from Lars Tewes's mail on Fri, May 19, 2006:
+</I>&gt;&gt;<i> Thanks for the patch, it worked exactly as described!
+</I>&gt;<i>
+</I>&gt;<i> Here is an updated patch now. There is no change in imap.c. Only the
+</I>&gt;<i> test in driver.c has been modified to make fetchmail always enter IDLE
+</I>&gt;<i> mode. Also, the comments in driver.c have been updated.
+</I>&gt;<i>
+</I>&gt;<i> 	with &quot;keep&quot; and &quot;idle&quot; options
+</I>&gt;<i>
+</I>&gt;<i> Mails   New mails       Enter IDLE mode    Enter IDLE mode
+</I>&gt;<i>                         before patch?      after patch?
+</I>&gt;<i> ---------------------------------------------------------------
+</I>&gt;<i>  0       0               Yes                Yes
+</I>&gt;<i>  &gt;= 1    0               No                 Yes
+</I>&gt;<i>  &gt;= 1    &gt;= 1            No                 Yes
+</I>&gt;<i>
+</I>&gt;<i> Please try this patch. As before, this patch has to be applied after
+</I>&gt;<i> the patch by Matthias.
+</I>
+Thanks, I've merged this patch. Looks good.
+
+Only we should perhaps complain about --idle and --fetchall, as that
+leads to excess mail retrieval.
+
+-- 
+Matthias Andree
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000418.html">[fetchmail-users] [PATCH 2] Re: only one message gets fetched using IMAP idle
+</A></li>
+	<LI>Next message: <A HREF="000400.html">[fetchmail-users] Marking messages 'unread' in fetchmail
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#422">[ date ]</a>
+              <a href="thread.html#422">[ thread ]</a>
+              <a href="subject.html#422">[ subject ]</a>
+              <a href="author.html#422">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

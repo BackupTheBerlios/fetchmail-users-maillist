@@ -1,0 +1,172 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] fetchmail security announcement 2006-01 (CVE-2006-0321)
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2006-January/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%20security%20announcement%202006-01%20%28CVE-2006-0321%29&In-Reply-To=%3C20060122131523.GB30391%40merlin.emma.line.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000262.html">
+   <LINK REL="Next"  HREF="000264.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] fetchmail security announcement 2006-01 (CVE-2006-0321)</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%20security%20announcement%202006-01%20%28CVE-2006-0321%29&In-Reply-To=%3C20060122131523.GB30391%40merlin.emma.line.org%3E"
+       TITLE="[fetchmail-users] fetchmail security announcement 2006-01 (CVE-2006-0321)">matthias.andree at gmx.de
+       </A><BR>
+    <I>Sun Jan 22 14:15:23 CET 2006</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000262.html">[fetchmail-users] fetchmail 6.3.2 stable release with security relevant bugfixes
+</A></li>
+        <LI>Next message: <A HREF="000264.html">[fetchmail-users] fetchmail doesn&#180;t fetching
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#263">[ date ]</a>
+              <a href="thread.html#263">[ thread ]</a>
+              <a href="subject.html#263">[ subject ]</a>
+              <a href="author.html#263">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA1
+
+fetchmail-SA-2006-01: crash when bouncing messages.
+
+Topics:		#1 crash when bouncing a message
+		#2 fetchmail 6.2.5.X end of life
+
+Author:		Matthias Andree
+Version:	1.0
+Announced:	2006-01-22
+Type:		free() with bogus pointer
+Impact:		fetchmail crashes
+Danger:		low
+Credits:	Nathaniel W. Turner (bug report)
+CVE Name:	CVE-2006-0321
+URL:		<A HREF="http://fetchmail.berlios.de/fetchmail-SA-2006-01.txt">http://fetchmail.berlios.de/fetchmail-SA-2006-01.txt</A>
+		<A HREF="http://bugs.debian.org/348747">http://bugs.debian.org/348747</A>
+Project URL:	<A HREF="http://fetchmail.berlios.de/">http://fetchmail.berlios.de/</A>
+
+Affects:	fetchmail release &gt;= 6.3.0
+		fetchmail release &lt;  6.3.2
+		fetchmail release candidates 6.3.2-rc1, -rc2 and -rc3
+
+Not affected:	fetchmail release candidate 6.3.2-rc4
+		other versions not mentioned here or in the previous
+		sections have not been checked
+
+Corrected:	2006-01-19 fetchmail 6.3.2-rc4
+		2006-01-22 fetchmail 6.3.2
+
+
+0. Release history
+==================
+
+2006-01-19	internal review draft
+2006-01-20	add CVE ID
+2006-01-22	release 1.0
+
+
+1. Background
+=============
+
+fetchmail is a software package to retrieve mail from remote POP2, POP3,
+IMAP, ETRN or ODMR servers and forward it to local SMTP, LMTP servers or
+message delivery agents.
+
+fetchmail ships with a graphical, Python/Tkinter based configuration
+utility named &quot;fetchmailconf&quot; to help the user create configuration (run
+control) files for fetchmail.
+
+
+2. Problem description and Impact
+=================================
+
+Fetchmail contains a bug that causes itself to crash when bouncing a
+message to the originator or to the local postmaster. The crash happens
+after the bounce message has been sent, when fetchmail tries to free the
+dynamic array of failed addresses, and calls the free() function with an
+invalid pointer.  This bug was introduced short before fetchmail 6.3.0
+and is not present in the now discontinued 6.2.X series (see below).
+
+
+3. Workaround
+=============
+
+None known at this time.
+
+
+4. Solution
+===========
+
+Download and install fetchmail 6.3.2 or a newer stable release from
+fetchmail's project site at
+&lt;<A HREF="http://developer.berlios.de/project/showfiles.php?group_id=1824">http://developer.berlios.de/project/showfiles.php?group_id=1824</A>&gt;.
+
+
+5. End of life announcement
+===========================
+
+The aged fetchmail 6.2.5.X branch is discontinued effective immediately.
+No further releases from the 6.2.5.X branch will be made.
+
+The new 6.3.X stable branch has been available since 2005-11-30
+and will not change except for bugfixes, documentation and message
+translations.
+
+
+A. Copyright, License and Warranty
+==================================
+
+(C) Copyright 2006 by Matthias Andree, &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">matthias.andree at gmx.de</A>&gt;.
+Some rights reserved.
+
+This work is licensed under the Creative Commons
+Attribution-NonCommercial-NoDerivs German License. To view a copy of
+this license, visit <A HREF="http://creativecommons.org/licenses/by-nc-nd/2.0/de/">http://creativecommons.org/licenses/by-nc-nd/2.0/de/</A>
+or send a letter to Creative Commons; 559 Nathan Abbott Way;
+Stanford, California 94305; USA.
+
+THIS WORK IS PROVIDED FREE OF CHARGE AND WITHOUT ANY WARRANTIES.
+Use the information herein at your own risk.
+
+END OF fetchmail-SA-2006-01.txt
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1.4.0 (GNU/Linux)
+
+iD8DBQFD04VrvmGDOQUufZURAuktAKD62llCNM2NlccXzI8NOqU9/sD1hgCeLfw0
+fu8vMb8DiolqOUdQU6vVAP0=
+=tfMu
+-----END PGP SIGNATURE-----
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000262.html">[fetchmail-users] fetchmail 6.3.2 stable release with security relevant bugfixes
+</A></li>
+	<LI>Next message: <A HREF="000264.html">[fetchmail-users] fetchmail doesn&#180;t fetching
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#263">[ date ]</a>
+              <a href="thread.html#263">[ thread ]</a>
+              <a href="subject.html#263">[ subject ]</a>
+              <a href="author.html#263">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

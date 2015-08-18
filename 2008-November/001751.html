@@ -1,0 +1,101 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Add headers in notification for oversized	messages deletet by limitflush
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2008-November/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Add%20headers%20in%20notification%20for%20oversized%0A%09messages%20deletet%20by%20limitflush&In-Reply-To=%3Cm3ljv8kypg.fsf%40merlin.emma.line.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001752.html">
+   <LINK REL="Next"  HREF="001753.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Add headers in notification for oversized	messages deletet by limitflush</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Add%20headers%20in%20notification%20for%20oversized%0A%09messages%20deletet%20by%20limitflush&In-Reply-To=%3Cm3ljv8kypg.fsf%40merlin.emma.line.org%3E"
+       TITLE="[fetchmail-users] Add headers in notification for oversized	messages deletet by limitflush">matthias.andree at gmx.de
+       </A><BR>
+    <I>Tue Nov 25 09:16:11 CET 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001752.html">[fetchmail-users] Add headers in notification for oversized	messages deletet by limitflush
+</A></li>
+        <LI>Next message: <A HREF="001753.html">[fetchmail-users] Add headers in notification for oversized	messages deletet by limitflush
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1751">[ date ]</a>
+              <a href="thread.html#1751">[ thread ]</a>
+              <a href="subject.html#1751">[ subject ]</a>
+              <a href="author.html#1751">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>&quot;Rob MacGregor&quot; &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">rob.macgregor at gmail.com</A>&gt; writes:
+
+&gt;<i> On Fri, Nov 21, 2008 at 08:17, Boxhorn-EDV | Bernhard Boxhorn
+</I>&gt;<i> &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">bernhard at boxhorn-edv.com</A>&gt; wrote:
+</I>&gt;&gt;<i> Hi fetchmail list,
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> we&#180;re using fetchmail for smaller servers to pull mails from the pop
+</I>&gt;&gt;<i> servers to their mailboxes, mostly when we don&#180;t have control over the
+</I>&gt;&gt;<i> MX settings.
+</I>&gt;&gt;<i> To keep their mailboxes small and prevent the users for missusing e-mail
+</I>&gt;&gt;<i> for data transfers with large files we limit the local MTA to e.g. 10
+</I>&gt;&gt;<i> MB.
+</I>&gt;&gt;<i> Often the MX allows bigger messages. So if there are bigger messages we
+</I>&gt;&gt;<i> delete them with the --limitflush option, user gets a notification that
+</I>&gt;&gt;<i> a oversized message has been deleted.
+</I>&gt;&gt;<i> Everything fine until now.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> The Problem is: The user has no clue who was the original sender and the
+</I>&gt;&gt;<i> sender does not get any error message.
+</I>&gt;&gt;<i> So user knows there was a big message and it has been deleted and sender
+</I>&gt;&gt;<i> thinks user received the message, there is a lack of information.
+</I>&gt;<i>
+</I>&gt;<i> The best approach for you is probably to configure the local MTA with
+</I>&gt;<i> the size limit, but not configure fetchmail with limits.  That way
+</I>&gt;<i> fetchmail will attempt the delivery and a bounce message will be
+</I>&gt;<i> generated to the original sender.
+</I>
+I'm not sure how this can actually work.
+
+Fetchmail uses the ESMTP SIZE extension if advertised by the SMTP sink,
+so it might see the rejection before the DATA phaset already -- and
+waiving the &quot;attempt the delivery&quot; part of your assumption.
+
+WRT Bernhard's ideas, I sympathize with NOT abusing mail for bulk
+transfers, OTOH &quot;to keep their mailboxes small&quot; isn't a motivation to
+justify that -- technical problems around large messages can be solved
+with efficient indexing Maildir-based IMAP servers such as Dovecot 1.1.
+
+-- 
+Matthias Andree
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001752.html">[fetchmail-users] Add headers in notification for oversized	messages deletet by limitflush
+</A></li>
+	<LI>Next message: <A HREF="001753.html">[fetchmail-users] Add headers in notification for oversized	messages deletet by limitflush
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1751">[ date ]</a>
+              <a href="thread.html#1751">[ thread ]</a>
+              <a href="subject.html#1751">[ subject ]</a>
+              <a href="author.html#1751">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

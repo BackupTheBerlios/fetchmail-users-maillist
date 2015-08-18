@@ -1,0 +1,134 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] multidrop RC configuration help
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2010-October/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20multidrop%20RC%20configuration%20help&In-Reply-To=%3C4CB2C789.6020604%40gmx.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002510.html">
+   <LINK REL="Next"  HREF="002500.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] multidrop RC configuration help</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20multidrop%20RC%20configuration%20help&In-Reply-To=%3C4CB2C789.6020604%40gmx.de%3E"
+       TITLE="[fetchmail-users] multidrop RC configuration help">matthias.andree at gmx.de
+       </A><BR>
+    <I>Mon Oct 11 10:15:05 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002510.html">[fetchmail-users] multidrop RC configuration help
+</A></li>
+        <LI>Next message: <A HREF="002500.html">[fetchmail-users] fetch email and delete spam
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2493">[ date ]</a>
+              <a href="thread.html#2493">[ thread ]</a>
+              <a href="subject.html#2493">[ subject ]</a>
+              <a href="author.html#2493">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Am 11.10.2010 05:04, schrieb Jeffrey Shawn McKinzie:
+&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> On 10/10/10 6:15 PM, Matthias Andree wrote:
+</I>&gt;&gt;<i> Am 10.10.2010 18:16, schrieb Jeffrey Shawn McKinzie:
+</I>&gt;&gt;&gt;<i>   Updating fedora isn't an option,  I do not control the system it runs
+</I>&gt;&gt;&gt;<i> on.  I can update fetchmail if needed but I'd like to stick with the
+</I>&gt;&gt;&gt;<i> standard RPM's so I can use YUM for updates.
+</I>&gt;&gt;<i> If updating isn't an option, then shutting down is.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> a) If you don't control the system, you can't run YUM anyways, so this
+</I>&gt;&gt;<i>     argument is void.
+</I>&gt;<i> I have root access so I can run YUM and do basic installs and upgrades
+</I>&gt;<i> just not to the kernel  I'm stuck with FC8
+</I>&gt;&gt;<i> b) Fedora Core 8 is not getting YUM updates anyways, so no point in
+</I>&gt;&gt;<i>     sticking to whatever RPM shipped in early 2009.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i>     Support for FC8 was discontinued in January 2009; the barndoor-sized
+</I>&gt;&gt;<i>     security holes have been wide open for just as long.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> With my current rc all emails get forwarded to <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">User at New.domain</A>, which is
+</I>&gt;&gt;&gt;<i> the first mapping in the list.  I believe the issue is the headers but
+</I>&gt;&gt;&gt;<i> don't know where to go from there.  Here are the headers from an email
+</I>&gt;&gt;&gt;<i> sent to <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">user1 at original.domain</A>:
+</I>&gt;&gt;<i> Nowhere, unless the ISP cooperates, changes its setup, and adds required
+</I>&gt;&gt;<i> headers. See the home.pages.de link from my previous mail.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> In the example message you posted, there is no header that would convey
+</I>&gt;&gt;<i> the envelope recipient.  Until that is in place, there is no way forward
+</I>&gt;&gt;<i> for you, you can only use singledrop with that mailbox.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i>
+</I>&gt;<i> I agree I think I'm stuck unless I can do something with the second
+</I>&gt;<i> header from the top.
+</I>&gt;<i>  It has the by/for information.  I thought there was a way to use the
+</I>&gt;<i> envelope option to
+</I>&gt;<i> look at that header but I don't quite understand how it works.
+</I>&gt;<i> 
+</I>&gt;<i> I saw some reference to &quot;envelope 1 Received&quot; in the documents to tell
+</I>&gt;<i> fetchmail to skip the
+</I>&gt;<i> first received header look at the second header.  I'm not sure if it
+</I>&gt;<i> goes in the fetchmailrc or
+</I>&gt;<i> on the command line when I launch fetchmail.  When I've tried to mess
+</I>&gt;<i> around with it, fetchmail
+</I>&gt;<i> seems to try to look at the header but gives me an error that it cannot
+</I>&gt;<i> find the user and
+</I>&gt;<i> then forwards the emails to postmaster.
+</I>&gt;<i> 
+</I>&gt;<i> I think I'm close and hate to give up.  Am I just not getting the syntax
+</I>&gt;<i> or is this truely impossible?
+</I>&gt;<i> Can fetchmail call an external script (perl?) to determine how to handle
+</I>&gt;<i> the mail?
+</I>&gt;<i> 
+</I>&gt;<i> Received: (qmail 23150 invoked from network); 10 Oct 2010 15:46:51 -0000
+</I>&gt;<i> Received: from unknown (HELO p3pismtp01-006.prod.phx3.secureserver.net)
+</I>&gt;<i> ([10.6.12.6])
+</I>&gt;<i>           (envelope-sender&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">Jeff at JeffMcKinzie.com</A>&gt;)
+</I>&gt;<i> **by*  *p3plsmtp09-05.prod.phx3.secureserver.net (qmail-1.03) with SMTP
+</I>&gt;<i> *for*  &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">user1 at original.domain</A>&gt;; 10 Oct 2010 15:46:51 -0000
+</I>
+You can use
+
+	envelope 1 Received
+
+in the rcfile, but this is unreliable if receiving mail for more than
+one recipient, list mail, and thereabouts.
+
+I'm wondering why we see so much &quot;qmail&quot; all over the map and no
+Delivered-To: header... but it might be misleading if you're using it
+but your ISP doesn't.
+
+-- 
+Matthias Andree
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002510.html">[fetchmail-users] multidrop RC configuration help
+</A></li>
+	<LI>Next message: <A HREF="002500.html">[fetchmail-users] fetch email and delete spam
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2493">[ date ]</a>
+              <a href="thread.html#2493">[ thread ]</a>
+              <a href="subject.html#2493">[ subject ]</a>
+              <a href="author.html#2493">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

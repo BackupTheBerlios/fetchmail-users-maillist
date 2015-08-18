@@ -1,0 +1,210 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Re: [fetchmail]fetchmail 6.3.4 stable release
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2006-April/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Re%3A%20%5Bfetchmail%5Dfetchmail%206.3.4%20stable%20release&In-Reply-To=%3C444538CB.2080503%40kimon.btv.ibm.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000348.html">
+   <LINK REL="Next"  HREF="000351.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Re: [fetchmail]fetchmail 6.3.4 stable release</H1>
+    <B>Dale Pontius</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Re%3A%20%5Bfetchmail%5Dfetchmail%206.3.4%20stable%20release&In-Reply-To=%3C444538CB.2080503%40kimon.btv.ibm.com%3E"
+       TITLE="[fetchmail-users] Re: [fetchmail]fetchmail 6.3.4 stable release">pontius at kimon.btv.ibm.com
+       </A><BR>
+    <I>Tue Apr 18 21:06:51 CEST 2006</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000348.html">[fetchmail-users] Re: [fetchmail]fetchmail 6.3.4 stable release
+</A></li>
+        <LI>Next message: <A HREF="000351.html">[fetchmail-users] Re: [fetchmail]fetchmail 6.3.4 stable release
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#350">[ date ]</a>
+              <a href="thread.html#350">[ thread ]</a>
+              <a href="subject.html#350">[ subject ]</a>
+              <a href="author.html#350">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Matthias Andree wrote:
+&gt;<i> Dale Pontius &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">pontius at kimon.btv.ibm.com</A>&gt; writes:
+</I>&gt;<i>
+</I>&gt;<i>   
+</I>&gt;&gt;<i> Hello,
+</I>&gt;&gt;<i> I realize that you hate multidrop, and generally disparage and deprecate
+</I>&gt;&gt;<i>     
+</I>&gt;<i>
+</I>&gt;<i> That would be &quot;procmail&quot;, and that antipathy is based on technical reasons.
+</I>&gt;<i>   
+</I>No, I was talking fetchmail's &quot;multidrop&quot;, not maildrop or procmail. As 
+a matter of fact, I AM using procmail, but that's more of an historical 
+accident than preference. When I moved my email over to my new 
+infrastructure, (new server, Postfix instead of Exim, Dovecot instead of 
+UWash IMAP, etc.) I considered replacing procmail with maildrop. I got 
+the definite impression that maildrop is the better tool, but by this 
+time my procmail rules are all working, and I didn't feel like fussing 
+with it. Maybe some time, when I have time, I'll reexamine this issue.
+
+One other reason, now obsolete... For a while I was running procmail 
+under xinetd as an lmtp server. The basic idea was to completely chroot 
+postfix, instead of having to leave the local delivery part un-chrooted. 
+I eventually decided I'd rather have postfix local delivery un-chrooted 
+and running with elevated authority than procmail, even though both try 
+to drop privileges when possible. Now if maildrop had an lmtp mode...
+&gt;<i>   
+</I>&gt;&gt;<i> the heck out of it, but for some of us, it's about the only way to
+</I>&gt;&gt;<i> make our email come out halfway decent.
+</I>&gt;&gt;<i>     
+</I>&gt;<i>
+</I>&gt;<i> Certainly not. Maildrop is, in many cases, a better alternative to
+</I>&gt;<i> procmail and more than just a surrogate, and I have yet to see a
+</I>&gt;<i> reasonable procmail construct that you can't write in maildrop or that
+</I>&gt;<i> would look uglier.
+</I>&gt;<i>
+</I>&gt;<i> I'll concede I'm biased WRT maildrop's syntax which borrows a bit from
+</I>&gt;<i> C/C++/Java, but the other reasons like error handling are so much better
+</I>&gt;<i> in maildrop it's worth a look. Even if your .procmailrc has two dozen
+</I>&gt;<i> rules, it's worth the switch.
+</I>&gt;<i>
+</I>&gt;<i>   
+</I>&gt;&gt;<i> Given the text of this announcement, I need to ask some questions, and
+</I>&gt;&gt;<i> also see if I'm going to have to squirrel away a &quot;last usable&quot; copy of
+</I>&gt;&gt;<i> fetchmail source at some point.
+</I>&gt;&gt;<i>     
+</I>&gt;<i>
+</I>&gt;<i> It's not that fetchmail would stop working with procmail, or something
+</I>&gt;<i> else, but rather that I'm not going to help you with getting procmail to
+</I>&gt;<i> work with fetchmail and vice versa. I don't intend to waste my time
+</I>&gt;<i> helping people to shoot themselves in their feet.
+</I>&gt;<i>   
+</I>As I said, the whole issue is fetchmail's multidrop mode. The rest of 
+your letter has satisfied my concerns quite nicely. It looks like that 
+work I did after the 6.3.2 upgrade was well worth it, and the right 
+thing to do. I'm guessing that when 6.3.4 makes it to Gentoo x86 I'll 
+have no problems with the upgrade.
+&gt;<i>   
+</I>&gt;&gt;&gt;<i> # DEPRECATED FEATURES AND MAJOR INCOMPATIBLE CHANGE ADVANCE WARNINGS
+</I>&gt;&gt;&gt;<i> * The MX and host alias DNS lookups that fetchmail performs in multidrop mode
+</I>&gt;&gt;&gt;<i>   are obsolete, deprecated and may be removed from a future fetchmail version.
+</I>&gt;&gt;&gt;<i>   They have never supported IPv6 (including IPv6-mapped IPv4) anyhow.
+</I>&gt;&gt;&gt;<i>       
+</I>&gt;<i>
+</I>&gt;<i>   
+</I>&gt;&gt;<i> Is this the 'aka' being deprecated, or is it some implicit lookup that I
+</I>&gt;&gt;<i> won't have to worry about, as long as I have 'aka' properly set up?
+</I>&gt;&gt;<i>     
+</I>&gt;<i>
+</I>&gt;<i> The implicit automatic DNS lookups. &quot;aka&quot; will continue to work. The
+</I>&gt;<i> implicit lookups assume the POP3 or IMAP server were the same as the
+</I>&gt;<i> SMTP server of the ISP, which is often untrue nowadays.
+</I>&gt;<i>   
+</I>Interestingly enough, since I own a domain and have an email forwarding 
+service for all mail to that domain to be sent to my pop box at my ISP, 
+I find that I needed to add 'aka' statements for the domain-host's 
+forwarding machines. That made everything work *perfectly*, which it 
+never had before. I suspect you also changed the &quot;-v -v&quot; debugging 
+information some, because this time it was absolutely clear what I 
+needed to do with 'aka' statements to make things work. I don't remember 
+the debugging information being that useful, before.
+
+Thanks,
+Dale Pontius
+&gt;<i>   
+</I>&gt;&gt;<i> Related to the 'aka' question, I noticed that when I upgraded to 6.3.2,
+</I>&gt;&gt;<i> multidrop pretty much fell apart for me, delivering all mail to the
+</I>&gt;&gt;<i> default id. I went back and RTFM, ran fetchmail with extra '-v's, added
+</I>&gt;&gt;<i> some extra 'aka's, and actually got it running better than ever.
+</I>&gt;&gt;<i>     
+</I>&gt;<i>
+</I>&gt;<i> Well, that is, in fact, the reason why the automatisms will go and users
+</I>&gt;<i> will have to use &quot;aka&quot; and thereabouts after 6.4.0.
+</I>&gt;<i>
+</I>&gt;<i> It's not like a hundred of aliased domains were changing every day, so
+</I>&gt;<i> &quot;aka&quot; will work well enough for most.
+</I>&gt;<i>
+</I>&gt;<i>   
+</I>&gt;&gt;<i> Most notably, we'd always lived with some duplicates that were now
+</I>&gt;&gt;<i> resolved and eliminated. Given that I've already spent the effort to
+</I>&gt;&gt;<i> adapt to the jump from 6.2.x to 6.3.2, am I set for the foreseeable
+</I>&gt;&gt;<i> future, or do these notes presage major pain to come?
+</I>&gt;&gt;<i>     
+</I>&gt;<i>
+</I>&gt;<i> The exact effect will, of course, depend on configuration. Assuming the
+</I>&gt;<i> &quot;aka&quot; configuration covers all the destination addresses, that part
+</I>&gt;<i> would very likely be set.
+</I>&gt;<i>
+</I>&gt;<i> The announcements are mainly there so people who intend to upgrade from
+</I>&gt;<i> 6.3.X to a newer 6.4, 6.Y, 7.0, ... release know where to look before
+</I>&gt;<i> actually installing the newer version. My idea is letting users make an
+</I>&gt;<i> /informed/ decision. No more luring people into &quot;gold&quot; versions with
+</I>&gt;<i> radical changes.
+</I>&gt;<i>
+</I>&gt;<i> I will keep an eye on compatibility in configuration where that is
+</I>&gt;<i> feasible and sensible. But do you know anyone who's using POP2 to fetch
+</I>&gt;<i> mail? I don't. Do you know any ISP where the MX is the POP3 server so
+</I>&gt;<i> that implicit DNS lookups to detect domain aliases actually work? None
+</I>&gt;<i> of mine does.
+</I>&gt;<i>
+</I>&gt;<i>   
+</I>&gt;&gt;<i> I only WISH my ISP would support ssl/tls, or etrn, or odmr. I'm STUCK
+</I>&gt;&gt;<i> with multidrop, unless I spring for more $$$ to use a different provider
+</I>&gt;&gt;<i> for my email. I'm already paying $$$$ for a cable ISP and $$ for my
+</I>&gt;&gt;<i> domain and forwarding, not to mention $$.$e$$ for kids' education, so
+</I>&gt;&gt;<i> $$$ just to avoid multidrop just isn't in the cards, for now. (My ISP
+</I>&gt;&gt;<i> has multiple POP boxes, but my domain forwarding doesn't have enough
+</I>&gt;&gt;<i> capability, so I use multidrop.)
+</I>&gt;&gt;<i>     
+</I>&gt;<i>
+</I>&gt;<i> Well, multidrop can work if done right. See
+</I>&gt;<i> &lt;<A HREF="http://home.pages.de/~mandree/mail/multidrop">http://home.pages.de/~mandree/mail/multidrop</A>&gt; - if the requirements
+</I>&gt;<i> listed there are met, multidrop will work reliably, without any
+</I>&gt;<i> duplicate/undeliverable messages (except those with mistyped or guessed
+</I>&gt;<i> addresses, think spammers trying a dictionary of local addresses on your
+</I>&gt;<i> *@your.example.org catchall multidrop).
+</I>&gt;<i>
+</I>&gt;<i> As long as hashed authentication schemes such as CRAM-MD5 or APOP are
+</I>&gt;<i> supported by your ISP, SSL/TLS is not actually needed, because the mail
+</I>&gt;<i> has arrived at your provider's site unencrypted anyways and
+</I>&gt;<i> APOP/CRAM-MD5 still protect your password from eavesdropping, and for
+</I>&gt;<i> encrypted mail, there are GnuPG and S/MIME which don't require ISP
+</I>&gt;<i> support, consent or something like that. And with Thunderbird with the
+</I>&gt;<i> Enigmail extension, GnuPG is simple enough to use, too -- IMO.
+</I>&gt;<i>
+</I>&gt;<i> All in all, there will not be much to worry about that would make
+</I>&gt;<i> fetchmail unusable.
+</I>&gt;<i>
+</I>&gt;<i>   
+</I>
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000348.html">[fetchmail-users] Re: [fetchmail]fetchmail 6.3.4 stable release
+</A></li>
+	<LI>Next message: <A HREF="000351.html">[fetchmail-users] Re: [fetchmail]fetchmail 6.3.4 stable release
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#350">[ date ]</a>
+              <a href="thread.html#350">[ thread ]</a>
+              <a href="subject.html#350">[ subject ]</a>
+              <a href="author.html#350">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

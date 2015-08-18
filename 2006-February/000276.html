@@ -1,0 +1,105 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Incorrect header line and lost mails
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2006-February/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Incorrect%20header%20line%20and%20lost%20mails&In-Reply-To=%3C43F19A54.1000301%40wowcompany.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000274.html">
+   <LINK REL="Next"  HREF="000277.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Incorrect header line and lost mails</H1>
+    <B>Frederic Marchal</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Incorrect%20header%20line%20and%20lost%20mails&In-Reply-To=%3C43F19A54.1000301%40wowcompany.com%3E"
+       TITLE="[fetchmail-users] Incorrect header line and lost mails">frederic.marchal at wowcompany.com
+       </A><BR>
+    <I>Tue Feb 14 09:52:36 CET 2006</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000274.html">[fetchmail-users] Incorrect header line and lost mails
+</A></li>
+        <LI>Next message: <A HREF="000277.html">[fetchmail-users] Incorrect header line and lost mails
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#276">[ date ]</a>
+              <a href="thread.html#276">[ thread ]</a>
+              <a href="subject.html#276">[ subject ]</a>
+              <a href="author.html#276">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Matthias Andree wrote:
+&gt;<i> Rob MacGregor &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">rob.macgregor at gmail.com</A>&gt; writes:
+</I>&gt;<i>
+</I>&gt;<i>   
+</I>&gt;&gt;<i> On 2/13/06, Frederic Marchal &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">frederic.marchal at wowcompany.com</A>&gt; wrote:
+</I>&gt;&gt;<i>     
+</I>&gt;&gt;&gt;<i> Hello,
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> I found 15 lines like this in my log this morning and 3 more earlier
+</I>&gt;&gt;&gt;<i> last week:
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> fetchmail[1226]: incorrect header line found while scanning headers
+</I>&gt;&gt;&gt;<i>       
+</I>&gt;&gt;<i> You'll find threads about this in the list archive.  I don't remember
+</I>&gt;&gt;<i> the outcome, but I've a feeling that 6.3.x handles these (illegal)
+</I>&gt;&gt;<i> messages differently.
+</I>&gt;&gt;<i>     
+</I>&gt;<i>
+</I>&gt;<i> I don't recall having a fix for this particular issue, but 6.3.2
+</I>&gt;<i> generally has some dozens of bugfixes worth having anyways. I'll put
+</I>&gt;<i> this on my 6.3.3 TODO, but don't think it will appear within the next
+</I>&gt;<i> three weeks (unless someone else sends a patch). Don't hold your breath,
+</I>&gt;<i> I'm busy ATM.
+</I>&gt;<i>   
+</I>
+Well, I'm a C programmer and I may be able to help but I'm mainly a 
+windows programmer (yes, I know, shame on me :-) ) and I'm not yet all 
+too familiar with the Linux programming and especially with the patch 
+mechanism and none at all with the diff tool. Nevertheless, I have 
+identified the core of the problem (its the call to readheaders in 
+drive.c and the response to PS_REFUSED). I still have to check what 
+happens if an invalid FROM or TO header is passed after readheaders but 
+I think I can fix the program. I'll also need some direction about the 
+proper way of doing it for a good integration in the current source.
+
+If you think it is reasonable, we can discuss this further on the 
+fetchmail-devel list.
+
+Frederic
+
+
+
+
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000274.html">[fetchmail-users] Incorrect header line and lost mails
+</A></li>
+	<LI>Next message: <A HREF="000277.html">[fetchmail-users] Incorrect header line and lost mails
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#276">[ date ]</a>
+              <a href="thread.html#276">[ thread ]</a>
+              <a href="subject.html#276">[ subject ]</a>
+              <a href="author.html#276">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

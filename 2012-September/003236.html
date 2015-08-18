@@ -1,0 +1,309 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] fetchmail 7.0.0-alpha3 alpha preview release
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2012-September/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%207.0.0-alpha3%20alpha%20preview%20release&In-Reply-To=%3C20120905213953.GA16489%40merlin.emma.line.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003235.html">
+   
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] fetchmail 7.0.0-alpha3 alpha preview release</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%207.0.0-alpha3%20alpha%20preview%20release&In-Reply-To=%3C20120905213953.GA16489%40merlin.emma.line.org%3E"
+       TITLE="[fetchmail-users] fetchmail 7.0.0-alpha3 alpha preview release">matthias.andree at gmx.de
+       </A><BR>
+    <I>Wed Sep  5 23:39:53 CEST 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003235.html">[fetchmail-users] Congrats folks on 6.3.22
+</A></li>
+        
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3236">[ date ]</a>
+              <a href="thread.html#3236">[ thread ]</a>
+              <a href="subject.html#3236">[ subject ]</a>
+              <a href="author.html#3236">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Greetings,
+
+in an effort to get sufficient testing, I have released the next alpha
+version of fetchmail 7.0.0. This merges post-6.3.20 changes in, to
+fix security (CVE-2012-3482) and otherwise important bugs; I am
+including the changelog below.
+
+7.0.0-alpha2+MAPI was not vulnerable to CVE-2011-3389.
+
+The snapshot is without MAPI this time, because I cannot test the MAPI feature.
+
+If you want to help out, please arrange an Exchange account for me that
+I can send test messages to that I can retrieve via MAPI and IMAP.
+
+The alpha version isn't available through BerliOS, but only from this
+DOWNLOAD: &lt;<A HREF="http://home.pages.de/~mandree/fetchmail/">http://home.pages.de/~mandree/fetchmail/</A>&gt;
+
+The corresponding git tag is SNAPSHOT_7-0-0-alpha3, the branch is
+&quot;master&quot;. The repository is at &lt;<A HREF="http://gitorious.org/fetchmail">http://gitorious.org/fetchmail</A>&gt;.
+
+Please send feedback to <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">fetchmail-devel at lists.berlios.de.</A>
+
+Happy fetches!
+Matthias
+
+--------------------------------------------------------------------------------
+fetchmail-7.0.0 (not yet released):
+
+NOTE THIS IS AN ALPHA RELEASE THAT HAS NOT BEEN THOROUGHLY TESTED!
+
+# MAJOR CHANGES
+* The UIDL handler code is now much faster, especially noticable with lots of
+  mail kept on a POP3 server. Where the 6.3.X code was of O(n^2) complexity,
+  we're down to O(n log n).
+  Contributed by Rainer Weikusat, MAD Partners Ltd./MSS GmbH.
+* The POP3 code now always uses UIDL, except if &quot;fetchall&quot; is in effect.
+  Fixes BerliOS Bug #16172. Fixes Debian Bug#345788.
+* Fetchmail now enables SSL support by default. If this is undesired,
+  ./configure --without-ssl should help.
+* The OpenSSL code now excludes the SSL_OP_DONT_INSERT_EMPTY_FRAGMENTS option.
+  This can cause interoperability problems with certain buggy servers, but is
+  required to defang chosen-plaintext attacks against AES.  While probably hard
+  to mount against fetchmail, let's play it safe rather than be sorry later.
+
+# FEATURES ADDED
+* Fetchmail can now retrieve credentials from PWMD. This needs to be enabled at
+  compile-time and requires run-time configuration. See README.PWMD for details.
+  Contributed by Ben Kibbey, author of libpwmd and pwmd.
+* Fetchmail now supports a retrieve-error command line or rcfile option that
+  takes exactly one argument, abort (default), continue or markseen.  This
+  specifies the policy used by fetchmail to handle messages whose bodies
+  fail to be retrieved due to server errors.  Both the continue and markseen
+  options will skip the message with errors and allow the session to
+  continue so that subsequent messages can be retrieved.  The markseen
+  option will also mark the message with errors as seen.
+  The default policy is to abort the session whenever a server error occurs.
+  Contributed by Craig Brown.
+* Fetchmailconf offers cram-md5 and apop authentication.
+
+# REMOVED FEATURES
+* IMAP2 protocol support was removed.
+* POP2 protocol support was removed.
+* RPOP (not actually a protocol, but a variant of POP3) was removed
+* POP3: the uidl option has been removed. It is always on.
+* POP3: LAST is no longer used. It was removed from POP3 in 1994, and it could
+  cause mail loss when the connection was interrupted or if clients besides
+  fetchmail polled the mailbox.
+* Trio was removed, fetchmail expects reasonable stdio.h quality levels.
+* Support for systems that do not conform to C89 and POSIX 2001 was removed,
+  this means that BeOS, EMX, NeXTSTEP quirks are no longer worked around.
+* The MX and host alias DNS lookups that fetchmail performs in multidrop mode
+  have been removed. They were based on the mistaken assumption that the
+  IMAP/POP3 server was also the MX server, which is rarely the case.  They have
+  never supported IPv6 (including IPv6-mapped IPv4) either.
+  Non-DNS based alias keywords such as &quot;aka&quot; remain.
+* Kerberos IV support was removed.
+* fetchmail no longer supports SSL v2, nor the corresponding SSL2 option to
+  --sslproto. SSLv2 is insecure and had been deprecated 15 years ago. fetchmail
+  will actively forbid SSLv2 negotiation by means of SSL_OP_NO_SSLv2.
+  To fix Debian Bug#622054.
+* A lot of outdated and/or unsafe-to-use material got dropped from contrib/.
+
+# REGRESSION FIXES
+* The mimedecode feature now properly detects multipart/mixed-type matches, so
+  that quoted-printable-encoded multipart messages can get decoded.
+  (Regression in 5.0.0 on 1999-03-27, as a side effect of a PGP-mimedecode fix
+  attributed to Henrik Storner.)
+
+# BUG FIXES
+* The mimedecode feature failed to ship the last line of the body if it was
+  encoded as quoted-printable and had a MIME soft line break in the very last
+  line.  Reported by Lars Hecking in June 2011.
+  Bug introduced on 1998-03-20 when the mimedecode support was added by ESR
+  before release 4.4.1 through code contributed by Henrik Storner.
+  Workaround for older releases: do not use mimedecode feature.
+* Fetchmail now detects singly-quoted % expansions in the mda option and refuses
+  to deliver for safety reasons. Fixes Debian Bug#347909.
+* The Server certificate: message in verbose mode now appears on stdout like the
+  remainder of the output. Reported by Henry Jensen, to fix Debian Bug #639807.
+
+# CHANGES
+* A foreground fetchmail can now accept a few more options while another copy is
+  running in the background.
+* APOP is no longer a protocol, but an authentication method. In order to use
+  it, use protocol POP3 auth APOP, or on the commandline, -p pop3 --auth apop.
+  If no authentication method is specified, APOP is automatically tried if
+  offered by the server before we resort to sending the password as clear text.
+
+# KNOWN BUGS AND WORKAROUNDS
+  (This section floats upwards through the NEWS file so it stays with the
+  current release information)
+* Fetchmail does not handle messages without Message-ID header well
+  (See sourceforge.net bug #780933)
+* BSMTP is mostly untested and errors can cause corrupt output.
+* Sun Workshop 6 (SPARC) is known to miscompile the configuration file lexer in
+  64-bit mode.  Either compile 32-bit code or use GCC to compile 64-bit
+  fetchmail.  Note that fetchmail doesn't take advantage of 64-bit code,
+  so compiling 32-bit SPARC code should not cause any difficulties.
+* Fetchmail does not track pending deletes across crashes.
+* The command line interface is sometimes a bit stubborn, for instance,
+  fetchmail -s doesn't work with a daemon running.
+* Linux systems may return duplicates of an IP address in some circumstances if
+  no or no global IPv6 addresses are configured.
+  (No workaround. Ubuntu Bug#582585, Novell Bug#606980.)
+* Kerberos 5 may be broken, particularly on Heimdal, and provide bogus error
+  messages. This will not be fixed, because the maintainer has no Kerberos 5
+  server to test against. Use GSSAPI.
+
+--------------------------------------------------------------------------------
+
+fetchmail-6.3.23 (not yet released)
+
+# NOTE THAT THE RELEASE OF FUTURE FETCHMAIL 6.3.X VERSIONS IS UNCLEAR.
+Should a 7.0 release be made earlier, chances are that the 6.3.X branch
+is abandoned and its changes be folded into the 7.0 release, with changes
+after 6.3.22 not available on their own in a newer 6.3.X release.
+
+# REGRESSION FIXES
+* Fix compilation with OpenSSL implementations before 0.9.8m that lack
+  SSL_CTX_clear_options. Patch by Earl Chew.
+  Note that the use of older OpenSSL versions with fetchmail is unsupported and
+  *not* recommended.
+
+# BUG FIXES
+* Fix combination of --plugin and -f -. Patch by Alexander Zangerl,
+  to fix Debian Bug#671294.
+
+
+fetchmail-6.3.22 (released 2012-08-29, 26077 LoC):
+
+# SECURITY FIXES
+* for CVE-2012-3482:
+  NTLM: fetchmail mistook an error message that the server sent in response to
+  an NTLM request for protocol exchange, tried to decode it, and crashed while
+  reading from a bad memory location.
+  Also, with a carefully crafted NTLM challenge packet sent from the server, it
+  would be possible that fetchmail conveyed confidential data not meant for the
+  server through the NTLM response packet.
+  Fix: Detect base64 decoding errors, validate the NTLM challenge, and abort
+  NTLM authentication in case of error.
+  See fetchmail-SA-2012-02.txt for further details.
+  Reported by J. Porter Clark.
+
+* for CVE-2011-3389:
+  SSL/TLS (wrapped and STARTTLS): fetchmail used to disable a countermeasure
+  against a certain kind of attack against cipher block chaining initialization
+  vectors (SSL_OP_DONT_INSERT_EMPTY_FRAGMENTS).
+  Whether this creates an exploitable situation, depends on the server and the
+  negotiated ciphers.
+  As a precaution, fetchmail 6.3.22 enables the countermeasure, by clearing
+  SSL_OP_DONT_INSERT_EMPTY_FRAGMENTS.
+
+  NOTE that this can cause connections to certain non-conforming servers to
+  fail, in which case you can set the environment variable
+  FETCHMAIL_DISABLE_CBC_IV_COUNTERMEASURE to any non-empty value when starting
+  fetchmail to re-instate the compatibility option at the expense of security.
+
+  Reported by Apple Product Security.
+
+  For technical details, refer to &lt;<A HREF="http://www.openssl.org/~bodo/tls-cbc.txt">http://www.openssl.org/~bodo/tls-cbc.txt</A>&gt;.
+  See fetchmail-SA-2012-01.txt for further details.
+
+# BUG FIX
+* The Server certificate: message in verbose mode now appears on stdout like the
+  remainder of the output. Reported by Henry Jensen, to fix Debian Bug #639807.
+
+* The GSSAPI-related autoconf code now matches gssapi.c better, and uses
+  a different check to look for GSS_C_NT_HOSTBASED_SERVICE.
+  This fixes the GSSAPI-enabled build on NetBSD 6 Beta.
+
+# CHANGES
+* On systems where SSLv2_client_method isn't defined in OpenSSL (such as
+  newer Debian, and Ubuntu starting with 11.10 oneiric ocelot), don't
+  reference it (to fix the build) and if configured, print a run-time error
+  that the OS does not support SSLv2. Fixes Debian Bug #622054,
+  but note that that bug report has a more thorough patch that does away with
+  SSLv2 altogether.
+
+* The security and errata notices fetchmail-{EN,SA}-20??-??.txt are now
+  under the more relaxed CC BY-ND 3.0 license (the noncommercial clause
+  was dropped). The Creative Commons address was updated.
+
+* The Python-related Makefile.am parts were simplified to avoid an automake
+  1.11.X bug around noinst_PYTHON, Automake Bug #10995.
+
+* Configuring fetchmail without SSL now triggers a configure warning,
+  and asks the user to consider running configure --with-ssl.
+
+# WORKAROUND
+* Some servers, notably Zimbra, return A1234 987 FETCH () in response to
+  a header request, in the face of message corruption.  fetchmail now treats
+  these as temporary errors. Report and Patch by Mikulas Patocka, Red Hat.
+
+* Some servers, notably Microsoft Exchange, return &quot;A0009 OK FETCH completed.&quot;
+  without any header in response to a header request for meeting reminder
+  messages (with a &quot;meeting.ics&quot; attachment). fetchmail now treats these as
+  transient errors.  Report by John Connett, Patch by Sunil Shetye.
+
+# TRANSLATION UPDATES
+* [cs]    Czech, by Petr Pisar
+* [de]    German
+* [fr]    French, by Fr&#233;d&#233;ric Marchal
+* [ja]    Japanese, by Takeshi Hamasaki
+* [pl]    Polish, by Jakub Bogusz
+* [sv]    Swedish, by G&#246;ran Uddeborg --- NEW TRANSLATION - Thank you!
+* [vi]    Vietnamese, by Tr&#7847;n Ng&#7885;c Qu&#226;n
+
+
+fetchmail-6.3.21 (released 2011-08-21, 26011 LoC):
+
+# CRITICAL BUG FIX
+* The IMAP client no longer inserts NUL bytes into the last line of a message
+  when it is not closed with a LF or CRLF sequence. Reported by Antoine Levitt.
+  As a side effect of the fix, and in order to avoid a full rewrite, fetchmail
+  will now CRLF-terminate the last line fetched through IMAP, even if it is
+  originally not terminated by LF or CRLF. This bears no relevance if your
+  messages end up in mbox, but adds line termination for storages (like Maildir)
+  that do not require that the last line be LF- or CRLF-terminated.
+
+# CONTRIB/ addition
+* There is a patch against fetchnews's source, contrib/rawlog.patch, that can
+  log (and hexdump non-printing characters) raw socket data to a file. It proved
+  useful to debug Antoine's bug described above.
+--------------------------------------------------------------------------------
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: not available
+Type: application/pgp-signature
+Size: 198 bytes
+Desc: not available
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/fetchmail-users/attachments/20120905/da554f30/attachment.pgp">https://lists.berlios.de/pipermail/fetchmail-users/attachments/20120905/da554f30/attachment.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003235.html">[fetchmail-users] Congrats folks on 6.3.22
+</A></li>
+	
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3236">[ date ]</a>
+              <a href="thread.html#3236">[ thread ]</a>
+              <a href="subject.html#3236">[ subject ]</a>
+              <a href="author.html#3236">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

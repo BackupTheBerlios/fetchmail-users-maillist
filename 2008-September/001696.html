@@ -1,0 +1,88 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] losing mails because of &quot;incorrect header	line found&quot;
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2008-September/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%0A%09%3D%3Fiso-8859-1%3Fq%3Flosing_mails_because_of_%3D22incor%3F%3D%0A%09%3D%3Fiso-8859-1%3Fq%3Frect_header%3D09line_found%3D22%3F%3D&In-Reply-To=%3C200809191017.01693.frederic.marchal%40wowcompany.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001708.html">
+   <LINK REL="Next"  HREF="001704.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] losing mails because of &quot;incorrect header	line found&quot;</H1>
+    <B>Fr&#233;d&#233;ric Marchal</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%0A%09%3D%3Fiso-8859-1%3Fq%3Flosing_mails_because_of_%3D22incor%3F%3D%0A%09%3D%3Fiso-8859-1%3Fq%3Frect_header%3D09line_found%3D22%3F%3D&In-Reply-To=%3C200809191017.01693.frederic.marchal%40wowcompany.com%3E"
+       TITLE="[fetchmail-users] losing mails because of &quot;incorrect header	line found&quot;">frederic.marchal at wowcompany.com
+       </A><BR>
+    <I>Fri Sep 19 10:17:01 CEST 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001708.html">[fetchmail-users] losing mails because of &quot;incorrect header	line found&quot;
+</A></li>
+        <LI>Next message: <A HREF="001704.html">[fetchmail-users] losing mails because of &quot;incorrect	header	line found&quot;
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1696">[ date ]</a>
+              <a href="thread.html#1696">[ thread ]</a>
+              <a href="subject.html#1696">[ subject ]</a>
+              <a href="author.html#1696">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Wednesday 17 September 2008, Matthias Andree wrote:
+&gt;<i> Depending on whom you ask, there are various opinions on how to deal
+</I>&gt;<i> with that, so maybe we should start with a switch that says
+</I>&gt;<i> &quot;brokenheader = { skip_message, pass_message, prepend_blank_line }&quot; with
+</I>&gt;<i> perhaps a later extension of a fourth &quot;attach_instead&quot; state.
+</I>
+I like that idea. I will try to change my patch to do it but I don't make any 
+promise about the delay because I know nothing about flex and I'll need to 
+learn how to process multiple options...
+
+In the meantime, I have applied my patch to the svn source in
+
+<A HREF="http://mknod.org/svn/fetchmail/branches/BRANCH_6-3/">http://mknod.org/svn/fetchmail/branches/BRANCH_6-3/</A>
+
+and it compiles. I attach the diff file to this mail. It has the advantage of 
+being user selectable.
+
+&gt;<i>
+</I>&gt;<i> The default would clearly be refuse in 6.3.10+ (I don't think I'll add
+</I>&gt;<i> this option to 6.3.9) for compatibility, some distros would patch it to
+</I>&gt;<i> default to try_pass (which is what Fr&#233;d&#233;ric's and other patches already
+</I>&gt;<i> do), and I'm not sure if a &quot;bounce_message&quot; would work.
+</I>
+I think it's too late to bounce the mail. When the mail reaches fetchmail, we 
+can't be sure of the real sender to bounce it back to. We would end up 
+bouncing spams with forged header.
+
+Frederic Marchal
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001708.html">[fetchmail-users] losing mails because of &quot;incorrect header	line found&quot;
+</A></li>
+	<LI>Next message: <A HREF="001704.html">[fetchmail-users] losing mails because of &quot;incorrect	header	line found&quot;
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1696">[ date ]</a>
+              <a href="thread.html#1696">[ thread ]</a>
+              <a href="subject.html#1696">[ subject ]</a>
+              <a href="author.html#1696">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

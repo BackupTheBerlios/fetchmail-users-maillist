@@ -1,0 +1,133 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] fetchmail lets mails disappear
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2010-November/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%20lets%20mails%20disappear&In-Reply-To=%3C4CF38F69.4020403%40gmx.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002581.html">
+   <LINK REL="Next"  HREF="002583.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] fetchmail lets mails disappear</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%20lets%20mails%20disappear&In-Reply-To=%3C4CF38F69.4020403%40gmx.de%3E"
+       TITLE="[fetchmail-users] fetchmail lets mails disappear">matthias.andree at gmx.de
+       </A><BR>
+    <I>Mon Nov 29 12:32:57 CET 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002581.html">[fetchmail-users] fetchmail lets mails disappear
+</A></li>
+        <LI>Next message: <A HREF="002583.html">[fetchmail-users] fetchmail lets mails disappear
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2582">[ date ]</a>
+              <a href="thread.html#2582">[ thread ]</a>
+              <a href="subject.html#2582">[ subject ]</a>
+              <a href="author.html#2582">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Am 29.11.2010 01:46, schrieb Martin Koeppe:
+&gt;<i> 
+</I>&gt;<i> Hi Rob, hi Jerry,
+</I>&gt;<i> 
+</I>&gt;<i> thanks for your answers.
+</I>&gt;<i> 
+</I>&gt;<i> @Jerry: Yes, I have configured my Exchange to accept the mails now
+</I>&gt;<i> without auth from fetchmail's ip address. This was not the point of my
+</I>&gt;<i> mail to this list, however.
+</I>&gt;<i> 
+</I>&gt;<i> The problem I see is that the mails can disappear while finding the
+</I>&gt;<i> correct configuration! So even if misconfigured, IMO the mails shouldn't
+</I>&gt;<i> disappear, according to man page:
+</I>&gt;<i> 
+</I>&gt;<i> &quot;Return codes which fetchmail treats as antispam responses and discards
+</I>&gt;<i> the message can be set with the 'antispam' option.  This is one of the
+</I>&gt;<i> only three circumstance under which fetchmail ever discards mail (the
+</I>&gt;<i> others are the 552 and 553 errors described below, and the suppression
+</I>&gt;<i> of multidropped messages with a message-ID already seen).&quot;
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> On Sun, 28 Nov 2010, Rob MacGregor wrote:
+</I>&gt;<i> 
+</I>&gt;&gt;<i> On Sun, Nov 28, 2010 at 17:55, Martin Koeppe &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">mkoeppe at gmx.de</A>&gt; wrote:
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> Hi all,
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> I'm using fetchmail to fetch mails from ISP and forward them to Exchange
+</I>&gt;&gt;&gt;<i> 2007 and 2010 server.
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> With that configuration I now saw different cases where fetchmail
+</I>&gt;&gt;&gt;<i> eats the
+</I>&gt;&gt;&gt;<i> mails, without further notice.
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> The problem is when the Exchange server doesn't accept the mail for some
+</I>&gt;&gt;&gt;<i> reason, e.g. mail too big, or client (fetchmail) ip isn't allowed to
+</I>&gt;&gt;&gt;<i> send
+</I>&gt;&gt;&gt;<i> mail to Exchange, or ...
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> In all these cases I would expect fetchmail to leave the message on
+</I>&gt;&gt;&gt;<i> the POP3
+</I>&gt;&gt;&gt;<i> server, but it gets flushed nevertheless. As Exchange (in one of the
+</I>&gt;&gt;&gt;<i> cases
+</I>&gt;&gt;&gt;<i> above, ip address) doesn't accept any mail from fetchmail, fetchmail
+</I>&gt;&gt;&gt;<i> might
+</I>&gt;&gt;&gt;<i> have tried to send an error mail back, but obviously that can't be
+</I>&gt;&gt;&gt;<i> delivered. So the mail is lost.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Your Exchange logs show a 5xx series error, which is a permanent
+</I>&gt;&gt;<i> error.  Fetchmail has no reason to believe that the email will ever be
+</I>&gt;&gt;<i> accepted.
+</I>&gt;<i> 
+</I>&gt;<i> Yes, maybe. But why thinks fetchmail it should - silently - delete the
+</I>&gt;<i> mail then? It should at least ensure that the non-delivery report is
+</I>&gt;<i> accepted by the SMTP server. (But even this doesn't ensure that the
+</I>&gt;<i> sender gets it, as the internal SMTP server might not be able to send
+</I>&gt;<i> the report back, but instead only queues it, maybe forever.)
+</I>
+You're asking the impossible, but it has been partially implemented, in
+a newer version.
+
+&gt;<i> So I would like to configure fetchmail to leave the mails alone on the
+</I>&gt;<i> POP3 server, maybe mark it as seen, which is what I would expect in this
+</I>&gt;<i> case. As it is fetched from POP3 or IMAP accouts, it might be useful
+</I>&gt;<i> there for e.g. web mail access even if fetchmail can't deliver it for
+</I>&gt;<i> some reason (e.g. size too big).
+</I>
+POP3 has no notion of &quot;seen&quot; vs. &quot;unseen&quot; mail.
+
+&gt;<i> Is this already possible?
+</I>
+Update.
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002581.html">[fetchmail-users] fetchmail lets mails disappear
+</A></li>
+	<LI>Next message: <A HREF="002583.html">[fetchmail-users] fetchmail lets mails disappear
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2582">[ date ]</a>
+              <a href="thread.html#2582">[ thread ]</a>
+              <a href="subject.html#2582">[ subject ]</a>
+              <a href="author.html#2582">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,110 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] [OFFTOPIC PATCH] Re: fix lost POP3 deletes
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2006-May/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20%5BOFFTOPIC%20PATCH%5D%20Re%3A%20fix%20lost%20POP3%20deletes&In-Reply-To=%3C20060523131312.GA2467%40session.bombay.retortsoft.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000421.html">
+   <LINK REL="Next"  HREF="000424.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] [OFFTOPIC PATCH] Re: fix lost POP3 deletes</H1>
+    <B>Sunil Shetye</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20%5BOFFTOPIC%20PATCH%5D%20Re%3A%20fix%20lost%20POP3%20deletes&In-Reply-To=%3C20060523131312.GA2467%40session.bombay.retortsoft.com%3E"
+       TITLE="[fetchmail-users] [OFFTOPIC PATCH] Re: fix lost POP3 deletes">shetye at bombay.retortsoft.com
+       </A><BR>
+    <I>Tue May 23 15:13:12 CEST 2006</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000421.html">[fetchmail-users] [PATCH] Re: fix lost POP3 deletes
+</A></li>
+        <LI>Next message: <A HREF="000424.html">[fetchmail-users] Re: fix lost POP3 deletes
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#423">[ date ]</a>
+              <a href="thread.html#423">[ thread ]</a>
+              <a href="subject.html#423">[ subject ]</a>
+              <a href="author.html#423">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>While debugging the code, I have found a minor problem which causes
+some of the flags not being set properly on the old uid list. Here it
+is:
+
+================================================================================
+Index: fetchmail-6.3/pop3.c
+===================================================================
+--- fetchmail-6.3/pop3.c	(revision 4851)
++++ fetchmail-6.3/pop3.c	(working copy)
+@@ -1019,8 +1019,9 @@
+ 			     * the same mail will not be downloaded again.
+ 			     */
+ 			    old = save_str(&amp;ctl-&gt;oldsaved, id, UID_UNSEEN);
+-			    old-&gt;val.status.num = unum;
+ 			}
++			/* save the number */
++			old-&gt;val.status.num = unum;
+ 		    } else
+ 			return PS_ERROR;
+ 		} /* multi-line loop for UIDL reply */
+================================================================================
+
+The above patch is not actually related to any of our patches!
+
+Quoting from Matthias Andree's mail on Sun, May 21, 2006:
+&gt;<i> Well - fetchmail does not currently save the deleted status to its
+</I>&gt;<i> .fetchids file, so there will be a difference between daemon mode and
+</I>&gt;<i> &quot;fetchmail without daemon option from cron&quot; that I would like to avoid -
+</I>&gt;<i> and my patch is supposed to address this.
+</I>&gt;<i> 
+</I>&gt;<i> I am attaching a revised patch (against UIDL) that drops the UIDs (marks
+</I>&gt;<i> them UID_EXPUNGED) before sending the QUIT command.
+</I>
+I think this assumes that the server necessarily receives the QUIT.
+What if the server does not receive the QUIT at all due to socket
+error? This will cause the mails to be downloaded again.
+
+&gt;<i> My patch saves the &quot;DELETED&quot; flag, and this should help when the
+</I>&gt;<i> connection goes away, for instance, when downloading a message, when
+</I>&gt;<i> there is not the slightest chance the server might have seen a &quot;QUIT&quot;
+</I>&gt;<i> request, so there is no chance of recycled UIDs.
+</I>&gt;<i> 
+</I>&gt;<i> In that case, fetchmail would then safely retry the deletion.
+</I>
+Undoubtedly, saving the flag is required. However, to keep things
+simpler, it would have been better if this issue was fixed separately.
+
+-- 
+Sunil Shetye.
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000421.html">[fetchmail-users] [PATCH] Re: fix lost POP3 deletes
+</A></li>
+	<LI>Next message: <A HREF="000424.html">[fetchmail-users] Re: fix lost POP3 deletes
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#423">[ date ]</a>
+              <a href="thread.html#423">[ thread ]</a>
+              <a href="subject.html#423">[ subject ]</a>
+              <a href="author.html#423">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,99 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Google fingerprint update
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2009-August/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Google%20fingerprint%20update&In-Reply-To=%3Cd2e731a10908121228x5973a7e5rf758aef42f97ddd%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002028.html">
+   <LINK REL="Next"  HREF="002030.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Google fingerprint update</H1>
+    <B>grarpamp</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Google%20fingerprint%20update&In-Reply-To=%3Cd2e731a10908121228x5973a7e5rf758aef42f97ddd%40mail.gmail.com%3E"
+       TITLE="[fetchmail-users] Google fingerprint update">grarpamp at gmail.com
+       </A><BR>
+    <I>Wed Aug 12 21:28:14 CEST 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002028.html">[fetchmail-users] fetchmail 6.3.11 / Slackware 11.0:	Segmentation Fault including possible solution
+</A></li>
+        <LI>Next message: <A HREF="002030.html">[fetchmail-users] fetchmail 6.3.11 security fix release	available (STABLE)
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2029">[ date ]</a>
+              <a href="thread.html#2029">[ thread ]</a>
+              <a href="subject.html#2029">[ subject ]</a>
+              <a href="author.html#2029">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>FYI for users properly checking fingerprints...
+Google just switched out all of their certs. The digests from my
+pipe are below. They happen to verify back to the CA as well. They're
+issuing their own via their intermediate 'Google Internet Authority'.
+Good until June 2010... when the intermediate expires. I included
+the smtp for people using mutt/msmtp. If you see different ones,
+it would be good to know.
+
+imap.gmail.com:imaps
+&lt; MD5 Fingerprint=FD:04:62:BC:7B:85:5E:AB:28:43:90:13:DC:0E:70:E1
+&gt;<i> MD5 Fingerprint=35:D1:0A:42:F3:FE:61:4E:CD:0C:02:05:D1:CC:D9:52
+</I>imap.googlemail.com:imaps
+&lt; MD5 Fingerprint=6D:B0:AB:B3:8E:8F:79:2C:65:B7:62:A4:2B:28:F2:A7
+&gt;<i> MD5 Fingerprint=D3:06:13:D9:33:E0:77:0B:F9:21:93:19:81:7B:8E:7E
+</I>pop.gmail.com:pop3s
+&lt; MD5 Fingerprint=44:A8:E9:2C:FB:A9:7E:6D:F9:DB:F3:62:B2:9E:F1:A9
+&gt;<i> MD5 Fingerprint=92:73:17:4C:34:4B:68:F7:B2:17:71:42:0D:7F:9F:33
+</I>pop.googlemail.com:pop3s
+&lt; MD5 Fingerprint=92:0A:35:F1:B6:36:11:39:B4:44:BF:AC:0A:51:9E:62
+&gt;<i> MD5 Fingerprint=9C:BA:E1:45:3F:FB:60:14:80:CA:CF:3A:1A:4E:11:7B
+</I>smtp.gmail.com:smtp starttls
+&lt; not_on_file
+&gt;<i> MD5 Fingerprint=65:5A:C7:F7:FD:A1:07:BB:DA:77:76:E4:A6:BA:1D:41
+</I>smtp.gmail.com:smtps
+&lt; MD5 Fingerprint=F1:D3:DE:59:9D:9C:E2:31:EA:AA:2C:A0:FC:AD:9A:61
+&gt;<i> MD5 Fingerprint=65:5A:C7:F7:FD:A1:07:BB:DA:77:76:E4:A6:BA:1D:41
+</I>smtp.gmail.com:submission
+&lt; MD5 Fingerprint=F1:D3:DE:59:9D:9C:E2:31:EA:AA:2C:A0:FC:AD:9A:61
+&gt;<i> MD5 Fingerprint=65:5A:C7:F7:FD:A1:07:BB:DA:77:76:E4:A6:BA:1D:41
+</I>smtp.googlemail.com:smtp starttls
+&lt; not_on_file
+&gt;<i> MD5 Fingerprint=99:42:9B:9B:21:68:53:9D:C8:6E:F8:16:E5:9B:06:FF
+</I>smtp.googlemail.com:smtps
+&lt; MD5 Fingerprint=11:5F:D9:4A:EC:AB:04:45:24:75:3E:62:6E:A7:20:35
+&gt;<i> MD5 Fingerprint=99:42:9B:9B:21:68:53:9D:C8:6E:F8:16:E5:9B:06:FF
+</I>smtp.googlemail.com:submission
+&lt; MD5 Fingerprint=11:5F:D9:4A:EC:AB:04:45:24:75:3E:62:6E:A7:20:35
+&gt;<i> MD5 Fingerprint=99:42:9B:9B:21:68:53:9D:C8:6E:F8:16:E5:9B:06:FF
+</I>
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002028.html">[fetchmail-users] fetchmail 6.3.11 / Slackware 11.0:	Segmentation Fault including possible solution
+</A></li>
+	<LI>Next message: <A HREF="002030.html">[fetchmail-users] fetchmail 6.3.11 security fix release	available (STABLE)
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2029">[ date ]</a>
+              <a href="thread.html#2029">[ thread ]</a>
+              <a href="subject.html#2029">[ subject ]</a>
+              <a href="author.html#2029">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

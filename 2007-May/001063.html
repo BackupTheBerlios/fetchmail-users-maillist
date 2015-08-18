@@ -1,0 +1,106 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Fetchmail not working as expected
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2007-May/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Fetchmail%20not%20working%20as%20expected&In-Reply-To=%3C20070530234520.97FBB22CA%40victory.xo.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001062.html">
+   <LINK REL="Next"  HREF="001065.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Fetchmail not working as expected</H1>
+    <B>Tejas Jin</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Fetchmail%20not%20working%20as%20expected&In-Reply-To=%3C20070530234520.97FBB22CA%40victory.xo.com%3E"
+       TITLE="[fetchmail-users] Fetchmail not working as expected">txjin at intelliepi.com
+       </A><BR>
+    <I>Thu May 31 01:45:20 CEST 2007</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001062.html">[fetchmail-users] fetchmail not fetching new messages
+</A></li>
+        <LI>Next message: <A HREF="001065.html">[fetchmail-users] Fetchmail not working as expected
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1063">[ date ]</a>
+              <a href="thread.html#1063">[ thread ]</a>
+              <a href="subject.html#1063">[ subject ]</a>
+              <a href="author.html#1063">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>
+I setup the following on my computer and run fetchmail as a user &quot;testjin&quot; on my computer.  Fetchmail appears to connect and get mails, it is deleting the mails off of the pop server.  But I can't find them.  I look in /var/spool/mail and don't see them there.  I have been watching /var/spool/maillog on my computer and nothing appears to be happening while I have fetchmail running.
+
+I checked 'netstat -lnp' and postfix appears to be listening to port 25.
+
+Right now my big concern is that the mail is disappearing out of my mailbox on my ISP, but it isn't showing up anywhere.
+------------------------------------------------------
+
+.fetchmailrc
+
+poll pop3.intelliepi.com proto pop3
+        user '<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">txjin at intelliepi.com</A>' there with password 'mypass' is txjin
+
+------------------------------------------
+
+postfix main.cf
+-----------------------------------------
+alias_database = hash:/etc/aliases
+alias_maps = hash:/etc/aliases
+command_directory = /usr/sbin
+config_directory = /etc/postfix
+daemon_directory = /usr/libexec/postfix
+debug_peer_level = 2
+html_directory = no
+inet_interfaces = all
+mail_owner = postfix
+mailq_path = /usr/bin/mailq.postfix
+manpage_directory = /usr/share/man
+mydestination = $myhostname, localhost.$mydomain, localhost, $myhostname.$mydomain, $mydomain, localhost.localdomain
+mydomain = internal.com
+myhostname = test
+mynetworks = 192.168.5.0/24, 127.0.0.0/8
+newaliases_path = /usr/bin/newaliases.postfix
+queue_directory = /var/spool/postfix
+readme_directory = /usr/share/doc/postfix-2.2.10/README_FILES
+sample_directory = /usr/share/doc/postfix-2.2.10/samples
+sendmail_path = /usr/sbin/sendmail.postfix
+setgid_group = postdrop
+unknown_local_recipient_reject_code = 550
+--------------------------------------------------------
+
+virtual
+-----------------------------------------------------
+<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">txjin at intelliepi.com</A>        txjin
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001062.html">[fetchmail-users] fetchmail not fetching new messages
+</A></li>
+	<LI>Next message: <A HREF="001065.html">[fetchmail-users] Fetchmail not working as expected
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1063">[ date ]</a>
+              <a href="thread.html#1063">[ thread ]</a>
+              <a href="subject.html#1063">[ subject ]</a>
+              <a href="author.html#1063">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

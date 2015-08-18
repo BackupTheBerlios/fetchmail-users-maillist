@@ -1,0 +1,103 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] qmail multidrop
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2006-November/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20qmail%20multidrop&In-Reply-To=%3C1164620468.10019.6.camel%40localhost%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000744.html">
+   <LINK REL="Next"  HREF="000740.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] qmail multidrop</H1>
+    <B>Doram Greenblat</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20qmail%20multidrop&In-Reply-To=%3C1164620468.10019.6.camel%40localhost%3E"
+       TITLE="[fetchmail-users] qmail multidrop">doramg at wd.co.za
+       </A><BR>
+    <I>Mon Nov 27 10:41:07 CET 2006</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000744.html">[fetchmail-users] qmail multidrop
+</A></li>
+        <LI>Next message: <A HREF="000740.html">[fetchmail-users] getting better error messages out of fetchmail
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#745">[ date ]</a>
+              <a href="thread.html#745">[ thread ]</a>
+              <a href="subject.html#745">[ subject ]</a>
+              <a href="author.html#745">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Thanks
+I got it sorted out yesterday, 
+I used the qvirtual option, in conjunction with 
+envelope  1 (envelope string)  # the 1 was a godsend I found in the
+manpage to ignore the first envelope string.
+
+GOOD GOING FETCHMAIL TEAM!!!
+just when I thought I would have to hack in a fix to ignore envelope, i
+saw it in manpage :)
+
+Regards
+Doram Greenblat.
+
+
+On Mon, 2006-11-27 at 10:29 +0100, Matthias Andree wrote:
+
+&gt;<i> Doram Greenblat &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">doramg at wd.co.za</A>&gt; writes:
+</I>&gt;<i> 
+</I>&gt;<i> &gt; Hey, I been using fetchmail great on some servers of ours, downloads  without a problem.
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; I'm having a problem with 'qmail' servers and multiple recipients on
+</I>&gt;<i> &gt; a multidrop mailbox.
+</I>&gt;<i> 
+</I>&gt;<i> No. You're likely having a misconfigured fetchmail, and probably also an
+</I>&gt;<i> older version - else you'd probably have seen it bitch about a missing
+</I>&gt;<i> envelope option.
+</I>&gt;<i> 
+</I>&gt;<i> &gt; if it helps, this is the situation.
+</I>&gt;<i> &gt; qmail -&gt; fetchmail -&gt; postfix -(postfix filters mail through a dspam socket, which feeds back into postfix after scanning).
+</I>&gt;<i> 
+</I>&gt;<i> This does indeed help.  Be sure to properly configure the envelope and
+</I>&gt;<i> perhaps qvirtual options, and use a recent version, 6.3.4 or 6.3.6-rc4.
+</I>&gt;<i> 
+</I>-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/fetchmail-users/attachments/20061127/cfa24366/attachment.html">https://lists.berlios.de/pipermail/fetchmail-users/attachments/20061127/cfa24366/attachment.html</A>&gt;
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: smiley-3.png
+Type: image/png
+Size: 819 bytes
+Desc: not available
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/fetchmail-users/attachments/20061127/cfa24366/attachment.png">https://lists.berlios.de/pipermail/fetchmail-users/attachments/20061127/cfa24366/attachment.png</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000744.html">[fetchmail-users] qmail multidrop
+</A></li>
+	<LI>Next message: <A HREF="000740.html">[fetchmail-users] getting better error messages out of fetchmail
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#745">[ date ]</a>
+              <a href="thread.html#745">[ thread ]</a>
+              <a href="subject.html#745">[ subject ]</a>
+              <a href="author.html#745">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

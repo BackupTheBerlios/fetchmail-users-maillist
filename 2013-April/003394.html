@@ -1,0 +1,106 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Fwd: Re: fetchmail doesn't want to connect to my mysql database
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2013-April/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Fwd%3A%20Re%3A%20fetchmail%20doesn%27t%20want%20to%20connect%20to%20my%0A%20mysql%20database&In-Reply-To=%3C517AC496.3030203%40brizou.fr%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003392.html">
+   
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Fwd: Re: fetchmail doesn't want to connect to my mysql database</H1>
+    <B>Clement BRIZARD</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Fwd%3A%20Re%3A%20fetchmail%20doesn%27t%20want%20to%20connect%20to%20my%0A%20mysql%20database&In-Reply-To=%3C517AC496.3030203%40brizou.fr%3E"
+       TITLE="[fetchmail-users] Fwd: Re: fetchmail doesn't want to connect to my mysql database">clement at brizou.fr
+       </A><BR>
+    <I>Fri Apr 26 20:16:54 CEST 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003392.html">[fetchmail-users] master: TODO.txt
+</A></li>
+        
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3394">[ date ]</a>
+              <a href="thread.html#3394">[ thread ]</a>
+              <a href="subject.html#3394">[ subject ]</a>
+              <a href="author.html#3394">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Le 23/04/2013 21:52, Robert Dahlem a &#233;crit :
+&gt;<i> Hi,
+</I>&gt;<i>
+</I>&gt;&gt;<i> DBI connect('database=postfix;host=127.0.0.1','postfix',...) failed:
+</I>&gt;&gt;<i> couldn't connect to the server : Connection refused
+</I>&gt;<i> Your database is not running. 5432 smells like PostgreSQL. Did you start it?
+</I>&gt;<i>
+</I>&gt;<i> Regards,
+</I>&gt;<i> Robert
+</I>&gt;<i>
+</I>&gt;<i>
+</I>
+That's it, I changed the fetchmail.pl from
+
+our $db_type = 'Pg';#
+my $db_type = 'mysql';
+
+# host name
+our $db_host=&quot;127.0.0.1&quot;;
+# database name
+our $db_name=&quot;postfix&quot;;
+# database username
+our $db_username=&quot;postfix&quot;;
+# database password
+our $db_password=&quot;my password&quot;;
+
+
+to
+
+#our $db_type = 'Pg';
+my $db_type = 'mysql';
+
+# host name
+my $db_host=&quot;127.0.0.1&quot;;
+# database name
+my $db_name=&quot;postfix&quot;;
+# database username
+my $db_username=&quot;postfix&quot;;
+# database password
+my $db_password=&quot;my password&quot;;
+
+I didn't saw that the first time
+
+
+Thank you very much both of you
+
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003392.html">[fetchmail-users] master: TODO.txt
+</A></li>
+	
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3394">[ date ]</a>
+              <a href="thread.html#3394">[ thread ]</a>
+              <a href="subject.html#3394">[ subject ]</a>
+              <a href="author.html#3394">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

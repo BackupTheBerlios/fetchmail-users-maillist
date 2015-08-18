@@ -1,0 +1,96 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] polling intervals
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2009-February/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20polling%20intervals&In-Reply-To=%3C1235347157.12206.17.camel%40localhost.localdomain%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001868.html">
+   <LINK REL="Next"  HREF="001870.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] polling intervals</H1>
+    <B>Chris</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20polling%20intervals&In-Reply-To=%3C1235347157.12206.17.camel%40localhost.localdomain%3E"
+       TITLE="[fetchmail-users] polling intervals">cpollock at embarqmail.com
+       </A><BR>
+    <I>Mon Feb 23 00:59:17 CET 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001868.html">[fetchmail-users] recover fetchmail after error
+</A></li>
+        <LI>Next message: <A HREF="001870.html">[fetchmail-users] polling intervals
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1869">[ date ]</a>
+              <a href="thread.html#1869">[ thread ]</a>
+              <a href="subject.html#1869">[ subject ]</a>
+              <a href="author.html#1869">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>I'm sure this question has a simple answer. I've been using fetchmail
+for years and never had the need to poll more than one mail server. Now
+I'd like to poll two different pop accounts. One I poll every 2 minutes
+and the other I'd like to poll every 90 minutes. I have this in
+my .fetchmailrc:
+
+set postmaster cpollock
+set no bouncemail
+set no spambounce
+set daemon 120
+set syslog
+
+and then the account settings for the account I'm using now.
+
+Only one daemon process is permitted per user; in daemon mode, fetchmail
+sets up a per-user lockfile to guarantee this. 
+
+Reading the above from the manpage I assume that 'user' is me logged
+into this machine? The commandline I use to run fetchmail is:
+
+fetchmail -v --nosyslog --logfile /home/chris/fetchmaillog --uidl -m
+procmail.
+
+Thanks
+Chris
+
+-- 
+KeyID 0xE372A7DA98E6705C
+
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: signature.asc
+Type: application/pgp-signature
+Size: 197 bytes
+Desc: This is a digitally signed message part
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/fetchmail-users/attachments/20090222/07ca2634/attachment.pgp">https://lists.berlios.de/pipermail/fetchmail-users/attachments/20090222/07ca2634/attachment.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001868.html">[fetchmail-users] recover fetchmail after error
+</A></li>
+	<LI>Next message: <A HREF="001870.html">[fetchmail-users] polling intervals
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1869">[ date ]</a>
+              <a href="thread.html#1869">[ thread ]</a>
+              <a href="subject.html#1869">[ subject ]</a>
+              <a href="author.html#1869">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

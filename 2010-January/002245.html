@@ -1,0 +1,115 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Fetchmail hangs at start of mail collection . . .
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2010-January/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Fetchmail%20hangs%20at%20start%20of%20mail%20collection%20.%20.%20.&In-Reply-To=%3Cd1d595a9af662f4ec34c0622efc07cd2.squirrel%40192.168.2.120%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002244.html">
+   <LINK REL="Next"  HREF="002246.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Fetchmail hangs at start of mail collection . . .</H1>
+    <B>John Williams</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Fetchmail%20hangs%20at%20start%20of%20mail%20collection%20.%20.%20.&In-Reply-To=%3Cd1d595a9af662f4ec34c0622efc07cd2.squirrel%40192.168.2.120%3E"
+       TITLE="[fetchmail-users] Fetchmail hangs at start of mail collection . . .">john.williams at seawindow.com
+       </A><BR>
+    <I>Sun Jan 24 21:17:58 CET 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002244.html">[fetchmail-users] fetchmail syntax for msn mail
+</A></li>
+        <LI>Next message: <A HREF="002246.html">[fetchmail-users] Fetchmail hangs at start of mail collection .	. .
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2245">[ date ]</a>
+              <a href="thread.html#2245">[ thread ]</a>
+              <a href="subject.html#2245">[ subject ]</a>
+              <a href="author.html#2245">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>
+Fetchmail users:
+
+I recently upgraded the underlying OS for my mail system to FreeBSD 8.0
+and upgraded the fetchmail installation to fetchmail-6.3.10.
+
+The MTA is sendmail-8.14.3, which is working fine in delivering mail to
+the ISP mail server.
+
+However, when fetchmail attempts to pop incoming mail from the ISP server,
+the fetchmail command halts at the start of retrieving the first message.
+
+Here's the command syntax I've been using:
+
+     fetchmail -v -a -u username -p pop3 mail.isp.com
+
+(I've also tried using the -F option.)
+
+The commands always hangs.
+
+I'm attaching the SMTP message exchange for the command below.
+
+Can anyone suggest why this behavior might be happening?
+
+Thanks in advance.
+==============================
+...
+
+reading message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">jwilliam at mail.isp.com</A>:1 of 12 (3045 octets) Trying to
+connect to 127.0.0.1/25...connected.
+fetchmail: SMTP&lt; 220 louis.seawindow.com ESMTP Sendmail 8.14.3/8.14.3;
+Sun, 24 Jan 2010 14:59:29 -0500 (EST)
+fetchmail: SMTP&gt; EHLO louis.seawindow.com
+fetchmail: SMTP&lt; 250-louis.seawindow.com Hello localhost [127.0.0.1],
+pleased to meet you
+fetchmail: SMTP&lt; 250-ENHANCEDSTATUSCODES
+fetchmail: SMTP&lt; 250-PIPELINING
+fetchmail: SMTP&lt; 250-EXPN
+fetchmail: SMTP&lt; 250-VERB
+fetchmail: SMTP&lt; 250-8BITMIME
+fetchmail: SMTP&lt; 250-SIZE
+fetchmail: SMTP&lt; 250-DSN
+fetchmail: SMTP&lt; 250-AUTH GSSAPI DIGEST-MD5 CRAM-MD5
+fetchmail: SMTP&lt; 250-DELIVERBY
+fetchmail: SMTP&lt; 250 HELP
+fetchmail: SMTP&gt; MAIL FROM:&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">john_williams07018 at yahoo.com</A>&gt; SIZE=3045
+fetchmail: SMTP&lt; 250 2.1.0 &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">john_williams07018 at yahoo.com</A>&gt;... Sender ok
+fetchmail: SMTP&gt; RCPT TO:&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">jwilliam at localhost</A>&gt;
+
+-- 
+John Williams
+
+
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002244.html">[fetchmail-users] fetchmail syntax for msn mail
+</A></li>
+	<LI>Next message: <A HREF="002246.html">[fetchmail-users] Fetchmail hangs at start of mail collection .	. .
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2245">[ date ]</a>
+              <a href="thread.html#2245">[ thread ]</a>
+              <a href="subject.html#2245">[ subject ]</a>
+              <a href="author.html#2245">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

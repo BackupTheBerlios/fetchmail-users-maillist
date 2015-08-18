@@ -1,0 +1,153 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] fetchmail basic integration question
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2013-January/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%20basic%20integration%20question&In-Reply-To=%3C20130127105407.40c3437f%40scorpio%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003329.html">
+   <LINK REL="Next"  HREF="003331.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] fetchmail basic integration question</H1>
+    <B>Jerry</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%20basic%20integration%20question&In-Reply-To=%3C20130127105407.40c3437f%40scorpio%3E"
+       TITLE="[fetchmail-users] fetchmail basic integration question">jerry at seibercom.net
+       </A><BR>
+    <I>Sun Jan 27 16:54:07 CET 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003329.html">[fetchmail-users] fetchmail basic integration question
+</A></li>
+        <LI>Next message: <A HREF="003331.html">[fetchmail-users] fetchmail basic integration question
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3330">[ date ]</a>
+              <a href="thread.html#3330">[ thread ]</a>
+              <a href="subject.html#3330">[ subject ]</a>
+              <a href="author.html#3330">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Sun, 27 Jan 2013 10:01:48 -0500
+Gerald LaMontagne articulated:
+
+&gt;<i> On Mon, Jan 28, 2013 at 12:39:43AM +1100, Dr Michael Daly wrote:
+</I>&gt;<i> &gt; Hi
+</I>&gt;<i> &gt; I am seeking advice on the overall process with *postfix* and
+</I>&gt;<i> &gt; *dovecot* when fetchmail is configured to download mail, and then
+</I>&gt;<i> &gt; hand it over to maildrop for delivery via the ../bin/mda command. I
+</I>&gt;<i> &gt; know that if postfix is stopped, fetchmail complains that it can't
+</I>&gt;<i> &gt; deliver to the localhost. So does this mean that postfix and
+</I>&gt;<i> &gt; dovecot are serving as middlemen here? I am trying to better
+</I>&gt;<i> &gt; understand whats happening here.
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; If theres a simpler alternative, I am all ears. Roundcube is being
+</I>&gt;<i> &gt; used to view the emails.
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; I'm not seeking a specific explanation at this stage as I am not
+</I>&gt;<i> &gt; certain my problem is fetchmail related. I just what to better
+</I>&gt;<i> &gt; understand the process and the order of processing. The problem is
+</I>&gt;<i> &gt; that my maildrop filtering rules are not being followed when mail
+</I>&gt;<i> &gt; is downloaded, though subsequently manually running the
+</I>&gt;<i> &gt; mis-delivered emails through the maildrop program on command line
+</I>&gt;<i> &gt; sees the same emails delivered *correctly* ie a regex MATCH is
+</I>&gt;<i> &gt; produced, as configured in the maildrop mailfilter file. Perhaps a
+</I>&gt;<i> &gt; reason for this, as I noticed from the fetchmail logs, is that
+</I>&gt;<i> &gt; headers on the emails are 're-written' on delivery?
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; Am using maildir settings and as far as I can see, the ~/maildir
+</I>&gt;<i> &gt; configuration is consistent across postfix, dovecot and maildrop.
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; Whats even more anomalous is the mail from one server *is*
+</I>&gt;<i> &gt; delivered as expect, but not mail from a different server.
+</I>
+&gt;<i> Generally speaking, fetchmail retrieves mail from a mail server
+</I>&gt;<i> (gmail, yahoo, your ISP) and then passes it off to whoever is
+</I>&gt;<i> listening locally on port 25- which is (supposed to be!) an MTA such
+</I>&gt;<i> as postfix, exim, sendmail.  These then route the mail to local users
+</I>&gt;<i> on the network and, in turn, pass the mail off to and MDA (mail
+</I>&gt;<i> delivery agent) dovecot or Courier or simply deposit it into a folder
+</I>&gt;<i> (sometime the spool dir, sometimes a home dir).  From there, you read
+</I>&gt;<i> it with something like mutt or Thunderbird, a mail reader basically.
+</I>&gt;<i> 
+</I>&gt;<i> To confuse matters a bit, the MTA's (exim, postfix, etc) can also send
+</I>&gt;<i> mail directly to procmail or maildrop type programs, which are also
+</I>&gt;<i> classified as MDA's.  Thus, one of the more confusing aspects of mail
+</I>&gt;<i> delivery in 'nix systems is created- which MDA gets its hands on the
+</I>&gt;<i> mail first, the mail filter or the &quot;true&quot; MDA, dovecot?
+</I>&gt;<i> 
+</I>&gt;<i> It sounds like your problem is the mail isn't being run through
+</I>&gt;<i> maildrop as you expect.  I'm not familiar with the particulars of
+</I>&gt;<i> maildrop, but as far as a place to look for solutions, you might want
+</I>&gt;<i> to see if you can get postfix to deliver all mails to maildrop, which
+</I>&gt;<i> then hands off everything to dovecot using dovecot's &quot;deliver&quot;
+</I>&gt;<i> command.  I have been using this basic flow for years without issue,
+</I>&gt;<i> only I'm using exim instead of postfix and procmail instead of
+</I>&gt;<i> maildrop.
+</I>&gt;<i> 
+</I>&gt;<i> As such, if you are at least receiving your mail, then your problem
+</I>&gt;<i> isn't related to fetchmail.
+</I>
+From the &quot;Postfix&quot; 'master.cf' file:
+
+# ====================================================================
+# Interfaces to non-Postfix software. Be sure to examine the manual
+# pages of the non-Postfix software to find out what options it wants.
+#
+# Many of the following services use the Postfix pipe(8) delivery
+# agent.  See the pipe(8) man page for information about ${recipient}
+# and other message envelope options.
+# ====================================================================
+#
+# maildrop. See the Postfix MAILDROP_README file for details.
+# Also specify in main.cf: maildrop_destination_recipient_limit=1
+#
+#maildrop  unix  -       n       n       -       -       pipe
+#  flags=DRhu user=vmail argv=/usr/local/bin/maildrop -d ${recipient}
+#
+# ==================================================================== 
+
+-- 
+Jerry &#9812;
+
+Disclaimer: off-list followups get on-list replies or get ignored.
+Please do not ignore the Reply-To header.
+__________________________________________________________________
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: signature.asc
+Type: application/pgp-signature
+Size: 488 bytes
+Desc: not available
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/fetchmail-users/attachments/20130127/4081240d/attachment.pgp">https://lists.berlios.de/pipermail/fetchmail-users/attachments/20130127/4081240d/attachment.pgp</A>&gt;
+</PRE>
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003329.html">[fetchmail-users] fetchmail basic integration question
+</A></li>
+	<LI>Next message: <A HREF="003331.html">[fetchmail-users] fetchmail basic integration question
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3330">[ date ]</a>
+              <a href="thread.html#3330">[ thread ]</a>
+              <a href="subject.html#3330">[ subject ]</a>
+              <a href="author.html#3330">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,129 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] How to handle mail with broken headers?
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2012-January/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20How%20to%20handle%20mail%20with%20broken%20headers%3F&In-Reply-To=%3Cv3b1zl.x5v3b1zl.62ft.191g.gnus%40asuka.myrkraverk.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003031.html">
+   <LINK REL="Next"  HREF="003036.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] How to handle mail with broken headers?</H1>
+    <B>Johann 'Myrkraverk' Oskarsson</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20How%20to%20handle%20mail%20with%20broken%20headers%3F&In-Reply-To=%3Cv3b1zl.x5v3b1zl.62ft.191g.gnus%40asuka.myrkraverk.com%3E"
+       TITLE="[fetchmail-users] How to handle mail with broken headers?">myrkraverk at aim.com
+       </A><BR>
+    <I>Mon Jan 30 16:53:31 CET 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003031.html">[fetchmail-users] Suppress fetchmail auth failure messages to recipient address.
+</A></li>
+        <LI>Next message: <A HREF="003036.html">[fetchmail-users] How to handle mail with broken headers?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3032">[ date ]</a>
+              <a href="thread.html#3032">[ thread ]</a>
+              <a href="subject.html#3032">[ subject ]</a>
+              <a href="author.html#3032">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi all,
+
+I have a few emails with broken headers in my yahoo mailbox and
+fetchmail refuses to retrieve/forward them.  I have repeated examples of
+
+  fetchmail: reading message
+  <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">myrkraverk at pop.plus-new.mail.fy4.b.yahoo.com</A>:3695 of
+  21103 (3139 octets) (log message incomplete)
+  fetchmail: incorrect header line found while scanning headers
+  fetchmail:  not flushed
+
+In my log file.  And yes, you're right.  I do have 21k emails, and I'm
+not deleting them from my mailbox.
+
+Interestingly enough, that particular mail is now being skipped by
+fetchmail, though it does have a broken header:
+
+  X-YahooFilteredBulk: 206.40.205.124
+  smedley.info&gt;
+  X-Originating-IP: [206.40.205.124]
+
+Checking the UIDL in a manual POP3 session:
+
+  UIDL 3639
+  +OK 3639 AMZEv9EAAUj4R3RxaQBpvXThslA
+
+And test to see if it's been retrieved.
+
+  % grep AMZEv9EAAUj4R3RxaQBpvXThslA .fetchids
+  <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">myrkraverk at pop.mail.yahoo.com</A> AMZEv9EAAUj4R3RxaQBpvXThslA
+
+Yet I can not find it anywhere when I grep for the message id:
+
+  find . -exec grep 47797E8A.3040107 '{}' +
+
+So, apparently there are two issues I'm running into.  One is that I
+have broken headers and somehow would like Fetchmail to handle that.
+Going manually through the log file and picking them out is not really
+what I want to do.  Once, maybe, but there are several such mails (I
+suspect a broken port of Thunderbird to the OS/2 operating system) and
+it can happen again.
+
+Two, for some reason fetchmail has marked a broken message as downloaded
+even though it can't be found locally.  I'm using maildrop as an mda and
+I somehow doupt that is the fault - maildrop has been very good at
+complaining when I managed to misconfigure it.  Of course I did not put
+that particular mail through it just to see what it does -- yet.
+
+Going back to the former issue.  Is there a way to get fetchmail do
+somehow fix/download broken mail?  Perhaps take broken header lines and
+prefix them with X-Fetchmail-Broken-Header: ?
+
+Here is the last such message from my log file.  Apparently I haven't
+gotten a broken mail for some time now:
+
+  fetchmail: reading message
+  <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">myrkraverk at pop.plus-new.mail.fy4.b.yahoo.com</A>:13512 of
+   21115 (306940 octets) (log message incomplete)
+  fetchmail: incorrect header line found while scanning headers
+  fetchmail:  not flushed
+
+And here are both messages from manual POP3 sesssions:
+
+  <A HREF="http://www.myrkraverk.com/~johann/3649.invalid.header">http://www.myrkraverk.com/~johann/3649.invalid.header</A>
+  <A HREF="http://www.myrkraverk.com/~johann/13512.invalid.header">http://www.myrkraverk.com/~johann/13512.invalid.header</A>
+
+
+Johann
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003031.html">[fetchmail-users] Suppress fetchmail auth failure messages to recipient address.
+</A></li>
+	<LI>Next message: <A HREF="003036.html">[fetchmail-users] How to handle mail with broken headers?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3032">[ date ]</a>
+              <a href="thread.html#3032">[ thread ]</a>
+              <a href="subject.html#3032">[ subject ]</a>
+              <a href="author.html#3032">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

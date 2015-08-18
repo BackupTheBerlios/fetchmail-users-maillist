@@ -1,0 +1,136 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Fetchmail's bounce behavior - &quot;can't even	send to postmaster&quot;
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2011-January/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Fetchmail%27s%20bounce%20behavior%20-%20%22can%27t%20even%0A%09send%20to%20postmaster%22&In-Reply-To=%3C508927.66783.qm%40web95710.mail.in.yahoo.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002614.html">
+   <LINK REL="Next"  HREF="002616.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Fetchmail's bounce behavior - &quot;can't even	send to postmaster&quot;</H1>
+    <B>Sunil Shetye</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Fetchmail%27s%20bounce%20behavior%20-%20%22can%27t%20even%0A%09send%20to%20postmaster%22&In-Reply-To=%3C508927.66783.qm%40web95710.mail.in.yahoo.com%3E"
+       TITLE="[fetchmail-users] Fetchmail's bounce behavior - &quot;can't even	send to postmaster&quot;">sunilshetye at rocketmail.com
+       </A><BR>
+    <I>Sat Jan 22 04:10:38 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002614.html">[fetchmail-users] Fetchmail's bounce behavior - &quot;can't even send to	postmaster&quot;
+</A></li>
+        <LI>Next message: <A HREF="002616.html">[fetchmail-users] Fetchmail's bounce behavior - &quot;can't even send to postmaster&quot;
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2615">[ date ]</a>
+              <a href="thread.html#2615">[ thread ]</a>
+              <a href="subject.html#2615">[ subject ]</a>
+              <a href="author.html#2615">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Dear Gerald Hopf,
+
+--- On Fri, 21/1/11, Gerald Hopf &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">fetchmail at public.nv-systems.net</A>&gt; wrote:
+
+&gt;<i> When looking at the verbose output of fetchmail -v -v to
+</I>&gt;<i> see what is happening when fetchmail is trying to send the
+</I>&gt;<i> bounce to the postmaster, the following can be seen:
+</I>
+There are two SMTP transactions involved. You have to check the SMTP messages before the 'Trying to connect to 127.0.0.1/25' below.
+
+&gt;<i> Trying to connect to 127.0.0.1/25...connected.
+</I>
+Here, fetchmail is opening the second SMTP connection for the bounce message.
+
+&gt;<i> fetchmail: SMTP&lt; 220 mail.machine-running-fetchmail.net
+</I>&gt;<i> ESMTP
+</I>&gt;<i> fetchmail: SMTP&gt; HELO
+</I>&gt;<i> envy.machine-running-fetchmail.net
+</I>&gt;<i> fetchmail: SMTP&lt; 250 mail.machine-running-fetchmail.net
+</I>&gt;<i> Ok.
+</I>&gt;<i> fetchmail: SMTP&gt; MAIL FROM:&lt;&gt;
+</I>&gt;<i> fetchmail: SMTP&lt; 250 Ok.
+</I>&gt;<i> fetchmail: SMTP&gt; RCPT TO:&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">postmaster at public.machine-running-fetchmail.net</A>&gt;
+</I>
+Due to 'set no bouncemail', fetchmail is sending the bounce to the postmaster instead of the original sender.
+
+&gt;<i> fetchmail: SMTP&lt; 250 Ok.
+</I>&gt;<i> fetchmail: SMTP&gt; DATA
+</I>&gt;<i> fetchmail: SMTP&lt; 354 Ok.
+</I>&gt;<i> fetchmail: SMTP: (bounce-message body)
+</I>&gt;<i> fetchmail: SMTP&gt;. (EOM)
+</I>&gt;<i> fetchmail: SMTP&lt; 250 Ok. 000000004D39BC6D.00007413
+</I>&gt;<i> fetchmail: SMTP&gt; QUIT
+</I>&gt;<i> fetchmail: SMTP&lt; 221 Bye.
+</I>
+The second SMTP transaction for the bounce message is closed.
+
+&gt;<i> fetchmail: SMTP&gt; RCPT TO:&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">postmaster at public.machine-running-fetchmail.net</A>&gt;
+</I>
+The original SMTP transaction continues. As there are no valid recipients, fetchmail tries to send the mail to the postmaster as a last resort. This is to ensure that the mail is not lost permanently.
+
+&gt;<i> fetchmail: SMTP&lt; 550 5.7.1 Unable to relay
+</I>&gt;<i> fetchmail: can't even send to <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">postmaster at public.machine-running-fetchmail.net</A>!
+</I>&gt;<i> fetchmail: SMTP&gt; RSET
+</I>&gt;<i> fetchmail: SMTP&lt; 250 2.0.0 Resetting
+</I>&gt;<i> 
+</I>&gt;<i> And now I'm really starting to wonder: What is going on
+</I>&gt;<i> here? Fetchmail is sending the mail perfectly fine, then
+</I>&gt;<i> telling the SMTP server to &quot;QUIT&quot;, yet in the next step
+</I>&gt;<i> suddenly wants to define a receipient (for a mail that
+</I>&gt;<i> already has been sent) !
+</I>
+As mentioned above, the second recipient is for the original message and is not linked to the bounce message.
+
+You have to ensure that the postmaster address is valid and acceptable on your smtphost. Ensure that both the bounce message and the the last-resort mails go to the postmaster on the smtphost.
+
+Fetchmail does have several problems related to bouncing:
+
+- fetchmail does not use smtphost for bouncing mails. This is because the mails are being relayed to the original sender and fetchmail is not sure whether the smtphost is open to relaying. So, for bounce messages, fetchmail always uses localhost.
+
+- postmaster option is overloaded. It is being used as a last-resort address and for other internal messages when connected to 'smtphost' and for bounce messages when connected to 'localhost'. The fetchmail user has to ensure that the postmaster is acceptable on both 'smtphost' and 'localhost'.
+
+- When using 'no bouncemail', fetchmail should connect to 'smtphost' as it is sending the mail to 'postmaster' and not to the original sender.
+
+- There is no valid reason why fetchmail should use a last-resort address. After all, if a bounce message has already been sent and accepted, the right thing to do would be to just drop the mail. Adding a default address means that the postmaster would get flooded with all the 'User unknown' messages. This design must have been to ensure that local misconfiguration does not lead to permanent loss of mail.
+
+
+Solution for now:
+- Ensure that 'postmaster' is acceptable on your 'smtphost'.
+- Ensure that 'postmaster' inbox is cleaned up regularly.
+
+-- 
+Sunil Shetye.
+
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002614.html">[fetchmail-users] Fetchmail's bounce behavior - &quot;can't even send to	postmaster&quot;
+</A></li>
+	<LI>Next message: <A HREF="002616.html">[fetchmail-users] Fetchmail's bounce behavior - &quot;can't even send to postmaster&quot;
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2615">[ date ]</a>
+              <a href="thread.html#2615">[ thread ]</a>
+              <a href="subject.html#2615">[ subject ]</a>
+              <a href="author.html#2615">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,107 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] forwarding to Exchange 2010 with TLS
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2011-March/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20forwarding%20to%20Exchange%202010%20with%20TLS&In-Reply-To=%3C4D77655C.4070702%40gmx.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002708.html">
+   <LINK REL="Next"  HREF="002709.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] forwarding to Exchange 2010 with TLS</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20forwarding%20to%20Exchange%202010%20with%20TLS&In-Reply-To=%3C4D77655C.4070702%40gmx.de%3E"
+       TITLE="[fetchmail-users] forwarding to Exchange 2010 with TLS">matthias.andree at gmx.de
+       </A><BR>
+    <I>Wed Mar  9 12:32:44 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002708.html">[fetchmail-users] forwarding to Exchange 2010 with TLS
+</A></li>
+        <LI>Next message: <A HREF="002709.html">[fetchmail-users] help forwarding to Exchange 2010 with TLS
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2715">[ date ]</a>
+              <a href="thread.html#2715">[ thread ]</a>
+              <a href="subject.html#2715">[ subject ]</a>
+              <a href="author.html#2715">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Am 08.03.2011 21:13, schrieb <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">robbticb at wp.pl</A>:
+&gt;<i> how can I forward mails to Exchange 2010 with TLS over Port 587?
+</I>&gt;<i> 
+</I>&gt;<i> receiving mails from POP3 is woking fine.
+</I>&gt;<i> 
+</I>&gt;<i> .fetchmailrc
+</I>&gt;<i> 
+</I>&gt;<i> defaults
+</I>&gt;<i>     proto pop3
+</I>&gt;<i> poll mail.mydomain.com
+</I>&gt;<i>     proto pop3
+</I>&gt;<i>     auth password
+</I>&gt;<i>     user &quot;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">user at mydomain.com</A>&quot;
+</I>&gt;<i>     pass &quot;my-password&quot;
+</I>&gt;<i>     is user-local
+</I>&gt;<i>     ssl
+</I>&gt;<i> 
+</I>&gt;<i> And now forwarding to Exchange (IP=192.168.1.10)
+</I>&gt;<i> 
+</I>&gt;<i>     smtphost 192.168.1.10/587 smtpname <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">exchange-user at 192.168.1.10</A>
+</I>&gt;<i> 
+</I>&gt;<i> Now I get following error from fetchmail:
+</I>&gt;<i> fetchmail: SMTP error: 530 5.7.1 Client was not authenticated
+</I>&gt;<i> SMTP server requires STARTTLS, keeping message.
+</I>&gt;<i> 
+</I>&gt;<i> how can I set Password and TLS for SMTP forwarding?
+</I>
+Unfortunately, current fetchmail releases do not support SSL-wrapped or
+STARTTLS-enabled SMTP.  So you need to work around that.
+
+One option is to run an MTA on the local computer that accepts mail and
+sends to exchange (options are for instance, but not limited to, Postfix
+and Exim, quite possibly also Sendmail).
+
+Another option is to install msmtp &lt;<A HREF="http://msmtp.sourceforge.net/">http://msmtp.sourceforge.net/</A>&gt; and
+run it with the &quot;mda&quot; option.
+Note that this is prone to creating mail loops unless configured
+properly (you may want to use &quot;exchange-user@[192.168.1.10]&quot; rather than
+%T on the command line to avoid that risk) and note that I haven't tried
+that.  Be sure to carefully read the fetchmail manpage WRT the --mda
+option for information on how to (not) quote arguments and variables.
+
+HTH
+
+-- 
+Matthias Andree
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002708.html">[fetchmail-users] forwarding to Exchange 2010 with TLS
+</A></li>
+	<LI>Next message: <A HREF="002709.html">[fetchmail-users] help forwarding to Exchange 2010 with TLS
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2715">[ date ]</a>
+              <a href="thread.html#2715">[ thread ]</a>
+              <a href="subject.html#2715">[ subject ]</a>
+              <a href="author.html#2715">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

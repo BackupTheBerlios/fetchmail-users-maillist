@@ -1,0 +1,85 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Problem with Demon's new Microsoft Exchange	Server 2010 service
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2012-May/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Problem%20with%20Demon%27s%20new%20Microsoft%20Exchange%0A%09Server%202010%20service&In-Reply-To=%3C1336412735.55107.YahooMailNeo%40web192603.mail.sg3.yahoo.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003109.html">
+   <LINK REL="Next"  HREF="003110.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Problem with Demon's new Microsoft Exchange	Server 2010 service</H1>
+    <B>Sunil Shetye</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Problem%20with%20Demon%27s%20new%20Microsoft%20Exchange%0A%09Server%202010%20service&In-Reply-To=%3C1336412735.55107.YahooMailNeo%40web192603.mail.sg3.yahoo.com%3E"
+       TITLE="[fetchmail-users] Problem with Demon's new Microsoft Exchange	Server 2010 service">sunilshetye at rocketmail.com
+       </A><BR>
+    <I>Mon May  7 19:45:35 CEST 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003109.html">[fetchmail-users] Problem with Demon's new Microsoft Exchange	Server 2010 service
+</A></li>
+        <LI>Next message: <A HREF="003110.html">[fetchmail-users] Problem with Demon's new Microsoft Exchange	Server 2010 service
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3111">[ date ]</a>
+              <a href="thread.html#3111">[ thread ]</a>
+              <a href="subject.html#3111">[ subject ]</a>
+              <a href="author.html#3111">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>
+&gt;<i> From: John Connett &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">jrc at skylon.demon.co.uk</A>&gt;
+</I>
+&gt;<i> 
+</I>&gt;<i> &gt; Please include the signature line / output of CAPABILITY command of your imap server in your report. This is to show the imap version supported.
+</I>&gt;<i> 
+</I>&gt;<i> fetchmail: IMAP&lt; * OK The Microsoft Exchange IMAP4 service is ready.
+</I>&gt;<i> fetchmail: IMAP&gt; A0003 CAPABILITY
+</I>&gt;<i> fetchmail: IMAP&lt; * CAPABILITY IMAP4 IMAP4rev1 AUTH=NTLM AUTH=GSSAPI AUTH=PLAIN UIDPLUS CHILDREN IDLE NAMESPACE LITERAL+
+</I>&gt;<i> fetchmail: IMAP&lt; A0003 OK CAPABILITY completed.
+</I>
+Yes, that is what I was looking for.
+
+&gt;<i> I will see if I can find time to experiment.&#160; Unfortunately, this is my main e-mail account so I am keen not to break it!&#160; As noted in my earlier message to the fetchmail-user list the problem message is a meeting reminder with a &quot;meeting.ics&quot; attachment.
+</I>
+If you can view the source of the mail through another email client and check what it looks like, that would help a lot. Otherwise, the only option fetchmail has is to skip over this mail.
+
+
+
+fetchmail does have a problem as it is quitting straightaway on finding an error. Instead, it should have continued to the next mail. Though this would not have completely fixed the problem, it would have atleast not stopped mail traffic completely.
+
+This part can be fixed. However, in that case, the problematic mail may remain permanently unnoticed in the mailbox.
+
+-- 
+Sunil Shetye.
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003109.html">[fetchmail-users] Problem with Demon's new Microsoft Exchange	Server 2010 service
+</A></li>
+	<LI>Next message: <A HREF="003110.html">[fetchmail-users] Problem with Demon's new Microsoft Exchange	Server 2010 service
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3111">[ date ]</a>
+              <a href="thread.html#3111">[ thread ]</a>
+              <a href="subject.html#3111">[ subject ]</a>
+              <a href="author.html#3111">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

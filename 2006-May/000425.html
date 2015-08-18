@@ -1,0 +1,118 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Re: fix lost POP3 deletes
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2006-May/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Re%3A%20fix%20lost%20POP3%20deletes&In-Reply-To=%3C20060524124305.GA2071%40session.bombay.retortsoft.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000424.html">
+   <LINK REL="Next"  HREF="000427.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Re: fix lost POP3 deletes</H1>
+    <B>Sunil Shetye</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Re%3A%20fix%20lost%20POP3%20deletes&In-Reply-To=%3C20060524124305.GA2071%40session.bombay.retortsoft.com%3E"
+       TITLE="[fetchmail-users] Re: fix lost POP3 deletes">shetye at bombay.retortsoft.com
+       </A><BR>
+    <I>Wed May 24 14:43:05 CEST 2006</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000424.html">[fetchmail-users] Re: fix lost POP3 deletes
+</A></li>
+        <LI>Next message: <A HREF="000427.html">[fetchmail-users] Re: fix lost POP3 deletes
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#425">[ date ]</a>
+              <a href="thread.html#425">[ thread ]</a>
+              <a href="subject.html#425">[ subject ]</a>
+              <a href="author.html#425">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Quoting from Matthias Andree's mail on Wed, May 24, 2006:
+&gt;<i> 
+</I>&gt;<i> Yes, it will. But how can we reliably tell &quot;server received QUIT&quot; from
+</I>&gt;<i> &quot;server did not receive QUIT&quot;? Do we get OS errors because the TCP
+</I>&gt;<i> ACK-flagged packets didn't come back, or because we got some ICMP or
+</I>&gt;<i> RST? Was the crucial ICMP perhaps dropped by the usual asinine firewalls
+</I>&gt;<i> that block all inbound ICMP? What kernel and version uses which codes to
+</I>&gt;<i> report issues? We might perhaps try &quot;STAT&quot; before resetting the flags so
+</I>&gt;<i> as to check if the connection was broken at the time we reach the logout
+</I>&gt;<i> code, but how else can we handle this?
+</I>
+I think, the current code which is assuming that mails have been
+expunged only on a successful quit is ok. It is a straighforward code
+which is not hard to understand. Setting UID_EXPUNGED before sending
+QUIT is probably going to make the code harder to debug, especially in
+the edge cases. Another case I can think of is:
+
+POP3&gt; QUIT
+POP3&lt; -ERR Disk full
+
+What is probably required is to directly delete the mails which have
+been deleted (UID_DELETED), but not yet expunged.
+
+&gt;<i> &gt;&gt; In that case, fetchmail would then safely retry the deletion.
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; Undoubtedly, saving the flag is required. However, to keep things
+</I>&gt;<i> &gt; simpler, it would have been better if this issue was fixed separately.
+</I>&gt;<i> 
+</I>&gt;<i> Can you elaborate how to handle this separately?
+</I>
+I mean, your patch is doing three things:
+
+- Adding comments to the code, fixing other minor issues
+- Adding the UID_PENDDELE flag
+- Saving and restoring the DELETED flag in .fetchids
+
+The above issues are equally important. But they are separate issues
+and should be addressed separately. I am saying this only to keep the
+size of the patch under discussion small.
+
+&gt;<i> BTW, we need the &quot;DELETED&quot; flagging in .fetchids to make your
+</I>&gt;<i> &quot;UID_UNSEEN&quot; patch (re-fetch rather than mark seen) anyways. 
+</I>&gt;<i> Else everything becomes &quot;SEEN vs. UNSEEN&quot; next time fetchmail is
+</I>&gt;<i> (re-)started anyways.
+</I>
+Handling it in .fetchids requires more thought. Just adding the
+DELETED word is not enough. Atleast, an expiration time will have to
+be added to the DELETED flag. What if a person runs fetchmail after a
+week or more? In this case, it is probably unsafe to assume that it is
+the same old mail which should be deleted directly.
+
+Another potential problem: what if the user is running the second
+instance of fetchmail with 'keep'? I think, your patch will still
+delete the mail directly (not checked).
+
+-- 
+Sunil Shetye.
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000424.html">[fetchmail-users] Re: fix lost POP3 deletes
+</A></li>
+	<LI>Next message: <A HREF="000427.html">[fetchmail-users] Re: fix lost POP3 deletes
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#425">[ date ]</a>
+              <a href="thread.html#425">[ thread ]</a>
+              <a href="subject.html#425">[ subject ]</a>
+              <a href="author.html#425">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

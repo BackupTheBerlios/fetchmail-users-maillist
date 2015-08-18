@@ -1,0 +1,196 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] fetchmail skipping emails at gmail
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2010-March/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%20skipping%20emails%20at%20gmail&In-Reply-To=%3C520894aa1003081406p1f9520a4r700d0fc9aadbca7f%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002312.html">
+   <LINK REL="Next"  HREF="002301.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] fetchmail skipping emails at gmail</H1>
+    <B>Fernan Aguero</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%20skipping%20emails%20at%20gmail&In-Reply-To=%3C520894aa1003081406p1f9520a4r700d0fc9aadbca7f%40mail.gmail.com%3E"
+       TITLE="[fetchmail-users] fetchmail skipping emails at gmail">fernan.aguero at gmail.com
+       </A><BR>
+    <I>Mon Mar  8 23:06:19 CET 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002312.html">[fetchmail-users] --nosoftbounce option no working in v6.3.14
+</A></li>
+        <LI>Next message: <A HREF="002301.html">[fetchmail-users] fetchmail skipping emails at gmail
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2300">[ date ]</a>
+              <a href="thread.html#2300">[ thread ]</a>
+              <a href="subject.html#2300">[ subject ]</a>
+              <a href="author.html#2300">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+starting a few weeks ago, the number of meesages in my Gmail inbox
+(unread) is constantly increasing.
+
+I run fetchmail/procmail in a FreeBSD box, and check my email using
+mutt ... but the majority of the messages are now being left at gmail,
+and are not delivered to $HOME/mail.
+
+Strangely enough, some messages do get through ... I'm intrigued.
+
+My .fetchmailrc contains this line:
+poll pop.gmail.com protocol pop3 port 995 username &quot;fernan.aguero&quot;
+options ssl set syslog
+
+Below is the output of fetchmail -Nvvvd0 --nosyslog
+
+Any help in diagnosing/fixing this is appreciated. Thanks!
+
+--
+fernan
+
+Script started on Mon Mar  8 18:45:18 2010
+[<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">fernan at gama</A> ~] fetchmail -Nvvvd0 --nosyslog ; exit
+
+Enter password for <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">fernan.aguero at pop.gmail.com</A>:
+fetchmail: 6.3.13 querying pop.gmail.com (protocol POP3) at Mon Mar  8
+18:45:43 2010: poll started
+Trying to connect to 74.125.65.109/995...connected.
+fetchmail: Issuer Organization: Google Inc
+fetchmail: Issuer CommonName: Google Internet Authority
+fetchmail: Server CommonName: pop.gmail.com
+fetchmail: pop.gmail.com key fingerprint:
+92:73:17:4C:34:4B:68:F7:B2:17:71:42:0D:7F:9F:33
+fetchmail: POP3&lt; +OK Gpop ready for requests from 200.45.170.30
+19pf8222272gxk.41
+fetchmail: POP3&gt; CAPA
+fetchmail: POP3&lt; +OK Capability list follows
+fetchmail: POP3&lt; USER
+fetchmail: POP3&lt; RESP-CODES
+fetchmail: POP3&lt; EXPIRE 0
+fetchmail: POP3&lt; LOGIN-DELAY 300
+fetchmail: POP3&lt; X-GOOGLE-VERHOEVEN
+fetchmail: POP3&lt; UIDL
+fetchmail: POP3&lt; .
+fetchmail: POP3&gt; USER fernan.aguero
+fetchmail: POP3&lt; +OK send PASS
+fetchmail: POP3&gt; PASS *
+fetchmail: POP3&lt; +OK Welcome.
+fetchmail: selecting or re-polling default folder
+fetchmail: POP3&gt; STAT
+fetchmail: POP3&lt; +OK 978 7813032
+fetchmail: POP3&gt; LAST
+fetchmail: POP3&lt; -ERR Not supported
+fetchmail: Not supported
+fetchmail: POP3&gt; UIDL
+fetchmail: POP3&lt; +OK
+fetchmail: POP3&lt; 1 GmailId10f34e5156cae662
+fetchmail: POP3&lt; 2 GmailId10f7c76157245d05
+fetchmail: POP3&lt; 3 GmailId10f7f884c1496862
+fetchmail: POP3&lt; 4 GmailId10f7f9f6df2d479f
+fetchmail: POP3&lt; 5 GmailId10f8130e0bdfc193
+fetchmail: POP3&lt; 6 GmailId10fceb6ed3cf18a5
+fetchmail: POP3&lt; 7 GmailId10fceef7ee3bc22a
+fetchmail: POP3&lt; 8 GmailId10fcf1fa06c07750
+fetchmail: POP3&lt; 9 GmailId10fcf2fb2b1eb22c
+fetchmail: POP3&lt; 10 GmailId10fd0f9cbb2f6b35
+
+[snipped lines with similar content for messages 11 to 964]
+
+fetchmail: POP3&lt; 965 GmailId11f67ca9d365fdc7
+fetchmail: POP3&lt; 966 GmailId11f67d1a9c1a538a
+fetchmail: POP3&lt; 967 GmailId11f67d2e26ab5f8e
+fetchmail: POP3&lt; 968 GmailId11f67ea5effcd17e
+fetchmail: POP3&lt; 969 GmailId11f67ea6288331c4
+fetchmail: POP3&lt; 970 GmailId11f6841ec6fc38f8
+fetchmail: POP3&lt; 971 GmailId11f68b82e38fe614
+fetchmail: POP3&lt; 972 GmailId11f6915d47f2c4bf
+fetchmail: POP3&lt; 973 GmailId11f6a0042f179609
+fetchmail: POP3&lt; 974 GmailId121310cb1aabed50
+fetchmail: POP3&lt; 975 GmailId1268806289cd4636
+fetchmail: 975 is unseen
+fetchmail: POP3&lt; 976 GmailId12718234fb717ffd
+fetchmail: 976 is unseen
+fetchmail: POP3&lt; 977 GmailId127208ebfe89e96a
+fetchmail: 977 is unseen
+fetchmail: POP3&lt; 978 GmailId1272b3bf635619fc
+fetchmail: 978 is unseen
+fetchmail: POP3&lt; .
+978 messages (974 seen) for fernan.aguero at pop.gmail.com (7813032 octets).
+skipping message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">fernan.aguero at gmail-pop.l.google.com</A>:1 not flushed
+skipping message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">fernan.aguero at gmail-pop.l.google.com</A>:2 not flushed
+skipping message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">fernan.aguero at gmail-pop.l.google.com</A>:3 not flushed
+skipping message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">fernan.aguero at gmail-pop.l.google.com</A>:4 not flushed
+skipping message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">fernan.aguero at gmail-pop.l.google.com</A>:5 not flushed
+skipping message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">fernan.aguero at gmail-pop.l.google.com</A>:6 not flushed
+skipping message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">fernan.aguero at gmail-pop.l.google.com</A>:7 not flushed
+skipping message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">fernan.aguero at gmail-pop.l.google.com</A>:8 not flushed
+skipping message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">fernan.aguero at gmail-pop.l.google.com</A>:9 not flushed
+skipping message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">fernan.aguero at gmail-pop.l.google.com</A>:10 not flushed
+
+[snipped lines with similar content for messsages 11 to 964]
+
+skipping message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">fernan.aguero at gmail-pop.l.google.com</A>:965 not flushed
+skipping message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">fernan.aguero at gmail-pop.l.google.com</A>:966 not flushed
+skipping message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">fernan.aguero at gmail-pop.l.google.com</A>:967 not flushed
+skipping message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">fernan.aguero at gmail-pop.l.google.com</A>:968 not flushed
+skipping message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">fernan.aguero at gmail-pop.l.google.com</A>:969 not flushed
+skipping message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">fernan.aguero at gmail-pop.l.google.com</A>:970 not flushed
+skipping message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">fernan.aguero at gmail-pop.l.google.com</A>:971 not flushed
+skipping message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">fernan.aguero at gmail-pop.l.google.com</A>:972 not flushed
+skipping message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">fernan.aguero at gmail-pop.l.google.com</A>:973 not flushed
+skipping message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">fernan.aguero at gmail-pop.l.google.com</A>:974 not flushed
+fetchmail: POP3&gt; LIST 975
+fetchmail: POP3&lt; +OK 975 3526
+fetchmail: POP3&gt; TOP 975 99999999
+
+[snipped]
+
+fetchmail: POP3&gt; QUIT
+fetchmail: POP3&lt; +OK Farewell.
+fetchmail: SMTP&gt; QUIT
+fetchmail: SMTP&lt; 221 2.0.0 gama.iib.unsam.edu.ar closing connection
+fetchmail: 6.3.13 querying pop.gmail.com (protocol POP3) at Mon Mar  8
+18:45:51 2010: poll completed
+fetchmail: swapping UID lists
+fetchmail: Writing fetchids file.
+fetchmail: normal termination, status 0
+fetchmail: Writing fetchids file.
+exit
+
+Script done on Mon Mar  8 18:45:51 2010
+
+-- 
+fernan
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002312.html">[fetchmail-users] --nosoftbounce option no working in v6.3.14
+</A></li>
+	<LI>Next message: <A HREF="002301.html">[fetchmail-users] fetchmail skipping emails at gmail
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2300">[ date ]</a>
+              <a href="thread.html#2300">[ thread ]</a>
+              <a href="subject.html#2300">[ subject ]</a>
+              <a href="author.html#2300">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

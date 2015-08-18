@@ -1,0 +1,85 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Re: IMAP problem (fetchmail 6.3.1-pre1)
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2005-December/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Re%3A%20IMAP%20problem%20%28fetchmail%206.3.1-pre1%29&In-Reply-To=%3C20051216235922.GA4549%40jdc%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000177.html">
+   <LINK REL="Next"  HREF="000180.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Re: IMAP problem (fetchmail 6.3.1-pre1)</H1>
+    <B>Jason White</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Re%3A%20IMAP%20problem%20%28fetchmail%206.3.1-pre1%29&In-Reply-To=%3C20051216235922.GA4549%40jdc%3E"
+       TITLE="[fetchmail-users] Re: IMAP problem (fetchmail 6.3.1-pre1)">jasonjgw at internode.on.net
+       </A><BR>
+    <I>Sat Dec 17 00:59:22 CET 2005</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000177.html">[fetchmail-users] Re: IMAP problem (fetchmail 6.3.1-pre1)
+</A></li>
+        <LI>Next message: <A HREF="000180.html">[fetchmail-users] [PATCH] Re: IMAP problem (fetchmail 6.3.1-pre1)
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#179">[ date ]</a>
+              <a href="thread.html#179">[ thread ]</a>
+              <a href="subject.html#179">[ subject ]</a>
+              <a href="author.html#179">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Fri, Dec 16, 2005 at 05:01:58PM +0530, Sunil Shetye wrote:
+ 
+&gt;<i> Your IMAP server is also sending UID information in the response. It
+</I>&gt;<i> needs to be checked if sending UIDs in response is valid or not.
+</I>Yes, I was wondering whether the server was conforming to the RFC.
+&gt;<i> 
+</I>&gt;<i> fetchmail is not expecting UIDs in the response. Hence the protocol
+</I>&gt;<i> error. Could you try this patch and tell me if it works for you? Note
+</I>&gt;<i> that you may get more errors if UIDs are sent in further responses
+</I>&gt;<i> (like RFC822.TEXT) which have not been reached yet.
+</I>With the patch applied, Fetchmail read and delivered the entire message. Here
+is the log of the body portion:
+Dec 17 10:38:26 jdc fetchmail[4404]: IMAP&gt; A0007 FETCH 1 BODY.PEEK[TEXT] 
+Dec 17 10:38:26 jdc fetchmail[4404]: IMAP&lt; * 1 FETCH (UID 17 BODY[TEXT] {94} 
+Dec 17 10:38:26 jdc fetchmail[4404]:  (94 body octets) 
+Dec 17 10:38:26 jdc fetchmail[4404]: IMAP&lt; ) 
+
+Dec 17 10:38:26 jdc fetchmail[4404]: IMAP&lt; A0007 OK FETCH completed 
+
+I can carry out whatever further testing you consider appropriate, either to
+this or to any generalized version of the patch that you decide to create.
+I haven't tried messages with attachments yet, but thought I should report the
+initial results.
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000177.html">[fetchmail-users] Re: IMAP problem (fetchmail 6.3.1-pre1)
+</A></li>
+	<LI>Next message: <A HREF="000180.html">[fetchmail-users] [PATCH] Re: IMAP problem (fetchmail 6.3.1-pre1)
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#179">[ date ]</a>
+              <a href="thread.html#179">[ thread ]</a>
+              <a href="subject.html#179">[ subject ]</a>
+              <a href="author.html#179">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,119 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Fetchmail not working as expected
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2007-May/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Fetchmail%20not%20working%20as%20expected&In-Reply-To=%3C20070531015536.7FDA14EA9%40bellona.xo.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001063.html">
+   <LINK REL="Next"  HREF="001068.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Fetchmail not working as expected</H1>
+    <B>Tejas Jin</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Fetchmail%20not%20working%20as%20expected&In-Reply-To=%3C20070531015536.7FDA14EA9%40bellona.xo.com%3E"
+       TITLE="[fetchmail-users] Fetchmail not working as expected">txjin at intelliepi.com
+       </A><BR>
+    <I>Thu May 31 03:55:36 CEST 2007</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001063.html">[fetchmail-users] Fetchmail not working as expected
+</A></li>
+        <LI>Next message: <A HREF="001068.html">[fetchmail-users] Fetchmail not working as expected
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1065">[ date ]</a>
+              <a href="thread.html#1065">[ thread ]</a>
+              <a href="subject.html#1065">[ subject ]</a>
+              <a href="author.html#1065">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>
+---- Tejas Jin &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">txjin at intelliepi.com</A>&gt; wrote:
+&gt;<i>
+</I>&gt;<i> 
+</I>&gt;<i> I setup the following on my computer and run fetchmail as a user &quot;testjin&quot;
+</I>
+Sorry that was an error and should be txjin
+
+
+ on my computer.  Fetchmail appears to connect and get mails, it is deleting the mails off of the pop server.  But I can't find them.  I look in /var/spool/mail and don't see them there.  I have been watching /var/spool/maillog on my computer and nothing appears to be happening while I have fetchmail running.
+&gt;<i> 
+</I>&gt;<i> I checked 'netstat -lnp' and postfix appears to be listening to port 25.
+</I>&gt;<i> 
+</I>&gt;<i> Right now my big concern is that the mail is disappearing out of my mailbox on my ISP, but it isn't showing up anywhere.
+</I>&gt;<i> ------------------------------------------------------
+</I>&gt;<i> 
+</I>&gt;<i> .fetchmailrc
+</I>&gt;<i> 
+</I>&gt;<i> poll pop3.intelliepi.com proto pop3
+</I>&gt;<i>         user '<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">txjin at intelliepi.com</A>' there with password 'mypass' is txjin
+</I>&gt;<i> 
+</I>&gt;<i> ------------------------------------------
+</I>&gt;<i> 
+</I>&gt;<i> postfix main.cf
+</I>&gt;<i> -----------------------------------------
+</I>&gt;<i> alias_database = hash:/etc/aliases
+</I>&gt;<i> alias_maps = hash:/etc/aliases
+</I>&gt;<i> command_directory = /usr/sbin
+</I>&gt;<i> config_directory = /etc/postfix
+</I>&gt;<i> daemon_directory = /usr/libexec/postfix
+</I>&gt;<i> debug_peer_level = 2
+</I>&gt;<i> html_directory = no
+</I>&gt;<i> inet_interfaces = all
+</I>&gt;<i> mail_owner = postfix
+</I>&gt;<i> mailq_path = /usr/bin/mailq.postfix
+</I>&gt;<i> manpage_directory = /usr/share/man
+</I>&gt;<i> mydestination = $myhostname, localhost.$mydomain, localhost, $myhostname.$mydomain, $mydomain, localhost.localdomain
+</I>&gt;<i> mydomain = internal.com
+</I>&gt;<i> myhostname = test
+</I>&gt;<i> mynetworks = 192.168.5.0/24, 127.0.0.0/8
+</I>&gt;<i> newaliases_path = /usr/bin/newaliases.postfix
+</I>&gt;<i> queue_directory = /var/spool/postfix
+</I>&gt;<i> readme_directory = /usr/share/doc/postfix-2.2.10/README_FILES
+</I>&gt;<i> sample_directory = /usr/share/doc/postfix-2.2.10/samples
+</I>&gt;<i> sendmail_path = /usr/sbin/sendmail.postfix
+</I>&gt;<i> setgid_group = postdrop
+</I>&gt;<i> unknown_local_recipient_reject_code = 550
+</I>&gt;<i> --------------------------------------------------------
+</I>&gt;<i> 
+</I>&gt;<i> virtual
+</I>&gt;<i> -----------------------------------------------------
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">txjin at intelliepi.com</A>        txjin
+</I>&gt;<i> 
+</I>&gt;<i> _______________________________________________
+</I>&gt;<i> fetchmail-users mailing list
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">fetchmail-users at lists.berlios.de</A>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">https://lists.berlios.de/mailman/listinfo/fetchmail-users</A>
+</I>&gt;<i> 
+</I>
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001063.html">[fetchmail-users] Fetchmail not working as expected
+</A></li>
+	<LI>Next message: <A HREF="001068.html">[fetchmail-users] Fetchmail not working as expected
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1065">[ date ]</a>
+              <a href="thread.html#1065">[ thread ]</a>
+              <a href="subject.html#1065">[ subject ]</a>
+              <a href="author.html#1065">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

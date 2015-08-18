@@ -1,0 +1,128 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] fetchmail basic integration question
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2013-January/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%20basic%20integration%20question&In-Reply-To=%3C51025.120.148.195.2.1359377335.squirrel%40www.holisticgp.com.au%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003332.html">
+   <LINK REL="Next"  HREF="003334.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] fetchmail basic integration question</H1>
+    <B>Dr Michael Daly</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%20basic%20integration%20question&In-Reply-To=%3C51025.120.148.195.2.1359377335.squirrel%40www.holisticgp.com.au%3E"
+       TITLE="[fetchmail-users] fetchmail basic integration question">gp at holisticgp.com.au
+       </A><BR>
+    <I>Mon Jan 28 13:48:55 CET 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003332.html">[fetchmail-users] fetchmail basic integration question
+</A></li>
+        <LI>Next message: <A HREF="003334.html">[fetchmail-users] Multidrop substring
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3333">[ date ]</a>
+              <a href="thread.html#3333">[ thread ]</a>
+              <a href="subject.html#3333">[ subject ]</a>
+              <a href="author.html#3333">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>thanks for all your trouble...I'm breathing again!
+
+Deleted the existing mda command from fetchmail then configured postfix to
+use maildrop the easy way, viz:
+
+/etc/postfix/main.cf:
+    mailbox_command = /path/to/maildrop -d ${USER}
+
+Then overcome some syntax issues in maildrop and all seems well, so far!
+
+Thanks again!
+
+Michael
+
+Am 27.01.2013 17:25, schrieb Rob MacGregor:
+&gt;<i> On Sun, Jan 27, 2013 at 1:39 PM, Dr Michael Daly &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">gp at holisticgp.com.au</A>&gt;
+</I>&gt;<i> wrote:
+</I>&gt;&gt;<i> Hi
+</I>&gt;&gt;<i> I am seeking advice on the overall process with *postfix* and *dovecot*
+</I>&gt;&gt;<i> when fetchmail is configured to download mail, and then hand it over to
+</I>&gt;&gt;<i> maildrop for delivery via the ../bin/mda command. I know that if
+</I>&gt;&gt;<i> postfix
+</I>&gt;&gt;<i> is stopped, fetchmail complains that it can't deliver to the localhost.
+</I>&gt;&gt;<i> So
+</I>&gt;&gt;<i> does this mean that postfix and dovecot are serving as middlemen here?
+</I>&gt;&gt;<i> I
+</I>&gt;&gt;<i> am trying to better understand whats happening here.
+</I>&gt;<i>
+</I>&gt;<i> Without your fetchmail configuration file (fetchmailrc), any command
+</I>&gt;<i> line options you're using *and* the actual log entries/errors in
+</I>&gt;<i> question people are reduced to guessing. Please provide all of that
+</I>&gt;<i> and the chances are your problem will be easily solved.
+</I>&gt;<i>
+</I>&gt;&gt;<i> I'm not seeking a specific explanation at this stage as I am not
+</I>&gt;&gt;<i> certain
+</I>&gt;&gt;<i> my problem is fetchmail related. I just what to better understand the
+</I>&gt;&gt;<i> process and the order of processing.
+</I>&gt;<i>
+</I>&gt;<i> The order of processing depends on how you've configured fetchmail.
+</I>&gt;<i> The only thing that's certain is that fetchmail retrieves the emails
+</I>&gt;<i> from an IMAP, POP3 or other server and hands them over to *something*
+</I>&gt;<i> for further processing. What that is, and what it does, are up to you.
+</I>
+Michael actually posted some material to the maildrop list, and it was
+archived (as thread) at (through the awkward and unwieldy forums
+interface):
+
+&lt;<A HREF="http://sourceforge.net/mailarchive/forum.php?thread_name=50987.120.148.195.2.1359265602.squirrel%40www.holisticgp.com.au&amp;forum_name=courier-maildrop">http://sourceforge.net/mailarchive/forum.php?thread_name=50987.120.148.195.2.1359265602.squirrel%40www.holisticgp.com.au&amp;forum_name=courier-maildrop</A>&gt;
+
+And Michael will either have to
+
+- tell Postfix (through mailbox_transport or mailbox_command, or a
+.forward rule) to route message through maildrop
+
+or, alternatively,
+
+- tell fetchmail to invoke maildrop as MDA.
+
+If dovecot-lda were to come into play, it would then be called from
+~/.mailfilter.
+
+_______________________________________________
+fetchmail-users mailing list
+<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">fetchmail-users at lists.berlios.de</A>
+<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">https://lists.berlios.de/mailman/listinfo/fetchmail-users</A>
+
+
+</PRE>
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003332.html">[fetchmail-users] fetchmail basic integration question
+</A></li>
+	<LI>Next message: <A HREF="003334.html">[fetchmail-users] Multidrop substring
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3333">[ date ]</a>
+              <a href="thread.html#3333">[ thread ]</a>
+              <a href="subject.html#3333">[ subject ]</a>
+              <a href="author.html#3333">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

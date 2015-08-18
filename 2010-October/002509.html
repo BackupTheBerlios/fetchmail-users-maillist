@@ -1,0 +1,125 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] multidrop RC configuration help
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2010-October/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20multidrop%20RC%20configuration%20help&In-Reply-To=%3C4CB624D1.4000302%40JeffMcKinzie.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002508.html">
+   <LINK REL="Next"  HREF="002510.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] multidrop RC configuration help</H1>
+    <B>Jeffrey Shawn McKinzie</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20multidrop%20RC%20configuration%20help&In-Reply-To=%3C4CB624D1.4000302%40JeffMcKinzie.com%3E"
+       TITLE="[fetchmail-users] multidrop RC configuration help">Jeff at JeffMcKinzie.com
+       </A><BR>
+    <I>Wed Oct 13 23:29:53 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002508.html">[fetchmail-users] multidrop RC configuration help
+</A></li>
+        <LI>Next message: <A HREF="002510.html">[fetchmail-users] multidrop RC configuration help
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2509">[ date ]</a>
+              <a href="thread.html#2509">[ thread ]</a>
+              <a href="subject.html#2509">[ subject ]</a>
+              <a href="author.html#2509">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>  Thanks for all of your help!  I should have tried the newer version 
+before I contacted you.  I wanted to make as few changes as possible to 
+the system and thought I must have had my syntax wrong in the RC file.
+
+You're doing a great job maintaining source. Fetchmail really works well!
+
+On 10/13/10 1:19 AM, Matthias Andree wrote:
+&gt;<i> Am 12.10.2010 23:08, schrieb Jeffrey Shawn McKinzie:
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> On 10/12/10 12:28 PM, Matthias Andree wrote:
+</I>&gt;&gt;&gt;<i> Am 12.10.2010 19:40, schrieb Jeffrey Shawn McKinzie:
+</I>&gt;&gt;&gt;&gt;<i>     Good news.  I was not able to download the test version with the link
+</I>&gt;&gt;&gt;&gt;<i> you send.  (seemed to just hang)
+</I>&gt;&gt;&gt;<i> The website uses a redirector and works for me - does your downloader follow
+</I>&gt;&gt;&gt;<i> redirects? It needs to.
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;<i> *I used curl... I'm sure it had issues with the redirector.*
+</I>&gt;<i> Yup. You need to add -L to the curl command line. Sorry for not mentioning that.
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;&gt;<i> *I need to have a catchall address for unlisted email to go to a single
+</I>&gt;&gt;<i> address.  I was thinking the postmaster option would work. Can it be set
+</I>&gt;&gt;<i> for each host?  The production RC polls about 25 accounts on different
+</I>&gt;&gt;<i> servers.  It would be ideal if I could set or reset the postmaster for
+</I>&gt;&gt;<i> each server.
+</I>&gt;<i> Unfortunately, it is a global option. The - a bit awkward for 25 accounts -
+</I>&gt;<i> workaround would be to create 25 directories, with one fetchmailrc file per
+</I>&gt;<i> account, and use the FETCHMAILHOME environment variable to point to those
+</I>&gt;<i> directories.  Perhaps you can script the generation of rcfiles.  Say:
+</I>&gt;<i>
+</I>&gt;<i> basedir/account01/fetchmailrc   # contains data/postmaster for account 1
+</I>&gt;<i> basedir/account02/fetchmailrc   # ditto for account 2
+</I>&gt;<i> ...
+</I>&gt;<i>
+</I>&gt;<i> Then you'd run:
+</I>&gt;<i>
+</I>&gt;<i> env FETCHMAILHOME=basedir/account01 fetchmail --logfile ...
+</I>&gt;<i> env FETCHMAILHOME=basedir/account02 fetchmail --logfile ...
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;&gt;<i> Finally, the system is using a batch file to call fetchmail with the
+</I>&gt;&gt;<i> command line switches:
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> #!/bin/sh
+</I>&gt;&gt;<i> /usr/bin/fetchmail -d 60 -t 45 -f /root/.fetchmailrc --logfile
+</I>&gt;&gt;<i> /var/log/fetchmail.log
+</I>&gt;&gt;<i> sleep 61
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Wouldn't it be better to put the options in the RC file?  I think I
+</I>&gt;&gt;<i> could put daemon interval, timeout and the logfile location  in the RC.
+</I>&gt;&gt;<i> *
+</I>&gt;<i> Certainly possible.  If you want to run fetchmail from inittab, runit,
+</I>&gt;<i> daemontools, Solaris's SMF, upstart, or similar supervisors, you can add &quot;-N&quot; or
+</I>&gt;<i> --nodetach to fetchmail's command line or rcfile. That keeps it in the
+</I>&gt;<i> foreground in spite of daemon mode and allows for reliable restarts.
+</I>&gt;<i>
+</I>&gt;<i> Also, if you're forwarding by SMTP, or your MDA is designed and documented to be
+</I>&gt;<i> safe in set-uid or set-gid mode, you don't need to and should not run fetchmail
+</I>&gt;<i> as root -- you can instead create a dedicated unprivileged fetchmail user and
+</I>&gt;<i> use that.
+</I>&gt;<i>
+</I>&gt;<i> HTH
+</I>&gt;<i>
+</I></PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002508.html">[fetchmail-users] multidrop RC configuration help
+</A></li>
+	<LI>Next message: <A HREF="002510.html">[fetchmail-users] multidrop RC configuration help
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2509">[ date ]</a>
+              <a href="thread.html#2509">[ thread ]</a>
+              <a href="subject.html#2509">[ subject ]</a>
+              <a href="author.html#2509">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

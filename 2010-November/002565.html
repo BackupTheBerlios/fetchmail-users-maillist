@@ -1,0 +1,119 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Which certificate to use
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2010-November/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Which%20certificate%20to%20use&In-Reply-To=%3C1290564289.1733.102.camel%40localhost.localdomain%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002564.html">
+   <LINK REL="Next"  HREF="002566.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Which certificate to use</H1>
+    <B>Chris</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Which%20certificate%20to%20use&In-Reply-To=%3C1290564289.1733.102.camel%40localhost.localdomain%3E"
+       TITLE="[fetchmail-users] Which certificate to use">cpollock at embarqmail.com
+       </A><BR>
+    <I>Wed Nov 24 03:04:49 CET 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002564.html">[fetchmail-users] Which certificate to use
+</A></li>
+        <LI>Next message: <A HREF="002566.html">[fetchmail-users] Fetchmail is not marking mail as read.
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2565">[ date ]</a>
+              <a href="thread.html#2565">[ thread ]</a>
+              <a href="subject.html#2565">[ subject ]</a>
+              <a href="author.html#2565">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Wed, 2010-11-24 at 02:52 +0100, Matthias Andree wrote:
+&gt;<i> Am 24.11.2010 02:03, schrieb Chris:
+</I>&gt;<i> &gt; I noticed again today the key fingerprint mismatch when fetching my mail
+</I>&gt;<i> &gt; from my domain toadnet.com which is hosted elsewhere. When I ran 
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; openssl s_client -connect toadnet.com:993 -showcerts
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; I got four certificates and I'm not sure now which one to put in my
+</I>&gt;<i> &gt; ~/certs/.certs folder. How would I determine which one to use? Or is it
+</I>&gt;<i> &gt; necessary since one of the certs in the chain is self-signed and I have
+</I>&gt;<i> &gt; the valid ssl fingerprint in my .fetchmailrc file.
+</I>&gt;<i> 
+</I>&gt;<i> That usually means that the root signing certificate is untrusted, i. e.
+</I>&gt;<i> not found by OpenSSL (not found, c_rehash not run, wrong path given),
+</I>&gt;<i> root certificates are usually self-signed.
+</I>&gt;<i> 
+</I>&gt;<i> I'd suggest that you upgrade fetchmail to 6.3.18, it would have told you
+</I>&gt;<i> just that:
+</I>&gt;<i> 
+</I>&gt;<i> &gt; $ LC_ALL=C fetchmail --username nobody toadnet.com --ssl --sslcertck --sslcertfile /dev/null -p imap
+</I>&gt;<i> &gt; Enter password for <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">nobody at toadnet.com</A>: 
+</I>&gt;<i> &gt; fetchmail: Server certificate verification error: self signed certificate in certificate chain
+</I>&gt;<i> &gt; fetchmail: This means that the root signing certificate (issued for /L=ValiCert Validation Network/O=ValiCert, Inc./OU=ValiCert Class 2 Policy Validation Authority/CN=<A HREF="http://www.valicert.com//emailAddress=info@valicert.com">http://www.valicert.com//emailAddress=info@valicert.com</A>) is not in the trusted CA certificate locations, or that c_rehash needs to be run on the certificate directory. For details, please see the documentation of --sslcertpath and --sslcertfile in the manual page.
+</I>&gt;<i> &gt; 3072607884:error:14090086:SSL routines:SSL3_GET_SERVER_CERTIFICATE:certificate verify failed:s3_clnt.c:1056:
+</I>&gt;<i> &gt; fetchmail: SSL connection failed.
+</I>&gt;<i> &gt; fetchmail: socket error while fetching from <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">nobody at toadnet.com</A>
+</I>&gt;<i> &gt; fetchmail: Query status=2 (SOCKET)
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> You MUST NOT harvest any of the certificates obtained through s_client
+</I>&gt;<i> because you can't be sure they aren't furnished by a man in the middle
+</I>&gt;<i> attacker.
+</I>&gt;<i>   I'm not sure which brain fart caused such documentation to be
+</I>&gt;<i> written...  where did you find documentation that hinted to copying
+</I>&gt;<i> certificates from the s_client command quoted above?  It needs to be purged.
+</I>&gt;<i> 
+</I>&gt;<i> You SHOULD instead download the root signing certificate through a
+</I>&gt;<i> separate secure channel, it appears the certs are available from
+</I>&gt;<i> <A HREF="https://certs.starfieldtech.com/anonymous/repository.seam">https://certs.starfieldtech.com/anonymous/repository.seam</A> - but again,
+</I>&gt;<i> your browser should NOT issue certificate warnings for downloading, look
+</I>&gt;<i> for the &quot;ValiCert Legacy Certificate Chain&quot;.
+</I>
+Thanks Matthias I'll upgrade from 6.3.17 to 6.3.18 this weekend and
+thanks for the link also.
+
+Chris
+
+
+-- 
+Chris
+KeyID 0xE372A7DA98E6705C
+
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: signature.asc
+Type: application/pgp-signature
+Size: 197 bytes
+Desc: This is a digitally signed message part
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/fetchmail-users/attachments/20101123/d92f9a91/attachment.pgp">https://lists.berlios.de/pipermail/fetchmail-users/attachments/20101123/d92f9a91/attachment.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002564.html">[fetchmail-users] Which certificate to use
+</A></li>
+	<LI>Next message: <A HREF="002566.html">[fetchmail-users] Fetchmail is not marking mail as read.
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2565">[ date ]</a>
+              <a href="thread.html#2565">[ thread ]</a>
+              <a href="subject.html#2565">[ subject ]</a>
+              <a href="author.html#2565">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

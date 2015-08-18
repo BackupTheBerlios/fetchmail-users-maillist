@@ -1,0 +1,96 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] cliche newbie &quot;unable to get local issuer	certificate&quot; error
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2009-October/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20cliche%20newbie%20%22unable%20to%20get%20local%20issuer%0A%09certificate%22%20error&In-Reply-To=%3C4AEB6D80.4060304%40gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002126.html">
+   <LINK REL="Next"  HREF="002128.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] cliche newbie &quot;unable to get local issuer	certificate&quot; error</H1>
+    <B>Tyler Earman</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20cliche%20newbie%20%22unable%20to%20get%20local%20issuer%0A%09certificate%22%20error&In-Reply-To=%3C4AEB6D80.4060304%40gmail.com%3E"
+       TITLE="[fetchmail-users] cliche newbie &quot;unable to get local issuer	certificate&quot; error">rem.intellegare at gmail.com
+       </A><BR>
+    <I>Fri Oct 30 23:49:36 CET 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002126.html">[fetchmail-users] fetchmail 6.3.13 regression/bug fix release	available (STABLE)
+</A></li>
+        <LI>Next message: <A HREF="002128.html">[fetchmail-users] cliche newbie &quot;unable to get local issuer	certificate&quot; error
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2127">[ date ]</a>
+              <a href="thread.html#2127">[ thread ]</a>
+              <a href="subject.html#2127">[ subject ]</a>
+              <a href="author.html#2127">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Sorry for the annoying question but I can't seem to find a solution to
+this particular issue.
+
+I'm trying to connect fetchmail to gmail (via pop) but every time I try
+to connect, I get the error
+Oct 30 17:44:20 myhostname fetchmail[12505]: 6.3.9-rc2 querying
+pop.gmail.com (protocol POP3) at Fri 30 Oct 2009 05:44:20 PM CDT: poll
+started
+Oct 30 17:44:20 myhostname fetchmail[12505]: Trying to connect to
+74.125.47.109/995...connected.
+Oct 30 17:44:20 myhostname fetchmail[12505]: Server certificate
+verification error: unable to get local issuer certificate
+Oct 30 17:44:20 myhostname fetchmail[12505]: SSL connection failed.
+
+In my .fetchmailrc file, I DO have the ssl certificate path specified
+poll pop.gmail.com with proto POP3 and options no dns
+    user '<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">rem.intellegare at gmail.com</A>' with pass &quot;mypassword&quot;  is
+'myusername' here options ssl sslcertck  sslcertpath
+'/home/myusernamecerts' keep
+    smtphost localhost
+
+and oddly enough when I run the command
+openssl s_client -connect pop.gmail.com:995 -CApath /home/myusername/certs/
+
+I get
+
+Verify return code: 0 (ok)
+
+Which (I believe) verifies that the connection was made properly.
+
+Anyone know what the problem is off the cuff?
+
+Thanks very much for the help.
+
+-Tyler
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002126.html">[fetchmail-users] fetchmail 6.3.13 regression/bug fix release	available (STABLE)
+</A></li>
+	<LI>Next message: <A HREF="002128.html">[fetchmail-users] cliche newbie &quot;unable to get local issuer	certificate&quot; error
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2127">[ date ]</a>
+              <a href="thread.html#2127">[ thread ]</a>
+              <a href="subject.html#2127">[ subject ]</a>
+              <a href="author.html#2127">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,114 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] fetchmail apprently uses mboxo format, which irrecoverably corrupts mail
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2012-October/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%20apprently%20uses%20mboxo%20format%2C%0A%20which%20irrecoverably%20corrupts%20mail&In-Reply-To=%3CCAJCMLO_%2Br9W88BykSf_-syWBUx3D4fqHrCLRBm47a%2BpTnkhs_A%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003261.html">
+   <LINK REL="Next"  HREF="003263.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] fetchmail apprently uses mboxo format, which irrecoverably corrupts mail</H1>
+    <B>Rob MacGregor</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%20apprently%20uses%20mboxo%20format%2C%0A%20which%20irrecoverably%20corrupts%20mail&In-Reply-To=%3CCAJCMLO_%2Br9W88BykSf_-syWBUx3D4fqHrCLRBm47a%2BpTnkhs_A%40mail.gmail.com%3E"
+       TITLE="[fetchmail-users] fetchmail apprently uses mboxo format, which irrecoverably corrupts mail">rob.macgregor at gmail.com
+       </A><BR>
+    <I>Fri Oct 26 19:09:22 CEST 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003261.html">[fetchmail-users] fetchmail apprently uses mboxo format,	which irrecoverably corrupts mail
+</A></li>
+        <LI>Next message: <A HREF="003263.html">[fetchmail-users] fetchmail apprently uses mboxo format, which irrecoverably corrupts mail (NOTABUG... in fetchmail)
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3262">[ date ]</a>
+              <a href="thread.html#3262">[ thread ]</a>
+              <a href="subject.html#3262">[ subject ]</a>
+              <a href="author.html#3262">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Fri, Oct 26, 2012 at 2:55 PM, Christoph Anton Mitterer
+&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">calestyo at scientia.net</A>&gt; wrote:
+&gt;<i> On Fri, 2012-10-26 at 10:19 +0100, Rob MacGregor wrote:
+</I>&gt;&gt;<i> Fetchmail doesn't use any format
+</I>&gt;<i> Well it must... the mailserver gives you a mail with header and body via
+</I>&gt;<i> pop3 or imap ... and &quot;you&quot; store it then either as mbox, maildir etc.
+</I>&gt;<i> And it's not the mail server that tells you how the From_ lines look (in
+</I>&gt;<i> case of mbox) or how to name the single maildir files.
+</I>
+No, it doesn't. It takes the entire email as provided by the remote
+POP3/IMAP/whatever server and passes it over to the MTA or MDA you've
+configured. It doesn't store any files at all, it doesn't have that
+capability.
+
+If you don't believe me feel free to read the man page, the FAQ and
+the source ;)
+
+&gt;<i> Have you tried it with the transcript I've attached? And are you using
+</I>&gt;<i> mbox?
+</I>
+I'm using it with a local SMTP server, which passes it to my IMAP
+server for final storage.
+
+&gt;<i> Well...
+</I>&gt;<i> a) fetchmail doesn't contact a MTA or MDA, I use it with pop3 or
+</I>&gt;<i> IMAP,... and that's the mail server's business, not the MTA's or MDA's.
+</I>
+Really? It contacts something to arrange for local mail delivery.
+
+&gt;&gt;<i> As however you've not provided any
+</I>&gt;&gt;<i> details on your configuration that's about all I can guess - section
+</I>&gt;&gt;<i> G3 of the FAQ details the information we need to help you.
+</I>&gt;<i> I saw that but haven't though it would be necessary, as the issue seems
+</I>&gt;<i> simply to be that fetchmail uses the broken mboxo format, nevertheless:
+</I>&gt;<i> 1) Debian sid
+</I>&gt;<i> 2) fetchmail package from Debian sid
+</I>&gt;<i> 3) postifx, qmail  ... maildrop, sieve
+</I>&gt;<i> 4) fetchmail with the fecthmailrc:
+</I>&gt;<i> poll pop3.example.org with proto POP3
+</I>&gt;<i> user <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">foo at example.org</A> there with password &quot;bar&quot; is &quot;foo&quot; here
+</I>
+Right, so it is being handled over to your local SMTP server -
+whatever is listening on port 25 on loopback. Whatever is changing
+your email is either happening there, or it's happening at your ISP
+when they store it for the POP3 server you're connecting to.
+
+-- 
+                 Please keep list traffic on the list.
+
+Rob MacGregor
+      Whoever fights monsters should see to it that in the process he
+        doesn't become a monster.                  Friedrich Nietzsche
+</PRE>
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003261.html">[fetchmail-users] fetchmail apprently uses mboxo format,	which irrecoverably corrupts mail
+</A></li>
+	<LI>Next message: <A HREF="003263.html">[fetchmail-users] fetchmail apprently uses mboxo format, which irrecoverably corrupts mail (NOTABUG... in fetchmail)
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3262">[ date ]</a>
+              <a href="thread.html#3262">[ thread ]</a>
+              <a href="subject.html#3262">[ subject ]</a>
+              <a href="author.html#3262">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

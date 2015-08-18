@@ -1,0 +1,115 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] fetchmail and socks5
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2007-March/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%20and%20socks5&In-Reply-To=%3C43ea8d070703181613y625ed774x2d20b5bebd8019c5%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000897.html">
+   <LINK REL="Next"  HREF="000901.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] fetchmail and socks5</H1>
+    <B>Rob MacGregor</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%20and%20socks5&In-Reply-To=%3C43ea8d070703181613y625ed774x2d20b5bebd8019c5%40mail.gmail.com%3E"
+       TITLE="[fetchmail-users] fetchmail and socks5">rob.macgregor at gmail.com
+       </A><BR>
+    <I>Mon Mar 19 00:13:08 CET 2007</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000897.html">[fetchmail-users] fetchmail and socks5
+</A></li>
+        <LI>Next message: <A HREF="000901.html">[fetchmail-users] fetchmail and socks5
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#898">[ date ]</a>
+              <a href="thread.html#898">[ thread ]</a>
+              <a href="subject.html#898">[ subject ]</a>
+              <a href="author.html#898">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On 3/18/07, Matthias Andree &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">matthias.andree at gmx.de</A>&gt; wrote:
+&gt;<i>
+</I>&gt;<i> Well, this feature has been automatically enabled in fetchmail since at
+</I>&gt;<i> least 6.2.5, and I think we should keep breaking compatibility in this
+</I>&gt;<i> respect until the next minor or major release -- I'll certainly consider
+</I>&gt;<i> changing the default for fetchmail 6.4 or 7.0 or whatever version, and
+</I>&gt;<i> I'm very much inclined to choose defaults that do not surprise the user.
+</I>&gt;<i>
+</I>&gt;<i> I wonder if there is really a common expectation. Other users might
+</I>&gt;<i> expect that *if* they have a socks.conf, *then* socks-enabled
+</I>&gt;<i> applications should use it.
+</I>&gt;<i>
+</I>&gt;<i> This isn't clear to me, and it's a bet the maintainer will always lose -
+</I>&gt;<i> one group will be happy and quiet, and the other group will shout. :-)
+</I>
+As long as the default is clearly documented it shouldn't matter what
+it is.  I think the real problem here has been the lack of clear
+documentation.
+
+I'd be tempted to go with your second paragraph - if fetchmail is
+linked with the socks libraries *and* the required socks config file
+is in place then, by default, use socks.  As long as there is a
+command line argument to either disable socks or use an alternative
+socks config file (which implicitly enables socks) then that should be
+fine.
+
+&gt;<i> Not my essay, and I'm not enthusiastic about several of the assumptions
+</I>&gt;<i> fetchmail makes, and I'm still pondering whether a complete redesign is
+</I>&gt;<i> more of an effort than rewriting existing code...
+</I>
+Which is more effort to maintain :)
+
+&gt;<i> If fetchmail were actively enabling socks, then we might just log
+</I>&gt;<i> additional information to the connecting... (&quot;via socks server XYZ port
+</I>&gt;<i> N&quot;) but this isn't the case. I haven't looked too deep into SOCKS yet
+</I>&gt;<i> and I'm short on time. I plan to do 6.3.8-rc2 this week and 6.3.8 this
+</I>&gt;<i> month, so that I can move on to actually opening the 6.4 branch.
+</I>
+It probably wouldn't hurt for the --configdump option to include the
+fact that socks is compiled in - which, in theory, is little more
+than:
+
+#ifdef HAVE_SOCKS
+    &quot;'socks',&quot;
+#endif
+
+after line 186 of conf.c
+
+-- 
+                 Please keep list traffic on the list.
+
+Rob MacGregor
+      Whoever fights monsters should see to it that in the process he
+        doesn't become a monster.                  Friedrich Nietzsche
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000897.html">[fetchmail-users] fetchmail and socks5
+</A></li>
+	<LI>Next message: <A HREF="000901.html">[fetchmail-users] fetchmail and socks5
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#898">[ date ]</a>
+              <a href="thread.html#898">[ thread ]</a>
+              <a href="subject.html#898">[ subject ]</a>
+              <a href="author.html#898">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

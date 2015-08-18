@@ -1,0 +1,111 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Fetching mail repeatedly but	without	duplication.
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2008-May/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Fetching%20mail%20repeatedly%20but%0A%09without%09duplication.&In-Reply-To=%3C4832E945.4000901%40gmx.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001532.html">
+   <LINK REL="Next"  HREF="001535.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Fetching mail repeatedly but	without	duplication.</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Fetching%20mail%20repeatedly%20but%0A%09without%09duplication.&In-Reply-To=%3C4832E945.4000901%40gmx.de%3E"
+       TITLE="[fetchmail-users] Fetching mail repeatedly but	without	duplication.">matthias.andree at gmx.de
+       </A><BR>
+    <I>Tue May 20 17:07:49 CEST 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001532.html">[fetchmail-users] Fetching mail repeatedly but without	duplication.
+</A></li>
+        <LI>Next message: <A HREF="001535.html">[fetchmail-users] Fetching mail repeatedly but without	duplication.
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1534">[ date ]</a>
+              <a href="thread.html#1534">[ thread ]</a>
+              <a href="subject.html#1534">[ subject ]</a>
+              <a href="author.html#1534">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Pratap Subrahmanyam schrieb:
+&gt;<i> Thanks, Matthias. Please see my notes below.
+</I>&gt;<i> 
+</I>&gt;<i> On Mon, May 19, 2008 at 9:39 AM, Matthias Andree &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">matthias.andree at gmx.de</A>&gt;
+</I>&gt;<i> wrote:
+</I>&gt;<i> 
+</I>
+&gt;<i> From my reading of the man page for fetchmail, fetchlimit restricts the
+</I>&gt;<i> number of emails fetched to a particular amount, it isn't a way to specify
+</I>&gt;<i> the start/end index of the emails to fetch. Is it? If so, can you write down
+</I>&gt;<i> the incantation for me?
+</I>
+No, your interpretation is correct, it's just chopping the whole trunk into
+smaller chunks.
+
+&gt;&gt;&gt;<i> b) Ask fetchmail to retry without having it fetch the same mail
+</I>&gt;&gt;<i> repeatedly?
+</I>&gt;&gt;&gt;<i> For instance, let us say I said &quot;fetchmail -ak&quot; and it failed at 13894th
+</I>&gt;&gt;&gt;<i> email. I'd like to restart it and have it start fetching from the 13895th
+</I>&gt;&gt;&gt;<i> email. Can this be done? How?
+</I>&gt;&gt;<i> ...this isn't too helpful with IMAP4 since fetchmail cannot track which
+</I>&gt;&gt;<i> mails it has seen or not in this case, POP3 UIDL (then without -a) would
+</I>&gt;&gt;<i> likely work better.
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> Using POP3 isn't an workable alternative - since our exchange server's POP3
+</I>&gt;<i> support is notoriously flaky. I have to rely on IMAP4.
+</I>
+Maybe, but if you start with an empty .fetchids, &quot;fetchmail --uidl --proto
+pop3 --keep&quot; will be able to track by itself which mail it has seen, and
+also fetch all. If it gets interrupted, restart and it will pick up where
+it left off, with the overhead of retransmitting the UID list (one line per
+mail, typically on the order of magnitude of 15 - 50 bytes) and fetching
+the mail that was jammed.
+
+&gt;&gt;&gt;<i> c) Is there any other clever way?
+</I>&gt;&gt;<i> Perhaps there are better tools for a one-time synchronization. offlineimap,
+</I>&gt;&gt;<i> imapsync, getmail - one of these might work.
+</I>&gt;&gt;<i>
+</I>&gt;<i> I will begin to familiarise myself with these  tools now. (I haven't needed
+</I>&gt;<i> to so far, so I know next to nothing about them).
+</I>
+Let us know which one did the job best for you if you happen to go that route.
+
+Thanks - and sorry for the inconveniences of missing features.
+
+Best regards
+
+-- 
+Matthias Andree
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001532.html">[fetchmail-users] Fetching mail repeatedly but without	duplication.
+</A></li>
+	<LI>Next message: <A HREF="001535.html">[fetchmail-users] Fetching mail repeatedly but without	duplication.
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1534">[ date ]</a>
+              <a href="thread.html#1534">[ thread ]</a>
+              <a href="subject.html#1534">[ subject ]</a>
+              <a href="author.html#1534">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

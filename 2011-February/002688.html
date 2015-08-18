@@ -1,0 +1,116 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] strange polling errors
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2011-February/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20strange%20polling%20errors&In-Reply-To=%3C20110228115809.4f47b84d%40scorpio%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002687.html">
+   <LINK REL="Next"  HREF="002689.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] strange polling errors</H1>
+    <B>Jerry</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20strange%20polling%20errors&In-Reply-To=%3C20110228115809.4f47b84d%40scorpio%3E"
+       TITLE="[fetchmail-users] strange polling errors">fetchmail.user at seibercom.net
+       </A><BR>
+    <I>Mon Feb 28 17:58:09 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002687.html">[fetchmail-users] strange polling errors
+</A></li>
+        <LI>Next message: <A HREF="002689.html">[fetchmail-users] strange polling errors
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2688">[ date ]</a>
+              <a href="thread.html#2688">[ thread ]</a>
+              <a href="subject.html#2688">[ subject ]</a>
+              <a href="author.html#2688">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Mon, 28 Feb 2011 15:39:56 +0100
+Matthias Andree &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">matthias.andree at gmx.de</A>&gt; articulated:
+
+&gt;<i> Am 28.02.2011 15:25, schrieb Jonathan Buschmann:
+</I>&gt;<i> 
+</I>&gt;<i> &gt; At precisely 28/02/2011 15.01, with renowned erudition Matthias
+</I>&gt;<i> &gt; Andree eloquently scribed:
+</I>&gt;<i> 
+</I>&gt;<i> &gt;&gt; Possible reasons include:
+</I>&gt;<i> 
+</I>&gt;<i> ...
+</I>&gt;<i> 
+</I>&gt;<i> &gt;&gt; - the Exchange server closing the connection after 5 minutes of
+</I>&gt;<i> &gt;&gt; idle time when it should allow 30 minutes.  I've never operated an
+</I>&gt;<i> &gt;&gt; Exchange server and know nothing about configuration options.
+</I>
+Per RFC-2177
+
+&lt;quote&gt;
+   The server MAY consider a client inactive if it has an IDLE command
+   running, and if such a server has an inactivity timeout it MAY log
+   the client off implicitly at the end of its timeout period.  Because
+   of that, clients using IDLE are advised to terminate the IDLE and
+   re-issue it at least every 29 minutes to avoid being logged off.
+   This still allows a client to receive immediate mailbox updates even
+   though it need only &quot;poll&quot; at half hour intervals.
+&lt;/quote&gt;
+
+&gt;<i> &gt; Likely. strange that no one else has seen it, if it's this. Unless
+</I>&gt;<i> &gt; it's something configurable on Exchange.
+</I>&gt;<i> 
+</I>&gt;<i> Possibly other clients reconnect silently. Fetchmail doesn't do that.
+</I>
+According to the info on
+&quot;<A HREF="http://technet.microsoft.com/en-us/library/ff459598.aspx">http://technet.microsoft.com/en-us/library/ff459598.aspx</A>&quot;, the default
+setting is 30 minutes for the 2010 version. I have not been able to
+confirm it, however, it appears that the older 2007 version defaults to
+20 minutes. Now, if the version is &lt;=2005, then all bets are off.
+
+If the OP could post the version and possible the output of making a
+connection to the Exchange server, a better guess could be made as to
+where the problem lays.
+
+I have confirmed that the settings are configurable on the Exchange
+server. Of course, the user has to know what version he/she is going to
+configure.
+
+-- 
+Jerry &#9996;
+<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">Fetchmail.user at seibercom.net</A>
+
+Disclaimer: off-list followups get on-list replies or get ignored.
+Please do not ignore the Reply-To header.
+__________________________________________________________________
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002687.html">[fetchmail-users] strange polling errors
+</A></li>
+	<LI>Next message: <A HREF="002689.html">[fetchmail-users] strange polling errors
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2688">[ date ]</a>
+              <a href="thread.html#2688">[ thread ]</a>
+              <a href="subject.html#2688">[ subject ]</a>
+              <a href="author.html#2688">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

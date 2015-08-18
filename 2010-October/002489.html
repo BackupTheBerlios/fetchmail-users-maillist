@@ -1,0 +1,91 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] multidrop RC configuration help
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2010-October/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20multidrop%20RC%20configuration%20help&In-Reply-To=%3C4CB2652F.6020508%40gmx.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002490.html">
+   <LINK REL="Next"  HREF="002491.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] multidrop RC configuration help</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20multidrop%20RC%20configuration%20help&In-Reply-To=%3C4CB2652F.6020508%40gmx.de%3E"
+       TITLE="[fetchmail-users] multidrop RC configuration help">matthias.andree at gmx.de
+       </A><BR>
+    <I>Mon Oct 11 03:15:27 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002490.html">[fetchmail-users] multidrop RC configuration help
+</A></li>
+        <LI>Next message: <A HREF="002491.html">[fetchmail-users] multidrop RC configuration help
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2489">[ date ]</a>
+              <a href="thread.html#2489">[ thread ]</a>
+              <a href="subject.html#2489">[ subject ]</a>
+              <a href="author.html#2489">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Am 10.10.2010 18:16, schrieb Jeffrey Shawn McKinzie:
+&gt;<i>  Updating fedora isn't an option,  I do not control the system it runs
+</I>&gt;<i> on.  I can update fetchmail if needed but I'd like to stick with the
+</I>&gt;<i> standard RPM's so I can use YUM for updates.
+</I>
+If updating isn't an option, then shutting down is.
+
+a) If you don't control the system, you can't run YUM anyways, so this
+   argument is void.
+
+b) Fedora Core 8 is not getting YUM updates anyways, so no point in
+   sticking to whatever RPM shipped in early 2009.
+
+   Support for FC8 was discontinued in January 2009; the barndoor-sized
+   security holes have been wide open for just as long.
+
+&gt;<i> With my current rc all emails get forwarded to <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">User at New.domain</A>, which is
+</I>&gt;<i> the first mapping in the list.  I believe the issue is the headers but
+</I>&gt;<i> don't know where to go from there.  Here are the headers from an email
+</I>&gt;<i> sent to <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">user1 at original.domain</A>:
+</I>
+Nowhere, unless the ISP cooperates, changes its setup, and adds required
+headers. See the home.pages.de link from my previous mail.
+
+In the example message you posted, there is no header that would convey
+the envelope recipient.  Until that is in place, there is no way forward
+for you, you can only use singledrop with that mailbox.
+
+-- 
+Matthias Andree
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002490.html">[fetchmail-users] multidrop RC configuration help
+</A></li>
+	<LI>Next message: <A HREF="002491.html">[fetchmail-users] multidrop RC configuration help
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2489">[ date ]</a>
+              <a href="thread.html#2489">[ thread ]</a>
+              <a href="subject.html#2489">[ subject ]</a>
+              <a href="author.html#2489">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

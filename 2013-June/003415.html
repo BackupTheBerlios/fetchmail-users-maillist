@@ -1,0 +1,106 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Fetchmail Exchange RT4 Errors
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2013-June/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Fetchmail%20Exchange%20RT4%20Errors&In-Reply-To=%3C51CC8D54.3030103%40gmx.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003414.html">
+   <LINK REL="Next"  HREF="003416.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Fetchmail Exchange RT4 Errors</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Fetchmail%20Exchange%20RT4%20Errors&In-Reply-To=%3C51CC8D54.3030103%40gmx.de%3E"
+       TITLE="[fetchmail-users] Fetchmail Exchange RT4 Errors">matthias.andree at gmx.de
+       </A><BR>
+    <I>Thu Jun 27 21:07:00 CEST 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003414.html">[fetchmail-users] Fetchmail Exchange RT4 Errors
+</A></li>
+        <LI>Next message: <A HREF="003416.html">[fetchmail-users] Fetchmail Exchange RT4 Errors
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3415">[ date ]</a>
+              <a href="thread.html#3415">[ thread ]</a>
+              <a href="subject.html#3415">[ subject ]</a>
+              <a href="author.html#3415">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Am 27.06.2013 16:58, schrieb Shane Vedvik:
+&gt;<i> I use Fetchmail 6.3.25+NTLM+SSL+NLS to get email from our Exchange 2010 Server, but for some reason I keep getting an error on attempting to connect:
+</I>&gt;<i> 
+</I>
+Please provide more logging from fetchmail running with -vvvv flags.
+
+The log is too terse to discern the required information about your
+setup, and appears to contain information from different runs.
+
+I see two errors, though:
+
+1. your mda, the rt-mailgate, is apparently malfunctioning, returns a
+temporary condition (75 is EX_TEMPFAIL on most computers) and causes
+fetchmail to leave the message on server, without processing it;
+
+2. fetchmail itself cannot establish SSL/TLS-based trust to the Exchange
+server.  This might be a hint that Exchange uses improperly configured
+certificates, possibly self-signed.  What you are seeing are warnings
+only, &quot;Warning: the connection is insecure, continuing anyways.&quot;.
+
+
+If it does that deliberately, the self-signed certificates must be
+installed on the computer running fetchmail, usually in /etc/ssl/certs/,
+or /usr/ssl/certs, or you can also use them in PEM format and store them
+in a file you designate with --sslcertfile.  (Conversion from DER to PEM
+format is possible with:
+
+openssl x509 -inform DER -outform PEM -in inputcert.der outputcert.pem
+
+and then fetchmail --sslcertfile outputcert.pem)
+
+
+Talk to the Exchange server's operator to have them provide you with the
+certfication authority's (CA) certificate of the CA that signed the
+Exchange &quot;exch1&quot; server certificate.  If they are clueless, mail them
+the README.SSL-SERVER that shipped with fetchmail.
+
+
+Regarding --sslcertck, you just specify that on the fetchmail command
+line, or you put the word sslcertck into your .fetchmailrc file, after
+the &quot;user/pass&quot; specifications and before the next poll or skip.  It
+will make fetchmail drop the connection until trust is properly established.
+
+HTH
+
+</PRE>
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003414.html">[fetchmail-users] Fetchmail Exchange RT4 Errors
+</A></li>
+	<LI>Next message: <A HREF="003416.html">[fetchmail-users] Fetchmail Exchange RT4 Errors
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3415">[ date ]</a>
+              <a href="thread.html#3415">[ thread ]</a>
+              <a href="subject.html#3415">[ subject ]</a>
+              <a href="author.html#3415">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

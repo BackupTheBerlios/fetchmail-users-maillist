@@ -1,0 +1,280 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Fetchmail suddenly started segfaulting with	Exchange
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2012-August/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Fetchmail%20suddenly%20started%20segfaulting%20with%0A%09Exchange&In-Reply-To=%3C20120812224242.GA5615%40auricle.charter.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003208.html">
+   <LINK REL="Next"  HREF="003210.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Fetchmail suddenly started segfaulting with	Exchange</H1>
+    <B>J. Porter Clark</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Fetchmail%20suddenly%20started%20segfaulting%20with%0A%09Exchange&In-Reply-To=%3C20120812224242.GA5615%40auricle.charter.net%3E"
+       TITLE="[fetchmail-users] Fetchmail suddenly started segfaulting with	Exchange">jpc+fetchmail at porterclark.com
+       </A><BR>
+    <I>Mon Aug 13 00:42:42 CEST 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003208.html">[fetchmail-users] Spam gets left behind
+</A></li>
+        <LI>Next message: <A HREF="003210.html">[fetchmail-users] Fetchmail suddenly started segfaulting with	Exchange
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3209">[ date ]</a>
+              <a href="thread.html#3209">[ thread ]</a>
+              <a href="subject.html#3209">[ subject ]</a>
+              <a href="author.html#3209">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>At work, I'm using fetchmail on a FreeBSD box to pull mail
+from an institutional Microsoft Exchange server that I have no
+control over and no insight into.  This has been working for
+over a year with no problems once the magic was discovered.
+Suddenly, at 6 PM last Friday, fetchmail started segfaulting.
+Because I haven't upgraded fetchmail or its runtime dependencies
+in some time, I'm at a loss to explain.  I suspect that the
+Exchange server was upgraded or a cert was changed out or
+something else was modified on the server side; the timing
+suggests an after-hours pre-weekend config change.  But if this
+is true, it is disturbing that the Exchange server could respond
+in such a way as to cause fetchmail to segfault.
+
+% cat .fetchmailrc
+poll imap02.ndc.nasa.gov protocol imap user [USERNAME - REDACTED] ssl sslcertpath /usr/local/share/certs pass &quot;[PASSWORD - REDACTED]&quot; keep limit 0
+
+% fetchmail -V
+This is fetchmail release 6.3.21+RPA+NTLM+SDPS+SSL+OPIE+NLS.
+
+Copyright (C) 2002, 2003 Eric S. Raymond
+Copyright (C) 2004 Matthias Andree, Eric S. Raymond,
+                   Robert M. Funk, Graham Wilson
+Copyright (C) 2005 - 2006, 2010 - 2011 Sunil Shetye
+Copyright (C) 2005 - 2011 Matthias Andree
+Fetchmail comes with ABSOLUTELY NO WARRANTY. This is free software, and you
+are welcome to redistribute it under certain conditions. For details,
+please see the file COPYING in the source or documentation directory.
+This product includes software developed by the OpenSSL Project
+for use in the OpenSSL Toolkit. (<A HREF="http://www.openssl.org/">http://www.openssl.org/</A>)
+
+Fallback MDA: (none)
+FreeBSD drum.msfc.nasa.gov 9.1-PRERELEASE FreeBSD 9.1-PRERELEASE #0: Tue Jul 24 09:37:48 CDT 2012     <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">jpc at drum.msfc.nasa.gov</A>:/usr/obj/usr/src/sys/BORODIN9  i386
+Taking options from command line and /home/jpc/.fetchmailrc
+Idfile is /home/jpc/.fetchids
+Fetchmail will forward misaddressed multidrop messages to jpc.
+Options for retrieving from [USERNAME - REDACTED]@imap02.ndc.nasa.gov:
+  True name of server is imap02.ndc.nasa.gov.
+  Protocol is IMAP.
+  All available authentication methods will be tried.
+  SSL encrypted sessions enabled.
+  SSL trusted certificate directory: /usr/local/share/certs
+  Server nonresponse timeout is 300 seconds (default).
+  Default mailbox selected.
+  Only new messages will be retrieved (--all off).
+  Fetched messages will be kept on the server (--keep on).
+  Old messages will not be flushed before message retrieval (--flush off).
+  Oversized messages will not be flushed before message retrieval (--limitflush off).
+  Rewrite of server-local addresses is enabled (--norewrite off).
+  Carriage-return stripping is disabled (stripcr off).
+  Carriage-return forcing is disabled (forcecr off).
+  Interpretation of Content-Transfer-Encoding is enabled (pass8bits off).
+  MIME decoding is disabled (mimedecode off).
+  Idle after poll is disabled (idle off).
+  Nonempty Status lines will be kept (dropstatus off)
+  Delivered-To lines will be kept (dropdelivered off)
+  Fetch message size limit is 100 (--fetchsizelimit 100).
+  Do binary search of UIDs during 3 out of 4 polls (--fastuidl 4).
+  Messages will be SMTP-forwarded to: localhost (default)
+  Single-drop mode: 1 local name recognized.
+  No UIDs saved from this host.
+
+$ fetchmail -Nvvvd0 --nosyslog
+Old UID list from imap02.ndc.nasa.gov: &lt;empty&gt;
+Scratch list of UIDs: &lt;empty&gt;
+fetchmail: removing stale lockfile
+fetchmail: 6.3.21 querying imap02.ndc.nasa.gov (protocol IMAP) at Sun Aug 12 17:17:15 2012: poll started
+Trying to connect to [REDACTED]/993...connected.
+fetchmail: Certificate chain, from root to peer, starting at depth 2:
+fetchmail: Issuer Organization: Entrust.net
+fetchmail: Issuer CommonName: Entrust.net Certification Authority (2048)
+fetchmail: Subject CommonName: Entrust.net Certification Authority (2048)
+fetchmail: Certificate at depth 1:
+fetchmail: Issuer Organization: Entrust.net
+fetchmail: Issuer CommonName: Entrust.net Certification Authority (2048)
+fetchmail: Subject CommonName: Entrust Certification Authority - L1C
+fetchmail: Server certificate:
+fetchmail: Issuer Organization: Entrust, Inc.
+fetchmail: Issuer CommonName: Entrust Certification Authority - L1C
+fetchmail: Subject CommonName: Autodiscover.nasa.gov
+fetchmail: Subject Alternative Name: Autodiscover.nasa.gov
+fetchmail: Subject Alternative Name: Webmail.nasa.gov
+fetchmail: Subject Alternative Name: imap02.ndc.nasa.gov
+fetchmail: Subject Alternative Name: mail02.ndc.nasa.gov
+fetchmail: Subject Alternative Name: imap01.ndc.nasa.gov
+fetchmail: Subject Alternative Name: mail01.ndc.nasa.gov
+fetchmail: imap02.ndc.nasa.gov key fingerprint: [REDACTED]
+fetchmail: IMAP&lt; * OK The Microsoft Exchange IMAP4 service is ready.
+fetchmail: IMAP&gt; A0001 CAPABILITY
+fetchmail: IMAP&lt; * CAPABILITY IMAP4 IMAP4rev1 AUTH=NTLM AUTH=GSSAPI AUTH=PLAIN IDLE NAMESPACE LITERAL+
+fetchmail: IMAP&lt; A0001 OK CAPABILITY completed.
+fetchmail: Protocol identified as IMAP4 rev 1
+fetchmail: IMAP&gt; A0002 AUTHENTICATE NTLM
+fetchmail: IMAP&lt; +
+NTLM Request:
+      Ident = NTLMSSP
+      mType = 1
+      Flags = 0000b207
+       User = [USERNAME - REDACTED]
+     Domain = 
+fetchmail: IMAP&gt; TlRMTVNTUAABAAAAB7IAABUAFQAgAAAAAAAAABUAAABuZGNcanBjbGFyazEvanBjbGFyazE=
+fetchmail: IMAP&lt; A0002 NO AUTHENTICATE failed.
+NTLM Challenge:
+      Ident = M4&#222;&#229;[&#134;&#150;&#139;&#136;]?&#243;efP&#211;&#185;%V&#134;:&#244;&#176;j&#150;|a-Z&#211;&#185;&#188;fvy&#138;2&#164;F&#228;[&#223;&#189;&#231;&#182;&#216;&amp;&#217;&#201;o$&amp;&#168;&#175;p&#184;l&#146;&#171;&#139;&#129;e&#191;&#233;$&#224;&#211;J&#233;G&#151;=&#228;&#166;^&#241;&#159;~&#165;K2k&#138;&#183;&#175;&#242;&#249;rZ&#189;AY&#219;J&#145;
+&#218;&#181;&#213;=!qm&#252;&#204;&#179;E&#252;&#168;[R~&#236;&#147;
+(&#215;8&#152;N&#254;&#214;2&#135;&#196;&#181;&#241;&#229;@&amp;J&#139;&#243;v&#242;&#130;&#232;&#234;j&#215;Vd&#225;&#204;&#213;&#140;&#251;+j&#245;D;&#183;=&#176;
+      mType = 1063094411
+Segmentation fault (core dumped)
+
+$ gdb /usr/local/bin/fetchmail fetchmail.core
+GNU gdb 6.1.1 [FreeBSD]
+Copyright 2004 Free Software Foundation, Inc.
+GDB is free software, covered by the GNU General Public License, and you are
+welcome to change it and/or distribute copies of it under certain conditions.
+Type &quot;show copying&quot; to see the conditions.
+There is absolutely no warranty for GDB.  Type &quot;show warranty&quot; for details.
+This GDB was configured as &quot;i386-marcel-freebsd&quot;...
+Core was generated by `fetchmail'.
+Program terminated with signal 11, Segmentation fault.
+Reading symbols from /usr/local/lib/libintl.so.9...done.
+Loaded symbols for /usr/local/lib/libintl.so.9
+Reading symbols from /usr/local/lib/libiconv.so.3...done.
+Loaded symbols for /usr/local/lib/libiconv.so.3
+Reading symbols from /usr/lib/libopie.so.7...done.
+Loaded symbols for /usr/lib/libopie.so.7
+Reading symbols from /lib/libcrypt.so.5...done.
+Loaded symbols for /lib/libcrypt.so.5
+Reading symbols from /lib/libkvm.so.5...done.
+Loaded symbols for /lib/libkvm.so.5
+Reading symbols from /usr/lib/libcom_err.so.5...done.
+Loaded symbols for /usr/lib/libcom_err.so.5
+Reading symbols from /usr/lib/libssl.so.6...done.
+Loaded symbols for /usr/lib/libssl.so.6
+Reading symbols from /lib/libcrypto.so.6...done.
+Loaded symbols for /lib/libcrypto.so.6
+Reading symbols from /lib/libc.so.7...done.
+Loaded symbols for /lib/libc.so.7
+Reading symbols from /lib/libmd.so.5...done.
+Loaded symbols for /lib/libmd.so.5
+Reading symbols from /usr/local/lib/nss_winbind.so.1...done.
+Loaded symbols for /usr/local/lib/nss_winbind.so.1
+Reading symbols from /lib/libthr.so.3...done.
+Loaded symbols for /lib/libthr.so.3
+Reading symbols from /libexec/ld-elf.so.1...done.
+Loaded symbols for /libexec/ld-elf.so.1
+#0  0x0807651f in unicodeToString (p=0xe4da729b &lt;Address 0xe4da729b out of bounds&gt;, len=13049)
+    at smbutil.c:108
+108	    buf[i] = *p &amp; 0x7f;
+[New Thread 2887d300 (LWP 100677/fetchmail)]
+(gdb) backtrace full
+#0  0x0807651f in unicodeToString (p=0xe4da729b &lt;Address 0xe4da729b out of bounds&gt;, len=13049)
+    at smbutil.c:108
+	i = 0
+	buf = 0x28a00000 &quot;&quot;
+	bufsiz = 13050
+#1  0x08076837 in dumpSmbNtlmAuthChallenge (fp=0x284a0828, challenge=0xbfbfb8c8) at smbutil.c:162
+No locals.
+#2  0x080762b4 in ntlm_helper (sock=3, ctl=0x28814540, proto=0x8089f11 &quot;IMAP&quot;) at ntlmsubr.c:61
+	request = {ident = &quot;NTLMSSP&quot;, msgType = 1, flags = 45575, user = {len = 21, maxlen = 21, 
+    offset = 32}, domain = {len = 0, maxlen = 0, offset = 21}, 
+  buffer = &quot;[USERNAME - REDACTED]\bJ(&#204;&#190;&#191;&#191;\230&#192;&#191;&#191;&#166;&#183;G(&#164;&#212;I(\001\000\000\000&#168;&#192;&#191;&#191;&#166;&#183;G(\000&#250;I(\000\000\000\000\001\000\000\000\000&#160;\n(h&#189;&#191;&#191;,&#190;&#191;&#191;&#224;&#189;&#191;&#191;(&#190;&#191;&#191;&#164;4\037(\000\000\000\000d\035\n(\030\225I(X&#190;&#191;&#191;\004&#190;&#191;&#191;]\&quot;\t(\030\225I(h&#190;&#191;&#191;&#188;&#190;&#191;&#191; +\t(\000f\n(\000h\n(\t\000\000\000\000l\n(\v\000\000\000\f&#193;&#191;&#191;]&#177;\b\b\000&#250;I(#\000\000\0008&#193;&#191;&#191;,\237\b\b\000&#250;I((\bJ(_&#177;\b\bt&#234;&#191;&#191;\000\000\000\000\v\000\000\000,\237\b\b&quot;..., bufIndex = 21}
+	challenge = {ident = &quot;\003M4&#222;&#229;[\206\226&quot;, msgType = 1063094411, uDomain = {len = 26099, 
+    maxlen = 20582, offset = 622508499}, flags = 981882391, challengeData = &quot;&#244;&#176;j\226|a-Z&quot;, 
+  reserved = &quot;&#211;&#185;&#188;fvy\2122&quot;, emptyString = {len = 18084, maxlen = 23524, offset = 3068640735}, 
+  buffer = &quot;&#216;\004&amp;&#217;&#201;o\016$&amp;&#168;\005&#175;p&#184;l\222&#171;\213\201e&#191;\001&#233;$&#224;&#211;\020J&#233;G\227=&#228;&#166;^\020&#241;\237~\033&#165;K2k\212&#183;&#175;&#242;&#249;\frZ&#189;AY\020\027&#219;J\221\205&#218;&#181;&#213;=\031\024\033!qm&#252;&#204;&#179;E&#252;&#168;[R~&#236;\223\205(&#215;8\006\230N&#254;&#214;2\207&#196;&#181;&#241;&#229;@&amp;J\213&#243;\030v&#242;\202&#232;&#234;\027j&#215;Vd&#225;&#204;&#213;\214&#251;+\026j&#245;D;&#183;=&#176;\000^l+E\214&#213;&#181;\036\222/\036A\210&#209;@\&quot;,\&quot;v&#253;\036s*&#250;\201OC(&#244;\006eAj&#179;\000&#163;&#239;&#211;dz&#216;&#229;)&#202;&#229;3&#200;i&#161;nI&#249;\002&#246;O&#174;&#172;\223\205(&#188;98(\220\223\205(\v{3(&quot;..., bufIndex = 35}
+	response = {ident = &quot;&#164;&#212;I(&#200;&#180;&#191;&#191;&quot;, msgType = 675845593, lmResponse = {len = 2320, maxlen = 10314, 
+    offset = 3217012016}, ntResponse = {len = 20, maxlen = 0, offset = 1}, uDomain = {len = 24, maxlen = 0, 
+    offset = 681873568}, uUser = {len = 9, maxlen = 0, offset = 675927204}, uWks = {len = 11, maxlen = 0, 
+    offset = 3217012000}, sessionKey = {len = 46296, maxlen = 49087, offset = 675927204}, flags = 20, 
+  buffer = &quot;0&#181;&#191;&#191;&#232;&#180;&#191;&#191;&#251;\211H(0&#185;&#191;&#191;0&#181;&#191;&#191;\024\000\000\000&#164;&#212;I(\020\tJ(\024\000\000\000&#248;&#180;&#191;&#191;Y\212H(0&#185;&#191;&#191;&#164;&#212;I((&#186;&#191;&#191;&#160;&#220;G(0&#185;&#191;&#191;\000&#250;I(\034&#184;\a\b&#184;&#186;&#191;&#191;\210&#186;&#191;&#191;]&#177;\b\b\000&#250;I(0&#185;&#191;&#191;&#184;&#186;&#191;&#191;\034&#184;\a\b\000&#250;I(i&#197;@(Server certificate:\n&#188;98(&#251;\000\t(&#245;\226%(&#245;\226%(@&#165;7(Y\001\000\000&#188;98(\000\000\000\000\027\000\000\000&#224;&#181;&#191;&#191;(&#182;&#191;&#191;&#204;&#178;$(&#224;\201\207(d\035\n(&#225;\b\000\000\000&#160;\n(\b\000\000\000I\002\000\000&quot;..., bufIndex = 1421050471}
+	msgbuf = &quot;A0002 NO AUTHENTICATE failed.\000\000\000AAAAABUAAABuZGNcanBjbGFyazEvanBjbGFyazE=\r\n&quot;, '\0' &lt;repeats 1973 times&gt;
+	result = 0
+#3  0x0806d7b3 in do_imap_ntlm (sock=3, ctl=0x28814540) at imap.c:301
+	result = 0
+#4  0x0806e091 in imap_getauth (sock=3, ctl=0x28814540, 
+    greeting=0xbfbfc25b &quot;* OK THE MICROSOFT EXCHANGE IMAP4 SERVICE IS READY.&quot;) at imap.c:606
+	ok = 3
+#5  0x080577ed in do_session (ctl=0x28814540, proto=0x808a500, maxfetch=0) at driver.c:1151
+	buf = &quot;* OK THE MICROSOFT EXCHANGE IMAP4 SERVICE IS READY.\000(r&#196;:(L\000\000\000&#232;&#194;&#191;&#191;aJ@(4a:(\005\000\005\000 &#195;&#191;&#191;h&#195;&#191;&#191;4a:(\006\000\006\000d\035\n(&#235;\002\000\000\000&#162;\n(D&#195;&#191;&#191;\205\000\t(N&#196;:(&#198;`N(\b\000\000\000&#240;&#194;&#191;&#191;$\002\200(&#180;^\t\b&#184;^\t\b`&#195;&#191;&#191;&#168;&#195;&#191;&#191;\224xK(\002\000\002\000d\035\n( \000\000\000\000&#164;\n(\204&#195;&#191;&#191;]\&quot;\t( \000\000\000\200^\t\b\t \000\000p\002\t(&#187;QO(&#198;`N&quot;...
+	realhost = 0x28886100 &quot;imap02.ndc.nasa.gov&quot;
+	count = -1077942656
+	bytes = 1
+	dispatches = -1077942656
+	oldphase = 0
+	idp = (struct idlist *) 0x807ccd8
+	newm = 0
+	fetches = -1077942604
+	err = 0
+	mailserver_socket = 3
+	tmperr = 675936768
+	deletions = 0
+	js = 0
+	msg = 0xbfbfe6c8 &quot;\b&#231;&#191;&#191;\&quot;\210\005\<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">b at E</A>\201(&quot;
+	alrmsave = 0x80511d0 &lt;terminate_run&gt;
+	msgsizes = (int *) 0x0
+#6  0x08058822 in do_protocol (ctl=0x28814540, proto=0x808a500) at driver.c:1641
+	err = 675940392
+#7  0x0806f649 in doIMAP (ctl=0x28814540) at imap.c:1414
+No locals.
+#8  0x080513bf in query_host (ctl=0x28814540) at fetchmail.c:1500
+	i = 1
+	st = 0
+#9  0x0804ed38 in main (argc=3, argv=0xbfbfe8c0) at fetchmail.c:748
+	rcstat = {st_dev = 166, st_ino = 5618511, st_mode = 33024, st_nlink = 1, st_uid = 1001, 
+  st_gid = 1000, st_rdev = 11277895, st_atim = {tv_sec = 1344809835, tv_nsec = 0}, st_mtim = {
+    tv_sec = 1344725185, tv_nsec = 0}, st_ctim = {tv_sec = 1344725185, tv_nsec = 0}, st_size = 295, 
+  st_blocks = 8, st_blksize = 32768, st_flags = 0, st_gen = 0, st_lspare = 0, st_birthtim = {
+    tv_sec = 1343076598, tv_nsec = 0}}
+	bkgd = 0
+	implicitmode = 1
+	ctl = (struct query *) 0x28814540
+	netrc_list = (netrc_entry *) 0x0
+	netrc_file = 0x28886240 &quot;&quot;
+	tmpbuf = 0x3 &lt;Address 0x3 out of bounds&gt;
+	pid = 0
+	lastsig = 0
+(gdb) quit
+
+-- 
+J. Porter Clark      &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">jpc+fetchmail at porterclark.com</A>&gt;
+</PRE>
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003208.html">[fetchmail-users] Spam gets left behind
+</A></li>
+	<LI>Next message: <A HREF="003210.html">[fetchmail-users] Fetchmail suddenly started segfaulting with	Exchange
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3209">[ date ]</a>
+              <a href="thread.html#3209">[ thread ]</a>
+              <a href="subject.html#3209">[ subject ]</a>
+              <a href="author.html#3209">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

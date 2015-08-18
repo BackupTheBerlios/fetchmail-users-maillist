@@ -1,0 +1,83 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] change helo/ehlo
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2007-June/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20change%20helo/ehlo&In-Reply-To=%3C200706070209.14983.rfunk%40funknet.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001079.html">
+   <LINK REL="Next"  HREF="001081.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] change helo/ehlo</H1>
+    <B>Rob Funk</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20change%20helo/ehlo&In-Reply-To=%3C200706070209.14983.rfunk%40funknet.net%3E"
+       TITLE="[fetchmail-users] change helo/ehlo">rfunk at funknet.net
+       </A><BR>
+    <I>Thu Jun  7 08:09:14 CEST 2007</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001079.html">[fetchmail-users] change helo/ehlo
+</A></li>
+        <LI>Next message: <A HREF="001081.html">[fetchmail-users] change helo/ehlo
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1080">[ date ]</a>
+              <a href="thread.html#1080">[ thread ]</a>
+              <a href="subject.html#1080">[ subject ]</a>
+              <a href="author.html#1080">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Rob MacGregor wrote:
+&gt;<i> On 6/7/07, Florian &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">tslbai at agilolfinger.de</A>&gt; wrote:
+</I>&gt;<i> &gt; &quot;4.1.1.1  Extended HELLO (EHLO) or HELLO (HELO)
+</I>&gt;<i> &gt; [...] The argument field contains the fully-qualified domain name
+</I>&gt;<i> &gt; of the SMTP client if one is available.&quot;
+</I>&gt;<i>
+</I>&gt;<i> Given how few clients actually obey that, if you expect any clients to
+</I>&gt;<i> connect to that server it's probably best to relax that check.
+</I>
+In my experience it's actually best to relax it for yourself and 
+authenticated (initial-submit) users, but enforce it for random internet 
+clients.  That blocks a lot of spam while still allowing the broken 
+clients that are OK to be broken.
+
+Similarly, it's quite useful to have the MTA to block outside clients who 
+use the *server's* FQDN in the HELO.  Amazing how much spam that blocks 
+without losing legitimate mail.
+
+-- 
+==============================|   &quot;A microscope locked in on one point
+ Rob Funk &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">rfunk at funknet.net</A>&gt; |Never sees what kind of room that it's in&quot;
+ <A HREF="http://www.funknet.net/rfunk">http://www.funknet.net/rfunk</A> |    -- Chris Mars, &quot;Stuck in Rewind&quot;
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001079.html">[fetchmail-users] change helo/ehlo
+</A></li>
+	<LI>Next message: <A HREF="001081.html">[fetchmail-users] change helo/ehlo
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1080">[ date ]</a>
+              <a href="thread.html#1080">[ thread ]</a>
+              <a href="subject.html#1080">[ subject ]</a>
+              <a href="author.html#1080">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

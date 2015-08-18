@@ -1,0 +1,185 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] help forwarding to Exchange 2010 with TLS
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2011-March/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20help%20forwarding%20to%20Exchange%202010%20with%20TLS&In-Reply-To=%3C20110309094512.38ea5102%40scorpio%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002717.html">
+   <LINK REL="Next"  HREF="002719.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] help forwarding to Exchange 2010 with TLS</H1>
+    <B>Jerry</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20help%20forwarding%20to%20Exchange%202010%20with%20TLS&In-Reply-To=%3C20110309094512.38ea5102%40scorpio%3E"
+       TITLE="[fetchmail-users] help forwarding to Exchange 2010 with TLS">fetchmail.user at seibercom.net
+       </A><BR>
+    <I>Wed Mar  9 15:45:12 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002717.html">[fetchmail-users] help forwarding to Exchange 2010 with TLS
+</A></li>
+        <LI>Next message: <A HREF="002719.html">[fetchmail-users] help forwarding to Exchange 2010 with TLS
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2718">[ date ]</a>
+              <a href="thread.html#2718">[ thread ]</a>
+              <a href="subject.html#2718">[ subject ]</a>
+              <a href="author.html#2718">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Wed, 09 Mar 2011 15:05:16 +0100
+Matthias Andree &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">matthias.andree at gmx.de</A>&gt; articulated:
+
+&gt;<i> Am 09.03.2011 13:51, schrieb Jerry:
+</I>&gt;<i> &gt; On Tue, 08 Mar 2011 19:35:02 -0800
+</I>&gt;<i> &gt; Perry Hutchison &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">phutchis at windriver.com</A>&gt; articulated:
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt;&gt;&gt; From: Jerry &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">fetchmail.user at seibercom.net</A>&gt;
+</I>&gt;<i> &gt;&gt;&gt; <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">robbticb at wp.pl</A> &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">robbticb at wp.pl</A>&gt; articulated:
+</I>&gt;<i> &gt;&gt;&gt;
+</I>&gt;<i> &gt;&gt;&gt;&gt; how can I forward mails to Exchange 2010 with TLS over Port 587?
+</I>&gt;<i> &gt;&gt;&gt;
+</I>&gt;<i> &gt;&gt;&gt; ... I have requested that these features be incorporated into
+</I>&gt;<i> &gt;&gt;&gt; Fetchmail ... at present I do not believe they are available.
+</I>&gt;<i> &gt;&gt;&gt; Your only solution as I see it is to configure the Exchange
+</I>&gt;<i> &gt;&gt;&gt; server to not require TLS ...
+</I>&gt;<i> &gt;&gt;
+</I>&gt;<i> &gt;&gt; IMO this sort of capability does not really belong in fetchmail,
+</I>&gt;<i> &gt;&gt; which -- being a Unix tool -- is supposed to do one thing well.
+</I>&gt;<i> &gt;&gt; Fetchmail's job, which it does very well, is to retrieve mail
+</I>&gt;<i> &gt;&gt; from mailboxes and pass it to another local mail agent for further
+</I>&gt;<i> &gt;&gt; processing (often local delivery).
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; I respectfully disagree with your conclusions. Mail servers have and
+</I>&gt;<i> &gt; are increasingly more likely to enforce SMTP Authentication and TLS.
+</I>&gt;<i> &gt; Fetchmail can use SMTP Authentication when delivering mail;
+</I>&gt;<i> &gt; however, it does not as of yet have the ability, at least if I am
+</I>&gt;<i> &gt; understanding it correctly, to use TLS, aka STARTTLS. That would
+</I>&gt;<i> &gt; put your statement: &quot;Fetchmail's job, which it does very well, is
+</I>&gt;<i> &gt; to retrieve mail from mailboxes and pass it to another local mail
+</I>&gt;<i> &gt; agent for further processing (often local delivery).&quot; in direct
+</I>&gt;<i> &gt; conflict with that statement since it is not fully able to deliver
+</I>&gt;<i> &gt; mail to servers that are employing more robust security techniques.
+</I>&gt;<i> &gt; Ones that arre fully RFC approved i might add and have been for
+</I>&gt;<i> &gt; quite some time.
+</I>&gt;<i> 
+</I>&gt;<i> I think this kindles fires around the question what is considered
+</I>&gt;<i> &quot;local&quot;, and multiple interpretations are possible, with different
+</I>&gt;<i> conclusions/requirements/assumptions:
+</I>&gt;<i> 
+</I>&gt;<i> - if &quot;local&quot; is interpreted as &quot;localhost&quot; (the default SMTP host
+</I>&gt;<i> setting), then you could assume that 127.0.0.1 and/or ::1 are
+</I>&gt;<i> configured to accept mail for relay without authentication,
+</I>&gt;<i> SSL/TLS/STARTTLS.
+</I>&gt;<i> 
+</I>&gt;<i> - if &quot;local&quot; is interpreted as &quot;a computer in the site-wide network&quot;,
+</I>&gt;<i> then indeed TLS capability may become a requirement.
+</I>&gt;<i> 
+</I>&gt;<i> &gt; Where I become confused, and that is not all that hard to do, is why
+</I>&gt;<i> &gt; Fetchmail can apparently use TLS to fetch mail; but, it cannot use
+</I>&gt;<i> &gt; the same mechanism to deliver mail. I don't understand why.
+</I>&gt;<i> 
+</I>&gt;<i> The answer is simple, because nobody has published the code as of yet,
+</I>&gt;<i> and I personally can say that I haven't written it either.
+</I>&gt;<i> 
+</I>&gt;<i> STARTTLS is protocol-specific, so it's not just &quot;use a different
+</I>&gt;<i> function to connect&quot; - the latter, however, might give us at least
+</I>&gt;<i> SSL-wrapped SMTP (typically port 465), but it, too, needs code to be
+</I>&gt;<i> written so that users can configure it, and code that determines if we
+</I>&gt;<i> want SSL/TLS-wrapped behaviour or not.  I'd say this goes into
+</I>&gt;<i> fetchmail 7.
+</I>&gt;<i> 
+</I>&gt;<i> &gt; I have also
+</I>&gt;<i> &gt; been told, although I have never personally verified the fact, that
+</I>&gt;<i> &gt; other programs similar to Fetchmail do offer this capability. Even
+</I>&gt;<i> &gt; small utility programs like &quot;Denyhosts&quot;
+</I>&gt;<i> &gt; &lt;<A HREF="http://denyhosts.sourceforge.net/">http://denyhosts.sourceforge.net/</A>&gt;  which I run on my machine fully
+</I>&gt;<i> &gt; supports SMTP Authentication and TLS.
+</I>&gt;<i> 
+</I>&gt;<i> Certainly there are packages to support SMTP AUTH and SMTP with
+</I>&gt;<i> STARTTLS or SSL/TLS-wrapped connections.  msmtp is an open-source
+</I>&gt;<i> package that you could plug into fetchmail through the &quot;mda&quot; option,
+</I>&gt;<i> as I have written earlier in this message
+</I>&gt;<i> 
+</I>&gt;<i> Message-ID: &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">4D77655C.4070702 at gmx.de</A>&gt;
+</I>&gt;<i> Date: Wed, 09 Mar 2011 12:32:44 +0100
+</I>&gt;<i> 
+</I>&gt;<i> &gt; This suggestion adds another layer of complexity which requires
+</I>&gt;<i> &gt; further knowledge to correctly setup and the obvious time and
+</I>&gt;<i> &gt; energy required to do so and maintain said software and its
+</I>&gt;<i> &gt; dependency's. I am
+</I>&gt;<i> 
+</I>&gt;<i> Indeed - however, security sometimes requires sacrificing...
+</I>&gt;<i> 
+</I>&gt;<i> &gt; personally a life time member of the &quot;KISS&quot; principal. Your
+</I>&gt;<i> &gt; suggestion, while workable, runs counter to that philosophy. I have
+</I>&gt;<i> &gt; all ready stated in another post how I worked around Fetchmail's
+</I>&gt;<i> &gt; limitation. I
+</I>&gt;<i> 
+</I>&gt;<i> ...the power that combining Unix tools usually provides.
+</I>&gt;<i> 
+</I>&gt;<i> Running tunnels that are created by separate commands often poses
+</I>&gt;<i> problems as to figuring out if some software, for instance, fetchmail
+</I>&gt;<i> is using the right tunnel, or if through some hicc-up something else
+</I>&gt;<i> has claimed the provisioned port - with a non-function in best and
+</I>&gt;<i> stolen passwords/mail in the worst case.
+</I>
+Thanks for your quick reply. I do concur with most of what you have
+stated. One area in which I do not totally agree is the
+&quot;SSL/TLS-wrapped&quot; proposal. That protocol is deprecated. It usually
+required port 465 I believe (I forget right now). Even Postfix does not
+by default support that protocol; although, it obviously can be made to
+use it. I believe that the only real user of that protocol was MS
+Outlook &lt;=2002. All modern MUAs support TLS on port 587 which is also
+supported by RFCs. What I am trying to say is that I would certainly
+not waste anytime on an obsolete/deprecated protocol, especially one
+not supported by current RFCs. I would first work on making Fetchmail
+fully TLS (STARTTLS) compliant {Fetchmail 7} before working or wasting
+time on a dead protocol.
+
+By the way, I consider &quot;local&quot; as any computer on my site-wide network.
+Personally, I think that most users would agree with this
+interpretation. Then again, I have been known to be wrong on a few
+occasions.
+
+-- 
+Jerry &#9996;
+<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">Fetchmail.user at seibercom.net</A>
+
+Disclaimer: off-list followups get on-list replies or get ignored.
+Please do not ignore the Reply-To header.
+__________________________________________________________________
+Only kings, presidents, editors, and people with tapeworms have the
+right to use the editorial &quot;we&quot;.
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002717.html">[fetchmail-users] help forwarding to Exchange 2010 with TLS
+</A></li>
+	<LI>Next message: <A HREF="002719.html">[fetchmail-users] help forwarding to Exchange 2010 with TLS
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2718">[ date ]</a>
+              <a href="thread.html#2718">[ thread ]</a>
+              <a href="subject.html#2718">[ subject ]</a>
+              <a href="author.html#2718">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,175 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] [fetchmail-announce] fetchmail 6.3.20-pre1 release candidate should	fix STARTTLS hangs
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2011-May/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20%5Bfetchmail-announce%5D%20fetchmail%206.3.20-pre1%0A%20release%20candidate%20should%09fix%20STARTTLS%20hangs&In-Reply-To=%3C4DDB762E.2060800%40ericsson.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002827.html">
+   <LINK REL="Next"  HREF="002833.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] [fetchmail-announce] fetchmail 6.3.20-pre1 release candidate should	fix STARTTLS hangs</H1>
+    <B>Jonathan Buschmann</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20%5Bfetchmail-announce%5D%20fetchmail%206.3.20-pre1%0A%20release%20candidate%20should%09fix%20STARTTLS%20hangs&In-Reply-To=%3C4DDB762E.2060800%40ericsson.com%3E"
+       TITLE="[fetchmail-users] [fetchmail-announce] fetchmail 6.3.20-pre1 release candidate should	fix STARTTLS hangs">jonathan.buschmann at ericsson.com
+       </A><BR>
+    <I>Tue May 24 11:11:10 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002827.html">[fetchmail-users] fetchmail 6.3.20-pre1 release candidate should	fix STARTTLS hangs
+</A></li>
+        <LI>Next message: <A HREF="002833.html">[fetchmail-users] fetchmail 6.3.20-pre1 release candidate	should fix STARTTLS hangs
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2829">[ date ]</a>
+              <a href="thread.html#2829">[ thread ]</a>
+              <a href="subject.html#2829">[ subject ]</a>
+              <a href="author.html#2829">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Matthias,
+
+I'm getting a ton of:
+fetchmail: setsockopt(4, SOL_SOCKET) failed: Option not supported by 
+protocol
+
+BTW. As I reported on the list after you sent me the 
+FETCHMAIL_IMAP_DELETED_REMAINS_UNSEEN patch, although the patch did what 
+it was supposed to do, it made things actually worse (for me) since 
+exchange as a consequence sends &quot;deleted without being read&quot; receipts.
+
+Jonathan
+
+
+
+At precisely 23/05/2011 21.00, with renowned erudition Matthias Andree 
+eloquently scribed:
+&gt;<i> Greetings,
+</I>&gt;<i>
+</I>&gt;<i> Sunil has worked on handling large IMAP mailboxes.
+</I>&gt;<i> I have been working on the STARTTLS hang problem reported by Thomas
+</I>&gt;<i> Jarosch, which should be fixed now, along with assorted minor
+</I>&gt;<i> protocol nits that were picked.  I am not sure if I want/need a CVE for
+</I>&gt;<i> a denial of service that is OS dependent.  Opinions solicited.
+</I>&gt;<i>
+</I>&gt;<i> Please test fetchmail 6.3.20-pre1 on your operating system.
+</I>&gt;<i> To do that, please:
+</I>&gt;<i>
+</I>&gt;<i> 1. download and unpack the fetchmail tarball (URLs below)
+</I>&gt;<i> 2. cd to to the unpacked directory
+</I>&gt;<i> 3. ./configure and install as usual
+</I>&gt;<i> 4. run fetchmail with these additional options:
+</I>&gt;<i>     --auth any -vvvd0 --nodetach --nosyslog
+</I>&gt;<i> 5. report success or failure to the list or me personally.
+</I>&gt;<i>
+</I>&gt;<i> PLEASE HELP: If you can offer access to test servers that I can send a
+</I>&gt;<i> short test mail to and then log into to retrieve that test message -
+</I>&gt;<i> particularly Exchange 2007 or Exchange 2010 is desired, but others
+</I>&gt;<i> besides Cyrus IMAP and Dovecot are also welcome - please let me know.
+</I>&gt;<i>
+</I>&gt;<i> PLEASE HELP: fetchmail needs translators for the program strings. Some
+</I>&gt;<i> languages (such as those shown below) are in quite good shape, but
+</I>&gt;<i> others are lacking a bit.  Translation information can be found at
+</I>&gt;<i> &lt;<A HREF="http://translationproject.org/domain/fetchmail.html">http://translationproject.org/domain/fetchmail.html</A>&gt;
+</I>&gt;<i>
+</I>&gt;<i> +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+</I>&gt;<i>
+</I>&gt;<i> DOWNLOAD this beta software from:
+</I>&gt;<i> &lt;<A HREF="http://home.pages.de/~mandree/fetchmail/">http://home.pages.de/~mandree/fetchmail/</A>&gt;
+</I>&gt;<i>
+</I>&gt;<i> The repository can be browsed at and cloned from:
+</I>&gt;<i> &lt;<A HREF="http://gitorious.org/fetchmail/fetchmail">http://gitorious.org/fetchmail/fetchmail</A>&gt;  - the branch is &quot;legacy_63&quot;.
+</I>&gt;<i>
+</I>&gt;<i> Git (the software used to keep the fetchmail source code version
+</I>&gt;<i> controlled) information is at:&lt;<A HREF="http://git-scm.com/">http://git-scm.com/</A>&gt;
+</I>&gt;<i>
+</I>&gt;<i> CHANGES since the previous formal release of fetchmail listed below.
+</I>&gt;<i> Unless otherwise noted, the changes were made by Matthias Andree:
+</I>&gt;<i>
+</I>&gt;<i> # SECURITY FIXES
+</I>&gt;<i> * Fetchmail's socket timeout handling was incomplete.  Network outages in the
+</I>&gt;<i>    wrong phase of a communication, combined with unlucky operating systems and
+</I>&gt;<i>    their defaults, could cause fetchmail to hang for extended amounts of time.
+</I>&gt;<i>    Freezes for beyond a week were reported by Thomas Jarosch. Fetchmail sets
+</I>&gt;<i>    UNIX- and Internet-domain socket send and receive timeouts now.
+</I>&gt;<i>    This fixes a hang during STARTTLS negotiation reported by Thomas Jarosch.
+</I>&gt;<i>
+</I>&gt;<i> # CHANGES
+</I>&gt;<i> * fetchmail now always uses its own MD5 implementation.  The library and header
+</I>&gt;<i>    variants are too diverse, and we've been bitten before -- and configure
+</I>&gt;<i>    complains noisily on Cyrus-SASL's RFC1321 md5.h.
+</I>&gt;<i> * fetchmail now supports an environment variable to suppress marking deleted
+</I>&gt;<i>    messages as seen at the same time, FETCHMAIL_IMAP_DELETED_REMAINS_UNSEEN.
+</I>&gt;<i>    See the manual page for details. Requested by Jonathan Buschmann.
+</I>&gt;<i> * fetchmail sets Internet domain sockets to &quot;keepalive&quot; mode now. Note that
+</I>&gt;<i>    there is no portable way to configure actual timeouts for this mode, and some
+</I>&gt;<i>    systems only support a system-wide timeout setting.
+</I>&gt;<i>
+</I>&gt;<i> # BUG FIXES
+</I>&gt;<i> * Call strlen() only once when removing CRLF from a line. (Sunil Shetye)
+</I>&gt;<i> * Do not search for UNSEEN messages in ranges. Usually, there are very few new
+</I>&gt;<i>    messages and most of the range searches result in nothing. Instead, split the
+</I>&gt;<i>    long response to make the IMAP driver think that there are multiple lines of
+</I>&gt;<i>    response. (Sunil Shetye)
+</I>&gt;<i> * Do not print &quot;skipping message&quot; for old messages even in verbose mode. If
+</I>&gt;<i>    there are too many old messages, the logs just get filled without any real
+</I>&gt;<i>    activity. (Sunil Shetye) (suggested by Yunfan Jiang)
+</I>&gt;<i>
+</I>&gt;<i> # TRANSLATION UPDATES
+</I>&gt;<i>    [de]    German (Matthias Andree)
+</I>&gt;<i>    [ja]    Japanese (Takeshi Hamasaki)
+</I>&gt;<i>
+</I>
+-- 
+
+
+Picture (Device Independent Bitmap)
+
+*JONATHAN BUSCHMANN
+Customer Solution Sales *
+
+Ericsson Telecomunicazioni S.p.A.
+Business Segment Services, Market Unit South East Europe
+Strada 2, Palazzo C
+20090 Assago Milanofiori (MI), Italy
+Phone +390239572097
+Fax +390239572902
+Mobile +393351223478
+<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">Jonathan.Buschmann at ericsson.com</A>
+www.ericsson.com
+
+Picture (Device Independent Bitmap)
+
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002827.html">[fetchmail-users] fetchmail 6.3.20-pre1 release candidate should	fix STARTTLS hangs
+</A></li>
+	<LI>Next message: <A HREF="002833.html">[fetchmail-users] fetchmail 6.3.20-pre1 release candidate	should fix STARTTLS hangs
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2829">[ date ]</a>
+              <a href="thread.html#2829">[ thread ]</a>
+              <a href="subject.html#2829">[ subject ]</a>
+              <a href="author.html#2829">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

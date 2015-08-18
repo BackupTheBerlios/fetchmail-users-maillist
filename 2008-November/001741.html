@@ -1,0 +1,126 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] fetchmail 6.3.9-rc3 release candidate
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2008-November/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%206.3.9-rc3%20release%20candidate&In-Reply-To=%3C20081104145147.GA2188%40merlin.emma.line.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001739.html">
+   <LINK REL="Next"  HREF="001743.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] fetchmail 6.3.9-rc3 release candidate</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%206.3.9-rc3%20release%20candidate&In-Reply-To=%3C20081104145147.GA2188%40merlin.emma.line.org%3E"
+       TITLE="[fetchmail-users] fetchmail 6.3.9-rc3 release candidate">matthias.andree at gmx.de
+       </A><BR>
+    <I>Tue Nov  4 15:51:47 CET 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001739.html">[fetchmail-users] is fetchmail fixed for gmail? (was	fetchmail-users Digest, Vol 29, Issue 1)
+</A></li>
+        <LI>Next message: <A HREF="001743.html">[fetchmail-users] Fetchmail permissions
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1741">[ date ]</a>
+              <a href="thread.html#1741">[ thread ]</a>
+              <a href="subject.html#1741">[ subject ]</a>
+              <a href="author.html#1741">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA1
+
+Greetings,
+
+I have uploaded a new fetchmail 6.3.9 release candidate to the usual
+download location: &lt;<A HREF="http://home.pages.de/~mandree/fetchmail/">http://home.pages.de/~mandree/fetchmail/</A>&gt;.
+
+It contains minor fixes that have accumulated since -rc2 (including a
+fix that I'd promised to Petr Uzel, but made only after -rc2), and
+translation updates - details below.
+
+I've announced -rc3 to the translation project in order to collect
+translations, and hope to release 6.3.9 later this month.
+
+Happy fetching
+Matthias
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Changes in fetchmail 6.3.9-rc3 from -rc2 (2008-11-04):
+
+# BUGFIXES
+* Only print &quot;Deleting fetchids file&quot; if there actually is one.
+  Fixes Debian Bug#374514, reported by Dan Jacobson.
+* SSL fix: check and report if SSL_set_fd fails.
+
+# CHANGES:
+* Changed CRLF to LF line endings in contrib/delete-later (reporter: Petr Uzel)
+* SSL change: enable all workarounds with SSL_CTX_set_options(ctx,SSL_OP_ALL)
+* All translations have been re-enabled, in an attempt to rekindle translator or
+  user interest.
+
+# DOCUMENTATION:
+* Documentation and program output now /consistently/ claim that the rcfile must
+  not have more than 0700 (u=rwx,g=,o=) permissions, but fetchmail will still
+  silently accept additional g=x permissions for compatibility with previous
+  6.2.X and 6.3.X versions.
+  Inconsistency (program 0710, manpage 0600) reported by Petr Uzel.
+* The --logfile documentation is now clearer about requiring detached daemon 
+  mode.
+
+# TRANSLATION UPDATES AND ADDITIONS (ordered by language name):
+* [sq]    Albanian (Besnik Bleta)
+* [zh_CN] Chinese, simplified (Ji Zheng-Yu)
+* [cs]    Czech (Petr Pisar)
+* [da]    Danish (Byrial Ole Jensen) - outdated, but newer than in 6.3.8
+* [nl]    Dutch (Tony Vroon, Benno Schulenberg)
+* [en_GB] English, British
+* [fi]    Finnish (Lauri Nurmi)
+* [de]    German
+* [id]    Indonesian (Andhika Padmawan)
+* [ja]    Japanese (Takeshi Hamasaki)
+* [pl]    Polish (Jakub Bogusz)
+* [ru]    Russian (Pavel Maryanov)
+* [es]    Spanish (Javier Fern&#225;ndez-Sanguino Pe&#241;a, Matthias Andree)
+* [tr]    Turkish (Engin G&#252;nd&#252;z) - outdated, but newer than in 6.3.8
+* [vi]    Vietnamese (Clytie Siddall)
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v2.0.9 (GNU/Linux)
+
+iEYEARECAAYFAkkQYXIACgkQvmGDOQUufZVkIwCfdrx21btsTNF5PcCiMH3FuvEw
+BxIAoJXprJPu7dLy100uznMhfM/UChoS
+=keCZ
+-----END PGP SIGNATURE-----
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001739.html">[fetchmail-users] is fetchmail fixed for gmail? (was	fetchmail-users Digest, Vol 29, Issue 1)
+</A></li>
+	<LI>Next message: <A HREF="001743.html">[fetchmail-users] Fetchmail permissions
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1741">[ date ]</a>
+              <a href="thread.html#1741">[ thread ]</a>
+              <a href="subject.html#1741">[ subject ]</a>
+              <a href="author.html#1741">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

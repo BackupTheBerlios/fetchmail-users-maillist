@@ -1,0 +1,119 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Server CommonName mismatch
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2006-July/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Server%20CommonName%20mismatch&In-Reply-To=%3C20060725100848.GA1727%40ariel.njm.f2s.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000545.html">
+   <LINK REL="Next"  HREF="000536.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Server CommonName mismatch</H1>
+    <B>N.J. Mann</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Server%20CommonName%20mismatch&In-Reply-To=%3C20060725100848.GA1727%40ariel.njm.f2s.com%3E"
+       TITLE="[fetchmail-users] Server CommonName mismatch">njm at njm.f2s.com
+       </A><BR>
+    <I>Tue Jul 25 12:08:48 CEST 2006</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000545.html">[fetchmail-users] Simple fetch and forward
+</A></li>
+        <LI>Next message: <A HREF="000536.html">[fetchmail-users] Server CommonName mismatch
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#535">[ date ]</a>
+              <a href="thread.html#535">[ thread ]</a>
+              <a href="subject.html#535">[ subject ]</a>
+              <a href="author.html#535">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+I have been using fetchmail for about three weeks now and I am very
+happy with it.  But... (You knew a &quot;but&quot; was going to be next. ;-) )
+
+Every time I poll my ISP I get the following errors:
+
+fetchmail: Server CommonName mismatch: localhost.localdomain != inmail.njm.f2s.com
+fetchmail: Server certificate verification error: self signed certificate
+
+At first I throught the first one was due to something I was doing
+wrong, but I now suspect it is nothing to do with me.  Can someone
+confirm that please?  My change of mind stems from running
+fetchmail -v -v -v and redirecting the output to a log file.  (The idea
+for that came from a message I read earlier today on this list, so
+lurking here for a while does pay. :-) )
+
+In the log I get:
+
+fetchmail: Old UID list from inmail.njm.f2s.com: &lt;empty&gt;
+fetchmail: Scratch list of UIDs: &lt;empty&gt;
+fetchmail: 6.3.4 querying inmail.njm.f2s.com (protocol POP3) at Tue Jul 25 10:43:33 2006: poll started
+fetchmail: POP3&lt; +OK imap3.freedom2surf.net Cyrus POP3 v2.2.12-Invoca-RPM-2.2.12-7 server ready &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">1226900915.1153820613 at imap3.freedom2surf.net</A>&gt;
+fetchmail: POP3&gt; CAPA
+fetchmail: POP3&lt; +OK List of capabilities follows
+fetchmail: POP3&lt; SASL DIGEST-MD5 CRAM-MD5
+fetchmail: POP3&lt; STLS
+fetchmail: POP3&lt; EXPIRE NEVER
+fetchmail: POP3&lt; LOGIN-DELAY 0
+fetchmail: POP3&lt; TOP
+fetchmail: POP3&lt; UIDL
+fetchmail: POP3&lt; PIPELINING
+fetchmail: POP3&lt; RESP-CODES
+fetchmail: POP3&lt; AUTH-RESP-CODE
+fetchmail: POP3&lt; USER
+fetchmail: POP3&lt; IMPLEMENTATION Cyrus POP3 server v2.2.12-Invoca-RPM-2.2.12-7
+fetchmail: POP3&lt; .
+fetchmail: POP3&gt; STLS
+fetchmail: POP3&lt; +OK Begin TLS negotiation now
+fetchmail: Issuer Organization: SomeOrganization
+fetchmail: Issuer CommonName: localhost.localdomain
+fetchmail: Server CommonName: localhost.localdomain
+fetchmail: inmail.njm.f2s.com key fingerprint: E1:A1:1A:47:61:46:97:6D:F3:9D:BF:13:59:40:EA:E3
+fetchmail: POP3&gt; CAPA
+
+(I hope my MUA hasn't mangled that too much.)
+
+So it looks like fetchmail is complaining about my ISPs setup.  Is that
+right?
+
+For reference, I am running fetchmail 6.3.4 on FreeBSD v6.1 (STABLE).
+
+Thanks in advance.
+
+Cheers,
+Nick.
+-- 
+&quot;We're predicting third stage shutdown at 11 minutes 42 seconds.&quot;
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000545.html">[fetchmail-users] Simple fetch and forward
+</A></li>
+	<LI>Next message: <A HREF="000536.html">[fetchmail-users] Server CommonName mismatch
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#535">[ date ]</a>
+              <a href="thread.html#535">[ thread ]</a>
+              <a href="subject.html#535">[ subject ]</a>
+              <a href="author.html#535">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,99 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Rotating the log file
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2006-July/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Rotating%20the%20log%20file&In-Reply-To=%3C43ea8d070607101425t5ff1824bw68b12f343eb655c2%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000499.html">
+   <LINK REL="Next"  HREF="000502.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Rotating the log file</H1>
+    <B>Rob MacGregor</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Rotating%20the%20log%20file&In-Reply-To=%3C43ea8d070607101425t5ff1824bw68b12f343eb655c2%40mail.gmail.com%3E"
+       TITLE="[fetchmail-users] Rotating the log file">rob.macgregor at gmail.com
+       </A><BR>
+    <I>Mon Jul 10 23:25:42 CEST 2006</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000499.html">[fetchmail-users] Rotating the log file
+</A></li>
+        <LI>Next message: <A HREF="000502.html">[fetchmail-users] Rotating the log file
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#500">[ date ]</a>
+              <a href="thread.html#500">[ thread ]</a>
+              <a href="subject.html#500">[ subject ]</a>
+              <a href="author.html#500">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>[ Please don't CC me on list traffic ]
+
+On 7/10/06, Stephen Allen &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">fetchmail at rowyerboat.com</A>&gt; wrote:
+&gt;<i> Rob MacGregor wrote:
+</I>&gt;<i> &gt; Have you considered using syslog instead of logfile?
+</I>&gt;<i>
+</I>&gt;<i> That would be a good idea if you could control more of what gets logged
+</I>&gt;<i> there.  At the moment, my fetchmail daemon runs every 180 seconds and
+</I>&gt;<i> checks email from half-a-dozen POP3 servers.  Most of it's log is filled
+</I>&gt;<i> with:
+</I>&gt;<i>
+</I>&gt;<i> fetchmail: sleeping at Mon 10 Jul 2006 20:25:26 BST
+</I>&gt;<i> fetchmail: awakened at Mon 10 Jul 2006 20:28:26 BST
+</I>&lt;---SNIP---&gt;
+&gt;<i> However, I *do* want to see messages like:
+</I>&gt;<i>
+</I>&gt;<i> fetchmail: 1 message for <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">user at domain.com</A> at POP3-1 (2353 octets).
+</I>&gt;<i> fetchmail: reading message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">user at domain.com</A>@pop.isp.com:1 of 1 (2353
+</I>&gt;<i> octets) fetchmail:  flushed
+</I>&gt;<i>
+</I>&gt;<i> As far as I know at the moment, it's all or nothing.
+</I>
+For what you're after, yes.  I'll admit that I only see log entries
+from fetchmail when things go wrong.  Everything else would only be
+duplicating what my MTA logs anyway...
+
+However, if you run syslog-ng you could easily weed out the messages
+you don't want.  I've done that on a number of systems, using the
+pattern matching to avoid logging pointless stuff.  Probably easier
+than patching fetchmail, and arguing over what messages should go at
+what verbosity level :)
+
+-- 
+                 Please keep list traffic on the list.
+
+Rob MacGregor
+      Whoever fights monsters should see to it that in the process he
+        doesn't become a monster.                  Friedrich Nietzsche
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000499.html">[fetchmail-users] Rotating the log file
+</A></li>
+	<LI>Next message: <A HREF="000502.html">[fetchmail-users] Rotating the log file
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#500">[ date ]</a>
+              <a href="thread.html#500">[ thread ]</a>
+              <a href="subject.html#500">[ subject ]</a>
+              <a href="author.html#500">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

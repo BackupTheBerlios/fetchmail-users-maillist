@@ -1,0 +1,95 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] User poll: how do you expect --sslcertpath to	behave?
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2010-April/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20User%20poll%3A%20how%20do%20you%20expect%20--sslcertpath%20to%0A%09behave%3F&In-Reply-To=%3C99A402A2-3AC9-4DC7-BF28-23BB479CF52A%40ritual.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002357.html">
+   <LINK REL="Next"  HREF="002359.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] User poll: how do you expect --sslcertpath to	behave?</H1>
+    <B>Uli Zappe</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20User%20poll%3A%20how%20do%20you%20expect%20--sslcertpath%20to%0A%09behave%3F&In-Reply-To=%3C99A402A2-3AC9-4DC7-BF28-23BB479CF52A%40ritual.org%3E"
+       TITLE="[fetchmail-users] User poll: how do you expect --sslcertpath to	behave?">uli at ritual.org
+       </A><BR>
+    <I>Tue Apr 20 16:37:51 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002357.html">[fetchmail-users] User poll: how do you expect --sslcertpath to behave?
+</A></li>
+        <LI>Next message: <A HREF="002359.html">[fetchmail-users] User poll CLOSED: how do you expect --sslcertpath to behave?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2358">[ date ]</a>
+              <a href="thread.html#2358">[ thread ]</a>
+              <a href="subject.html#2358">[ subject ]</a>
+              <a href="author.html#2358">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Am 19.04.2010 um 10:04 schrieb Matthias Andree:
+
+&gt;<i> * fetchmail versions 6.3.1 and newer have either used certificates from the directory you specified with --sslcertpath, or those from the default OpenSSL locations (usually /etc/ssl/certs, /usr/ssl/certs, or /usr/lib/ssl/certs, and the default CAfile).
+</I>
+I might have a slightly different perspective here than others, as I'm using fetchmail on Mac OS X.
+
+Mac OS X differs from other Unices in that:
+a) The default location is the rather non-standard /System/Library/OpenSSL/certs/ (and I'm not even sure whether the certs subdirectory within /System/Library/OpenSSL/ exists by default)
+b) This directory is empty by default as Mac OS X uses a different certificate format (a *.keychain file) that's incompatible to OpenSSL. (Alas, I wrote a utility years ago that converts the Mac OS X keychain to the OpenSSL format and keeps both in sync, but never got around to publish it so far ... :-(( )
+
+So however fetchmail behaves, it would be important for Mac OS X users that:
+a) it looks for the correct (non-standard) default directory on Mac OS X
+b) it can deal with a non-existing or empty default directory
+
+&gt;<i> (1) Should fetchmail add the default OpenSSL certificate locations even if you specify --sslcertfile or --sslcertpath?
+</I>
+No. That would sacrifice clarity for convenience, something that's really bad for security features.
+
+I can imagine quite a lot of confusion if someone who might not even be aware of the default path, let alone fetchmail's behavior, explicitly specifies a path to his certificate files and then gets a behavior he cannot explain by the certificate files he installed.
+
+&gt;<i> (2) If you answered the previous one with &quot;yes&quot;, should the fetchmail or the OpenSSL directories be checked first?
+</I>
+In this case, clearly the directory specified with fetchmail should be checked first. User preferences should overwrite system defaults by definition. If I have installed my own certificate, I probably have a good reason for that and want it to be used instead of the system installed one.
+
+            Bye
+                    Uli
+________________________________________________________
+
+  Uli Zappe, Solmsstra&#223;e 5, D-65189 Wiesbaden, Germany
+  <A HREF="http://www.ritual.org">http://www.ritual.org</A>
+  Fon: +49-700-ULIZAPPE
+  Fax: +49-700-ZAPPEFAX
+________________________________________________________
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002357.html">[fetchmail-users] User poll: how do you expect --sslcertpath to behave?
+</A></li>
+	<LI>Next message: <A HREF="002359.html">[fetchmail-users] User poll CLOSED: how do you expect --sslcertpath to behave?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2358">[ date ]</a>
+              <a href="thread.html#2358">[ thread ]</a>
+              <a href="subject.html#2358">[ subject ]</a>
+              <a href="author.html#2358">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

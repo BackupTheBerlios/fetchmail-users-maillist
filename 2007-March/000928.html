@@ -1,0 +1,87 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] fetchmail at system startup
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2007-March/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%20at%20system%20startup&In-Reply-To=%3C43ea8d070703252306s2acc082dl2e8b9879e95cc6a7%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000927.html">
+   <LINK REL="Next"  HREF="000929.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] fetchmail at system startup</H1>
+    <B>Rob MacGregor</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%20at%20system%20startup&In-Reply-To=%3C43ea8d070703252306s2acc082dl2e8b9879e95cc6a7%40mail.gmail.com%3E"
+       TITLE="[fetchmail-users] fetchmail at system startup">rob.macgregor at gmail.com
+       </A><BR>
+    <I>Mon Mar 26 08:06:10 CEST 2007</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000927.html">[fetchmail-users] fetchmail at system startup
+</A></li>
+        <LI>Next message: <A HREF="000929.html">[fetchmail-users] how to avoid ipv6 address?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#928">[ date ]</a>
+              <a href="thread.html#928">[ thread ]</a>
+              <a href="subject.html#928">[ subject ]</a>
+              <a href="author.html#928">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On 3/26/07, Joe Acquisto &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">joea at j4computers.com</A>&gt; wrote:
+&gt;<i>
+</I>&gt;<i> Ah.  Well.  Point taken.  This is a SUSE SLES 9 install with their provided
+</I>&gt;<i> version of fetchmail.
+</I>
+Which could be any version, but fortunately that isn't important.
+
+&gt;<i> The startup script does show it is looking for /etc/fetchmailrc.  But, it seems I recall clearly
+</I>&gt;<i> that I got this running, logged in as root, only after creating .fetchmailrc in root's home.
+</I>&gt;<i>
+</I>&gt;<i> fetchmailconfig did that, I believe.
+</I>
+Just keep in mind that any vaguely modern version of fetchmail will
+warn you about running as root and future versions will refuse to run.
+
+&gt;<i> I supposed that  during system startup the script at /etc/init.d will run (called via /etc/init.d/rc(x).d) while saying &quot;fetchmail&quot; while logged in, does the deed via /usr/sbin/fetchmail.  ?
+</I>
+If I understand you correctly, yes.  I'd suggest you take a look at
+the init script yourself to see what it does and how.
+
+-- 
+                 Please keep list traffic on the list.
+
+Rob MacGregor
+      Whoever fights monsters should see to it that in the process he
+        doesn't become a monster.                  Friedrich Nietzsche
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000927.html">[fetchmail-users] fetchmail at system startup
+</A></li>
+	<LI>Next message: <A HREF="000929.html">[fetchmail-users] how to avoid ipv6 address?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#928">[ date ]</a>
+              <a href="thread.html#928">[ thread ]</a>
+              <a href="subject.html#928">[ subject ]</a>
+              <a href="author.html#928">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

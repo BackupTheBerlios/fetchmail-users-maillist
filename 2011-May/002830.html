@@ -1,0 +1,249 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Fetchmail doesn't create and deletes fetchids file
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2011-May/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Fetchmail%20doesn%27t%20create%20and%20deletes%20fetchids%20file&In-Reply-To=%3C20110524151259.GC11652%40acer%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002828.html">
+   <LINK REL="Next"  HREF="002831.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Fetchmail doesn't create and deletes fetchids file</H1>
+    <B>luis</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Fetchmail%20doesn%27t%20create%20and%20deletes%20fetchids%20file&In-Reply-To=%3C20110524151259.GC11652%40acer%3E"
+       TITLE="[fetchmail-users] Fetchmail doesn't create and deletes fetchids file">luislupe at gmail.com
+       </A><BR>
+    <I>Tue May 24 17:12:59 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002828.html">[fetchmail-users] Network time-outs when handling IMAP IDLE
+</A></li>
+        <LI>Next message: <A HREF="002831.html">[fetchmail-users] Fetchmail doesn't create and deletes fetchids	file
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2830">[ date ]</a>
+              <a href="thread.html#2830">[ thread ]</a>
+              <a href="subject.html#2830">[ subject ]</a>
+              <a href="author.html#2830">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+I'm using 
+$ /usr/bin/fetchmail --version
+This is fetchmail release 6.3.19+NTLM+SSL+NLS.
+                   Fallback MDA: (none)
+                   Linux acer 2.6.37.6 #3 SMP Sat Apr 9 22:49:32 CDT
+                   ...
+                   Taking options from command line
+
+and have a problem because file fetchids is not created.
+
+$ head fetchmailrc | grep -v '^#'
+set postmaster &quot;lupe&quot;
+set bouncemail
+set no spambounce
+set properties &quot;&quot;
+set logfile /home/lupe/.fetchmail/fetchmail.log
+
+I tried to touch a fetchids file inside ~/.fetchmail/, did it with
+permissions 60.  After fetchmail have run, ~/.fetchmail/fetchids file
+was gone.
+Parts of a log are below.
+
+What should I do to solve this?
+
+
+Luis
+
+
+
+Log:
+fetchmail: Old UID list from pop.gawab.com: &lt;empty&gt;
+fetchmail: Old UID list from pop.interacesso.pt: &lt;empty&gt;
+fetchmail: Scratch list of UIDs: &lt;empty&gt;
+fetchmail: 6.3.19 querying pop.gawab.com (protocol POP3) at Ter 24 Mai 2011 15:19:13 WEST: poll started
+fetchmail: Trying to connect to 66.220.20.50/995...connected.
+fetchmail: Certificate chain, from root to peer, starting at depth 3:
+fetchmail: Issuer Organization: ValiCert, Inc.
+fetchmail: Issuer CommonName: <A HREF="http://www.valicert.com/">http://www.valicert.com/</A>
+fetchmail: Subject CommonName: <A HREF="http://www.valicert.com/">http://www.valicert.com/</A>
+fetchmail: Certificate at depth 2:
+fetchmail: Issuer Organization: ValiCert, Inc.
+fetchmail: Issuer CommonName: <A HREF="http://www.valicert.com/">http://www.valicert.com/</A>
+fetchmail: Certificate at depth 1:
+fetchmail: Issuer Organization: The Go Daddy Group, Inc.
+fetchmail: Unknown Issuer CommonName
+fetchmail: Subject CommonName: Go Daddy Secure Certification Authority
+fetchmail: Issuer Organization: GoDaddy.com, Inc.
+fetchmail: Issuer CommonName: Go Daddy Secure Certification Authority
+fetchmail: Subject CommonName: mail.gawab.com
+fetchmail: Subject Alternative Name: mail.gawab.com
+fetchmail: Subject Alternative Name: www.mail.gawab.com
+fetchmail: pop.gawab.com key fingerprint: 7E:23:1C:64:70:4B:F9:1D:E6:4A:E8:DD:E9:AE:E8:C3
+fetchmail: pop.gawab.com fingerprints match.
+fetchmail: Issuer Organization: GoDaddy.com, Inc.
+fetchmail: Issuer CommonName: Go Daddy Secure Certification Authority
+fetchmail: Subject CommonName: mail.gawab.com
+fetchmail: Subject Alternative Name: mail.gawab.com
+fetchmail: Subject Alternative Name: www.mail.gawab.com
+fetchmail: POP3&lt; +OK POP3 ready
+fetchmail: POP3&gt; CAPA
+fetchmail: POP3&lt; +OK Capability list follows
+fetchmail: POP3&lt; TOP
+fetchmail: POP3&lt; USER
+fetchmail: POP3&lt; SASL LOGIN PLAIN
+fetchmail: POP3&lt; .
+fetchmail: POP3&gt; USER <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">llupe at gawab.com</A>
+fetchmail: POP3&lt; +OK
+fetchmail: POP3&gt; PASS *
+fetchmail: POP3&lt; +OK Permission Granted.
+fetchmail: selecting or re-polling default folder
+fetchmail: POP3&gt; STAT
+fetchmail: POP3&lt; +OK 6 23796
+fetchmail: POP3&gt; UIDL
+fetchmail: POP3&lt; +OK
+fetchmail: POP3&lt; 1 1306244874.23225_0.,S=2413
+fetchmail: 1 is unseen
+fetchmail: POP3&lt; 2 1306235509.11759_0.,S=4613
+fetchmail: 2 is unseen
+fetchmail: POP3&lt; 3 1306237253.31181_0.,S=1845
+fetchmail: 3 is unseen
+fetchmail: POP3&lt; 4 1306242148.5252_0.,S=9974
+fetchmail: 4 is unseen
+fetchmail: POP3&lt; 5 1306242297.13643_0.,S=3071
+fetchmail: 5 is unseen
+fetchmail: POP3&lt; 6 1306243044.27096_0.,S=1880
+fetchmail: 6 is unseen
+fetchmail: POP3&lt; .
+fetchmail: 6 messages for <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">llupe at gawab.com</A> at pop.gawab.com (23796 octets).
+fetchmail: POP3&gt; LIST 1
+fetchmail: POP3&lt; +OK 1 2413
+fetchmail: POP3&gt; RETR 1
+fetchmail: POP3&lt; +OK 2413 octets follow.
+fetchmail: reading message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">llupe at gawab.com</A>@pop.gawab.com:1 of 6 (2413 octets)About to rewrite To: <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">www at openbsd.org...</A>
+...rewritten version is To: <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">www at openbsd.org.</A>
+fetchmail: About to rewrite From: SPAIN CHINA IMPORT&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">palcantara at spainchinaimport.com</A>&gt;...
+...rewritten version is From: SPAIN CHINA IMPORT&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">palcantara at spainchinaimport.com</A>&gt;.
+fetchmail: About to rewrite Reply-To: SPAIN CHINA IMPORT&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">palcantara at spainchinaimport.com</A>&gt;...
+...rewritten version is Reply-To: SPAIN CHINA IMPORT&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">palcantara at spainchinaimport.com</A>&gt;.
+fetchmail: About to rewrite Sender: <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">owner-www at openbsd.org...</A>
+...rewritten version is Sender: <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">owner-www at openbsd.org.</A>
+fetchmail: Trying to connect to 127.0.0.1/25...connected.
+fetchmail: SMTP&lt; 220 acer.localhost ESMTP Sendmail 8.14.4/8.14.4; Tue, 24 May 2011 15:19:17 +0100
+fetchmail: SMTP&gt; EHLO acer.localhost
+fetchmail: SMTP&lt; 250-acer.localhost Hello localhost [127.0.0.1], pleased to meet you
+fetchmail: SMTP&lt; 250-ENHANCEDSTATUSCODES
+fetchmail: SMTP&lt; 250-PIPELINING
+fetchmail: SMTP&lt; 250-8BITMIME
+fetchmail: SMTP&lt; 250-SIZE
+fetchmail: SMTP&lt; 250-DSN
+fetchmail: SMTP&lt; 250-ETRN
+fetchmail: SMTP&lt; 250-AUTH DIGEST-MD5 CRAM-MD5
+fetchmail: SMTP&lt; 250-DELIVERBY
+fetchmail: SMTP&lt; 250 HELP
+fetchmail: forwarding to localhost
+fetchmail: SMTP&gt; MAIL FROM:&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">owner-www at openbsd.org</A>&gt; SIZE=2413
+fetchmail: SMTP&lt; 451 4.1.8 Domain of sender address <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">owner-www at openbsd.org</A> does not resolve
+fetchmail: SMTP&gt; RSET
+fetchmail: SMTP&lt; 250 2.0.0 Reset state
+fetchmail: message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">llupe at gawab.com</A>@pop.gawab.com:1 was not the expected length (2460 actual != 2413 expected)
+fetchmail:  not flushed
+fetchmail: POP3&gt; LIST 2
+fetchmail: POP3&lt; +OK 2 4613
+fetchmail: POP3&gt; RETR 2
+fetchmail: POP3&lt; +OK 4613 octets follow.
+fetchmail: reading message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">llupe at gawab.com</A>@pop.gawab.com:2 of 6 (4613 octets)About to rewrite From: MERIGHI Marcus &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">mcmer-openbsd at tor.at</A>&gt;...
+...rewritten version is From: MERIGHI Marcus &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">mcmer-openbsd at tor.at</A>&gt;.
+fetchmail: About to rewrite To: <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">ports at openbsd.org...</A>
+...rewritten version is To: <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">ports at openbsd.org.</A>
+fetchmail: About to rewrite Sender: <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">owner-ports at openbsd.org...</A>
+...rewritten version is Sender: <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">owner-ports at openbsd.org.</A>
+fetchmail: forwarding to localhost
+fetchmail: SMTP&gt; MAIL FROM:&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">owner-ports at openbsd.org</A>&gt; SIZE=4613
+fetchmail: SMTP&lt; 451 4.1.8 Domain of sender address <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">owner-ports at openbsd.org</A> does not resolve
+fetchmail: SMTP&gt; RSET
+fetchmail: SMTP&lt; 250 2.0.0 Reset state
+fetchmail: message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">llupe at gawab.com</A>@pop.gawab.com:2 was not the expected length (4717 actual != 4613 expected)
+fetchmail:  not flushed
+fetchmail: POP3&gt; LIST 3
+fetchmail: POP3&lt; +OK 3 1845
+fetchmail: POP3&gt; RETR 3
+fetchmail: POP3&lt; +OK 1845 octets follow.
+...
+fetchmail: POP3&gt; QUIT
+fetchmail: POP3&lt; +OK C u later.
+fetchmail: SMTP&gt; QUIT
+fetchmail: SMTP&lt; 221 2.0.0 acer.localhost closing connection
+fetchmail: 6.3.19 querying pop.gawab.com (protocol POP3) at Ter 24 Mai 2011 15:19:23 WEST: poll completed
+fetchmail: New UID list from pop.gawab.com: 1306244874.23225_0.,S=2413 = UNSEEN, 1306235509.11759_0.,S=4613 = UNSEEN, 1306237253.31181_0.,S=1845 = UNSEEN, 1306242148.5252_0.,S=9974 = UNSEEN, 1306242297.13643_0.,S=3071 = UNSEEN, 1306243044.27096_0.,S=1880 = UNSEEN
+fetchmail: swapping UID lists
+
+            # ANOTHER SERVER
+fetchmail: 6.3.19 querying pop.interacesso.pt (protocol POP3) at Ter 24 Mai 2011 15:19:23 WEST: poll started
+fetchmail: Trying to connect to 212.13.45.35/110...connected.
+fetchmail: POP3&lt; +OK Hello there.
+fetchmail: POP3&gt; CAPA
+fetchmail: POP3&lt; +OK Here's what I can do:
+fetchmail: POP3&lt; TOP
+fetchmail: POP3&lt; USER
+fetchmail: POP3&lt; LOGIN-DELAY 10
+fetchmail: POP3&lt; PIPELINING
+fetchmail: POP3&lt; UIDL
+fetchmail: POP3&lt; IMPLEMENTATION Courier Mail Server
+fetchmail: POP3&lt; .
+fetchmail: POP3&gt; USER luis
+fetchmail: POP3&lt; +OK Password required.
+fetchmail: POP3&gt; PASS *
+fetchmail: POP3&lt; +OK logged in.
+fetchmail: selecting or re-polling default folder
+fetchmail: POP3&gt; STAT
+fetchmail: POP3&lt; +OK 0 0
+fetchmail: No mail for luis at pop.interacesso.pt
+fetchmail: POP3&gt; QUIT
+fetchmail: POP3&lt; +OK Bye-bye.
+fetchmail: 6.3.19 querying pop.interacesso.pt (protocol POP3) at Ter 24 Mai 2011 15:19:24 WEST: poll completed
+fetchmail: New UID list from pop.interacesso.pt: &lt;empty&gt;
+fetchmail: not swapping UID lists, no UIDs seen this query
+fetchmail: Query status=1 (NOMAIL)
+fetchmail: normal termination, status 0
+
+
+--- End forwarded message -----
+
+ 
+
+Luis P. Mendes
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002828.html">[fetchmail-users] Network time-outs when handling IMAP IDLE
+</A></li>
+	<LI>Next message: <A HREF="002831.html">[fetchmail-users] Fetchmail doesn't create and deletes fetchids	file
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2830">[ date ]</a>
+              <a href="thread.html#2830">[ thread ]</a>
+              <a href="subject.html#2830">[ subject ]</a>
+              <a href="author.html#2830">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

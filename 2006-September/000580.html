@@ -1,0 +1,94 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] no mail
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2006-September/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20no%20mail&In-Reply-To=%3C43ea8d070609031424r73139a06r56c8906aaa122231%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000579.html">
+   <LINK REL="Next"  HREF="000581.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] no mail</H1>
+    <B>Rob MacGregor</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20no%20mail&In-Reply-To=%3C43ea8d070609031424r73139a06r56c8906aaa122231%40mail.gmail.com%3E"
+       TITLE="[fetchmail-users] no mail">rob.macgregor at gmail.com
+       </A><BR>
+    <I>Sun Sep  3 23:24:09 CEST 2006</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000579.html">[fetchmail-users] no mail
+</A></li>
+        <LI>Next message: <A HREF="000581.html">[fetchmail-users] Questions FETCHMAIL-DAEMON &amp; qvirtual
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#580">[ date ]</a>
+              <a href="thread.html#580">[ thread ]</a>
+              <a href="subject.html#580">[ subject ]</a>
+              <a href="author.html#580">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On 9/3/06, Helge &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">helge.opsjon at monet.no</A>&gt; wrote:
+&gt;<i> cat /var/log/exim4/mainlog | grep 1GJy2M-0002hg-Sh
+</I>&gt;<i> 2006-09-03 21:53:46 1GJy2M-0002hg-Sh &lt;= <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">helge.opsjon at monet.no</A>
+</I>&gt;<i> H=localhost (helge.monet.no) [127.0.0.1] P=esmtp S=2388
+</I>&gt;<i> id=<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">44FB3282.1070409 at monet.no</A>
+</I>&gt;<i> 2006-09-03 21:53:47 1GJy2M-0002hg-Sh =&gt; <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">helge.opsjon at monet.no</A>
+</I>&gt;<i> &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">helge at localhost</A>&gt; R=dnslookup_relay_to_domains T=remote_smtp
+</I>&gt;<i> H=mail.monet.no [62.128.239.20]
+</I>&gt;<i> 2006-09-03 21:53:47 1GJy2M-0002hg-Sh Completed
+</I>&gt;<i>
+</I>&gt;<i> I am sorry but I don't se any clues here; any tips?
+</I>
+You really need to ask on the Exim list - here I only offer help on
+fetchmail.  However at a rough guess exim is seeing that the mail is
+for @monet.no, doing the DNS lookup and forwarding the mail.  You need
+to stop Exim from doing that.
+
+It may be simply that you need to define &quot;localhost&quot; as being a local
+mail domain, that may be enough to stop Exim from doing whatever it's
+doing (at a guess, trawling the headers for a valid address).
+
+&gt;<i> By the way: I dont see how it is possible to send a reply, and not only
+</I>&gt;<i> a new thread  all the time?
+</I>
+That's down to your mail client (Thunderbird), simply hit &quot;Reply To
+All&quot; then remove the non-list address(es).
+
+-- 
+                 Please keep list traffic on the list.
+
+Rob MacGregor
+      Whoever fights monsters should see to it that in the process he
+        doesn't become a monster.                  Friedrich Nietzsche
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000579.html">[fetchmail-users] no mail
+</A></li>
+	<LI>Next message: <A HREF="000581.html">[fetchmail-users] Questions FETCHMAIL-DAEMON &amp; qvirtual
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#580">[ date ]</a>
+              <a href="thread.html#580">[ thread ]</a>
+              <a href="subject.html#580">[ subject ]</a>
+              <a href="author.html#580">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,130 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Making fetchmail work with original sendmail storage format
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2012-January/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Making%20fetchmail%20work%20with%20original%20sendmail%0A%20storage%20format&In-Reply-To=%3C20120116175833.GA3696%40alanmcc.localdomain%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003028.html">
+   <LINK REL="Next"  HREF="003027.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Making fetchmail work with original sendmail storage format</H1>
+    <B>Alan McConnell</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Making%20fetchmail%20work%20with%20original%20sendmail%0A%20storage%20format&In-Reply-To=%3C20120116175833.GA3696%40alanmcc.localdomain%3E"
+       TITLE="[fetchmail-users] Making fetchmail work with original sendmail storage format">alan at patriot.net
+       </A><BR>
+    <I>Mon Jan 16 18:58:33 CET 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003028.html">[fetchmail-users] Making fetchmail work with original sendmail storage format
+</A></li>
+        <LI>Next message: <A HREF="003027.html">[fetchmail-users] Making fetchmail work with original sendmail storage format
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3029">[ date ]</a>
+              <a href="thread.html#3029">[ thread ]</a>
+              <a href="subject.html#3029">[ subject ]</a>
+              <a href="author.html#3029">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Mon, Jan 16, 2012 at 02:37:16PM +0100, Matthias Andree wrote:
+&gt;<i> (post to the list, with a courtesy copy directly to Alan)
+</I>  	&lt;G&gt;  Thanks.  I believe however that mailman sends
+	only one copy, since I'm on the List.  That has been
+	true of mailman for quite a while, I believe.  Let
+	us know if you receive two copies of this reply.
+
+
+&gt;<i> Am 15.01.2012 15:01, schrieb Alan McConnell:
+</I>&gt;<i>
+</I>&gt;<i> &gt;     	 I now have further information about this. The
+</I>&gt;<i> &gt; 	 directory ~mail/ contains subdirectories cur/ and
+</I>&gt;<i> &gt; 	 new/ .  New mail arrives in new/ but then after
+</I>&gt;<i> &gt; 	 being inspected gets moved to cur/.  This is somehow
+</I>&gt;<i> &gt; 	 reminiscent of qmail, which I ran for a while a
+</I>&gt;<i> &gt; 	 few years ago, but abandoned for the &quot;usual reasons&quot;&lt;g&gt;.
+</I>&gt;<i> 
+</I>&gt;<i> Hi Alan,
+</I>&gt;<i> 
+</I>&gt;<i> indeed Dan J. Bernstein's qmail pioneered that &quot;Maildir&quot; format, which
+</I>&gt;<i> got later extended (I think it was Sam Varshavchik/Inter 7's Courier
+</I>&gt;<i> package) to Maildir++ with quota support.
+</I>  	 I am sure that you are right.  I have done further research,
+	 and experimentation, and the system I'm trying to read from
+	 is indeed a Maildir system.
+
+&gt;<i> &gt;       It is possible that dovecot is installed on the upstream
+</I>&gt;<i> &gt;       computer I am fetching mail from.  There is, clearly, a 
+</I>&gt;<i> &gt;       lot about this situation that I don't understand!
+</I>&gt;<i> 
+</I>&gt;<i> There is a certain choice of software (and surely not just a tiny one on
+</I>&gt;<i> Debian) that allows access. Dovecot is a (somewhat) younger software
+</I>&gt;<i> that is popular because it's easy to configure and very efficient CPU
+</I>&gt;<i> and I/O-wise, especially for an IMAP server.
+</I>         I believe that the system I'm grabbing from( Globaltap.com,
+	 a web hosting company based in Baltimore ) does indeed use
+	 dovecot.  Globaltap is run by two friends of mine whose main
+	 focus up to now has been on Web hosting.  They've yielded to
+	 my pleadings and set up a shell account for me, for which I'll
+	 pay them.
+
+&gt;<i> I suppose a &quot;big picture&quot; and glossary of typical fetchmail uses to
+</I>&gt;<i> accompany the documentation might help.  I'll add one, time permitting.
+</I>         I would be interested, at such time as you do it.  I'm
+	 sure others would be too.  I think it is a hard job though.
+	 What a host of complications has grown up around something originally
+	 so simple as the SMTP dialog!
+
+	 My goal however is more than to grab mail from Globaltap; 
+	 I think that my fetchmail setup now does that fine.  What
+	 I will now work on is using Globaltap as a &quot;smart host&quot;
+	 (Wietse Venema uses the term &quot;relay host&quot;).  I want to 
+	 use my own   mutt   on my home machine, my own   postfix  ,
+	 configured to pass what I write on to globaltap which
+	 will then pass it on to the world as coming from
+	      <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">alan at globaltap.com</A>  .
+
+	 So I shall now proceed on to this more difficult task.
+	 I thank all fetchmail-users responders for their
+	 comments and insights.
+
+Best wishes,
+
+Alan
+
+-- 
+Alan McConnell :  <A HREF="http://patriot.net/users/alan">http://patriot.net/users/alan</A>
+       We live in a world that is full of mistaken policies, but they
+       are not mistaken for their supporters.(George Stigler)
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003028.html">[fetchmail-users] Making fetchmail work with original sendmail storage format
+</A></li>
+	<LI>Next message: <A HREF="003027.html">[fetchmail-users] Making fetchmail work with original sendmail storage format
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3029">[ date ]</a>
+              <a href="thread.html#3029">[ thread ]</a>
+              <a href="subject.html#3029">[ subject ]</a>
+              <a href="author.html#3029">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

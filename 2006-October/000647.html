@@ -1,0 +1,80 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] fetchmail deletes imap messages
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2006-October/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%20deletes%20imap%20messages&In-Reply-To=%3Cm34pu3hlyd.fsf%40merlin.emma.line.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000646.html">
+   <LINK REL="Next"  HREF="000648.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] fetchmail deletes imap messages</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%20deletes%20imap%20messages&In-Reply-To=%3Cm34pu3hlyd.fsf%40merlin.emma.line.org%3E"
+       TITLE="[fetchmail-users] fetchmail deletes imap messages">matthias.andree at gmx.de
+       </A><BR>
+    <I>Tue Oct 17 01:36:58 CEST 2006</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000646.html">[fetchmail-users] fetchmail deletes imap messages
+</A></li>
+        <LI>Next message: <A HREF="000648.html">[fetchmail-users] Problem downloading fetchmail-6.3.5.tar.bz2
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#647">[ date ]</a>
+              <a href="thread.html#647">[ thread ]</a>
+              <a href="subject.html#647">[ subject ]</a>
+              <a href="author.html#647">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>longbow &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">longbow at gmx.de</A>&gt; writes:
+
+&gt;<i> i think i solved the problem on my own: i used the '-a' option in my
+</I>&gt;<i> local fetchmail command:
+</I>&gt;<i> /bin/su wolfgang -c '/usr/bin/fetchmail -a -f
+</I>&gt;<i> /home/wolfgang/.fetchmailrc -d 300 -L /home/wolfgang/fetchmail.log 2&gt;&amp;1'
+</I>
+-a (= fetchall) and keep don't mix...
+
+&gt;<i> and i think this confused the &quot;keep&quot; option in my .fetchmailrc. i tested
+</I>&gt;<i> a few mailsendings and everything seems to run fine. i also do not get
+</I>&gt;<i> the message
+</I>&gt;<i> fetchmail: restarting fetchmail (/home/USER/.fetchmailrc changed)
+</I>&gt;<i> Both fetchall and keep on in daemon mode is a mistake!
+</I>
+...and fetchmail complains here. So you have been warned about the mistake...
+
+-- 
+Matthias Andree
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000646.html">[fetchmail-users] fetchmail deletes imap messages
+</A></li>
+	<LI>Next message: <A HREF="000648.html">[fetchmail-users] Problem downloading fetchmail-6.3.5.tar.bz2
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#647">[ date ]</a>
+              <a href="thread.html#647">[ thread ]</a>
+              <a href="subject.html#647">[ subject ]</a>
+              <a href="author.html#647">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

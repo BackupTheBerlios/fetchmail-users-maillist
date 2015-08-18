@@ -1,0 +1,113 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] compile errs in md5c.c
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2011-February/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20compile%20errs%20in%20md5c.c&In-Reply-To=%3C4D5A4950.2090306%40ericsson.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002650.html">
+   <LINK REL="Next"  HREF="002652.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] compile errs in md5c.c</H1>
+    <B>Jonathan Buschmann</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20compile%20errs%20in%20md5c.c&In-Reply-To=%3C4D5A4950.2090306%40ericsson.com%3E"
+       TITLE="[fetchmail-users] compile errs in md5c.c">jonathan.buschmann at ericsson.com
+       </A><BR>
+    <I>Tue Feb 15 10:37:20 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002650.html">[fetchmail-users] fetchmail gmail setup problem
+</A></li>
+        <LI>Next message: <A HREF="002652.html">[fetchmail-users] compile errs in md5c.c
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2651">[ date ]</a>
+              <a href="thread.html#2651">[ thread ]</a>
+              <a href="subject.html#2651">[ subject ]</a>
+              <a href="author.html#2651">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+I'm on a SUN Solaris 10, gcc compile.
+I'm getting compile errors in md5c.c, in 6.3.19.  I didn't have problems 
+with 6.3.17. There are clashes with /usr/include/sys/md5.h.
+In particular the conflict seems to be with the struct MD5Context.
+
+gcc -DHAVE_CONFIG_H -DLOCALEDIR=\&quot;/usr/local/share/locale\&quot; -I.  
+-I./libesmtp -I/usr/local/include  -g -O2 -I/usr/local/ssl/include 
+-I/usr/kerberos/include -MT md5c.o -MD -MP -MF .deps/md5c.Tpo -c -o 
+md5c.o md5c.c
+md5c.c:44: error: parse error before '*' token
+md5c.c: In function `MD5Init':
+md5c.c:45: error: number of arguments doesn't match prototype
+/usr/include/sys/md5.h:64: error: prototype declaration
+md5c.c:46: error: `ctx' undeclared (first use in this function)
+md5c.c:46: error: (Each undeclared identifier is reported only once
+md5c.c:46: error: for each function it appears in.)
+md5c.c: At top level:
+md5c.c:59: warning: &quot;struct MD5Context&quot; declared inside parameter list
+md5c.c:59: warning: its scope is only this definition or declaration, 
+which is probably not what you want
+md5c.c: In function `MD5Update':
+md5c.c:66: error: dereferencing pointer to incomplete type
+md5c.c:67: error: dereferencing pointer to incomplete type
+md5c.c:68: error: dereferencing pointer to incomplete type
+md5c.c:69: error: dereferencing pointer to incomplete type
+md5c.c:76: error: dereferencing pointer to incomplete type
+md5c.c:84: error: dereferencing pointer to incomplete type
+md5c.c:85: error: dereferencing pointer to incomplete type
+md5c.c:85: error: dereferencing pointer to incomplete type
+md5c.c:92: error: dereferencing pointer to incomplete type
+md5c.c:93: error: dereferencing pointer to incomplete type
+md5c.c:94: error: dereferencing pointer to incomplete type
+md5c.c:94: error: dereferencing pointer to incomplete type
+md18: error: dereferencing pointer to incomplete type
+md5c.c:128: error: dereferencing pointer to incomplete type
+md5c.c:129: error: dereferencing pointer to incomplete type
+md5c.c:129: error: dereferencing pointer to incomplete type
+md5c.c:132: error: dereferencing pointer to incomplete type
+md5c.c:137: error: dereferencing pointer to incomplete type
+md5c.c:140: error: dereferencing pointer to incomplete type
+md5c.c:140: error: dereferencing pointer to incomplete type
+md5c.c:141: error: dereferencing pointer to incomplete type
+md5c.c:141: error: dereferencing pointer to incomplete type
+md5c.c:143: error: dereferencing pointer to incomplete type
+md5c.c:143: error: dereferencing pointer to incomplete type
+md5c.c:144: error: dereferencing pointer to incomplete type
+md5c.c:145: error: dereferencing pointer to incomplete type
+md5c.c: At top level:
+md5c.c:167: error: conflicting types for 'MD5Transform'
+md5c.c:85: error: previous implicit declaration of 'MD5Transform' was here
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002650.html">[fetchmail-users] fetchmail gmail setup problem
+</A></li>
+	<LI>Next message: <A HREF="002652.html">[fetchmail-users] compile errs in md5c.c
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2651">[ date ]</a>
+              <a href="thread.html#2651">[ thread ]</a>
+              <a href="subject.html#2651">[ subject ]</a>
+              <a href="author.html#2651">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

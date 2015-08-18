@@ -1,0 +1,123 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] SSL Ceritficate errors in sendmail log
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2007-March/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20SSL%20Ceritficate%20errors%20in%20sendmail%20log&In-Reply-To=%3C06f601c769b6%248b90de80%244000a8c0%40richard%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000909.html">
+   <LINK REL="Next"  HREF="000900.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] SSL Ceritficate errors in sendmail log</H1>
+    <B>Richard</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20SSL%20Ceritficate%20errors%20in%20sendmail%20log&In-Reply-To=%3C06f601c769b6%248b90de80%244000a8c0%40richard%3E"
+       TITLE="[fetchmail-users] SSL Ceritficate errors in sendmail log">rchapman at aardvark.com.au
+       </A><BR>
+    <I>Mon Mar 19 00:38:34 CET 2007</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000909.html">[fetchmail-users] Using LDAP for user account information
+</A></li>
+        <LI>Next message: <A HREF="000900.html">[fetchmail-users] SSL Ceritficate errors in sendmail log
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#899">[ date ]</a>
+              <a href="thread.html#899">[ thread ]</a>
+              <a href="subject.html#899">[ subject ]</a>
+              <a href="author.html#899">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>
+Hi 
+
+I am running Centos 4.4 all up to date - and using fetchmail 6.2.5 to
+consolidate various email accounts. I am a recently reformed windows system
+admin and use webmin to administer the centos machine.
+
+Whenever I receive (reasonable) errors in my fetchmail log - I also get the
+following warnings:
+
+fetchmail: 6.2.5 querying pop.gmail.com (protocol POP3) at Fri Mar 16
+20:50:15 2007: poll started
+fetchmail: Issuer Organization: Equifax
+fetchmail: Unknown Issuer CommonName
+fetchmail: Server CommonName: pop.gmail.com
+fetchmail: pop.gmail.com key fingerprint:
+59:51:61:89:CD:DD:B2:35:94:BB:44:97:A0:39:D5:B4
+fetchmail: Warning: server certificate verification: unable to get local
+issuer certificate
+fetchmail: Issuer Organization: Equifax
+fetchmail: Unknown Issuer CommonName
+fetchmail: Server CommonName: pop.gmail.com
+fetchmail: Warning: server certificate verification: certificate not trusted
+fetchmail: Issuer Organization: Equifax
+fetchmail: Unknown Issuer CommonName
+fetchmail: Server CommonName: pop.gmail.com
+fetchmail: Warning: server certificate verification: unable to verify the
+first certificate
+fetchmail: POP3&lt; +OK Gpop ready for requests from 202.72.167.234
+7pf2474781nzn
+fetchmail: POP3&gt; CAPA
+fetchmail: POP3&lt; +OK Capability list follows
+fetchmail: POP3&lt; USER
+fetchmail: POP3&lt; RESP-CODES
+fetchmail: POP3&lt; EXPIRE 0
+fetchmail: POP3&lt; LOGIN-DELAY 300
+fetchmail: POP3&lt; X-GOOGLE-VERHOEVEN
+fetchmail: POP3&lt; UIDL
+fetchmail: POP3&lt; .
+fetchmail: POP3&gt; USER <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">chapman.richard at gmail.com</A>
+fetchmail: POP3&lt; +OK send PASS
+fetchmail: POP3&gt; PASS *
+fetchmail: POP3&lt; +OK Welcome.
+fetchmail: POP3&gt; STAT
+fetchmail: POP3&lt; +OK 0 0
+fetchmail: No mail for <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">chapman.richard at gmail.com</A> at pop.gmail.com
+fetchmail: POP3&gt; QUIT
+fetchmail: POP3&lt; +OK Farewell.
+fetchmail: 6.2.5 querying pop.gmail.com (protocol POP3) at Fri Mar 16
+20:50:21 2007: poll completed
+
+This appears to be telling me that the centos system does not trust Google's
+certificate issuer.
+
+I realise this may not be the best forum - but does anyone know how I can
+establish the trust to avoid these warnings?
+
+Thanks
+
+Richard.
+
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000909.html">[fetchmail-users] Using LDAP for user account information
+</A></li>
+	<LI>Next message: <A HREF="000900.html">[fetchmail-users] SSL Ceritficate errors in sendmail log
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#899">[ date ]</a>
+              <a href="thread.html#899">[ thread ]</a>
+              <a href="subject.html#899">[ subject ]</a>
+              <a href="author.html#899">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

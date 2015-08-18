@@ -1,0 +1,158 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Re: RETR with UIDL
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2006-March/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Re%3A%20RETR%20with%20UIDL&In-Reply-To=%3Cm3psl31ixf.fsf%40merlin.emma.line.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000297.html">
+   <LINK REL="Next"  HREF="000299.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Re: RETR with UIDL</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Re%3A%20RETR%20with%20UIDL&In-Reply-To=%3Cm3psl31ixf.fsf%40merlin.emma.line.org%3E"
+       TITLE="[fetchmail-users] Re: RETR with UIDL">matthias.andree at gmx.de
+       </A><BR>
+    <I>Fri Mar  3 19:29:00 CET 2006</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000297.html">[fetchmail-users] Re: RETR with UIDL
+</A></li>
+        <LI>Next message: <A HREF="000299.html">[fetchmail-users] Re: RETR with UIDL
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#298">[ date ]</a>
+              <a href="thread.html#298">[ thread ]</a>
+              <a href="subject.html#298">[ subject ]</a>
+              <a href="author.html#298">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Sunil Shetye &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">shetye at bombay.retortsoft.com</A>&gt; writes:
+
+&gt;<i> Quoting from Matthias Andree's mail on Fri, Mar 03, 2006:
+</I>&gt;&gt;<i> &gt; Please note that the change I am recommending is that fetchmail
+</I>&gt;&gt;<i> &gt; *should* use RETR with pop3+uidl servers. Other pop3 servers will not
+</I>&gt;&gt;<i> &gt; be affected by this change.
+</I>&gt;&gt;<i> 
+</I>&gt;&gt;<i> Yes, it's still 6.4.X stuff since it deliberately changes behavior for
+</I>&gt;&gt;<i> no good reason.
+</I>&gt;<i>
+</I>&gt;<i> There is a good reason.
+</I>&gt;<i>
+</I>&gt;<i> The advice being given to force fetchmail to avoid using &quot;TOP&quot; with
+</I>&gt;<i> these buggy servers is to enable the &quot;fetchall&quot; option. The FAQ is
+</I>&gt;<i> littered with this advice for various servers with variety of
+</I>&gt;<i> problems. The problems with &quot;fetchall&quot; option are:
+</I>&gt;<i>
+</I>&gt;<i> - &quot;fetchall&quot; cannot be used with &quot;uidl&quot;
+</I>
+Well, we can fix eventual incompatibilities between these two options
+any time. 6.3.X is open for bug fixes.
+
+&gt;<i> - &quot;fetchall&quot; causes mails to be redownloaded if there is a line-hit
+</I>&gt;<i> while fetchmail is downloading mails. If there are consecutive
+</I>&gt;<i> line-hits, the same set of mails could be downloaded any number of
+</I>&gt;<i> times.
+</I>
+Yes, true. So use just uidl without fetchall on flakey lines. There is
+little reason to add fetchall to uidl. We can decouple TOP/RETR from
+fetchall in 6.4.X and default to RETR if we want. Not in 6.3.X.
+
+Let's do 6.3.3 (thanks for your efforts in getting the IMAP NOOP bugs
+nailed BTW), and then fork 6.4.X and make all interesting changes and
+cleanups in particular in 6.4.X.
+
+&gt;<i> To avoid the redownloading of mails, one has to now probably add the
+</I>&gt;<i> &quot;expunge&quot; option also. Finding the best value for &quot;expunge&quot; is a
+</I>&gt;<i> problem itself:
+</I>&gt;<i>
+</I>&gt;<i> - &quot;expunge 1&quot; is expensive. It will reconnect for every mail. Many
+</I>&gt;<i>   mailservers may not like this too. However, each mail will be
+</I>&gt;<i>   downloaded only once.
+</I>&gt;<i> - &quot;expunge 2&quot; is less expensive. Mailservers may still object to this.
+</I>&gt;<i>   Very few mails will be redownloaded.
+</I>&gt;<i> - &quot;expunge 20&quot; is relatively cheap. Mailservers may not object to
+</I>&gt;<i>   this. Some mails will get redownloaded. However, on a bad day, if
+</I>&gt;<i>   you do get consecutive line-hits, you will still end up with
+</I>&gt;<i>   multiple copies of mails.
+</I>
+The best option would be to use UIDL. Still we'll not be forcing UIDL
+downloads to use RETR in 6.3.X. We can safely do that in 6.4.X: the
+6.3.X manpage already has warnings in place.
+
+&gt;&gt;<i> fetchmail 6.3.2 already introduced the (incompatible) &quot;use RETR with
+</I>&gt;&gt;<i> Maillennium server&quot; change because it was considered we'd rather screw
+</I>&gt;&gt;<i> some message flags and a LAST pointer rather than truncate messages.
+</I>&gt;<i>
+</I>&gt;<i> I don't get this part. If the pop3 server is supporting UIDL and
+</I>&gt;<i> fetchmail is running with the &quot;uidl&quot; option, why bother about the LAST
+</I>&gt;<i> pointer and message flags?
+</I>
+Why bother? Because I promised I'd stop the ESR madness of gold versions
+and promised 6.3.X would be compatible with 6.3.0 when I released 6.3.0.
+
+&gt;<i> And, as has already been said, most standard interactive clients use
+</I>&gt;<i> &quot;uidl&quot; anyway. So, they also will not get affected.
+</I>
+This is not a valid reason to change behavior in incompatible ways in
+the midst of a stable version. I'd wondered if I'd wanted to add the
+Maillennium workaround in 6.3.X at all or delay it until 6.4.X. There'd
+been loads of reasons to defer it, not the least being a documented
+workaround.
+
+&gt;<i> Jakob, please give more details about the Mercury server:
+</I>&gt;<i>
+</I>&gt;<i> - its signature line
+</I>&gt;<i> - its CAPA output
+</I>&gt;<i> - whether it supports UIDL
+</I>&gt;<i> - whether you are using it with &quot;uidl&quot;
+</I>&gt;<i> and finally,
+</I>&gt;<i> - your opinion on whether fetchmail should use &quot;RETR&quot; with &quot;uidl&quot;.
+</I>
+I'm not accepting changes into 6.3.X that switch TOP to RETR except if
+they fix security bugs, data corruption or other critical issues, so
+please don't spend your time before we've opened 6.4.X for hacking.
+
+Priorities for incompatible changes are:
+
+1. Security
+2. Critical bugs (data loss, crash, similar)
+3. Compatibility within stable releases
+4. Protocol compliance
+5. Consistency
+6. Anything else
+
+-- 
+Matthias Andree
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000297.html">[fetchmail-users] Re: RETR with UIDL
+</A></li>
+	<LI>Next message: <A HREF="000299.html">[fetchmail-users] Re: RETR with UIDL
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#298">[ date ]</a>
+              <a href="thread.html#298">[ thread ]</a>
+              <a href="subject.html#298">[ subject ]</a>
+              <a href="author.html#298">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

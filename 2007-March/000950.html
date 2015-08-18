@@ -1,0 +1,101 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] fetchmail 6.3.8-rc3 release candidate
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2007-March/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%206.3.8-rc3%20release%20candidate&In-Reply-To=%3C20070331185835.GB25687%40merlin.emma.line.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000949.html">
+   <LINK REL="Next"  HREF="000951.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] fetchmail 6.3.8-rc3 release candidate</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%206.3.8-rc3%20release%20candidate&In-Reply-To=%3C20070331185835.GB25687%40merlin.emma.line.org%3E"
+       TITLE="[fetchmail-users] fetchmail 6.3.8-rc3 release candidate">matthias.andree at gmx.de
+       </A><BR>
+    <I>Sat Mar 31 20:58:35 CEST 2007</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000949.html">[fetchmail-users] Fetchmail and domains
+</A></li>
+        <LI>Next message: <A HREF="000951.html">[fetchmail-users] HEADS UP: fetchmail 6.3 release plans (was:	fetchmail 6.3.8-rc3 release candidate)
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#950">[ date ]</a>
+              <a href="thread.html#950">[ thread ]</a>
+              <a href="subject.html#950">[ subject ]</a>
+              <a href="author.html#950">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA1
+
+Greetings,
+
+I have uploaded the third fetchmail 6.3.8 release candidate to the usual
+download location: &lt;<A HREF="http://home.pages.de/~mandree/fetchmail/">http://home.pages.de/~mandree/fetchmail/</A>&gt;.
+
+This became necessary after long-standing BSMTP bugs had been reported
+after -rc2.
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Changes in 6.3.8-rc3 since -rc2 (2007-03-31):
+
+* If SOCKS support was compiled in, add 'socks' to the feature_options Python
+  list emitted in --configdump. Reported by Rob MacGregor.
+* Do not crash with a null pointer dereference when opening the BSMTP file 
+  fails. Improve error checking and reporting. Reported by Reto Sch&#252;ttel,
+  Debian Bug#416625. Fix based on a patch by Nico Golde.
+* Make BSMTP output actually work, it would persistently fail with SOCKET error
+  after writing the first header.
+* Corrected Robert M. Funk's name that I misspelled. My sincere apologies
+  -- Matthias Andree.
+* BSMTP is mostly untested and errors can cause corrupt output.
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+WARNING: This message sets the Reply-To: header.
+When replying to me personally, you need to edit the To: header!
+
+Thank you.
+
+Happy fetching,
+Matthias Andree
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1.4.5 (GNU/Linux)
+
+iD8DBQFGDq9bvmGDOQUufZURAqQmAJ46jJBsnO/7fjarFOKZNfGOGrA/YQCg7TrJ
+yrPNxFS9JkO39I/qPgz6aBo=
+=RuQW
+-----END PGP SIGNATURE-----
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000949.html">[fetchmail-users] Fetchmail and domains
+</A></li>
+	<LI>Next message: <A HREF="000951.html">[fetchmail-users] HEADS UP: fetchmail 6.3 release plans (was:	fetchmail 6.3.8-rc3 release candidate)
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#950">[ date ]</a>
+              <a href="thread.html#950">[ thread ]</a>
+              <a href="subject.html#950">[ subject ]</a>
+              <a href="author.html#950">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

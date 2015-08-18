@@ -1,0 +1,131 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] fetchmail 7.0.0-alpha1 alpha preview release
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2010-December/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%207.0.0-alpha1%20alpha%20preview%20release&In-Reply-To=%3C20101214202140.GA27590%40merlin.emma.line.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002602.html">
+   <LINK REL="Next"  HREF="002605.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] fetchmail 7.0.0-alpha1 alpha preview release</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%207.0.0-alpha1%20alpha%20preview%20release&In-Reply-To=%3C20101214202140.GA27590%40merlin.emma.line.org%3E"
+       TITLE="[fetchmail-users] fetchmail 7.0.0-alpha1 alpha preview release">matthias.andree at gmx.de
+       </A><BR>
+    <I>Tue Dec 14 21:21:40 CET 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002602.html">[fetchmail-users] Fetchmail via SSL? Pipe into SpamBayes, how?
+</A></li>
+        <LI>Next message: <A HREF="002605.html">[fetchmail-users] Thanks
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2604">[ date ]</a>
+              <a href="thread.html#2604">[ thread ]</a>
+              <a href="subject.html#2604">[ subject ]</a>
+              <a href="author.html#2604">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Greetings,
+
+in an effort to get sufficient testing, I have released the first alpha
+version of fetchmail 7.0.0.
+
+The alpha version isn't available through BerliOS, but only from
+DOWNLOAD: &lt;<A HREF="http://home.pages.de/~mandree/fetchmail/">http://home.pages.de/~mandree/fetchmail/</A>&gt;
+
+The corresponding git tag is SNAPSHOT_7-0-0-alpha1, the branch is
+&quot;next&quot;.
+
+Please send feedback to <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">fetchmail-devel at lists.berlios.de.</A>
+
+Happy fetching!
+Matthias
+
+--------------------------------------------------------------------------------
+
+fetchmail-7.0.0 (not yet released):
+
+NOTE THIS IS AN ALPHA RELEASE THAT HAS NOT BEEN THOROUGHLY TESTED!
+
+# MAJOR CHANGES
+* The UIDL handler code is now much faster, especially noticable with lots of
+  mail kept on a POP3 server. Where the 6.3.X code was of O(n^2) complexity,
+  we're down to O(n log n).
+  Contributed by Rainer Weikusat, MAD Partners Ltd./MSS GmbH.
+* The POP3 code now always uses UIDL, except if &quot;fetchall&quot; is in effect.
+  Fixes BerliOS Bug #16172.
+
+# FEATURES ADDED
+* Fetchmail can now retrieve credentials from PWMD. This needs to be enabled at
+  compile-time and requires run-time configuration. See README.PWMD for details.
+  Contributed by Ben Kibbey, author of libpwmd and pwmd.
+* Fetchmail now supports a retrieve-error command line or rcfile option that
+  takes exactly one argument, abort (default), continue or markseen.  This
+  specifies the policy used by fetchmail to handle messages whose bodies
+  fail to be retrieved due to server errors.  Both the continue and markseen
+  options will skip the message with errors and allow the session to
+  continue so that subsequent messages can be retrieved.  The markseen
+  option will also mark the message with errors as seen.
+  The default policy is to abort the session whenever a server error occurs.
+  Contributed by Craig Brown.
+
+# REMOVED FEATURES
+* POP2 was removed
+* RPOP (not actually a protocol, but a variant of POP3) was removed
+* POP3: the uidl option has been removed. It is no longer configurable.
+* POP3: LAST is no longer used. It was removed from POP3 in 1994, and it could
+  cause mail loss.
+* Trio was removed, fetchmail expects reasonable stdio.h support levels.
+* Support for systems that do not conform to C89 and POSIX 2001 was removed,
+  this means that BeOS, EMX, NeXTSTEP quirks are no longer worked around.
+* The MX and host alias DNS lookups that fetchmail performs in multidrop mode
+  have been removed. They were based on the mistaken assumption that the
+  IMAP/POP3 server was also the MX server, which is rarely the case.  They have
+  never supported IPv6 (including IPv6-mapped IPv4) either.
+  Non-DNS based alias keywords such as &quot;aka&quot; remain.
+* Kerberos IV support was removed.
+
+# CHANGES
+* fetchmail now always uses its own MD5 implementation.  The library and header
+  variants are too diverse, and we've been bitten before -- and configure
+  complains noisily on Cyrus-SASL's RFC1321 md5.h.
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: not available
+Type: application/pgp-signature
+Size: 198 bytes
+Desc: not available
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/fetchmail-users/attachments/20101214/25592569/attachment.pgp">https://lists.berlios.de/pipermail/fetchmail-users/attachments/20101214/25592569/attachment.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002602.html">[fetchmail-users] Fetchmail via SSL? Pipe into SpamBayes, how?
+</A></li>
+	<LI>Next message: <A HREF="002605.html">[fetchmail-users] Thanks
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2604">[ date ]</a>
+              <a href="thread.html#2604">[ thread ]</a>
+              <a href="subject.html#2604">[ subject ]</a>
+              <a href="author.html#2604">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

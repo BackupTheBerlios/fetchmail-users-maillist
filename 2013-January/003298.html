@@ -1,0 +1,125 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Fetchmail fails with BAD Command received in	invalid state after upgrade to 6.3.24
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2013-January/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Fetchmail%20fails%20with%20BAD%20Command%20received%20in%0A%09invalid%20state%20after%20upgrade%20to%206.3.24&In-Reply-To=%3C87E4B40B-A4A0-49D4-ADC4-DF950491E1CF%40petervannes.nl%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003297.html">
+   <LINK REL="Next"  HREF="003299.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Fetchmail fails with BAD Command received in	invalid state after upgrade to 6.3.24</H1>
+    <B>Peter van Nes</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Fetchmail%20fails%20with%20BAD%20Command%20received%20in%0A%09invalid%20state%20after%20upgrade%20to%206.3.24&In-Reply-To=%3C87E4B40B-A4A0-49D4-ADC4-DF950491E1CF%40petervannes.nl%3E"
+       TITLE="[fetchmail-users] Fetchmail fails with BAD Command received in	invalid state after upgrade to 6.3.24">mailbox at petervannes.nl
+       </A><BR>
+    <I>Sun Jan  6 22:39:36 CET 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003297.html">[fetchmail-users] fetchmail 7.0.0-alpha4 alpha preview release
+</A></li>
+        <LI>Next message: <A HREF="003299.html">[fetchmail-users] Fetchmail fails with BAD Command received in invalid state after upgrade to 6.3.24
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3298">[ date ]</a>
+              <a href="thread.html#3298">[ thread ]</a>
+              <a href="subject.html#3298">[ subject ]</a>
+              <a href="author.html#3298">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>
+Hi,
+
+
+After the upgrade up Mac OS X 10.7 to 10.8 fetchmail disappeared. After installing fetchmail 6.3.24 i try to use fetchmail using the same .fetctmailrc file as before, but now get authorization errors.
+Specifically, it fails on the following poll from an account on an exchange 2010 server;
+
+defaults keep smtphost 127.0.0.1
+set syslog
+set daemon 60
+set no bouncemail
+set no spambounce
+
+poll mail.the-future-group.com proto imap port 143:
+        auth password user 'username' with password 'password' sslproto TLS1 smtpname <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">my at personaldomain.com</A>
+
+When running fetchmail in debug ;
+fetchmail superuser$ /usr/local/bin/fetchmail -vvvv --nodetach -f /private/var/fetchmail/.fetchmailrc --nosyslog
+
+i get the following output ;
+
+Old UID list from mail.the-future-group.com: &lt;empty&gt;
+Scratch list of UIDs: &lt;empty&gt;
+fetchmail: starting fetchmail 6.3.24 daemon
+fetchmail: 6.3.24 querying mail.the-future-group.com (protocol IMAP) at Sun, 06 Jan 2013 22:14:55 +0100 (CET): poll started
+Trying to connect to 46.244.15.13/143...connected.
+fetchmail: IMAP&lt; * OK The Microsoft Exchange IMAP4 service is ready.
+fetchmail: IMAP&gt; A0001 CAPABILITY
+fetchmail: IMAP&lt; * CAPABILITY IMAP4 IMAP4rev1 LOGINDISABLED STARTTLS UIDPLUS CHILDREN IDLE NAMESPACE LITERAL+
+fetchmail: IMAP&lt; A0001 OK CAPABILITY completed.
+fetchmail: Protocol identified as IMAP4 rev 1
+fetchmail: IMAP&gt; A0002 LOGIN &quot;p.vannes&quot; *
+fetchmail: IMAP&lt; A0002 BAD Command received in Invalid state.
+fetchmail: Unknown login or authentication error on <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">p.vannes at mail.the-future-group.com</A>
+fetchmail: IMAP&gt; A0003 LOGOUT
+fetchmail: IMAP&lt; * BYE Microsoft Exchange Server 2010 IMAP4 server signing off.
+fetchmail: IMAP&lt; A0003 OK LOGOUT completed.
+fetchmail: client/server synchronization error while fetching from <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">p.vannes at mail.the-future-group.com</A>
+fetchmail: 6.3.24 querying mail.the-future-group.com (protocol IMAP) at Sun, 06 Jan 2013 22:14:59 +0100 (CET): poll completed
+Merged UID list from mail.the-future-group.com: &lt;empty&gt;
+fetchmail: Query status=7 (ERROR)
+fetchmail: sleeping at Sun, 06 Jan 2013 22:14:59 +0100 (CET) for 60 seconds
+
+
+Met vriendelijke groet/With kind regards
+
+Peter van Nes
+Mobile +31 652 694 792 | Fax +31 84 747 6999
+    
+
+
+ 
+
+
+
+Met vriendelijke groet/With kind regards
+
+Peter van Nes
+Mobile +31 652 694 792 | Fax +31 84 747 6999
+    
+
+
+ 
+
+</PRE>
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003297.html">[fetchmail-users] fetchmail 7.0.0-alpha4 alpha preview release
+</A></li>
+	<LI>Next message: <A HREF="003299.html">[fetchmail-users] Fetchmail fails with BAD Command received in invalid state after upgrade to 6.3.24
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3298">[ date ]</a>
+              <a href="thread.html#3298">[ thread ]</a>
+              <a href="subject.html#3298">[ subject ]</a>
+              <a href="author.html#3298">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

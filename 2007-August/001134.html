@@ -1,0 +1,109 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] how to recover lost email due to 553	sorry	error
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2007-August/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20how%20to%20recover%20lost%20email%20due%20to%20553%0A%09sorry%09error&In-Reply-To=%3C20070806120710.GC1125%40straylight.m.ringlet.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001133.html">
+   <LINK REL="Next"  HREF="001137.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] how to recover lost email due to 553	sorry	error</H1>
+    <B>Peter Pentchev</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20how%20to%20recover%20lost%20email%20due%20to%20553%0A%09sorry%09error&In-Reply-To=%3C20070806120710.GC1125%40straylight.m.ringlet.net%3E"
+       TITLE="[fetchmail-users] how to recover lost email due to 553	sorry	error">roam at ringlet.net
+       </A><BR>
+    <I>Mon Aug  6 14:07:10 CEST 2007</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001133.html">[fetchmail-users] how to recover lost email due to 553 sorry error
+</A></li>
+        <LI>Next message: <A HREF="001137.html">[fetchmail-users] how to recover lost email due to 553 sorry error
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1134">[ date ]</a>
+              <a href="thread.html#1134">[ thread ]</a>
+              <a href="subject.html#1134">[ subject ]</a>
+              <a href="author.html#1134">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Mon, Aug 06, 2007 at 01:28:12PM +0200, Techtron Computers wrote:
+&gt;<i> I had fetchmail running on a FreeBSD Server, which was downloading the email
+</I>&gt;<i> off a mail server on the internet, but got the following error msg, see
+</I>&gt;<i> below, but now the mail has been downloaded off the server on the internet
+</I>&gt;<i> and the mail is not is the local users mailbox, any chance I can recover the
+</I>&gt;<i> lost email, where should I look.
+</I>
+Errr, it shouldn't really have been downloaded &quot;off the server on the
+Internet&quot;; can you post several more lines of the fetchmail log,
+immediately following these?  If there is no &quot;DELE&quot; command sent to
+the POP3 server in the following lines, then the mail should still
+be there, waiting for you to fetch it.
+
+Or am I assuming too much?  Is this not a POP3 server?  In any case,
+a couple more lines from the fetchmail log should help - you cut it off
+at almost the worst place possible, to keep us all in suspense :)
+
+&gt;<i> ====================================================
+</I>&gt;<i> fetchmail: SMTP&gt; RCPT TO:&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">general at localhost</A>&gt;
+</I>&gt;<i> fetchmail: SMTP&lt; 553 sorry, that domain isn't in my list of allowed
+</I>&gt;<i> rcpthosts (#5.7.1)
+</I>&gt;<i> fetchmail: SMTP error: 553 sorry, that domain isn't in my list of allowed
+</I>&gt;<i> rcpthosts (#5.7.1)
+</I>&gt;<i> fetchmail: SMTP listener doesn't really like recipient address
+</I>&gt;<i> `<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">general at localhost</A>'
+</I>&gt;<i> fetchmail: SMTP&gt; RCPT TO:&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">postmaster at localhost</A>&gt;
+</I>&gt;<i> fetchmail: SMTP&lt; 553 sorry, that domain isn't in my list of allowed
+</I>&gt;<i> rcpthosts (#5.7.1)
+</I>&gt;<i> fetchmail: can't even send to postmaster!
+</I>&gt;<i> fetchmail: SMTP&gt; RSET
+</I>&gt;<i> fetchmail: SMTP&lt; 250 flushed
+</I>&gt;<i>  flushed
+</I>&gt;<i> =====================================================
+</I>
+G'luck,
+Peter
+
+-- 
+Peter Pentchev	<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">roam at ringlet.net</A>    <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">roam at cnsys.bg</A>    <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">roam at FreeBSD.org</A>
+PGP key:	<A HREF="http://people.FreeBSD.org/~roam/roam.key.asc">http://people.FreeBSD.org/~roam/roam.key.asc</A>
+Key fingerprint	FDBA FD79 C26F 3C51 C95E  DF9E ED18 B68D 1619 4553
+If wishes were fishes, the antecedent of this conditional would be true.
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: not available
+Type: application/pgp-signature
+Size: 187 bytes
+Desc: not available
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/fetchmail-users/attachments/20070806/f75fd8d3/attachment.pgp">https://lists.berlios.de/pipermail/fetchmail-users/attachments/20070806/f75fd8d3/attachment.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001133.html">[fetchmail-users] how to recover lost email due to 553 sorry error
+</A></li>
+	<LI>Next message: <A HREF="001137.html">[fetchmail-users] how to recover lost email due to 553 sorry error
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1134">[ date ]</a>
+              <a href="thread.html#1134">[ thread ]</a>
+              <a href="subject.html#1134">[ subject ]</a>
+              <a href="author.html#1134">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

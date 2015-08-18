@@ -1,0 +1,102 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Simple fetch and forward
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2006-July/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Simple%20fetch%20and%20forward&In-Reply-To=%3C43ea8d070607241320k777eb202g7f8318c0ac50088f%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000533.html">
+   <LINK REL="Next"  HREF="000540.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Simple fetch and forward</H1>
+    <B>Rob MacGregor</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Simple%20fetch%20and%20forward&In-Reply-To=%3C43ea8d070607241320k777eb202g7f8318c0ac50088f%40mail.gmail.com%3E"
+       TITLE="[fetchmail-users] Simple fetch and forward">rob.macgregor at gmail.com
+       </A><BR>
+    <I>Mon Jul 24 22:21:00 CEST 2006</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000533.html">[fetchmail-users] Simple fetch and forward
+</A></li>
+        <LI>Next message: <A HREF="000540.html">[fetchmail-users] Simple fetch and forward
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#534">[ date ]</a>
+              <a href="thread.html#534">[ thread ]</a>
+              <a href="subject.html#534">[ subject ]</a>
+              <a href="author.html#534">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On 7/24/06, John &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">fetchmail at jelmail.com</A>&gt; wrote:
+&gt;<i> Fetchmail 6.3.4
+</I>
+That avoids the usual &quot;upgrade to the latest version&quot; chant :-)
+
+&gt;<i> &gt;2) Contents of .fetchmailrc
+</I>&lt;---SNIP---&gt;
+&gt;<i> I was previously trying:
+</I>&gt;<i>
+</I>&gt;<i> poll mail.ispmailserver.net protocol pop3
+</I>&gt;<i>     aka forwarder1.com
+</I>&gt;<i>     envelope Received
+</I>
+(This is almost certainly your problem)
+
+&gt;<i>     localdomains domain1.com domain2.com domain3.com
+</I>&gt;<i>     user my-username there pass my-password to * here
+</I>
+That's pretty close to what I've got, and it works for me.
+
+I suspect the problem relates to the overloading of the Received
+header.  Does your ISP use a Delivered-to or Envelope-to header?
+
+&gt;<i> fetchmail: line rejected, four.mx.forwarder1.com is not an alias of the
+</I>&gt;<i> mailserver
+</I>
+Try the options below and, if it still fails, provide the output of
+&quot;fetchmail -v -v -v&quot; for a BCC email.  That email's headers would help
+too.
+
+&gt;<i> Fetchmail seems to want to change headers and this is confusing things. If I
+</I>&gt;<i> can just get it to pass stuff through verbatim then I think it'll be ok.
+</I>
+You probably want to add the options to &quot;set invisible&quot; and &quot;no rewrite&quot;.
+
+-- 
+                 Please keep list traffic on the list.
+
+Rob MacGregor
+      Whoever fights monsters should see to it that in the process he
+        doesn't become a monster.                  Friedrich Nietzsche
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000533.html">[fetchmail-users] Simple fetch and forward
+</A></li>
+	<LI>Next message: <A HREF="000540.html">[fetchmail-users] Simple fetch and forward
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#534">[ date ]</a>
+              <a href="thread.html#534">[ thread ]</a>
+              <a href="subject.html#534">[ subject ]</a>
+              <a href="author.html#534">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,215 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] fetchmail 6.3.10 release available (STABLE)
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2009-July/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%206.3.10%20release%20available%20%28STABLE%29&In-Reply-To=%3C20090702201506.GA4819%40merlin.emma.line.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   
+   <LINK REL="Next"  HREF="001984.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] fetchmail 6.3.10 release available (STABLE)</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%206.3.10%20release%20available%20%28STABLE%29&In-Reply-To=%3C20090702201506.GA4819%40merlin.emma.line.org%3E"
+       TITLE="[fetchmail-users] fetchmail 6.3.10 release available (STABLE)">matthias.andree at gmx.de
+       </A><BR>
+    <I>Thu Jul  2 22:15:06 CEST 2009</I>
+    <P><UL>
+        
+        <LI>Next message: <A HREF="001984.html">[fetchmail-users] questions using fetchmail with ssl
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1983">[ date ]</a>
+              <a href="thread.html#1983">[ thread ]</a>
+              <a href="subject.html#1983">[ subject ]</a>
+              <a href="author.html#1983">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Greetings,
+
+I am announcing the release of fetchmail 6.3.10.
+This new stable version of fetchmail fixes some bugs, updates
+documentation, and makes various other changes, see below for details.
+
+The software is available from:
+&lt;<A HREF="http://developer.berlios.de/project/showfiles.php?group_id=1824">http://developer.berlios.de/project/showfiles.php?group_id=1824</A>&gt;
+
+The fetchmail home pages are:
+&lt;<A HREF="http://www.fetchmail.info/">http://www.fetchmail.info/</A>&gt;  or  &lt;<A HREF="http://fetchmail.berlios.de/">http://fetchmail.berlios.de/</A>&gt;
+
+These are the relevant changes in 6.3.10 since 6.3.9;
+unless otherwise noted, changes to this release were made by Matthias Andree:
+
+# ADVANCE WARNING OF FEATURES TO BE REMOVED OR CHANGED IN FUTURE VERSIONS
+(There are no plans to remove features from a 6.3.X release, but they may be
+removed from a 6.4.0 or newer release.)
+* The MX and host alias DNS lookups that fetchmail performs in multidrop mode
+  are based on assumptions that are rarely met in practice, somewhat defective,
+  deprecated and may be removed from a future fetchmail version.
+  They have never supported IPv6 (including IPv6-mapped IPv4).
+  Non-DNS based alias keywords such as &quot;aka&quot; will remain in fetchmail.
+* The monitor and interface options may be removed from a future fetchmail
+  version as they are not reasonably portable across operating systems.
+* POP2 is obsolete, support will be removed from a future fetchmail version.
+* RPOP is obsolete, support will be removed from a future fetchmail release.
+* --sslcertck will become a default setting in a future fetchmail version.
+* The multidrop To/Cc guessing code along with the fragile duplicate suppressor
+  is deprecated and may be removed from a future release.
+* The &quot;envelope Received&quot; option may be removed from a future release, because
+  the Received header was never meant to be machine-readable, the format varies
+  widely, and various other differences in behavior make parsing Received an
+  unreliable undertaking. The envelope option as such will remain though, in
+  order to support Delivered-To, X-Envelope-To, X-Original-To and similar.
+  See also &lt;<A HREF="http://home.pages.de/~mandree/mail/multidrop">http://home.pages.de/~mandree/mail/multidrop</A>&gt;.
+* The --enable-fallback (fall back to MDA if MTA unavailable) will be removed
+  from a future fetchmail release, because it makes fetchmail's behavior
+  inconsistent and confusing.
+* The &quot;protocol auto&quot; default inside fetchmail may be removed from a future
+  fetchmail release. Explicit configuration of the protocol is recommended.
+* Kerberos IV support may be removed from a future fetchmail release.
+* SIGHUP wakeup support may be removed from a future fetchmail release and
+  cause fetchmail to terminate - it was broken for many years.
+* Support for operating systems that are not sufficiently POSIX compliant may be
+  removed or operation on such systems may be suboptimal for future releases.
+  This means that fetchmail may only continue to work on C99 and POSIX 2001
+  based systems.
+* The maintainer may migrate fetchmail to C++ with STL or C#, and impose further
+  requirements (dependencies), such as Boost or other class libraries.
+* The softbounce option default will change to &quot;false&quot; in the next release.
+
+# INCOMPATIBLE BUGFIXES AND CHANGES
+* Fetchmail no longer drops permanently undelivered messages by default, to
+  match historic documentation.  It does this by adding a new &quot;softbounce&quot;
+  option, see below.
+  Fixes Debian Bug#471283, demotes Debian Bug#494418 to wishlist.
+* There is a new &quot;softbounce&quot; global option that prevents the deletion of
+  messages that have not been forwarded. It defaults to &quot;true&quot; for fetchmail
+  6.3.X in order to match historic documentation. This may change its default
+  in the next major release.
+
+# BUGFIXES
+* Fix misuse of canonical autoconf target as _TARGET when it should have been
+  _HOST. Report and patch courtesy of Diego E. &quot;Flameeyes&quot; Petten&#242;.
+  Details: <A HREF="http://blog.flameeyes.eu/2009/01/01/the-canonical-target">http://blog.flameeyes.eu/2009/01/01/the-canonical-target</A>
+* Do not lose PS_MAXFETCH (13) exit status when hitting maxpoll. Reported by
+  Michelle Konzack, Debian Bug#508667.
+* Do not overlap source and destination fields in snprintf() in interface.c.
+  Courtesy of Nico Golde, Debian.
+* When a pre- or post-connect command fails, now report the exit status or
+  termination signal properly through sys/wait.h macros.
+* When acquiring a body, understand NIL (&quot;no such data item&quot;), as returned by
+  some MS Exchange versions. Fixes BerliOS Bug #11980 by KB Sriram.
+* Make progress tickers (-v/--showdots) consistent, and update documentation 
+  accordingly (&quot;.&quot; for each 1024 octets read, &quot;#&quot; for a header written, and &quot;*&quot; 
+  for each body line written.)
+  The conditions under which these had been printed were inconsistent,
+  illogical, and documentation hadn't matched real behaviour for long.
+* For NTLM authentication, use dynamically allocated buffers.
+  Fixes Debian Bug#449179, reported by Stepan Golosunov.
+* Non-delivery notice (&quot;bounce mail&quot;) now mentions the original reason again,
+  before the address list. This fixes a regression introduced in 6.3.0.
+* Several compiler warnings were fixed.
+* The minimum recommended SMTP (RFC-5321) timeouts are enforced to leave
+  sufficient time for the listener to respond. Some synchronous listeners,
+  particularly when used with spam filtering and other policy enforcement
+  services, take extended amounts of time to process messages after the sender,
+  recipient, or data block and EOM line. This can cause fetchmail to not wait
+  long enough for the &quot;250 Ok&quot; and make fetchmail believe the message wasn't
+  properly delivered when in fact it was; fetchmail would then retry the
+  download next time and never make progress.
+  Fixes Berlios Bug #10972, reported by Viktor Binzberger.
+* The ESMTP/LMTP client will now apply an application-specific timeout while
+  waiting for the EHLO/LHLO response, rather than wait for the server or TCP
+  connection timeout.
+* Treat 530 errors as temporary, so as not to delete messages on configuration
+  errors. Partially taken from Petr Cerny's patch in Novell Bugzilla #246829.
+  The 501 part of said patch was not added, as the maintainer is not convinced
+  501 is a temporary condition, and softbounce takes care of this anyways.
+
+# CHANGES
+* Make the comparison of the SSL fingerprints case insensitive, to
+  ease its use. Suggested by Daniel Richard G.
+* Proper precedence ordering for the syslog and logfile options. If the logfile
+  option is effective (i. e. we're not in daemon mode and nodetach isn't used),
+  reset the syslog option. If logfile is ineffective (we're not in daemon mode,
+  or nodetach is set), syslog takes precedence.
+* The sleeping at/awakened at messages appear in logfiles and syslog only if
+  verbose mode is enabled.  On the console, they will still appear without
+  verbose mode.  Fixes Debian Bug#282259.
+* fetchmail only requests IPv6 addresses via name service if at least one is
+  configured on the local host, likewise for IPv4.  (AI_ADDRCONFIG flag to
+  getaddrinfo()) Extended version of Redhat's patch.
+* If the server name contains &quot;yahoo.com&quot;, offers the &quot;ID&quot; capability, and we're
+  polling via IMAP, send an ID (&quot;guid&quot; &quot;1&quot;) transaction first, ignoring its
+  result. This appears needed to be able to log into Yahoo's Zimbra servers, but
+  there are open issues (such as being only able to download one message and
+  server certificate mismatches).
+
+# CHANGES TO CONTRIB
+* Fix bashism in contrib/fetchsetup. Fixes Debian Bug#530081.
+
+# DOCUMENTATION
+* Some parts of the the manual page were revised for clarity, accuracy, and
+  updated recommendations (particularly SSL/TLS) and formatting conventions from
+  man-pages(7).
+* The README and README.SSL documents were updated.
+* A document, README.SSL-SERVER, was added to describe server-side requirements
+  for proper SSL and/or TLS service offerings. These are not specific to
+  fetchmail.
+* Documentation on how to make &quot;NOMAIL&quot; (exit code 1) not treated an error has
+  been added to the EXIT CODES section of the manpage and to the FAQ as item C8.
+  The suggested solution uses a tiny POSIX shell script fragment.
+  Fixes Debian Bug #530749, filed by Reuben Thomas.
+
+# TRANSLATION UPDATES AND ADDITIONS (ordered by language name):
+* [cs]    Czech (Petr Pisar)
+* [en_GB] English/British
+* [de]    German
+* [id]    Indonesian (Andhika Padmawan)
+* [it]    Italian (Vincenzo Campanella)
+* [ja]    Japanese (Takeshi Hamasaki)
+* [pl]    Polish (Jakub Bogusz)
+* [ru]    Russian (Pavel Maryanov), fixing Debian Bug #531925
+* [es]    Spanish/Castilian (Francisco Molinero)
+* [zh_CN] Chinese/Simplified (Ji ZhengYu)
+
+-- 
+Matthias Andree
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: not available
+Type: application/pgp-signature
+Size: 197 bytes
+Desc: not available
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/fetchmail-users/attachments/20090702/34e61467/attachment.pgp">https://lists.berlios.de/pipermail/fetchmail-users/attachments/20090702/34e61467/attachment.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	
+	<LI>Next message: <A HREF="001984.html">[fetchmail-users] questions using fetchmail with ssl
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1983">[ date ]</a>
+              <a href="thread.html#1983">[ thread ]</a>
+              <a href="subject.html#1983">[ subject ]</a>
+              <a href="author.html#1983">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

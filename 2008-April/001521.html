@@ -1,0 +1,88 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Fetchmail and Google Apps
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2008-April/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Fetchmail%20and%20Google%20Apps&In-Reply-To=%3C43ea8d070804300601vca3db07x9008f19337bbc07a%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001520.html">
+   
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Fetchmail and Google Apps</H1>
+    <B>Rob MacGregor</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Fetchmail%20and%20Google%20Apps&In-Reply-To=%3C43ea8d070804300601vca3db07x9008f19337bbc07a%40mail.gmail.com%3E"
+       TITLE="[fetchmail-users] Fetchmail and Google Apps">rob.macgregor at gmail.com
+       </A><BR>
+    <I>Wed Apr 30 15:01:32 CEST 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001520.html">[fetchmail-users] Fetchmail and Google Apps
+</A></li>
+        
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1521">[ date ]</a>
+              <a href="thread.html#1521">[ thread ]</a>
+              <a href="subject.html#1521">[ subject ]</a>
+              <a href="author.html#1521">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Wed, Apr 30, 2008 at 1:37 PM,  &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">isabel at fbmsoftware.com</A>&gt; wrote:
+&lt;---SNIP---&gt;
+&gt;<i>  Here is a copy of the fetchmail configuration I did:
+</I>&gt;<i>
+</I>&gt;<i>  poll sample.com protocol POP3 port 995 username jokeaccount password
+</I>&gt;<i>  jokepassword
+</I>&gt;<i>  ssl
+</I>&gt;<i>  smtphost pop.gmail.com/995
+</I>&gt;<i>  smtpname <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">joke at ourdomain.com</A>
+</I>&gt;<i>  no keep
+</I>&gt;<i>
+</I>&gt;<i>  It's good that our email application is getting the emails, but we also need
+</I>&gt;<i>  to keep a copy in Google Apps. Can someone help me with the configuration?
+</I>
+As documented in the man page, &quot;no keep&quot; says to delete the emails
+from the remote server once downloaded.  Try changing that to &quot;keep&quot;,
+though you'll also need to enable UIDL (also documented in the man
+page).
+
+I am however surprised that anything's working given that you've
+configured it to send your email to the Google POP3 server.  I would
+strongly suggest you remove the smtphost entry.
+
+-- 
+ Please keep list traffic on the list.
+
+Rob MacGregor
+ Whoever fights monsters should see to it that in the process he
+ doesn't become a monster. Friedrich Nietzsche
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001520.html">[fetchmail-users] Fetchmail and Google Apps
+</A></li>
+	
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1521">[ date ]</a>
+              <a href="thread.html#1521">[ thread ]</a>
+              <a href="subject.html#1521">[ subject ]</a>
+              <a href="author.html#1521">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

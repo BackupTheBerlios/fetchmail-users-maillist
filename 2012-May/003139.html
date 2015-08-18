@@ -1,0 +1,110 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] [solved] non-default &quot;mailbox selection	failed&quot;
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2012-May/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20%5Bsolved%5D%20non-default%20%22mailbox%20selection%0A%09failed%22&In-Reply-To=%3C4FC0275E.7010201%40gmx.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003136.html">
+   <LINK REL="Next"  HREF="003137.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] [solved] non-default &quot;mailbox selection	failed&quot;</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20%5Bsolved%5D%20non-default%20%22mailbox%20selection%0A%09failed%22&In-Reply-To=%3C4FC0275E.7010201%40gmx.de%3E"
+       TITLE="[fetchmail-users] [solved] non-default &quot;mailbox selection	failed&quot;">matthias.andree at gmx.de
+       </A><BR>
+    <I>Sat May 26 02:44:14 CEST 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003136.html">[fetchmail-users] [solved] non-default &quot;mailbox selection	failed&quot;
+</A></li>
+        <LI>Next message: <A HREF="003137.html">[fetchmail-users] getting fetchmail to work with postfix
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3139">[ date ]</a>
+              <a href="thread.html#3139">[ thread ]</a>
+              <a href="subject.html#3139">[ subject ]</a>
+              <a href="author.html#3139">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Am 25.05.2012 01:47, schrieb Travis Osterman:
+&gt;<i> On 05/24/12 17:59, Rob MacGregor wrote:
+</I>&gt;&gt;<i> On Thu, May 24, 2012 at 7:03 PM, Travis Osterman &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">travis at wsor.net</A>&gt; wrote:
+</I>&gt;&gt;&gt;<i> Hello, I am trying to use fectchmail to fetch the contents of a folder
+</I>&gt;&gt;&gt;<i> (.spam.missed/) from my courier-imap server so that I can send the
+</I>&gt;&gt;&gt;<i> messages to spamassassin's learning program.  Using this as a guide:
+</I>&gt;&gt;&gt;<i> <A HREF="http://wiki.apache.org/spamassassin/SingleUserUnixInstall#Enable_IMAP_LearnAsSpam_folder">http://wiki.apache.org/spamassassin/SingleUserUnixInstall#Enable_IMAP_LearnAsSpam_folder</A>
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> When I invoke
+</I>&gt;&gt;&gt;<i> $ /usr/bin/fetchmail -a -v -n --folder /home/USER/.maildir/.spam.missed/
+</I>&gt;&gt;&gt;<i> -m '/usr/bin/sa-learn -D --spam' --fetchmailrc /home/USER/.spamtrainingpoprc
+</I>&gt;&gt;<i> That's not a mailbox path - that's a file system path. Try passing the
+</I>&gt;&gt;<i> mailbox as the argument (presumably .spam.missed).
+</I>&gt;&gt;<i>
+</I>&gt;<i> 
+</I>&gt;<i> I tried that (.spam.missed/) and .spam/.missed/ both with no luck.  I
+</I>&gt;<i> did however spend some more time reading through the man page on
+</I>&gt;<i> 'sa-learn' which does take the directory as an argument and I can then
+</I>&gt;<i> delete them.  With this solution, I don't need procmail or a saved a
+</I>&gt;<i> cleartext password (but is dependent on access to cron).
+</I>
+&gt;<i> 
+</I>&gt;<i> #!/bin/bash
+</I>&gt;<i> # spam training
+</I>&gt;<i> FALSE_NEGS=/home/tosterma/.maildir/.spam.missed/
+</I>&gt;<i> sa-learn --spam $FALSE_NEGS &gt; /dev/null 2&gt;&amp;1
+</I>&gt;<i> rm -f $FALSE_NEGS/new/*
+</I>&gt;<i> rm -f $FALSE_NEGS/cur/*
+</I>&gt;<i> 
+</I>&gt;<i> Still not sure why it didn't like that directory.
+</I>
+IMAP folder naming depends on how the IMAP server maps the IMAP folder
+names to directory names in the file system, and possibly how the
+&quot;namespace&quot; and/or separator is configured.
+
+_If_ your .maildir is actually a Maildir format, with cur/tmp/new sub
+directories, and .spam.missed is one, too, then the name will likely be
+either of:
+
+spam.missed
+INBOX.spam.missed
+spam/missed
+
+Because a subfolder &quot;foo&quot; in Maildir structures is named
+
+	Maildir/.foo
+
+according to a convention understood by IMAP servers such as
+Courier-IMAP and Dovecot.
+&lt;<A HREF="http://www.inter7.com/courierimap/README.maildirquota.html">http://www.inter7.com/courierimap/README.maildirquota.html</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003136.html">[fetchmail-users] [solved] non-default &quot;mailbox selection	failed&quot;
+</A></li>
+	<LI>Next message: <A HREF="003137.html">[fetchmail-users] getting fetchmail to work with postfix
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3139">[ date ]</a>
+              <a href="thread.html#3139">[ thread ]</a>
+              <a href="subject.html#3139">[ subject ]</a>
+              <a href="author.html#3139">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

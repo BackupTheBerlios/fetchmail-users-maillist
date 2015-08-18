@@ -1,0 +1,101 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] How to avoid these annoying reports
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2007-August/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20How%20to%20avoid%20these%20annoying%20reports&In-Reply-To=%3C200708201227.43778.cannewilson%40googlemail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001180.html">
+   <LINK REL="Next"  HREF="001182.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] How to avoid these annoying reports</H1>
+    <B>Anne Wilson</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20How%20to%20avoid%20these%20annoying%20reports&In-Reply-To=%3C200708201227.43778.cannewilson%40googlemail.com%3E"
+       TITLE="[fetchmail-users] How to avoid these annoying reports">cannewilson at googlemail.com
+       </A><BR>
+    <I>Mon Aug 20 13:27:37 CEST 2007</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001180.html">[fetchmail-users] How to avoid these annoying reports
+</A></li>
+        <LI>Next message: <A HREF="001182.html">[fetchmail-users] How to avoid these annoying reports
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1181">[ date ]</a>
+              <a href="thread.html#1181">[ thread ]</a>
+              <a href="subject.html#1181">[ subject ]</a>
+              <a href="author.html#1181">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Monday 20 Aug 2007, Rob MacGregor wrote:
+&gt;<i> On 8/20/07, Anne Wilson &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">cannewilson at googlemail.com</A>&gt; wrote:
+</I>&gt;<i> &gt; Abbreviated .fetchmailrc - other mailboxes removed for simplicity.
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; set logfile = /home/anne/fetchmail.log
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; poll zencphosting09.zen.co.uk with proto pop3
+</I>&gt;<i> &gt;         user &quot;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">suspect at lydgate.org</A>&quot;
+</I>&gt;<i> &gt;         pass &quot;xxxxxx&quot;
+</I>&gt;<i> &gt;         is anne fetchall
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; zencphosting09 is the server for my domain account.  Maybe the
+</I>&gt;<i> &gt; certificate doesn't exist on that server?  The general server for mail
+</I>&gt;<i> &gt; not on the domain addresses is mailhost.zen.co.uk.  I used that at first,
+</I>&gt;<i> &gt; but then got a message that the certificate didn't match my domain, for
+</I>&gt;<i> &gt; every mailbox, every connection.  I did ask zen if I should put a
+</I>&gt;<i> &gt; certificate onto my domain space, but they said that it was not
+</I>&gt;<i> &gt; necessary.
+</I>&gt;<i>
+</I>&gt;<i> Ok, next step, please post the output of &quot;fetchmail -v -v -v -c&quot;
+</I>&gt;<i>
+</I>Nothing.  A pause, then return to prompt:
+fetchmail -v -v -v -c
+fetchmail: can't check mail while another fetchmail to same host is running.
+[<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">anne at david</A> ~]$ fetchmail --quit
+fetchmail: background fetchmail at 6056 killed.
+[<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">anne at david</A> ~]$ fetchmail -v -v -v -c
+[<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">anne at david</A> ~]$
+
+&gt;<i> Also, what was the result of the openssl command?
+</I>
+None.  It hung until I gave it Ctrl-C
+
+Anne
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: signature.asc
+Type: application/pgp-signature
+Size: 189 bytes
+Desc: This is a digitally signed message part.
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/fetchmail-users/attachments/20070820/ace809f1/attachment.pgp">https://lists.berlios.de/pipermail/fetchmail-users/attachments/20070820/ace809f1/attachment.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001180.html">[fetchmail-users] How to avoid these annoying reports
+</A></li>
+	<LI>Next message: <A HREF="001182.html">[fetchmail-users] How to avoid these annoying reports
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1181">[ date ]</a>
+              <a href="thread.html#1181">[ thread ]</a>
+              <a href="subject.html#1181">[ subject ]</a>
+              <a href="author.html#1181">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

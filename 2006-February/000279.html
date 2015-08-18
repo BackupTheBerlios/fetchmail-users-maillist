@@ -1,0 +1,106 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Re: Fetchmail
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2006-February/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Re%3A%20Fetchmail&In-Reply-To=%3C20060227074012.GA1487%40session.bombay.retortsoft.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000282.html">
+   <LINK REL="Next"  HREF="000281.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Re: Fetchmail</H1>
+    <B>Sunil Shetye</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Re%3A%20Fetchmail&In-Reply-To=%3C20060227074012.GA1487%40session.bombay.retortsoft.com%3E"
+       TITLE="[fetchmail-users] Re: Fetchmail">shetye at bombay.retortsoft.com
+       </A><BR>
+    <I>Mon Feb 27 08:40:12 CET 2006</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000282.html">[fetchmail-users] Re: Bug in imap_idle() with mail servers not supporting &quot;idle&quot;
+</A></li>
+        <LI>Next message: <A HREF="000281.html">[fetchmail-users] Re: [fetchmail]2 Delivered-To: fields in email
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#279">[ date ]</a>
+              <a href="thread.html#279">[ thread ]</a>
+              <a href="subject.html#279">[ subject ]</a>
+              <a href="author.html#279">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hello Indika,
+
+Quoting from Indika Mendis's mail on Mon, Feb 27, 2006:
+&gt;<i>    My  name  is  Indika  and  using  fetchmail in my linux mail server to
+</I>&gt;<i>    download  mails.  It  is working properly...  but I have to do a small
+</I>&gt;<i>    thing....  Our  staff  members are receiving some unwanted emails with
+</I>&gt;<i>    several  subjects.  Is  there  any  configuration  that we can do with
+</I>&gt;<i>    fetchmail  or  any  other  thing  in linux servers....  I want to stop
+</I>&gt;<i>    these mail by filtering subject wise... pl help me to solve this prob.
+</I>
+This is a fetchmail FAQ entry:
+
+&lt;<A HREF="http://fetchmail.berlios.de/fetchmail-FAQ.html#G4">http://fetchmail.berlios.de/fetchmail-FAQ.html#G4</A>&gt;
+
+For filtering by subject, use procmail or maildrop. For that, you will
+have to find out what programs are installed on your system. Also, you
+will have to analyse the output of &quot;fetchmail -v&quot;.
+
+Here is one sample setup:
+
+Question                                             Possible answer
+--------------------------------------------------------------------
+What SMTP servers are installed on my system?        qmail, sendmail
+What mail filtering programs are installed?          maildrop, procmail
+Where is fetchmail forwarding my mails to?           SMTP server
+What SMTP server is running on my system?            sendmail
+Is my SMTP server also delivering mails directly?    no
+Who is delivering my mails?                          procmail
+What spam filtering programs are installed?          spamassassin
+
+In this setup, procmail has already been enabled. So, it is the
+question of just writing the procmailrc. Details of setting up the
+procmailrc (per-user as well as globally) can be found in procmail
+documentation.
+
+If you are interesting in spam filtering, you can enable that too in
+the rc file of the mail-filtering program.
+
+If you have more queries, please subscribe to the user mailling list.
+You can find more details of the lists at
+&lt;<A HREF="http://fetchmail.berlios.de/">http://fetchmail.berlios.de/</A>&gt;. After subscribing, send the output of
+&quot;fetchmail -V&quot; and &quot;fetchmail -v&quot; to the user mailing list.
+
+-- 
+Sunil Shetye.
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000282.html">[fetchmail-users] Re: Bug in imap_idle() with mail servers not supporting &quot;idle&quot;
+</A></li>
+	<LI>Next message: <A HREF="000281.html">[fetchmail-users] Re: [fetchmail]2 Delivered-To: fields in email
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#279">[ date ]</a>
+              <a href="thread.html#279">[ thread ]</a>
+              <a href="subject.html#279">[ subject ]</a>
+              <a href="author.html#279">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

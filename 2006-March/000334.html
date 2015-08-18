@@ -1,0 +1,180 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Re: Fetchmail socket error.
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2006-March/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Re%3A%20Fetchmail%20socket%20error.&In-Reply-To=%3C442BD21D.4080001%40viddel.nl%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000333.html">
+   <LINK REL="Next"  HREF="000335.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Re: Fetchmail socket error.</H1>
+    <B>Ernst Verhaar</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Re%3A%20Fetchmail%20socket%20error.&In-Reply-To=%3C442BD21D.4080001%40viddel.nl%3E"
+       TITLE="[fetchmail-users] Re: Fetchmail socket error.">e.verhaar at viddel.nl
+       </A><BR>
+    <I>Thu Mar 30 14:42:05 CEST 2006</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000333.html">[fetchmail-users] Fetchmail socket error.
+</A></li>
+        <LI>Next message: <A HREF="000335.html">[fetchmail-users] Re: Fetchmail socket error.
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#334">[ date ]</a>
+              <a href="thread.html#334">[ thread ]</a>
+              <a href="subject.html#334">[ subject ]</a>
+              <a href="author.html#334">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hello everyone.
+
+Thanks again for the suggestions.
+
+FreeBSD on the host is running dovecot 1.0.beta3. This is the latest 
+release available via the ports collection of FreeBSD. I deleted the 
+index files, dovecot rebuilded them and the error still remains.
+
+I asked the administrator to install ethereal, this will be done in a 
+short while. For some reason there are huge dependencies of graphical 
+packages. So i'm hoping I can provide additional information concerning 
+the socket error.
+
+Also I will install a different packet filter on this machine. For 
+testing purposes I can disable the current packet filter, but the 
+administrator is not very happy with that on the long term. :-). So I 
+will try IPF. Playing with the firewall is dangerous, considering the 
+host machine is located about 100km from my current location and is not 
+fulltime accessable.
+
+Thank again for all the effort everyone. I will post additional 
+information concerning the ethereal dump soon.
+
+Kind regards, Ernst
+
+&gt;<i>Today's Topics:
+</I>&gt;<i>
+</I>&gt;<i>   1. Re: Fetchmail socket error. (Rob MacGregor)
+</I>&gt;<i>   2. Re: Fetchmail socket error. (Matthias Andree)
+</I>&gt;<i>
+</I>&gt;<i>--__--__--
+</I>&gt;<i>
+</I>&gt;<i>Message: 1
+</I>&gt;<i>Date: Wed, 29 Mar 2006 21:22:34 +0100
+</I>&gt;<i>From: &quot;Rob MacGregor&quot; &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">rob.macgregor at gmail.com</A>&gt;
+</I>&gt;<i>To: <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">fetchmail-users at lists.berlios.de</A>
+</I>&gt;<i>Subject: Re: [fetchmail-users] Fetchmail socket error.
+</I>&gt;<i>
+</I>&gt;<i>On 3/29/06, Ernst Verhaar &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">e.verhaar at viddel.nl</A>&gt; wrote:
+</I>&gt;<i>  
+</I>&gt;<i>
+</I>&gt;&gt;<i> Hi All,
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Tnx for the quick repsonse,
+</I>&gt;&gt;<i> Unfortunatly the suggestions did not work.
+</I>&gt;&gt;<i>    
+</I>&gt;&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i>What are your firewall rules?
+</I>&gt;<i>
+</I>&gt;<i>  
+</I>&gt;<i>
+</I>&gt;&gt;<i> The Host Machine is running FreeBSD 5.4 with Packet filter.
+</I>&gt;&gt;<i>    
+</I>&gt;&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i>Did you install from the ports?  I've got 5.4 with IPF and never had a
+</I>&gt;<i>problem with fetchmail.
+</I>&gt;<i>
+</I>&gt;<i>  
+</I>&gt;<i>
+</I>&gt;&gt;<i> I attached an strace log of an unsuccesfull fetchmail attempt. Unfortunatly
+</I>&gt;&gt;<i>this log is like the chinese language to me. :-(
+</I>&gt;&gt;<i> fetchmail -vvv does not provides more information except socket error.
+</I>&gt;&gt;<i>    
+</I>&gt;&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i>You may get something more useful from a packet dump (ethereal/tcpdump etc).
+</I>&gt;<i>
+</I>&gt;<i>I suspect that you've got a networking/firewall config error.
+</I>&gt;<i>
+</I>&gt;<i>--
+</I>&gt;<i>                 Please keep list traffic on the list.
+</I>&gt;<i>Rob MacGregor
+</I>&gt;<i>      Whoever fights monsters should see to it that in the process he
+</I>&gt;<i>        doesn't become a monster.                  Friedrich Nietzsche
+</I>&gt;<i>
+</I>&gt;<i>--__--__--
+</I>&gt;<i>
+</I>&gt;<i>Message: 2
+</I>&gt;<i>From: Matthias Andree &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">matthias.andree at gmx.de</A>&gt;
+</I>&gt;<i>To: &quot;Rob MacGregor&quot; &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">rob.macgregor at gmail.com</A>&gt;
+</I>&gt;<i>Cc: <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">fetchmail-users at lists.berlios.de</A>
+</I>&gt;<i>Subject: Re: [fetchmail-users] Fetchmail socket error.
+</I>&gt;<i>Date: Wed, 29 Mar 2006 23:59:55 +0200
+</I>&gt;<i>
+</I>&gt;<i>&quot;Rob MacGregor&quot; &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">rob.macgregor at gmail.com</A>&gt; writes:
+</I>&gt;<i>
+</I>&gt;<i>  
+</I>&gt;<i>
+</I>&gt;&gt;&gt;<i> The Host Machine is running FreeBSD 5.4 with Packet filter.
+</I>&gt;&gt;&gt;<i>      
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;<i>Did you install from the ports?  I've got 5.4 with IPF and never had a
+</I>&gt;&gt;<i>problem with fetchmail.
+</I>&gt;&gt;<i>    
+</I>&gt;&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i>Well, the FreeBSD host is running Dovecot.
+</I>&gt;<i>
+</I>&gt;<i>  
+</I>&gt;<i>
+</I>&gt;&gt;<i>You may get something more useful from a packet dump (ethereal/tcpdump etc).
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i>I suspect that you've got a networking/firewall config error.
+</I>&gt;&gt;<i>    
+</I>&gt;&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i>The strace reveals that the client sees EOF in the middle of a base64
+</I>&gt;<i>encoded part of a message, there's a recv(3, ... MSG_PEEK) that returned
+</I>&gt;<i>0. Looks like the server closed its end of the connection. If it's an
+</I>&gt;<i>older Dovecot version or the index files got corrupted somehow, that
+</I>&gt;<i>would explain the issue as well. Updating Dovecot to 0.99.14 if it's
+</I>&gt;<i>0.99.X and to 1.0-beta3 if it's 1.0-whatever and then removing the index
+</I>&gt;<i>files so that Dovecot rebuilds them might fix the problem.
+</I>&gt;<i>
+</I>&gt;<i>  
+</I>&gt;<i>
+</I>
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000333.html">[fetchmail-users] Fetchmail socket error.
+</A></li>
+	<LI>Next message: <A HREF="000335.html">[fetchmail-users] Re: Fetchmail socket error.
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#334">[ date ]</a>
+              <a href="thread.html#334">[ thread ]</a>
+              <a href="subject.html#334">[ subject ]</a>
+              <a href="author.html#334">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,103 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] fetchmail 6.2.9-rc3 available
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2005-September/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%206.2.9-rc3%20available&In-Reply-To=%3C200509191313.j8JDDvDm001907%40ns-srv-2.bln1.siemens.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000055.html">
+   <LINK REL="Next"  HREF="000057.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] fetchmail 6.2.9-rc3 available</H1>
+    <B>Thomas Wolff</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%206.2.9-rc3%20available&In-Reply-To=%3C200509191313.j8JDDvDm001907%40ns-srv-2.bln1.siemens.de%3E"
+       TITLE="[fetchmail-users] fetchmail 6.2.9-rc3 available">towo at towo.net
+       </A><BR>
+    <I>Mon Sep 19 15:13:57 CEST 2005</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000055.html">[fetchmail-users] fetchmail 6.2.9-rc3 available
+</A></li>
+        <LI>Next message: <A HREF="000057.html">[fetchmail-users] fetchmail 6.2.9-rc3 available
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#56">[ date ]</a>
+              <a href="thread.html#56">[ thread ]</a>
+              <a href="subject.html#56">[ subject ]</a>
+              <a href="author.html#56">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>&gt;<i> I seek everyone to test it out, report remaining bugs, update outdated
+</I>&gt;<i> translations or send patches for documentation or report inconsistencies
+</I>&gt;<i> (including formatting!) in the documentation.
+</I>
+The following error remains on SunOS:
+gcc -I/home/demsn702/opt/openssl-0.9.8/include -I/usr/kerberos/include 
+-g -O2 -L/home/demsn702/opt/openssl-0.9.8/lib  -o fetchmail  socket.o 
+getpass.o pop2.o pop3.o imap.o etrn.o odmr.o fetchmail.o env.o idle.o 
+options.o daemon.o driver.o transact.o sink.o smtp.o uid.o mxget.o 
+md5ify.o cram.o kerberos.o gssapi.o opie.o rpa.o interface.o netrc.o 
+unmime.o conf.o checkalias.o smbdes.o smbencrypt.o smbmd4.o smbutil.o 
+lock.o rcfile_l.o rcfile_y.o norm_charmap.o getaddrinfo.o getnameinfo.o 
+libfm.a  stpcpy.o  -lnsl -lsocket  -lintl -lresolv -lssl -lcrypto
+Undefined                       first referenced
+ symbol                             in file
+dlclose                             /home/demsn702/lib/libcrypto.a(dso_dlfcn.o)  (symbol belongs to implicit dependency /usr/lib/libdl.so.1)
+dlsym                               /home/demsn702/lib/libcrypto.a(dso_dlfcn.o)  (symbol belongs to implicit dependency /usr/lib/libdl.so.1)
+dlopen                              /home/demsn702/lib/libcrypto.a(dso_dlfcn.o)  (symbol belongs to implicit dependency /usr/lib/libdl.so.1)
+dlerror                             /home/demsn702/lib/libcrypto.a(dso_dlfcn.o)  (symbol belongs to implicit dependency /usr/lib/libdl.so.1)
+ld: fatal: Symbol referencing errors. No output written to fetchmail
+
+
+Also, as I had noted before, fetchmail --ssl apparently depends on 
+IMAPS being known to the system as a service - probably by listing it 
+in /etc/services. If this is not the case, getaddrinfo will fail.
+Now fetchmail seems to be the only tool that enables command line users 
+to set up a working mail environment on a system which is not 
+otherwise administrated for handling mail (together with ssmtp).
+Thus it should not depend on proper system configuration in any respect - 
+it should work even if getaddrinfo does not &quot;know&quot; IMAPS!
+The attached patch fixes this inappropriate dependency.
+
+
+Thomas Wolff
+
+
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: fetchmail-6.2.9-rc3.service-patch
+Type: application/octet-stream
+Size: 629 bytes
+Desc: not available
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/fetchmail-users/attachments/20050919/6fc19267/attachment.obj">https://lists.berlios.de/pipermail/fetchmail-users/attachments/20050919/6fc19267/attachment.obj</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000055.html">[fetchmail-users] fetchmail 6.2.9-rc3 available
+</A></li>
+	<LI>Next message: <A HREF="000057.html">[fetchmail-users] fetchmail 6.2.9-rc3 available
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#56">[ date ]</a>
+              <a href="thread.html#56">[ thread ]</a>
+              <a href="subject.html#56">[ subject ]</a>
+              <a href="author.html#56">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

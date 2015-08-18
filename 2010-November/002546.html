@@ -1,0 +1,156 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Procmail callup
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2010-November/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Procmail%20callup&In-Reply-To=%3C4CDFF495.5030204%40gmx.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002545.html">
+   <LINK REL="Next"  HREF="002547.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Procmail callup</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Procmail%20callup&In-Reply-To=%3C4CDFF495.5030204%40gmx.de%3E"
+       TITLE="[fetchmail-users] Procmail callup">matthias.andree at gmx.de
+       </A><BR>
+    <I>Sun Nov 14 15:39:17 CET 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002545.html">[fetchmail-users] Procmail callup
+</A></li>
+        <LI>Next message: <A HREF="002547.html">[fetchmail-users] Procmail callup
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2546">[ date ]</a>
+              <a href="thread.html#2546">[ thread ]</a>
+              <a href="subject.html#2546">[ subject ]</a>
+              <a href="author.html#2546">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Am 14.11.2010 12:27, schrieb Danny:
+&gt;<i> Hi guys,
+</I>&gt;<i> 
+</I>&gt;<i> I am running Debian 5.1 default installation.
+</I>&gt;<i> 
+</I>&gt;<i> Fetchmail is working fine, but I have slight difficulty trying to get procmail
+</I>&gt;<i> invoked by fetchmail.
+</I>&gt;<i> 
+</I>&gt;<i> Fetchmail just dumps all mails in /var/spool/mail/fetchmail even though I have
+</I>&gt;<i> specified to pipe it to procmail.
+</I>
+Hi Danny,
+
+sorry to read that.  However, fetchmail doesn't do that. The fetchmail
+software package does not contain code that could possibly write to
+/var/spool/mail.  I suppose that procmail isn't finding its
+configuration and uses built-in defaults.
+
+Urgent recommendations:
+
+1: ditch procmail and switch to maildrop.
+
+2: do not run fetchmail as the root user.
+
+
+Note that some mailing systems behave in strange ways if you run them as
+root, check the respective manuals how exactly they find their
+configuration files - and whence, chances are procmail expects
+/etc/procmailrc and has special parsing semantics.  Check for the &quot;-d&quot;
+option documentation, too (that holds for maildrop, too).
+
+Maildrop information:
+
+&lt;<A HREF="http://packages.debian.org/search?keywords=maildrop">http://packages.debian.org/search?keywords=maildrop</A>&gt;
+&lt;<A HREF="http://www.courier-mta.org/maildrop/">http://www.courier-mta.org/maildrop/</A>&gt;
+
+
+There shall be no procmail support on this list, there are dedicated
+procmail lists where the maintainers can explain why they haven't
+managed to fix the broken default policies and semantics in more than a
+decade, and why you cannot use the &quot;e&quot; option in recipes and need to add
+an error-catching recipie after each and every other recipe if you want
+reliable delivery.
+
+
+Again, switch to maildrop if you value your mail.
+
+&gt;<i> 
+</I>&gt;<i> Here is fetchmail's rc file:
+</I>&gt;<i> 
+</I>&gt;<i> ///////////////////////////////////////////////////////////////////
+</I>&gt;<i> 
+</I>&gt;<i> set syslog
+</I>&gt;<i> set postmaster &quot;postmaster&quot;
+</I>&gt;<i> set no bouncemail
+</I>&gt;<i> set logfile &quot;/var/log/fetchmail.log&quot;
+</I>&gt;<i> set spambounce
+</I>&gt;<i> #set daemon
+</I>&gt;<i> 
+</I>&gt;<i> poll 111.111.111.111            //This is not the real IP
+</I>&gt;<i>   no dns                        // makes life easier
+</I>&gt;<i>   proto pop3
+</I>&gt;<i>   user &quot;username&quot;
+</I>&gt;<i>   pass &quot;password&quot;
+</I>&gt;<i>   fetchall
+</I>&gt;<i>   expunge 50
+</I>&gt;<i> #  ssl                          // server don't use ssl
+</I>&gt;<i> #  flush
+</I>&gt;<i> #  smtphost localhost
+</I>&gt;<i> mda &quot;formail -s procmail&quot;       // this is my problem?
+</I>
+Doesn't look adequate for root/delivery mode, and it looks entirely
+dangerous and inadequate to run fetchmail as root in your case.
+
+Fetchmail is supposed to run as *unprivileged* user.
+
+You can install maildrop setuid-root if needed.  You can theoretically
+do the same with procmail, but I'd rather not risk that with software
+that hasn't been touched in nine years.
+
+&gt;<i> By the way, how would I know if procmail is called by fetchmail, some kind of
+</I>&gt;<i> pipe?
+</I>
+Yes it is, specifically, through the POSIX popen() library call.
+
+Run fetchmail with sufficient -v options to see what exactly is executed
+(in your case, no substitution takes place, so it'll be the verbatim mda
+argument).
+
+See &lt;<A HREF="http://www.fetchmail.info/fetchmail-FAQ.html#G3">http://www.fetchmail.info/fetchmail-FAQ.html#G3</A>&gt; for more details.
+
+Hope that helps.
+
+Best regards
+Matthias
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002545.html">[fetchmail-users] Procmail callup
+</A></li>
+	<LI>Next message: <A HREF="002547.html">[fetchmail-users] Procmail callup
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2546">[ date ]</a>
+              <a href="thread.html#2546">[ thread ]</a>
+              <a href="subject.html#2546">[ subject ]</a>
+              <a href="author.html#2546">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

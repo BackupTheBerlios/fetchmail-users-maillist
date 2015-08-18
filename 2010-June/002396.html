@@ -1,0 +1,88 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] poblems with pop3 and expunge
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2010-June/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20poblems%20with%20pop3%20and%20expunge&In-Reply-To=%3Cop.veufzksx1e62zd%40merlin.emma.line.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002395.html">
+   <LINK REL="Next"  HREF="002397.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] poblems with pop3 and expunge</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20poblems%20with%20pop3%20and%20expunge&In-Reply-To=%3Cop.veufzksx1e62zd%40merlin.emma.line.org%3E"
+       TITLE="[fetchmail-users] poblems with pop3 and expunge">matthias.andree at gmx.de
+       </A><BR>
+    <I>Fri Jun 25 08:51:10 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002395.html">[fetchmail-users] poblems with pop3 and expunge
+</A></li>
+        <LI>Next message: <A HREF="002397.html">[fetchmail-users] fetchmail stops unexpected
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2396">[ date ]</a>
+              <a href="thread.html#2396">[ thread ]</a>
+              <a href="subject.html#2396">[ subject ]</a>
+              <a href="author.html#2396">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Am 25.06.2010, 02:58 Uhr, schrieb Lorenzo Milesi:
+
+&gt;&gt;<i> The configuration is contradictory. &quot;keep&quot; prevents deletions
+</I>&gt;&gt;<i> altogether -
+</I>&gt;&gt;<i> and then there will be nothing to expunge.
+</I>&gt;<i>
+</I>&gt;<i> I don't think so.
+</I>&gt;<i> I run with keep in daemon mode, to keep mail on the server. Once in a  
+</I>&gt;<i> while I execute with -F, to free up server.
+</I>&gt;<i>
+</I>&gt;<i> In fact, removing the &quot;keep&quot; and running, doesn't seem to expunge  
+</I>&gt;<i> anything.
+</I>
+--flush isn't the same as omitting --keep, and these are not opposites.
+
+Unfortunately, this is not too obvious from the documentation, and it  
+might be (I'll have to dig deeper in the source code to figure, which  
+won't happen today) that --expunge isn't taken into account with --flush.
+
+If someone else wants to take a look and possibly send a patch, feel free.
+
+Relevant code is in driver.c's fetch_messages() near the check for  
+ctl-&gt;flush, code available at &lt;<A HREF="http://gitorious.org/fetchmail/fetchmail/">http://gitorious.org/fetchmail/fetchmail/</A>&gt;,  
+on the master branch.
+
+-- 
+Matthias Andree
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002395.html">[fetchmail-users] poblems with pop3 and expunge
+</A></li>
+	<LI>Next message: <A HREF="002397.html">[fetchmail-users] fetchmail stops unexpected
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2396">[ date ]</a>
+              <a href="thread.html#2396">[ thread ]</a>
+              <a href="subject.html#2396">[ subject ]</a>
+              <a href="author.html#2396">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,98 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Fetchmail Exchange RT4 Errors
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2013-June/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Fetchmail%20Exchange%20RT4%20Errors&In-Reply-To=%3C51BDC13E3C3CA24B8767DECA7CAB674A0CFCD1%40exch1.MK.local%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003413.html">
+   <LINK REL="Next"  HREF="003415.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Fetchmail Exchange RT4 Errors</H1>
+    <B>Shane Vedvik</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Fetchmail%20Exchange%20RT4%20Errors&In-Reply-To=%3C51BDC13E3C3CA24B8767DECA7CAB674A0CFCD1%40exch1.MK.local%3E"
+       TITLE="[fetchmail-users] Fetchmail Exchange RT4 Errors">shane at markentsolutions.com
+       </A><BR>
+    <I>Thu Jun 27 16:58:25 CEST 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003413.html">[fetchmail-users] Fetchmail going out of date?
+</A></li>
+        <LI>Next message: <A HREF="003415.html">[fetchmail-users] Fetchmail Exchange RT4 Errors
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3414">[ date ]</a>
+              <a href="thread.html#3414">[ thread ]</a>
+              <a href="subject.html#3414">[ subject ]</a>
+              <a href="author.html#3414">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>I use Fetchmail 6.3.25+NTLM+SSL+NLS to get email from our Exchange 2010 Server, but for some reason I keep getting an error on attempting to connect:
+
+403 Forbidden
+fetchmail: reading message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">support at exch1.mk.local</A>:1 of 1 (776 octets) (log message incomplete)
+fetchmail: MDA returned nonzero status 75
+fetchmail:  not flushed
+fetchmail: Server certificate verification error: unable to get local issuer certificate
+fetchmail: Broken certification chain at: /CN=exch1
+fetchmail: This could mean that the server did not provide the intermediate CA's certificate(s), which is nothing fetchmail could do anything about.  For details, please see the README.SSL-SERVER document that ships with fetchmail.
+fetchmail: This could mean that the root CA's signing certificate is not in the trusted CA certificate location, or that c_rehash needs to be run on the certificate directory. For details, please see the documentation of --sslcertpath and --sslcertfile in the manual page.
+fetchmail: Server certificate verification error: unable to verify the first certificate
+fetchmail: Warning: the connection is insecure, continuing anyways. (Better use --sslcertck!)
+fetchmail: 1 message for support at exch1.mk.local (776 octets).
+An Error Occurred
+
+I was wondering if anyone with experience using fetchmail to download mail from exchange to RT mailgate has ever experienced this and how it was resolved.
+
+My fetchmail config is as follows:
+
+set daemon 15
+set logfile /opt/fetchmail.log
+poll [exchange server name redacted] proto pop3 user &quot;support&quot; pass &quot;[password redacted]&quot; to root sslproto &quot;TLS1&quot;  mda &quot;/opt/rt4/bin/rt-mailgate --url <A HREF="http://localhost/rt/">http://localhost/rt/</A> --queue support --action correspond&quot;
+
+I also tried:
+
+Set daemon 15
+Set logfile /opt/fetchmail.log
+Poll [exchange server name redacted] proto pop3 user &quot;support&quot; pass &quot;[password redacted]&quot; to root mda &quot;/opt/rt4/bin/rt-mailgate --url <A HREF="http://localhost/rt/">http://localhost/rt/</A> --queue support --action correspond&quot;
+
+And still got the same error messages.
+
+I was unable to locate any information about how to use --sslcertck! Per the error message, and I don't have c_rehash installed on my rt machine.
+
+Thanks,
+
+Shane
+
+</PRE>
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003413.html">[fetchmail-users] Fetchmail going out of date?
+</A></li>
+	<LI>Next message: <A HREF="003415.html">[fetchmail-users] Fetchmail Exchange RT4 Errors
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3414">[ date ]</a>
+              <a href="thread.html#3414">[ thread ]</a>
+              <a href="subject.html#3414">[ subject ]</a>
+              <a href="author.html#3414">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

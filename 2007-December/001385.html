@@ -1,0 +1,163 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] fetchmail IMAP
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2007-December/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%20IMAP&In-Reply-To=%3C09C3C3FD6B66DE4CA26C3B34B89C96B703395A99%40dnp-lclci02%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   
+   <LINK REL="Next"  HREF="001386.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] fetchmail IMAP</H1>
+    <B>Cherry, Steven</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%20IMAP&In-Reply-To=%3C09C3C3FD6B66DE4CA26C3B34B89C96B703395A99%40dnp-lclci02%3E"
+       TITLE="[fetchmail-users] fetchmail IMAP">scherry at detnews.com
+       </A><BR>
+    <I>Tue Dec  4 16:19:32 CET 2007</I>
+    <P><UL>
+        
+        <LI>Next message: <A HREF="001386.html">[fetchmail-users] fetchmail IMAP
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1385">[ date ]</a>
+              <a href="thread.html#1385">[ thread ]</a>
+              <a href="subject.html#1385">[ subject ]</a>
+              <a href="author.html#1385">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>I'm using fetchmail against an AD and it worked fine until yesterday.  I assume the server guys made some change and now I cannot get my mail.  Also fails when I use NTLS
+
+my rc file:
+-----
+set logfile    /tmp/fetchmail.log
+defaults
+         timeout 30
+         keep
+         fetchall 
+poll DNP-server.us.ad.gannett.com protocol IMAP auth password
+        username 'us\/scherry'
+        password secret
+-----
+
+my -vv output
+-----
+fetchmail: 6.3.6 querying DNP-LCLCI02.us.ad.gannett.com (protocol IMAP) at Tue 04 Dec 2007 10:14:48 AM EST: poll started
+fetchmail: Trying to connect to 10.5.1.76/143...connected.
+fetchmail: IMAP&lt; * OK Microsoft Exchange Server 2003 IMAP4rev1 server version 6.5.7638.1 (DNP-LCLCI02.us.ad.gannett.com) ready.
+fetchmail: IMAP&gt; A0001 CAPABILITY
+fetchmail: IMAP&lt; * CAPABILITY IMAP4 IMAP4rev1 IDLE LOGIN-REFERRALS MAILBOX-REFERRALS NAMESPACE LITERAL+ UIDPLUS CHILDREN AUTH=NTLM
+fetchmail: IMAP&lt; A0001 OK CAPABILITY completed.
+fetchmail: Protocol identified as IMAP4 rev 1
+fetchmail: DNP-LCLCI02.us.ad.gannett.com: opportunistic upgrade to TLS failed, trying to continue
+fetchmail: IMAP&gt; A0002 NOOP
+fetchmail: IMAP&lt; A0002 OK NOOP completed.
+fetchmail: IMAP&gt; A0003 LOGIN &quot;us/<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">scherry at us.ad.gannett.com</A>&quot; *
+fetchmail: IMAP&lt; A0003 NO Logon failure: unknown user name or bad password.
+fetchmail: IMAP&gt; A0004 *
+fetchmail: Authorization failure on us/<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">scherry at us.ad.gannett.com</A>@DNP-LCLCI02.us.ad.gannett.com
+fetchmail: IMAP&gt; A0005 LOGOUT
+fetchmail: IMAP&lt; A0004 BAD Protocol Error: &quot;Unknown command found&quot;.
+fetchmail: IMAP&lt; * BYE Microsoft Exchange Server 2003 IMAP4rev1 server version 6.5.7638.1 signing off.
+fetchmail: IMAP&lt; A0005 OK LOGOUT completed.
+fetchmail: 6.3.6 querying DNP-LCLCI02.us.ad.gannett.com (protocol IMAP) at Tue 04 Dec 2007 10:14:53 AM EST: poll completed
+fetchmail: Query status=3 (AUTHFAIL)
+fetchmail: Deleting fetchids file.
+fetchmail: normal termination, status 3
+fetchmail: Deleting fetchids file.
+-----
+
+when i remove &quot;auth password&quot; from the .rc file I get:
+
+-----
+fetchmail: 6.3.6 querying DNP-LCLCI02.us.ad.gannett.com (protocol IMAP) at Tue 04 Dec 2007 10:18:14 AM EST: poll started
+fetchmail: Trying to connect to 10.5.1.76/143...connected.
+fetchmail: IMAP&lt; * OK Microsoft Exchange Server 2003 IMAP4rev1 server version 6.5.7638.1 (DNP-LCLCI02.us.ad.gannett.com) ready.
+fetchmail: IMAP&gt; A0001 CAPABILITY
+fetchmail: IMAP&lt; * CAPABILITY IMAP4 IMAP4rev1 IDLE LOGIN-REFERRALS MAILBOX-REFERRALS NAMESPACE LITERAL+ UIDPLUS CHILDREN AUTH=NTLM
+fetchmail: IMAP&lt; A0001 OK CAPABILITY completed.
+fetchmail: Protocol identified as IMAP4 rev 1
+fetchmail: DNP-LCLCI02.us.ad.gannett.com: opportunistic upgrade to TLS failed, trying to continue
+fetchmail: IMAP&gt; A0002 NOOP
+fetchmail: IMAP&lt; A0002 OK NOOP completed.
+fetchmail: IMAP&gt; A0003 AUTHENTICATE NTLM
+fetchmail: IMAP&lt; +
+NTLM Request:
+      Ident = NTLMSSP
+      mType = 1
+      Flags = 0000b207
+       User = us/scherry
+     Domain = us.ad.gannett.com
+fetchmail: IMAP&gt; TlRMTVNTUAABAAAAB7IAAAoACgAgAAAAEQARACoAAAB1cy9zY2hlcnJ5dXMuYWQuZ2FubmV0dC5jb20=
+fetchmail: IMAP&lt; + TlRMTVNTUAACAAAABAAEADgAAAAFgoECOmja4RVcwL4AAAAAAAAAAKoAqgA8AAAABQLODgAAAA9VAFMAAgAEAFUAUwABABYARABOAFAALQBMAEMATABDAEkAMAAyAAQAIgB1AHMALgBhAGQALgBnAGEAbgBuAGUAdAB0AC4AYwBvAG0AAwA6AEQATgBQAC0ATABDAEwAQwBJADAAMgAuAHUAcwAuAGEAZAAuAGcAYQBuAG4AZQB0AHQALgBjAG8AbQAFABwAYQBkAC4AZwBhAG4AbgBlAHQAdAAuAGMAbwBtAAAAAAA=
+NTLM Challenge:
+      Ident = NTLMSSP
+      mType = 2
+     Domain = US
+      Flags = 02818205
+  Challenge = 3a 68 da e1 15 5c c0 be
+NTLM Response:
+      Ident = NTLMSSP
+      mType = 3
+     LmResp = 97 ea 72 35 93 31 ed ed a9 11 81 96 3c 88 b9 d3 42 12 3f 6a bf a1 a2 9a
+     NTResp = 85 16 fe 2c 02 bd ff 6b a5 b5 63 c7 6b 77 81 d4 6f 74 2b c7 64 22 c5 83
+     Domain = us.ad.gannett.com
+       User = us/scherry
+        Wks = us/scherry
+       sKey =
+      Flags = 02818205
+fetchmail: IMAP&gt; TlRMTVNTUAADAAAAGAAYAEAAAAAYABgAWAAAACIAIgBwAAAAFAAUAJIAAAAUABQApgAAAAAAAAB6AAAABYKBApfqcjWTMe3tqRGBljyIudNCEj9qv6GimoUW/iwCvf9rpbVjx2t3gdRvdCvHZCLFg3UAcwAuAGEAZAAuAGcAYQBuAG4AZQB0AHQALgBjAG8AbQB1AHMALwBzAGMAaABlAHIAcgB5AHUAcwAvAHMAYwBoAGUAcgByAHkA
+fetchmail: IMAP&lt; A0003 NO Logon failure: unknown user name or bad password.
+fetchmail: IMAP&gt; A0004 *
+fetchmail: IMAP&gt; A0005 LOGIN &quot;us/<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">scherry at us.ad.gannett.com</A>&quot; *
+fetchmail: IMAP&lt; A0004 BAD Protocol Error: &quot;Unknown command found&quot;.
+fetchmail: IMAP&lt; A0005 NO Logon failure: unknown user name or bad password.
+fetchmail: IMAP&gt; A0006 *
+fetchmail: Authorization failure on us/<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">scherry at us.ad.gannett.com</A>@DNP-LCLCI02.us.ad.gannett.com
+fetchmail: IMAP&gt; A0007 LOGOUT
+fetchmail: IMAP&lt; A0006 BAD Protocol Error: &quot;Unknown command found&quot;.
+fetchmail: IMAP&lt; * BYE Microsoft Exchange Server 2003 IMAP4rev1 server version 6.5.7638.1 signing off.
+fetchmail: IMAP&lt; A0007 OK LOGOUT completed.
+fetchmail: 6.3.6 querying DNP-LCLCI02.us.ad.gannett.com (protocol IMAP) at Tue 04 Dec 2007 10:18:19 AM EST: poll completed
+fetchmail: Query status=3 (AUTHFAIL)
+fetchmail: Deleting fetchids file.
+fetchmail: normal termination, status 3
+fetchmail: Deleting fetchids file.
+
+
+
+------------------------
+Steven Cherry
+<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">scherry at detnews.com</A>
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	
+	<LI>Next message: <A HREF="001386.html">[fetchmail-users] fetchmail IMAP
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1385">[ date ]</a>
+              <a href="thread.html#1385">[ thread ]</a>
+              <a href="subject.html#1385">[ subject ]</a>
+              <a href="author.html#1385">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

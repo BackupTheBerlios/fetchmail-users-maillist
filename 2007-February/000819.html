@@ -1,0 +1,86 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Question about mailing lists
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2007-February/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Question%20about%20mailing%20lists&In-Reply-To=%3Cm3odnszfzu.fsf%40merlin.emma.line.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000811.html">
+   <LINK REL="Next"  HREF="000806.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Question about mailing lists</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Question%20about%20mailing%20lists&In-Reply-To=%3Cm3odnszfzu.fsf%40merlin.emma.line.org%3E"
+       TITLE="[fetchmail-users] Question about mailing lists">matthias.andree at gmx.de
+       </A><BR>
+    <I>Sat Feb 17 21:27:49 CET 2007</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000811.html">[fetchmail-users] Question about mailing lists
+</A></li>
+        <LI>Next message: <A HREF="000806.html">[fetchmail-users] Question about mailing lists,	now running as unprivile
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#819">[ date ]</a>
+              <a href="thread.html#819">[ thread ]</a>
+              <a href="subject.html#819">[ subject ]</a>
+              <a href="author.html#819">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>&quot;Andrew N. Gray&quot; &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">andrew at graymerica.com</A>&gt; writes:
+
+&gt;<i> I would say working great, when compared to the pop3 connector for  
+</I>&gt;<i> exchange which is a complete PITA.
+</I>
+If Exchange works as &quot;well&quot; as Outlook 11 does, then &quot;complete PITA&quot; is
+an euphemism.
+
+&gt;<i> A couple more questions:
+</I>&gt;<i>
+</I>&gt;<i> if I want to check 20 pop accounts, should I run fetchmail in daemon  
+</I>&gt;<i> mode or via a cron.  Is there a way to get it to pause for a time  
+</I>&gt;<i> between each poll?
+</I>
+Functionally, the cron approach is a tad more robust, but can also emit
+more warnings, since it stores less state information internally.
+
+For the pausing, check something like
+
+    postconnect &quot;sleep 21&quot;
+
+after each poll statement. See the fetchmail and sleep manual pages.
+
+-- 
+Matthias Andree
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000811.html">[fetchmail-users] Question about mailing lists
+</A></li>
+	<LI>Next message: <A HREF="000806.html">[fetchmail-users] Question about mailing lists,	now running as unprivile
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#819">[ date ]</a>
+              <a href="thread.html#819">[ thread ]</a>
+              <a href="subject.html#819">[ subject ]</a>
+              <a href="author.html#819">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

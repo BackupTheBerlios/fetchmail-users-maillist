@@ -1,0 +1,163 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] attached log/conf : fetchmail-users Digest, Vol 89,	Issue 1
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2014-January/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20attached%20log/conf%20%3A%20fetchmail-users%20Digest%2C%20Vol%2089%2C%0A%09Issue%201&In-Reply-To=%3C52E2A0FF.10004%40t-online.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003503.html">
+   <LINK REL="Next"  HREF="003500.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] attached log/conf : fetchmail-users Digest, Vol 89,	Issue 1</H1>
+    <B>Christoph Schmidt</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20attached%20log/conf%20%3A%20fetchmail-users%20Digest%2C%20Vol%2089%2C%0A%09Issue%201&In-Reply-To=%3C52E2A0FF.10004%40t-online.de%3E"
+       TITLE="[fetchmail-users] attached log/conf : fetchmail-users Digest, Vol 89,	Issue 1">cs.hilzingen at t-online.de
+       </A><BR>
+    <I>Fri Jan 24 18:21:03 CET 2014</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003503.html">[fetchmail-users] cutom install - was: Certificate verification error
+</A></li>
+        <LI>Next message: <A HREF="003500.html">[fetchmail-users] attached log/conf : fetchmail-users Digest, Vol 89, Issue 1
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3487">[ date ]</a>
+              <a href="thread.html#3487">[ thread ]</a>
+              <a href="subject.html#3487">[ subject ]</a>
+              <a href="author.html#3487">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi, (sorry, not used to the rules of this mailing list)
+
+thanks for the answer and hints.
+I thought the scenario was clear - but anyway I added the configuration
+file :
+Here the working one :
+poll &quot;pop.t-online.de&quot; envelope &quot;X-envelope-to:&quot; protocol POP3 aka
+t-online.de no dns : user &quot;xy&quot; there with password &quot;secret&quot; is * here
+fetchall nokeep ;
+
+This works since years.
+isp switches now to ssl, which creates the need of changes to something
+like :
+poll &quot;securepop.t-online.de&quot; envelope 'X-ENVELOPE-TO:' protocol POP3  no
+dns : user &quot;xy&quot; there with password &quot;secret&quot; is * here fetchall nokeep
+ssl
+sslfingerprint &quot;CE:CF:FE:44:69:3A:EF:EF:73:42:97:60:B0:41:95:35&quot;
+sslcertck
+sslcertpath /etc/ssl/fetchmaild/certs/;
+
+But this results in /var/log/mail.info :
+Jan 24 15:11:10 NasenLap1 fetchmail[1308]: restarting fetchmail
+(/etc/fetchmailrc changed)
+Jan 24 15:11:10 NasenLap1 fetchmail[1308]: starting fetchmail 6.3.18 daemon
+Jan 24 15:11:23 NasenLap1 fetchmail[1308]: terminated with signal 15
+Jan 24 15:11:24 NasenLap1 fetchmail[2016]: fetchmail 6.3.18 D&#228;mon wird
+gestartet
+Jan 24 15:11:24 NasenLap1 fetchmail[2016]: Authentifikationsfehlschlag
+bei <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">xy at securepop.t-online.de</A>
+Jan 24 15:11:24 NasenLap1 fetchmail[2016]: Hilfe (auf Englisch): siehe
+<A HREF="http://www.fetchmail.info/fetchmail-FAQ.html#R15">http://www.fetchmail.info/fetchmail-FAQ.html#R15</A>
+Jan 24 15:11:24 NasenLap1 fetchmail[2016]: Abfragestatus=3 (AUTHFAIL)
+
+as I said, the domain is rewritten to <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">xy at securepop.t-online.de</A>
+But my user is <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">xy at t-online.de</A> - not <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">xy at securepop.t-online.de</A>
+(Also <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">xy at pop.t-online.de</A> is accepted - by the way)
+
+If I change to  :
+poll &quot;securepop.t-online.de&quot; envelope 'X-ENVELOPE-TO:' protocol POP3  no
+dns : user &quot;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">xy at t-online.de</A>&quot; there with password &quot;secret&quot; is * here keep
+ssl
+sslfingerprint &quot;CE:CF:FE:44:69:3A:EF:EF:73:42:97:60:B0:41:95:35&quot;
+sslcertck
+sslcertpath /etc/ssl/fetchmaild/certs/;
+
+I get the following result :
+
+Jan 24 15:21:26 NasenLap1 fetchmail[2016]: starte fetchmail erneut
+(/etc/fetchmailrc ver&#228;ndert)
+Jan 24 15:21:26 NasenLap1 fetchmail[2016]: fetchmail 6.3.18 D&#228;mon wird
+gestartet
+Jan 24 15:21:26 NasenLap1 fetchmail[2016]: Authentifikationsfehlschlag
+bei <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">xy at t-online.de</A>@securepop.t-online.de
+Jan 24 15:21:26 NasenLap1 fetchmail[2016]: Hilfe (auf Englisch): siehe
+<A HREF="http://www.fetchmail.info/fetchmail-FAQ.html#R15">http://www.fetchmail.info/fetchmail-FAQ.html#R15</A>
+Jan 24 15:21:26 NasenLap1 fetchmail[2016]: Abfragestatus=3 (AUTHFAIL)
+
+
+I can change also to <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">xy at pop.t-online.de</A> - same error
+(<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">cs.wiechs.ar at pop.t-online.de</A>@securepop.t-online.de)
+
+
+For any help I would be very appreciated.
+(Sorry for the german log - don't know how to change to this to english)
+
+Thanks
+Christoph
+
+On Thu, Jan 23, 2014 at 8:17 PM, Christoph Schmidt
+&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">cs.singen at t-online.de</A>&gt; wrote:
+
+&gt;&gt;<i> Hi,
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> I have some trouble using fetchmail.
+</I>&gt;&gt;<i> The server to poll is an ssl server that differs from the original.
+</I>&gt;&gt;<i> securepop.t-online.de /port 995 but the mailbox belongs to
+</I>&gt;&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">user at pop.t-online.de</A>
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> I tested different variants in fetchmailrc - all with bad results.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Example : <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">user at t-online.de</A> --&gt; <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">user at t-online.de</A>@securepop.t-online.de
+</I>&gt;&gt;<i> or user --&gt; <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">user at securepop.t-online.de</A>
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> How can I poll the securepop.t-online.de with my account, belonging to
+</I>&gt;&gt;<i> t-online.de ?
+</I>&gt;<i> Without at least a sample configuration file and the log messages that
+</I>&gt;<i> relate to a failed run, all I can suggest is that you read the man
+</I>&gt;<i> page and FAQ.
+</I>&gt;<i>
+</I>&gt;<i> If you can provide those, and the information listed in section G3 of
+</I>&gt;<i> the FAQ (<A HREF="http://fetchmail.berlios.de/fetchmail-FAQ.html#G3">http://fetchmail.berlios.de/fetchmail-FAQ.html#G3</A>) then I'm
+</I>&gt;<i> sure we'll be able to help you.
+</I>&gt;<i>
+</I></PRE>
+
+
+
+
+
+
+
+
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003503.html">[fetchmail-users] cutom install - was: Certificate verification error
+</A></li>
+	<LI>Next message: <A HREF="003500.html">[fetchmail-users] attached log/conf : fetchmail-users Digest, Vol 89, Issue 1
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3487">[ date ]</a>
+              <a href="thread.html#3487">[ thread ]</a>
+              <a href="subject.html#3487">[ subject ]</a>
+              <a href="author.html#3487">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

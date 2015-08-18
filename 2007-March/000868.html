@@ -1,0 +1,124 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] fetchmail and socks5
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2007-March/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%20and%20socks5&In-Reply-To=%3C43ea8d070703150756s26ab98f4jc01c61b3659f7d60%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000867.html">
+   <LINK REL="Next"  HREF="000883.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] fetchmail and socks5</H1>
+    <B>Rob MacGregor</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%20and%20socks5&In-Reply-To=%3C43ea8d070703150756s26ab98f4jc01c61b3659f7d60%40mail.gmail.com%3E"
+       TITLE="[fetchmail-users] fetchmail and socks5">rob.macgregor at gmail.com
+       </A><BR>
+    <I>Thu Mar 15 15:56:21 CET 2007</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000867.html">[fetchmail-users] fetchmail and socks5
+</A></li>
+        <LI>Next message: <A HREF="000883.html">[fetchmail-users] fetchmail and socks5
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#868">[ date ]</a>
+              <a href="thread.html#868">[ thread ]</a>
+              <a href="subject.html#868">[ subject ]</a>
+              <a href="author.html#868">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On 3/15/07, <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">Jochen+fetchmail-users at hayek.name</A>
+&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">Jochen+fetchmail-users at hayek.name</A>&gt; wrote:
+&gt;<i> &gt;&gt;&gt;&gt;&gt; &quot;RMG&quot; == Rob MacGregor writes:
+</I>&gt;<i>
+</I>&gt;<i> Currently I am convinced, your statement is incorrect.
+</I>
+(And eventually so am I - it's nice to learn something new :&gt;)
+
+&gt;<i> But I rather have some sympathy for your suspicion,
+</I>&gt;<i> as this magical and undescribed feature of fetchmail is certainly rather weird,
+</I>&gt;<i> and fetchmail shouldn't behave like that.
+</I>&gt;<i>
+</I>&gt;<i> Have you ever run fetchmail in a socks5 ready environment?
+</I>&gt;<i> Give yourself a try and let's continue discussing the matter than!
+</I>
+I have, and have never seen this before.
+
+&gt;<i>     RMG&gt; You're either running it
+</I>&gt;<i>     RMG&gt; with a socks wrapper (runsock/socksify)
+</I>&gt;<i>     RMG&gt; or have added this yourself (eg via ld.so.preload).
+</I>&gt;<i>
+</I>&gt;<i> No, I don't, nothing like that.
+</I>&gt;<i> (No socks wrapper, no LD_PRELOAD, no /etc/ld.so.preload, no ...)
+</I>&gt;<i> I told you above: &quot;I did not instruct my local fetchmail to make use of my socks5 proxy&quot;
+</I>&gt;<i> I mean, what I write.
+</I>&gt;<i> And you read my statement, didn't you?!?
+</I>
+If you're going to take that attitude I'll simply stop trying to help you :/
+
+That you didn't (mean to) explicitly configure fetchmail itself to use
+socks doesn't it isn't.
+
+And, frankly, your original email contained no data at all, just your
+words.  Without data showing what's actually going on I have to make
+assumptions.
+
+&gt;<i> Can you see &quot;SOCKS&quot; here:
+</I>&gt;<i>
+</I>&gt;<i>     [2007-03-15 14:11:49] <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">johayek at HayekJ</A> $ fetchmail --version
+</I>&gt;<i>     This is fetchmail release 6.3.2+POP2+IMAP-GSS+RPA+NTLM+SDPS+SSL+OPIE+SOCKS+NLS.
+</I>
+Yeah that looks like it was configured with socks support.  Having
+myself dug through the documentation and FAQ it appears that there is
+socks support after all (it's not documented anywhere except the FAQ):
+
+<A HREF="http://www.fetchmail.info/fetchmail-FAQ.html#K1">http://www.fetchmail.info/fetchmail-FAQ.html#K1</A>
+
+Rebuild fetchmail without the socks support.  It looks like fetchmail
+will automatically use socks if you build it with socks support -
+there's no runtime switch.  (At least that's what a read of the source
+tells me)
+
+So, in short, while you didn't intend to configure fetchmail to use
+your socks server, you did by configuring socks support into fetchmail
+(and I'm guessing defining some environment variables or putting
+entries in socks.conf).
+
+-- 
+                 Please keep list traffic on the list.
+
+Rob MacGregor
+      Whoever fights monsters should see to it that in the process he
+        doesn't become a monster.                  Friedrich Nietzsche
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000867.html">[fetchmail-users] fetchmail and socks5
+</A></li>
+	<LI>Next message: <A HREF="000883.html">[fetchmail-users] fetchmail and socks5
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#868">[ date ]</a>
+              <a href="thread.html#868">[ thread ]</a>
+              <a href="subject.html#868">[ subject ]</a>
+              <a href="author.html#868">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

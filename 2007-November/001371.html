@@ -1,0 +1,119 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] First time lost emails
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2007-November/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20First%20time%20lost%20emails&In-Reply-To=%3C20071104203929.GB3249%40straylight.m.ringlet.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001370.html">
+   <LINK REL="Next"  HREF="001372.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] First time lost emails</H1>
+    <B>Peter Pentchev</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20First%20time%20lost%20emails&In-Reply-To=%3C20071104203929.GB3249%40straylight.m.ringlet.net%3E"
+       TITLE="[fetchmail-users] First time lost emails">roam at ringlet.net
+       </A><BR>
+    <I>Sun Nov  4 21:39:29 CET 2007</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001370.html">[fetchmail-users] First time lost emails
+</A></li>
+        <LI>Next message: <A HREF="001372.html">[fetchmail-users] First time lost emails
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1371">[ date ]</a>
+              <a href="thread.html#1371">[ thread ]</a>
+              <a href="subject.html#1371">[ subject ]</a>
+              <a href="author.html#1371">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Sun, Nov 04, 2007 at 07:58:59PM -0000, James Nunnerley wrote:
+&gt;<i> I've started using fetchmail for the first time.  The intention is to use it
+</I>&gt;<i> to retrieve emails so that they then get checked by exim (which includes
+</I>&gt;<i> spam and anti-virus checking) and it then forwards onto an Exchange server.
+</I>&gt;<i> I have now got it working, but stupidly first time I ran it, selected the
+</I>&gt;<i> fetchall option.  That first time it wasn't setup correctly.  Can anyone
+</I>&gt;<i> advise me where the emails will have gone based on the following config
+</I>&gt;<i> file:
+</I>&gt;<i>  
+</I>&gt;<i> poll 'mail.server.com'
+</I>&gt;<i>      user 'username'
+</I>&gt;<i>      pass 'password'
+</I>&gt;<i>      is lucy
+</I>&gt;<i>  
+</I>&gt;<i> I presumed it would go to user lucy - but on checking /var/spool/mail/lucy,
+</I>&gt;<i> there are none there... can anyone help?
+</I>
+Most probably you ought to check the Exim logfiles to see what happened
+to those mails.
+
+When you say you have got it working, do you mean that the first time it
+ran, it didn't do something correctly?  Can you remember (or do you keep
+logfiles of the fetchmail runs) whether fetchmail gave any error
+messages?  If fetchmail didn't report any errors, this means that it
+connected successfully to an SMTP server running on localhost (the
+default delivery instructions), dutifully delivered all the fetched mail
+to this SMTP server with 'RCPT TO lucy' (as instructed by your config),
+and the SMTP server accepted all those messages for delivery.  If this
+is the case, then it's up to Exim what it did with the messages that it
+accepted from fetchmail.
+
+On the other hand, if there were any problems in fetchmail's
+communication with Exim, then fetchmail would not (and should not) have
+&quot;flushed&quot; the incoming messages from the source - from where it fetched
+them from - from the 'mail.server.com' POP3 server.  In that case, the
+messages should be there, waiting for you to fetch them again - but
+since you're asking, I assume that is not the case :/
+
+Well, if the messages are not at the POP3 server, then fetchmail must
+have flushed them, hence it must have thought it had passed them on
+successfully, hence it must have delivered them to an SMTP server or
+something - hence you should check the Exim logfiles for any messages
+passing through it at that time.
+
+G'luck,
+Peter
+
+-- 
+Peter Pentchev	<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">roam at ringlet.net</A>    <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">roam at cnsys.bg</A>    <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">roam at FreeBSD.org</A>
+PGP key:	<A HREF="http://people.FreeBSD.org/~roam/roam.key.asc">http://people.FreeBSD.org/~roam/roam.key.asc</A>
+Key fingerprint	FDBA FD79 C26F 3C51 C95E  DF9E ED18 B68D 1619 4553
+I've heard that this sentence is a rumor.
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: not available
+Type: application/pgp-signature
+Size: 187 bytes
+Desc: not available
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/fetchmail-users/attachments/20071104/3e707b9c/attachment.pgp">https://lists.berlios.de/pipermail/fetchmail-users/attachments/20071104/3e707b9c/attachment.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001370.html">[fetchmail-users] First time lost emails
+</A></li>
+	<LI>Next message: <A HREF="001372.html">[fetchmail-users] First time lost emails
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1371">[ date ]</a>
+              <a href="thread.html#1371">[ thread ]</a>
+              <a href="subject.html#1371">[ subject ]</a>
+              <a href="author.html#1371">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

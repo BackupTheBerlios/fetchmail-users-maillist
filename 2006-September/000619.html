@@ -1,0 +1,95 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Fetchmail forwarding
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2006-September/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Fetchmail%20forwarding&In-Reply-To=%3Cc657a9df0609301053g789bfe1eq1f6ee055b0962fd2%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000626.html">
+   <LINK REL="Next"  HREF="000620.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Fetchmail forwarding</H1>
+    <B>Spam Me</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Fetchmail%20forwarding&In-Reply-To=%3Cc657a9df0609301053g789bfe1eq1f6ee055b0962fd2%40mail.gmail.com%3E"
+       TITLE="[fetchmail-users] Fetchmail forwarding">welcometothespambox at gmail.com
+       </A><BR>
+    <I>Sat Sep 30 19:53:42 CEST 2006</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000626.html">[fetchmail-users] fetchmail can't talk to dovecot
+</A></li>
+        <LI>Next message: <A HREF="000620.html">[fetchmail-users] Fetchmail forwarding
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#619">[ date ]</a>
+              <a href="thread.html#619">[ thread ]</a>
+              <a href="subject.html#619">[ subject ]</a>
+              <a href="author.html#619">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hello,
+I appologize if this has been asked before, but I've search the archives and
+found no solution.
+
+What I'd like to do is have fetchmail collect mail from all my various email
+accounts, and forward everything to my gmail account.  I've been able to get
+the polling working properly, however I can't get the messages properly
+forwarding to my gmail account.  I was just wondering if I've set the smtp
+variables correctly (see .fetchmailrc included below)?  If i remove the two
+smtp lines, fetchmail happily runs and exits with no errors (however since I
+dont have any email software installed locally the mail doesn't actually go
+anywhere).  However, when I add the smtp lines the software hangs on the
+&quot;reading message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">address1 at gmail.com</A>@gmail-pop.l.google.com:1 of 11 (2020
+octets)&quot; line.
+
+I'm using version 6.3.2, and my .fetchmailrc is below (where I want to
+collect messages from address1 and forward them to address 2):
+
+poll pop.gmail.com
+  proto POP3
+  port 995
+  user '<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">address1 at gmail.com</A>'
+  ssl
+
+smtphost 'smtp1.sympatico.ca'
+smtpname '<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">address2 at gmail.com</A>'
+
+fetchall
+keep
+
+Thanks for any help!
+Dan
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/fetchmail-users/attachments/20060930/7e081a78/attachment.html">https://lists.berlios.de/pipermail/fetchmail-users/attachments/20060930/7e081a78/attachment.html</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000626.html">[fetchmail-users] fetchmail can't talk to dovecot
+</A></li>
+	<LI>Next message: <A HREF="000620.html">[fetchmail-users] Fetchmail forwarding
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#619">[ date ]</a>
+              <a href="thread.html#619">[ thread ]</a>
+              <a href="subject.html#619">[ subject ]</a>
+              <a href="author.html#619">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

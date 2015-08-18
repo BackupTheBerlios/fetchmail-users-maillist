@@ -1,0 +1,142 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Fetchmail fails with BAD Command received in	invalid state after upgrade to 6.3.24
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2013-January/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Fetchmail%20fails%20with%20BAD%20Command%20received%20in%0A%09invalid%20state%20after%20upgrade%20to%206.3.24&In-Reply-To=%3CA9C11A4C-8D0A-4B30-A935-2F0FA875C032%40petervannes.nl%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003301.html">
+   <LINK REL="Next"  HREF="003307.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Fetchmail fails with BAD Command received in	invalid state after upgrade to 6.3.24</H1>
+    <B>Peter van Nes</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Fetchmail%20fails%20with%20BAD%20Command%20received%20in%0A%09invalid%20state%20after%20upgrade%20to%206.3.24&In-Reply-To=%3CA9C11A4C-8D0A-4B30-A935-2F0FA875C032%40petervannes.nl%3E"
+       TITLE="[fetchmail-users] Fetchmail fails with BAD Command received in	invalid state after upgrade to 6.3.24">mailbox at petervannes.nl
+       </A><BR>
+    <I>Mon Jan  7 12:52:03 CET 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003301.html">[fetchmail-users] Fetchmail fails with BAD Command received in	invalid state after upgrade to 6.3.24
+</A></li>
+        <LI>Next message: <A HREF="003307.html">[fetchmail-users] Mails are fetched hours later
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3302">[ date ]</a>
+              <a href="thread.html#3302">[ thread ]</a>
+              <a href="subject.html#3302">[ subject ]</a>
+              <a href="author.html#3302">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Rob,
+
+Recovered the steps i have taken to install fetchmail on 10.8, so i assume that i have to start step 5 with  ./configure --with-ssl ?
+
+
+Here are the steps:
+ 
+1. Download &quot;Command Line Tools for Xcode- Late July 2012&quot; from connect.apple.com
+    (You must be registered as an Apple Developer.) and install it.
+ 
+2. Download fetchmail sources from: <A HREF="http://sourceforge.net/projects/fetchmail/">http://sourceforge.net/projects/fetchmail/</A>
+ 
+3. unzip it to the destination you want.
+ 
+4. open terminal and go to your unzipped folder. for exaple: (cd /Users/martin/Desktop/fetchmail-6.3.21)
+ 
+5. type: ./configure ENTER
+ 
+6. type: make  ENTER
+ 
+7. type: sudo make install ENTER
+ 
+8. change your fetchmail daemon to the new position of Fetchmail&quot;/usr/local/bin/fetchmail&quot;
+
+
+Met vriendelijke groet/With kind regards
+
+Peter van Nes
+Mobile +31 652 694 792 | Fax +31 84 747 6999
+    
+
+
+ 
+
+On 7 jan. 2013, at 08:19, Rob MacGregor &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">rob.macgregor at gmail.com</A>&gt; wrote:
+
+&gt;<i> On Sun, Jan 6, 2013 at 10:08 PM, Peter van Nes &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">peter at harboursedge.nl</A>&gt;wrote:
+</I>&gt;<i> 
+</I>&gt;&gt;<i> Hi Rob,
+</I>&gt;&gt;<i> 
+</I>&gt;&gt;<i> That is what i use(d), &quot;sslproto TLS1&quot;, and worked till i had to upgrade.
+</I>&gt;&gt;<i> Exchange provider states that TLS is required, not SSL.
+</I>&gt;&gt;<i> So, do currently have no clue what is wrong, fetchmail only gives me a
+</I>&gt;&gt;<i> &quot;A0002 BAD Command received in Invalid state&quot;.
+</I>&gt;&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> Well, the message is from the Exchange server.
+</I>&gt;<i> 
+</I>&gt;<i> Nothing in your log showed TLS being used. Did you install Fetchmail
+</I>&gt;<i> through a package or by hand? It doesn't look like your new install of
+</I>&gt;<i> Fetchmail includes SSL support.
+</I>&gt;<i> 
+</I>&gt;<i> -- 
+</I>&gt;<i> *                 Please keep list traffic on the list.*
+</I>&gt;<i> 
+</I>&gt;<i> Rob MacGregor
+</I>&gt;<i>      Whoever fights monsters should see to it that in the process he
+</I>&gt;<i>        doesn't become a monster.                  Friedrich Nietzsche
+</I>&gt;<i> _______________________________________________
+</I>&gt;<i> fetchmail-users mailing list
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">fetchmail-users at lists.berlios.de</A>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">https://lists.berlios.de/mailman/listinfo/fetchmail-users</A>
+</I>&gt;<i> 
+</I>
+
+
+
+
+Met vriendelijke groet/With kind regards
+
+Peter van Nes
+Mobile +31 652 694 792 | Fax +31 84 747 6999
+    
+
+
+ 
+
+</PRE>
+
+
+
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003301.html">[fetchmail-users] Fetchmail fails with BAD Command received in	invalid state after upgrade to 6.3.24
+</A></li>
+	<LI>Next message: <A HREF="003307.html">[fetchmail-users] Mails are fetched hours later
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3302">[ date ]</a>
+              <a href="thread.html#3302">[ thread ]</a>
+              <a href="subject.html#3302">[ subject ]</a>
+              <a href="author.html#3302">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

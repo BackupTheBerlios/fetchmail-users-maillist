@@ -1,0 +1,87 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] PATCH: EXPERIMENTAL: fix lost POP3 deletes
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2006-May/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20PATCH%3A%20EXPERIMENTAL%3A%20fix%20lost%20POP3%20deletes&In-Reply-To=%3Cm3mzdgwyfy.fsf_-_%40merlin.emma.line.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000396.html">
+   <LINK REL="Next"  HREF="000411.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] PATCH: EXPERIMENTAL: fix lost POP3 deletes</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20PATCH%3A%20EXPERIMENTAL%3A%20fix%20lost%20POP3%20deletes&In-Reply-To=%3Cm3mzdgwyfy.fsf_-_%40merlin.emma.line.org%3E"
+       TITLE="[fetchmail-users] PATCH: EXPERIMENTAL: fix lost POP3 deletes">matthias.andree at gmx.de
+       </A><BR>
+    <I>Wed May 17 15:52:33 CEST 2006</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000396.html">[fetchmail-users] Mails lost due to --flush option ?
+</A></li>
+        <LI>Next message: <A HREF="000411.html">[fetchmail-users] [PATCH] Re: fix lost POP3 deletes
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#409">[ date ]</a>
+              <a href="thread.html#409">[ thread ]</a>
+              <a href="subject.html#409">[ subject ]</a>
+              <a href="author.html#409">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Greetings,
+
+Frederic Marchal found a problem with POP3 deletes when --flush and
+--keep are both unset and UIDL is used for the connection:
+
+If fetchmail sends a DELE command, but the POP3 connection aborts before
+the QUIT command can be sent, then fetchmail will skip the messages on
+the server and leaving them there forever.
+
+The patch below is somewhat intrusive but attempts to fix this. It
+changes the .fetchids file format, adding &quot; DELETED&quot; to UID lines of
+deleted messages when the QUIT hasn't been acknowledged. This should
+make fetchmail retry the delete on the next run.
+
+Please test.
+
+Opinions? Let it go in now or wait until 6.4.0?
+
+-- 
+Matthias Andree
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: 6.3.4-pending-deletes.patch
+Type: text/x-patch
+Size: 14046 bytes
+Desc: fix delete messages left on server forever issue
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/fetchmail-users/attachments/20060517/fefc6455/attachment.bin">https://lists.berlios.de/pipermail/fetchmail-users/attachments/20060517/fefc6455/attachment.bin</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000396.html">[fetchmail-users] Mails lost due to --flush option ?
+</A></li>
+	<LI>Next message: <A HREF="000411.html">[fetchmail-users] [PATCH] Re: fix lost POP3 deletes
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#409">[ date ]</a>
+              <a href="thread.html#409">[ thread ]</a>
+              <a href="subject.html#409">[ subject ]</a>
+              <a href="author.html#409">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

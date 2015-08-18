@@ -1,0 +1,88 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] fetchmail: SMTP error: 530 5.7.0 Must issue a STARTTLS command first
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2009-September/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%3A%20SMTP%20error%3A%20530%205.7.0%20Must%20issue%20a%0A%20STARTTLS%20command%20first&In-Reply-To=%3C4AAA4CF9.5000201%40gmx.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002074.html">
+   <LINK REL="Next"  HREF="002076.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] fetchmail: SMTP error: 530 5.7.0 Must issue a STARTTLS command first</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%3A%20SMTP%20error%3A%20530%205.7.0%20Must%20issue%20a%0A%20STARTTLS%20command%20first&In-Reply-To=%3C4AAA4CF9.5000201%40gmx.de%3E"
+       TITLE="[fetchmail-users] fetchmail: SMTP error: 530 5.7.0 Must issue a STARTTLS command first">matthias.andree at gmx.de
+       </A><BR>
+    <I>Fri Sep 11 15:13:29 CEST 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002074.html">[fetchmail-users] fetchmail: SMTP error: 530 5.7.0 Must issue a STARTTLS command first
+</A></li>
+        <LI>Next message: <A HREF="002076.html">[fetchmail-users] fetchmail: SMTP error: 530 5.7.0 Must issue a STARTTLS command first
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2075">[ date ]</a>
+              <a href="thread.html#2075">[ thread ]</a>
+              <a href="subject.html#2075">[ subject ]</a>
+              <a href="author.html#2075">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Gerard schrieb:
+&gt;<i> On Fri, 11 Sep 2009 11:17:42 +0200
+</I>&gt;<i> &quot;Matthias Andree&quot; &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">matthias.andree at gmx.de</A>&gt; wrote:
+</I>&gt;<i> 
+</I>&gt;&gt;<i> Indeed fetchmail does not support SSL/TLS/STARTTLS on the SMTP side.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> For Postfix, there are several options depending on the Postfix
+</I>&gt;&gt;<i> version, such as per-site TLS settings.
+</I>&gt;<i> 
+</I>&gt;<i> I have all ready hacked the Postfix main.cf file to get around this
+</I>&gt;<i> limitation. It would be a nice feature though to have fetchmail
+</I>&gt;<i> actually support SSL/TLS/STARTTLS. With more and more mail servers
+</I>&gt;<i> being setup to deny access to non verified clients and enforcing the
+</I>&gt;<i> use of encrypting, it seems that this would be a logical move forward
+</I>&gt;<i> for fetchmail.
+</I>
+Salut G&#233;rard,
+
+the statement means &quot;nobody has written the necessary code yet&quot;, not &quot;fetchmail
+should not do it&quot;. The assumption is that you download your own mail and that
+the destination mail servers are thus under your control, so this feature is
+rather low priority.
+
+fetchmail isn't the right tool for outbound mail.
+
+HTH
+Matthias
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002074.html">[fetchmail-users] fetchmail: SMTP error: 530 5.7.0 Must issue a STARTTLS command first
+</A></li>
+	<LI>Next message: <A HREF="002076.html">[fetchmail-users] fetchmail: SMTP error: 530 5.7.0 Must issue a STARTTLS command first
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2075">[ date ]</a>
+              <a href="thread.html#2075">[ thread ]</a>
+              <a href="subject.html#2075">[ subject ]</a>
+              <a href="author.html#2075">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

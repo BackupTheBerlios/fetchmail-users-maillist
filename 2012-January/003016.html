@@ -1,0 +1,413 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Troubleshooting SSL error
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2012-January/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Troubleshooting%20SSL%20error&In-Reply-To=%3C20120104222541.2004371u7hvl964g%4066.109.33.137%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   
+   <LINK REL="Next"  HREF="003017.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Troubleshooting SSL error</H1>
+    <B>dishwasher at cheflisa.com</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Troubleshooting%20SSL%20error&In-Reply-To=%3C20120104222541.2004371u7hvl964g%4066.109.33.137%3E"
+       TITLE="[fetchmail-users] Troubleshooting SSL error">dishwasher at cheflisa.com
+       </A><BR>
+    <I>Thu Jan  5 04:25:41 CET 2012</I>
+    <P><UL>
+        
+        <LI>Next message: <A HREF="003017.html">[fetchmail-users] Troubleshooting SSL error
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3016">[ date ]</a>
+              <a href="thread.html#3016">[ thread ]</a>
+              <a href="subject.html#3016">[ subject ]</a>
+              <a href="author.html#3016">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Environment:
+CentOS 5.7
+Fetchmail RPM is fetchmail-6.3.6-1.1.el5_3.1
+OpenSSL RPM is openssl-0.9.8e-20.el5
+Sendmail RPM is sendmail-8.13.8-8.1.el5_7
+
+When I test OpenSSL connectivity, I am able to connect to the IMAP  
+server I want to poll and also to the local MTA.
+
+openssl s_client -connect pod51011.outlook.com:993
+openssl s_client -starttls smtp -connect localhost:25
+
+Both of these commands open connections, I have attached a text file  
+showing the complete output.
+
+Fetchmail fails with an error that I do not understand. The error  
+states there is an unknown protocol. The command and error output is  
+immediately below, and farther down I have given output from fetchmail  
+-V.
+
+I would be grateful for any assistance that can be provided to resolve  
+this issue.
+
+Thank you
+John
+
+
+[<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">otrs at tki-c01</A> ~]$  /usr/bin/fetchmail -vvv -a --ssl
+fetchmail: 6.3.6 querying pod51011.outlook.com (protocol IMAP) at Wed  
+04 Jan 2012 06:59:46 PM EST: poll started
+fetchmail: running openssl s_client -connect  %h:%p (host  
+pod51011.outlook.com service 993)
+depth=3 /C=US/O=GTE Corporation/OU=GTE CyberTrust Solutions,  
+Inc./CN=GTE CyberTrust Global Root
+verify return:1
+depth=2 /CN=Microsoft Internet Authority
+verify return:1
+depth=1 /DC=com/DC=microsoft/DC=corp/DC=redmond/CN=Microsoft Secure  
+Server Authority
+verify return:1
+depth=0 /C=US/ST=Washington/L=Redmond/O=Microsoft  
+Corporation/OU=Exchange/CN=outlook.com
+verify return:1
+11337:error:140770FC:SSL routines:SSL23_GET_SERVER_HELLO:unknown  
+protocol:s23_clnt.c:588:
+fetchmail: SSL connection failed.
+fetchmail: socket error while fetching from  
+<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">support at jsw4.com</A>@pod51011.outlook.com
+fetchmail: 6.3.6 querying pod51011.outlook.com (protocol IMAP) at Wed  
+04 Jan 2012 06:59:47 PM EST: poll completed
+fetchmail: Query status=2 (SOCKET)
+fetchmail: Deleting fetchids file.
+fetchmail: normal termination, status 2
+fetchmail: Deleting fetchids file.
+DONE
+
+###### AND #########
+
+<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">otrs at tki-c01</A> ~]$  /usr/bin/fetchmail -V -a --ssl
+This is fetchmail release 6.3.6+GSS+RPA+NTLM+SDPS+SSL+HESIOD+NLS+KRB4+KRB5.
+
+Copyright (C) 2002, 2003 Eric S. Raymond
+Copyright (C) 2004 Matthias Andree, Eric S. Raymond, Rob F. Funk,  
+Graham Wilson
+Copyright (C) 2005-2006 Matthias Andree, Sunil Shetye
+Fetchmail comes with ABSOLUTELY NO WARRANTY. This is free software, and you
+are welcome to redistribute it under certain conditions. For details,
+please see the file COPYING in the source or documentation directory.
+
+Fallback MDA: (none)
+Linux tki-c01.jsw4.net 2.6.18-274.12.1.el5xen #1 SMP Tue Nov 29  
+14:18:21 EST 2011 x86_64 x86_64 x86_64 GNU/Linux
+Taking options from command line and /opt/otrs/.fetchmailrc
+Idfile is /opt/otrs/.fetchids
+Fetchmail will show progress dots even in logfiles.
+Fetchmail will forward misaddressed multidrop messages to otrs.
+Options for retrieving from <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">support at jsw4.com</A>@pod51011.outlook.com:
+   True name of server is pod51011.outlook.com.
+   Protocol is IMAP (using service 993).
+   All available authentication methods will be tried.
+   SSL encrypted sessions enabled.
+   Server nonresponse timeout is 300 seconds (default).
+   Default mailbox selected.
+   All messages will be retrieved (--all on).
+   Fetched messages will not be kept on the server (--keep off).
+   Old messages will not be flushed before message retrieval (--flush off).
+   Oversized messages will not be flushed before message retrieval  
+(--limitflush off).
+   Rewrite of server-local addresses is enabled (--norewrite off).
+   Carriage-return stripping is disabled (stripcr off).
+   Carriage-return forcing is disabled (forcecr off).
+   Interpretation of Content-Transfer-Encoding is enabled (pass8bits off).
+   MIME decoding is disabled (mimedecode off).
+   Idle after poll is disabled (idle off).
+   Nonempty Status lines will be kept (dropstatus off)
+   Delivered-To lines will be kept (dropdelivered off)
+   Fetch message size limit is 100 (--fetchsizelimit 100).
+   Do binary search of UIDs during 3 out of 4 polls (--fastuidl 4).
+   Messages will be SMTP-forwarded to: localhost (default)
+   Single-drop mode: 1 local name recognized.
+   Server connections will be made via plugin openssl s_client  
+-connect  %h:%p (--plugin openssl s_client -connect  %h:%p).
+   No UIDs saved from this host.
+-------------- next part --------------
+Using username &quot;root&quot;.
+Authenticating with public key &quot;John Walker dsa-key-20110210&quot;
+Passphrase for key &quot;John Walker dsa-key-20110210&quot;:
+Last login: Wed Jan  4 18:54:09 2012 from joe.jsw4.net
+[<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">root at tki-c01</A> ~]# su - otrs
+[<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">otrs at tki-c01</A> ~]$ openssl s_client -starttls smtp -connect localhost:25
+CONNECTED(00000003)
+depth=0 /C=US/ST=Albany/L=New York/O=JSW4NET Inc./OU=Support Group/CN=tki-c01.jsw4.net/emailAddress=<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">hostmaster at jsw4.net</A>
+verify error:num=18:self signed certificate
+verify return:1
+depth=0 /C=US/ST=Albany/L=New York/O=JSW4NET Inc./OU=Support Group/CN=tki-c01.jsw4.net/emailAddress=<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">hostmaster at jsw4.net</A>
+verify return:1
+---
+Certificate chain
+ 0 s:/C=US/ST=Albany/L=New York/O=JSW4NET Inc./OU=Support Group/CN=tki-c01.jsw4.net/emailAddress=<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">hostmaster at jsw4.net</A>
+   i:/C=US/ST=Albany/L=New York/O=JSW4NET Inc./OU=Support Group/CN=tki-c01.jsw4.net/emailAddress=<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">hostmaster at jsw4.net</A>
+---
+Server certificate
+-----BEGIN CERTIFICATE-----
+MIIDtjCCAx+gAwIBAgIBADANBgkqhkiG9w0BAQUFADCBnzELMAkGA1UEBhMCVVMx
+DzANBgNVBAgTBkFsYmFueTERMA8GA1UEBxMITmV3IFlvcmsxFTATBgNVBAoTDEpT
+VzRORVQgSW5jLjEWMBQGA1UECxMNU3VwcG9ydCBHcm91cDEZMBcGA1UEAxMQdGtp
+LWMwMS5qc3c0Lm5ldDEiMCAGCSqGSIb3DQEJARYTaG9zdG1hc3RlckBqc3c0Lm5l
+dDAeFw0xMjAxMDQyMzQwNTFaFw0xMzAxMDMyMzQwNTFaMIGfMQswCQYDVQQGEwJV
+UzEPMA0GA1UECBMGQWxiYW55MREwDwYDVQQHEwhOZXcgWW9yazEVMBMGA1UEChMM
+SlNXNE5FVCBJbmMuMRYwFAYDVQQLEw1TdXBwb3J0IEdyb3VwMRkwFwYDVQQDExB0
+a2ktYzAxLmpzdzQubmV0MSIwIAYJKoZIhvcNAQkBFhNob3N0bWFzdGVyQGpzdzQu
+bmV0MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCvyRa5f2ciIgZ9MGjjjXEm
+HQhMlg9M7CVZlxfXYerk+cc5Hw54/hNWMVEGMnfUU0iYRsXoKQQUJTrXSw7mnyEN
+PcnqFjxOffvO8tz9nHwES8YowNVNQJFD5e9OVan2kgnVnIeiido1c248OqJ9QZ/0
+RAnFbyL36LzhG9n0nBdL9QIDAQABo4H/MIH8MB0GA1UdDgQWBBQIbIK4BboPmUM1
+qYmHkpXL/YS23zCBzAYDVR0jBIHEMIHBgBQIbIK4BboPmUM1qYmHkpXL/YS236GB
+paSBojCBnzELMAkGA1UEBhMCVVMxDzANBgNVBAgTBkFsYmFueTERMA8GA1UEBxMI
+TmV3IFlvcmsxFTATBgNVBAoTDEpTVzRORVQgSW5jLjEWMBQGA1UECxMNU3VwcG9y
+dCBHcm91cDEZMBcGA1UEAxMQdGtpLWMwMS5qc3c0Lm5ldDEiMCAGCSqGSIb3DQEJ
+ARYTaG9zdG1hc3RlckBqc3c0Lm5ldIIBADAMBgNVHRMEBTADAQH/MA0GCSqGSIb3
+DQEBBQUAA4GBAJbgoTJPYywvqjYXtHL6yvFJ/oOkkZE9o04ANG7P0yy5JniUSiyv
+/EX/M9y1z4GH0dNmWYwLUkoXXUZgLtxupAM9Tz5HAV0RF3WF/OmprxaLWR4O+2ol
+n93kCeeWGb8CbaW/QrnsL2ruWPWcZwzondUdygPakE7zo19f4kkrz4E+
+-----END CERTIFICATE-----
+subject=/C=US/ST=Albany/L=New York/O=JSW4NET Inc./OU=Support Group/CN=tki-c01.jsw4.net/emailAddress=<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">hostmaster at jsw4.net</A>
+issuer=/C=US/ST=Albany/L=New York/O=JSW4NET Inc./OU=Support Group/CN=tki-c01.jsw4.net/emailAddress=<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">hostmaster at jsw4.net</A>
+---
+Acceptable client certificate CA names
+/C=US/O=RSA Data Security, Inc./OU=Secure Server Certification Authority
+/C=US/O=GTE Corporation/CN=GTE CyberTrust Root
+/C=US/O=GTE Corporation/OU=GTE CyberTrust Solutions, Inc./CN=GTE CyberTrust Global Root
+/C=ZA/ST=Western Cape/L=Cape Town/O=Thawte Consulting/OU=Certification Services Division/CN=Thawte Personal Basic CA/emailAddress=<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">personal-basic at thawte.com</A>
+/C=ZA/ST=Western Cape/L=Cape Town/O=Thawte Consulting/OU=Certification Services Division/CN=Thawte Personal Premium CA/emailAddress=<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">personal-premium at thawte.com</A>
+/C=ZA/ST=Western Cape/L=Cape Town/O=Thawte Consulting/OU=Certification Services Division/CN=Thawte Personal Freemail CA/emailAddress=<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">personal-freemail at thawte.com</A>
+/C=ZA/ST=Western Cape/L=Cape Town/O=Thawte Consulting cc/OU=Certification Services Division/CN=Thawte Server CA/emailAddress=<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">server-certs at thawte.com</A>
+/C=ZA/ST=Western Cape/L=Cape Town/O=Thawte Consulting cc/OU=Certification Services Division/CN=Thawte Premium Server CA/emailAddress=<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">premium-server at thawte.com</A>
+/C=US/O=Equifax/OU=Equifax Secure Certificate Authority
+/C=US/ST=DC/L=Washington/O=ABA.ECOM, INC./CN=ABA.ECOM Root CA/emailAddress=<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">admin at digsigtrust.com</A>
+/C=US/O=Digital Signature Trust Co./OU=DSTCA E1
+/C=US/O=Digital Signature Trust Co./OU=DSTCA E2
+/C=us/ST=Utah/L=Salt Lake City/O=Digital Signature Trust Co./OU=DSTCA X1/CN=DST RootCA X1/emailAddress=<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">ca at digsigtrust.com</A>
+/C=us/ST=Utah/L=Salt Lake City/O=Digital Signature Trust Co./OU=DSTCA X2/CN=DST RootCA X2/emailAddress=<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">ca at digsigtrust.com</A>
+/C=US/O=VeriSign, Inc./OU=Class 1 Public Primary Certification Authority
+/C=US/O=VeriSign, Inc./OU=Class 2 Public Primary Certification Authority
+/C=US/O=VeriSign, Inc./OU=Class 3 Public Primary Certification Authority
+/C=US/O=VeriSign, Inc./OU=Class 1 Public Primary Certification Authority - G2/OU=(c) 1998 VeriSign, Inc. - For authorized use only/OU=VeriSign Trust Network
+/C=US/O=VeriSign, Inc./OU=Class 2 Public Primary Certification Authority - G2/OU=(c) 1998 VeriSign, Inc. - For authorized use only/OU=VeriSign Trust Network
+/C=US/O=VeriSign, Inc./OU=Class 3 Public Primary Certification Authority - G2/OU=(c) 1998 VeriSign, Inc. - For authorized use only/OU=VeriSign Trust Network
+/C=US/O=VeriSign, Inc./OU=Class 4 Public Primary Certification Authority - G2/OU=(c) 1998 VeriSign, Inc. - For authorized use only/OU=VeriSign Trust Network
+/C=BE/O=GlobalSign nv-sa/OU=Root CA/CN=GlobalSign Root CA
+/L=ValiCert Validation Network/O=ValiCert, Inc./OU=ValiCert Class 1 Policy Validation Authority/CN=<A HREF="http://www.valicert.com//emailAddress=info@valicert.com">http://www.valicert.com//emailAddress=info@valicert.com</A>
+/L=ValiCert Validation Network/O=ValiCert, Inc./OU=ValiCert Class 2 Policy Validation Authority/CN=<A HREF="http://www.valicert.com//emailAddress=info@valicert.com">http://www.valicert.com//emailAddress=info@valicert.com</A>
+/L=ValiCert Validation Network/O=ValiCert, Inc./OU=ValiCert Class 3 Policy Validation Authority/CN=<A HREF="http://www.valicert.com//emailAddress=info@valicert.com">http://www.valicert.com//emailAddress=info@valicert.com</A>
+/C=US/O=VeriSign, Inc./OU=VeriSign Trust Network/OU=(c) 1999 VeriSign, Inc. - For authorized use only/CN=VeriSign Class 1 Public Primary Certification Authority - G3
+/C=US/O=VeriSign, Inc./OU=VeriSign Trust Network/OU=(c) 1999 VeriSign, Inc. - For authorized use only/CN=VeriSign Class 2 Public Primary Certification Authority - G3
+/C=US/O=VeriSign, Inc./OU=VeriSign Trust Network/OU=(c) 1999 VeriSign, Inc. - For authorized use only/CN=VeriSign Class 3 Public Primary Certification Authority - G3
+/C=US/O=VeriSign, Inc./OU=VeriSign Trust Network/OU=(c) 1999 VeriSign, Inc. - For authorized use only/CN=VeriSign Class 4 Public Primary Certification Authority - G3
+/C=US/O=Entrust.net/OU=www.entrust.net/CPS incorp. by ref. (limits liab.)/OU=(c) 1999 Entrust.net Limited/CN=Entrust.net Secure Server Certification Authority
+/C=US/O=Entrust.net/OU=www.entrust.net/Client_CA_Info/CPS incorp. by ref. limits liab./OU=(c) 1999 Entrust.net Limited/CN=Entrust.net Client Certification Authority
+/O=Entrust.net/OU=www.entrust.net/CPS_2048 incorp. by ref. (limits liab.)/OU=(c) 1999 Entrust.net Limited/CN=Entrust.net Certification Authority (2048)
+/C=IE/O=Baltimore/OU=CyberTrust/CN=Baltimore CyberTrust Root
+/C=US/O=Equifax Secure Inc./CN=Equifax Secure Global eBusiness CA-1
+/C=US/O=Equifax Secure Inc./CN=Equifax Secure eBusiness CA-1
+/C=US/O=Equifax Secure/OU=Equifax Secure eBusiness CA-2
+/C=US/O=VISA/OU=Visa International Service Association/CN=GP Root 2
+/C=WW/O=beTRUSTed/CN=beTRUSTed Root CAs/CN=beTRUSTed Root CA
+/C=SE/O=AddTrust AB/OU=AddTrust TTP Network/CN=AddTrust Class 1 CA Root
+/C=SE/O=AddTrust AB/OU=AddTrust External TTP Network/CN=AddTrust External CA Root
+/C=SE/O=AddTrust AB/OU=AddTrust TTP Network/CN=AddTrust Public CA Root
+/C=SE/O=AddTrust AB/OU=AddTrust TTP Network/CN=AddTrust Qualified CA Root
+/O=VeriSign, Inc./OU=VeriSign Trust Network/OU=Terms of use at <A HREF="https://www.verisign.com/RPA">https://www.verisign.com/RPA</A> (c)00/CN=Class 1 Public Primary OCSP Responder
+/O=VeriSign, Inc./OU=VeriSign Trust Network/OU=Terms of use at <A HREF="https://www.verisign.com/RPA">https://www.verisign.com/RPA</A> (c)00/CN=Class 2 Public Primary OCSP Responder
+/O=VeriSign, Inc./OU=VeriSign Trust Network/OU=Terms of use at <A HREF="https://www.verisign.com/RPA">https://www.verisign.com/RPA</A> (c)00/CN=Class 3 Public Primary OCSP Responder
+/O=VeriSign, Inc./OU=VeriSign Trust Network/OU=Terms of use at <A HREF="https://www.verisign.com/RPA">https://www.verisign.com/RPA</A> (c)00/CN=Secure Server OCSP Responder
+/O=VeriSign, Inc./OU=VeriSign Trust Network/OU=Terms of use at <A HREF="https://www.verisign.com/rpa">https://www.verisign.com/rpa</A> (c)00/CN=VeriSign Time Stamping Authority CA
+/C=ZA/ST=Western Cape/L=Durbanville/O=Thawte/OU=Thawte Certification/CN=Thawte Timestamping CA
+/O=Entrust.net/OU=www.entrust.net/SSL_CPS incorp. by ref. (limits liab.)/OU=(c) 2000 Entrust.net Limited/CN=Entrust.net Secure Server Certification Authority
+/O=Entrust.net/OU=www.entrust.net/GCCA_CPS incorp. by ref. (limits liab.)/OU=(c) 2000 Entrust.net Limited/CN=Entrust.net Client Certification Authority
+/C=US/O=AOL Time Warner Inc./OU=America Online Inc./CN=AOL Time Warner Root Certification Authority 1
+/C=US/O=AOL Time Warner Inc./OU=America Online Inc./CN=AOL Time Warner Root Certification Authority 2
+/O=beTRUSTed/OU=beTRUSTed Root CAs/CN=beTRUSTed Root CA-Baltimore Implementation
+/O=beTRUSTed/OU=beTRUSTed Root CAs/CN=beTRUSTed Root CA - Entrust Implementation
+/O=beTRUSTed/OU=beTRUSTed Root CAs/CN=beTRUSTed Root CA - RSA Implementation
+/O=RSA Security Inc/OU=RSA Security 2048 V3
+/O=RSA Security Inc/OU=RSA Security 1024 V3
+/C=US/O=GeoTrust Inc./CN=GeoTrust Global CA
+/C=US/ST=UT/L=Salt Lake City/O=The USERTRUST Network/OU=<A HREF="http://www.usertrust.com/CN=UTN-USERFirst-Network">http://www.usertrust.com/CN=UTN-USERFirst-Network</A> Applications
+/C=US/O=America Online Inc./CN=America Online Root Certification Authority 1
+/C=US/O=America Online Inc./CN=America Online Root Certification Authority 2
+/C=US/O=VISA/OU=Visa International Service Association/CN=Visa eCommerce Root
+/C=DE/ST=Hamburg/L=Hamburg/O=TC TrustCenter for Security in Data Networks GmbH/OU=TC TrustCenter Class 2 CA/emailAddress=<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">certificate at trustcenter.de</A>
+/C=DE/ST=Hamburg/L=Hamburg/O=TC TrustCenter for Security in Data Networks GmbH/OU=TC TrustCenter Class 3 CA/emailAddress=<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">certificate at trustcenter.de</A>
+/C=PL/O=Unizeto Sp. z o.o./CN=Certum CA
+/C=GB/ST=Greater Manchester/L=Salford/O=Comodo CA Limited/CN=AAA Certificate Services
+/C=GB/ST=Greater Manchester/L=Salford/O=Comodo CA Limited/CN=Secure Certificate Services
+/C=GB/ST=Greater Manchester/L=Salford/O=Comodo CA Limited/CN=Trusted Certificate Services
+/C=ES/ST=Barcelona/L=Barcelona/O=IPS Internet publishing Services s.l./O=<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">ips at mail.ips.es</A> C.I.F.  B-60929452/OU=IPS CA Chained CAs Certification Authority/CN=IPS CA Chained CAs Certification Authority/emailAddress=<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">ips at mail.ips.es</A>
+/C=ES/ST=Barcelona/L=Barcelona/O=IPS Internet publishing Services s.l./O=<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">ips at mail.ips.es</A> C.I.F.  B-60929452/OU=IPS CA CLASE1 Certification Authority/CN=IPS CA CLASE1 Certification Authority/emailAddress=<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">ips at mail.ips.es</A>
+/C=ES/ST=Barcelona/L=Barcelona/O=IPS Internet publishing Services s.l./O=<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">ips at mail.ips.es</A> C.I.F.  B-60929452/OU=IPS CA CLASE3 Certification Authority/CN=IPS CA CLASE3 Certification Authority/emailAddress=<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">ips at mail.ips.es</A>
+/C=ES/ST=Barcelona/L=Barcelona/O=IPS Internet publishing Services s.l./O=<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">ips at mail.ips.es</A> C.I.F.  B-60929452/OU=IPS CA CLASEA1 Certification Authority/CN=IPS CA CLASEA1 Certification Authority/emailAddress=<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">ips at mail.ips.es</A>
+/C=ES/ST=Barcelona/L=Barcelona/O=IPS Internet publishing Services s.l./O=<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">ips at mail.ips.es</A> C.I.F.  B-60929452/OU=IPS CA CLASEA3 Certification Authority/CN=IPS CA CLASEA3 Certification Authority/emailAddress=<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">ips at mail.ips.es</A>
+/C=ES/ST=BARCELONA/L=BARCELONA/O=IPS Seguridad CA/OU=Certificaciones/CN=IPS SERVIDORES/emailAddress=<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">ips at mail.ips.es</A>
+/C=ES/ST=Barcelona/L=Barcelona/O=IPS Internet publishing Services s.l./O=<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">ips at mail.ips.es</A> C.I.F.  B-60929452/OU=IPS CA Timestamping Certification Authority/CN=IPS CA Timestamping Certification Authority/emailAddress=<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">ips at mail.ips.es</A>
+/C=BM/O=QuoVadis Limited/OU=Root Certification Authority/CN=QuoVadis Root Certification Authority
+/C=JP/O=SECOM Trust.net/OU=Security Communication RootCA1
+/C=FI/O=Sonera/CN=Sonera Class1 CA
+/C=FI/O=Sonera/CN=Sonera Class2 CA
+/C=NL/O=Staat der Nederlanden/CN=Staat der Nederlanden Root CA
+/C=DK/O=TDC Internet/OU=TDC Internet Root CA
+/C=DK/O=TDC/CN=TDC OCES CA
+/C=US/ST=UT/L=Salt Lake City/O=The USERTRUST Network/OU=<A HREF="http://www.usertrust.com/CN=UTN">http://www.usertrust.com/CN=UTN</A> - DATACorp SGC
+/C=US/ST=UT/L=Salt Lake City/O=The USERTRUST Network/OU=<A HREF="http://www.usertrust.com/CN=UTN-USERFirst-Client">http://www.usertrust.com/CN=UTN-USERFirst-Client</A> Authentication and Email
+/C=US/ST=UT/L=Salt Lake City/O=The USERTRUST Network/OU=<A HREF="http://www.usertrust.com/CN=UTN-USERFirst-Hardware">http://www.usertrust.com/CN=UTN-USERFirst-Hardware</A>
+/C=US/ST=UT/L=Salt Lake City/O=The USERTRUST Network/OU=<A HREF="http://www.usertrust.com/CN=UTN-USERFirst-Object">http://www.usertrust.com/CN=UTN-USERFirst-Object</A>
+/C=EU/O=AC Camerfirma SA CIF A82743287/OU=<A HREF="http://www.chambersign.org/CN=Chambers">http://www.chambersign.org/CN=Chambers</A> of Commerce Root
+/C=EU/O=AC Camerfirma SA CIF A82743287/OU=<A HREF="http://www.chambersign.org/CN=Global">http://www.chambersign.org/CN=Global</A> Chambersign Root
+/C=HU/L=Budapest/O=NetLock Halozatbiztonsagi Kft./OU=Tanusitvanykiadok/CN=NetLock Minositett Kozjegyzoi (Class QA) Tanusitvanykiado/emailAddress=<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">info at netlock.hu</A>
+/C=HU/ST=Hungary/L=Budapest/O=NetLock Halozatbiztonsagi Kft./OU=Tanusitvanykiadok/CN=NetLock Kozjegyzoi (Class A) Tanusitvanykiado
+/C=HU/L=Budapest/O=NetLock Halozatbiztonsagi Kft./OU=Tanusitvanykiadok/CN=NetLock Uzleti (Class B) Tanusitvanykiado
+/C=HU/L=Budapest/O=NetLock Halozatbiztonsagi Kft./OU=Tanusitvanykiadok/CN=NetLock Expressz (Class C) Tanusitvanykiado
+/C=US/OU=www.xrampsecurity.com/O=XRamp Security Services Inc/CN=XRamp Global Certification Authority
+/C=US/O=The Go Daddy Group, Inc./OU=Go Daddy Class 2 Certification Authority
+/C=US/O=Starfield Technologies, Inc./OU=Starfield Class 2 Certification Authority
+/C=IL/ST=Israel/L=Eilat/O=StartCom Ltd./OU=CA Authority Dep./CN=Free SSL Certification Authority/emailAddress=<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">admin at startcom.org</A>
+/C=IL/O=StartCom Ltd./OU=Secure Digital Certificate Signing/CN=StartCom Certification Authority
+/C=US/O=VeriSign, Inc./OU=VeriSign Trust Network/OU=(c) 2006 VeriSign, Inc. - For authorized use only/CN=VeriSign Class 3 Public Primary Certification Authority - G5
+/C=US/ST=North Carolina/L=Research Triangle Park/O=Red Hat, Inc./OU=Red Hat Network Services/CN=RHNS Certificate Authority/emailAddress=<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">rhns at redhat.com</A>
+/C=US/ST=North Carolina/L=Raleigh/O=Red Hat, Inc./OU=Red Hat Network/CN=RHN Certificate Authority/emailAddress=<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">rhn-noc at redhat.com</A>
+---
+SSL handshake has read 16691 bytes and written 302 bytes
+---
+New, TLSv1/SSLv3, Cipher is DHE-RSA-AES256-SHA
+Server public key is 1024 bit
+Secure Renegotiation IS supported
+Compression: NONE
+Expansion: NONE
+SSL-Session:
+    Protocol  : TLSv1
+    Cipher    : DHE-RSA-AES256-SHA
+    Session-ID: 737D12C46468E8C9BEB130DB0056A9E91FA781FB4A084367F95434EF46F7F425
+    Session-ID-ctx:
+    Master-Key: 55B025F74561173038777E8E2D5F0BFA3934BB0DF43423D7C70483CD5A24D4ADDC6D83D07038867974805DA5209DC106
+    Key-Arg   : None
+    Krb5 Principal: None
+    Start Time: 1325721397
+    Timeout   : 300 (sec)
+    Verify return code: 18 (self signed certificate)
+---
+250 HELP
+
+[<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">otrs at tki-c01</A> ~]$ openssl s_client -connect pod51011.outlook.com:993
+CONNECTED(00000003)
+depth=3 /C=US/O=GTE Corporation/OU=GTE CyberTrust Solutions, Inc./CN=GTE CyberTrust Global Root
+verify return:1
+depth=2 /CN=Microsoft Internet Authority
+verify return:1
+depth=1 /DC=com/DC=microsoft/DC=corp/DC=redmond/CN=Microsoft Secure Server Authority
+verify return:1
+depth=0 /C=US/ST=Washington/L=Redmond/O=Microsoft Corporation/OU=Exchange/CN=outlook.com
+verify return:1
+---
+Certificate chain
+ 0 s:/C=US/ST=Washington/L=Redmond/O=Microsoft Corporation/OU=Exchange/CN=outlook.com
+   i:/DC=com/DC=microsoft/DC=corp/DC=redmond/CN=Microsoft Secure Server Authority
+ 1 s:/DC=com/DC=microsoft/DC=corp/DC=redmond/CN=Microsoft Secure Server Authority
+   i:/CN=Microsoft Internet Authority
+ 2 s:/CN=Microsoft Internet Authority
+   i:/C=US/O=GTE Corporation/OU=GTE CyberTrust Solutions, Inc./CN=GTE CyberTrust Global Root
+---
+Server certificate
+-----BEGIN CERTIFICATE-----
+MIIGlzCCBX+gAwIBAgIKU7xtpgAIAAIKsTANBgkqhkiG9w0BAQUFADCBizETMBEG
+CgmSJomT8ixkARkWA2NvbTEZMBcGCgmSJomT8ixkARkWCW1pY3Jvc29mdDEUMBIG
+CgmSJomT8ixkARkWBGNvcnAxFzAVBgoJkiaJk/IsZAEZFgdyZWRtb25kMSowKAYD
+VQQDEyFNaWNyb3NvZnQgU2VjdXJlIFNlcnZlciBBdXRob3JpdHkwHhcNMTEwNDIw
+MTkwNDQ1WhcNMTMwNDE5MTkwNDQ1WjB9MQswCQYDVQQGEwJVUzETMBEGA1UECBMK
+V2FzaGluZ3RvbjEQMA4GA1UEBxMHUmVkbW9uZDEeMBwGA1UEChMVTWljcm9zb2Z0
+IENvcnBvcmF0aW9uMREwDwYDVQQLEwhFeGNoYW5nZTEUMBIGA1UEAxMLb3V0bG9v
+ay5jb20wggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQCHnLBkZhuyBUIH
+IAw61mr2xTRot9v6Ue/GXvs3NLowG4KJ07LzzNAW+B0qUqOjgfefADPOh3vRZP10
+koPqBRfNKxllYNPIQx9Thk4opj9VRjISRgk3goMcLpPA0RWzL21oCXIT2XQtU25u
+QZ4c7aZEMWZSN6BKIYM6FiWoSGb4cHXFIoeoOBOMdlFYm2+g/9rEfv8QrB30J+Lk
+BI74ulCcSQDpJ1PJNxgmWEBVf+ucW1PkT4oqM4GoD33PYkU0gWYQ4EIfrg55Rr31
+WHY1l0bb67z/KhOwRdsxgt1/1xlXFND2BQp3pi7FEH3GycjcA2QyKwPVd0Ju9AWI
+MDOPPvQbAgMBAAGjggMIMIIDBDALBgNVHQ8EBAMCBLAwHQYDVR0OBBYEFBDz7C+z
+el/LP2L6QNA4wSbz8aXXMFwGA1UdEQRVMFOCC291dGxvb2suY29tgg0qLm91dGxv
+b2suY29tghIqLmV4Y2hhbmdlbGFicy5jb22CDW0ub3V0bG9vay5jb22CEm0uZXhj
+aGFuZ2VsYWJzLmNvbTAfBgNVHSMEGDAWgBQIQuPbThFm87UIxUDbVXwzRhGDODCC
+AQoGA1UdHwSCAQEwgf4wgfuggfiggfWGWGh0dHA6Ly9tc2NybC5taWNyb3NvZnQu
+Y29tL3BraS9tc2NvcnAvY3JsL01pY3Jvc29mdCUyMFNlY3VyZSUyMFNlcnZlciUy
+MEF1dGhvcml0eSg4KS5jcmyGVmh0dHA6Ly9jcmwubWljcm9zb2Z0LmNvbS9wa2kv
+bXNjb3JwL2NybC9NaWNyb3NvZnQlMjBTZWN1cmUlMjBTZXJ2ZXIlMjBBdXRob3Jp
+dHkoOCkuY3JshkFodHRwOi8vY29ycHBraS9jcmwvTWljcm9zb2Z0JTIwU2VjdXJl
+JTIwU2VydmVyJTIwQXV0aG9yaXR5KDgpLmNybDCBvwYIKwYBBQUHAQEEgbIwga8w
+XgYIKwYBBQUHMAKGUmh0dHA6Ly93d3cubWljcm9zb2Z0LmNvbS9wa2kvbXNjb3Jw
+L01pY3Jvc29mdCUyMFNlY3VyZSUyMFNlcnZlciUyMEF1dGhvcml0eSg4KS5jcnQw
+TQYIKwYBBQUHMAKGQWh0dHA6Ly9jb3JwcGtpL2FpYS9NaWNyb3NvZnQlMjBTZWN1
+cmUlMjBTZXJ2ZXIlMjBBdXRob3JpdHkoOCkuY3J0MD8GCSsGAQQBgjcVBwQyMDAG
+KCsGAQQBgjcVCIPPiU2t8gKFoZ8MgvrKfYHh+3SBT4PC7YUIjqnShWMCAWQCAQow
+HQYDVR0lBBYwFAYIKwYBBQUHAwIGCCsGAQUFBwMBMCcGCSsGAQQBgjcVCgQaMBgw
+CgYIKwYBBQUHAwIwCgYIKwYBBQUHAwEwDQYJKoZIhvcNAQEFBQADggEBALWVrEiN
+S3z2nUpvdL9KQ6OTqKJCGr62NFzgwmmHwW4Ci702hnzIXgL36VGcYGFOMewQmQ/w
+8SkoC41avNk3zblf/8zUxNVl5jDzJ2q1RhKuF4/W7ch5yRv71qNUiccxw+xTJw27
+MqZ/XKjAuUNBj1Kw3sthW3t2j5xvb5AEm5Li+ym6AIl52tXV9Qs16HgIPGmUSBw8
+ZWvrlNo9Z9NDfwDpjKfDuSHgxfhdDrguiwJbuR34zzkGbYXE5cv8ePmmIK+4io1gc
+yGGFxg2nIXcXVNROD/1EIsdMXFYAZKkX3UXci8A665frX9fvE1fy/s/7GBqP2t7c
+X9S/EdDM2KYxlrY=
+-----END CERTIFICATE-----
+subject=/C=US/ST=Washington/L=Redmond/O=Microsoft Corporation/OU=Exchange/CN=outlook.com
+issuer=/DC=com/DC=microsoft/DC=corp/DC=redmond/CN=Microsoft Secure Server Authority
+---
+No client certificate CA names sent
+---
+SSL handshake has read 4717 bytes and written 447 bytes
+---
+New, TLSv1/SSLv3, Cipher is AES128-SHA
+Server public key is 2048 bit
+Secure Renegotiation IS supported
+Compression: NONE
+Expansion: NONE
+SSL-Session:
+    Protocol  : TLSv1
+    Cipher    : AES128-SHA
+    Session-ID: 7D120000C392C25857D0FC714554A0F77466ECD614D363260E39812DBA65EEA7
+    Session-ID-ctx:
+    Master-Key: F9468FE2A6CB39B474AE37754C455AE378B0B7907A6E73F2F96932B3DC03F5CE6FDB3E715FF09DF00CC037779FD2CCFD
+    Key-Arg   : None
+    Krb5 Principal: None
+    Start Time: 1325721446
+    Timeout   : 300 (sec)
+    Verify return code: 0 (ok)
+---
+* OK The Microsoft Exchange IMAP4 service is ready.
+
+[<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">otrs at tki-c01</A> ~]$
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	
+	<LI>Next message: <A HREF="003017.html">[fetchmail-users] Troubleshooting SSL error
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3016">[ date ]</a>
+              <a href="thread.html#3016">[ thread ]</a>
+              <a href="subject.html#3016">[ subject ]</a>
+              <a href="author.html#3016">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

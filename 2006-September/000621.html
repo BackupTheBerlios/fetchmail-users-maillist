@@ -1,0 +1,92 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] fetchmail can't talk to dovecot
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2006-September/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%20can%27t%20talk%20to%20dovecot&In-Reply-To=%3Cm3ac4hw3uu.fsf%40merlin.emma.line.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000614.html">
+   <LINK REL="Next"  HREF="000615.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] fetchmail can't talk to dovecot</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%20can%27t%20talk%20to%20dovecot&In-Reply-To=%3Cm3ac4hw3uu.fsf%40merlin.emma.line.org%3E"
+       TITLE="[fetchmail-users] fetchmail can't talk to dovecot">matthias.andree at gmx.de
+       </A><BR>
+    <I>Sat Sep 30 21:28:57 CEST 2006</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000614.html">[fetchmail-users] fetchmail can't talk to dovecot
+</A></li>
+        <LI>Next message: <A HREF="000615.html">[fetchmail-users] fetchmail can't talk to dovecot
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#621">[ date ]</a>
+              <a href="thread.html#621">[ thread ]</a>
+              <a href="subject.html#621">[ subject ]</a>
+              <a href="author.html#621">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Marco Fioretti &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">mfioretti at mclink.it</A>&gt; writes:
+
+&gt;<i> Hello,
+</I>&gt;<i>
+</I>&gt;<i> I have dovecot q1.0-0_22.rc7 up and running on a server: I can read
+</I>&gt;<i> email from squirrelmail just fine. When I try to download email with
+</I>&gt;<i> fetchmail, however, I get the result below. Why is that happening? In
+</I>&gt;<i> dovecot.conf I have:
+</I>&gt;<i>
+</I>&gt;<i> protocols = imap imaps pop3,
+</I>&gt;<i>
+</I>&gt;<i> so why should pop3 or imap fail?
+</I>
+Because Dovecot offers TLS (STLS/STARTTLS) and fetchmail uses it..
+
+&gt;<i> fetchmail: POP3&gt; STLS
+</I>&gt;<i> fetchmail: POP3&lt; +OK Begin TLS negotiation now.
+</I>
+&gt;<i> fetchmail: IMAP&gt; A0003 CAPABILITY
+</I>&gt;<i> fetchmail: IMAP&lt; * CAPABILITY IMAP4rev1 SASL-IR SORT THREAD=REFERENCES MULTIAPPEND UNSELECT LITERAL+ IDLE CHILDRE
+</I>&gt;<i> N NAMESPACE LOGIN-REFERRALS AUTH=PLAIN AUTH=DIGEST-MD5
+</I>&gt;<i> fetchmail: IMAP&lt; A0003 OK Capability completed.
+</I>&gt;<i> fetchmail: Protocol identified as IMAP4 rev 1
+</I>&gt;<i> fetchmail: IMAP&gt; A0004 LOGIN &quot;user_name&quot; *
+</I>&gt;<i> fetchmail: IMAP&lt; A0004 NO Authentication failed.
+</I>&gt;<i> fetchmail: IMAP&gt; A0005 *
+</I>
+Whatever this is. Something's wrong here, but I'm not going to look at 6.3.2.
+
+-- 
+Matthias Andree
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000614.html">[fetchmail-users] fetchmail can't talk to dovecot
+</A></li>
+	<LI>Next message: <A HREF="000615.html">[fetchmail-users] fetchmail can't talk to dovecot
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#621">[ date ]</a>
+              <a href="thread.html#621">[ thread ]</a>
+              <a href="subject.html#621">[ subject ]</a>
+              <a href="author.html#621">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

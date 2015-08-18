@@ -1,0 +1,94 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] fetchmail with maildrop
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2009-July/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%20with%20maildrop&In-Reply-To=%3C9d6a1a430907070339h6c9fec3btce6965b14f91d6bd%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001986.html">
+   <LINK REL="Next"  HREF="001988.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] fetchmail with maildrop</H1>
+    <B>Bijayant Kumar</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%20with%20maildrop&In-Reply-To=%3C9d6a1a430907070339h6c9fec3btce6965b14f91d6bd%40mail.gmail.com%3E"
+       TITLE="[fetchmail-users] fetchmail with maildrop">bijayant.kumar at gmail.com
+       </A><BR>
+    <I>Tue Jul  7 12:39:57 CEST 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001986.html">[fetchmail-users] questions using fetchmail with ssl
+</A></li>
+        <LI>Next message: <A HREF="001988.html">[fetchmail-users] fetchmail with maildrop
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1987">[ date ]</a>
+              <a href="thread.html#1987">[ thread ]</a>
+              <a href="subject.html#1987">[ subject ]</a>
+              <a href="author.html#1987">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Dear All,
+
+I have a virtual local mail server installed and running successfully. I do
+fetchmail to get all the emails from the remote server. Now I wanted to
+introduce Maildrop also in between. When I am relaying email from the
+remote, its working fine. But with fetchmail its not working. My fetchmail
+configuration is as
+
+poll remote.server.ip
+      proto pop3
+     user <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">bijayant.kumar at example.com</A>
+     pass bijayant
+     is <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">bijayant.kumar at example.com</A> here
+
+When I am accessing this via
+fetchmail -m &quot;/usr/bin/maildrop -d vmail&quot;
+
+I am getting error &quot;/usr/bin/maildrop : You are not a trusted User&quot;. I tried
+it with varios combination after -d like &quot;%T, vmail ....&quot; but no luck.
+
+In postfix master.cf I have
+maildrop  unix  -       n       n       -       -       pipe
+        flags=DRhu user=vmail argv=/usr/bin/maildrop /etc/maildroprc  -d
+${user}@${nexthop} ${extension} ${recipient} ${user} ${nexthop} ${sender}
+
+Please help me, I have searched archive till date, but did not find any
+solution or pointer.
+
+
+
+-- 
+Windows has noticed that you moved your mouse.
+Please reboot to allow for the changes.
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001986.html">[fetchmail-users] questions using fetchmail with ssl
+</A></li>
+	<LI>Next message: <A HREF="001988.html">[fetchmail-users] fetchmail with maildrop
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1987">[ date ]</a>
+              <a href="thread.html#1987">[ thread ]</a>
+              <a href="subject.html#1987">[ subject ]</a>
+              <a href="author.html#1987">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

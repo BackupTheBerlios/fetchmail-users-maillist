@@ -1,0 +1,168 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] fetchmail: Query status=2 (SOCKET)
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2008-January/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%3A%20Query%20status%3D2%20%28SOCKET%29&In-Reply-To=%3C29562.62.90.151.202.1201561205.squirrel%40mail.phpclub.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001445.html">
+   <LINK REL="Next"  HREF="001442.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] fetchmail: Query status=2 (SOCKET)</H1>
+    <B>avi at phpclub.org</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%3A%20Query%20status%3D2%20%28SOCKET%29&In-Reply-To=%3C29562.62.90.151.202.1201561205.squirrel%40mail.phpclub.org%3E"
+       TITLE="[fetchmail-users] fetchmail: Query status=2 (SOCKET)">avi at phpclub.org
+       </A><BR>
+    <I>Tue Jan 29 00:00:05 CET 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001445.html">[fetchmail-users] Maintainer wanted for fetchmailconf
+</A></li>
+        <LI>Next message: <A HREF="001442.html">[fetchmail-users] fetchmail: Query status=2 (SOCKET)
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1441">[ date ]</a>
+              <a href="thread.html#1441">[ thread ]</a>
+              <a href="subject.html#1441">[ subject ]</a>
+              <a href="author.html#1441">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hello once again,
+
+I know I have asked this question once before and an argument has started that I
+am misbehaving or something.
+First of all, let me applogize (I am sure you hardly remember) and give my
+appreciation to all of you who help and keep these things opensourced while
+others charges us tons of bucks.
+
+The problem that I am having is one stated on the subject line, this error does
+not occur because of communications or sockets errors, it occurs only in certain
+terms which took me a few months to figure out how to replicate it.
+
+It seems that yahoo.com mail sends out some mails with attachments listed not as
+binary but as text/plain files, seems like a specific file type (that I
+encountered) .PLT while being sent as text/plain creates the following problem.
+
+(For those of you who might not know, .PLT are plot files that contains
+construction diagrams usually made by Autocad and the like programs).
+
+Platform is cygwin fetchmail 6.3.8 reading mail from qmail server (using pop3)
+and posting it to an exchange server (using smtp)
+
+.fetchmailrc configuration :
+
+poll 192.168.1.1
+no dns
+protocol pop3
+localdomains somedomain.com
+envelope Delivered-To:
+username &quot;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">someuser at somedomain.com</A>&quot;
+pass &quot;pw&quot;
+forcecr
+
+is * here
+smtphost 10.0.0.100
+
+
+a fetchmail -vv output is :
+
+
+fetchmail: passed through <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">someuser at somedomain.com</A> matching somedomain.com
+Trying to connect to 10.0.0.100/25...connected.
+fetchmail: SMTP&lt; 220 x.somedomain.com Microsoft ESMTP MAIL Service, Versio      
+                                                       n: 5.0.2195.6713 ready at
+ Tue, 29 Jan 2008 01:45:20 +0200
+fetchmail: SMTP&gt; EHLO x.somedomain.com
+fetchmail: SMTP&lt; x.somedomain.com Hello [10.0.0.100]
+fetchmail: SMTP&lt; 250-TURN
+fetchmail: SMTP&lt; 250-ATRN
+fetchmail: SMTP&lt; 250-SIZE 51298304
+fetchmail: SMTP&lt; 250-ETRN
+fetchmail: SMTP&lt; 250-PIPELINING
+fetchmail: SMTP&lt; 250-DSN
+fetchmail: SMTP&lt; 250-ENHANCEDSTATUSCODES
+fetchmail: SMTP&lt; 250-8bitmime
+fetchmail: SMTP&lt; 250-BINARYMIME
+fetchmail: SMTP&lt; 250-CHUNKING
+fetchmail: SMTP&lt; 250-VRFY
+fetchmail: SMTP&lt; 250-X-EXPS GSSAPI NTLM
+fetchmail: SMTP&lt; 250-AUTH GSSAPI NTLM
+fetchmail: SMTP&lt; 250-X-LINK2STATE
+fetchmail: SMTP&lt; 250-XEXCH50
+fetchmail: SMTP&lt; 250 OK
+fetchmail: forwarding to 10.0.0.100
+fetchmail: SMTP&gt; MAIL FROM:&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">avi at phpclub.org</A>&gt; SIZE=590993
+fetchmail: SMTP&lt; 250 2.1.0 <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">avi at phpclub.org....Sender</A> OK
+fetchmail: SMTP&gt; RCPT TO:&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">someuser at somedomain.com</A>&gt;
+fetchmail: SMTP&lt; 250 2.1.5 <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">someuser at somedomain.com</A>
+fetchmail: SMTP&gt; DATA
+fetchmail: SMTP&lt; 354 Start mail input; end with &lt;CRLF&gt;.&lt;CRLF&gt;
+#******fetchmail: Cygwin socket read retry
+*******************.*****fetchmail: Cygwin socket read retry
+........*........*........*........*........*........*........*........*........
+                                                            
+*........*........*fetchmail: socket error while fetching from <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">main at rubinrid.co.</A>
+                                                             <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">il at 192.168.253.253</A>
+fetchmail: 6.3.8 querying 192.168.253.253 (protocol POP3) at Tue Jan 29 01:45:20
+                                                              2008: poll
+completed
+fetchmail: Query status=2 (SOCKET)
+fetchmail: Deleting fetchids file.
+fetchmail: normal termination, status 2
+fetchmail: Deleting fetchids file.
+
+
+I believe this is something to do with the attachments headers since the same
+thing happens if I forward the mail from my email, but if I download the file
+and attach it on my own - it works flawlessly.
+
+I must say that I encountered this problem about 3 individual times over the
+last year I have been using this configuration, everything has always worked
+flawlessly without any communication or socket errors whatsoever.
+This only happened when yahoo mail users has sent .plt attachments (Might be
+that yahoo attaches unknown file types as text/plain).
+
+Either way, what I am asking for now is some idea if there is to solve this, and
+if not, an idea on how to make fetchmail ignore the erroring message and
+continue processing the rest of the emails.
+
+One such email is enough to stuck all communication between qmail and exchange
+and in a company that relies heavily on email, it is cruical that I find a
+solution to this problem - as of now I am pretty much begging for whoever can
+help me with this as I have no idea what more I can do.
+
+Thanks,
+Avi.
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001445.html">[fetchmail-users] Maintainer wanted for fetchmailconf
+</A></li>
+	<LI>Next message: <A HREF="001442.html">[fetchmail-users] fetchmail: Query status=2 (SOCKET)
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1441">[ date ]</a>
+              <a href="thread.html#1441">[ thread ]</a>
+              <a href="subject.html#1441">[ subject ]</a>
+              <a href="author.html#1441">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

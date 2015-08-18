@@ -1,0 +1,110 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Network time-outs when handling IMAP IDLE
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2010-January/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Network%20time-outs%20when%20handling%20IMAP%20IDLE&In-Reply-To=%3Cop.u570aozn1e62zd%40merlin.emma.line.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002182.html">
+   <LINK REL="Next"  HREF="002184.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Network time-outs when handling IMAP IDLE</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Network%20time-outs%20when%20handling%20IMAP%20IDLE&In-Reply-To=%3Cop.u570aozn1e62zd%40merlin.emma.line.org%3E"
+       TITLE="[fetchmail-users] Network time-outs when handling IMAP IDLE">matthias.andree at gmx.de
+       </A><BR>
+    <I>Fri Jan  8 16:36:14 CET 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002182.html">[fetchmail-users] Network time-outs when handling IMAP IDLE
+</A></li>
+        <LI>Next message: <A HREF="002184.html">[fetchmail-users] Network time-outs when handling IMAP IDLE
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2183">[ date ]</a>
+              <a href="thread.html#2183">[ thread ]</a>
+              <a href="subject.html#2183">[ subject ]</a>
+              <a href="author.html#2183">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Am 08.01.2010, 07:10 Uhr, schrieb Matt Doran &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">matt.doran at papercut.com</A>&gt;:
+
+&gt;<i> Hi there,
+</I>&gt;<i>
+</I>&gt;<i> We're long-time user's of fetchmail and have previously used the POP3
+</I>&gt;<i> support.  I've recently started experimenting with IMAP IDLE.  It's
+</I>&gt;<i> working great!   It allows us to have near instantaneous mail delivery
+</I>&gt;<i> without continual polling.
+</I>&gt;<i>
+</I>&gt;<i> I have some questions about the time-out behaviour when using IDLE.   If
+</I>&gt;<i> I start up fetchmail it will stay connected indefinitely performing an
+</I>&gt;<i> IDLE. However if I deliberately drop the network connection to simulate
+</I>&gt;<i> a network out-tage (e.g. reboot the modem), it seems that fetchmail
+</I>&gt;<i> takes a very long time to recognize this (more than 30 minutes), even
+</I>&gt;<i> though I'm using the default time-out of 300 seconds.
+</I>&gt;<i>
+</I>&gt;<i> I'm using cron to start fetchmail regularly, so if it stops/errors then
+</I>&gt;<i> it will restart automatically.    So I'd prefer to detect the time-out
+</I>&gt;<i> early, and restart rather than waiting in a hung state.  Is there a way
+</I>&gt;<i> to specify a time-out so that the we'll detect outages faster?
+</I>
+Not that I know of.
+
+&gt;<i> Looking at the code (which I don't fully understand) it seems to have a
+</I>&gt;<i> 28 minute time-out to reissue the IDLE periodically.   Could this be the
+</I>&gt;<i> reason we see the 30+ minute time to time-out?    Would it make sense to
+</I>&gt;<i> have an option to shorten this period which would allow us to detect
+</I>&gt;<i> outtages faster?  Any other ideas?    I'm happy to try develop a patch
+</I>&gt;<i> if you have a suggestion.
+</I>
+What operating system and version and what fetchmail version are you  
+using? Does the same happen with fetchmail 6.3.13?
+
+Can you compile and run a fetchmail version with debugging symbols and  
+obtain a stack backtrace from the running/hung fetchmail? That might give  
+us a clue where it's stuck.
+
+Also, please run fetchmail under strace or truss and show the last - let's  
+say 100 - non-repeating lines before it gets stuck. We may be able to see  
+ from timer related, alarm(), signal()/sigaction() and select() calls what  
+timeouts it sets, this isn't exactly obvious from reading the source  
+off-hand.
+
+HTH.
+
+Best regards
+
+-- 
+Matthias Andree
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002182.html">[fetchmail-users] Network time-outs when handling IMAP IDLE
+</A></li>
+	<LI>Next message: <A HREF="002184.html">[fetchmail-users] Network time-outs when handling IMAP IDLE
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2183">[ date ]</a>
+              <a href="thread.html#2183">[ thread ]</a>
+              <a href="subject.html#2183">[ subject ]</a>
+              <a href="author.html#2183">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

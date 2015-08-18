@@ -1,0 +1,245 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] [PATCH] Re: fetchmail hangs when querying	IMAP serve
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2010-July/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20%5BPATCH%5D%20Re%3A%20fetchmail%20hangs%20when%20querying%0A%09IMAP%20serve&In-Reply-To=%3C1280324429.8702.1.camel%40stz42%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002420.html">
+   <LINK REL="Next"  HREF="002422.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] [PATCH] Re: fetchmail hangs when querying	IMAP serve</H1>
+    <B>Dominik Vogt</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20%5BPATCH%5D%20Re%3A%20fetchmail%20hangs%20when%20querying%0A%09IMAP%20serve&In-Reply-To=%3C1280324429.8702.1.camel%40stz42%3E"
+       TITLE="[fetchmail-users] [PATCH] Re: fetchmail hangs when querying	IMAP serve">Dominik.Vogt at external.thalesgroup.com
+       </A><BR>
+    <I>Wed Jul 28 15:40:29 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002420.html">[fetchmail-users] [PATCH] Re: fetchmail hangs when querying IMAP	serve
+</A></li>
+        <LI>Next message: <A HREF="002422.html">[fetchmail-users] [PATCH] Re: fetchmail hangs when querying IMAP serve
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2421">[ date ]</a>
+              <a href="thread.html#2421">[ thread ]</a>
+              <a href="subject.html#2421">[ subject ]</a>
+              <a href="author.html#2421">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Wed, 2010-07-28 at 12:34 +0200, Sunil Shetye wrote:
+&gt;<i> Quoting from Dominik Vogt's mail on Wed, Jul 28, 2010:
+</I>&gt;<i> &gt; When I try to download all messages from an IMAP server in the local
+</I>&gt;<i> &gt; intranet with the config below, fetchmail hangs for an indefinite
+</I>&gt;<i> &gt; period of time while fetching the first message.  Any ideas what I
+</I>&gt;<i> am
+</I>&gt;<i> &gt; doing wrong?
+</I>&gt;<i> 
+</I>&gt;<i> ...
+</I>&gt;<i> 
+</I>&gt;<i> &gt; $ ./fetchmail -v
+</I>&gt;<i> &gt; fetchmail: 6.3.6 querying MAILSERVER (protocol IMAP) at Wed 28 Jul
+</I>&gt;<i> 2010
+</I>&gt;<i> &gt; 09:05:43 AM CEST: poll started
+</I>&gt;<i> 
+</I>&gt;<i> Please upgrade fetchmail.
+</I>
+&gt;<i> &gt; fetchmail: IMAP&gt; A0005 FETCH 1 RFC822.HEADER
+</I>&gt;<i> &gt; fetchmail: IMAP&lt; * 1 FETCH (UID 2 RFC822.SIZE 4029 RFC822.HEADER
+</I>&gt;<i> {1155}
+</I>&gt;<i> &gt; fetchmail: IMAP&lt; Received:  from ... by ... with mapi; Fri, 9 Jul
+</I>&gt;<i> 2010
+</I>&gt;<i> &gt; 15:09:23 +0200
+</I>&gt;<i> 
+</I>&gt;<i> The imap server is also returning size information in response to the
+</I>&gt;<i> FETCH command. This is not handled by fetchmail. Please try this patch
+</I>&gt;<i> and report.
+</I>
+Alright, I will try this and report back in a couple of days.  But to
+which fetchmail version does the patch apply to?
+
+&gt;<i> Key changes:
+</I>&gt;<i> 
+</I>&gt;<i> - FETCH response is now handled more flexibly.
+</I>&gt;<i> 
+</I>&gt;<i> - The for loop in imap_fetch_headers() has been removed.
+</I>&gt;<i> 
+</I>&gt;<i> - changes to imap_getpartialsizes() are only for consistency with
+</I>&gt;<i>   imap_fetch_headers().
+</I>&gt;<i> 
+</I>&gt;<i> =====================================================================
+</I>&gt;<i> diff --git a/imap.c b/imap.c
+</I>&gt;<i> index 7c33d8a..b534048 100644
+</I>&gt;<i> --- a/imap.c
+</I>&gt;<i> +++ b/imap.c
+</I>&gt;<i> @@ -1126,16 +1126,16 @@ static int imap_getpartialsizes(int sock, int
+</I>&gt;<i> first, int last, int *sizes)
+</I>&gt;<i>      {
+</I>&gt;<i>         unsigned int size;
+</I>&gt;<i>         int num;
+</I>&gt;<i> +       char *ptr;
+</I>&gt;<i> 
+</I>&gt;<i> -       if (sscanf(buf, &quot;* %d FETCH (RFC822.SIZE %u)&quot;, &amp;num, &amp;size) ==
+</I>&gt;<i> 2
+</I>&gt;<i> -       /* some servers (like mail.internode.on.net bld-mail04) return
+</I>&gt;<i> UID information here
+</I>&gt;<i> -        *
+</I>&gt;<i> +       /* expected response formats:
+</I>&gt;<i>          * IMAP&gt; A0005 FETCH 1 RFC822.SIZE
+</I>&gt;<i> +        * IMAP&lt; * 1 FETCH (RFC822.SIZE 1187)
+</I>&gt;<i>          * IMAP&lt; * 1 FETCH (UID 16 RFC822.SIZE 1447)
+</I>&gt;<i> -        * IMAP&lt; A0005 OK FETCH completed
+</I>&gt;<i> -        *
+</I>&gt;<i>          */
+</I>&gt;<i> -               || sscanf(buf, &quot;* %d FETCH (UID %*s RFC822.SIZE %u)&quot;,
+</I>&gt;<i> &amp;num, &amp;size) == 2)
+</I>&gt;<i> +       if (sscanf(buf, &quot;* %d FETCH &quot;, &amp;num) == 1
+</I>&gt;<i> +               &amp;&amp; (ptr = strstr(buf, &quot;RFC822.SIZE &quot;))
+</I>&gt;<i> +               &amp;&amp; sscanf(ptr, &quot;RFC822.SIZE %u&quot;, &amp;size) == 1)
+</I>&gt;<i>         {
+</I>&gt;<i>             if (num &gt;= first &amp;&amp; num &lt;= last)
+</I>&gt;<i>                 sizes[num - first] = size;
+</I>&gt;<i> @@ -1178,6 +1178,7 @@ static int imap_is_old(int sock, struct query
+</I>&gt;<i> *ctl, int number)
+</I>&gt;<i>      return(seen);
+</I>&gt;<i>  }
+</I>&gt;<i> 
+</I>&gt;<i> +#if 0
+</I>&gt;<i>  static char *skip_token(char *ptr)
+</I>&gt;<i>  {
+</I>&gt;<i>      while(isspace((unsigned char)*ptr)) ptr++;
+</I>&gt;<i> @@ -1185,12 +1186,15 @@ static char *skip_token(char *ptr)
+</I>&gt;<i>      while(isspace((unsigned char)*ptr)) ptr++;
+</I>&gt;<i>      return(ptr);
+</I>&gt;<i>  }
+</I>&gt;<i> +#endif
+</I>&gt;<i> 
+</I>&gt;<i>  static int imap_fetch_headers(int sock, struct query *ctl,int
+</I>&gt;<i> number,int *lenp)
+</I>&gt;<i>  /* request headers of nth message */
+</I>&gt;<i>  {
+</I>&gt;<i>      char buf [MSGBUFSIZE+1];
+</I>&gt;<i>      int        num;
+</I>&gt;<i> +    int ok;
+</I>&gt;<i> +    char *ptr;
+</I>&gt;<i> 
+</I>&gt;<i>      (void)ctl;
+</I>&gt;<i>      /* expunges change the fetch numbers */
+</I>&gt;<i> @@ -1203,47 +1207,41 @@ static int imap_fetch_headers(int sock, struct
+</I>&gt;<i> query *ctl,int number,int *lenp)
+</I>&gt;<i>      gen_send(sock, &quot;FETCH %d RFC822.HEADER&quot;, number);
+</I>&gt;<i> 
+</I>&gt;<i>      /* looking for FETCH response */
+</I>&gt;<i> -    for (;;)
+</I>&gt;<i> +    if ((ok = imap_response(sock, buf)) == PS_UNTAGGED)
+</I>&gt;<i>      {
+</I>&gt;<i> -       int     ok;
+</I>&gt;<i> -       char    *ptr;
+</I>&gt;<i> -
+</I>&gt;<i> -       if ((ok = gen_recv(sock, buf, sizeof(buf))))
+</I>&gt;<i> -           return(ok);
+</I>&gt;<i> -       ptr = skip_token(buf);  /* either &quot;* &quot; or &quot;AXXXX &quot; */
+</I>&gt;<i> -       if (sscanf(ptr, &quot;%d FETCH (RFC822.HEADER {%d}&quot;, &amp;num, lenp) ==
+</I>&gt;<i> 2
+</I>&gt;<i> -       /* some servers (like mail.internode.on.net bld-mail04) return
+</I>&gt;<i> UID information here
+</I>&gt;<i> -        *
+</I>&gt;<i> +       /* expected response formats:
+</I>&gt;<i>          * IMAP&gt; A0006 FETCH 1 RFC822.HEADER
+</I>&gt;<i> +        * IMAP&lt; * 1 FETCH (RFC822.HEADER {1360}
+</I>&gt;<i>          * IMAP&lt; * 1 FETCH (UID 16 RFC822.HEADER {1360}
+</I>&gt;<i> -        * ...
+</I>&gt;<i> -        * IMAP&lt; )
+</I>&gt;<i> -        * IMAP&lt; A0006 OK FETCH completed
+</I>&gt;<i> -        *
+</I>&gt;<i> +        * IMAP&lt; * 1 FETCH (UID 16 RFC822.SIZE 4029 RFC822.HEADER
+</I>&gt;<i> {1360}
+</I>&gt;<i>          */
+</I>&gt;<i> -               || sscanf(ptr, &quot;%d FETCH (UID %*s RFC822.HEADER {%d}&quot;,
+</I>&gt;<i> &amp;num, lenp) == 2)
+</I>&gt;<i> -           break;
+</I>&gt;<i> -       /* try to recover from chronically fucked-up M$ Exchange
+</I>&gt;<i> servers */
+</I>&gt;<i> -       else if (!strncmp(ptr, &quot;NO&quot;, 2))
+</I>&gt;<i> +       if (sscanf(buf, &quot;* %d FETCH &quot;, &amp;num) == 1
+</I>&gt;<i> +               &amp;&amp; num == number
+</I>&gt;<i> +               &amp;&amp; (ptr = strstr(buf, &quot;RFC822.HEADER &quot;))
+</I>&gt;<i> +               &amp;&amp; sscanf(ptr, &quot;RFC822.HEADER {%d}&quot;, lenp) == 1)
+</I>&gt;<i>         {
+</I>&gt;<i> -           /* wait for a tagged response */
+</I>&gt;<i> -           if (strstr (buf, &quot;* NO&quot;))
+</I>&gt;<i> -               imap_ok (sock, 0);
+</I>&gt;<i> -           return(PS_TRANSIENT);
+</I>&gt;<i> +           return(PS_SUCCESS);
+</I>&gt;<i>         }
+</I>&gt;<i> -       else if (!strncmp(ptr, &quot;BAD&quot;, 3))
+</I>&gt;<i> +
+</I>&gt;<i> +       /* wait for a tagged response */
+</I>&gt;<i> +       imap_ok (sock, 0);
+</I>&gt;<i> +
+</I>&gt;<i> +       /* try to recover for some responses */
+</I>&gt;<i> +       if (!strncmp(buf, &quot;* NO&quot;, 4) ||
+</I>&gt;<i> +               !strncmp(buf, &quot;* BAD&quot;, 5))
+</I>&gt;<i>         {
+</I>&gt;<i> -           /* wait for a tagged response */
+</I>&gt;<i> -           if (strstr (buf, &quot;* BAD&quot;))
+</I>&gt;<i> -               imap_ok (sock, 0);
+</I>&gt;<i> -           return(PS_TRANSIENT);
+</I>&gt;<i> +           return(PS_TRANSIENT);
+</I>&gt;<i>         }
+</I>&gt;<i> -    }
+</I>&gt;<i> 
+</I>&gt;<i> -    if (num != number)
+</I>&gt;<i> +       /* a response which does not match any of the above */
+</I>&gt;<i>         return(PS_ERROR);
+</I>&gt;<i> -    else
+</I>&gt;<i> -       return(PS_SUCCESS);
+</I>&gt;<i> +    }
+</I>&gt;<i> +    else if (ok == PS_SUCCESS)
+</I>&gt;<i> +    {
+</I>&gt;<i> +       /* an unexpected tagged response */
+</I>&gt;<i> +       return(PS_ERROR);
+</I>&gt;<i> +    }
+</I>&gt;<i> +    return(ok);
+</I>&gt;<i>  }
+</I>&gt;<i> 
+</I>&gt;<i>  static int imap_fetch_body(int sock, struct query *ctl, int number,
+</I>&gt;<i> int *lenp)
+</I>&gt;<i> =====================================================================
+</I>
+Ciao
+
+Dominik ^_^  ^_^
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002420.html">[fetchmail-users] [PATCH] Re: fetchmail hangs when querying IMAP	serve
+</A></li>
+	<LI>Next message: <A HREF="002422.html">[fetchmail-users] [PATCH] Re: fetchmail hangs when querying IMAP serve
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2421">[ date ]</a>
+              <a href="thread.html#2421">[ thread ]</a>
+              <a href="subject.html#2421">[ subject ]</a>
+              <a href="author.html#2421">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

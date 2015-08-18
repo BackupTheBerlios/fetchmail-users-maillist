@@ -1,0 +1,111 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Write:errno=104
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2009-June/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Write%3Aerrno%3D104&In-Reply-To=%3C200906031642.02188.richard.ibbotson%40gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001956.html">
+   <LINK REL="Next"  HREF="001959.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Write:errno=104</H1>
+    <B>Richard Ibbotson</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Write%3Aerrno%3D104&In-Reply-To=%3C200906031642.02188.richard.ibbotson%40gmail.com%3E"
+       TITLE="[fetchmail-users] Write:errno=104">richard.ibbotson at gmail.com
+       </A><BR>
+    <I>Wed Jun  3 17:42:01 CEST 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001956.html">[fetchmail-users] Write:errno=104
+</A></li>
+        <LI>Next message: <A HREF="001959.html">[fetchmail-users] Write:errno=104
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1958">[ date ]</a>
+              <a href="thread.html#1958">[ thread ]</a>
+              <a href="subject.html#1958">[ subject ]</a>
+              <a href="author.html#1958">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Wednesday 03 Jun 2009 16:15:51 Matthias Andree wrote:
+
+&gt;<i> This doesn't look like a fetchmail message.  Perhaps it's from an
+</I>&gt;<i> external application that fetchmail calls, or it's part from a
+</I>&gt;<i> different log message.  FWIW, on Ubuntu 9.04, errno 104 is
+</I>&gt;<i> &quot;connection reset by peer&quot;.
+</I>
+Oh... &lt;slaps head&gt;...
+
+&gt;<i> Please see and minutely follow
+</I>&gt;<i> <A HREF="http://www.fetchmail.info/fetchmail-FAQ.html#G3">http://www.fetchmail.info/fetchmail-FAQ.html#G3</A> for details on how
+</I>&gt;<i> to ask for support.
+</I>
+I'll have a go at that.  Meanwhile...
+
+On Wednesday 03 Jun 2009 16:05:42 Rob MacGregor wrote:
+&quot; Try it with the options specified in the FAQ (something like
+--nosyslog -v -v -v, you'll need to read it). &quot;
+
+Checked the user names and passwords once again and then tried what 
+Rob suggested....
+
+fetchmail: IMAP&lt; CONNECTED(00000003)
+fetchmail: IMAP&gt; A0001 CAPABILITY
+fetchmail: IMAP&gt; A0003 *
+fetchmail: Unknown login or authentication error on 
+<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">richard at domain.org.uk</A>@domain.org.uk
+fetchmail: socket error while fetching from 
+<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">richard at domain.org.uk</A>@mail.domain.org.uk
+fetchmail: 6.3.9-rc2 querying mail.domain.org.uk (protocol IMAP) at 
+Wed 03 Jun 2009 16:34:47 BST: poll completed
+fetchmail: Query status=2 (SOCKET)
+fetchmail: 6.3.9-rc2 querying mail.domain.org.uk (protocol IMAP) at 
+Wed 03 Jun 2009 16:34:47 BST: poll started
+fetchmail: running openssl s_client -connect %h:%p (host 
+mail.domain.org.uk service 993)
+write:errno=104
+fetchmail: IMAP&lt; CONNECTED(00000003)
+fetchmail: IMAP&gt; A0001 CAPABILITY
+fetchmail: mail.domain.org.uk: opportunistic upgrade to TLS failed, 
+trying to continue
+fetchmail: Repoll immediately on <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">abuse at domain.org.uk</A>@domain.org.uk
+fetchmail: running openssl s_client -connect %h:%p (host 
+mail.domain.org.uk service 993)
+
+
+Hmmm.... strange...
+
+
+Richard
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001956.html">[fetchmail-users] Write:errno=104
+</A></li>
+	<LI>Next message: <A HREF="001959.html">[fetchmail-users] Write:errno=104
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1958">[ date ]</a>
+              <a href="thread.html#1958">[ thread ]</a>
+              <a href="subject.html#1958">[ subject ]</a>
+              <a href="author.html#1958">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

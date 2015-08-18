@@ -1,0 +1,144 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] fetchmail can't talk to dovecot
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2006-September/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%20can%27t%20talk%20to%20dovecot&In-Reply-To=%3C1.3.200609271708.25219%40mclink.it%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000624.html">
+   <LINK REL="Next"  HREF="000614.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] fetchmail can't talk to dovecot</H1>
+    <B>Marco Fioretti</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%20can%27t%20talk%20to%20dovecot&In-Reply-To=%3C1.3.200609271708.25219%40mclink.it%3E"
+       TITLE="[fetchmail-users] fetchmail can't talk to dovecot">mfioretti at mclink.it
+       </A><BR>
+    <I>Wed Sep 27 17:08:49 CEST 2006</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000624.html">[fetchmail-users] TwoAccounts
+</A></li>
+        <LI>Next message: <A HREF="000614.html">[fetchmail-users] fetchmail can't talk to dovecot
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#613">[ date ]</a>
+              <a href="thread.html#613">[ thread ]</a>
+              <a href="subject.html#613">[ subject ]</a>
+              <a href="author.html#613">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hello,
+
+I have dovecot q1.0-0_22.rc7 up and running on a server: I can read
+email from squirrelmail just fine. When I try to download email with
+fetchmail, however, I get the result below. Why is that happening? In
+dovecot.conf I have:
+
+protocols = imap imaps pop3,
+
+so why should pop3 or imap fail? Where should I look?
+
+(I'll fix the certificates problem after I've managed to get in
+successfully with plain imap or pop3)
+
+(note: fetchmail is regularly working on other accounts)
+
+Thanks,
+
+	Marco
+
+fetchmail: 6.3.2 querying my.server (protocol POP3) at Wed 27 Sep 2006 12:15:17 AM CEST: poll started
+fetchmail: POP3&lt; +OK Dovecot ready.
+fetchmail: POP3&gt; CAPA
+fetchmail: POP3&lt; +OK
+fetchmail: POP3&lt; CAPA
+fetchmail: POP3&lt; TOP
+fetchmail: POP3&lt; UIDL
+fetchmail: POP3&lt; RESP-CODES
+fetchmail: POP3&lt; PIPELINING
+fetchmail: POP3&lt; STLS
+fetchmail: POP3&lt; USER
+fetchmail: POP3&lt; SASL PLAIN DIGEST-MD5
+fetchmail: POP3&lt; .
+fetchmail: POP3&gt; STLS
+fetchmail: POP3&lt; +OK Begin TLS negotiation now.
+fetchmail: Issuer Organization: SomeOrganization
+fetchmail: Issuer CommonName: localhost.localdomain
+fetchmail: Server CommonName: localhost.localdomain
+fetchmail: Server CommonName mismatch: localhost.localdomain != my.server
+fetchmail: my.server key fingerprint: ...
+fetchmail: Server certificate verification error: self signed certificate
+fetchmail: POP3&gt; CAPA
+fetchmail: POP3&lt; +OK
+fetchmail: POP3&lt; CAPA
+fetchmail: POP3&lt; TOP
+fetchmail: POP3&lt; UIDL
+fetchmail: POP3&lt; RESP-CODES
+fetchmail: POP3&lt; PIPELINING
+fetchmail: POP3&lt; USER
+fetchmail: POP3&lt; SASL PLAIN DIGEST-MD5
+fetchmail: POP3&lt; .
+fetchmail: POP3&gt; USER user_name
+fetchmail: POP3&lt; +OK
+fetchmail: POP3&gt; PASS *
+fetchmail: POP3&lt; -ERR Authentication failed.
+fetchmail: Authentication failed.
+fetchmail: Authorization failure on user_name at my.server
+fetchmail: POP3&gt; QUIT
+fetchmail: POP3&lt; +OK Logging out
+fetchmail: 6.3.2 querying my.server (protocol POP3) at Wed 27 Sep 2006 12:15:21 AM CEST: poll completed
+fetchmail: Query status=3 (AUTHFAIL)
+fetchmail: Writing fetchids file.
+fetchmail: normal termination, status 3
+fetchmail: Writing fetchids file.
+
+if I try with IMAP the part after the certificate verification error is:
+
+fetchmail: IMAP&gt; A0003 CAPABILITY
+fetchmail: IMAP&lt; * CAPABILITY IMAP4rev1 SASL-IR SORT THREAD=REFERENCES MULTIAPPEND UNSELECT LITERAL+ IDLE CHILDRE
+N NAMESPACE LOGIN-REFERRALS AUTH=PLAIN AUTH=DIGEST-MD5
+fetchmail: IMAP&lt; A0003 OK Capability completed.
+fetchmail: Protocol identified as IMAP4 rev 1
+fetchmail: IMAP&gt; A0004 LOGIN &quot;user_name&quot; *
+fetchmail: IMAP&lt; A0004 NO Authentication failed.
+fetchmail: IMAP&gt; A0005 *
+fetchmail: Authorization failure on user_name at my.server
+fetchmail: IMAP&gt; A0006 LOGOUT
+fetchmail: IMAP&lt; A0005 BAD Error in IMAP command received by server.
+fetchmail: IMAP&lt; * BYE Logging out
+
+and I don't see any error message related to this in the server log.
+
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000624.html">[fetchmail-users] TwoAccounts
+</A></li>
+	<LI>Next message: <A HREF="000614.html">[fetchmail-users] fetchmail can't talk to dovecot
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#613">[ date ]</a>
+              <a href="thread.html#613">[ thread ]</a>
+              <a href="subject.html#613">[ subject ]</a>
+              <a href="author.html#613">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

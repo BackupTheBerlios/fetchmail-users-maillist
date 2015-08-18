@@ -1,0 +1,84 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] User poll: how do you expect --sslcertpath to	behave?
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2010-April/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20User%20poll%3A%20how%20do%20you%20expect%20--sslcertpath%0A%20to%09behave%3F&In-Reply-To=%3C4BCCE5E5.7040008%40gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002354.html">
+   <LINK REL="Next"  HREF="002357.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] User poll: how do you expect --sslcertpath to	behave?</H1>
+    <B>Michael Banack</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20User%20poll%3A%20how%20do%20you%20expect%20--sslcertpath%0A%20to%09behave%3F&In-Reply-To=%3C4BCCE5E5.7040008%40gmail.com%3E"
+       TITLE="[fetchmail-users] User poll: how do you expect --sslcertpath to	behave?">bob5972 at gmail.com
+       </A><BR>
+    <I>Tue Apr 20 01:23:17 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002354.html">[fetchmail-users] (was: User poll: how do you expect	--sslcertpath to behave?)
+</A></li>
+        <LI>Next message: <A HREF="002357.html">[fetchmail-users] User poll: how do you expect --sslcertpath to behave?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2356">[ date ]</a>
+              <a href="thread.html#2356">[ thread ]</a>
+              <a href="subject.html#2356">[ subject ]</a>
+              <a href="author.html#2356">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>(1) Yes.  Personally, I think that fetchmail should check the default
+OpenSSL directories by default, even if you do specify an additional
+path.  There should definitely be a way (through the environment
+variable) for the particularly paranoid to turn this feature off
+though.  I would imagine the typical use case here is people running
+self-signed certificates on their own servers.  What they want to be
+able to do is add their own certs so they can be validated, while still
+having the normal ones validate correctly.
+For example, if I run fetchmail from gmail.com and personal.com, I
+should be able to find one certificate for my domain and put it in a
+folder for fetchmail to find, without breaking gmail.  It's alot easier
+to find the certificate you are using, than to figure out which chain of
+authorities is needed to validate a particular certificate.
+
+(2) Offhand, I think that your personal ones should be checked first, so
+if you have a custom certificate, it gets used before the general ones. 
+But I don't understand why this matters.  Won't a certificate check
+succeed if it finds a matching authority?  Whether its checked first or
+second, it shouldn't be visible to the users.  Unless someone wants to
+replace a particular root cert with their own personal version (which is
+really weird), in which case the one they gave should be used first.
+
+--Michael
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002354.html">[fetchmail-users] (was: User poll: how do you expect	--sslcertpath to behave?)
+</A></li>
+	<LI>Next message: <A HREF="002357.html">[fetchmail-users] User poll: how do you expect --sslcertpath to behave?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2356">[ date ]</a>
+              <a href="thread.html#2356">[ thread ]</a>
+              <a href="subject.html#2356">[ subject ]</a>
+              <a href="author.html#2356">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,104 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Multiple POP3 Server Mailboxes
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2008-October/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Multiple%20POP3%20Server%20Mailboxes&In-Reply-To=%3C43ea8d070810031136s5144d3a1pc8b647170d14b8fd%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001717.html">
+   <LINK REL="Next"  HREF="001725.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Multiple POP3 Server Mailboxes</H1>
+    <B>Rob MacGregor</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Multiple%20POP3%20Server%20Mailboxes&In-Reply-To=%3C43ea8d070810031136s5144d3a1pc8b647170d14b8fd%40mail.gmail.com%3E"
+       TITLE="[fetchmail-users] Multiple POP3 Server Mailboxes">rob.macgregor at gmail.com
+       </A><BR>
+    <I>Fri Oct  3 20:36:53 CEST 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001717.html">[fetchmail-users] Multiple POP3 Server Mailboxes
+</A></li>
+        <LI>Next message: <A HREF="001725.html">[fetchmail-users] Fetchmail, IMAP, and client side UID/UIDL tracking
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1718">[ date ]</a>
+              <a href="thread.html#1718">[ thread ]</a>
+              <a href="subject.html#1718">[ subject ]</a>
+              <a href="author.html#1718">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Fri, Oct 3, 2008 at 19:11, David A. Cobb &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">superbiskit at cox.net</A>&gt; wrote:
+&gt;<i> Hi!  Please excuse a newbie question.
+</I>&gt;<i>
+</I>&gt;<i> Ubuntu 8.04.1
+</I>&gt;<i>
+</I>&gt;<i> I have two mailbox names at my ISP's POP3 server: call them
+</I>&gt;<i>     &lt;personal#my.isp.net&gt; and &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">business at my.isp.net</A>&gt;.  Personal is very
+</I>&gt;<i> high volume, because I'm addicted to mailing lists.  Business is very
+</I>&gt;<i> low volume -- job search robots and the rare &quot;I saw your resume, and ...&quot;.
+</I>&gt;<i>
+</I>&gt;<i> I cannot get the version of fetchmailconf to run, at present.
+</I>&gt;<i> When I duplicated the .fetchmailrc stanza &quot;user &quot;personal&quot; is
+</I>&gt;<i> &quot;superbiskit&quot; here, password &quot;mypasswd&quot; ...&quot; to create
+</I>&gt;<i> &quot;user &quot;business&quot; is &quot;superbiskit&quot; here, password &quot;anotherone&quot; ...&quot;
+</I>&gt;<i> fetchmail retrievs ONLY the second mailbox.
+</I>&gt;<i>
+</I>&gt;<i> Please advise the appropriate syntax in .fetchmailrc for collecting from
+</I>&gt;<i> two boxes on the same server into the same local account.  The ISP will
+</I>&gt;<i> not log on the second box while the first is active.
+</I>
+It would have helped if you'd provided your existing config file so we
+could work directly with it, however...
+
+poll pop.isp.net
+  username myusername
+  password mypassword
+  is localuser
+
+poll pop.isp.net
+  username myotherusername
+  password myotherpassword
+  is localuser
+
+The second poll line is technically not required, but makes it easier
+to read the config file.  Don't forget you can use &quot;fetchmail
+--configdump&quot; to see what fetchmail thinks of your config file.
+
+-- 
+                 Please keep list traffic on the list.
+
+Rob MacGregor
+      Whoever fights monsters should see to it that in the process he
+        doesn't become a monster.                  Friedrich Nietzsche
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001717.html">[fetchmail-users] Multiple POP3 Server Mailboxes
+</A></li>
+	<LI>Next message: <A HREF="001725.html">[fetchmail-users] Fetchmail, IMAP, and client side UID/UIDL tracking
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1718">[ date ]</a>
+              <a href="thread.html#1718">[ thread ]</a>
+              <a href="subject.html#1718">[ subject ]</a>
+              <a href="author.html#1718">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

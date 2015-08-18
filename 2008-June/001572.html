@@ -1,0 +1,122 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] .fetchids file doesn't grow pass the 2.0Meg size.
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2008-June/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20.fetchids%20file%20doesn%27t%20grow%20pass%20the%202.0Meg%0A%20size.&In-Reply-To=%3C485803F9.8080401%40oyco.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001571.html">
+   <LINK REL="Next"  HREF="001573.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] .fetchids file doesn't grow pass the 2.0Meg size.</H1>
+    <B>Tony Kivits</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20.fetchids%20file%20doesn%27t%20grow%20pass%20the%202.0Meg%0A%20size.&In-Reply-To=%3C485803F9.8080401%40oyco.com%3E"
+       TITLE="[fetchmail-users] .fetchids file doesn't grow pass the 2.0Meg size.">tony.kivits at oyco.com
+       </A><BR>
+    <I>Tue Jun 17 20:35:37 CEST 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001571.html">[fetchmail-users] .fetchids file doesn't grow pass the 2.0Meg size.
+</A></li>
+        <LI>Next message: <A HREF="001573.html">[fetchmail-users] .fetchids file doesn't grow pass the	2.0Meg	size.
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1572">[ date ]</a>
+              <a href="thread.html#1572">[ thread ]</a>
+              <a href="subject.html#1572">[ subject ]</a>
+              <a href="author.html#1572">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Thanks Matthias for the help.
+
+Please see answers to your responses below.
+
+Matthias Andree wrote:
+&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">tony.kivits at oyco.com</A> schrieb:
+</I>&gt;<i>
+</I>&gt;<i>   
+</I>&gt;&gt;<i>  Currently I am having a problem when using UIDL that I am getting
+</I>&gt;&gt;<i> extra copies of some emails.
+</I>&gt;&gt;<i>     
+</I>&gt;<i>
+</I>&gt;<i> Are these extra copies or perhaps real intended copies? Check all headers,
+</I>&gt;<i> if there is only one difference (except in the Received: header written by
+</I>&gt;<i> fetchmail and those Received: headers that appear above fetchmail's), it's
+</I>&gt;<i> not a copy.
+</I>&gt;<i>
+</I>&gt;<i>   
+</I>No these are definitely unwanted copies.  That is the first thing that I 
+checked.
+The number of copies that are created varies between 0 to 3 extra copies 
+with no logic to it.
+&gt;&gt;<i>  I have been monitoring the .fetchids file and have noticed that it
+</I>&gt;&gt;<i> will grow to just a little larger then 212000 bytes in size and then
+</I>&gt;&gt;<i> shrinks back down again.
+</I>&gt;&gt;<i>  Is there a maximum size that this file can be?
+</I>&gt;&gt;<i>     
+</I>&gt;<i>
+</I>&gt;<i> Usually what your operating system and hardware can handle - it is kept in
+</I>&gt;<i> memory with a reasonable overhead per line; but no artificial limits are
+</I>&gt;<i> imposed by fetchmail itself. 
+</I>The OS is CentOS 5 and the hardware is a Dell PowerEdge in a production 
+environment with no gui's installed so there should be more then enough 
+memory.  Currently Fetchmail is pulling email for many different email 
+addresses but always running as the same user.  (IE it may pull email 
+for you or me but the program that calls it always starts it as the same 
+user regardless of who it is pulling email for)
+Is there a maximum number of lines that can be process in the .fetchids 
+file?  (IE is this handled by an array that has an upper limit?)
+
+&gt;<i> It may also be that the server expires older
+</I>&gt;<i> and/or downloaded messages after some time, and if the influx of mail over
+</I>&gt;<i> time is roughly constant, that would explain why the file size also remains
+</I>&gt;<i> sort of constant.
+</I>&gt;<i>   
+</I>Our userbase is growing so I think that this should be growing too.  
+Does the .fetchids file stay in sync with the external servers that it 
+gets its information from? (IE If an email is removed from an external 
+server, will fetchmail see that and remove the unique id from the 
+.fetchids file?)
+&gt;<i> Check the computer's memory (memtest86+ for x86/amd64 computers) and fans
+</I>&gt;<i> and heat sinks, and if very dusty, clean them.
+</I>&gt;<i>
+</I>&gt;<i> (Note that there's an order of magnitude missing, 212000 are rather 0.2
+</I>&gt;<i> than 2 Mb).
+</I>&gt;<i>   
+</I>Sorry dropped a 0.  Should be 2120000.
+&gt;<i> HTH
+</I>&gt;<i>
+</I>&gt;<i>   
+</I>
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001571.html">[fetchmail-users] .fetchids file doesn't grow pass the 2.0Meg size.
+</A></li>
+	<LI>Next message: <A HREF="001573.html">[fetchmail-users] .fetchids file doesn't grow pass the	2.0Meg	size.
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1572">[ date ]</a>
+              <a href="thread.html#1572">[ thread ]</a>
+              <a href="subject.html#1572">[ subject ]</a>
+              <a href="author.html#1572">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

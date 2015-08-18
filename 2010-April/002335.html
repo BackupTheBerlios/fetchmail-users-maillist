@@ -1,0 +1,99 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] fetchmail 6.3.16 bugfix release
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2010-April/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%206.3.16%20bugfix%20release&In-Reply-To=%3C20100406210822.GB14179%40merlin.emma.line.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002334.html">
+   <LINK REL="Next"  HREF="002336.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] fetchmail 6.3.16 bugfix release</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%206.3.16%20bugfix%20release&In-Reply-To=%3C20100406210822.GB14179%40merlin.emma.line.org%3E"
+       TITLE="[fetchmail-users] fetchmail 6.3.16 bugfix release">matthias.andree at gmx.de
+       </A><BR>
+    <I>Tue Apr  6 23:08:22 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002334.html">[fetchmail-users] Add response to &quot;SMTP listener refused delivery&quot; message
+</A></li>
+        <LI>Next message: <A HREF="002336.html">[fetchmail-users] attached files retrievement
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2335">[ date ]</a>
+              <a href="thread.html#2335">[ thread ]</a>
+              <a href="subject.html#2335">[ subject ]</a>
+              <a href="author.html#2335">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Greetings,
+
+I am announcing the release of fetchmail 6.3.16.  This new stable
+version of fetchmail fixes --interface support broken in 6.3.15 and
+improves SSL compatibility with some site; details below.
+
+The software is available from:
+&lt;<A HREF="http://developer.berlios.de/project/showfiles.php?group_id=1824">http://developer.berlios.de/project/showfiles.php?group_id=1824</A>&gt;
+
+The fetchmail home pages are:
+&lt;<A HREF="http://www.fetchmail.info/">http://www.fetchmail.info/</A>&gt;  or  &lt;<A HREF="http://fetchmail.berlios.de/">http://fetchmail.berlios.de/</A>&gt;
+
+These are the relevant changes since the previous release.  Unless
+otherwise noted, changes to this release were made by Matthias Andree:
+
+fetchmail-6.3.16 (released 2010-04-06, 25574 LoC):
+
+# BUG FIX
+* Fix --interface option, broken in 6.3.15. Reported by Vladmimir Stavrinov.
+  Fixes Debian Bug #576717.
+
+# CHANGE
+* Call OpenSSL_add_all_algorithms(). This is needed to support non-mandatory
+  algorithms in certificates. Sjoerd Simons, to fix Debian Bug #576430.
+  OpenSSL 0.9.8* does not load - for instance - the SHA256 digest by default.
+  Reported as OpenSSL RT#2224.
+
+
+By popular demand, diffs from the previous release have been omitted.
+
+-- 
+Matthias Andree
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: not available
+Type: application/pgp-signature
+Size: 198 bytes
+Desc: not available
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/fetchmail-users/attachments/20100406/d9d2d33c/attachment.pgp">https://lists.berlios.de/pipermail/fetchmail-users/attachments/20100406/d9d2d33c/attachment.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002334.html">[fetchmail-users] Add response to &quot;SMTP listener refused delivery&quot; message
+</A></li>
+	<LI>Next message: <A HREF="002336.html">[fetchmail-users] attached files retrievement
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2335">[ date ]</a>
+              <a href="thread.html#2335">[ thread ]</a>
+              <a href="subject.html#2335">[ subject ]</a>
+              <a href="author.html#2335">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

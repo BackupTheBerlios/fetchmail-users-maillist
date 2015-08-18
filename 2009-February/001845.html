@@ -1,0 +1,91 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] error after rc file edit
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2009-February/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20error%20after%20rc%20file%20edit&In-Reply-To=%3CDAFAE3F2-A03E-4730-A06B-B292420D25BB%40ukgb.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001852.html">
+   <LINK REL="Next"  HREF="001846.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] error after rc file edit</H1>
+    <B>Ken Gillett</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20error%20after%20rc%20file%20edit&In-Reply-To=%3CDAFAE3F2-A03E-4730-A06B-B292420D25BB%40ukgb.net%3E"
+       TITLE="[fetchmail-users] error after rc file edit">ken at ukgb.net
+       </A><BR>
+    <I>Tue Feb 10 15:14:24 CET 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001852.html">[fetchmail-users] Apple's MobileMe
+</A></li>
+        <LI>Next message: <A HREF="001846.html">[fetchmail-users] error after rc file edit
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1845">[ date ]</a>
+              <a href="thread.html#1845">[ thread ]</a>
+              <a href="subject.html#1845">[ subject ]</a>
+              <a href="author.html#1845">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>I made a change to the rc file (deleted one user) and thereafter  
+fetchmail logged the following errors
+
+&quot;fetchmail: awakened by User defined signal 1
+fetchmail: awakened at Tue, 10 Feb 2009 13:58:27 +0000 (GMT)
+could not lookup DNS configuration info service: (ipc/send) invalid  
+destination port
+fetchmail: getaddrinfo(&quot;&lt;servername&gt;&quot;,&quot;imap&quot;) error: Temporary failure  
+in name resolution
+fetchmail: IMAP connection to &lt;pollname&gt; failed: Invalid argument
+fetchmail: Query status=2 (SOCKET)&quot;
+
+The last 3 lines then repeated several times. I do not believe there  
+was any such DNS or name resolution problem whatsoever and when i quit  
+fetchmail and started it again, all ran perfectly once more. This is  
+not the first time I have noticed it failing with spurious errors  
+after editing the config file. It seems not to notice that it's  
+changed (no automatic restart), but has a problem with the new data. A  
+forced restart always fixes it.
+
+This is 6.3.8 on OSX Leopard Server. Is this a known problem?
+
+
+
+Ken G i l l e t t
+
+_/_/_/_/_/_/_/_/
+
+
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001852.html">[fetchmail-users] Apple's MobileMe
+</A></li>
+	<LI>Next message: <A HREF="001846.html">[fetchmail-users] error after rc file edit
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1845">[ date ]</a>
+              <a href="thread.html#1845">[ thread ]</a>
+              <a href="subject.html#1845">[ subject ]</a>
+              <a href="author.html#1845">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

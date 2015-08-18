@@ -1,0 +1,248 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Fetchmail not deleting mail from gmail server for	one user
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2012-February/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Fetchmail%20not%20deleting%20mail%20from%20gmail%20server%20for%0A%09one%20user&In-Reply-To=%3C1329959754.714.19.camel%40localhost.localdomain%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003056.html">
+   <LINK REL="Next"  HREF="003058.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Fetchmail not deleting mail from gmail server for	one user</H1>
+    <B>Chris</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Fetchmail%20not%20deleting%20mail%20from%20gmail%20server%20for%0A%09one%20user&In-Reply-To=%3C1329959754.714.19.camel%40localhost.localdomain%3E"
+       TITLE="[fetchmail-users] Fetchmail not deleting mail from gmail server for	one user">cpollock at embarqmail.com
+       </A><BR>
+    <I>Thu Feb 23 02:15:53 CET 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003056.html">[fetchmail-users] Keeping only the last n messages one the server with POP3?
+</A></li>
+        <LI>Next message: <A HREF="003058.html">[fetchmail-users] Fetchmail not deleting mail from gmail server for one user
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3057">[ date ]</a>
+              <a href="thread.html#3057">[ thread ]</a>
+              <a href="subject.html#3057">[ subject ]</a>
+              <a href="author.html#3057">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Let me explain quite a bit more. My wife has a new Android smartphone so
+I set her up with her own gmail account. To make things easy for her
+until she gets used to using the phone I setup fetchmail to poll her
+gmail account and pull her mail down to the computer. I also have a
+gmail account and just copied/pasted the setup in .fetchmailrc and
+changed username/password. When fetchmail polls my gmail account it
+picks up any mail and deletes it from the server, when it polls her
+account it picks up any mail but doesn't delete it from the server. Here
+is the command line I'm using to call fetchmail:
+
+fetchmail -v -v -v --nokeep --nosyslog
+--logfile /home/chris/fetchmaillog --uidl -m procmail
+
+Usually I just run it with one -v however it this case I wanted as
+verbose logging as possible. Here's what the log output looks like:
+
+fetchmail: 6.3.18 querying pop.gmail.com (protocol POP3) at Wed 22 Feb
+2012 05:27:23 PM CST: poll started
+fetchmail: Trying to connect to 74.125.45.108/995...connected.
+fetchmail: Certificate chain, from root to peer, starting at depth 2:
+fetchmail: Issuer Organization: Equifax
+fetchmail: Unknown Issuer CommonName
+fetchmail: Certificate at depth 1:
+fetchmail: Issuer Organization: Equifax
+fetchmail: Unknown Issuer CommonName
+fetchmail: Subject CommonName: Google Internet Authority
+fetchmail: Server certificate:
+fetchmail: Issuer Organization: Google Inc
+fetchmail: Issuer CommonName: Google Internet Authority
+fetchmail: Subject CommonName: pop.gmail.com
+fetchmail: pop.gmail.com key fingerprint:
+B8:AF:A7:80:CD:E2:31:50:6F:ED:0E:4F:C8:04:D6:CD
+fetchmail: POP3&lt; +OK Gpop ready for requests from 71.2.125.101
+w25pf4417836yhi.9
+fetchmail: POP3&gt; CAPA
+fetchmail: POP3&lt; +OK Capability list follows
+fetchmail: POP3&lt; USER
+fetchmail: POP3&lt; RESP-CODES
+fetchmail: POP3&lt; EXPIRE 0
+fetchmail: POP3&lt; LOGIN-DELAY 300
+fetchmail: POP3&lt; TOP
+fetchmail: POP3&lt; UIDL
+fetchmail: POP3&lt; X-GOOGLE-VERHOEVEN
+fetchmail: POP3&lt; X-GOOGLE-RICO
+fetchmail: POP3&lt; .
+fetchmail: POP3&gt; USER <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">chris.pollock1948 at gmail.com</A>
+fetchmail: POP3&lt; +OK send PASS
+fetchmail: POP3&gt; PASS *
+fetchmail: POP3&lt; +OK Welcome.
+fetchmail: selecting or re-polling default folder
+fetchmail: POP3&gt; STAT
+fetchmail: POP3&lt; +OK 1 2394
+fetchmail: POP3&gt; UIDL
+fetchmail: POP3&lt; +OK
+fetchmail: POP3&lt; 1 GmailId135a75ac5dfc13d3
+fetchmail: 1 is unseen
+fetchmail: POP3&lt; .
+fetchmail: 1 message for <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">chris.pollock1948 at gmail.com</A> at pop.gmail.com
+(2394 octets).
+fetchmail: POP3&gt; LIST 1
+fetchmail: POP3&lt; +OK 1 2394
+fetchmail: POP3&gt; TOP 1 99999999
+fetchmail: POP3&lt; +OK message follows
+fetchmail: reading message
+<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">chris.pollock1948 at gmail.com</A>@yx-in-f109.1e100.net:1 of 1 (2394
+octets)About to rewrite Return-Path: &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">cpollock at embarqmail.com</A>&gt;...
+...rewritten version is Return-Path: &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">cpollock at embarqmail.com</A>&gt;.
+fetchmail: About to rewrite Return-Path: &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">cpollock at embarqmail.com</A>&gt;...
+...rewritten version is Return-Path: &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">cpollock at embarqmail.com</A>&gt;.
+fetchmail: About to rewrite From: Chris &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">cpollock at embarqmail.com</A>&gt;...
+...rewritten version is From: Chris &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">cpollock at embarqmail.com</A>&gt;.
+fetchmail: About to rewrite To: &quot;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">chris.pollock1948 at gmail.com</A>&quot;
+&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">chris.pollock1948 at gmail.com</A>&gt;...
+...rewritten version is To: &quot;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">chris.pollock1948 at gmail.com</A>&quot;
+&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">chris.pollock1948 at gmail.com</A>&gt;.
+fetchmail: about to deliver with: procmail
+fetchmail: message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">chris.pollock1948 at gmail.com</A>@yx-in-f109.1e100.net:1
+was not the expected length (2440 actual != 2394 expected)
+fetchmail:  flushed
+fetchmail: POP3&gt; DELE 1
+fetchmail: POP3&lt; +OK marked for deletion
+fetchmail: POP3&gt; QUIT
+fetchmail: POP3&lt; +OK Farewell.
+fetchmail: 6.3.18 querying pop.gmail.com (protocol POP3) at Wed 22 Feb
+2012 05:27:52 PM CST: poll completed
+fetchmail: New UID list from pop.gmail.com: GmailId135a75ac5dfc13d3 =
+EXPUNGED
+fetchmail: swapping UID lists
+fetchmail: 6.3.18 querying pop.gmail.com (protocol POP3) at Wed 22 Feb
+2012 05:27:52 PM CST: poll started
+fetchmail: Trying to connect to 74.125.45.108/995...connected.
+fetchmail: Certificate chain, from root to peer, starting at depth 2:
+fetchmail: Issuer Organization: Equifax
+fetchmail: Unknown Issuer CommonName
+fetchmail: Certificate at depth 1:
+fetchmail: Issuer Organization: Equifax
+fetchmail: Unknown Issuer CommonName
+fetchmail: Subject CommonName: Google Internet Authority
+fetchmail: Server certificate:
+fetchmail: Issuer Organization: Google Inc
+fetchmail: Issuer CommonName: Google Internet Authority
+fetchmail: Subject CommonName: pop.gmail.com
+fetchmail: pop.gmail.com key fingerprint:
+B8:AF:A7:80:CD:E2:31:50:6F:ED:0E:4F:C8:04:D6:CD
+fetchmail: POP3&lt; +OK Gpop ready for requests from 71.2.125.101
+g6pf4413496yha.12
+fetchmail: POP3&gt; CAPA
+fetchmail: POP3&lt; +OK Capability list follows
+fetchmail: POP3&lt; USER
+fetchmail: POP3&lt; RESP-CODES
+fetchmail: POP3&lt; EXPIRE 0
+fetchmail: POP3&lt; LOGIN-DELAY 300
+fetchmail: POP3&lt; TOP
+fetchmail: POP3&lt; UIDL
+fetchmail: POP3&lt; X-GOOGLE-VERHOEVEN
+fetchmail: POP3&lt; X-GOOGLE-RICO
+fetchmail: POP3&lt; .
+fetchmail: POP3&gt; USER <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">judy.pollock1950 at gmail.com</A>
+fetchmail: POP3&lt; +OK send PASS
+fetchmail: POP3&gt; PASS *
+fetchmail: POP3&lt; +OK Welcome.
+fetchmail: selecting or re-polling default folder
+fetchmail: POP3&gt; STAT
+fetchmail: POP3&lt; +OK 1 2370
+fetchmail: POP3&gt; UIDL
+fetchmail: POP3&lt; +OK
+fetchmail: POP3&lt; 1 GmailId135a759e55823313
+fetchmail: 1 is unseen
+fetchmail: POP3&lt; .
+fetchmail: 1 message for <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">judy.pollock1950 at gmail.com</A> at pop.gmail.com
+(2370 octets).
+fetchmail: POP3&gt; LIST 1
+fetchmail: POP3&lt; +OK 1 2370
+fetchmail: POP3&gt; TOP 1 99999999
+fetchmail: POP3&lt; +OK message follows
+fetchmail: reading message
+<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">judy.pollock1950 at gmail.com</A>@yx-in-f109.1e100.net:1 of 1 (2370
+octets)About to rewrite Return-Path: &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">cpollock at embarqmail.com</A>&gt;...
+...rewritten version is Return-Path: &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">cpollock at embarqmail.com</A>&gt;.
+fetchmail: About to rewrite Return-Path: &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">cpollock at embarqmail.com</A>&gt;...
+...rewritten version is Return-Path: &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">cpollock at embarqmail.com</A>&gt;.
+fetchmail: About to rewrite From: Chris &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">cpollock at embarqmail.com</A>&gt;...
+...rewritten version is From: Chris &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">cpollock at embarqmail.com</A>&gt;.
+fetchmail: About to rewrite To: <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">judy.pollock1950 at gmail.com...</A>
+...rewritten version is To: <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">judy.pollock1950 at gmail.com.</A>
+fetchmail: about to deliver with: procmail
+fetchmail: message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">judy.pollock1950 at gmail.com</A>@yx-in-f109.1e100.net:1 was
+not the expected length (2416 actual != 2370 expected)
+fetchmail:  flushed
+fetchmail: POP3&gt; DELE 1
+fetchmail: POP3&lt; +OK marked for deletion
+fetchmail: POP3&gt; QUIT
+fetchmail: POP3&lt; +OK Farewell.
+fetchmail: 6.3.18 querying pop.gmail.com (protocol POP3) at Wed 22 Feb
+2012 05:28:13 PM CST: poll completed
+fetchmail: New UID list from pop.gmail.com: GmailId135a759e55823313 =
+EXPUNGED
+fetchmail: swapping UID lists
+fetchmail: sleeping at Wed 22 Feb 2012 05:28:13 PM CST for 120 seconds
+
+Here are the lines in the .fetchmailrc:
+
+poll pop.gmail.com with proto POP3 timeout 180 port 995 interval 15
+username &quot;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">chris.pollock1948 at gmail.com</A>&quot; with pass &quot;*******&quot; is cpollock
+here options ssl sslcertck sslcertpath /home/chris/certs/.certs
+poll pop.gmail.com with proto POP3 timeout 180 port 995 interval 3
+username &quot;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">judy.pollock1950 at gmail.com</A>&quot; with pass &quot;********&quot; is cpollock
+here options ssl sslcertck sslcertpath /home/chris/certs/.certs
+
+Could this be causing the deletion problem:
+
+username &quot;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">judy.pollock1950 at gmail.com</A>&quot; with pass &quot;********&quot; is cpollock
+here                                                          ^^^^^^^^
+
+Or does that make a difference? 
+
+Thanks for any information. BTW, my MTA is Evolution.
+
+Chris
+
+-- 
+Chris
+KeyID 0xE372A7DA98E6705C
+31.11&#176;N 97.89&#176;W (Elev. 1092 ft)
+18:58:20 up 4 days, 2:26, 1 user, load average: 1.86, 1.31, 0.64
+
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003056.html">[fetchmail-users] Keeping only the last n messages one the server with POP3?
+</A></li>
+	<LI>Next message: <A HREF="003058.html">[fetchmail-users] Fetchmail not deleting mail from gmail server for one user
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3057">[ date ]</a>
+              <a href="thread.html#3057">[ thread ]</a>
+              <a href="subject.html#3057">[ subject ]</a>
+              <a href="author.html#3057">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

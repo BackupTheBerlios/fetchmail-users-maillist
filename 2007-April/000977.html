@@ -1,0 +1,92 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Fetchmail Socket error on a satellite	connection
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2007-April/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Fetchmail%20Socket%20error%20on%20a%20satellite%0A%09connection&In-Reply-To=%3C461E2477.8060803%40gmx.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000976.html">
+   <LINK REL="Next"  HREF="000978.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Fetchmail Socket error on a satellite	connection</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Fetchmail%20Socket%20error%20on%20a%20satellite%0A%09connection&In-Reply-To=%3C461E2477.8060803%40gmx.de%3E"
+       TITLE="[fetchmail-users] Fetchmail Socket error on a satellite	connection">matthias.andree at gmx.de
+       </A><BR>
+    <I>Thu Apr 12 14:22:15 CEST 2007</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000976.html">[fetchmail-users] Fetchmail Socket error on a satellite connection
+</A></li>
+        <LI>Next message: <A HREF="000978.html">[fetchmail-users] Fetchmail Socket error on a satellite	connection
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#977">[ date ]</a>
+              <a href="thread.html#977">[ thread ]</a>
+              <a href="subject.html#977">[ subject ]</a>
+              <a href="author.html#977">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Ben Jsh schrieb:
+
+&gt;<i> I am having trouble downloading mail via POP3 with the latest 6.3.8 and all versions.
+</I>&gt;<i> 
+</I>&gt;<i> I tried popping the same account from a adsl line and it worked but when I do it over the satellite connection it fails.
+</I>
+So the satellite link is the first suspect, no? :-)
+
+&gt;<i> When I connect to the pop3 server some mails are downloaded but with some it is stopping.
+</I>&gt;<i> Not sure what is causing it.
+</I>
+How does the satellite connection differ from the ADSL?
+
+...
+
+&gt;<i> I tried everything also setting timeouts and other stuff but it keeps crashing.
+</I>&gt;<i> Please help!
+</I>&gt;<i> I also tried other pop3 servers and accounts and I just keep getting on random messages
+</I>
+You quoted the SMTP dialog, but your problem is apparently POP3.
+It shows the error, but not the preceding events.
+
+Perhaps there's something obvious in the POP3 logging, but if not, sorry
+- check <A HREF="http://www.fetchmail.info/fetchmail-FAQ.html#G3">http://www.fetchmail.info/fetchmail-FAQ.html#G3</A> for information
+lacking from your report (beyond the differences sat/dsl above) and run
+fetchmail -vvv to see if you get POP3 logging.
+
+I can't promise there's anything fetchmail could do about the issue though.
+
+HTH
+MA
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000976.html">[fetchmail-users] Fetchmail Socket error on a satellite connection
+</A></li>
+	<LI>Next message: <A HREF="000978.html">[fetchmail-users] Fetchmail Socket error on a satellite	connection
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#977">[ date ]</a>
+              <a href="thread.html#977">[ thread ]</a>
+              <a href="subject.html#977">[ subject ]</a>
+              <a href="author.html#977">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

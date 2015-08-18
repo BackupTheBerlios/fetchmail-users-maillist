@@ -1,0 +1,128 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Fetchmail &amp; Zimbra
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2006-December/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Fetchmail%20%26%20Zimbra&In-Reply-To=%3C5BB79A8058DA454FA3D4DEBC26C4720F01986C58%40nt_galva.galva.co.id%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000758.html">
+   <LINK REL="Next"  HREF="000760.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Fetchmail &amp; Zimbra</H1>
+    <B>Richardus Alim</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Fetchmail%20%26%20Zimbra&In-Reply-To=%3C5BB79A8058DA454FA3D4DEBC26C4720F01986C58%40nt_galva.galva.co.id%3E"
+       TITLE="[fetchmail-users] Fetchmail &amp; Zimbra">alim at galva.co.id
+       </A><BR>
+    <I>Tue Dec  5 03:42:11 CET 2006</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000758.html">[fetchmail-users] 'keep' and 'uidl'.
+</A></li>
+        <LI>Next message: <A HREF="000760.html">[fetchmail-users] Fetchmail &amp; Zimbra
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#759">[ date ]</a>
+              <a href="thread.html#759">[ thread ]</a>
+              <a href="subject.html#759">[ subject ]</a>
+              <a href="author.html#759">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>
+Does any body have experience with zimbra &amp; fetchmail ?
+My local MTA:
+CentOS 4.4
+Zimbra zcs-4.0.4_GA_457.RHEL4
+Fetchmail 6.2.5
+
+I've just setup local MTA using zimbra and I want to retrive email from 
+remote MTA (mail.test.com) below is my .fetchmail conf
+
+set admin &quot;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">admin at xyz.com</A>&quot;
+set syslog
+set daemon 180
+
+poll mail.test.com proto pop3
+	user &quot;alim&quot; there with pass &quot;123456&quot; is &quot;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">alim at xyz.com</A>&quot; here
+	keep
+
+The problem is when I disabled DNS lookup in Zimbra conf the fetchmail
+worked good
+(fetchmail can retrieve mail in remote MTA and send them to my local MTA)
+but if I enabled DNS lookup It didn't work.
+
+This is my maillog
+
+Dec  5 01:45:50 mail fetchmail[11810]: POP3&lt; +OK Microsoft Exchange POP3
+server version 5.5.2653.23 signing off
+Dec  5 01:45:50 mail fetchmail[11810]: 6.2.5 querying mail.test.com
+(protocol POP3) at Tue 05 Dec 2006 01:45:50 AM UTC: poll completed
+Dec  5 01:45:50 mail fetchmail[11810]: SMTP&gt; QUIT
+Dec  5 01:45:50 mail postfix/smtpd[11584]: disconnect from
+localhost.localdomain[127.0.0.1]
+Dec  5 01:45:50 mail fetchmail[11810]: SMTP&lt; 221 Bye
+Dec  5 01:45:50 mail fetchmail[11810]: sleeping at Tue 05 Dec 2006 01:45:50
+AM UTC
+Dec  5 01:45:52 mail postfix/smtpd[11804]: connect from
+localhost.localdomain[127.0.0.1]
+Dec  5 01:45:52 mail postfix/smtpd[11804]: DAA00ACB66:
+client=localhost.localdomain[127.0.0.1]
+Dec  5 01:45:52 mail postfix/cleanup[11585]: DAA00ACB66:
+message-id=&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">2153655.121165283092238.JavaMail.root at mail.xyz.com</A>&gt;
+Dec  5 01:45:52 mail postfix/qmgr[7440]: DAA00ACB66: from=&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">alim at xyz.com</A>&gt;,
+size=2592, nrcpt=1 (queue active)
+Dec  5 01:45:52 mail postfix/smtpd[11804]: disconnect from
+localhost.localdomain[127.0.0.1]
+Dec  5 01:45:52 mail postfix/smtp[11800]: 6792AACB63: to=&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">alim at xyz.com</A>&gt;,
+relay=127.0.0.1[127.0.0.1], delay=2, status=sent (250 2.6.0 Ok, id=05197-01,
+from MTA([127.0.0.1]:10025): 250 Ok: queued as DAA00ACB66)
+Dec  5 01:45:52 mail postfix/qmgr[7440]: 6792AACB63: removed
+Dec  5 01:45:53 mail postfix/lmtp[11957]: DAA00ACB66: to=&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">alim at xyz.com</A>&gt;,
+relay=none, delay=1, status=bounced (Host or domain name not found. Name
+service error for name=mail.xyz.com type=A: Host not found)
+Dec  5 01:45:53 mail postfix/cleanup[11585]: 1E2DFACB69:
+message-id=&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">20061205014553.1E2DFACB69 at mail.xyz.com</A>&gt;
+Dec  5 01:45:53 mail postfix/qmgr[7440]: 1E2DFACB69: from=&lt;&gt;, size=4439,
+nrcpt=1 (queue active)
+Dec  5 01:45:53 mail postfix/qmgr[7440]: DAA00ACB66: removed
+Dec  5 01:45:53 mail postfix/lmtp[11957]: 1E2DFACB69: to=&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">alim at xyz.com</A>&gt;,
+relay=none, delay=0, status=bounced (Host or domain name not found. Name
+service error for name=mail.xyz.com type=A: Host not found)
+Dec  5 01:45:53 mail postfix/qmgr[7440]: 1E2DFACB69: removed
+
+
+Do I have setup a DNS Server in my local MTA ??
+
+
+Alim
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000758.html">[fetchmail-users] 'keep' and 'uidl'.
+</A></li>
+	<LI>Next message: <A HREF="000760.html">[fetchmail-users] Fetchmail &amp; Zimbra
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#759">[ date ]</a>
+              <a href="thread.html#759">[ thread ]</a>
+              <a href="subject.html#759">[ subject ]</a>
+              <a href="author.html#759">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,107 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Fetchmail, IMAP,	and client side UID/UIDL tracking
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2008-October/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Fetchmail%2C%20IMAP%2C%0A%09and%20client%20side%20UID/UIDL%20tracking&In-Reply-To=%3Cm3k5ccooal.fsf%40merlin.emma.line.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001725.html">
+   <LINK REL="Next"  HREF="001728.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Fetchmail, IMAP,	and client side UID/UIDL tracking</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Fetchmail%2C%20IMAP%2C%0A%09and%20client%20side%20UID/UIDL%20tracking&In-Reply-To=%3Cm3k5ccooal.fsf%40merlin.emma.line.org%3E"
+       TITLE="[fetchmail-users] Fetchmail, IMAP,	and client side UID/UIDL tracking">matthias.andree at gmx.de
+       </A><BR>
+    <I>Mon Oct 13 11:08:18 CEST 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001725.html">[fetchmail-users] Fetchmail, IMAP, and client side UID/UIDL tracking
+</A></li>
+        <LI>Next message: <A HREF="001728.html">[fetchmail-users] Bug report: odd behavior with --quit
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1726">[ date ]</a>
+              <a href="thread.html#1726">[ thread ]</a>
+              <a href="subject.html#1726">[ subject ]</a>
+              <a href="author.html#1726">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Daniel Jabbour &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">daniel at infoex.com</A>&gt; writes:
+
+&gt;<i> Fetchmail,
+</I>&gt;<i>
+</I>&gt;<i> I am aware of the current &quot;design limitation&quot; of fetchmail for client- 
+</I>&gt;<i> side tracking of UIDs on messages.  This would enable a fetchmail  
+</I>&gt;<i> client to download only new messages from the client's perspective.   
+</I>&gt;<i> However, a patch has existed since Dec 2005 (<A HREF="http://developer.berlios.de/patch/index.php?func=detailpatch&amp;patch_id=740&amp;group_id=1824">http://developer.berlios.de/patch/index.php?func=detailpatch&amp;patch_id=740&amp;group_id=1824</A> 
+</I>&gt;<i> ), and I believe it has been discussed adding this feature to a future  
+</I>&gt;<i> release.  I'm curious what the status is? Is there anything I can do  
+</I>&gt;<i> to help? I have not yet developed on the fetchmail project, but am  
+</I>&gt;<i> willing to see this feature through if someone can point me in the  
+</I>&gt;<i> right direction.  Thanks,
+</I>
+Hi Daniel,
+
+I see two problems there:
+
+1. the patch does not track the UIDVALIDITY parameter, in that it does
+not request, store, and compare it -- and if it changed between polls,
+fetchmail would have to discard all cached UIDs. Feel free to ask
+details.
+
+2. The UID code (uid.c) in fetchmail currently uses linear lists, which
+will become painfully slow even with reasonable amounts of mail on the
+server. 500 messages are OK with desktop processors half a decade old,
+but 5,000 messages on low-power processors will hurt.  It seems sensible
+to rewrite uid.c to use trees, hashes or something else that allows O(n
+log n) reading of the file, O(log n) or O(1) lookup -- or using on-disk
+databases, in a later step.
+
+Two further considerations:
+
+3. we used to have a patch (of Sunil Shetye) that allowed per-server ID
+files, but it's not currently part of fetchmail. I've used it, it was
+stable, but there was always something more important to do for me than
+to merge the patch -- which would impair compatibility with 6.2.X and
+6.3.X. It might be useful to merge that first.
+
+4. New features should become part of fetchmail 6.4 or however I'll name
+a future new release. 6.3.X should fix bugs only.
+
+HTH
+
+-- 
+Matthias Andree
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001725.html">[fetchmail-users] Fetchmail, IMAP, and client side UID/UIDL tracking
+</A></li>
+	<LI>Next message: <A HREF="001728.html">[fetchmail-users] Bug report: odd behavior with --quit
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1726">[ date ]</a>
+              <a href="thread.html#1726">[ thread ]</a>
+              <a href="subject.html#1726">[ subject ]</a>
+              <a href="author.html#1726">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

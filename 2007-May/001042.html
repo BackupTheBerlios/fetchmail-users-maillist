@@ -1,0 +1,116 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Error messages with fetchmail 6.3.8
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2007-May/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Error%20messages%20with%20fetchmail%206.3.8&In-Reply-To=%3C20070514163649.GA1169%40gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001035.html">
+   <LINK REL="Next"  HREF="001043.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Error messages with fetchmail 6.3.8</H1>
+    <B>Pongthep Kulkrisada</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Error%20messages%20with%20fetchmail%206.3.8&In-Reply-To=%3C20070514163649.GA1169%40gmail.com%3E"
+       TITLE="[fetchmail-users] Error messages with fetchmail 6.3.8">ptkrisada at gmail.com
+       </A><BR>
+    <I>Mon May 14 18:36:49 CEST 2007</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001035.html">[fetchmail-users] Error messages with fetchmail 6.3.8
+</A></li>
+        <LI>Next message: <A HREF="001043.html">[fetchmail-users] Error messages with fetchmail 6.3.8
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1042">[ date ]</a>
+              <a href="thread.html#1042">[ thread ]</a>
+              <a href="subject.html#1042">[ subject ]</a>
+              <a href="author.html#1042">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>&gt;<i> Pongthep, the easiest way for FreeBSD installations of fetchmail is to use
+</I>&gt;<i> the FreeBSD port - but your installation went apparently right anyways,
+</I>&gt;<i> except for the SSL certificates.
+</I>I dont know about SSL certificates.
+Once I just cd /usr/ports/mail/fetchmail and make install. It brought me the old version. I don't know how to use cvsup. Once I read handbook, it came with tonnes of documentation, I just don't understand only confuse I got. So I downloaded a tarball and compiled from source. I am a noobie.
+
+&gt;<i> The problem is with the server's certificate that your OpenSSL library does
+</I>&gt;<i> not recognize - installing the root certificate should fix your problem.
+</I>What is root certificate? please give me a bit of more details.
+
+&gt;<i> &gt; Questions
+</I>&gt;<i> &gt; 1) My first account has nothing to do with TLS.
+</I>&gt;<i> &gt; Why is there such an error message? How to fix it?
+</I>&gt;<i> 
+</I>&gt;<i> You can avoid the attempts if you add
+</I>&gt;<i> sslproto ''
+</I>&gt;<i> 
+</I>&gt;<i> to your configuration (that's two single quotes)
+</I>Yes it fixed the problem. Thanks
+
+&gt;<i> &gt; 2) Several errors with my second account (gmail).
+</I>&gt;<i> &gt; How to fix it?
+</I>&gt;<i> 
+</I>&gt;<i> See below.
+</I>&gt;<i> 
+</I>&gt;<i> &gt; 3) I also have 6bone tunnel for IPv6.
+</I>&gt;<i> &gt; Shall I do anything special with fetchmail?
+</I>&gt;<i> 
+</I>&gt;<i> There should be no need; FreeBSD 5.4 can do IPv6 as far as I know.
+</I>Alright. Thanks,
+
+&gt;<i> The server offered TLS, so fetchmail tried. However, the server is not
+</I>&gt;<i> configured properly (&quot;opportunistic upgrade to TLS failed&quot;) and
+</I>&gt;<i> additionally dropped the connection.
+</I>&gt;<i> 
+</I>&gt;<i> Fetchmail noticed and retried without TLS. This is typical Courier
+</I>&gt;<i> behavior. I'll talk to Sam Varshavchik if he sees a chance to fix this.
+</I>&gt;<i> 
+</I>&gt;<i> Suggestion above (sslproto '').
+</I>As said it fixed the problem.
+
+&gt;<i> Looks as though the root certificate from Equifax is not installed on your
+</I>&gt;<i> computer, so the OpenSSL library cannot verify that there is no man in the
+</I>&gt;<i> middle attack going on. Fetchmail continues however (because you did not
+</I>&gt;<i> specify --sslcertck).
+</I>Can you please give me a brief example of --sslcertck? I did not find it in the provided handbook or man pages. 
+
+&gt;<i> Do you have the ca-roots port installed? Try doing that, it makes the
+</I>&gt;<i> problem go away on my computer (I have FreeBSD 6.2 and installed fetchmail
+</I>&gt;<i> 6.3.8 from the port).
+</I>Shall I just cd /usr/ports/security/ca-roots and make install?
+How to obtain the new version?
+
+Thank you very much
+Pongthep Kulkrisada
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001035.html">[fetchmail-users] Error messages with fetchmail 6.3.8
+</A></li>
+	<LI>Next message: <A HREF="001043.html">[fetchmail-users] Error messages with fetchmail 6.3.8
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1042">[ date ]</a>
+              <a href="thread.html#1042">[ thread ]</a>
+              <a href="subject.html#1042">[ subject ]</a>
+              <a href="author.html#1042">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

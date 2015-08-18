@@ -1,0 +1,84 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] fetchmail connection refused on localhost:smtp
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2009-September/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%20connection%20refused%20on%20localhost%3Asmtp&In-Reply-To=%3Cop.uz1nnsy01e62zd%40balu.cs.uni-paderborn.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002071.html">
+   <LINK REL="Next"  HREF="002078.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] fetchmail connection refused on localhost:smtp</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%20connection%20refused%20on%20localhost%3Asmtp&In-Reply-To=%3Cop.uz1nnsy01e62zd%40balu.cs.uni-paderborn.de%3E"
+       TITLE="[fetchmail-users] fetchmail connection refused on localhost:smtp">matthias.andree at gmx.de
+       </A><BR>
+    <I>Thu Sep 10 15:56:06 CEST 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002071.html">[fetchmail-users] fetchmail connection refused on localhost:smtp
+</A></li>
+        <LI>Next message: <A HREF="002078.html">[fetchmail-users] Using Fetchmail to archive mail
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2072">[ date ]</a>
+              <a href="thread.html#2072">[ thread ]</a>
+              <a href="subject.html#2072">[ subject ]</a>
+              <a href="author.html#2072">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Am 09.09.2009, 18:43 Uhr, schrieb &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">wade at wadesmart.com</A>&gt;:
+
+&gt;<i> I setup my new computer and Im running into a few troubles.
+</I>&gt;<i>
+</I>&gt;<i> fetchmail[7654]: connection to localhost:smtp [::1/25] failed:
+</I>&gt;<i> Connnection refused.
+</I>&gt;<i> ...
+</I>&gt;<i> I can telnet to locahost smtp.
+</I>
+It should succeed on the other localhost address, 127.0.0.1, which isn't  
+currently logged however (as success gets lower log priority).
+
+Alternatively, make sure your MTA listens on the IPv6 loopback address as  
+well - support for that is outside the scope of this list.
+
+&gt;<i> I have this error though in my debug file:
+</I>&gt;<i> kernel: [1791.134229] TCP[fetchmail:4597): Application bug, race in
+</I>&gt;<i> MSG_PEEK.
+</I>
+<A HREF="http://www.fetchmail.info/fetchmail-FAQ.html#O17">http://www.fetchmail.info/fetchmail-FAQ.html#O17</A>
+
+-- 
+Matthias Andree
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002071.html">[fetchmail-users] fetchmail connection refused on localhost:smtp
+</A></li>
+	<LI>Next message: <A HREF="002078.html">[fetchmail-users] Using Fetchmail to archive mail
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2072">[ date ]</a>
+              <a href="thread.html#2072">[ thread ]</a>
+              <a href="subject.html#2072">[ subject ]</a>
+              <a href="author.html#2072">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

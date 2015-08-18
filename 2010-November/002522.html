@@ -1,0 +1,240 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] [PATCH] Re: I'm getting a response &quot;NO you are not allowed to act as a proxy server&quot; from server at ISP
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2010-November/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20%5BPATCH%5D%20Re%3A%20I%27m%20getting%20a%20response%20%22NO%20you%20are%0A%20not%20allowed%20to%20act%20as%20a%20proxy%20server%22%20from%20server%20at%20ISP&In-Reply-To=%3C20101110080306.GA10507%40session.bombay.retortsoft.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002521.html">
+   <LINK REL="Next"  HREF="002525.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] [PATCH] Re: I'm getting a response &quot;NO you are not allowed to act as a proxy server&quot; from server at ISP</H1>
+    <B>Sunil Shetye</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20%5BPATCH%5D%20Re%3A%20I%27m%20getting%20a%20response%20%22NO%20you%20are%0A%20not%20allowed%20to%20act%20as%20a%20proxy%20server%22%20from%20server%20at%20ISP&In-Reply-To=%3C20101110080306.GA10507%40session.bombay.retortsoft.com%3E"
+       TITLE="[fetchmail-users] [PATCH] Re: I'm getting a response &quot;NO you are not allowed to act as a proxy server&quot; from server at ISP">shetye at bombay.retortsoft.com
+       </A><BR>
+    <I>Wed Nov 10 09:03:06 CET 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002521.html">[fetchmail-users] I'm getting a response &quot;NO you are not allowed to act as a proxy server&quot; from server at ISP
+</A></li>
+        <LI>Next message: <A HREF="002525.html">[fetchmail-users] [PATCH] Re: I'm getting a response &quot;NO you are not allowed to act as a proxy server&quot; from server at ISP
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2522">[ date ]</a>
+              <a href="thread.html#2522">[ thread ]</a>
+              <a href="subject.html#2522">[ subject ]</a>
+              <a href="author.html#2522">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Carlos,
+
+Quoting from Carlos E. R.'s mail on Tue, Nov 09, 2010:
+&gt;<i> Starting last September I'm getting that response, randomly, ie, not
+</I>&gt;<i> always, from my ISP imap server.  I have googled for it and the only
+</I>&gt;<i> match are my own questions.  I suppose it is no bug of fetchmail,
+</I>&gt;<i> but you may perhaps have an idea of what it is, and hopefully how to
+</I>&gt;<i> avoid it (no, talking to my ISP is useless - I've tried in the
+</I>&gt;<i> past).  It happens with all the accounts I have with them.
+</I>
+...
+
+&gt;<i> Log extract (names changed, encrypted response shortened with &quot;...&quot;)
+</I>
+...
+
+&gt;<i> Nov  9 13:16:20 Telcontar fetchmail[9772]: IMAP&gt; A0003 AUTHENTICATE CRAM-MD5
+</I>&gt;<i> Nov  9 13:16:20 Telcontar fetchmail[9772]: IMAP&lt; + PDZG....W8+
+</I>&gt;<i> Nov  9 13:16:20 Telcontar fetchmail[9772]: decoded as &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">6F...21 at ctmmp4.adm.correo</A>&gt;
+</I>
+...
+
+&gt;<i> A successful attempt for comparison a minute before:
+</I>
+...
+
+&gt;<i> Nov  9 13:15:50 Telcontar fetchmail[9753]: IMAP&gt; A0003 AUTHENTICATE CRAM-MD5
+</I>&gt;<i> Nov  9 13:15:50 Telcontar fetchmail[9753]: IMAP&lt; + PE...ZW8+
+</I>&gt;<i> Nov  9 13:15:50 Telcontar fetchmail[9753]: decoded as &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">B1B...2 at ctmmp1.adm.correo</A>&gt;
+</I>
+Please compare the decoded strings and match them with the
+authentication success and failure. As per the above logs (assuming
+you have not changed the names),
+
+ctmmp4.adm.correo gave authentication failure
+ctmmp1.adm.correo gave authentication success
+
+These are supposed to be the hostnames of the real imap servers which
+are behind the proxy imap server. If you see a consistent pattern in
+your logs, you can then take up this issue with your ISP and complain
+about that server which is giving authentication failure.
+
+
+[The patch below is unrelated to your issue, it is only based on an
+unrelated section of your logs]
+
+&gt;<i> Nov  9 13:16:20 Telcontar fetchmail[9772]: 6.3.18 querying imap.telefonica.net (protocol IMAP) at Tue Nov  9 13:16:20 2010: poll started
+</I>&gt;<i> Nov  9 13:16:20 Telcontar fetchmail[9772]: Trying to connect to 213.4.149.65/143...connected.
+</I>&gt;<i> Nov  9 13:16:20 Telcontar fetchmail[9772]: IMAP&lt; * OK IMAP4 PROXY server ready
+</I>&gt;<i> Nov  9 13:16:20 Telcontar fetchmail[9772]: IMAP&gt; A0001 CAPABILITY
+</I>&gt;<i> Nov  9 13:16:20 Telcontar fetchmail[9772]: IMAP&lt; * CAPABILITY IMAP4 IMAP4rev1 UIDPLUS IDLE LOGIN-REFERRALS NAMESPACE QUOTA CHILDREN SORT AUTH=CRAM-MD5
+</I>&gt;<i> Nov  9 13:16:20 Telcontar fetchmail[9772]: IMAP&lt; A0001 OK capabilities listed
+</I>&gt;<i> Nov  9 13:16:20 Telcontar fetchmail[9772]: Protocol identified as IMAP4 rev 1
+</I>&gt;<i> Nov  9 13:16:20 Telcontar fetchmail[9772]: imap.telefonica.net: opportunistic upgrade to TLS failed, trying to continue
+</I>&gt;<i> Nov  9 13:16:20 Telcontar fetchmail[9772]: IMAP&gt; A0002 NOOP
+</I>&gt;<i> Nov  9 13:16:20 Telcontar fetchmail[9772]: IMAP&lt; A0002 OK NOOP complete
+</I>
+Here, fetchmail is incorrectly complaining of a failed upgrade to TLS.
+The NOOP should have been sent only after a failed STARTTLS. This
+patch should fix this issue. Matthias, please check.
+
+&gt;<i>From e97b15f309ff4db61e86f9fcedbb6bbb590c8346 Mon Sep 17 00:00:00 2001
+</I>From: Sunil Shetye &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">shetye at bombay.retortsoft.com</A>&gt;
+Date: Wed, 10 Nov 2010 12:36:50 +0530
+Subject: [PATCH] Distinguish between server not advertising TLS capability and server failing during upgradation to TLS.
+
+Send a NOOP only after a failed STARTTLS in IMAP.
+---
+ NEWS   |    1 +
+ imap.c |   14 +++++---------
+ pop3.c |   12 +++++-------
+ 3 files changed, 11 insertions(+), 16 deletions(-)
+
+diff --git a/NEWS b/NEWS
+index 8c11951..8c93aa9 100644
+--- a/NEWS
++++ b/NEWS
+@@ -75,6 +75,7 @@ fetchmail-6.3.19 (not yet released):
+   Reported by Mihail Nechkin against FreeBSD port.
+   Workaround for 6.3.18: build in a separate directory, i. e:
+   mkdir build &amp;&amp; cd build &amp;&amp; ../configure --options-go-here
++* Send a NOOP only after a failed STARTTLS in IMAP. (Sunil Shetye)
+ 
+ # DOCUMENTATION:
+ * The manual page now links to IANA for GSSAPI service names.
+diff --git a/imap.c b/imap.c
+index b1c5104..cbaa913 100644
+--- a/imap.c
++++ b/imap.c
+@@ -397,9 +397,6 @@ static int imap_getauth(int sock, struct query *ctl, char *greeting)
+ /* apply for connection authorization */
+ {
+     int ok = 0;
+-#ifdef SSL_ENABLE
+-    int got_tls = 0;
+-#endif
+     (void)greeting;
+ 
+     /*
+@@ -457,17 +454,12 @@ static int imap_getauth(int sock, struct query *ctl, char *greeting)
+ 		 * Now that we're confident in our TLS connection we can
+ 		 * guarantee a secure capability re-probe.
+ 		 */
+-		got_tls = 1;
+ 		capa_probe(sock, ctl);
+ 		if (outlevel &gt;= O_VERBOSE)
+ 		{
+ 		    report(stdout, GT_(&quot;%s: upgrade to TLS succeeded.\n&quot;), commonname);
+ 		}
+-	    }
+-	}
+-
+-	if (!got_tls) {
+-	    if (must_tls(ctl)) {
++	    } else if (must_tls(ctl)) {
+ 		/* Config required TLS but we couldn't guarantee it, so we must
+ 		 * stop. */
+ 		report(stderr, GT_(&quot;%s: upgrade to TLS failed.\n&quot;), commonname);
+@@ -486,6 +478,10 @@ static int imap_getauth(int sock, struct query *ctl, char *greeting)
+ 		}
+ 		/* Usable.  Proceed with authenticating insecurely. */
+ 	    }
++	} else if (must_tls(ctl)) {
++	    /* Config required TLS but STARTTLS is not advertised. */
++	    report(stderr, GT_(&quot;%s: cannot upgrade to TLS: no STARTTLS in CAPABILITY response.\n&quot;), commonname);
++	    return PS_SOCKET;
+ 	}
+     }
+ #endif /* SSL_ENABLE */
+diff --git a/pop3.c b/pop3.c
+index fd3e5b5..21251e5 100644
+--- a/pop3.c
++++ b/pop3.c
+@@ -281,7 +281,6 @@ static int pop3_getauth(int sock, struct query *ctl, char *greeting)
+ #endif /* OPIE_ENABLE */
+ #ifdef SSL_ENABLE
+     flag connection_may_have_tls_errors = FALSE;
+-    flag got_tls = FALSE;
+ #endif /* SSL_ENABLE */
+ 
+     done_capa = FALSE;
+@@ -465,7 +464,6 @@ static int pop3_getauth(int sock, struct query *ctl, char *greeting)
+ 		    * Now that we're confident in our TLS connection we can
+ 		    * guarantee a secure capability re-probe.
+ 		    */
+-		   got_tls = TRUE;
+ 		   done_capa = FALSE;
+ 		   ok = capa_probe(sock);
+ 		   if (ok != PS_SUCCESS) {
+@@ -475,11 +473,7 @@ static int pop3_getauth(int sock, struct query *ctl, char *greeting)
+ 		   {
+ 		       report(stdout, GT_(&quot;%s: upgrade to TLS succeeded.\n&quot;), commonname);
+ 		   }
+-	       }
+-	   }
+-
+-	   if (!got_tls) {
+-	       if (must_tls(ctl)) {
++	       } else if (must_tls(ctl)) {
+ 		   /* Config required TLS but we couldn't guarantee it, so we must
+ 		    * stop. */
+ 		   report(stderr, GT_(&quot;%s: upgrade to TLS failed.\n&quot;), commonname);
+@@ -496,6 +490,10 @@ static int pop3_getauth(int sock, struct query *ctl, char *greeting)
+ 		       report(stdout, GT_(&quot;%s: opportunistic upgrade to TLS failed, trying to continue.\n&quot;), commonname);
+ 		   }
+ 	       }
++	   } else if (must_tls(ctl)) {
++	       /* Config required TLS but STLS is not advertised. */
++	       report(stderr, GT_(&quot;%s: cannot upgrade to TLS: no STLS in CAPA response.\n&quot;), commonname);
++	       return PS_SOCKET;
+ 	   }
+ 	} /* maybe_tls() */
+ #endif /* SSL_ENABLE */
+-- 
+1.7.2.3
+
+
+-- 
+Sunil Shetye.
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002521.html">[fetchmail-users] I'm getting a response &quot;NO you are not allowed to act as a proxy server&quot; from server at ISP
+</A></li>
+	<LI>Next message: <A HREF="002525.html">[fetchmail-users] [PATCH] Re: I'm getting a response &quot;NO you are not allowed to act as a proxy server&quot; from server at ISP
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2522">[ date ]</a>
+              <a href="thread.html#2522">[ thread ]</a>
+              <a href="subject.html#2522">[ subject ]</a>
+              <a href="author.html#2522">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

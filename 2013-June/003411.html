@@ -1,0 +1,82 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Fetchmail going out of date?
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2013-June/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Fetchmail%20going%20out%20of%20date%3F&In-Reply-To=%3CFA9216F1-BA57-4479-AB7A-E8F07115C8EC%40gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003410.html">
+   <LINK REL="Next"  HREF="003412.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Fetchmail going out of date?</H1>
+    <B>Yoann Gini</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Fetchmail%20going%20out%20of%20date%3F&In-Reply-To=%3CFA9216F1-BA57-4479-AB7A-E8F07115C8EC%40gmail.com%3E"
+       TITLE="[fetchmail-users] Fetchmail going out of date?">yoann.gini at gmail.com
+       </A><BR>
+    <I>Thu Jun 20 20:58:22 CEST 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003410.html">[fetchmail-users] Unknown recipient ends up being 2 messages for Postmaster
+</A></li>
+        <LI>Next message: <A HREF="003412.html">[fetchmail-users] Fetchmail going out of date?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3411">[ date ]</a>
+              <a href="thread.html#3411">[ thread ]</a>
+              <a href="subject.html#3411">[ subject ]</a>
+              <a href="author.html#3411">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hello,
+
+It&#8217;s my first message here so here is a little introduction. I&#8217;m a system administrator, software developer and certified trainer specialized on Apple product (OS X, OS X Server, iOS&#8230;). I&#8217;ve run many OS X Server with fetchmail as a &#171; POP Connector &#187; to extract e-mail from external e-mail server and store them on the OS X Server e-mail server (postfix / dovecot).
+
+That work for a while now, without any problems, with many fetchmail version on many OS X Server version.
+
+But since a month, I&#8217;ve a problem with many of my server with no common points. Fetchmail stop to work complaining about DNS issues :
+fetchmail: Query status=11 (DNS)
+fetchmail: couldn't find canonical DNS name of mail.gandi.net (mail.gandi.net): nodename nor servname provided, or not known
+
+If I restart my fetchmail daemon, it&#8217;s like a charm for many hours and still break down after a random duration.
+
+I run fetchmail from a custom launchd script (the init.d equivalent on OS X Server) who basically do that:
+/usr/local/bin/fetchmail -L /var/log/fetchmail.log -f /etc/fetchmailrc
+
+I&#8217;ve read on your FAQ that you need log dump from connection, but I&#8217;m not gonna share that on a public mailing list. E-mail address of my clients are confidential and it&#8217;s not the first connection who is problematic. It&#8217;s only after few hours or days some time.
+
+So, anyone have an idea about how troubleshoot that?
+
+Best regards,
+Yoann Gini
+</PRE>
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003410.html">[fetchmail-users] Unknown recipient ends up being 2 messages for Postmaster
+</A></li>
+	<LI>Next message: <A HREF="003412.html">[fetchmail-users] Fetchmail going out of date?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3411">[ date ]</a>
+              <a href="thread.html#3411">[ thread ]</a>
+              <a href="subject.html#3411">[ subject ]</a>
+              <a href="author.html#3411">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

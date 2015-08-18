@@ -1,0 +1,107 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] SSL authentication problems with Gmail
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2006-January/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20SSL%20authentication%20problems%20with%20Gmail&In-Reply-To=%3Cm3fyo4neij.fsf%40merlin.emma.line.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000217.html">
+   <LINK REL="Next"  HREF="000221.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] SSL authentication problems with Gmail</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20SSL%20authentication%20problems%20with%20Gmail&In-Reply-To=%3Cm3fyo4neij.fsf%40merlin.emma.line.org%3E"
+       TITLE="[fetchmail-users] SSL authentication problems with Gmail">matthias.andree at gmx.de
+       </A><BR>
+    <I>Wed Jan  4 17:28:52 CET 2006</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000217.html">[fetchmail-users] SSL authentication problems with Gmail
+</A></li>
+        <LI>Next message: <A HREF="000221.html">[fetchmail-users] SSL authentication problems with Gmail
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#218">[ date ]</a>
+              <a href="thread.html#218">[ thread ]</a>
+              <a href="subject.html#218">[ subject ]</a>
+              <a href="author.html#218">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Sebastian Tennant &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">sebyte at smolny.plus.com</A>&gt; writes:
+
+&gt;&gt;&gt;<i> OK, added another `-v' and it just lists the Thawte server as well...
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i>   fetchmail[4584]: starting fetchmail 6.3.1 daemon
+</I>&gt;&gt;&gt;<i>   fetchmail[4584]: 6.3.1 querying pop.googlemail.com (protocol POP3) at Wed Jan  4 11:47:17 2006: poll started
+</I>&gt;&gt;&gt;<i>   fetchmail[4584]: Issuer Organization: Thawte Consulting cc
+</I>&gt;&gt;&gt;<i>   fetchmail[4584]: Issuer CommonName: Thawte Premium Server CA
+</I>&gt;&gt;&gt;<i>   fetchmail[4584]: Server CommonName: pop.googlemail.com
+</I>&gt;&gt;&gt;<i>   fetchmail[4584]: pop.googlemail.com key fingerprint: 46:8B:6C:F4:3E:4C:56:29:83:54:2C:37:42:F1:67:80
+</I>&gt;&gt;&gt;<i>   fetchmail[4584]: 6.3.1 querying pop.googlemail.com (protocol POP3) at Wed Jan  4 11:47:18 2006: poll completed
+</I>&gt;&gt;&gt;<i>   fetchmail[4584]: Query status=2 (SOCKET)
+</I>&gt;&gt;&gt;<i>   fetchmail[4584]: sleeping at Wed Jan  4 11:47:18 2006
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i>Looks like it never talks to the POP server.  Can you drop the &quot;port
+</I>&gt;&gt;<i>995&quot; and &quot;sslcertck&quot; options from your fetchmailrc and see what you
+</I>&gt;&gt;<i>get.
+</I>&gt;<i>
+</I>&gt;<i> Removed these lines and it works.  Thanks to everyone who helped.
+</I>
+Well, I checked the source code and found no code path where SSL
+certificate verification would fail without leaving log messages, such
+as 1. the actual error and 2. &quot;SSL connection failed&quot;.
+
+POP3 was configured explicitly, so &quot;port 995&quot; forth or back doesn't make
+a difference either -- removing this option can only make things worse,
+not better.
+
+Remains the question after sslcertck -- it will log trouble, too, EXCEPT
+if a certificate at greater depth causes a preverification failure
+without setting the error code in the X.509 context variables (and we'd
+still get &quot;SSL connection failed&quot; in this case).
+
+It appears as though the server dropped the connection after the SSL
+negotiation and before the greeting, or that your log information is
+incomplete.  Your logging appears to be from syslog, so could you post
+your syslog.conf or syslog-ng.conf (whichever you're *actually* using)?
+
+Do you get more detailed logging with &quot;fetchmail --nosyslog -vv -N -d0
+--sslcertck --port 995&quot;? Can you try running this and see if you still
+get socket errors and if so, which errors they print?
+
+Thanks in advance,
+
+-- 
+Matthias Andree
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000217.html">[fetchmail-users] SSL authentication problems with Gmail
+</A></li>
+	<LI>Next message: <A HREF="000221.html">[fetchmail-users] SSL authentication problems with Gmail
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#218">[ date ]</a>
+              <a href="thread.html#218">[ thread ]</a>
+              <a href="subject.html#218">[ subject ]</a>
+              <a href="author.html#218">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

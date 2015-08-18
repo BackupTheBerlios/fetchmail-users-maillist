@@ -1,0 +1,87 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] [BUG] fetchmail daemon does not resume fetching after a network outage
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2006-June/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20%5BBUG%5D%20fetchmail%20daemon%20does%20not%20resume%20fetching%20after%20a%20network%20outage&In-Reply-To=%3C20060628130854.GA22074%40merlin.emma.line.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000476.html">
+   <LINK REL="Next"  HREF="000472.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] [BUG] fetchmail daemon does not resume fetching after a network outage</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20%5BBUG%5D%20fetchmail%20daemon%20does%20not%20resume%20fetching%20after%20a%20network%20outage&In-Reply-To=%3C20060628130854.GA22074%40merlin.emma.line.org%3E"
+       TITLE="[fetchmail-users] [BUG] fetchmail daemon does not resume fetching after a network outage">matthias.andree at gmx.de
+       </A><BR>
+    <I>Wed Jun 28 15:08:54 CEST 2006</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000476.html">[fetchmail-users] [BUG] fetchmail daemon does not resume fetching after a network outage
+</A></li>
+        <LI>Next message: <A HREF="000472.html">[fetchmail-users] [BUG] fetchmail daemon does not resume fetching after a network outage
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#470">[ date ]</a>
+              <a href="thread.html#470">[ thread ]</a>
+              <a href="subject.html#470">[ subject ]</a>
+              <a href="author.html#470">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Wed, 28 Jun 2006, Uli Zappe wrote:
+
+&gt;<i> &gt;&quot;you'll have to&quot; or &quot;you may have to&quot; sounds more polite than &quot;you  
+</I>&gt;<i> &gt;must&quot; (no offense taken, don't worry).
+</I>&gt;<i> 
+</I>&gt;<i> Well, the force of the laws of logic isn't polite ... ;-)  (This was  
+</I>&gt;<i> not meant to be a social &quot;must&quot; but rather a logical one, as I indeed  
+</I>&gt;<i> see no other programming techniques to deal with that issue.)
+</I>
+Well, some options not yet mentioned are (without regard to their
+usability):
+
+ - dedicated resource tracking with a specific list
+
+ - store the address list in one of the per-server or per-poll
+   structures, rather than globally
+
+ - avoid the crude longjmp() (which should've been siglongjmp anyways)
+   but rely on EINTR or similar.
+
+ - give up on SIGALRM and use non-blocking I/O and select() instead.
+
+I haven't yet checked which way I'll go though.
+
+-- 
+Matthias Andree
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000476.html">[fetchmail-users] [BUG] fetchmail daemon does not resume fetching after a network outage
+</A></li>
+	<LI>Next message: <A HREF="000472.html">[fetchmail-users] [BUG] fetchmail daemon does not resume fetching after a network outage
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#470">[ date ]</a>
+              <a href="thread.html#470">[ thread ]</a>
+              <a href="subject.html#470">[ subject ]</a>
+              <a href="author.html#470">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,144 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Fetchmail delivers mail to all local users in	parallel
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2011-November/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Fetchmail%20delivers%20mail%20to%20all%20local%20users%0A%20in%09parallel&In-Reply-To=%3C4EC2BDD8.9070703%40gmx.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002997.html">
+   <LINK REL="Next"  HREF="003000.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Fetchmail delivers mail to all local users in	parallel</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Fetchmail%20delivers%20mail%20to%20all%20local%20users%0A%20in%09parallel&In-Reply-To=%3C4EC2BDD8.9070703%40gmx.de%3E"
+       TITLE="[fetchmail-users] Fetchmail delivers mail to all local users in	parallel">matthias.andree at gmx.de
+       </A><BR>
+    <I>Tue Nov 15 20:30:32 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002997.html">[fetchmail-users] Fetchmail delivers mail to all local users in	parallel
+</A></li>
+        <LI>Next message: <A HREF="003000.html">[fetchmail-users] Problem with full email address username
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2998">[ date ]</a>
+              <a href="thread.html#2998">[ thread ]</a>
+              <a href="subject.html#2998">[ subject ]</a>
+              <a href="author.html#2998">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Am 15.11.2011 17:44, schrieb brian:
+&gt;<i> On 11/15/2011 05:36 PM, brian wrote:
+</I>&gt;&gt;<i> Hi,
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> I have been running fetchmail for one user for a while now. Now I
+</I>&gt;&gt;<i> added two other
+</I>&gt;&gt;<i> users on my server. Fetchmail gets the emails but delivers the emails
+</I>&gt;&gt;<i> to everyone's
+</I>&gt;&gt;<i> /Maildir (well to the three that exist).
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> set syslog
+</I>&gt;&gt;<i> #set no syslog
+</I>&gt;&gt;<i> #set logfile &quot;/var/log/fetchmail.log&quot;
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> set daemon 240
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> poll
+</I>&gt;&gt;<i>     popmail.t-online.de
+</I>&gt;&gt;<i>     protocol pop3
+</I>&gt;&gt;<i>     user &quot;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">bxxxx_xxxxxg at t-online.de</A>&quot; there is brian here
+</I>&gt;&gt;<i>     with password &quot;xxxx&quot;
+</I>&gt;&gt;<i>     options keep
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> poll
+</I>&gt;&gt;<i>     popmail.t-online.de
+</I>&gt;&gt;<i>     protocol pop3
+</I>&gt;&gt;<i>     user &quot;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">bxx-test at t-online.de</A>&quot; there is brian2 here
+</I>&gt;&gt;<i>     with password &quot;xxxx&quot;
+</I>&gt;&gt;<i>     options keep
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> poll
+</I>&gt;&gt;<i>     popmail.t-online.de
+</I>&gt;&gt;<i>     protocol pop3
+</I>&gt;&gt;<i>     user &quot;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">ddxxxx at t-online.de</A>&quot; there is diane here
+</I>&gt;&gt;<i>     with password &quot;xxxx&quot;
+</I>&gt;&gt;<i>     options keep
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> I think I see the email being passed to exim three times, once for
+</I>&gt;&gt;<i> each user:
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> 2011-11-15 17:05:50 1RQLWA-0006S6-NW &lt;= <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">Brian_Dorling at t-online.de</A>
+</I>&gt;&gt;<i> H=localhost (zotac.home) [127.0.0.1] P=esmtp S=1384
+</I>&gt;&gt;<i> id=4ec28dba.CcnCnPu4iqrfRess%<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">brian at zotac</A>
+</I>&gt;&gt;<i> 2011-11-15 17:05:50 1RQLWA-0006S6-NW =&gt; brian &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">brian at localhost</A>&gt;
+</I>&gt;&gt;<i> R=maildrop T=maildrop_pipe
+</I>&gt;&gt;<i> 2011-11-15 17:05:50 1RQLWA-0006S6-NW Completed
+</I>&gt;&gt;<i> 2011-11-15 17:05:51 1RQLWB-0006SC-2T &lt;= <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">Brian_Dorling at t-online.de</A>
+</I>&gt;&gt;<i> H=localhost (zotac.home) [127.0.0.1] P=esmtp S=1387
+</I>&gt;&gt;<i> id=4ec28dba.CcnCnPu4iqrfRess%<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">brian at zotac</A>
+</I>&gt;&gt;<i> 2011-11-15 17:05:51 1RQLWB-0006SC-2T =&gt; brian2 &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">brian2 at localhost</A>&gt;
+</I>&gt;&gt;<i> R=maildrop T=maildrop_pipe
+</I>&gt;&gt;<i> 2011-11-15 17:05:51 1RQLWB-0006SC-2T Completed
+</I>&gt;&gt;<i> 2011-11-15 17:05:51 1RQLWB-0006SI-Dp &lt;= <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">Brian_Dorling at t-online.de</A>
+</I>&gt;&gt;<i> H=localhost (zotac.home) [127.0.0.1] P=esmtp S=1384
+</I>&gt;&gt;<i> id=4ec28dba.CcnCnPu4iqrfRess%<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">brian at zotac</A>
+</I>&gt;&gt;<i> 2011-11-15 17:05:51 1RQLWB-0006SI-Dp =&gt; diane &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">diane at localhost</A>&gt;
+</I>&gt;&gt;<i> R=maildrop T=maildrop_pipe
+</I>&gt;&gt;<i> 2011-11-15 17:05:51 1RQLWB-0006SI-Dp Completed
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Exim says that the user setup is OK for each user.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> I assume its in some way doing multidrop, but cant figure out why.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Any ideas? Cheers Brian
+</I>
+and later:
+
+&gt;<i> Hmmm, I probably know the answer to this already. I guess I
+</I>&gt;<i> misunderstood &quot;extra email addresses&quot;
+</I>&gt;<i> and thought it meant extra email accounts. Looking into that now.
+</I>&gt;<i> 
+</I>&gt;<i> If I'm right then I retrieved the same email 3 times with fetchmail.
+</I>
+Which appears to be the case - the message-IDs are the same for all
+three deliveries, and your fetchmail configuration isn't using
+multidrop.  There is only one recipient address (brian, brian2, or
+diane), and no wildcard.
+
+The other source of such deliveries would be local aliases or forwards,
+but we can preclude that, it would cause different logging from Exim.
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002997.html">[fetchmail-users] Fetchmail delivers mail to all local users in	parallel
+</A></li>
+	<LI>Next message: <A HREF="003000.html">[fetchmail-users] Problem with full email address username
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2998">[ date ]</a>
+              <a href="thread.html#2998">[ thread ]</a>
+              <a href="subject.html#2998">[ subject ]</a>
+              <a href="author.html#2998">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

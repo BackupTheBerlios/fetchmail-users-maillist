@@ -1,0 +1,93 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] message...was not the expected	length...not	flushed
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2007-February/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20message...was%20not%20the%20expected%0A%09length...not%09flushed&In-Reply-To=%3C20070203111628.GA26411%40merlin.emma.line.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000798.html">
+   <LINK REL="Next"  HREF="000799.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] message...was not the expected	length...not	flushed</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20message...was%20not%20the%20expected%0A%09length...not%09flushed&In-Reply-To=%3C20070203111628.GA26411%40merlin.emma.line.org%3E"
+       TITLE="[fetchmail-users] message...was not the expected	length...not	flushed">matthias.andree at gmx.de
+       </A><BR>
+    <I>Sat Feb  3 12:16:28 CET 2007</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000798.html">[fetchmail-users] message...was not the expected	length...not flushed
+</A></li>
+        <LI>Next message: <A HREF="000799.html">[fetchmail-users] fetchmail 6.3.7-rc1 release candidate
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#800">[ date ]</a>
+              <a href="thread.html#800">[ thread ]</a>
+              <a href="subject.html#800">[ subject ]</a>
+              <a href="author.html#800">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Otto Rodusek (AP-SGP) schrieb am 2007-02-03:
+
+&gt;<i> Thanks for your reply. From your reply, it would imply that fetchmail 
+</I>&gt;<i> would flush or delete these email - however it doesn't. After about a 
+</I>
+No, it wouldn't, and your upstream ISP shouldn't accept them in the
+first place. Talk to them. There is a vast choice of qmail front-ends
+that perform various additional checks before accepting a message.
+
+&gt;<i> month, I'll have quite a number of these mails on the ISP's server and 
+</I>&gt;<i> on each fetchmail run (it runs ever 10 minutes in cron) i would see a 
+</I>&gt;<i> lot of these SAME unflushed emails (as per the log on on first email). 
+</I>&gt;<i> Am I using the wrong parameter or am I missing a parameter? I am willing 
+</I>&gt;<i> to take the risk and consequences if there is a parameter in fetchmail 
+</I>&gt;<i> that will FORCE-DELETE or FLUSH these emails.
+</I>
+Check the antispam configuration option, but that's a bad solution - if
+you are 100% sure it's not a local issue, you should really talk to the
+ISP instead and have them refuse messages from nonexistent or
+nonresolvable domains.
+
+&gt;<i> I ran my fetchmail manually and it download 58 emails of which 9 were 
+</I>&gt;<i> faulty and not flushed (as per the log).
+</I>
+fetchmail hasn't downloaded them and seen a &quot;temporary&quot; error code, so
+it assumes the download will work in the future.
+
+
+Please do trim your quotes next time, and do not top-post.
+
+-- 
+Matthias Andree
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000798.html">[fetchmail-users] message...was not the expected	length...not flushed
+</A></li>
+	<LI>Next message: <A HREF="000799.html">[fetchmail-users] fetchmail 6.3.7-rc1 release candidate
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#800">[ date ]</a>
+              <a href="thread.html#800">[ thread ]</a>
+              <a href="subject.html#800">[ subject ]</a>
+              <a href="author.html#800">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

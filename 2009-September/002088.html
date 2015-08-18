@@ -1,0 +1,108 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Fetchmail with Postfix virtual users
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2009-September/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Fetchmail%20with%20Postfix%20virtual%20users&In-Reply-To=%3C200909201238.00656.joost%40antarean.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002087.html">
+   <LINK REL="Next"  HREF="002089.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Fetchmail with Postfix virtual users</H1>
+    <B>J. Roeleveld</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Fetchmail%20with%20Postfix%20virtual%20users&In-Reply-To=%3C200909201238.00656.joost%40antarean.org%3E"
+       TITLE="[fetchmail-users] Fetchmail with Postfix virtual users">joost at antarean.org
+       </A><BR>
+    <I>Sun Sep 20 12:38:00 CEST 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002087.html">[fetchmail-users] Fetchmail with Postfix virtual users
+</A></li>
+        <LI>Next message: <A HREF="002089.html">[fetchmail-users] Fetchmail with Postfix virtual users
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2088">[ date ]</a>
+              <a href="thread.html#2088">[ thread ]</a>
+              <a href="subject.html#2088">[ subject ]</a>
+              <a href="author.html#2088">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Saturday 19 September 2009 08:19:49 pm Gerard wrote:
+&gt;<i> On Fri, 18 Sep 2009 15:54:54 +0200
+</I>&gt;<i>
+</I>&gt;<i> &quot;J. Roeleveld&quot; &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">joost at antarean.org</A>&gt; wrote:
+</I>&gt;<i> &gt; On Fri, September 18, 2009 3:48 pm, Matthias Andree wrote:
+</I>&gt;<i> &gt; &gt; Gerard schrieb:
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; &lt;snipped&gt;
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; &gt;&gt; If anyone here has it actually
+</I>&gt;<i> &gt; &gt;&gt; working, ere there any problems in configuring it? The mail would
+</I>&gt;<i> &gt; &gt;&gt; be delivered directly to Postfix and not an MDA like procmail.
+</I>&gt;<i> &gt; &gt;
+</I>&gt;<i> &gt; &gt; I'm not aware of configuration difficulties here. For multidrop, be
+</I>&gt;<i> &gt; &gt; sure to set
+</I>&gt;<i> &gt; &gt; the proper header with the &quot;envelope&quot; option.
+</I>&gt;<i> &gt; &gt;
+</I>&gt;<i> &gt; &gt; Avoiding procmail is the right thing to do, in your particular
+</I>&gt;<i> &gt; &gt; case, and generally, too.
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; I have a similar similar setup currently, but am still missing on
+</I>&gt;<i> &gt; part. Is it possible to rewrite the domain-part of the 'target' email
+</I>&gt;<i> &gt; address when using multidrop mailboxes?
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; Eg. I need it changing from &quot;example.com&quot; to &quot;virtual.example.com&quot;
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; Thanks,
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; Joost
+</I>&gt;<i>
+</I>&gt;<i> I am experiencing the same problem. I think I have to change the maps
+</I>&gt;<i> in Postfix to make this work. When I get chance to play around with the
+</I>&gt;<i> mail server, I will try it.
+</I>
+I would prefer not to make too many changes to Postfix as it's currently 
+working correctly apart from this little detail and I don't want to risk any 
+downtime. (Or worse, lost email)
+
+If someone could point me in the right direction to change the address passed 
+to Postfix using a regular expression, I can take it from there.
+Or maybe an additional configuration and/or flag to pass to fetchmail?
+
+Guess I'll need to start reading the source code if there isn't a possible 
+solution already?
+
+--
+Joost
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002087.html">[fetchmail-users] Fetchmail with Postfix virtual users
+</A></li>
+	<LI>Next message: <A HREF="002089.html">[fetchmail-users] Fetchmail with Postfix virtual users
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2088">[ date ]</a>
+              <a href="thread.html#2088">[ thread ]</a>
+              <a href="subject.html#2088">[ subject ]</a>
+              <a href="author.html#2088">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

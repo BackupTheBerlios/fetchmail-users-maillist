@@ -1,0 +1,93 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] using fetchmail with kerberos 5 tickets
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2008-May/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20using%20fetchmail%20with%20kerberos%205%20tickets&In-Reply-To=%3C43ea8d070805271535v35fa19e0v8c6d505465c7c866%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001550.html">
+   <LINK REL="Next"  HREF="001552.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] using fetchmail with kerberos 5 tickets</H1>
+    <B>Rob MacGregor</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20using%20fetchmail%20with%20kerberos%205%20tickets&In-Reply-To=%3C43ea8d070805271535v35fa19e0v8c6d505465c7c866%40mail.gmail.com%3E"
+       TITLE="[fetchmail-users] using fetchmail with kerberos 5 tickets">rob.macgregor at gmail.com
+       </A><BR>
+    <I>Wed May 28 00:35:37 CEST 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001550.html">[fetchmail-users] using fetchmail with kerberos 5 tickets
+</A></li>
+        <LI>Next message: <A HREF="001552.html">[fetchmail-users] fetchmail with keep , get only newer messages
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1551">[ date ]</a>
+              <a href="thread.html#1551">[ thread ]</a>
+              <a href="subject.html#1551">[ subject ]</a>
+              <a href="author.html#1551">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Tue, May 27, 2008 at 5:19 PM, Globe Trotter &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">itsme_410 at yahoo.com</A>&gt; wrote:
+&gt;<i> Hi,
+</I>&gt;<i>
+</I>&gt;<i> I am here on a setup which needs kerberos 5 tickets for me to read e-mail from a POP3 server.
+</I>&gt;<i>
+</I>&gt;<i> I set up my .fetchmailrc as follows:
+</I>&gt;<i>
+</I>&gt;<i> set logfile ~/fetchmail.log
+</I>&gt;<i> poll pop-3.domain.edu with proto KPOP uidl
+</I>&gt;<i> user 'trotter' there with password 'TROTTER' is trotter here warnings 3600
+</I>&gt;<i> mda 'procmail -f-'
+</I>&gt;<i> keep
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> The primary issue is that the POP server goes by the name of pop-1, pop-2, pop-3 etc. which can change at random without notice.
+</I>
+That sounds like an unsolvable problem to be honest.  If they are
+going to do that, the only option you've got is IMAP.  POP3 doesn't
+have a concept of a message status, all tracking is done client side.
+If they support IMAP then you've got a hope, but otherwise I suspect
+you're SOL.
+
+If all they're doing is changing the name of the POP server, but it's
+the same server, then hacking your fetchids may work.  However, I
+don't believe that they are common across POP servers.
+
+-- 
+ Please keep list traffic on the list.
+
+Rob MacGregor
+ Whoever fights monsters should see to it that in the process he
+ doesn't become a monster. Friedrich Nietzsche
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001550.html">[fetchmail-users] using fetchmail with kerberos 5 tickets
+</A></li>
+	<LI>Next message: <A HREF="001552.html">[fetchmail-users] fetchmail with keep , get only newer messages
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1551">[ date ]</a>
+              <a href="thread.html#1551">[ thread ]</a>
+              <a href="subject.html#1551">[ subject ]</a>
+              <a href="author.html#1551">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

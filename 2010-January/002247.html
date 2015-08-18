@@ -1,0 +1,242 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Fetchmail hangs at start of mail collection .	. .
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2010-January/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Fetchmail%20hangs%20at%20start%20of%20mail%20collection%20.%0A%09.%20.&In-Reply-To=%3Cc3cdae84a75a3618e5020a7aeaba95f3.squirrel%40192.168.2.120%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002246.html">
+   <LINK REL="Next"  HREF="002249.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Fetchmail hangs at start of mail collection .	. .</H1>
+    <B>John Williams</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Fetchmail%20hangs%20at%20start%20of%20mail%20collection%20.%0A%09.%20.&In-Reply-To=%3Cc3cdae84a75a3618e5020a7aeaba95f3.squirrel%40192.168.2.120%3E"
+       TITLE="[fetchmail-users] Fetchmail hangs at start of mail collection .	. .">john.williams at seawindow.com
+       </A><BR>
+    <I>Mon Jan 25 19:10:37 CET 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002246.html">[fetchmail-users] Fetchmail hangs at start of mail collection .	. .
+</A></li>
+        <LI>Next message: <A HREF="002249.html">[fetchmail-users] [OT] Sendmail hangs at start of mail collection... (was: Fetchmail hangs at start of mail collection ...)
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2247">[ date ]</a>
+              <a href="thread.html#2247">[ thread ]</a>
+              <a href="subject.html#2247">[ subject ]</a>
+              <a href="author.html#2247">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>
+I've run the env command as Rob suggested and will include the results below.
+
+In the meantime I have a question:
+
+The error message (substantially delayed) for the fetchmail command is
+&quot;listener protocol error&quot;.
+
+Could this error result from the reassignment of the smtp port by my ISP
+(Verizon) from port 25 to port 587?--I am able to telnet to port 25 at
+localhost).
+
+Here are the env command results:
+
+fetchmail: 6.3.10 querying mail.panix.com (protocol POP3) at Mon Jan 25
+12:23:21 2010: poll started
+Trying to connect to 166.84.1.89/110...connected.
+fetchmail: POP3&lt; +OK Dovecot ready.
+fetchmail: POP3&gt; CAPA
+fetchmail: POP3&lt; +OK
+fetchmail: POP3&lt; CAPA
+fetchmail: POP3&lt; TOP
+fetchmail: POP3&lt; UIDL
+fetchmail: POP3&lt; RESP-CODES
+fetchmail: POP3&lt; PIPELINING
+fetchmail: POP3&lt; STLS
+fetchmail: POP3&lt; USER
+fetchmail: POP3&lt; SASL PLAIN LOGIN
+fetchmail: POP3&lt; .
+fetchmail: POP3&gt; STLS
+fetchmail: POP3&lt; +OK Begin TLS negotiation now.
+fetchmail: Server certificate verification error: self signed certificate
+in certificate chain
+fetchmail: Issuer Organization: GoDaddy.com, Inc.
+fetchmail: Issuer CommonName: Go Daddy Secure Certification Authority
+fetchmail: Server CommonName: mail.panix.com
+fetchmail: Subject Alternative Name: mail.panix.com
+fetchmail: Subject Alternative Name: www.mail.panix.com
+fetchmail: mail.panix.com key fingerprint:
+EA:3C:C8:41:1F:D4:94:52:E5:DD:5B:BF:65:0B:02:83
+fetchmail: POP3&gt; CAPA
+fetchmail: POP3&lt; +OK
+fetchmail: POP3&lt; CAPA
+fetchmail: POP3&lt; TOP
+fetchmail: POP3&lt; UIDL
+fetchmail: POP3&lt; RESP-CODES
+fetchmail: POP3&lt; PIPELINING
+fetchmail: POP3&lt; USER
+fetchmail: POP3&lt; SASL PLAIN LOGIN
+fetchmail: POP3&lt; .
+fetchmail: mail.panix.com: upgrade to TLS succeeded.
+fetchmail: POP3&gt; USER jwilliam
+fetchmail: POP3&lt; +OK
+fetchmail: POP3&gt; PASS *
+fetchmail: POP3&lt; +OK Logged in.
+fetchmail: selecting or re-polling default folder
+fetchmail: POP3&gt; STAT
+fetchmail: POP3&lt; +OK 2 24821
+2 messages for jwilliam at mail.panix.com (24821 octets).
+fetchmail: POP3&gt; LIST 1
+fetchmail: POP3&lt; +OK 1 14294
+fetchmail: POP3&gt; RETR 1
+fetchmail: POP3&lt; +OK 14294 octets
+reading message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">jwilliam at mailbackend.panix.com</A>:1 of 2 (14294 octets) About
+to rewrite Return-Path: &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">stephen at amtexsystems.com</A>&gt;
+Rewritten version is Return-Path: &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">stephen at amtexsystems.com</A>&gt;
+
+About to rewrite From: &quot;stephen&quot; &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">stephen at amtexsystems.com</A>&gt;
+Rewritten version is From: &quot;stephen&quot; &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">stephen at amtexsystems.com</A>&gt;
+
+About to rewrite To: &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">john.williams at seawindow.com</A>&gt;
+Rewritten version is To: &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">john.williams at seawindow.com</A>&gt;
+
+Trying to connect to 127.0.0.1/25...connected.
+fetchmail: SMTP&lt; 220 louis.seawindow.com ESMTP Sendmail 8.14.3/8.14.3;
+Mon, 25 Jan 2010 12:23:22 -0500 (EST)
+fetchmail: SMTP&gt; EHLO louis.seawindow.com
+fetchmail: SMTP&lt; 250-louis.seawindow.com Hello localhost [127.0.0.1],
+pleased to meet you
+fetchmail: SMTP&lt; 250-ENHANCEDSTATUSCODES
+fetchmail: SMTP&lt; 250-PIPELINING
+fetchmail: SMTP&lt; 250-EXPN
+fetchmail: SMTP&lt; 250-VERB
+fetchmail: SMTP&lt; 250-8BITMIME
+fetchmail: SMTP&lt; 250-SIZE
+fetchmail: SMTP&lt; 250-DSN
+fetchmail: SMTP&lt; 250-AUTH GSSAPI DIGEST-MD5 CRAM-MD5
+fetchmail: SMTP&lt; 250-DELIVERBY
+fetchmail: SMTP&lt; 250 HELP
+fetchmail: forwarding to localhost
+fetchmail: SMTP&gt; MAIL FROM:&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">stephen at amtexsystems.com</A>&gt; SIZE=14294
+fetchmail: SMTP&lt; 250 2.1.0 &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">stephen at amtexsystems.com</A>&gt;... Sender ok
+fetchmail: SMTP&gt; RCPT TO:&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">jwilliam at localhost</A>&gt;
+fetchmail: smtp listener protocol error
+............ not flushed
+fetchmail: POP3&gt; LIST 2
+fetchmail: POP3&lt; +OK 2 10527
+fetchmail: POP3&gt; RETR 2
+fetchmail: POP3&lt; +OK 10527 octets
+reading message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">jwilliam at mailbackend.panix.com</A>:2 of 2 (10527 octets) About
+to rewrite Return-Path: &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">bounce-fvfafdxgvydfxmx at bz-direct.com</A>&gt;
+Rewritten version is Return-Path: &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">bounce-fvfafdxgvydfxmx at bz-direct.com</A>&gt;
+
+About to rewrite From: SD Times &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">sdtimes at bz-direct.com</A>&gt;
+Rewritten version is From: SD Times &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">sdtimes at bz-direct.com</A>&gt;
+
+About to rewrite Reply-To: SD Times &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">sdtimes at halldata.com</A>&gt;
+Rewritten version is Reply-To: SD Times &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">sdtimes at halldata.com</A>&gt;
+
+About to rewrite To: &quot;John Williams&quot; &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">john.williams at seawindow.com</A>&gt;
+Rewritten version is To: &quot;John Williams&quot; &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">john.williams at seawindow.com</A>&gt;
+
+Trying to connect to 127.0.0.1/25...connected.
+fetchmail: SMTP&lt; 220 louis.seawindow.com ESMTP Sendmail 8.14.3/8.14.3;
+Mon, 25 Jan 2010 12:28:23 -0500 (EST)
+fetchmail: SMTP&gt; EHLO louis.seawindow.com
+fetchmail: SMTP&lt; 250-louis.seawindow.com Hello localhost [127.0.0.1],
+pleased to meet you
+fetchmail: SMTP&lt; 250-ENHANCEDSTATUSCODES
+fetchmail: SMTP&lt; 250-PIPELINING
+fetchmail: SMTP&lt; 250-EXPN
+fetchmail: SMTP&lt; 250-VERB
+fetchmail: SMTP&lt; 250-8BITMIME
+fetchmail: SMTP&lt; 250-SIZE
+fetchmail: SMTP&lt; 250-DSN
+fetchmail: SMTP&lt; 250-AUTH GSSAPI DIGEST-MD5 CRAM-MD5
+fetchmail: SMTP&lt; 250-DELIVERBY
+fetchmail: SMTP&lt; 250 HELP
+fetchmail: forwarding to localhost
+fetchmail: SMTP&gt; MAIL FROM:&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">bounce-fvfafdxgvydfxmx at bz-direct.com</A>&gt;
+BODY=8BITMIME SIZE=10527
+fetchmail: SMTP&lt; 250 2.1.0 &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">bounce-fvfafdxgvydfxmx at bz-direct.com</A>&gt;...
+Sender ok
+fetchmail: SMTP&gt; RCPT TO:&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">jwilliam at localhost</A>&gt;
+fetchmail: smtp listener protocol error
+........ not flushed
+fetchmail: POP3&gt; QUIT
+fetchmail: POP3&lt; +OK Logging out.
+fetchmail: 6.3.10 querying mail.panix.com (protocol POP3) at Mon Jan 25
+12:33:23 2010: poll completed
+fetchmail: not swapping UID lists, no UIDs seen this query
+fetchmail: normal termination, status 0
+-- 
+John Williams
+
+&gt;<i>
+</I>&gt;<i> Fetchmail users:
+</I>&gt;<i>
+</I>&gt;<i> I recently upgraded the underlying OS for my mail system to FreeBSD 8.0
+</I>&gt;<i> and upgraded the fetchmail installation to fetchmail-6.3.10.
+</I>&gt;<i>
+</I>&gt;<i> The MTA is sendmail-8.14.3, which is working fine in delivering mail to
+</I>&gt;<i> the ISP mail server.
+</I>&gt;<i>
+</I>&gt;<i> However, when fetchmail attempts to pop incoming mail from the ISP server,
+</I>&gt;<i> the fetchmail command halts at the start of retrieving the first message.
+</I>&gt;<i>
+</I>&gt;<i> Here's the command syntax I've been using:
+</I>&gt;<i>
+</I>&gt;<i>      fetchmail -v -a -u username -p pop3 mail.isp.com
+</I>&gt;<i>
+</I>&gt;<i> (I've also tried using the -F option.)
+</I>&gt;<i>
+</I>&gt;<i> The commands always hangs.
+</I>&gt;<i>
+</I>&gt;<i> I'm attaching the SMTP message exchange for the command below.
+</I>&gt;<i>
+</I>&gt;<i> Can anyone suggest why this behavior might be happening?
+</I>&gt;<i>
+</I>&gt;<i> Thanks in advance.
+</I>&gt;<i> ==============================
+</I>&gt;<i> ...
+</I>&gt;<i>
+</I>
+&gt;<i> --
+</I>&gt;<i> John Williams
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i>
+</I>
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002246.html">[fetchmail-users] Fetchmail hangs at start of mail collection .	. .
+</A></li>
+	<LI>Next message: <A HREF="002249.html">[fetchmail-users] [OT] Sendmail hangs at start of mail collection... (was: Fetchmail hangs at start of mail collection ...)
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2247">[ date ]</a>
+              <a href="thread.html#2247">[ thread ]</a>
+              <a href="subject.html#2247">[ subject ]</a>
+              <a href="author.html#2247">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

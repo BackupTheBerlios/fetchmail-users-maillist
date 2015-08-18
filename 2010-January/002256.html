@@ -1,0 +1,180 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] [PATCH] Re: fetchmail is not retrieving all	messages?
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2010-January/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20%5BPATCH%5D%20Re%3A%20fetchmail%20is%20not%20retrieving%20all%0A%09messages%3F&In-Reply-To=%3C20100127075114.GA27695%40session.bombay.retortsoft.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002254.html">
+   <LINK REL="Next"  HREF="002258.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] [PATCH] Re: fetchmail is not retrieving all	messages?</H1>
+    <B>Sunil Shetye</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20%5BPATCH%5D%20Re%3A%20fetchmail%20is%20not%20retrieving%20all%0A%09messages%3F&In-Reply-To=%3C20100127075114.GA27695%40session.bombay.retortsoft.com%3E"
+       TITLE="[fetchmail-users] [PATCH] Re: fetchmail is not retrieving all	messages?">shetye at bombay.retortsoft.com
+       </A><BR>
+    <I>Wed Jan 27 08:51:14 CET 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002254.html">[fetchmail-users] fetchmail is not retrieving all messages?
+</A></li>
+        <LI>Next message: <A HREF="002258.html">[fetchmail-users] [PATCH] Re: fetchmail is not retrieving all messages?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2256">[ date ]</a>
+              <a href="thread.html#2256">[ thread ]</a>
+              <a href="subject.html#2256">[ subject ]</a>
+              <a href="author.html#2256">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi James Moe,
+
+Quoting from James Moe's mail on Tue, Jan 26, 2010:
+&gt;<i> reading message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">sma at sohnen-moe.com</A>:1 of 3 (5992 octets)Trying to connect
+</I>&gt;<i> to 127.0.0.1/5025...connected.
+</I>&gt;<i> SMTP&lt; 220 sma.com ESMTP CommuniGate Pro 5.2.18 is glad to see you!
+</I>
+...
+
+&gt;<i> SMTP&gt; DATA
+</I>&gt;<i> SMTP&lt; 354 Enter mail, end with &quot;.&quot; on a line by itself
+</I>&gt;<i> SMTP&gt;. (EOM)
+</I>&gt;<i> SMTP&lt; 554 5.7.1 Mail is unsolicited (and classfied as spam)
+</I>&gt;<i> SMTP error: 554 5.7.1 Mail is unsolicited (and classfied as spam)
+</I>&gt;<i> SMTP listener refused delivery
+</I>&gt;<i> SMTP&gt; RSET
+</I>&gt;<i> smtp listener protocol error
+</I>
+...
+
+&gt;<i> SMTP&gt; MAIL FROM:&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">yieldTl at creativecommons.org</A>&gt; SIZE=6124
+</I>&gt;<i> smtp listener protocol error
+</I>
+It looks like fetchmail should have trapped this case. Could you try
+the attached patch without the 'batchlimit 1' option now?
+
+-- 
+Sunil Shetye.
+-------------- next part --------------
+diff -Naur fetchmail-6.3.13.orig/sink.c fetchmail-6.3.13/sink.c
+--- fetchmail-6.3.13.orig/sink.c	2009-05-25 21:27:37.000000000 +0530
++++ fetchmail-6.3.13/sink.c	2010-01-27 13:08:04.000000000 +0530
+@@ -65,6 +65,17 @@
+     batchcount = 0;
+ }
+ 
++void smtp_rset(struct query *ctl)
++/* reset the mail transaction */
++{
++    if (SMTP_rset(ctl-&gt;smtp_socket, ctl-&gt;smtphostmode) == SM_UNRECOVERABLE)
++    {
++	/* close the bad connection. fetchmail will reconnect for the
++	 * next mail */
++	smtp_close(ctl, 0);
++    }
++}
++
+ int smtp_open(struct query *ctl)
+ /* try to open a socket to the appropriate SMTP server for this query */ 
+ {
+@@ -441,7 +452,7 @@
+      * RSET discards the message body and it doesn't get sent to the
+      * valid recipients.
+      */
+-    SMTP_rset(ctl-&gt;smtp_socket);    /* stay on the safe side */
++    smtp_rset(ctl);    /* stay on the safe side */
+     if (outlevel &gt;= O_DEBUG)
+ 	report(stdout, GT_(&quot;Saved error is still %d\n&quot;), smtperr);
+ #endif /* __UNUSED */
+@@ -938,7 +949,7 @@
+     {
+ 	int err = handle_smtp_report(ctl, msg); /* map to PS_TRANSIENT or PS_REFUSED */
+ 
+-	SMTP_rset(ctl-&gt;smtp_socket, ctl-&gt;smtphostmode);    /* stay on the safe side */
++	smtp_rset(ctl);    /* stay on the safe side */
+ 	return(err);
+     }
+ 
+@@ -1006,7 +1017,7 @@
+ 	     * crap. If one of the recipients returned PS_TRANSIENT,
+ 	     * we return exactly that.
+ 	     */
+-	    SMTP_rset(ctl-&gt;smtp_socket, ctl-&gt;smtphostmode);        /* required by RFC1870 */
++	    smtp_rset(ctl);        /* required by RFC1870 */
+ 	    goto transient;
+     }
+ #ifdef EXPLICIT_BOUNCE_ON_BAD_ADDRESS
+@@ -1041,7 +1052,7 @@
+ 	{
+ 	    if (outlevel &gt;= O_VERBOSE)
+ 		report(stderr, GT_(&quot;no address matches; no postmaster set.\n&quot;));
+-	    SMTP_rset(ctl-&gt;smtp_socket, ctl-&gt;smtphostmode);	/* required by RFC1870 */
++	    smtp_rset(ctl);	/* required by RFC1870 */
+ 	    return(PS_REFUSED);
+ 	}
+ 	if ((smtp_err = SMTP_rcpt(ctl-&gt;smtp_socket, ctl-&gt;smtphostmode,
+@@ -1053,7 +1064,7 @@
+ 	if (smtp_err != SM_OK)
+ 	{
+ 	    report(stderr, GT_(&quot;can't even send to %s!\n&quot;), run.postmaster);
+-	    SMTP_rset(ctl-&gt;smtp_socket, ctl-&gt;smtphostmode);	/* required by RFC1870 */
++	    smtp_rset(ctl);	/* required by RFC1870 */
+ 	    return(PS_REFUSED);
+ 	}
+ 
+@@ -1074,7 +1085,7 @@
+     if (smtp_err != SM_OK)
+     {
+ 	int err = handle_smtp_report(ctl, msg);
+-	SMTP_rset(ctl-&gt;smtp_socket, ctl-&gt;smtphostmode);    /* stay on the safe side */
++	smtp_rset(ctl);    /* stay on the safe side */
+ 	return(err);
+     }
+ 
+@@ -1409,13 +1420,13 @@
+ 	{
+ 	    if (handle_smtp_report(ctl, msg) != PS_REFUSED)
+ 	    {
+-	        SMTP_rset(ctl-&gt;smtp_socket, ctl-&gt;smtphostmode);    /* stay on the safe side */
++	        smtp_rset(ctl);    /* stay on the safe side */
+ 		return(FALSE);
+ 	    }
+ 	    else
+ 	    {
+ 		report(stderr, GT_(&quot;SMTP listener refused delivery\n&quot;));
+-	        SMTP_rset(ctl-&gt;smtp_socket, ctl-&gt;smtphostmode);    /* stay on the safe side */
++	        smtp_rset(ctl);    /* stay on the safe side */
+ 		return(TRUE);
+ 	    }
+ 	}
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002254.html">[fetchmail-users] fetchmail is not retrieving all messages?
+</A></li>
+	<LI>Next message: <A HREF="002258.html">[fetchmail-users] [PATCH] Re: fetchmail is not retrieving all messages?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2256">[ date ]</a>
+              <a href="thread.html#2256">[ thread ]</a>
+              <a href="subject.html#2256">[ subject ]</a>
+              <a href="author.html#2256">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

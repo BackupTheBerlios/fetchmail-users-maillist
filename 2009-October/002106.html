@@ -1,0 +1,108 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Fetchmail refuses to deliver some messages
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2009-October/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Fetchmail%20refuses%20to%20deliver%20some%20messages&In-Reply-To=%3C20091001065923.0a300116%40scorpio.seibercom.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   
+   <LINK REL="Next"  HREF="002107.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Fetchmail refuses to deliver some messages</H1>
+    <B>Jerry</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Fetchmail%20refuses%20to%20deliver%20some%20messages&In-Reply-To=%3C20091001065923.0a300116%40scorpio.seibercom.net%3E"
+       TITLE="[fetchmail-users] Fetchmail refuses to deliver some messages">gesbbb at yahoo.com
+       </A><BR>
+    <I>Thu Oct  1 12:59:23 CEST 2009</I>
+    <P><UL>
+        
+        <LI>Next message: <A HREF="002107.html">[fetchmail-users] Fetchmail refuses to deliver some messages
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2106">[ date ]</a>
+              <a href="thread.html#2106">[ thread ]</a>
+              <a href="subject.html#2106">[ subject ]</a>
+              <a href="author.html#2106">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>This is fetchmail release 6.3.11+RPA+SDPS+SSL+OPIE+NLS.
+
+I have been finding this notation in the fetchmail log file quite
+consistently:
+
+fetchmail: reading message recent:<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">me at mydomain.com</A>@gmail-pop.l.google.com:1 of 2 (2239 octets) (log message incomplete)
+fetchmail: SMTP error: 501 5.1.7 Bad sender address syntax
+fetchmail:  not flushed
+
+This is the e-mail headers from the problem message:
+                                                                                                                                                                                                                                                               
+Delivered-To: <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">me at mydomain.com</A>
+Received: by 10.216.46.134 with SMTP id r6cs313217web;
+        Wed, 30 Sep 2009 18:04:08 -0700 (PDT)
+Received: by 10.150.131.5 with SMTP id e5mr1046587ybd.262.1254359047461;
+        Wed, 30 Sep 2009 18:04:07 -0700 (PDT)
+Return-Path: &lt;abfsupajsih@??????&gt;
+Received: from ?????? ([211.225.33.79])
+        by mx.google.com with ESMTP id 19si23490503gxk.29.2009.09.30.18.04.06;
+        Wed, 30 Sep 2009 18:04:07 -0700 (PDT)
+Received-SPF: softfail (google.com: best guess record for domain of transitioning abfsupajsih@\ufffd\ufffd\ufffd\ufffd does not designate 211.225.33.79 as permitted sender) client-ip=211.225.33.79;
+Authentication-Results: mx.google.com; spf=softfail (google.com: best guess record for domain of transitioning abfsupajsih@\ufffd\ufffd\ufffd\ufffd does not designate 211.225.33.79 as permitted sender) smtp.mail=abfsupajsih@\ufffd\ufffd\ufffd\ufffd
+Received: from 211.225.33.79 by mailstore1.secureserver.net; Thu, 1 Oct 2009 10:04:05 +0900
+Date:	Thu, 1 Oct 2009 10:04:05 +0900
+From:	=?koi8-r?B?IkVsdmlhIEphY29ic2VuIg==?= &lt;abfsupajsih@\ufffd\u03bf\u0230\ufffd&gt;
+X-Mailer: The Bat! (v3.80.03) Educational
+Reply-To: abfsupajsih@\ufffd\ufffd\ufffd\ufffd
+X-Priority: 3 (Normal)
+Message-ID: &lt;103200928.62473244930780@\ufffd\ufffd\ufffd\ufffd&gt;
+To: <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">me at mydomain.com</A>
+Subject: {device_head}
+MIME-Version: 1.0
+Content-Type: text/html;
+  charset=iso-8859-2
+Content-Transfer-Encoding: 7bit
+
+I am not sure why fetchmail is not simply delivering the message. Is
+the some configuration setting that I should be using?
+
+This is the relevant portion of the fetchmailrc file that pertains to
+this account.
+
+    user 'recent:<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">me at mydomain.com</A>' there with password 'blacktop' is 'me' here options forcecr dropdelivered smtpaddress 'mydomain.com' ssl sslcertpath '/usr/local/etc/postfix/certs/' sslfingerprint '92:73:17:4C:34:4B:68:F7:B2:17:71:42:0D:7F:9F:33'
+
+-- 
+Jerry
+<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">gesbbb at yahoo.com</A>
+
+When nothing can possibly go wrong, it will.
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	
+	<LI>Next message: <A HREF="002107.html">[fetchmail-users] Fetchmail refuses to deliver some messages
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2106">[ date ]</a>
+              <a href="thread.html#2106">[ thread ]</a>
+              <a href="subject.html#2106">[ subject ]</a>
+              <a href="author.html#2106">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

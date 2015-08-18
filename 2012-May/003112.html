@@ -1,0 +1,216 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Problem with Demon's new Microsoft Exchange Server 2010 service
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2012-May/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Problem%20with%20Demon%27s%20new%20Microsoft%20Exchange%0A%20Server%202010%20service&In-Reply-To=%3C4FA813D3.3050204%40gmx.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003110.html">
+   <LINK REL="Next"  HREF="003113.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Problem with Demon's new Microsoft Exchange Server 2010 service</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Problem%20with%20Demon%27s%20new%20Microsoft%20Exchange%0A%20Server%202010%20service&In-Reply-To=%3C4FA813D3.3050204%40gmx.de%3E"
+       TITLE="[fetchmail-users] Problem with Demon's new Microsoft Exchange Server 2010 service">matthias.andree at gmx.de
+       </A><BR>
+    <I>Mon May  7 20:26:27 CEST 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003110.html">[fetchmail-users] Problem with Demon's new Microsoft Exchange	Server 2010 service
+</A></li>
+        <LI>Next message: <A HREF="003113.html">[fetchmail-users] Problem with Demon's new Microsoft Exchange	Server 2010 service
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3112">[ date ]</a>
+              <a href="thread.html#3112">[ thread ]</a>
+              <a href="subject.html#3112">[ subject ]</a>
+              <a href="author.html#3112">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Am 07.05.2012 12:10, schrieb John Connett:
+&gt;<i> Operating system:
+</I>&gt;<i>     $ cat /etc/SuSE-release
+</I>&gt;<i>     openSUSE 12.1 (x86_64)
+</I>&gt;<i>     VERSION = 12.1
+</I>&gt;<i>     CODENAME = Asparagus
+</I>&gt;<i> 
+</I>&gt;<i> Name and origin of the RPM:
+</I>&gt;<i>     $ rpm -q fetchmail
+</I>&gt;<i>     fetchmail-6.3.21-4.1.3.x86_64
+</I>&gt;<i> 
+</I>&gt;<i> The name and version of the SMTP listener:
+</I>&gt;<i>     $ rpm -q exim
+</I>&gt;<i>     exim-4.75-5.1.3.x86_64
+</I>&gt;<i> 
+</I>&gt;<i> Command-line options you used:
+</I>&gt;<i>     openSUSE 12.1 distributed /etc/inid.d/fetchmail with added &quot;-vvv&quot;.
+</I>&gt;<i> 
+</I>&gt;<i> /etc/fetchmailrc (with names changed to protect the innocent):
+</I>&gt;<i>     $ cat /etc/fetchmailrc
+</I>&gt;<i>     # Configuration created Thu Apr 26 22:58:13 2012
+</I>&gt;<i>     set bouncemail
+</I>&gt;<i>     set properties &quot;&quot;
+</I>&gt;<i>     set daemon 300
+</I>&gt;<i>     poll mail.demon.co.uk proto IMAP
+</I>&gt;<i>            localdomains yyy.demon.co.uk
+</I>&gt;<i>            user '<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">administrator at yyy.demon.co.uk</A>' there password 'secret'
+</I>&gt;<i> is xxx here
+</I>&gt;<i>            sslproto TLS1
+</I>&gt;<i>            sslcertck
+</I>&gt;<i>     poll mail.demon.co.uk proto IMAP
+</I>&gt;<i>            localdomains yyy.demon.co.uk
+</I>&gt;<i>            user '<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">xxx at yyy.demon.co.uk</A>' there password 'secret' is xxx here
+</I>&gt;<i>            sslproto TLS1
+</I>&gt;<i>            sslcertck
+</I>&gt;<i> 
+</I>&gt;<i> Problem:
+</I>&gt;<i> I have recently been migrated to Demon's new service which appears to be
+</I>&gt;<i> based on Microsoft Exchange Server 2010.  The migration appeared to have
+</I>&gt;<i> been successful with messages being fetched.  Then fetching of messages
+</I>&gt;<i> ceased.  I added &quot;-vvv&quot; to /etc/init.d/fetchmail and restarted
+</I>&gt;<i> fetchmail.  Here are edited highlights from /var/log/fetchmail:
+</I>&gt;<i> 
+</I>&gt;<i> fetchmail: IMAP&lt; A0004 NO AUTHENTICATE failed.
+</I>&gt;<i> fetchmail: IMAP&gt; A0005 LOGIN &quot;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">xxx at yyy.demon.co.uk</A>&quot; *
+</I>&gt;<i> fetchmail: IMAP&lt; A0005 OK LOGIN completed.
+</I>&gt;<i> fetchmail: selecting or re-polling default folder
+</I>&gt;<i> fetchmail: IMAP&gt; A0006 SELECT &quot;INBOX&quot;
+</I>&gt;<i> fetchmail: IMAP&lt; * 264 EXISTS
+</I>&gt;<i> fetchmail: IMAP&lt; * 1 RECENT
+</I>&gt;<i> fetchmail: IMAP&lt; * FLAGS (\Seen \Answered \Flagged \Deleted \Draft
+</I>&gt;<i> $MDNSent)
+</I>&gt;<i> fetchmail: IMAP&lt; * OK [PERMANENTFLAGS (\Seen \Answered \Flagged \Deleted
+</I>&gt;<i> \Draft $MDNSent)] Permanent flags
+</I>&gt;<i> fetchmail: IMAP&lt; * OK [UNSEEN 1] Is the first unseen message
+</I>&gt;<i> fetchmail: IMAP&lt; * OK [UIDVALIDITY 3203] UIDVALIDITY value
+</I>&gt;<i> fetchmail: IMAP&lt; * OK [UIDNEXT 2124] The next unique identifier value
+</I>&gt;<i> fetchmail: IMAP&lt; A0006 OK [READ-WRITE] SELECT completed.
+</I>&gt;<i> fetchmail: 264 messages waiting after first poll
+</I>&gt;<i> fetchmail: IMAP&gt; A0007 EXPUNGE
+</I>&gt;<i> fetchmail: IMAP&lt; * 264 EXISTS
+</I>&gt;<i> fetchmail: IMAP&lt; A0007 OK EXPUNGE completed.
+</I>&gt;<i> fetchmail: 264 messages waiting after expunge
+</I>&gt;<i> fetchmail: 264 messages for <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">xxx at yyy.demon.co.uk</A> at mail.demon.co.uk.
+</I>&gt;<i> fetchmail: IMAP&gt; A0008 FETCH 1:100 RFC822.SIZE
+</I>&gt;<i> fetchmail: IMAP&lt; * 1 FETCH (RFC822.SIZE 8512)
+</I>&gt;<i> fetchmail: IMAP&lt; * 2 FETCH (RFC822.SIZE 6404)
+</I>&gt;<i> [...]
+</I>&gt;<i> fetchmail: IMAP&lt; * 99 FETCH (RFC822.SIZE 2942)
+</I>&gt;<i> fetchmail: IMAP&lt; * 100 FETCH (RFC822.SIZE 3914)
+</I>&gt;<i> fetchmail: IMAP&lt; A0008 OK FETCH completed.
+</I>&gt;<i> fetchmail: IMAP&gt; A0009 FETCH 1 RFC822.HEADER
+</I>&gt;<i> fetchmail: IMAP&lt; A0009 OK FETCH completed.
+</I>&gt;<i> fetchmail: Incorrect FETCH response: OK FETCH COMPLETED..
+</I>&gt;<i> fetchmail: IMAP&gt; A0010 LOGOUT
+</I>&gt;<i> fetchmail: IMAP&lt; * BYE Microsoft Exchange Server 2010 IMAP4 server
+</I>&gt;<i> signing off.
+</I>&gt;<i> fetchmail: IMAP&lt; A0010 OK LOGOUT completed.
+</I>&gt;<i> fetchmail: client/server synchronization error while fetching from
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">xxx at yyy.demon.co.uk</A>@mail.demon.co.uk
+</I>&gt;<i> fetchmail: 6.3.21 querying mail.demon.co.uk (protocol IMAP) at Mon May 
+</I>&gt;<i> 7 10:07:45 2012: poll completed
+</I>&gt;<i> fetchmail: Merged UID list from mail.demon.co.uk: &lt;empty&gt;
+</I>&gt;<i> fetchmail: Query status=7 (ERROR)
+</I>&gt;<i> fetchmail: sleeping at Mon May  7 10:07:45 2012 for 600 seconds
+</I>&gt;<i> 
+</I>&gt;<i> The problem seems to be the &quot;A0009 OK FETCH completed.&quot; response to
+</I>&gt;<i> &quot;A0009 FETCH 1 RFC822.HEADER&quot;.  There are no patches touching &quot;imap.c&quot;
+</I>&gt;<i> in the openSUSE source RPM and I have confirmed that it is identical to
+</I>&gt;<i> the 6.3.21 original.
+</I>&gt;<i> 
+</I>&gt;<i> The &quot;Incorrect FETCH response: OK FETCH COMPLETED..&quot; appears to be
+</I>&gt;<i> generated from within imap_fetch_headers() by &quot;an unexpected tagged
+</I>&gt;<i> response&quot;.  Is this an exciting new innovation in Microsoft Exchange
+</I>&gt;<i> Server 2010?
+</I>
+John,
+
+at least it's the first report of its kind that I've become aware of.
+
+I sat down with RFC-3501, the IMAP 4rev1 standard, and my current
+understanding is that the server sent an invalid response.
+
+The &quot;unexpected tagged response&quot; means that the server reply lacked
+mandatory untagged data.  A valid response to the A0009 FETCH 1
+RFC822.HEADER would have been either:
+
+* FETCH (RFC822.HEADER NIL)
+A0009 OK FETCH completed.
+
+Or:
+
+* FETCH (RFC822.HEADER &quot;&quot;)
+A0009 OK FETCH completed.
+
+Or:
+
+* FETCH (RFC822.HEADER {0}
+)
+A0009 OK FETCH completed.
+
+
+Having said that, I'll recommend that you report the problem to Demon;
+chances are that the message is corrupted on the server and can be
+repaired, or that the Exchange 2010 behaviour can be tweaked by their
+admins; otherwise and/or on top of that, it would be Demon's task to
+talk to Microsoft and have the Redmond guys make Exchange 2010 compliant
+to the IMAP protocol, even in the face of incomplete and/or corrupted
+messages.
+
+It is likely that the message has no formal Internet header; earlier
+Exchange versions used to reassemble messages on-the-fly; and chances
+are that configuration options might avoid the server bug.
+
+Note that per RFC-5322, the From: (sender) and Date: (originator's date)
+headers are mandatory, so the message couldn't reliably be shipped
+forward anyways if it doesn't have these headers, and
+garbage-in-garbage-out attempts often fail these days on modern SMTP
+servers.
+
+
+Chances are also that later fetchmail releases may be able to skip over
+these messages and leave them on the server unfetched, or delete them
+should the user opt to delete corrupted messages.  Given that fetchmail
+received the only pending tagged reply, it shouldn't assume it has gone
+out of synch though.
+
+Sunil, for resilience towards massive faults on the server side, we'll
+probably have to add an error counter so that fetchmail won't attempt to
+fetch hundreds of messages' headers and skip over all of them when the
+server exhibits systematic faults (and not just some individual
+messages, as your report suggests).
+
+Hope that helps for now,
+Matthias
+</PRE>
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003110.html">[fetchmail-users] Problem with Demon's new Microsoft Exchange	Server 2010 service
+</A></li>
+	<LI>Next message: <A HREF="003113.html">[fetchmail-users] Problem with Demon's new Microsoft Exchange	Server 2010 service
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3112">[ date ]</a>
+              <a href="thread.html#3112">[ thread ]</a>
+              <a href="subject.html#3112">[ subject ]</a>
+              <a href="author.html#3112">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

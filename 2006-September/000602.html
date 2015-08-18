@@ -1,0 +1,96 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] query state=2 (SOCKET)
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2006-September/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20query%20state%3D2%20%28SOCKET%29&In-Reply-To=%3C9bfbfec30609191342g3b47c366k2a7b0ba10202b02%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000593.html">
+   <LINK REL="Next"  HREF="000594.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] query state=2 (SOCKET)</H1>
+    <B>Roberto Meyer</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20query%20state%3D2%20%28SOCKET%29&In-Reply-To=%3C9bfbfec30609191342g3b47c366k2a7b0ba10202b02%40mail.gmail.com%3E"
+       TITLE="[fetchmail-users] query state=2 (SOCKET)">roberto.s.meyer at gmail.com
+       </A><BR>
+    <I>Tue Sep 19 22:42:08 CEST 2006</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000593.html">[fetchmail-users] query state=2 (SOCKET)
+</A></li>
+        <LI>Next message: <A HREF="000594.html">[fetchmail-users] query state=2 (SOCKET)
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#602">[ date ]</a>
+              <a href="thread.html#602">[ thread ]</a>
+              <a href="subject.html#602">[ subject ]</a>
+              <a href="author.html#602">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>2006/9/14, Rob MacGregor &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">rob.macgregor at gmail.com</A>&gt;:
+&gt;<i> On 9/13/06, Roberto Meyer &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">roberto.s.meyer at gmail.com</A>&gt; wrote:
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; Finally I got a couple of errors with single connections.
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; I've attached a .tgz file with the logs of fetchmail and tcpdump at
+</I>&gt;<i> &gt; the moment of the errors, and both logs for a well done connection
+</I>&gt;<i> &gt; too.
+</I>&gt;<i>
+</I>&gt;<i> A quick scan of the logs show what I'd expect for a networking
+</I>&gt;<i> problem.  I'll have a look at the text outputs from tcpdump later,
+</I>&gt;<i> though a quick scan doesn't show anything obvious right now.
+</I>
+[snip]
+
+Yep, I think it's somewhat prooved. I tested this options:
+
+1- server 1 -&gt; ISP 1 -&gt; actual hosting = socket error
+2- server 1 -&gt; ISP 1 -&gt; another server = socket error
+3- server 2 -&gt; ISP 2 -&gt; actual hosting = ok!!!
+
+Both server 1 and 2 have the same fetchmail setup. It's an ISP problem!
+
+As you said (and I read over the Internet) people who had this problem
+solved it when they changed their ISP. ie: problems from work, when
+they went home and fetched mail they had no problem at all.
+
+There's almost 24hs I'm testing every 5' without trouble :-)
+
+HTH someone else.
+
+Thanx a lot for your help.
+
+-
+Roberto
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000593.html">[fetchmail-users] query state=2 (SOCKET)
+</A></li>
+	<LI>Next message: <A HREF="000594.html">[fetchmail-users] query state=2 (SOCKET)
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#602">[ date ]</a>
+              <a href="thread.html#602">[ thread ]</a>
+              <a href="subject.html#602">[ subject ]</a>
+              <a href="author.html#602">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

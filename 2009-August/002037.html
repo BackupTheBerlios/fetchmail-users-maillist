@@ -1,0 +1,127 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Authorization failure message in syslog
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2009-August/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Authorization%20failure%20message%20in%20syslog&In-Reply-To=%3C4A8C2817.7040600%40gmx.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002036.html">
+   <LINK REL="Next"  HREF="002038.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Authorization failure message in syslog</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Authorization%20failure%20message%20in%20syslog&In-Reply-To=%3C4A8C2817.7040600%40gmx.de%3E"
+       TITLE="[fetchmail-users] Authorization failure message in syslog">matthias.andree at gmx.de
+       </A><BR>
+    <I>Wed Aug 19 18:28:07 CEST 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002036.html">[fetchmail-users] Authorization failure message in syslog
+</A></li>
+        <LI>Next message: <A HREF="002038.html">[fetchmail-users] Server CommonName: *.sslcert35.com
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2037">[ date ]</a>
+              <a href="thread.html#2037">[ thread ]</a>
+              <a href="subject.html#2037">[ subject ]</a>
+              <a href="author.html#2037">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Charles Chat schrieb:
+&gt;<i> Hi,
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> I'm using fetchmail to download mail into users' mailboxes via postfix.
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> Every message that comes in results in an error message in syslog.
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i>    Authorization failure on &lt;user&gt;@&lt;my domain&gt;
+</I>&gt;<i> 
+</I>&gt;<i>    fetchmail[5074]: Query status=3 (AUTHFAIL) 
+</I>
+I find it hard to believe that every message would trigger that - and it's
+unrelated to your log snippet below; it would have to match the 29107 if it were
+from the same session.
+
+If the information given below is insufficient to calm your concerns, please
+provide further information as directed in
+<A HREF="http://www.fetchmail.info/fetchmail-FAQ.html#G3">http://www.fetchmail.info/fetchmail-FAQ.html#G3</A>
+
+&gt;<i> Even with this error message, the mail seems to getting in!?
+</I>
+Probably more than one account and at least one of them containing improper
+password or login, or your ISP doesn't allow you to fetch every 200 seconds, but
+only every 900 or 3600 seconds - then the ISP usually refuses the login.
+
+Try changing your daemon interval.
+
+&gt;<i> I'm just nervous about the error and afraid that some mail may be lost.
+</I>
+Why? If fetchmail can't log into the server, it can't fetch or delete mail.
+
+&gt;<i> Here's a snippit from syslog with the error message:
+</I>&gt;<i> 
+</I>&gt;<i> Aug 19 11:45:04 &lt;mydomain&gt; fetchmail[29107]: 1 message for patty@&lt;mydomain&gt;.com at pop.&lt;mydomain&gt;.com (7333 octets). 
+</I>&gt;<i> Aug 19 11:45:05 &lt;mydomain&gt; fetchmail[29107]: reading message patty@&lt;mydomain&gt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">.com at mail-01.name-services.com</A>:1 of 1 (7333 octets) (log message incomplete)
+</I>
+The log message has begun and is interrupted by another log, and later the
+remainder of the former message appears... that would be the &quot;flushed&quot; line
+below - and since fetchmail is talking to your POP3 server, authorization must
+have succeeded.
+
+&gt;<i> ******* Here's the error line ********
+</I>&gt;<i> Aug 19 11:45:05 &lt;mydomain&gt; fetchmail[29107]: connection to localhost:smtp [::1/25] failed: Connection refused. 
+</I>
+This is because your Postfix doesn't listen on the ipv6-localhost address, ::1.
+Nevermind, because the connect to the ipv4-localhost address, 127.0.0.1, succeeds.
+
+&gt;<i> 
+</I>&gt;<i> Aug 19 11:45:05 &lt;mydomain&gt; postfix/smtpd[4250]: connect from &lt;mydomain&gt;.com[127.0.0.1]
+</I>&gt;<i> Aug 19 11:45:05 &lt;mydomain&gt; postfix/smtpd[4250]: 2D01B1302B7: client=&lt;mydomain&gt;.com[127.0.0.1]
+</I>&gt;<i> Aug 19 11:45:05 &lt;mydomain&gt; postfix/cleanup[4253]: 2D01B1302B7: message-id=&lt;001a01ca20e2$e5fc85f0$<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">3d637405 at PTIHP1</A>&gt;
+</I>&gt;<i> Aug 19 11:45:05 &lt;mydomain&gt; fetchmail[29107]:  flushed 
+</I>&gt;<i> Aug 19 11:45:05 &lt;mydomain&gt; postfix/qmgr[14300]: 2D01B1302B7: from=&lt;patty@&lt;mydomain&gt;.com&gt;, size=7650, nrcpt=2 (queue active)
+</I>&gt;<i> Aug 19 11:45:05 &lt;mydomain&gt; postfix/smtpd[4250]: disconnect from &lt;mydomain&gt;.com[127.0.0.1]
+</I>&gt;<i> Aug 19 11:45:05 &lt;mydomain&gt; fetchmail[29107]: sleeping at Wed 19 Aug 2009 11:45:05 AM EDT for 200 seconds 
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> In addition to the &quot;connection refused&quot; message, what does &quot;log message incomplete&quot; mean?
+</I>
+See above.
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002036.html">[fetchmail-users] Authorization failure message in syslog
+</A></li>
+	<LI>Next message: <A HREF="002038.html">[fetchmail-users] Server CommonName: *.sslcert35.com
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2037">[ date ]</a>
+              <a href="thread.html#2037">[ thread ]</a>
+              <a href="subject.html#2037">[ subject ]</a>
+              <a href="author.html#2037">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

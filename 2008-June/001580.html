@@ -1,0 +1,225 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] fetchmail 6.3.9-rc1 release candidate
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2008-June/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%206.3.9-rc1%20release%20candidate&In-Reply-To=%3C20080624094333.GA31462%40merlin.emma.line.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001579.html">
+   <LINK REL="Next"  HREF="001581.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] fetchmail 6.3.9-rc1 release candidate</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%206.3.9-rc1%20release%20candidate&In-Reply-To=%3C20080624094333.GA31462%40merlin.emma.line.org%3E"
+       TITLE="[fetchmail-users] fetchmail 6.3.9-rc1 release candidate">matthias.andree at gmx.de
+       </A><BR>
+    <I>Tue Jun 24 11:43:33 CEST 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001579.html">[fetchmail-users] unable to get local issuer
+</A></li>
+        <LI>Next message: <A HREF="001581.html">[fetchmail-users] fetchmail 6.3.9-rc2 release candidate
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1580">[ date ]</a>
+              <a href="thread.html#1580">[ thread ]</a>
+              <a href="subject.html#1580">[ subject ]</a>
+              <a href="author.html#1580">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA1
+
+Greetings,
+
+I have uploaded a fetchmail 6.3.9 release candidate to the usual
+download location: &lt;<A HREF="http://home.pages.de/~mandree/fetchmail/">http://home.pages.de/~mandree/fetchmail/</A>&gt;.
+
+It collects three critical fixes, two of them security relevant, but
+does not yet fix all pending known bugs - please check that this does
+not introduce regressions over 6.3.8.
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Changes in 6.3.9-rc1 since 6.3.8:
+
+# ADVANCE WARNING OF FEATURES TO BE REMOVED OR CHANGED IN FUTURE VERSIONS
+(There are no plans to remove these features from a 6.3.X release, but they may
+be removed from a 6.4.0 or newer release.)
+* The MX and host alias DNS lookups that fetchmail performs in multidrop mode
+  are based on assumptions that are rarely met in practice, somewhat defective,
+  deprecated and may be removed from a future fetchmail version.  They have
+  never supported IPv6 (including IPv6-mapped IPv4).
+  Non-DNS based alias keywords such as &quot;aka&quot; will remain in fetchmail.
+* The monitor and interface options may be removed from a future fetchmail
+  version as they are not reasonably portable.
+* POP2 is obsolete, support will be removed from a future fetchmail version.
+* RPOP is obsolete, support will be removed from a future fetchmail release.
+* --sslcertck will become a default setting in a future fetchmail version.
+* The multidrop To/Cc guessing code along with the fragile duplicate suppressor
+  is deprecated and may be removed from a future release.
+* The &quot;envelope Received&quot; option may be removed from a future release, because
+  the Received header was never meant to be machine-readable, the format varies
+  widely, and various other differences in behavior make parsing Received an
+  unreliable undertaking. The envelope option as such will remain though, in
+  order to support Delivered-To, X-Envelope-To, X-Original-To and similar.
+  See also &lt;<A HREF="http://home.pages.de/~mandree/mail/multidrop">http://home.pages.de/~mandree/mail/multidrop</A>&gt;.
+* The --enable-fallback (fall back to MDA if MTA unavailable) will be removed
+  from a future fetchmail release, because it makes fetchmail's behavior
+  inconsistent and confusing.
+* The &quot;protocol auto&quot; default inside fetchmail may be removed from a future
+  fetchmail release. Explicit configuration of the protocol is recommended.
+* Kerberos IV support may be removed from a future fetchmail release.
+* SIGHUP wakeup support may be removed from a future fetchmail release and
+  cause fetchmail to terminate - it was broken for many years.
+* Support for operating systems that are not sufficiently POSIX compliant may be
+  removed or operation on such systems may be suboptimal for future releases.
+
+fetchmail 6.3.9 (not yet released):
+
+# SECURITY FIX:
+* CVE-2007-4565: Denial of service: When fetchmail tries to inject a warning
+  message it created itself, and the message is refused by the SMTP listener,
+  fetchmail dereferences a NULL pointer and crashes. Report &amp; fix by Earl Chew.
+  Note while this is theoretically a remote denial of service attack vector,
+  fetchmail by default talks SMTP to the localhost, so the overall risk is
+  rather low.
+  This bug was apparently introduced on 1998-11-27 when the bouncemail facility
+  was modularized. The bug then made its appearance in fetchmail release 4.6.8.
+  See also fetchmail-SA-2007-02.txt.
+* CVE-2008-2711: Denial of service: When fetchmail logs data blobs
+  (for instance, a To: header in -v -v verbose mode) in excess of 2048
+  bytes, it will crash, because it hands an uninitialized argument
+  pointer (not the format string though) to vsnprintf and reads a
+  random memory location (it calls va_arg() too often without
+  resetting it with va_start()). Based on a patch (BerliOS patch #2492)
+  by Petr Uzel, fixes Novell Bug #354291.
+  See also fetchmail-SA-2008-01.txt.
+
+# CRITICAL BUG FIX:
+* When expunging, mark the right messages as seen to avoid message loss in &quot;keep
+  flush&quot; configurations.  Workaround for previous versions: &quot;expunge 0&quot;.
+  Report and patch by Alexander Cherepanov - thanks a lot, Berlios Bug #11797,
+  &quot;imap_mark_seen doesn't consider expunged messages&quot;.
+
+# BUG FIXES:
+* The configure script will additionally check for 'dn_skipname', to fix build
+  failures with &#181;Clibc. The new check still recognizes the resolver libraries on
+  Ubuntu 7.04, openSUSE 10.2, Solaris 8, NetBSD 4.0_BETA2 and FreeBSD 6.2.
+  Fixes Gentoo bug #134187.
+  NOTE: this is a bit of a hack, since we twist the HAVE_RES_SEARCH result, but
+  res_search() and dn_skipname() are only used together and scheduled for
+  removal in future versions, so this is probably fine.
+* No longer complain about invalid sslproto &quot;&quot; when POP3 CAPA probe fails.
+  Fixes Debian Bug#421446 (Holger Leskien), Novell Bug #247233 (Jon Nelson).
+  Thanks to Matthias Strau&#223; for a configuration to reproduce the issue.
+* Allow .fetchmailrc and .fetchids to be symlinks, as the manpage does not
+  document they aren't allowed - fixes Debian Bug #452907 (Roger Leigh).
+  TOCTOU race persists.
+* fetchmailconf quotes mailbox (folder) names when writing the configuration.
+  Fixes BerliOS Bug #13207 (reported + fix suggested by Terry Brown).
+
+# CHANGES:
+* autoconf 2.60 is now required to build fetchmail; it uses
+  AC_USE_SYSTEM_EXTENSIONS to replace AC_AIX, AC_MINIX, and the like.
+* Removed dead FETCHMAIL_DEBUG code from fetchmail.h that was disabled by 
+  default with no switches in configure to enable it. However, the macro would 
+  have been prone to a symlink attack. Found by Nico Golde.
+* Removed dead FORCE_STUFFING code from socket.c that was disabled by default
+  with no switches in configure to enable it.
+* Include the typedef for int16 in the #ifndef _AIX in smbencrypt.c (Peter
+  O'Gorman)
+* Correct check for u_int32_t in configure.ac (seems to be typedef'ed in
+  namser.h on some platforms.) (Peter O'Gorman)
+* In configure.ac change all CPFLAGS to CPPFLAGS, CEFLAGS to CFLAGS and LDEFLAGS
+  to LDFLAGS otherwise the results of some tests (additional -L and -I flags) do
+  not get used for later tests causing incorrect configure results. Makefile.am
+  was also changed to reflect this. (Peter O'Gorman)
+* m4/gethostbyname_r.m4 does AC_TRY_COMPILE, which unfortunately can pass even
+  if there is no gethostbyname_r. Changed to AC_TRY_LINK. (Peter O'Gorman)
+* Revise getnameinfo check to ensure NULL is defined and the result is properly
+  evaluated, to avoid bogus results on for instance FreeBSD and redefinitions of
+  NI_* at compile time. (Matthias Andree).
+* __attribute__ ((unused)) is a gccism, removed from libesmtp/gethostbyname.c.
+  (Peter O'Gorman)
+* In KAME/getnameinfo.c it's best to use the correct argument to inet_ntoa.
+  (Peter O'Gorman)
+* In verbose mode, log if --check mode is enabled.
+* Add sslcommonname option (rcfile and commandline) as a way to work around
+  misconfigured upstream SSL servers that use the wrong certificate name. It
+  specifies which CommonName fetchmail expects and logs. (Daniel Richard G.)
+
+# DOCUMENTATION:
+* Add fetchmail-SA-2007-02.txt and fetchmail-SA-2008-01.txt.
+* Re-add two lines to the manual page that had accidentally become comments 
+  to nroff. One was part of the --sslproto documentation, and one in the 
+  &quot;Awakening the background daemon&quot; section.
+* The manual page no longer asserts that .fetchids were for exclusive POP3 use, 
+  since it is planned to use the file with IMAP4 later.
+* Add grammar fixes from Dan Jacobson to fetchmail.man. Debian Bug #461642.
+* The manual page now mentions that user descriptions need to come before user
+  options. Reported by Francensco Pontort&#236;, to fix Debian Bug #467010.
+* The manual page no longer hints that multi-user declarations per server were
+  only useful in daemon mode running as root, to avoid hinting people to doing
+  that.
+* Several manual page rcfile examples now include &quot;ssl&quot;.
+* The manual page hints that option arguments beginning with numbers can be
+  enclosed in quotes.
+* The manual page now mentions that the --logfile must already exist before
+  fetchmail is run.
+* The FAQ now recommends (#I9) not to use Google Mail for their disregard to the
+  protocols they claim to support.
+
+# TRANSLATION UPDATES:
+* Polish (Jakub Bogusz)
+* Japanese (Takeshi Hamasaki)
+* Spanish (Javier Fern&#225;ndez-Sanguino Pe&#241;a, Matthias Andree)
+* Vietnamese (Clytie Siddall)
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+WARNING: This message sets the Reply-To: header.
+When replying to me personally, you need to edit the To: header!
+
+Thank you.
+
+Happy fetching,
+Matthias Andree
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1.4.5 (GNU/Linux)
+
+iD8DBQFIYMGyvmGDOQUufZURAoXEAKCxK9DW7jBjlQTDCg8kRdKl3gu3SgCgzahk
+Fd9lK/QWohcxbkVrdCLPoKg=
+=XqTd
+-----END PGP SIGNATURE-----
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001579.html">[fetchmail-users] unable to get local issuer
+</A></li>
+	<LI>Next message: <A HREF="001581.html">[fetchmail-users] fetchmail 6.3.9-rc2 release candidate
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1580">[ date ]</a>
+              <a href="thread.html#1580">[ thread ]</a>
+              <a href="subject.html#1580">[ subject ]</a>
+              <a href="author.html#1580">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

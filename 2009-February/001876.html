@@ -1,0 +1,136 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] polling gmail with fetchmail
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2009-February/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20polling%20gmail%20with%20fetchmail&In-Reply-To=%3C1235564816.12206.148.camel%40localhost.localdomain%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001875.html">
+   <LINK REL="Next"  HREF="001877.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] polling gmail with fetchmail</H1>
+    <B>Chris</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20polling%20gmail%20with%20fetchmail&In-Reply-To=%3C1235564816.12206.148.camel%40localhost.localdomain%3E"
+       TITLE="[fetchmail-users] polling gmail with fetchmail">cpollock at embarqmail.com
+       </A><BR>
+    <I>Wed Feb 25 13:26:56 CET 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001875.html">[fetchmail-users] polling gmail with fetchmail
+</A></li>
+        <LI>Next message: <A HREF="001877.html">[fetchmail-users] polling gmail with fetchmail
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1876">[ date ]</a>
+              <a href="thread.html#1876">[ thread ]</a>
+              <a href="subject.html#1876">[ subject ]</a>
+              <a href="author.html#1876">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Wed, 2009-02-25 at 09:17 +0100, Matthias Andree wrote:
+&gt;<i> Am 25.02.2009, 01:58 Uhr, schrieb Chris &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">cpollock at embarqmail.com</A>&gt;:
+</I>&gt;<i> 
+</I>&gt;<i> &gt; Matthias, here is the output of
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; fetchmail -vv --nosyslog --logfile /home/chris/fetchmaillog --uidl -m
+</I>&gt;<i> &gt; procmail
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; fetchmail: 6.3.9 querying pop.gmail.com (protocol POP3) at Tue 24 Feb
+</I>&gt;<i> &gt; 2009 06:52:04 PM CST: poll started
+</I>&gt;<i> &gt; fetchmail: Trying to connect to 72.14.247.109/995...connected.
+</I>&gt;<i> &gt; fetchmail: socket error while fetching from
+</I>&gt;<i> &gt; <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">chris.pollock1948 at gmail.com</A>@pop.gmail.com
+</I>&gt;<i> &gt; fetchmail: 6.3.9 querying pop.gmail.com (protocol POP3) at Tue 24 Feb
+</I>&gt;<i> &gt; 2009 06:53:04 PM CST: poll completed
+</I>&gt;<i> &gt; fetchmail: Merged UID list from pop.gmail.com: &lt;empty&gt;
+</I>&gt;<i> &gt; fetchmail: Query status=2 (SOCKET)
+</I>&gt;<i> &gt; fetchmail: Writing fetchids file.
+</I>&gt;<i> &gt; fetchmail: sleeping at Tue 24 Feb 2009 06:53:04 PM CST for 120 seconds
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; Also, here is the beginning of my .fetchmailrc file:
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; defaults
+</I>&gt;<i> &gt; set postmaster cpollock
+</I>&gt;<i> &gt; set no bouncemail
+</I>&gt;<i> &gt; set no spambounce
+</I>&gt;<i> &gt; set daemon 120
+</I>&gt;<i> &gt; set syslog
+</I>&gt;<i> 
+</I>&gt;<i> Well, from the logging, it seems that the socket gets disconnected right  
+</I>&gt;<i> after the connection, even before SSL negotiation is attempted, since  
+</I>&gt;<i> there is no protocol logging whatsoever and there are no complaints.
+</I>&gt;<i> 
+</I>&gt;<i> See if fetchmail -vvv changes anything in your logging, or if you can find  
+</I>&gt;<i> out something with tcpdump or wireshark (tshark), or by running fetchmail  
+</I>&gt;<i> under strace or truss supervision (then, the few lines around the &quot;socket  
+</I>&gt;<i> error&quot; will be interesting).
+</I>&gt;<i> 
+</I>&gt;<i> HTH
+</I>&gt;<i> 
+</I>Using fetchmail -vvv --nosyslog --logfile /home/chris/fetchmaillog
+--uidl -m procmail still shows:
+
+fetchmail: 6.3.9 querying pop.gmail.com (protocol POP3) at Wed 25 Feb
+2009 06:16:41 AM CST: poll started
+fetchmail: Trying to connect to 72.14.247.109/995...connected.
+fetchmail: socket error while fetching from
+<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">chris.pollock1948 at gmail.com</A>@pop.gmail.com
+fetchmail: 6.3.9 querying pop.gmail.com (protocol POP3) at Wed 25 Feb
+2009 06:17:41 AM CST: poll completed
+
+Shouldn't I be able to telnet to the host:
+
+[<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">chris at localhost</A> ~]$ telnet 72.14.247.109 995
+Trying 72.14.247.109...
+Connected to ag-in-f109.google.com (72.14.247.109).
+Escape character is '^]'.
+Connection closed by foreign host.
+
+I'll check out running strace or mtr tonight when I get home from work.
+What is 'truss supervision'?
+
+
+Thanks
+Chris
+
+-- 
+KeyID 0xE372A7DA98E6705C
+
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: signature.asc
+Type: application/pgp-signature
+Size: 197 bytes
+Desc: This is a digitally signed message part
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/fetchmail-users/attachments/20090225/d4c33a6e/attachment.pgp">https://lists.berlios.de/pipermail/fetchmail-users/attachments/20090225/d4c33a6e/attachment.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001875.html">[fetchmail-users] polling gmail with fetchmail
+</A></li>
+	<LI>Next message: <A HREF="001877.html">[fetchmail-users] polling gmail with fetchmail
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1876">[ date ]</a>
+              <a href="thread.html#1876">[ thread ]</a>
+              <a href="subject.html#1876">[ subject ]</a>
+              <a href="author.html#1876">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

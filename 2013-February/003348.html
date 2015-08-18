@@ -1,0 +1,113 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] minor bug fixes for socket.c
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2013-February/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20minor%20bug%20fixes%20for%20socket.c&In-Reply-To=%3C201302120108.r1C18Z5b135756%40opal.us.oracle.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003346.html">
+   <LINK REL="Next"  HREF="003349.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] minor bug fixes for socket.c</H1>
+    <B>John Beck</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20minor%20bug%20fixes%20for%20socket.c&In-Reply-To=%3C201302120108.r1C18Z5b135756%40opal.us.oracle.com%3E"
+       TITLE="[fetchmail-users] minor bug fixes for socket.c">john.beck at oracle.com
+       </A><BR>
+    <I>Tue Feb 12 02:08:35 CET 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003346.html">[fetchmail-users] lock busy!
+</A></li>
+        <LI>Next message: <A HREF="003349.html">[fetchmail-users] minor bug fixes for socket.c
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3348">[ date ]</a>
+              <a href="thread.html#3348">[ thread ]</a>
+              <a href="subject.html#3348">[ subject ]</a>
+              <a href="author.html#3348">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Greetings,
+
+While running a static code analysis tool (Parfait) on fetchmail, it found
+some bugs:
+
+Error: Memory leak (CWE 401)
+   Memory leak of pointer 'plugin_copy' allocated with malloc((plugin_copy_len + 1))
+        at line 137 of components/fetchmail/fetchmail-6.3.22/socket.c in function 'parse_plugin'.
+          'plugin_copy' allocated at line 107 with malloc((plugin_copy_len + 1)).
+          plugin_copy leaks when plugin_copy_offset &gt;= plugin_copy_len at line 114.
+
+Error: Null pointer dereference (CWE 476)
+   Read from null pointer 'argvec'
+        at line 189 of components/fetchmail/fetchmail-6.3.22/socket.c in function 'handle_plugin'.
+          Function 'parse_plugin' may return constant 'NULL' at line 137, called at line 188.
+          Null pointer introduced at line 137 in function 'parse_plugin'.
+        at line 190 of components/fetchmail/fetchmail-6.3.22/socket.c in function 'handle_plugin'.
+          Function 'parse_plugin' may return constant 'NULL' at line 137, called at line 188.
+          Null pointer introduced at line 137 in function 'parse_plugin'.
+
+(I realize these are on 6.3.22; I checked and verified that this portion of
+the code is the same in 6.3.24.)
+
+The attached patch fixes each of these.
+
+-- John
+
+PS I am skipping the usual six items requested per FAQ #G3, as they seem
+   superfluous here. If anyone really feels the need for them, let me know.
+
+<A HREF="http://blogs.oracle.com/jbeck/">http://blogs.oracle.com/jbeck/</A>
+
+-------------- next part --------------
+--- fetchmail/socket.c.orig	2012-08-13 13:02:41.000000000 -0700
++++ fetchmail/socket.c	2013-02-11 15:44:05.297674654 -0800
+@@ -133,6 +133,7 @@
+ 	argvec = (char **)malloc(s);
+ 	if (!argvec)
+ 	{
++		free(plugin_copy);
+ 		report(stderr, GT_(&quot;fetchmail: malloc failed\n&quot;));
+ 		return NULL;
+ 	}
+@@ -186,6 +187,8 @@
+ 		if (outlevel &gt;= O_VERBOSE)
+ 		    report(stderr, GT_(&quot;running %s (host %s service %s)\n&quot;), plugin, host, service);
+ 		argvec = parse_plugin(plugin,host,service);
++		if (argvec == NULL)
++			_exit(EXIT_FAILURE);
+ 		execvp(*argvec, argvec);
+ 		report(stderr, GT_(&quot;execvp(%s) failed\n&quot;), *argvec);
+ 		_exit(EXIT_FAILURE);
+</PRE>
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003346.html">[fetchmail-users] lock busy!
+</A></li>
+	<LI>Next message: <A HREF="003349.html">[fetchmail-users] minor bug fixes for socket.c
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3348">[ date ]</a>
+              <a href="thread.html#3348">[ thread ]</a>
+              <a href="subject.html#3348">[ subject ]</a>
+              <a href="author.html#3348">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

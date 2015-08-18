@@ -1,0 +1,96 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Problem fetching: &quot;AUTHFAIL&quot;
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2010-August/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Problem%20fetching%3A%20%22AUTHFAIL%22&In-Reply-To=%3CAANLkTinEPdx_5aVE%2B9BDbpOydLVrPrnG__YLsa0UFRiu%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002445.html">
+   <LINK REL="Next"  HREF="002447.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Problem fetching: &quot;AUTHFAIL&quot;</H1>
+    <B>Rob MacGregor</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Problem%20fetching%3A%20%22AUTHFAIL%22&In-Reply-To=%3CAANLkTinEPdx_5aVE%2B9BDbpOydLVrPrnG__YLsa0UFRiu%40mail.gmail.com%3E"
+       TITLE="[fetchmail-users] Problem fetching: &quot;AUTHFAIL&quot;">rob.macgregor at gmail.com
+       </A><BR>
+    <I>Wed Aug 18 10:18:42 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002445.html">[fetchmail-users] Problem fetching: &quot;AUTHFAIL&quot;
+</A></li>
+        <LI>Next message: <A HREF="002447.html">[fetchmail-users] Problem fetching: &quot;AUTHFAIL&quot;
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2446">[ date ]</a>
+              <a href="thread.html#2446">[ thread ]</a>
+              <a href="subject.html#2446">[ subject ]</a>
+              <a href="author.html#2446">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Wed, Aug 18, 2010 at 07:14, Alan Murrell &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">amurrell at rcav.bc.ca</A>&gt; wrote:
+&gt;<i> Hello.
+</I>&gt;<i>
+</I>&gt;<i> We have been running fetchmail for a couple of years now to download emails from our Exchange 2007 system for Request Tracker. &#160;Yesterday, fetchamil just would not run for some reason (no error output), and the version of Debian was deprecated (etch), so today I have performed a full upgrade to Debian 5.0 (&quot;Lenny&quot;). &#160;This also upgraded the fetchmail version 3.6.9.
+</I>
+Please upgrade to the current release (6.3.17) and read section G3 of
+the FAQ (<A HREF="http://fetchmail.berlios.de/fetchmail-FAQ.html#G3">http://fetchmail.berlios.de/fetchmail-FAQ.html#G3</A>).  Note
+that something must have changed to cause the failure, and if the
+change wasn't with Fetchmail then it almost certainly relates to
+either the Exchange server, or the account used to authenticate with.
+
+&lt;---SNIP---&gt;
+&gt;<i> fetchmail: --check mode enabled, not fetching mail
+</I>&lt;---SNIP---&gt;
+&gt;<i> fetchmail: POP3&lt; +OK Begin TLS negotiation.
+</I>&gt;<i> fetchmail: Server certificate verification error: unable to get local issuer certificate
+</I>&gt;<i> fetchmail: Server certificate verification error: certificate not trusted
+</I>
+You presumably didn't test TLS by hand ;)  I'd recommend you resolve
+this error (<A HREF="http://fetchmail.berlios.de/fetchmail-FAQ.html#K5">http://fetchmail.berlios.de/fetchmail-FAQ.html#K5</A>) since
+it may be related to your problem.
+
+&lt;---SNIP---&gt;
+&gt;<i> fetchmail: POP3&lt; -ERR Logon failure: unknown user name or bad password.
+</I>&gt;<i> fetchmail: Logon failure: unknown user name or bad password.
+</I>&gt;<i> fetchmail: Authorization failure on <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">support at mail.myserver.com</A>
+</I>
+When you test by hand, do you use exactly the same encoded strings?
+
+-- 
+&#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160;&#160; Please keep list traffic on the list.
+
+Rob MacGregor
+&#160; &#160; &#160; Whoever fights monsters should see to it that in the process he
+&#160; &#160; &#160; &#160; doesn't become a monster.&#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; Friedrich Nietzsche
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002445.html">[fetchmail-users] Problem fetching: &quot;AUTHFAIL&quot;
+</A></li>
+	<LI>Next message: <A HREF="002447.html">[fetchmail-users] Problem fetching: &quot;AUTHFAIL&quot;
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2446">[ date ]</a>
+              <a href="thread.html#2446">[ thread ]</a>
+              <a href="subject.html#2446">[ subject ]</a>
+              <a href="author.html#2446">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

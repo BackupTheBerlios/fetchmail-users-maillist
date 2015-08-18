@@ -1,0 +1,90 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] fetchmail 6.3.5-beta3 snapshot
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2006-September/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%206.3.5-beta3%20snapshot&In-Reply-To=%3C20060925224138.GB9696%40merlin.emma.line.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000611.html">
+   <LINK REL="Next"  HREF="000612.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] fetchmail 6.3.5-beta3 snapshot</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%206.3.5-beta3%20snapshot&In-Reply-To=%3C20060925224138.GB9696%40merlin.emma.line.org%3E"
+       TITLE="[fetchmail-users] fetchmail 6.3.5-beta3 snapshot">matthias.andree at gmx.de
+       </A><BR>
+    <I>Tue Sep 26 00:41:38 CEST 2006</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000611.html">[fetchmail-users] TwoAccounts
+</A></li>
+        <LI>Next message: <A HREF="000612.html">[fetchmail-users] TwoAccounts
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#610">[ date ]</a>
+              <a href="thread.html#610">[ thread ]</a>
+              <a href="subject.html#610">[ subject ]</a>
+              <a href="author.html#610">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA1
+
+Greetings,
+
+I have uploaded a new fetchmail beta 6.3.5-beta3 snapshot to a temporary
+download location: &lt;<A HREF="http://www.dt.e-technik.uni-dortmund.de/~ma/fetchmail/">http://www.dt.e-technik.uni-dortmund.de/~ma/fetchmail/</A>&gt;
+
+Changes in fetchmail 6.3.5-beta3 since 6.3.5-beta2:
+
+* Avoid crash in env.c/host_fqdn if we cannot canonicalize our own hostname.
+  Reported by Alexander Holler.
+* SSL fix by Miloslav Trmac (Red Hat): free the SSL contexts after the
+  connection, to avoid from growing SSL certpaths without bounds, avoid using
+  SSL contexts for unrelated connections, and to fix Red Hat Bug #206346.
+* When going to sleep, log for how long.  Suggested by Claudia Ludwig.
+* Catalan/ca (Ernest Adrogu&#233; Calveras), Japanese/ja (Takeshi Hamasaki) - also
+  made gettext 0.15 ready, Polish/pl (Jakub Bogusz), Russian/ru (Pavel
+  Maryanov), Spanish/es (H&#233;ctor Garc&#237;a &#193;lvarez), Vietnamese/vi (Clytie Siddall)
+
+Happy fetching,
+Matthias Andree
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1.4.2 (GNU/Linux)
+
+iD8DBQFFGFsivmGDOQUufZURAqhNAJ0QMXKB2d+YvI0hcJjDxgCHzDy4HwCgujiI
+gDwT8x3wcUkq1asRN1wHTL4=
+=Bvhi
+-----END PGP SIGNATURE-----
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000611.html">[fetchmail-users] TwoAccounts
+</A></li>
+	<LI>Next message: <A HREF="000612.html">[fetchmail-users] TwoAccounts
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#610">[ date ]</a>
+              <a href="thread.html#610">[ thread ]</a>
+              <a href="subject.html#610">[ subject ]</a>
+              <a href="author.html#610">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

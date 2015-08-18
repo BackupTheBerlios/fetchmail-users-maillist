@@ -1,0 +1,241 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] fetchmail authorization and socket errors
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2006-November/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%20authorization%20and%20socket%20errors&In-Reply-To=%3C20061111173234.ee8ace0f2c1f5306d64c0b7669778979.6720f5f96b.wbe%40email.secureserver.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000689.html">
+   <LINK REL="Next"  HREF="000691.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] fetchmail authorization and socket errors</H1>
+    <B>wade at wadesmart.com</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%20authorization%20and%20socket%20errors&In-Reply-To=%3C20061111173234.ee8ace0f2c1f5306d64c0b7669778979.6720f5f96b.wbe%40email.secureserver.net%3E"
+       TITLE="[fetchmail-users] fetchmail authorization and socket errors">wade at wadesmart.com
+       </A><BR>
+    <I>Sun Nov 12 01:32:34 CET 2006</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000689.html">[fetchmail-users] fetchmail authorization and socket errors
+</A></li>
+        <LI>Next message: <A HREF="000691.html">[fetchmail-users] fetchmail authorization and socket errors
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#690">[ date ]</a>
+              <a href="thread.html#690">[ thread ]</a>
+              <a href="subject.html#690">[ subject ]</a>
+              <a href="author.html#690">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>
+
+&gt;<i> -------- Original Message --------
+</I>&gt;<i> Subject: Re: [fetchmail-users] fetchmail authorization and socket
+</I>&gt;<i> errors
+</I>&gt;<i> From: &quot;Rob MacGregor&quot; &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">rob.macgregor at gmail.com</A>&gt;
+</I>&gt;<i> Date: Sat, November 11, 2006 5:32 pm
+</I>&gt;<i> To: fetchmail-users &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">fetchmail-users at lists.berlios.de</A>&gt;
+</I>&gt;<i>
+</I>&gt;<i> On 11/11/06, <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">wade at wadesmart.com</A> &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">wade at wadesmart.com</A>&gt; wrote:
+</I>&gt;<i>
+</I>&gt;<i> &gt; &gt; 1) Contents of fetchmailrc (mangle usernames/passwords)
+</I>&gt;<i>
+</I>&gt;<i> &gt; &gt; 1a) The command line used to call fetchmail
+</I>&gt;<i>
+</I>&gt;<i> Which is?
+</I>&gt;<i>
+</I>&gt;<i> &gt; &gt; 2) Output of &quot;fetchmail -v -v --nosyslog&quot;
+</I>&gt;<i>
+</I>&gt;<i> Stop fetchmail and re-run this
+</I>&gt;<i>
+</I>&gt;<i> &gt; &gt; 3) Output of &quot;fetchmail -V&quot;
+</I>&gt;<i>
+</I>&gt;<i> Slightly old, but should be ok
+</I>&gt;<i>
+</I>&gt;<i> &gt; &gt; 4) Details of your OS, including kernel version
+</I>&gt;<i>
+</I>&gt;<i> Some version of Linux with 2.6.15 kernel :)&gt; &gt;
+</I>&gt;<i>
+</I>&gt;<i> &gt; This is the .fetchmailrc
+</I>&gt;<i> &gt; # Configuration created Tue Oct 24 12:53:28 2006 by fetchmailconf 1.52
+</I>&gt;<i> &gt; $Revision: 4636 $
+</I>&gt;<i> &gt; set syslog
+</I>&gt;<i> &gt; set postmaster &quot;wadesmart&quot;
+</I>&gt;<i> &gt; set no bouncemail
+</I>&gt;<i> &gt; set no spambounce
+</I>&gt;<i> &gt; set properties &quot;&quot;
+</I>&gt;<i> &gt; set daemon 300
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; # setup first email service provider -&gt; WadeSmart
+</I>&gt;<i> &gt;         poll mail.wadesmart.com
+</I>&gt;<i> &gt;         uidl protocol pop3 auth password
+</I>&gt;<i> &gt;         user '<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">wade at wadesmart.com</A>' there with password 'password' is
+</I>&gt;<i> &gt; 'wade' here
+</I>&gt;<i> &gt;         no keep
+</I>&gt;<i>
+</I>&gt;<i> Typo - there is a keyword &quot;nokeep&quot;, which is probably what you're after.
+</I>&gt;<i>
+</I>&gt;<i> &gt; # setup third email service provider -&gt; Gmail
+</I>&gt;<i> &gt;         poll pop.gmail.com
+</I>&gt;<i> &gt;         uidl port 995 auth password
+</I>&gt;<i> &gt;         user '<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">wadesmart at gmail.com</A>' there with password 'password'
+</I>&gt;<i> &gt;         keep
+</I>&gt;<i> &gt;         no fetchall
+</I>&gt;<i> &gt;         ssl sslcertpath /etc/ssl/certs
+</I>&gt;<i>
+</I>&gt;<i> Looks otherwise ok, but without that &quot;-v -v --nosyslog&quot; run I can't
+</I>&gt;<i> say where your problem lies.
+</I>&gt;<i>
+</I>&gt;<i> --
+</I>&gt;<i>                  Please keep list traffic on the list.
+</I>&gt;<i>
+</I>&gt;<i> Rob MacGregor
+</I>&gt;<i>       Whoever fights monsters should see to it that in the process he
+</I>&gt;<i>         doesn't become a monster.                  Friedrich Nietzsche
+</I>&gt;<i> _______________________________________________
+</I>&gt;<i> fetchmail-users mailing list
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">fetchmail-users at lists.berlios.de</A>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">https://lists.berlios.de/mailman/listinfo/fetchmail-users</A>
+</I>
+
+
+<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">wadesmart at wadesmart</A>:~$ fetchmail -v -v --nosyslog
+fetchmail: Old UID list from mail.wadesmart.com: &lt;empty&gt;
+fetchmail: Old UID list from pop.gmail.com: GmailId10e8f455dc54ed32
+GmailId10e8f46fde19d311 GmailId10e8f4a6b0d10d02 GmailId10e8f4c07c89e66b
+GmailId10e8f4cbae005b2d GmailId10e8f50a2d43221f GmailId10e8f510de40d911
+GmailId10e8fba2f4d0afbd GmailId10e944ea0c475421 GmailId10e94e9c6c03b6cf
+GmailId10e97181912529f4 GmailId10e972091000eb30 GmailId10e980bf95a5a4fa
+GmailId10e983449f8df563 GmailId10e9ab926f5343ef GmailId10e9b00b3dad0fb6
+GmailId10e9bed7d19a8626 GmailId10e9c0309b42ef5c GmailId10e9c04dd5a86b35
+GmailId10e9c092922226f4 GmailId10e9c0c26a992b44 GmailId10e9c0dadf5f2fe0
+GmailId10e9c0ea04994f1c GmailId10e9c0fa3e323dc2 GmailId10e9f6b951f259da
+GmailId10ea335d9a13e479 GmailId10ea3e0e4897646a GmailId10ea44e696162f25
+GmailId10ea4db3b637cc45 GmailId10ea4dcf6aa21d7f GmailId10ea4fe434a48145
+GmailId10ea52e9acdb0e3d GmailId10ea618d21705b47 GmailId10ea619a305c10c2
+GmailId10ea61bb993345f8 GmailId10ea61d407b9a142 GmailId10ea61dea9561041
+GmailId10ea620f2165782c GmailId10ea620f81650b88 GmailId10ea90081470a258
+GmailId10eaf7383c9368e6 GmailId10eaf7502bfae592 GmailId10eaf76e0e206de4
+GmailId10eaf78cb2a00772 GmailId10eaf794879f3be8 GmailId10eaf7b934c2a644
+GmailId10eaf7c9163d5361 GmailId10eafbb7ed826299 GmailId10eb4d0364369fcc
+GmailId10eb8a25d8c853b9 GmailId10ec051b29896443 GmailId10ec053235c67f79
+GmailId10ec0560ba6d0641 GmailId10ec058703a84409 GmailId10ec05898d16ef7d
+GmailId10ec05accf51c74c GmailId10ec05bce24bb78e &lt;empty&gt;
+fetchmail: Scratch list of UIDs: &lt;empty&gt;
+
+
+<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">wadesmart at wadesmart</A>:~$ fetchmail -V
+This is fetchmail release 6.3.2+NTLM+SDPS+SSL+NLS.
+
+Copyright (C) 2002, 2003 Eric S. Raymond
+Copyright (C) 2004 Matthias Andree, Eric S. Raymond, Rob F. Funk, Graham
+Wilson
+Copyright (C) 2005 Matthias Andree, Sunil Shetye
+Copyright (C) 2006 Matthias Andree
+Fetchmail comes with ABSOLUTELY NO WARRANTY. This is free software, and
+you
+are welcome to redistribute it under certain conditions. For details,
+please see the file COPYING in the source or documentation directory.
+
+Fallback MDA: (none)
+Linux wadesmart 2.6.15-27-386 #1 PREEMPT Sat Sep 16 01:51:59 UTC 2006
+i686 GNU/Linux
+Taking options from command line and /home/wadesmart/.fetchmailrc
+Poll interval is 300 seconds
+Idfile is /home/wadesmart/.fetchids
+Progress messages will be logged via syslog
+Fetchmail will forward misaddressed multidrop messages to wadesmart.
+Fetchmail will direct error mail to the postmaster.
+Options for retrieving from <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">wade at wadesmart.com</A>@mail.wadesmart.com:
+  True name of server is mail.wadesmart.com.
+  Protocol is POP3 (forcing UIDL use).
+  Password authentication will be forced.
+  Server nonresponse timeout is 300 seconds (default).
+  Default mailbox selected.
+  Only new messages will be retrieved (--all off).
+  Fetched messages will not be kept on the server (--keep off).
+  Old messages will not be flushed before message retrieval (--flush
+off).
+  Oversized messages will not be flushed before message retrieval
+(--limitflush off).
+  Rewrite of server-local addresses is enabled (--norewrite off).
+  Carriage-return stripping is disabled (stripcr off).
+  Carriage-return forcing is disabled (forcecr off).
+  Interpretation of Content-Transfer-Encoding is enabled (pass8bits
+off).
+  MIME decoding is disabled (mimedecode off).
+  Idle after poll is disabled (idle off).
+  Nonempty Status lines will be kept (dropstatus off)
+  Delivered-To lines will be kept (dropdelivered off)
+  Fetch message size limit is 100 (--fetchsizelimit 100).
+  Do binary search of UIDs during 9 out of 10 polls (--fastuidl 10).
+  Messages will be SMTP-forwarded to: localhost (default)
+  Single-drop mode: 1 local name recognized.
+  No UIDs saved from this host.
+Options for retrieving from <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">wadesmart at gmail.com</A>@pop.gmail.com:
+  True name of server is pop.gmail.com.
+  Protocol is auto (forcing UIDL use).
+  Password authentication will be forced.
+  SSL encrypted sessions enabled.
+  Server nonresponse timeout is 300 seconds (default).
+  Default mailbox selected.
+  Only new messages will be retrieved (--all off).
+  Fetched messages will be kept on the server (--keep on).
+  Old messages will not be flushed before message retrieval (--flush
+off).
+  Oversized messages will not be flushed before message retrieval
+(--limitflush off).
+  Rewrite of server-local addresses is enabled (--norewrite off).
+  Carriage-return stripping is disabled (stripcr off).
+  Carriage-return forcing is disabled (forcecr off).
+  Interpretation of Content-Transfer-Encoding is enabled (pass8bits
+off).
+  MIME decoding is disabled (mimedecode off).
+  Idle after poll is disabled (idle off).
+  Nonempty Status lines will be kept (dropstatus off)
+  Delivered-To lines will be kept (dropdelivered off)
+  Fetch message size limit is 100 (--fetchsizelimit 100).
+  Do binary search of UIDs during 9 out of 10 polls (--fastuidl 10).
+  Messages will be SMTP-forwarded to: localhost (default)
+  Single-drop mode: 1 local name recognized.
+
+Ubuntu 6.06LTS with
+<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">wadesmart at wadesmart</A>:~$ uname -r
+2.6.15-27-386
+
+fetchmail runs in daemon mode at 300 interval.
+
+wade
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000689.html">[fetchmail-users] fetchmail authorization and socket errors
+</A></li>
+	<LI>Next message: <A HREF="000691.html">[fetchmail-users] fetchmail authorization and socket errors
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#690">[ date ]</a>
+              <a href="thread.html#690">[ thread ]</a>
+              <a href="subject.html#690">[ subject ]</a>
+              <a href="author.html#690">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

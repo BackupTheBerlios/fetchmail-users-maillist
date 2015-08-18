@@ -1,0 +1,108 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Messages not downloaded
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2007-September/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Messages%20not%20downloaded&In-Reply-To=%3C20070907113857.7D10E4C1B3%40scoms1.macandmac.co.uk%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   
+   <LINK REL="Next"  HREF="001237.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Messages not downloaded</H1>
+    <B>David Nash</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Messages%20not%20downloaded&In-Reply-To=%3C20070907113857.7D10E4C1B3%40scoms1.macandmac.co.uk%3E"
+       TITLE="[fetchmail-users] Messages not downloaded">nashd at macandmac.co.uk
+       </A><BR>
+    <I>Fri Sep  7 13:39:00 CEST 2007</I>
+    <P><UL>
+        
+        <LI>Next message: <A HREF="001237.html">[fetchmail-users] Messages not downloaded
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1236">[ date ]</a>
+              <a href="thread.html#1236">[ thread ]</a>
+              <a href="subject.html#1236">[ subject ]</a>
+              <a href="author.html#1236">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>We've been using fetchmail for a few years, but recently noticed that there was a delay of up to 20minutes in receiving messages sent to us from an external email address.&#160; We're using a POP3 multidrop mailbox, and fetchmail passes the retrieved mail to Trestlemail MDA which then drops messages into the correct user's inbox.&#160; It's all worked fine 'til now.&#160; 
+&#160;
+I logged on to our domain's webmail service, and noticed that our multidrop inbox had a few thousand messages in it.&#160; I don't think this used to happen, but they've started to collect there.&#160; I cleaned them out, and we started to receive external mail instantaneously (obviously fetchmail was taking time to parse the thousands of messages).
+&#160;
+When new mail hits the multi-drop mailbox, its status is 'unread'.&#160; When fetchmail downloads from the multidrop, the mail is removed from the multidrop mailbox, with the exception of some messages where the status changes to 'read' but it is not downloaded.&#160; These are the ones that are building up.&#160; Some of the recipients are genuine users on our system, but many are not.&#160; From what I've been able to monitor, all these messages are SPAM.&#160; I've looked at the headers, and they seem to be pretty much the same as genuine messages, but they have X-IMAIL-SPAM-xxx lines in their header, eg X-IMAIL-SPAM-VALFROM.&#160; 
+&#160;
+After all that explanation, I just wondered if fetchmail is looking at these header lines and choosing not to download the messages?&#160; 
+&#160;
+I'm probably going to look at the 'flush' parameter to automatically delete them, once I've monitored it for a wee while to make sure that every message affected is genuinely SPAM.&#160; I don't really want to change fetchmail versions if I can help it!&#160; 
+&#160;
+Output of fetchmail -V is:
+&#160;
+This is fetchmail release 5.8.17+SSL+NLS
+Linux scoms1.xxxxx.co.uk 2.4.13 #1 Thu Oct 31 02:32:23 EST 2002 i686 unknown
+Taking options from command line and /.fetchmailrc
+Poll interval is 300 seconds
+Idfile is //.fetchids
+Fetchmail will forward misaddressed multidrop messages to postmaster.
+Options for retrieving from <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">xxxx at xxxx.co.uk</A>@xxx.net:
+&#160; True name of server is xxx.net.
+&#160; Protocol is POP3.
+&#160; All available authentication methods will be tried.
+&#160; Server nonresponse timeout is 300 seconds (default).
+&#160; Default mailbox selected.
+&#160; All messages will be retrieved (--all on).
+&#160; Fetched messages will not be kept on the server (--keep off).
+&#160; Old messages will not be flushed before message retrieval (--flush off).
+&#160; Rewrite of server-local addresses is enabled (--norewrite off).
+&#160; Carriage-return stripping is enabled (stripcr on).
+&#160; Carriage-return forcing is disabled (forcecr off).
+&#160; Interpretation of Content-Transfer-Encoding is enabled (pass8bits off).
+&#160; MIME decoding is disabled (mimedecode off).
+&#160; Idle after poll is disabled (idle off).
+&#160; Nonempty Status lines will be kept (dropstatus off)
+&#160; Delivered-To lines will be kept (dropdelivered off)
+&#160; Messages will be delivered with &quot;~/trestlemail/bin/trestlemail ~/trestlemail/trestlemail.rc -F %F -- %T&quot;.
+&#160; Recognized listener spam block responses are: 571 550 501 554
+&#160; Multi-drop mode: 1 local name(s) recognized.
+&#160; DNS lookup for multidrop addresses is enabled.
+&#160; Server aliases will be compared with multidrop addresses by name.
+&#160; Envelope header is assumed to be: Received
+&#160; Local domains: xxxx.co.uk
+&#160; No UIDs saved from this host.
+&#160;
+Thanks 
+&#160;
+David
+
+Me
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	
+	<LI>Next message: <A HREF="001237.html">[fetchmail-users] Messages not downloaded
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1236">[ date ]</a>
+              <a href="thread.html#1236">[ thread ]</a>
+              <a href="subject.html#1236">[ subject ]</a>
+              <a href="author.html#1236">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

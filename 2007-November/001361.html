@@ -1,0 +1,144 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Mails not being flushed due to	incorrect	length
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2007-November/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Mails%20not%20being%20flushed%20due%20to%0A%09incorrect%09length&In-Reply-To=%3C20071101154232.GA29294%40DarkStar%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001360.html">
+   <LINK REL="Next"  HREF="001362.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Mails not being flushed due to	incorrect	length</H1>
+    <B>David Woodfall</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Mails%20not%20being%20flushed%20due%20to%0A%09incorrect%09length&In-Reply-To=%3C20071101154232.GA29294%40DarkStar%3E"
+       TITLE="[fetchmail-users] Mails not being flushed due to	incorrect	length">dave at unrealize.co.uk
+       </A><BR>
+    <I>Thu Nov  1 16:42:32 CET 2007</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001360.html">[fetchmail-users] Mails not being flushed due to	incorrect	length
+</A></li>
+        <LI>Next message: <A HREF="001362.html">[fetchmail-users] Suddenly can't connect to Exchange server
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1361">[ date ]</a>
+              <a href="thread.html#1361">[ thread ]</a>
+              <a href="subject.html#1361">[ subject ]</a>
+              <a href="author.html#1361">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On (15:35 01/11/07), David Woodfall &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">dave at unrealize.co.uk</A>&gt; put forth the proposition:
+&gt;<i> On (11:30 01/11/07), Rob MacGregor &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">rob.macgregor at gmail.com</A>&gt; put forth the proposition:
+</I>&gt;<i> &gt; On 11/1/07, David Woodfall &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">dave at unrealize.co.uk</A>&gt; wrote:
+</I>&gt;<i> &gt; &gt;
+</I>&gt;<i> &gt; &gt; fetchmail release 6.3.8+SSL+NLS
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; Current, that's always nice to see :)
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; &gt; &gt; Contents of .fetchmailrc?
+</I>&gt;<i> &gt; &gt;
+</I>&gt;<i> &gt; &gt; set logfile &quot;/home/dive/.fetchlog&quot;
+</I>&gt;<i> &gt; &gt; set postmaster &quot;dive&quot;
+</I>&gt;<i> &gt; &gt; set nobouncemail
+</I>&gt;<i> &gt; &gt; set no spambounce
+</I>&gt;<i> &gt; &gt; set properties &quot;&quot;
+</I>&gt;<i> &gt; &gt; set daemon 300
+</I>&gt;<i> &gt; &gt;
+</I>&gt;<i> &gt; &gt; poll xxxx.xxxxx.co.uk with proto IMAP timeout 30 and options no dns
+</I>&gt;<i> &gt; &gt;         user '<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">xxx at xxxxxxx</A>' there with password 'xxxxxx' is 'dive' here options no rewrite
+</I>&gt;<i> &gt; &gt;      antispam -1
+</I>&gt;<i> &gt; &gt;         sslproto ''
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; Looks ok, though the 'set properties &quot;&quot;' line is redundant (hint,
+</I>&gt;<i> &gt; check the man page).
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; &gt; &gt; Output of &quot;fetchmail --nosyslog --nodetach -vvv&quot; (as specified in the
+</I>&gt;<i> &gt; &gt; &gt; FAQ under bug reporting)?
+</I>&gt;<i> &gt; &gt;
+</I>&gt;<i> &gt; &gt; fetchmail: 6.3.8 querying xxx.xxxxxxxx (protocol IMAP) at Thu 01 Nov 2007 10:09:38 AM GMT: poll started
+</I>&gt;<i> &gt; &gt; fetchmail: Trying to connect to 80.82.113.234/143...connected.
+</I>&gt;<i> &gt; &lt;---SNIP---&gt;
+</I>&gt;<i> &gt; &gt; fetchmail: 1 message waiting after first poll
+</I>&gt;<i> &gt; &gt; fetchmail: IMAP&gt; A0004 EXPUNGE
+</I>&gt;<i> &gt; &gt; fetchmail: IMAP&lt; A0004 OK EXPUNGE completed
+</I>&gt;<i> &gt; &gt; fetchmail: 1 message waiting after expunge
+</I>&gt;<i> &gt; &gt; fetchmail: IMAP&gt; A0005 SEARCH UNSEEN NOT DELETED
+</I>&gt;<i> &gt; &gt; fetchmail: IMAP&lt; * SEARCH
+</I>&gt;<i> &gt; &gt; fetchmail: IMAP&lt; A0005 OK SEARCH done.
+</I>&gt;<i> &gt; &gt; fetchmail: 1 message (1 seen) for <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">xxx at xxxxx</A> at xxx.xxxxxxxco.uk.
+</I>&gt;<i> &gt; &gt; fetchmail: skipping message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">xxx at xxxxk</A>@xxxx.xxxxxxx.co.uk:1 not flushed
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; Fetchmail has previously seen the message (and hasn't deleted it).  I
+</I>&gt;<i> &gt; wonder if you're seeing the item described in the FAQ
+</I>&gt;<i> &gt; (<A HREF="http://www.fetchmail.info/fetchmail-FAQ.html#O15">http://www.fetchmail.info/fetchmail-FAQ.html#O15</A>).
+</I>&gt;<i> 
+</I>&gt;<i> I have checked the email with webmail and it is a valid email (from a
+</I>&gt;<i> mailing list). I have just tried using the 'fetchall' option but no change
+</I>&gt;<i> there. Is there anything else I can try? Might be easier to just delete it
+</I>&gt;<i> and hope the problem doesn't recur.
+</I>
+I just switched the proto to POP3 and it fetched the mail. Will change back
+to IMAP and see if any others get 'stuck'.
+
+&gt;<i> 
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; -- 
+</I>&gt;<i> &gt;                  Please keep list traffic on the list.
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; Rob MacGregor
+</I>&gt;<i> &gt;       Whoever fights monsters should see to it that in the process he
+</I>&gt;<i> &gt;         doesn't become a monster.                  Friedrich Nietzsche
+</I>&gt;<i> &gt; _______________________________________________
+</I>&gt;<i> &gt; fetchmail-users mailing list
+</I>&gt;<i> &gt; <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">fetchmail-users at lists.berlios.de</A>
+</I>&gt;<i> &gt; <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">https://lists.berlios.de/mailman/listinfo/fetchmail-users</A>
+</I>&gt;<i> 
+</I>&gt;<i> -- 
+</I>&gt;<i> Laws of Serendipity:
+</I>&gt;<i> 
+</I>&gt;<i> 	(1) In order to discover anything, you must be looking for
+</I>&gt;<i> 	    something.
+</I>&gt;<i> 	(2) If you wish to make an improved product, you must already
+</I>&gt;<i> 	    be engaged in making an inferior one.
+</I>&gt;<i> 
+</I>&gt;<i> _______________________________________________
+</I>&gt;<i> fetchmail-users mailing list
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">fetchmail-users at lists.berlios.de</A>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">https://lists.berlios.de/mailman/listinfo/fetchmail-users</A>
+</I>
+-- 
+You have an unusual magnetic personality.  Don't walk too close to
+metal objects which are not fastened down.
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001360.html">[fetchmail-users] Mails not being flushed due to	incorrect	length
+</A></li>
+	<LI>Next message: <A HREF="001362.html">[fetchmail-users] Suddenly can't connect to Exchange server
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1361">[ date ]</a>
+              <a href="thread.html#1361">[ thread ]</a>
+              <a href="subject.html#1361">[ subject ]</a>
+              <a href="author.html#1361">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

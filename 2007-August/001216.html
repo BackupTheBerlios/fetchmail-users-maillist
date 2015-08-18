@@ -1,0 +1,87 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Fetchmail incorrect header yahoo
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2007-August/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Fetchmail%20incorrect%20header%20yahoo&In-Reply-To=%3C46D2D8EB.7050104%40gmx.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001209.html">
+   <LINK REL="Next"  HREF="001210.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Fetchmail incorrect header yahoo</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Fetchmail%20incorrect%20header%20yahoo&In-Reply-To=%3C46D2D8EB.7050104%40gmx.de%3E"
+       TITLE="[fetchmail-users] Fetchmail incorrect header yahoo">matthias.andree at gmx.de
+       </A><BR>
+    <I>Mon Aug 27 16:00:11 CEST 2007</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001209.html">[fetchmail-users] Fetchmail incorrect header yahoo
+</A></li>
+        <LI>Next message: <A HREF="001210.html">[fetchmail-users] Fetchmail incorrect header yahoo
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1216">[ date ]</a>
+              <a href="thread.html#1216">[ thread ]</a>
+              <a href="subject.html#1216">[ subject ]</a>
+              <a href="author.html#1216">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Andrew  schrieb:
+&gt;<i> Ok guys... I've verified that this isn't a fetchmail issue. It appears 
+</I>&gt;<i> to be a freepops issue. However, my questions still stands... Is there a 
+</I>&gt;<i> way to force fetchmail to deliver the messages even if there isn't any 
+</I>&gt;<i> header information?
+</I>
+Not officially at the moment, since that would only work properly for
+singledrop, and because it may make sense to regenerate mandatory headers
+in case the SMTP listener doesn't.
+
+But there are more important bugs to address first, and workarounds are
+usually low-priority if they intend to work around other server's bugs.
+
+Gentoo however have a patch to let fetchmail continue to ship those
+messages, but evidently you're getting whatever your local SMTP/LMTP server
+or MDA make of the junk they're given. Some try to normalize, some reject,
+you never know until you check the specs, the configuration and everything
+else -- Rob is right in that we'd best stuff the remaining shards and
+pieces of the message into some kind of plastic bag before shipping them
+on, and that requires a lot of work I'm not going to spend on 6.3 which is
+essentially &quot;bug fixes only&quot;.
+
+Sorry.
+
+Best regards
+Matthias
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001209.html">[fetchmail-users] Fetchmail incorrect header yahoo
+</A></li>
+	<LI>Next message: <A HREF="001210.html">[fetchmail-users] Fetchmail incorrect header yahoo
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1216">[ date ]</a>
+              <a href="thread.html#1216">[ thread ]</a>
+              <a href="subject.html#1216">[ subject ]</a>
+              <a href="author.html#1216">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

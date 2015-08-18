@@ -1,0 +1,155 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Error messages with fetchmail 6.3.8
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2007-May/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Error%20messages%20with%20fetchmail%206.3.8&In-Reply-To=%3C46472A44.1020100%40gmx.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001034.html">
+   <LINK REL="Next"  HREF="001042.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Error messages with fetchmail 6.3.8</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Error%20messages%20with%20fetchmail%206.3.8&In-Reply-To=%3C46472A44.1020100%40gmx.de%3E"
+       TITLE="[fetchmail-users] Error messages with fetchmail 6.3.8">matthias.andree at gmx.de
+       </A><BR>
+    <I>Sun May 13 17:09:56 CEST 2007</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001034.html">[fetchmail-users] Error messages with fetchmail 6.3.8
+</A></li>
+        <LI>Next message: <A HREF="001042.html">[fetchmail-users] Error messages with fetchmail 6.3.8
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1035">[ date ]</a>
+              <a href="thread.html#1035">[ thread ]</a>
+              <a href="subject.html#1035">[ subject ]</a>
+              <a href="author.html#1035">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Pongthep Kulkrisada schrieb:
+&gt;<i> Hi all
+</I>&gt;<i> 
+</I>&gt;<i> Error messages with fetchmail 6.3.8
+</I>&gt;<i> Firstly I shall say I am a noobie and sorry if my question is too simple
+</I>&gt;<i> Previously I use fetchmail 6.2.5 on FreeBSD 5.4 (yes obsolete but still get work done). I had no problem with it. In order to be updated, yesterday I downloaded fetchmail 6.3.8. I installed it as I normally do.
+</I>
+Pongthep, the easiest way for FreeBSD installations of fetchmail is to use
+the FreeBSD port - but your installation went apparently right anyways,
+except for the SSL certificates.
+
+&gt;<i> After test, I can still retrieve mails for both accounts, but I found some error messages I never seen before and don't know how to fix it. Anyone has a clue, please point me out and thank you in advance. (please also CC to me, I'm not in the list.)
+</I>
+The problem is with the server's certificate that your OpenSSL library does
+not recognize - installing the root certificate should fix your problem.
+
+&gt;<i> Normally I use mutt as MUA. But for your diagnostic, I put direct command on console as shown below.
+</I>&gt;<i> 
+</I>&gt;<i> Questions
+</I>&gt;<i> 1) My first account has nothing to do with TLS.
+</I>&gt;<i> Why is there such an error message? How to fix it?
+</I>
+You can avoid the attempts if you add
+sslproto ''
+
+to your configuration (that's two single quotes)
+
+&gt;<i> 2) Several errors with my second account (gmail).
+</I>&gt;<i> How to fix it?
+</I>
+See below.
+
+&gt;<i> 3) I also have 6bone tunnel for IPv6.
+</I>&gt;<i> Shall I do anything special with fetchmail?
+</I>
+There should be no need; FreeBSD 5.4 can do IPv6 as far as I know.
+
+&gt;<i> % fetchmail -vv
+</I>
+Thank you.
+
+&gt;<i> fetchmail: 6.3.8 querying mail.ego.co.th (protocol POP3) at Sun May 13 11:08:42 2007: poll started
+</I>&gt;<i> Trying to connect to 202.5.93.197/110...connected.
+</I>&gt;<i> fetchmail: POP3&lt; +OK Hello there.
+</I>&gt;<i> fetchmail: POP3&gt; CAPA
+</I>&gt;<i> fetchmail: POP3&lt; +OK Here's what I can do:
+</I>&gt;<i> fetchmail: POP3&lt; STLS
+</I>&gt;<i> fetchmail: POP3&lt; TOP
+</I>&gt;<i> fetchmail: POP3&lt; USER
+</I>&gt;<i> fetchmail: POP3&lt; LOGIN-DELAY 10
+</I>&gt;<i> fetchmail: POP3&lt; PIPELINING
+</I>&gt;<i> fetchmail: POP3&lt; UIDL
+</I>&gt;<i> fetchmail: POP3&lt; IMPLEMENTATION Courier Mail Server
+</I>&gt;<i> fetchmail: POP3&lt; .
+</I>&gt;<i> fetchmail: POP3&gt; STLS
+</I>&gt;<i> fetchmail: POP3&lt; +OK Begin SSL/TLS negotiation now.
+</I>&gt;<i> fetchmail: mail.ego.co.th: opportunistic upgrade to TLS failed, trying to continue.
+</I>&gt;<i> fetchmail: POP3&gt; USER <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">pkrisada at ego.co.th</A>
+</I>&gt;<i> fetchmail: Repoll immediately on <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">pkrisada at ego.co.th</A>@mail.ego.co.th
+</I>&gt;<i> Trying to connect to 202.5.93.197/110...connected.
+</I>
+The server offered TLS, so fetchmail tried. However, the server is not
+configured properly (&quot;opportunistic upgrade to TLS failed&quot;) and
+additionally dropped the connection.
+
+Fetchmail noticed and retried without TLS. This is typical Courier
+behavior. I'll talk to Sam Varshavchik if he sees a chance to fix this.
+
+Suggestion above (sslproto '').
+
+&gt;<i> fetchmail: 6.3.8 querying mail.ego.co.th (protocol POP3) at Sun May 13 11:08:44 2007: poll completed
+</I>&gt;<i> fetchmail: not swapping UID lists, no UIDs seen this query
+</I>&gt;<i> fetchmail: Query status=1 (NOMAIL)
+</I>&gt;<i> fetchmail: 6.3.8 querying pop.gmail.com (protocol POP3) at Sun May 13 11:08:44 2007: poll started
+</I>&gt;<i> Trying to connect to 72.14.253.109/995...connected.
+</I>&gt;<i> fetchmail: Issuer Organization: Equifax
+</I>&gt;<i> fetchmail: Unknown Issuer CommonName
+</I>&gt;<i> fetchmail: Server CommonName: pop.gmail.com
+</I>&gt;<i> fetchmail: pop.gmail.com key fingerprint: 59:51:61:89:CD:DD:B2:35:94:BB:44:97:A0:39:D5:B4
+</I>&gt;<i> fetchmail: Server certificate verification error: unable to get local issuer certificate
+</I>&gt;<i> fetchmail: Server certificate verification error: certificate not trusted
+</I>&gt;<i> fetchmail: Server certificate verification error: unable to verify the first certificate
+</I>
+Looks as though the root certificate from Equifax is not installed on your
+computer, so the OpenSSL library cannot verify that there is no man in the
+middle attack going on. Fetchmail continues however (because you did not
+specify --sslcertck).
+
+Do you have the ca-roots port installed? Try doing that, it makes the
+problem go away on my computer (I have FreeBSD 6.2 and installed fetchmail
+6.3.8 from the port).
+
+HTH
+Matthias
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001034.html">[fetchmail-users] Error messages with fetchmail 6.3.8
+</A></li>
+	<LI>Next message: <A HREF="001042.html">[fetchmail-users] Error messages with fetchmail 6.3.8
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1035">[ date ]</a>
+              <a href="thread.html#1035">[ thread ]</a>
+              <a href="subject.html#1035">[ subject ]</a>
+              <a href="author.html#1035">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

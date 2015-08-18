@@ -1,0 +1,146 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] fetchmail options limit and warnings
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2013-April/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%20options%20limit%20and%20warnings&In-Reply-To=%3Calpine.DEB.2.00.1304011009460.5839%40vmdebian.local.koeppe-net.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   
+   <LINK REL="Next"  HREF="003381.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] fetchmail options limit and warnings</H1>
+    <B>Martin Koeppe</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%20options%20limit%20and%20warnings&In-Reply-To=%3Calpine.DEB.2.00.1304011009460.5839%40vmdebian.local.koeppe-net.de%3E"
+       TITLE="[fetchmail-users] fetchmail options limit and warnings">mkoeppe at gmx.de
+       </A><BR>
+    <I>Mon Apr  1 10:10:22 CEST 2013</I>
+    <P><UL>
+        
+        <LI>Next message: <A HREF="003381.html">[fetchmail-users] fetchmail options limit and warnings
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3380">[ date ]</a>
+              <a href="thread.html#3380">[ thread ]</a>
+              <a href="subject.html#3380">[ subject ]</a>
+              <a href="author.html#3380">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>
+Hi all,
+
+I'm using fetchmail 6.3.21 on cygwin to retrieve mails for multiple users in 
+single-drop mode. I use the limit option in fetchmailrc. I currently don't use 
+daemon mode, but have another way to regularily start fetchmail (windows 
+planned tasks).
+
+Now I would like to send a warning message to the users if an oversized message 
+is detected, even if fetchmail is not in daemon mode, because the output only 
+goes to a log file which can't be read by the users. Ideally, the warning would 
+go to the address that would have received the mail if it were not oversized. 
+But a single recipient of the oversize warnings would also help.
+
+So I played around with set postmaster &quot;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">notify at mail.address</A>&quot; and daemon mode, 
+but didn't get any notification mail at all.
+
+I use
+
+   fetchmail -f fetchmailrc &gt; logfile 2&gt;&amp;1
+
+with this fetchmailrc file:
+
+-----8&lt;-----
+
+set postmaster <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">martin at example.local</A>
+defaults:
+ 	proto pop3 timeout 300 sslproto ''
+ 	limit 50000000 warnings 1
+
+poll pop.example.com:
+
+ 	user &quot;user1&quot; there with pass &quot;x&quot; is &quot;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">user1 at example.local</A>&quot; here
+ 	nokeep fetchall
+
+ 	user &quot;user2&quot; there with pass &quot;x&quot; is &quot;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">user2 at example.local</A>&quot; here
+ 	nokeep fetchall
+
+-----8&lt;-----
+
+Even when adding --daemon 3600 --nodetach -vvv, I don't see a notification at 
+<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">martin at example.local</A>:
+
+
+fetchmail: 6.3.21 querying pop.1und1.de (protocol POP3) at Mon Apr  1 12:28:58 
+2013: poll started
+Trying to connect to 212.227.15.178/110...connected.
+fetchmail: POP3&lt; +OK POP server ready H mibap5 0MQ2RX-1UIVN535P9-005TKB
+fetchmail: POP3&gt; CAPA
+fetchmail: POP3&lt; +OK Capability list follows
+fetchmail: POP3&lt; TOP
+fetchmail: POP3&lt; USER
+fetchmail: POP3&lt; UIDL
+fetchmail: POP3&lt; STLS
+fetchmail: POP3&lt; SASL PLAIN
+fetchmail: POP3&lt; IMPLEMENTATION trinity
+fetchmail: POP3&lt; .
+fetchmail: POP3&gt; USER <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">info at example.com</A>
+fetchmail: POP3&lt; +OK password required for user &quot;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">info at example.com</A>&quot;
+fetchmail: POP3&gt; PASS *
+fetchmail: POP3&lt; +OK mailbox &quot;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">info at example.com</A>&quot; has 1 messages (85840590 
+octets) H mibap5
+fetchmail: selecting or re-polling default folder
+fetchmail: POP3&gt; STAT
+fetchmail: POP3&lt; +OK 1 85840590
+1 message for <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">info at example.com</A> at pop.1und1.de (85840590 octets).
+fetchmail: POP3&gt; LIST 1
+fetchmail: POP3&lt; +OK 1 85840590
+skipping message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">info at eample.com</A>@pop.1und1.de:1 (85840590 octets) (oversized) 
+not flushed
+fetchmail: POP3&gt; QUIT
+fetchmail: POP3&lt; +OK POP server signing off
+fetchmail: 6.3.21 querying pop.1und1.de (protocol POP3) at Mon Apr  1 12:28:58 
+2013: poll completed
+
+
+
+
+And ideally, I would like to have <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">user1 at example.local</A> informed if the user1 POP 
+account has an oversized message, and <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">user2 at example.local</A> for an oversized 
+message in user2 POP account.
+
+
+Thanks for your help
+
+Martin
+
+</PRE>
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	
+	<LI>Next message: <A HREF="003381.html">[fetchmail-users] fetchmail options limit and warnings
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3380">[ date ]</a>
+              <a href="thread.html#3380">[ thread ]</a>
+              <a href="subject.html#3380">[ subject ]</a>
+              <a href="author.html#3380">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

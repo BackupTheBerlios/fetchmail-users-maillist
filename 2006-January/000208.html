@@ -1,0 +1,94 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Re: [fetchmail]Re: SSL authentication problems with Gmail
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2006-January/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Re%3A%20%5Bfetchmail%5DRe%3A%20SSL%20authentication%20problems%20with%20Gmail&In-Reply-To=%3Cm31wzqdvsj.fsf%40merlin.emma.line.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000219.html">
+   <LINK REL="Next"  HREF="000210.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Re: [fetchmail]Re: SSL authentication problems with Gmail</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Re%3A%20%5Bfetchmail%5DRe%3A%20SSL%20authentication%20problems%20with%20Gmail&In-Reply-To=%3Cm31wzqdvsj.fsf%40merlin.emma.line.org%3E"
+       TITLE="[fetchmail-users] Re: [fetchmail]Re: SSL authentication problems with Gmail">matthias.andree at gmx.de
+       </A><BR>
+    <I>Tue Jan  3 01:01:16 CET 2006</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000219.html">[fetchmail-users] Fetchmail is running slow on Mac OS X
+</A></li>
+        <LI>Next message: <A HREF="000210.html">[fetchmail-users] broken POP3 servers - future fetchmail policy (IMPORTANT) (was: [fetchmail]comcast.net and attachments - workaround)
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#208">[ date ]</a>
+              <a href="thread.html#208">[ thread ]</a>
+              <a href="subject.html#208">[ subject ]</a>
+              <a href="author.html#208">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>[Cc:ing <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">fetchmail-users at lists.berlios.de</A>, JFTR]
+
+Sebastian Tennant &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">sebyte at smolny.plus.com</A>&gt; writes:
+
+&gt;<i> I unpacked the 6.3.1 tarball in my workspace directory, downloaded
+</I>&gt;<i> the openssl source from the Debian apt repositories (testing) and
+</I>&gt;<i> copied it across to my workspace too.  Then I ran:
+</I>&gt;<i>
+</I>&gt;<i>   $ cd fetchmail-6.3.1
+</I>&gt;<i>   $ ./configure --with-ssl=/home/sebyte/workspace/openssl-0.9.8a
+</I>&gt;<i>   [...]
+</I>&gt;<i>   configure: error: cannot link with SSL - check config.log
+</I>&gt;<i>
+</I>&gt;<i> I read the INSTALL file for building with ssl and the directory I
+</I>&gt;<i> specified on the comand line definitely includes the include/
+</I>&gt;<i> directory...
+</I>
+Actually, the system SSL should have been fine after installation of the
+-dev package. I know not a single system with OpenSSL in the base system
+where --with-ssl=/usr hasn't worked for me.
+
+&gt;<i> I hope I've attached the relevant section from the config.log.
+</I>
+Yup.
+
+&gt;<i> configure:12595: gcc -o conftest -g -O2   conftest.c  -L/home/sebyte/workspace/openssl-0.9.8a/lib -lcrypt  -lresolv -lssl -lcrypto  &gt;&amp;5
+</I>&gt;<i> /usr/bin/ld: cannot find -lssl
+</I>
+Try running &quot;ldconfig -n /home/sebyte/workspace/openssl-0.9.8a/lib&quot; and
+re-run ./configure.
+
+-- 
+Matthias Andree
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000219.html">[fetchmail-users] Fetchmail is running slow on Mac OS X
+</A></li>
+	<LI>Next message: <A HREF="000210.html">[fetchmail-users] broken POP3 servers - future fetchmail policy (IMPORTANT) (was: [fetchmail]comcast.net and attachments - workaround)
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#208">[ date ]</a>
+              <a href="thread.html#208">[ thread ]</a>
+              <a href="subject.html#208">[ subject ]</a>
+              <a href="author.html#208">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

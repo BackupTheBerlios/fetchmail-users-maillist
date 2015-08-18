@@ -1,0 +1,305 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] only one message gets fetched using IMAP idle
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2006-May/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20only%20one%20message%20gets%20fetched%20using%20IMAP%20idle&In-Reply-To=%3C4468B11B.5080500%40gmx.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000404.html">
+   <LINK REL="Next"  HREF="000406.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] only one message gets fetched using IMAP idle</H1>
+    <B>Lars Tewes</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20only%20one%20message%20gets%20fetched%20using%20IMAP%20idle&In-Reply-To=%3C4468B11B.5080500%40gmx.de%3E"
+       TITLE="[fetchmail-users] only one message gets fetched using IMAP idle">lsr at gmx.de
+       </A><BR>
+    <I>Mon May 15 18:49:31 CEST 2006</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000404.html">[fetchmail-users] only one message gets fetched using IMAP idle
+</A></li>
+        <LI>Next message: <A HREF="000406.html">[fetchmail-users] only one message gets fetched using IMAP idle
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#405">[ date ]</a>
+              <a href="thread.html#405">[ thread ]</a>
+              <a href="subject.html#405">[ subject ]</a>
+              <a href="author.html#405">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hello Matthias,
+
+Matthias Andree wrote:
+&gt;<i> Lars Tewes &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">lsr at gmx.de</A>&gt; writes:
+</I>&gt;<i> 
+</I>&gt;&gt;<i> Using fetchmail successfully with polling by interval for several months
+</I>&gt;&gt;<i> I just tried to use the IMAP idle-extension to get my mails delivered
+</I>&gt;&gt;<i> immediately.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Unfortunately only one message gets fetched - after that, fetchmail
+</I>&gt;&gt;<i> recognizes the arrival of a new one, but instead of downloading the
+</I>&gt;&gt;<i> message, it just triggers another idle.
+</I>&gt;<i> 
+</I>&gt;<i> Does the attached patch help?
+</I>
+&gt;<i> Index: imap.c
+</I>&gt;<i> ===================================================================
+</I>&gt;<i> --- imap.c	(Revision 4840)
+</I>&gt;<i> +++ imap.c	(Arbeitskopie)
+</I>&gt;<i> @@ -679,7 +679,7 @@
+</I>
+I'm quite impressed by this quick solution - it works! Well, mostly.
+
+Working transfer:
+
+---------------------------------------------------------------------
+
+<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">lsr at lsr</A># /usr/bin/fetchmail -v -v
+fetchmail: 6.3.4 querying imap.strato.de (protocol IMAP) at Mon 15 May 2006 
+06:28:17 PM CEST: poll started
+fetchmail: IMAP&lt; * OK IMAP server ready
+fetchmail: IMAP&gt; A0001 CAPABILITY
+fetchmail: IMAP&lt; * CAPABILITY IDLE IMAP4rev1 AUTH=CRAM-MD5 SORT QUOTA NAMESPACE
+fetchmail: IMAP&lt; A0001 OK CAPABILITY completed
+fetchmail: Protocol identified as IMAP4 rev 1
+fetchmail: will idle after poll
+fetchmail: IMAP&gt; A0002 AUTHENTICATE CRAM-MD5
+fetchmail: IMAP&lt; + PDQ3NzYuMjI1NDUuMTE0NzcxMDQ5NUBwb3N0LndlYm1haWxlci5kZT4=
+fetchmail: decoded as &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">4776.22545.1147710495 at post.webmailer.de</A>&gt;
+fetchmail: IMAP&gt; 
+bHNyQHZpZXctc291cmNlLmRlIDEwZmJjOGY4ZmMzYjJiNDQ3N2I4YjUzYzE1NzYzZmJi
+fetchmail: IMAP&lt; A0002 OK LOGIN completed
+fetchmail: selecting or re-polling default folder
+fetchmail: IMAP&gt; A0003 SELECT &quot;INBOX&quot;
+fetchmail: IMAP&lt; * 0 EXISTS
+fetchmail: IMAP&lt; * 0 RECENT
+fetchmail: IMAP&lt; * FLAGS (\Answered \Flagged \Deleted \Seen \Draft \Forwarded)
+fetchmail: IMAP&lt; * OK [PERMANENTFLAGS (\Answered \Flagged \Deleted \Seen 
+\Draft \Forwarded)] Permanent flags
+fetchmail: IMAP&lt; * OK [UIDVALIDITY 1116049368] UIDVALIDITY value
+fetchmail: IMAP&lt; * OK [UIDNEXT 3273] may be the next UID value
+fetchmail: IMAP&lt; A0003 OK [READ-WRITE] SELECT completed
+fetchmail: 0 messages waiting after first poll
+fetchmail: IMAP&gt; A0004 IDLE
+fetchmail: IMAP&lt; + will notify you of all changes
+
+
+[sending first mail now...]
+
+
+fetchmail: IMAP&lt; * 1 EXISTS
+fetchmail: IMAP&gt; DONE
+fetchmail: IMAP&lt; A0004 OK IDLE completed
+fetchmail: 1 message waiting after re-poll
+fetchmail: IMAP&gt; A0005 SEARCH UNSEEN NOT DELETED
+fetchmail: IMAP&lt; * SEARCH 1
+fetchmail: 1 is unseen
+fetchmail: IMAP&lt; A0005 OK SEARCH completed
+fetchmail: 1 is first unseen
+1 message for <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">lsr at view-source.de</A> at imap.strato.de.
+fetchmail: IMAP&gt; A0006 FETCH 1 RFC822.SIZE
+fetchmail: IMAP&lt; * 1 FETCH (RFC822.SIZE 900)
+fetchmail: IMAP&lt; A0006 OK Fetch complete
+fetchmail: IMAP&gt; A0007 FETCH 1 RFC822.HEADER
+fetchmail: IMAP&lt; * 1 FETCH (RFC822.HEADER {895}
+reading message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">lsr at view-source.de</A>@imap.rzone.de:1 of 1 (895 header octets)
+About to rewrite From: Lars Tewes &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">lsr at gmx.de</A>&gt;
+Rewritten version is From: Lars Tewes &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">lsr at gmx.de</A>&gt;
+
+About to rewrite To: Lars Tewes &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">lsr at view-source.de</A>&gt;
+Rewritten version is To: Lars Tewes &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">lsr at view-source.de</A>&gt;
+
+fetchmail: about to deliver with: /usr/bin/procmail -d 'lsr'
+#
+fetchmail: IMAP&lt; )
+fetchmail: IMAP&lt; A0007 OK Fetch complete
+fetchmail: IMAP&gt; A0008 FETCH 1 BODY.PEEK[TEXT]
+fetchmail: IMAP&lt; * 1 FETCH (BODY[TEXT] {5}
+  (5 body octets) *
+fetchmail: IMAP&lt; )
+fetchmail: IMAP&lt; A0008 OK Fetch complete
+  flushed
+fetchmail: IMAP&gt; A0009 STORE 1 +FLAGS (\Seen \Deleted)
+fetchmail: IMAP&lt; * 1 FETCH (FLAGS (\Deleted \Seen \Recent))
+fetchmail: IMAP&lt; A0009 OK STORE completed
+fetchmail: IMAP&gt; A0010 EXPUNGE
+fetchmail: IMAP&lt; * 1 EXPUNGE
+fetchmail: IMAP&lt; A0010 OK EXPUNGE completed
+fetchmail: selecting or re-polling default folder
+fetchmail: IMAP&gt; A0011 IDLE
+fetchmail: IMAP&lt; + will notify you of all changes
+
+
+[sending second mail now...]
+
+
+fetchmail: IMAP&lt; * 1 EXISTS
+fetchmail: IMAP&gt; DONE
+fetchmail: IMAP&lt; A0011 OK IDLE completed
+fetchmail: 1 message waiting after re-poll
+fetchmail: IMAP&gt; A0012 SEARCH UNSEEN NOT DELETED
+fetchmail: IMAP&lt; * SEARCH 1
+fetchmail: 1 is unseen
+fetchmail: IMAP&lt; A0012 OK SEARCH completed
+fetchmail: 1 is first unseen
+1 message for <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">lsr at view-source.de</A> at imap.strato.de.
+fetchmail: IMAP&gt; A0013 FETCH 1 RFC822.SIZE
+fetchmail: IMAP&lt; * 1 FETCH (RFC822.SIZE 896)
+fetchmail: IMAP&lt; A0013 OK Fetch complete
+fetchmail: IMAP&gt; A0014 FETCH 1 RFC822.HEADER
+fetchmail: IMAP&lt; * 1 FETCH (RFC822.HEADER {896}
+reading message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">lsr at view-source.de</A>@imap.rzone.de:1 of 1 (896 header octets)
+About to rewrite From: Lars Tewes &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">lsr at gmx.de</A>&gt;
+Rewritten version is From: Lars Tewes &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">lsr at gmx.de</A>&gt;
+
+About to rewrite To: Lars Tewes &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">lsr at view-source.de</A>&gt;
+Rewritten version is To: Lars Tewes &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">lsr at view-source.de</A>&gt;
+
+fetchmail: about to deliver with: /usr/bin/procmail -d 'lsr'
+#
+fetchmail: IMAP&lt; )
+fetchmail: IMAP&lt; A0014 OK Fetch complete
+fetchmail: IMAP&gt; A0015 FETCH 1 BODY.PEEK[TEXT]
+fetchmail: IMAP&lt; * 1 FETCH (BODY[TEXT] {0}
+  (0 body octets)
+fetchmail: IMAP&lt; )
+fetchmail: IMAP&lt; A0015 OK Fetch complete
+  flushed
+fetchmail: IMAP&gt; A0016 STORE 1 +FLAGS (\Seen \Deleted)
+fetchmail: IMAP&lt; * 1 FETCH (FLAGS (\Deleted \Seen \Recent))
+fetchmail: IMAP&lt; A0016 OK STORE completed
+fetchmail: IMAP&gt; A0017 EXPUNGE
+fetchmail: IMAP&lt; * 1 EXPUNGE
+fetchmail: IMAP&lt; A0017 OK EXPUNGE completed
+fetchmail: selecting or re-polling default folder
+fetchmail: IMAP&gt; A0018 IDLE
+fetchmail: IMAP&lt; + will notify you of all changes
+
+[works!]
+
+---------------------------------------------------------------------
+
+But if I try to not to expunge the messages on the server after the transfer 
+(using &quot;keep&quot; configuration option), fetchmail immediately terminates after 
+fetching the first message. Don't know if this is intended behaviour?
+
+---------------------------------------------------------------------
+
+Logfile with &quot;keep&quot; option set:
+
+<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">lsr at lsr</A># /usr/bin/fetchmail -v -v
+fetchmail: 6.3.4 querying imap.strato.de (protocol IMAP) at Mon 15 May 2006 
+06:35:00 PM CEST: poll started
+fetchmail: IMAP&lt; * OK IMAP server ready
+fetchmail: IMAP&gt; A0001 CAPABILITY
+fetchmail: IMAP&lt; * CAPABILITY IDLE IMAP4rev1 AUTH=CRAM-MD5 SORT QUOTA NAMESPACE
+fetchmail: IMAP&lt; A0001 OK CAPABILITY completed
+fetchmail: Protocol identified as IMAP4 rev 1
+fetchmail: will idle after poll
+fetchmail: IMAP&gt; A0002 AUTHENTICATE CRAM-MD5
+fetchmail: IMAP&lt; + PDQ4MDIuMjI1NjkuMTE0NzcxMDg5OUBwb3N0LndlYm1haWxlci5kZT4=
+fetchmail: decoded as &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">4802.22569.1147710899 at post.webmailer.de</A>&gt;
+fetchmail: IMAP&gt; 
+bHNyQHZpZXctc291cmNlLmRlIGQxMGM5ZjMzMDQwNjYxNTRmOTY0OTkxNTk2Nzk3NzJi
+fetchmail: IMAP&lt; A0002 OK LOGIN completed
+fetchmail: selecting or re-polling default folder
+fetchmail: IMAP&gt; A0003 SELECT &quot;INBOX&quot;
+fetchmail: IMAP&lt; * 0 EXISTS
+fetchmail: IMAP&lt; * 0 RECENT
+fetchmail: IMAP&lt; * FLAGS (\Answered \Flagged \Deleted \Seen \Draft \Forwarded)
+fetchmail: IMAP&lt; * OK [PERMANENTFLAGS (\Answered \Flagged \Deleted \Seen 
+\Draft \Forwarded)] Permanent flags
+fetchmail: IMAP&lt; * OK [UIDVALIDITY 1116049368] UIDVALIDITY value
+fetchmail: IMAP&lt; * OK [UIDNEXT 3276] may be the next UID value
+fetchmail: IMAP&lt; A0003 OK [READ-WRITE] SELECT completed
+fetchmail: 0 messages waiting after first poll
+fetchmail: IMAP&gt; A0004 IDLE
+fetchmail: IMAP&lt; + will notify you of all changes
+
+
+[sending first mail now...]
+
+
+fetchmail: IMAP&lt; * 1 EXISTS
+fetchmail: IMAP&gt; DONE
+fetchmail: IMAP&lt; A0004 OK IDLE completed
+fetchmail: 1 message waiting after re-poll
+fetchmail: IMAP&gt; A0005 SEARCH UNSEEN NOT DELETED
+fetchmail: IMAP&lt; * SEARCH 1
+fetchmail: 1 is unseen
+fetchmail: IMAP&lt; A0005 OK SEARCH completed
+fetchmail: 1 is first unseen
+1 message for <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">lsr at view-source.de</A> at imap.strato.de.
+fetchmail: IMAP&gt; A0006 FETCH 1 RFC822.SIZE
+fetchmail: IMAP&lt; * 1 FETCH (RFC822.SIZE 709)
+fetchmail: IMAP&lt; A0006 OK Fetch complete
+fetchmail: IMAP&gt; A0007 FETCH 1 RFC822.HEADER
+fetchmail: IMAP&lt; * 1 FETCH (RFC822.HEADER {704}
+reading message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">lsr at view-source.de</A>@imap.rzone.de:1 of 1 (704 header octets)
+About to rewrite From: Lars Tewes &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">lsr at gmx.de</A>&gt;
+Rewritten version is From: Lars Tewes &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">lsr at gmx.de</A>&gt;
+
+About to rewrite To: Lars Tewes &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">lsr at view-source.de</A>&gt;
+Rewritten version is To: Lars Tewes &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">lsr at view-source.de</A>&gt;
+
+fetchmail: about to deliver with: /usr/bin/procmail -d 'lsr'
+#
+fetchmail: IMAP&lt; )
+fetchmail: IMAP&lt; A0007 OK Fetch complete
+fetchmail: IMAP&gt; A0008 FETCH 1 BODY.PEEK[TEXT]
+fetchmail: IMAP&lt; * 1 FETCH (BODY[TEXT] {5}
+  (5 body octets) *
+fetchmail: IMAP&lt; )
+fetchmail: IMAP&lt; A0008 OK Fetch complete
+  not flushed
+fetchmail: IMAP&gt; A0009 STORE 1 +FLAGS (\Seen)
+fetchmail: IMAP&lt; * 1 FETCH (FLAGS (\Seen \Recent))
+fetchmail: IMAP&lt; A0009 OK STORE completed
+fetchmail: IMAP&gt; A0010 LOGOUT
+fetchmail: IMAP&lt; * BYE
+fetchmail: IMAP&lt; A0010 OK LOGOUT completed
+fetchmail: 6.3.4 querying imap.strato.de (protocol IMAP) at Mon 15 May 2006 
+06:35:28 PM CEST: poll completed
+fetchmail: not swapping UID lists, no UIDs seen this query
+fetchmail: Writing fetchids file.
+fetchmail: normal termination, status 0
+fetchmail: Writing fetchids file.
+
+---------------------------------------------------------------------
+
+Thanks a lot for the patch!
+
+Best,
+Lars
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000404.html">[fetchmail-users] only one message gets fetched using IMAP idle
+</A></li>
+	<LI>Next message: <A HREF="000406.html">[fetchmail-users] only one message gets fetched using IMAP idle
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#405">[ date ]</a>
+              <a href="thread.html#405">[ thread ]</a>
+              <a href="subject.html#405">[ subject ]</a>
+              <a href="author.html#405">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

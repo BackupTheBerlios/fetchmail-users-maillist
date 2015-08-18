@@ -1,0 +1,180 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] fetchmail authorization and socket errors
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2006-November/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%20authorization%20and%20socket%20errors&In-Reply-To=%3C20061111120100.ee8ace0f2c1f5306d64c0b7669778979.8d72b2608c.wbe%40email.secureserver.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000682.html">
+   <LINK REL="Next"  HREF="000684.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] fetchmail authorization and socket errors</H1>
+    <B>wade at wadesmart.com</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%20authorization%20and%20socket%20errors&In-Reply-To=%3C20061111120100.ee8ace0f2c1f5306d64c0b7669778979.8d72b2608c.wbe%40email.secureserver.net%3E"
+       TITLE="[fetchmail-users] fetchmail authorization and socket errors">wade at wadesmart.com
+       </A><BR>
+    <I>Sat Nov 11 20:01:00 CET 2006</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000682.html">[fetchmail-users] fetchmail no longer getting mail
+</A></li>
+        <LI>Next message: <A HREF="000684.html">[fetchmail-users] fetchmail authorization and socket errors
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#683">[ date ]</a>
+              <a href="thread.html#683">[ thread ]</a>
+              <a href="subject.html#683">[ subject ]</a>
+              <a href="author.html#683">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>11112006 1258 GMT-6
+
+I rebooted and then ran fetchmail -c to generate a mail.info and
+mail.err log.
+This is from mail.info:
+Nov 11 07:52:14 wadesmart dovecot: imap-login: Login: user=&lt;wadesmart&gt;,
+method=PLAIN, rip=127.0.0.1, lip=127.0.0.1, secured
+Nov 11 11:06:40 wadesmart postfix/master[4815]: terminating on signal 15
+Nov 11 11:06:40 wadesmart dovecot: Killed with signal 15
+Nov 11 11:10:05 wadesmart postfix/master[4816]: daemon started --
+version 2.2.10, configuration /etc/postfix
+Nov 11 11:10:06 wadesmart dovecot: Dovecot v1.0.beta3 starting up
+Nov 11 11:10:06 wadesmart dovecot: Generating Diffie-Hellman parameters
+for the first time. This may take a while..
+Nov 11 11:10:22 wadesmart dovecot: ssl-build-param: SSL parameters
+regeneration completed
+Nov 11 12:20:53 wadesmart dovecot: imap-login: Login: user=&lt;wadesmart&gt;,
+method=PLAIN, rip=127.0.0.1, lip=127.0.0.1, secured
+Nov 11 12:47:16 wadesmart fetchmail[13871]: 450 messages for
+<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">wade at wadesmart.com</A> at mail.wadesmart.com (4990589 octets).
+Nov 11 12:47:17 wadesmart fetchmail[13871]: Unknown login or
+authentication error on <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">wadesmart at gmail.com</A>@gmail-pop.l.google.com
+Nov 11 12:47:17 wadesmart fetchmail[13871]: socket error while fetching
+from <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">wadesmart at gmail.com</A>@pop.gmail.com
+Nov 11 12:47:18 wadesmart fetchmail[13871]: 67 messages (57 seen) for
+<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">wadesmart at gmail.com</A> at pop.gmail.com (7398134 octets).
+
+and from mail.err
+Nov 11 12:47:17 wadesmart fetchmail[13871]: Unknown login or
+authentication error on <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">wadesmart at gmail.com</A>@gmail-pop.l.google.com
+Nov 11 12:47:17 wadesmart fetchmail[13871]: socket error while fetching
+from <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">wadesmart at gmail.com</A>@pop.gmail.com
+
+wade
+
+&gt;<i> -------- Original Message --------
+</I>&gt;<i> Subject: fetchmail authorization and socket errors
+</I>&gt;<i> From: <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">wade at wadesmart.com</A>
+</I>&gt;<i> Date: Sat, November 11, 2006 10:53 am
+</I>&gt;<i> To: Ubuntu Users &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">ubuntu-users at lists.ubuntu.com</A>&gt;, Ubuntu Yahoo Groups
+</I>&gt;<i> &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">ubuntulinux at yahoogroups.com</A>&gt;
+</I>&gt;<i>
+</I>&gt;<i> 11112006 1047 GMT-6
+</I>&gt;<i>
+</I>&gt;<i> I have traced my mail problems down (with help) to fetchmail errors.
+</I>&gt;<i>
+</I>&gt;<i> This is from mail.info log:
+</I>&gt;<i>
+</I>&gt;<i>   * Just before here I noticed that gweather applet wasnt working and
+</I>&gt;<i> would not update automatically or manually.
+</I>&gt;<i>   * And then I rebooted.
+</I>&gt;<i>
+</I>&gt;<i> Nov  9 11:30:40 wadesmart fetchmail[7668]: Unknown login or
+</I>&gt;<i> authentication error on <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">wadesmart at gmail.com</A>@gmail-pop.l.google.com
+</I>&gt;<i> Nov  9 11:30:40 wadesmart fetchmail[7668]: socket error while fetching
+</I>&gt;<i> from <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">wadesmart at gmail.com</A>@pop.gmail.com
+</I>&gt;<i> Nov  9 11:30:43 wadesmart fetchmail[7668]: 57 messages (57 seen) for
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">wadesmart at gmail.com</A> at pop.gmail.com (6345985 octets).
+</I>&gt;<i> Nov  9 11:35:44 wadesmart fetchmail[7668]: Unknown login or
+</I>&gt;<i> authentication error on <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">wadesmart at gmail.com</A>@gmail-pop.l.google.com
+</I>&gt;<i> Nov  9 11:35:44 wadesmart fetchmail[7668]: socket error while fetching
+</I>&gt;<i> from <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">wadesmart at gmail.com</A>@pop.gmail.com
+</I>&gt;<i> Nov  9 11:35:47 wadesmart fetchmail[7668]: 57 messages (57 seen) for
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">wadesmart at gmail.com</A> at pop.gmail.com (6345985 octets).
+</I>&gt;<i> Nov  9 11:39:18 wadesmart postfix/master[23958]: terminating on signal
+</I>&gt;<i> 15
+</I>&gt;<i> Nov  9 11:39:18 wadesmart dovecot: Killed with signal 15
+</I>&gt;<i> Nov  9 11:40:55 wadesmart postfix/master[4816]: daemon started --
+</I>&gt;<i> version 2.2.10, configuration /etc/postfix
+</I>&gt;<i> Nov  9 11:40:55 wadesmart dovecot: Dovecot v1.0.beta3 starting up
+</I>&gt;<i> Nov  9 11:40:55 wadesmart dovecot: Generating Diffie-Hellman parameters
+</I>&gt;<i> for the first time. This may take a while..
+</I>&gt;<i> Nov  9 11:41:01 wadesmart dovecot: ssl-build-param: SSL parameters
+</I>&gt;<i> regeneration completed
+</I>&gt;<i> Nov  9 12:02:40 wadesmart dovecot: imap-login: Login: user=&lt;wadesmart&gt;,
+</I>&gt;<i> method=PLAIN, rip=127.0.0.1, lip=127.0.0.1, secured
+</I>&gt;<i> Nov  9 13:45:16 wadesmart postfix/master[4816]: terminating on signal 15
+</I>&gt;<i> Nov  9 13:45:16 wadesmart dovecot: Killed with signal 15
+</I>&gt;<i> Nov  9 13:48:02 wadesmart postfix/master[4815]: daemon started --
+</I>&gt;<i> version 2.2.10, configuration /etc/postfix
+</I>&gt;<i> Nov  9 13:48:03 wadesmart dovecot: Dovecot v1.0.beta3 starting up
+</I>&gt;<i> Nov  9 13:48:03 wadesmart dovecot: Generating Diffie-Hellman parameters
+</I>&gt;<i> for the first time. This may take a while..
+</I>&gt;<i> Nov  9 13:48:43 wadesmart dovecot: imap-login: Login: user=&lt;wadesmart&gt;,
+</I>&gt;<i> method=PLAIN, rip=127.0.0.1, lip=127.0.0.1, secured
+</I>&gt;<i> Nov  9 13:48:48 wadesmart dovecot: ssl-build-param: SSL parameters
+</I>&gt;<i> regeneration completed
+</I>&gt;<i> Nov  9 13:51:46 wadesmart fetchmail[5739]: starting fetchmail 6.3.2
+</I>&gt;<i> daemon
+</I>&gt;<i> Nov  9 13:51:46 wadesmart fetchmail[5739]: Server certificate
+</I>&gt;<i> verification error: self signed certificate
+</I>&gt;<i> Nov  9 13:51:48 wadesmart fetchmail[5739]: Authorization failure on
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">wadesmart at wadesmart</A>
+</I>&gt;<i> Nov  9 13:51:48 wadesmart dovecot: imap-login: Aborted login:
+</I>&gt;<i> user=&lt;wadesmart&gt;, method=PLAIN, rip=127.0.1.1, lip=127.0.1.1, TLS
+</I>&gt;<i> Nov  9 13:51:48 wadesmart fetchmail[5739]: Query status=3 (AUTHFAIL)
+</I>&gt;<i> Nov  9 13:56:48 wadesmart fetchmail[5739]: Server certificate
+</I>&gt;<i> verification error: self signed certificate
+</I>&gt;<i> Nov  9 13:56:51 wadesmart fetchmail[5739]: Authorization failure on
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">wadesmart at wadesmart</A>
+</I>&gt;<i> Nov  9 13:56:51 wadesmart dovecot: imap-login: Aborted login:
+</I>&gt;<i> user=&lt;wadesmart&gt;, method=PLAIN, rip=127.0.1.1, lip=127.0.1.1, TLS
+</I>&gt;<i> Nov  9 13:56:51 wadesmart fetchmail[5739]: Query status=3 (AUTHFAIL)
+</I>&gt;<i> Nov  9 13:58:26 wadesmart fetchmail[5739]: terminated with signal 15
+</I>&gt;<i> Nov  9 13:58:30 wadesmart fetchmail[6394]: 55 messages for
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">wade at wadesmart.com</A> at mail.wadesmart.com (387691 octets).
+</I>&gt;<i>
+</I>&gt;<i> So I see two errors: socket errors when connecting to gmail and then
+</I>&gt;<i> authorization errors on my own system.
+</I>&gt;<i> What would cause this and what can I now do about it?
+</I>&gt;<i>
+</I>&gt;<i> wade
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> --
+</I>&gt;<i> ubuntu-users mailing list
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">ubuntu-users at lists.ubuntu.com</A>
+</I>&gt;<i> <A HREF="https://lists.ubuntu.com/mailman/listinfo/ubuntu-users">https://lists.ubuntu.com/mailman/listinfo/ubuntu-users</A>
+</I>
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000682.html">[fetchmail-users] fetchmail no longer getting mail
+</A></li>
+	<LI>Next message: <A HREF="000684.html">[fetchmail-users] fetchmail authorization and socket errors
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#683">[ date ]</a>
+              <a href="thread.html#683">[ thread ]</a>
+              <a href="subject.html#683">[ subject ]</a>
+              <a href="author.html#683">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

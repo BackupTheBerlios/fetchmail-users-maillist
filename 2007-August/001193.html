@@ -1,0 +1,111 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] How to avoid these annoying reports
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2007-August/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20How%20to%20avoid%20these%20annoying%20reports&In-Reply-To=%3C43ea8d070708200531o1d0ab67aj761a4ee16467bc15%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001191.html">
+   <LINK REL="Next"  HREF="001194.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] How to avoid these annoying reports</H1>
+    <B>Rob MacGregor</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20How%20to%20avoid%20these%20annoying%20reports&In-Reply-To=%3C43ea8d070708200531o1d0ab67aj761a4ee16467bc15%40mail.gmail.com%3E"
+       TITLE="[fetchmail-users] How to avoid these annoying reports">rob.macgregor at gmail.com
+       </A><BR>
+    <I>Mon Aug 20 14:31:08 CEST 2007</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001191.html">[fetchmail-users] How to avoid these annoying reports
+</A></li>
+        <LI>Next message: <A HREF="001194.html">[fetchmail-users] How to avoid these annoying reports
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1193">[ date ]</a>
+              <a href="thread.html#1193">[ thread ]</a>
+              <a href="subject.html#1193">[ subject ]</a>
+              <a href="author.html#1193">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On 8/20/07, Anne Wilson &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">cannewilson at googlemail.com</A>&gt; wrote:
+&gt;<i>
+</I>&gt;<i> That's better.  Here are the beginning, up to the end of the first mailbox,
+</I>&gt;<i> and the last mailbox.  All the others are like the last one.
+</I>&gt;<i>
+</I>&lt;---SNIP---&gt;
+&gt;<i> fetchmail: 6.3.8 querying mailhost.zen.co.uk (protocol POP3) at Mon 20 Aug
+</I>&gt;<i> 2007 12:51:18 BST: poll completed
+</I>&gt;<i> fetchmail: 6.3.8 querying zencphosting09.zen.co.uk (protocol POP3) at Mon 20
+</I>&gt;<i> Aug 2007 12:51:18 BST: poll started
+</I>&gt;<i> fetchmail: Trying to connect to 82.71.204.15/110...connected.
+</I>&gt;<i> fetchmail: POP3&lt; +OK Hello there.
+</I>&gt;<i> fetchmail: POP3&gt; CAPA
+</I>&gt;<i> fetchmail: POP3&lt; +OK Here's what I can do:
+</I>&gt;<i> fetchmail: POP3&lt; STLS
+</I>&gt;<i> fetchmail: POP3&lt; TOP
+</I>&gt;<i> fetchmail: POP3&lt; USER
+</I>&gt;<i> fetchmail: POP3&lt; LOGIN-DELAY 10
+</I>&gt;<i> fetchmail: POP3&lt; PIPELINING
+</I>&gt;<i> fetchmail: POP3&lt; UIDL
+</I>&gt;<i> fetchmail: POP3&lt; IMPLEMENTATION Courier Mail Server
+</I>&gt;<i> fetchmail: POP3&lt; .
+</I>&gt;<i> fetchmail: POP3&gt; STLS
+</I>&gt;<i> fetchmail: POP3&lt; +OK Begin SSL/TLS negotiation now.
+</I>&gt;<i> fetchmail: Issuer Organisation: Unknown
+</I>&gt;<i> fetchmail: Issuer CommonName: zencphosting09.zen.co.uk
+</I>&gt;<i> fetchmail: Server CommonName: zencphosting09.zen.co.uk
+</I>&gt;<i> fetchmail: zencphosting09.zen.co.uk key fingerprint:
+</I>&gt;<i> 01:A0:29:54:2F:03:DB:AE:79:8D:B8:B9:BB:9A:1F:9A
+</I>&gt;<i> fetchmail: Server certificate verification error: self signed certificate
+</I>
+Right, try another go at the openssl command, but use port 995 (POP3S)
+instead of 993 (IMAPS).  If that fails then, as Matthias said, you
+could use:
+
+sslfingerprint 01:A0:29:54:2F:03:DB:AE:79:8D:B8:B9:BB:9A:1F:9A
+
+before the &quot;user&quot; line.
+
+Be warned however that if/when the fingerprint changes fetchmail will
+(quite reasonably) refuse to communicate with that server.
+Alternatively, assuming you're running in daemon mode, just ignore the
+warning you'll (only) get at startup :)
+
+-- 
+                 Please keep list traffic on the list.
+
+Rob MacGregor
+      Whoever fights monsters should see to it that in the process he
+        doesn't become a monster.                  Friedrich Nietzsche
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001191.html">[fetchmail-users] How to avoid these annoying reports
+</A></li>
+	<LI>Next message: <A HREF="001194.html">[fetchmail-users] How to avoid these annoying reports
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1193">[ date ]</a>
+              <a href="thread.html#1193">[ thread ]</a>
+              <a href="subject.html#1193">[ subject ]</a>
+              <a href="author.html#1193">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,222 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Plus (+) Addressing Problem
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2011-April/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Plus%20%28%2B%29%20Addressing%20Problem&In-Reply-To=%3C20110424092517.24ebc62b%40scorpio%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002763.html">
+   <LINK REL="Next"  HREF="002765.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Plus (+) Addressing Problem</H1>
+    <B>Jerry</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Plus%20%28%2B%29%20Addressing%20Problem&In-Reply-To=%3C20110424092517.24ebc62b%40scorpio%3E"
+       TITLE="[fetchmail-users] Plus (+) Addressing Problem">fetchmail.user at seibercom.net
+       </A><BR>
+    <I>Sun Apr 24 15:25:17 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002763.html">[fetchmail-users] Plus (+) Addressing Problem
+</A></li>
+        <LI>Next message: <A HREF="002765.html">[fetchmail-users] Plus (+) Addressing Problem
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2764">[ date ]</a>
+              <a href="thread.html#2764">[ thread ]</a>
+              <a href="subject.html#2764">[ subject ]</a>
+              <a href="author.html#2764">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Sun, 24 Apr 2011 14:52:10 +0300
+Peter Pentchev &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">roam at ringlet.net</A>&gt; articulated:
+
+&gt;<i> On Sun, Apr 24, 2011 at 07:10:13AM -0400, Jerry wrote:
+</I>&gt;<i> &gt; On Sun, 24 Apr 2011 10:08:16 +0100
+</I>&gt;<i> &gt; Rob MacGregor &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">rob.macgregor at gmail.com</A>&gt; articulated:
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; &gt; On Sun, Apr 24, 2011 at 00:16, Jerry
+</I>&gt;<i> &gt; &gt; &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">fetchmail.user at seibercom.net</A>&gt; wrote:
+</I>&gt;<i> &gt; &gt; &gt;
+</I>&gt;<i> &gt; &gt; &gt; OK, after making those changes all of the mail is now delivered
+</I>&gt;<i> &gt; &gt; &gt; to the &quot;Postmaster&quot; address. this is the new .fetchmailrc file:
+</I>&gt;<i> &gt; &gt; 
+</I>&gt;<i> &gt; &gt; That sounds like a problem with the local setup. Can you provide
+</I>&gt;<i> &gt; &gt; a log showing what fetchmail thinks is going on, and the
+</I>&gt;<i> &gt; &gt; corresponding log from your SMTP server.
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; I did provide you with one previously. Do you want another one?
+</I>&gt;<i> 
+</I>&gt;<i> As I understand it, the one you provided before was *before* you
+</I>&gt;<i> enabled the &quot;to * here&quot; and the Delivered-To envelope option.
+</I>&gt;<i> Presumably, those two have changed fetchmail's behavior at the local
+</I>&gt;<i> mailserver end; thus, it might be useful if you provided a log
+</I>&gt;<i> showing what it does now that you've enabled those options :)
+</I>
+This is the latest output with increased verbosity. Ignore the problem
+with the Google certificate. Sometimes it works and other times it
+doesn't. Typical for Google :(
+
+fetchmail -N -d0 --nosyslog -vv -f /home/gerard/.fetchmailrc
+fetchmail: Old UID list from imap.gmail.com: &lt;empty&gt;
+fetchmail: Scratch list of UIDs: &lt;empty&gt;
+fetchmail: 6.3.19 querying imap.gmail.com (protocol IMAP) at Sun Apr 24 08:55:39 2011: poll started
+fetchmail: Trying to connect to 74.125.65.109/993...connected.
+fetchmail: Certificate chain, from root to peer, starting at depth 1:
+fetchmail: Issuer Organization: Equifax
+fetchmail: Unknown Issuer CommonName
+fetchmail: Subject CommonName: Google Internet Authority
+fetchmail: Server certificate verification error: unable to get local issuer certificate
+fetchmail: This means that the root signing certificate (issued for /C=US/O=Google Inc/CN=Google Internet Authority) is not in the trusted CA certificate locations, or that c_rehash needs to be run on the certificate directory. For details, please see the documentation of --sslcertpath and --sslcertfile in the manual page.
+fetchmail: Certificate at depth 1:
+fetchmail: Issuer Organization: Equifax
+fetchmail: Unknown Issuer CommonName
+fetchmail: Subject CommonName: Google Internet Authority
+fetchmail: Server certificate verification error: certificate not trusted
+fetchmail: Server certificate:
+fetchmail: Issuer Organization: Google Inc
+fetchmail: Issuer CommonName: Google Internet Authority
+fetchmail: Subject CommonName: imap.gmail.com
+fetchmail: imap.gmail.com key fingerprint: 02:02:9A:F2:7C:0A:55:39:0D:67:0C:0B:D7:AB:97:47
+fetchmail: Warning: the connection is insecure, continuing anyways. (Better use --sslcertck!)
+fetchmail: IMAP&lt; * OK Gimap ready for requests from 174.109.142.1 h10if5108975ybf.158
+fetchmail: IMAP&gt; A0001 CAPABILITY
+fetchmail: IMAP&lt; * CAPABILITY IMAP4rev1 UNSELECT IDLE NAMESPACE QUOTA XLIST CHILDREN XYZZY SASL-IR AUTH=XOAUTH
+fetchmail: IMAP&lt; A0001 OK Thats all she wrote! h10if5108975ybf.158
+fetchmail: Protocol identified as IMAP4 rev 1
+fetchmail: IMAP&gt; A0002 LOGIN &quot;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">jerry at seibercom.net</A>&quot; *
+fetchmail: IMAP&lt; * CAPABILITY IMAP4rev1 UNSELECT IDLE NAMESPACE QUOTA ID XLIST CHILDREN X-GM-EXT-1 UIDPLUS COMPRESS=DEFLATE
+fetchmail: IMAP&lt; A0002 OK <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">jerry at seibercom.net</A> Gerard Seibert authenticated (Success)
+fetchmail: selecting or re-polling default folder
+fetchmail: IMAP&gt; A0003 SELECT &quot;INBOX&quot;
+fetchmail: IMAP&lt; * FLAGS (\Answered \Flagged \Draft \Deleted \Seen)
+fetchmail: IMAP&lt; * OK [PERMANENTFLAGS (\Answered \Flagged \Draft \Deleted \Seen \*)]
+fetchmail: IMAP&lt; * OK [UIDVALIDITY 651743700]
+fetchmail: IMAP&lt; * 1 EXISTS
+fetchmail: IMAP&lt; * 0 RECENT
+fetchmail: IMAP&lt; * OK [UIDNEXT 65]
+fetchmail: IMAP&lt; A0003 OK [READ-WRITE] INBOX selected. (Success)
+fetchmail: 1 message waiting after first poll
+fetchmail: IMAP&gt; A0004 EXPUNGE
+fetchmail: IMAP&lt; A0004 OK Success
+fetchmail: 1 message waiting after expunge
+fetchmail: IMAP&gt; A0005 SEARCH UNSEEN
+fetchmail: IMAP&lt; * SEARCH 1
+fetchmail: 1 is unseen
+fetchmail: IMAP&lt; A0005 OK SEARCH completed (Success)
+fetchmail: 1 is first unseen
+fetchmail: 1 message for <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">jerry at seibercom.net</A> at imap.gmail.com.
+fetchmail: IMAP&gt; A0006 FETCH 1 RFC822.SIZE
+fetchmail: IMAP&lt; * 1 FETCH (RFC822.SIZE 3842)
+fetchmail: IMAP&lt; A0006 OK Success
+fetchmail: IMAP&gt; A0007 FETCH 1 RFC822.HEADER
+fetchmail: IMAP&lt; * 1 FETCH (RFC822.HEADER {3190}
+fetchmail: reading message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">jerry at seibercom.net</A>@imap.gmail.com:1 of 1 (3190 header octets) About to rewrite Return-Path: &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">owner-freebsd-questions at freebsd.org</A>&gt;...
+...rewritten version is Return-Path: &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">owner-freebsd-questions at freebsd.org</A>&gt;.
+fetchmail: About to rewrite From: =?ISO-8859-1?Q?Lo=EFc_Pefferkorn?= &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">loic-freebsd at loicp.eu</A>&gt;...
+...rewritten version is From: =?ISO-8859-1?Q?Lo=EFc_Pefferkorn?= &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">loic-freebsd at loicp.eu</A>&gt;.
+fetchmail: About to rewrite To: <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">freebsd-questions at freebsd.org...</A>
+...rewritten version is To: <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">freebsd-questions at freebsd.org.</A>
+fetchmail: About to rewrite Cc: <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">pldrouin at pldrouin.net...</A>
+...rewritten version is Cc: <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">pldrouin at pldrouin.net.</A>
+fetchmail: About to rewrite Sender: <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">owner-freebsd-questions at freebsd.org...</A>
+...rewritten version is Sender: <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">owner-freebsd-questions at freebsd.org.</A>
+fetchmail: Parsing envelope &quot;Delivered-To&quot; names &quot;Delivered-To: <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">jerry+fbsd at seibercom.net</A>&quot;
+fetchmail: no local matches, forwarding to postmaster
+
+**********************************************************
+OK, the problem is probably in the above line. There is a user &quot;jerry&quot;
+on the system and mail sent direct to that address sans &quot;plus&quot;
+addressing works fine, assuming I have the name &quot;jerry&quot; in the &quot;to&quot;
+list and remove the envelope option.
+**********************************************************
+
+fetchmail: Trying to connect to 174.109.142.1/25...connected.
+fetchmail: SMTP&lt; 220 scorpio.seibercom.net ESMTP Postfix (2.9-20110323)
+fetchmail: SMTP&gt; EHLO scorpio.seibercom.net
+fetchmail: SMTP&lt; 250-scorpio.seibercom.net
+fetchmail: SMTP&lt; 250-PIPELINING
+fetchmail: SMTP&lt; 250-SIZE 26214400
+fetchmail: SMTP&lt; 250-ETRN
+fetchmail: SMTP&lt; 250-STARTTLS
+fetchmail: SMTP&lt; 250-AUTH DIGEST-MD5 CRAM-MD5
+fetchmail: SMTP&lt; 250-AUTH=DIGEST-MD5 CRAM-MD5
+fetchmail: SMTP&lt; 250-XVERP
+fetchmail: SMTP&lt; 250-ENHANCEDSTATUSCODES
+fetchmail: SMTP&lt; 250-8BITMIME
+fetchmail: SMTP&lt; 250 DSN
+fetchmail: forwarding to seibercom.net
+fetchmail: SMTP&gt; MAIL FROM:&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">owner-freebsd-questions at freebsd.org</A>&gt; BODY=8BITMIME SIZE=3842
+fetchmail: SMTP&lt; 250 2.1.0 Ok
+fetchmail: SMTP&gt; RCPT TO:&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">postmaster at seibercom.net</A>&gt;
+fetchmail: SMTP&lt; 250 2.1.5 Ok
+fetchmail: SMTP&gt; DATA
+fetchmail: SMTP&lt; 354 End data with &lt;CR&gt;&lt;LF&gt;.&lt;CR&gt;&lt;LF&gt;
+#
+fetchmail: IMAP&lt; )
+fetchmail: IMAP&lt; A0007 OK Success
+fetchmail: IMAP&gt; A0008 FETCH 1 BODY.PEEK[TEXT]
+fetchmail: IMAP&lt; * 1 FETCH (BODY[TEXT] {700}
+fetchmail:  (700 body octets) *********************
+IMAP&lt; )
+fetchmail: IMAP&lt; A0008 OK Success
+fetchmail: message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">jerry at seibercom.net</A>@imap.gmail.com:1 was not the expected length (3890 actual != 3842 expected)
+
+fetchmail: SMTP&gt;. (EOM)
+fetchmail: SMTP&lt; 250 2.0.0 Ok: queued as 3QHVzK3yTZz2CG4h
+fetchmail:  flushed
+fetchmail: IMAP&gt; A0009 STORE 1 +FLAGS (\Seen \Deleted)
+fetchmail: IMAP&lt; * 1 FETCH (FLAGS (\Seen \Deleted))
+fetchmail: IMAP&lt; A0009 OK Success
+fetchmail: IMAP&gt; A0010 EXPUNGE
+fetchmail: IMAP&lt; * 1 EXPUNGE
+fetchmail: IMAP&lt; * 0 EXISTS
+fetchmail: IMAP&lt; A0010 OK Success
+fetchmail: selecting or re-polling default folder
+fetchmail: 0 messages waiting after re-poll
+fetchmail: IMAP&gt; A0011 LOGOUT
+fetchmail: IMAP&lt; * BYE LOGOUT Requested
+fetchmail: IMAP&lt; A0011 OK 73 good day (Success)
+fetchmail: SMTP&gt; QUIT
+fetchmail: SMTP&lt; 221 2.0.0 Bye
+fetchmail: 6.3.19 querying imap.gmail.com (protocol IMAP) at Sun Apr 24 08:55:42 2011: poll completed
+fetchmail: New UID list from imap.gmail.com: &lt;empty&gt;
+fetchmail: not swapping UID lists, no UIDs seen this query
+fetchmail: normal termination, status 0
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: signature.asc
+Type: application/pgp-signature
+Size: 488 bytes
+Desc: not available
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/fetchmail-users/attachments/20110424/7a5cae0e/attachment.pgp">https://lists.berlios.de/pipermail/fetchmail-users/attachments/20110424/7a5cae0e/attachment.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002763.html">[fetchmail-users] Plus (+) Addressing Problem
+</A></li>
+	<LI>Next message: <A HREF="002765.html">[fetchmail-users] Plus (+) Addressing Problem
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2764">[ date ]</a>
+              <a href="thread.html#2764">[ thread ]</a>
+              <a href="subject.html#2764">[ subject ]</a>
+              <a href="author.html#2764">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

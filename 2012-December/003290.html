@@ -1,0 +1,88 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Fetchmail 6.3.23 console output
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2012-December/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Fetchmail%206.3.23%20console%20output&In-Reply-To=%3C20121211215815.GA11293%40fancy-poultry.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003289.html">
+   <LINK REL="Next"  HREF="003291.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Fetchmail 6.3.23 console output</H1>
+    <B>Heinz Diehl</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Fetchmail%206.3.23%20console%20output&In-Reply-To=%3C20121211215815.GA11293%40fancy-poultry.org%3E"
+       TITLE="[fetchmail-users] Fetchmail 6.3.23 console output">htd at fancy-poultry.org
+       </A><BR>
+    <I>Tue Dec 11 22:58:15 CET 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003289.html">[fetchmail-users] Fetchmail 6.3.23 console output
+</A></li>
+        <LI>Next message: <A HREF="003291.html">[fetchmail-users] Fetchmail --check
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3290">[ date ]</a>
+              <a href="thread.html#3290">[ thread ]</a>
+              <a href="subject.html#3290">[ subject ]</a>
+              <a href="author.html#3290">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Andree,
+
+On 11.12.2012, Matthias Andree wrote: 
+
+&gt;<i> it is not the intended behaviour, and does not show here either in my
+</I>&gt;<i> testing.  It may be a side effect of a bugfix in certain kind of
+</I>&gt;<i> misconfigurations, in particular, this change:
+</I>&gt;<i> 
+</I>&gt;<i> &lt;<A HREF="http://git.berlios.de/cgi-bin/cgit.cgi/fetchmail/commit/?h=legacy_63&amp;id=464bab19acf0aaeb8c5512c2092042162266de2d">http://git.berlios.de/cgi-bin/cgit.cgi/fetchmail/commit/?h=legacy_63&amp;id=464bab19acf0aaeb8c5512c2092042162266de2d</A>&gt;
+</I>
+Reverting this one fixed the issue for me.
+
+&gt;<i> I will need to see your configuration (please mask your passwords) and
+</I>&gt;<i> your command line to debug this; instructions at
+</I>&gt;<i> And possibly, if you are using a logfile and/or syslog, relevant
+</I>&gt;<i> excerpts from those logs, too.
+</I>&gt;<i> 
+</I>&gt;<i> You can send the material off-list directly to me, and you can encrypt
+</I>&gt;<i> it with GnuPG if you desire.
+</I>
+I'll take a closer look into the patch above, it shouldn't be too
+hard to figure out the lines which are causing the reported behaviour.
+
+Otherwise I'll send my stuff tomorrow evening.
+
+Greetings,
+Heinz.
+</PRE>
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003289.html">[fetchmail-users] Fetchmail 6.3.23 console output
+</A></li>
+	<LI>Next message: <A HREF="003291.html">[fetchmail-users] Fetchmail --check
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3290">[ date ]</a>
+              <a href="thread.html#3290">[ thread ]</a>
+              <a href="subject.html#3290">[ subject ]</a>
+              <a href="author.html#3290">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

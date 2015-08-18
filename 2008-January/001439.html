@@ -1,0 +1,99 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] validating Yahoo SSL certificate
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2008-January/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20validating%20Yahoo%20SSL%20certificate&In-Reply-To=%3C47978D10.9000008%40mailinator.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001435.html">
+   <LINK REL="Next"  HREF="001440.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] validating Yahoo SSL certificate</H1>
+    <B>Bruce</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20validating%20Yahoo%20SSL%20certificate&In-Reply-To=%3C47978D10.9000008%40mailinator.com%3E"
+       TITLE="[fetchmail-users] validating Yahoo SSL certificate">fetchmail at mailinator.com
+       </A><BR>
+    <I>Wed Jan 23 19:53:04 CET 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001435.html">[fetchmail-users] validating Yahoo SSL certificate
+</A></li>
+        <LI>Next message: <A HREF="001440.html">[fetchmail-users] Fetchmailconf
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1439">[ date ]</a>
+              <a href="thread.html#1439">[ thread ]</a>
+              <a href="subject.html#1439">[ subject ]</a>
+              <a href="author.html#1439">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Bruce wrote:
+&gt;<i> I am running Debian sarge. I have installed fetchmail and some openssl
+</I>&gt;<i> and certifcates packages.
+</I>&gt;<i> 
+</I>&gt;<i> I am attempting to use fetchmail to fetch mail from mail server
+</I>&gt;<i> pop.mail.yahoo.co.uk using SSL. Fetchmail does not like the mail 
+</I>&gt;<i> server's SSL
+</I>&gt;<i> certificate. The output from any of the commands
+</I>&gt;<i>     fetchmail -c -v pop.mail.yahoo.co.uk
+</I>&gt;<i>     fetchmail -c -v --sslcertpath /etc/ssl pop.mail.yahoo.co.uk
+</I>&gt;<i>     fetchmail -c -v --sslcertpath /etc/ssl/certs pop.mail.yahoo.co.uk
+</I>&gt;<i> includes
+</I>&lt;snip&gt;
+&gt;<i> fetchmail: Warning: server certificate verification: unable to get local 
+</I>&gt;<i> issuercertificate
+</I>&gt;<i> 
+</I>&gt;<i> I have tried the command
+</I>&gt;<i>     openssl s_client -connect pop.mail.yahoo.co.uk:995 &gt; test.fil
+</I>&lt;snip&gt;
+&gt;<i> verify error:num=20:unable to get local issuer certificate
+</I>
+
+I do have the correct signer certificate. My problems were
+
+1) The version of fetchmail in Debian sarge ignores --sslcertpath
+when verifying certificates unless --sslcertck is also given.
+
+2) Neither fetchmail or openssl find my certificates directory
+/etc/ssl/certs by default (it may be that there is something
+wrong with the openssl setup on my computer).
+
+The following commands can validate the certificate
+     fetchmail -c -v --sslcertck --sslcertpath /etc/ssl/certs pop.mail.yahoo.co.uk
+     s_client -CApath /etc/ssl/certs -connect pop.mail.yahoo.co.uk:995 &gt; test.fil
+
+Adding &quot;defaults sslcertpath /etc/ssl/certs sslcertck&quot; as the
+first line of .fetchmailrc allows the following to work
+     fetchmail -c -v pop.mail.yahoo.co.uk
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001435.html">[fetchmail-users] validating Yahoo SSL certificate
+</A></li>
+	<LI>Next message: <A HREF="001440.html">[fetchmail-users] Fetchmailconf
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1439">[ date ]</a>
+              <a href="thread.html#1439">[ thread ]</a>
+              <a href="subject.html#1439">[ subject ]</a>
+              <a href="author.html#1439">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

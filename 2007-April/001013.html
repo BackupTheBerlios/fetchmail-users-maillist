@@ -1,0 +1,97 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] A daemon that calls fetchmail for every user
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2007-April/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20A%20daemon%20that%20calls%20fetchmail%20for%20every%20user&In-Reply-To=%3C20070426214202.39f8fe87%40localhost%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001012.html">
+   <LINK REL="Next"  HREF="001014.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] A daemon that calls fetchmail for every user</H1>
+    <B>Jona Joachim</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20A%20daemon%20that%20calls%20fetchmail%20for%20every%20user&In-Reply-To=%3C20070426214202.39f8fe87%40localhost%3E"
+       TITLE="[fetchmail-users] A daemon that calls fetchmail for every user">fetchmail-ml at 0b10111.de
+       </A><BR>
+    <I>Thu Apr 26 21:42:02 CEST 2007</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001012.html">[fetchmail-users] configuring Fetchmail with RT
+</A></li>
+        <LI>Next message: <A HREF="001014.html">[fetchmail-users] Updated Cygwin Package: fetchmail-6.3.8-1
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1013">[ date ]</a>
+              <a href="thread.html#1013">[ thread ]</a>
+              <a href="subject.html#1013">[ subject ]</a>
+              <a href="author.html#1013">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi!
+I administrate a small server together with some friends. Among others I
+do the mail part. I set up fetchmail so that every user can fetch mails
+from the different mail accounts they may have around the Internet and
+read them in a single location. The problem is that AFAIK fetchmail
+does not provide any #include-like directives in fetchmailrc so that I
+have 2 options:
+-either I save data (including passwords in clear text) for every user
+in one single file
+or
+-every user has to run his/her own fetchmail instance.
+
+I don't want to use the first option as I don't want to see the other's
+passwords.
+So we used the second option but we got problems when 2
+fetchmail instances tried to access 2 different gmail mailboxes at the
+same time. On top of that it's not very convenient to administrate. It
+would be better to run fetchmail in a central way.
+That's why I wrote a small piece of software which runs
+fetchmail periodically for every user that has a .fetchmailrc in their
+home folders.
+I thought that it might interest other people so I post it here.
+It's a daemon that has to be run as root. The only parameter it accepts
+is the amount of seconds to sleep between calling fetchmail.
+
+You can find the source code here:
+<A HREF="http://0b10111.de/svn/development/c/console%20c/fetchiterd/fetchiterd.c">http://0b10111.de/svn/development/c/console%20c/fetchiterd/fetchiterd.c</A>
+
+Best regards,
+Jona
+
+-- 
+&quot;Und das Sch&#246;nste daran ist, dass die Mehrzahl der Amerikaner durch die
+von Illuminaten gedeckten Terroranschl&#228;ge so weit in Angst versetzt
+sein werden, dass sie darum betteln werden, kontrolliert zu werden, wie
+der Masochist nach der Peitsche wimmert.&quot; Hagbard Celine
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001012.html">[fetchmail-users] configuring Fetchmail with RT
+</A></li>
+	<LI>Next message: <A HREF="001014.html">[fetchmail-users] Updated Cygwin Package: fetchmail-6.3.8-1
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1013">[ date ]</a>
+              <a href="thread.html#1013">[ thread ]</a>
+              <a href="subject.html#1013">[ subject ]</a>
+              <a href="author.html#1013">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

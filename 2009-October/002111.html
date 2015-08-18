@@ -1,0 +1,128 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] fetchmail - &quot;not flushed&quot; Vs viewed mail/downloaded
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2009-October/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%20-%20%22not%20flushed%22%20Vs%20viewed%0A%20mail/downloaded&In-Reply-To=%3Cop.u1c9n2va1e62zd%40merlin.emma.line.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002110.html">
+   <LINK REL="Next"  HREF="002112.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] fetchmail - &quot;not flushed&quot; Vs viewed mail/downloaded</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%20-%20%22not%20flushed%22%20Vs%20viewed%0A%20mail/downloaded&In-Reply-To=%3Cop.u1c9n2va1e62zd%40merlin.emma.line.org%3E"
+       TITLE="[fetchmail-users] fetchmail - &quot;not flushed&quot; Vs viewed mail/downloaded">matthias.andree at gmx.de
+       </A><BR>
+    <I>Tue Oct  6 08:58:40 CEST 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002110.html">[fetchmail-users] fetchmail - &quot;not flushed&quot; Vs viewed	mail/downloaded
+</A></li>
+        <LI>Next message: <A HREF="002112.html">[fetchmail-users] Server certificate verification error
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2111">[ date ]</a>
+              <a href="thread.html#2111">[ thread ]</a>
+              <a href="subject.html#2111">[ subject ]</a>
+              <a href="author.html#2111">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Am 06.10.2009, 03:33 Uhr, schrieb Jess Belliveau  
+&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">jess.belliveau at gmail.com</A>&gt;:
+
+&gt;<i> Howdy,
+</I>&gt;<i>
+</I>&gt;<i> Delving in to the deep end of Linux based mail here and having some
+</I>&gt;<i> problems... want to use Mutt as my mail client to read/send mail from
+</I>&gt;<i> my POP3 enabled gmail account.
+</I>&gt;<i>
+</I>&gt;<i> I've installed:
+</I>&gt;<i> procmail - to handle all the folders etc?
+</I>
+I suggest maildrop instead. procmail appears unmaintained, does not log  
+mail delivery in default settings and has an awkward &quot;if one rule fails to  
+deliver, just use the next one&quot; fallthrough error handling unless you  
+override this (which is long-winded and makes your .procmailrc awkward to  
+read). If you must continue to use procmail, do enable logging so you know  
+where procmail stuffs your messages. Check the LOGFILE option.
+
+&gt;<i> mutt - act as my mail client
+</I>&gt;<i> fetchmail - provide the interface to gmail
+</I>&gt;<i>
+</I>&gt;<i> Trying to overcome a fetchmail part - if I run a fetchmail -c it
+</I>&gt;<i> returns 679 messages - I currently have 1 un-read email awaiting. Am I
+</I>&gt;<i> missing something - I have changed the google setting to &quot;archive
+</I>&gt;<i> emails accessed via pop3&quot; and ideally I would just like to be able to
+</I>&gt;<i> use mutt to read new emails - not concerned about storage of mails (as
+</I>&gt;<i> they are archived by gmail). Insights????
+</I>
+I'm not sure I understand (a) the GMail option and (b) your issue.
+What do you want to happen?
+What have you done to achieve this (your .fetchmailrc without passwords  
+surely helps here - you'd offered that)?
+What happens instead?
+
+Generally, see &lt;<A HREF="http://www.fetchmail.info/fetchmail-FAQ.html#G3">http://www.fetchmail.info/fetchmail-FAQ.html#G3</A>&gt; for what  
+you need to provide.
+
+If you want old and read mail to be removed from the server, run  
+&quot;fetchmail --flush&quot;.
+
+If you want to remove mail from the server after fetchmail has succeeded  
+in retrieving and delivering it (which hinges on the reliability
+of procmail, meaning that you may go on an expedition to find out where  
+procmail has stuffed your mail), DO NOT set the &quot;keep&quot; option.
+
+It is recommended to use &quot;uidl&quot; with POP3 accounts.
+
+&gt;<i> I am thinking it might be related to where my mail files are located....
+</I>&gt;<i> There seems to be mail at three locations:
+</I>&gt;<i> - $home/Mail/mutt - created by my procmailrc
+</I>
+Why?
+
+&gt;<i> - $home/Mail/Spool-Link - a sym link I created to /var/spool/mail/jessb
+</I>
+Why?
+
+&gt;<i> - /var/mail/jessb - mutt opens here by default....
+</I>
+Yes, but you can configure that (set spoolfile=..., and there are some  
+nifty shorthands such as +, check the mutt manual).
+
+HTH
+
+-- 
+Matthias Andree
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002110.html">[fetchmail-users] fetchmail - &quot;not flushed&quot; Vs viewed	mail/downloaded
+</A></li>
+	<LI>Next message: <A HREF="002112.html">[fetchmail-users] Server certificate verification error
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2111">[ date ]</a>
+              <a href="thread.html#2111">[ thread ]</a>
+              <a href="subject.html#2111">[ subject ]</a>
+              <a href="author.html#2111">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,198 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] help needed - BCC problem
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2006-May/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20help%20needed%20-%20BCC%20problem&In-Reply-To=%3Cee3fe9bf0605030504x2b0535d7ue4f73bd92c415f2d%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000375.html">
+   <LINK REL="Next"  HREF="000372.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] help needed - BCC problem</H1>
+    <B>Admin Att</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20help%20needed%20-%20BCC%20problem&In-Reply-To=%3Cee3fe9bf0605030504x2b0535d7ue4f73bd92c415f2d%40mail.gmail.com%3E"
+       TITLE="[fetchmail-users] help needed - BCC problem">attadmin at gmail.com
+       </A><BR>
+    <I>Wed May  3 14:04:57 CEST 2006</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000375.html">[fetchmail-users] Re: fetchmail/qmail/-scanner/SpamAss. integration
+</A></li>
+        <LI>Next message: <A HREF="000372.html">[fetchmail-users] help needed - BCC problem
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#370">[ date ]</a>
+              <a href="thread.html#370">[ thread ]</a>
+              <a href="subject.html#370">[ subject ]</a>
+              <a href="author.html#370">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi all
+i installed fetchmail few days ago and since then i have problem with BCC
+field. I sent from mycompany domain mail to yahoo mail and to testdomain in
+BCC field.
+Fethcmail is working with regular To/Cc mails
+
+I tried many variations and neither helped.
+I hope anyone can find problem.
+
+----------------------------------------------
+here is my conf file for fetchmail
+
+poll pop.myisp.com proto pop3
+ aka MyISPname envelope 0 Received localdomains mytestdomain.com
+mail.mytestdomain.com:
+user mypop3user with pass mypass is * here
+
+- i tried with envelope 0 1 2 (but thats not logical regardin in first line
+i see correct e-mail from Received line.
+dunno if &quot;:&quot; after domain name is needed, but i tried with and without.
+- i tried withouth aka MyISPname and with it...
+
+-----------------------------------------------
+i have installed postfix/cyrus imapd/mysql/web cyradm - combo and all is
+working ok except mentioned above.
+
+
+here is log from  fetchmail -v -v
+
+==========================================
+
+linux-mail:# fetchmail -v -v -f .fetchmailrc
+fetchmail: WARNING: Running as root is discouraged.
+fetchmail: 6.3.4 querying pop.myisp.com (protocol POP3) at Wed Apr 26
+13:43:18 2006:
+
+poll started
+fetchmail: POP3&lt; +OK POP3 Server Ready &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">2852391073.3355134276 at myisp.com</A>&gt;
+fetchmail: POP3&gt; CAPA
+fetchmail: POP3&lt; -ERR
+fetchmail: Repoll immediately on <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">bebiceweb at pop.sezampro.yu</A>
+fetchmail: POP3&lt; +OK POP3 Server Ready &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">2852391074.3355134276 at myisp.com</A>&gt;
+fetchmail: POP3&gt; USER mypop3user
+fetchmail: POP3&lt; +OK
+fetchmail: POP3&gt; PASS *
+fetchmail: POP3&lt; +OK
+fetchmail: selecting or re-polling default folder
+fetchmail: POP3&gt; STAT
+fetchmail: POP3&lt; +OK 1 8652
+fetchmail: POP3&gt; LAST
+fetchmail: POP3&lt; -ERR
+fetchmail: POP3&gt; UIDL
+fetchmail: POP3&lt; +OK
+fetchmail: POP3&lt; 1 &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">0.0.136679690 at myisp.com</A>&gt;
+fetchmail: 1 is unseen
+fetchmail: POP3&lt; .
+1 message for mypop3user at pop.myisp.com (8652 octets).
+fetchmail: POP3&gt; LIST 1
+fetchmail: POP3&lt; +OK 1 8652
+fetchmail: POP3&gt; TOP 1 99999999
+fetchmail: POP3&lt; +OK
+reading message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">mypop3user at pop.myisp.com</A>:1 of 1 (8652 octets)
+fetchmail: analyzing Received line:
+Received: for &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">test2 at mytestdomain.com</A> &gt;
+fetchmail: no Received address found       &lt;---- !!!???? how is this
+logical!?
+fetchmail: analyzing Received line:
+Received: from gateway.mycompany.com [XXX.XXX.XX.XX ] by MyISPname with SMTP
+on Wed,
+
+26 Apr 2006 13:44:17 +0200
+fetchmail: line accepted, MyISPname is an alias of the mailserver
+fetchmail: no Received address found
+fetchmail: analyzing Received line:
+Received: from testpc1 by mycompany.com
+        (MDaemon.PRO.v8.1.5.R)
+        with ESMTP id md50000169342.msg
+        for &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">test2 at mytestdomain.com</A>&gt;; Wed, 26 Apr 2006 13:49:03 +0200
+fetchmail: line rejected, mycompany.com is not an alias of the mailserver
+About to rewrite From: &quot;John&quot; &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">johnd at mycompany.com</A>&gt;
+Rewritten version is From: &quot;John&quot; &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">johnd at mycompany.com</A>&gt;
+
+About to rewrite To: &quot;'John'&quot; &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">john_xxxxx at yahoo.com</A> &gt;
+Rewritten version is To: &quot;'John'&quot; &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">john_xxxxx at yahoo.com</A>&gt;
+
+fetchmail: no local matches, forwarding to postmaster
+fetchmail: SMTP&lt; 220 mail.mytestdomain.com ESMTP Postfix (2.2.9)
+fetchmail: SMTP&gt; EHLO linux-mail
+fetchmail: SMTP&lt; 250-mail.mytestdomain.com
+fetchmail: SMTP&lt; 250-PIPELINING
+fetchmail: SMTP&lt; 250-SIZE 10240000
+fetchmail: SMTP&lt; 250-VRFY
+fetchmail: SMTP&lt; 250-ETRN
+fetchmail: SMTP&lt; 250-AUTH LOGIN PLAIN
+fetchmail: SMTP&lt; 250-AUTH=LOGIN PLAIN
+fetchmail: SMTP&lt; 250 8BITMIME
+fetchmail: forwarding to localhost
+fetchmail: SMTP&gt; MAIL FROM:&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">johnd at mycompany.com</A>&gt; SIZE=8652
+fetchmail: SMTP&lt; 250 Ok
+fetchmail: SMTP&gt; RCPT TO:&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">postmaster at localhost</A> &gt;
+fetchmail: SMTP&lt; 250 Ok
+fetchmail: SMTP&gt; DATA
+fetchmail: SMTP&lt; 354 End data with &lt;CR&gt;&lt;LF&gt;.&lt;CR&gt;&lt;LF&gt;
+#*******************************************************.***************************
+
+
+****************.****************************.****************************.*********
+
+*********************.**************.*************.**********fetchmail:
+message
+
+<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">mypop3user at pop.myisp.com</A>:1 was not the expected length (8687 actual != 8652
+
+expected)
+fetchmail: SMTP&gt;. (EOM)
+fetchmail: SMTP&lt; 250 Ok: queued as 7048A6F4E3
+ flushed
+fetchmail: POP3&gt; DELE 1
+fetchmail: POP3&lt; +OK
+fetchmail: POP3&gt; QUIT
+fetchmail: POP3&lt; +OK
+fetchmail: SMTP&gt; QUIT
+fetchmail: SMTP&lt; 221 Bye
+fetchmail: 6.3.4 querying pop.myisp.com (protocol POP3) at Wed Apr 26
+13:43:19 2006:
+
+poll completed
+fetchmail: swapping UID lists
+fetchmail: Deleting fetchids file.
+fetchmail: normal termination, status 0
+fetchmail: Deleting fetchids file.
+
+
+
+Best Regards and tnx in advance
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/fetchmail-users/attachments/20060503/9d9e8bea/attachment.html">https://lists.berlios.de/pipermail/fetchmail-users/attachments/20060503/9d9e8bea/attachment.html</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000375.html">[fetchmail-users] Re: fetchmail/qmail/-scanner/SpamAss. integration
+</A></li>
+	<LI>Next message: <A HREF="000372.html">[fetchmail-users] help needed - BCC problem
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#370">[ date ]</a>
+              <a href="thread.html#370">[ thread ]</a>
+              <a href="subject.html#370">[ subject ]</a>
+              <a href="author.html#370">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

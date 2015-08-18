@@ -1,0 +1,89 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Infinite loop!
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2007-November/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Infinite%20loop%21&In-Reply-To=%3C43ea8d070711200706h57a0e60bq48dec4ac5f2a9718%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001379.html">
+   <LINK REL="Next"  HREF="001381.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Infinite loop!</H1>
+    <B>Rob MacGregor</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Infinite%20loop%21&In-Reply-To=%3C43ea8d070711200706h57a0e60bq48dec4ac5f2a9718%40mail.gmail.com%3E"
+       TITLE="[fetchmail-users] Infinite loop!">rob.macgregor at gmail.com
+       </A><BR>
+    <I>Tue Nov 20 16:06:46 CET 2007</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001379.html">[fetchmail-users] Infinite loop!
+</A></li>
+        <LI>Next message: <A HREF="001381.html">[fetchmail-users] Infinite loop!
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1380">[ date ]</a>
+              <a href="thread.html#1380">[ thread ]</a>
+              <a href="subject.html#1380">[ subject ]</a>
+              <a href="author.html#1380">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Nov 20, 2007 2:48 PM, Neal Becker &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">ndbecker2 at gmail.com</A>&gt; wrote:
+&gt;<i>
+</I>&gt;<i> Looks like adding 'antispam 501' to my fetchmailrc didn't work either:
+</I>&gt;<i> ...
+</I>&gt;<i> fetchmail: IMAP&lt; )
+</I>&gt;<i> fetchmail: IMAP&lt; A0031 OK Completed
+</I>&gt;<i> msmtp: envelope from address &lt;&gt; not accepted by the server
+</I>&gt;<i> msmtp: server message: 501 &lt;&lt;&gt;&gt;: missing or malformed local part
+</I>&gt;<i> msmtp: could not send mail (account default from /home/nbecker/.msmtprc)
+</I>&gt;<i> fetchmail: MDA returned nonzero status 65
+</I>&gt;<i>  not flushed
+</I>
+Ah, I just noticed you're using the MDA option.  There is (that I know
+of) no way for fetchmail to get anything other than the return code
+from the MDA.  The return code will be little more than success or
+failure.
+
+You need to either have your local system accept email from &lt;&gt; (which
+by the RFCs you're not supposed to reject mail from - see
+<A HREF="http://www.rfc-ignorant.org/policy-dsn.php">http://www.rfc-ignorant.org/policy-dsn.php</A>) or use an (E)SMTP
+listener.
+
+-- 
+                 Please keep list traffic on the list.
+
+Rob MacGregor
+      Whoever fights monsters should see to it that in the process he
+        doesn't become a monster.                  Friedrich Nietzsche
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001379.html">[fetchmail-users] Infinite loop!
+</A></li>
+	<LI>Next message: <A HREF="001381.html">[fetchmail-users] Infinite loop!
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1380">[ date ]</a>
+              <a href="thread.html#1380">[ thread ]</a>
+              <a href="subject.html#1380">[ subject ]</a>
+              <a href="author.html#1380">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

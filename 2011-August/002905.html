@@ -1,0 +1,103 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Fetchmail, gmail and multiparts
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2011-August/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Fetchmail%2C%20gmail%20and%20multiparts&In-Reply-To=%3C87bovjhgsx.fsf%40gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002913.html">
+   <LINK REL="Next"  HREF="002908.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Fetchmail, gmail and multiparts</H1>
+    <B>Antoine Levitt</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Fetchmail%2C%20gmail%20and%20multiparts&In-Reply-To=%3C87bovjhgsx.fsf%40gmail.com%3E"
+       TITLE="[fetchmail-users] Fetchmail, gmail and multiparts">antoine.levitt at gmail.com
+       </A><BR>
+    <I>Sun Aug 21 00:14:06 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002913.html">[fetchmail-users] download mail and stere it
+</A></li>
+        <LI>Next message: <A HREF="002908.html">[fetchmail-users] Fetchmail, gmail and multiparts
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2905">[ date ]</a>
+              <a href="thread.html#2905">[ thread ]</a>
+              <a href="subject.html#2905">[ subject ]</a>
+              <a href="author.html#2905">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Fetchmail seems to add garbage after the multipart border
+delimiters. Here's an example mail:
+
+*headers edited out*
+
+--0015174c3b5edb5f5e04aaf515ca
+Content-Type: text/plain; charset=ISO-8859-1
+
+*plain text edited out*
+
+--0015174c3b5edb5f5e04aaf515ca
+Content-Type: text/html; charset=ISO-8859-1
+
+*html edited out*
+
+--0015174c3b5edb5f5e04aaf515ca--
+
+When I fetch this email with fetchmail, I get extra garbage bytes at the
+end of the file (after the --). In hex, it's 00 0A (null and then
+LF). It messes up the decoding in my mail client (gnus). Why is that 00
+0A added? Does it need to be ?
+
+I tried wiresharking it to see how the mail is received, but gmail does
+not accept non-ssl, so I can't see anything. Please tell me if you need
+more info.
+
+Fetchmail is fetchmail release 6.3.18+GSS+NTLM+SDPS+SSL+NLS+KRB5,
+straight out of ubuntu 11.04.
+
+Here is the relevant parts of my .fetchmailrc:
+
+poll imap.gmail.com
+protocol imap
+keep ssl
+mda &quot;/home/antoine/dump&quot;
+
+where dump is
+
+#/bin/sh
+cat &gt; dump_res
+
+This enables me to dump the mail somewhere, so I can hex-edit it.
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002913.html">[fetchmail-users] download mail and stere it
+</A></li>
+	<LI>Next message: <A HREF="002908.html">[fetchmail-users] Fetchmail, gmail and multiparts
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2905">[ date ]</a>
+              <a href="thread.html#2905">[ thread ]</a>
+              <a href="subject.html#2905">[ subject ]</a>
+              <a href="author.html#2905">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

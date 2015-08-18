@@ -1,0 +1,193 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Fetchmail to Postfix
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2007-January/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Fetchmail%20to%20Postfix&In-Reply-To=%3C006e01c73252%2499205ad0%24183d0552%40computer%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000784.html">
+   <LINK REL="Next"  HREF="000786.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Fetchmail to Postfix</H1>
+    <B>Support @ Smart Networking</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Fetchmail%20to%20Postfix&In-Reply-To=%3C006e01c73252%2499205ad0%24183d0552%40computer%3E"
+       TITLE="[fetchmail-users] Fetchmail to Postfix">support at mailforyou.co.uk
+       </A><BR>
+    <I>Sun Jan  7 12:54:33 CET 2007</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000784.html">[fetchmail-users] Fetchmail to Postfix
+</A></li>
+        <LI>Next message: <A HREF="000786.html">[fetchmail-users] Fetchmail to Postfix
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#785">[ date ]</a>
+              <a href="thread.html#785">[ thread ]</a>
+              <a href="subject.html#785">[ subject ]</a>
+              <a href="author.html#785">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Fetchmail Version        ----------------------------------------
+
+Fetchmail version 6.2.5+POP2+RPA+NTLM+SDPS+SSL+OPIE+NLS  (SLES 9)
+
+.fetchmail                     ----------------------------------------
+
+poll pop3.mailforyou.co.uk
+     proto pop3
+    envelope &quot;Delivered-To&quot;
+    user remoteusername with password remotepassword to * here
+
+Output                            ----------------------------------------
+
+fetchmail: 6.2.5 querying pop3.mailforyou.co.uk (protocol POP3) at Sun Jan 
+7 11 
+:<i>02:08 2007: poll started
+</I>fetchmail: POP3&lt; +OK barracuda Cyrus POP3 v2.2.3 server ready 
+&lt;43452629314471556 
+<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">53.1168167727 at barracuda</A>&gt;
+fetchmail: POP3&gt; CAPA
+fetchmail: POP3&lt; +OK List of capabilities follows
+fetchmail: POP3&lt; EXPIRE NEVER
+fetchmail: POP3&lt; LOGIN-DELAY 0
+fetchmail: POP3&lt; TOP
+fetchmail: POP3&lt; UIDL
+fetchmail: POP3&lt; PIPELINING
+fetchmail: POP3&lt; RESP-CODES
+fetchmail: POP3&lt; AUTH-RESP-CODE
+fetchmail: POP3&lt; USER
+fetchmail: POP3&lt; IMPLEMENTATION Cyrus POP3 server v2.2.3
+fetchmail: POP3&lt; .
+fetchmail: POP3&gt; USER username
+fetchmail: POP3&lt; +OK Name is a valid mailbox
+fetchmail: POP3&gt; PASS *
+fetchmail: POP3&lt; +OK Mailbox locked and ready
+fetchmail: POP3&gt; STAT
+fetchmail: POP3&lt; +OK 1 1721
+fetchmail: POP3&gt; LAST
+fetchmail: POP3&lt; -ERR Unrecognized command  &lt;-------------------this dosent 
+look good lol!
+fetchmail: Unrecognized command
+fetchmail: POP3&gt; UIDL
+fetchmail: POP3&lt; +OK unique-id listing follows
+fetchmail: POP3&lt; 1 1168033347.4
+fetchmail: POP3&lt; .
+1 message for cladceil at pop3.mailforyou.co.uk (1721 octets).
+fetchmail: POP3&gt; LIST 1
+fetchmail: POP3&lt; +OK 1 1721
+fetchmail: POP3&gt; TOP 1 99999999
+fetchmail: POP3&lt; +OK Message follows
+reading message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">user at pop3.mailforyou.co.uk</A>:1 of 1 (1721 octets)
+fetchmail: SMTP&lt; 220 server.fqdomainnameofserver
+fetchmail: SMTP&gt; EHLO localhost
+fetchmail: SMTP&lt; 250-server.fqdomainnameofserver
+fetchmail: SMTP&lt; 250-PIPELINING
+fetchmail: SMTP&lt; 250-SIZE 83886080
+fetchmail: SMTP&lt; 250-VRFY
+fetchmail: SMTP&lt; 250-ETRN
+fetchmail: SMTP&lt; 250-AUTH LOGIN PLAIN
+fetchmail: SMTP&lt; 250-AUTH=LOGIN PLAIN
+fetchmail: SMTP&lt; 250 8BITMIME
+fetchmail: SMTP&gt; MAIL FROM:&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">support at mailforyou.co.uk</A>&gt; SIZE=1721
+fetchmail: SMTP&lt; 250 Ok
+fetchmail: SMTP&gt; RCPT TO:&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">postmaster at localhost</A>&gt;
+fetchmail: SMTP&lt; 250 Ok
+fetchmail: SMTP&gt; DATA
+fetchmail: SMTP&lt; 354 End data with &lt;CR&gt;&lt;LF&gt;.&lt;CR&gt;&lt;LF&gt;
+#*************************fetchmail: SMTP&gt;. (EOM)
+fetchmail: SMTP&lt; 250 Ok: queued as 005DC62E02
+ flushed
+fetchmail: POP3&gt; DELE 1
+fetchmail: POP3&lt; +OK message deleted
+fetchmail: POP3&gt; QUIT
+fetchmail: POP3&lt; +OK
+fetchmail: 6.2.5 querying pop3.mailforyou.co.uk (protocol POP3) at Sun Jan 
+7 11 
+:<i>02:12 2007: poll completed
+</I>fetchmail: SMTP&gt; QUIT
+fetchmail: SMTP&lt; 221 Bye
+fetchmail: normal termination, status 0
+
+
+----- Original Message ----- 
+From: &quot;Rob MacGregor&quot; &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">rob.macgregor at gmail.com</A>&gt;
+To: &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">fetchmail-users at lists.berlios.de</A>&gt;
+Sent: Sunday, January 07, 2007 11:11 AM
+Subject: Re: [fetchmail-users] Fetchmail to Postfix
+
+
+&gt;<i> On 1/7/07, Support @ Smart Networking &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">support at mailforyou.co.uk</A>&gt; wrote:
+</I>&gt;&gt;<i> Thank you for your quick response.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> It still dosent seem to work quite right. Fetchmail downloads the emails 
+</I>&gt;&gt;<i> but
+</I>&gt;&gt;<i> then tries to deliver them to <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">postmaster at localhost.fqdomain</A> instead of 
+</I>&gt;&gt;<i> the
+</I>&gt;&gt;<i> corresponding user/email address :(
+</I>&gt;<i>
+</I>&gt;<i> Right, so how about some of the info the FAQ tells you to provide.  At
+</I>&gt;<i> an absolute minimum:
+</I>&gt;<i>
+</I>&gt;<i> 1) Version of fetchmail
+</I>&gt;<i>
+</I>&gt;<i> 2) Contents of .fetchmailrc
+</I>&gt;<i>
+</I>&gt;<i> 3) Output of &quot;fetchmail -v -v -v&quot; showing the problem
+</I>&gt;<i>
+</I>&gt;<i> -- 
+</I>&gt;<i>                 Please keep list traffic on the list.
+</I>&gt;<i>
+</I>&gt;<i> Rob MacGregor
+</I>&gt;<i>      Whoever fights monsters should see to it that in the process he
+</I>&gt;<i>        doesn't become a monster.                  Friedrich Nietzsche
+</I>&gt;<i> _______________________________________________
+</I>&gt;<i> fetchmail-users mailing list
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">fetchmail-users at lists.berlios.de</A>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">https://lists.berlios.de/mailman/listinfo/fetchmail-users</A>
+</I>&gt;<i>
+</I>&gt;<i> -- 
+</I>&gt;<i> This message has been scanned for viruses and
+</I>&gt;<i> dangerous content by MailScanner, and is
+</I>&gt;<i> believed to be clean.
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> 
+</I>
+
+-- 
+This message has been scanned for viruses and
+dangerous content by MailScanner, and is
+believed to be clean.
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000784.html">[fetchmail-users] Fetchmail to Postfix
+</A></li>
+	<LI>Next message: <A HREF="000786.html">[fetchmail-users] Fetchmail to Postfix
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#785">[ date ]</a>
+              <a href="thread.html#785">[ thread ]</a>
+              <a href="subject.html#785">[ subject ]</a>
+              <a href="author.html#785">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

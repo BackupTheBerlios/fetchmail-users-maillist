@@ -1,0 +1,161 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Fwd: Fwd: [fetchmail]Multidrop fetchmail bouncing	non-existing local addresses
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2006-July/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Fwd%3A%20Fwd%3A%20%5Bfetchmail%5DMultidrop%20fetchmail%20bouncing%0A%09non-existing%20local%20addresses&In-Reply-To=%3Cde89fe2f0607180137y53ac026i77a7528103443111%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000524.html">
+   <LINK REL="Next"  HREF="000526.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Fwd: Fwd: [fetchmail]Multidrop fetchmail bouncing	non-existing local addresses</H1>
+    <B>Andy Hawkins</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Fwd%3A%20Fwd%3A%20%5Bfetchmail%5DMultidrop%20fetchmail%20bouncing%0A%09non-existing%20local%20addresses&In-Reply-To=%3Cde89fe2f0607180137y53ac026i77a7528103443111%40mail.gmail.com%3E"
+       TITLE="[fetchmail-users] Fwd: Fwd: [fetchmail]Multidrop fetchmail bouncing	non-existing local addresses">adhawkins at gmail.com
+       </A><BR>
+    <I>Tue Jul 18 10:37:33 CEST 2006</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000524.html">[fetchmail-users] Fwd: [fetchmail]Multidrop fetchmail bouncing	non-existing local addresses
+</A></li>
+        <LI>Next message: <A HREF="000526.html">[fetchmail-users] [fetchmail]Multidrop fetchmail bouncing	non-existing local addresses
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#525">[ date ]</a>
+              <a href="thread.html#525">[ thread ]</a>
+              <a href="subject.html#525">[ subject ]</a>
+              <a href="author.html#525">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+
+On 7/17/06, Rob MacGregor &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">rob.macgregor at gmail.com</A>&gt; wrote:
+&gt;<i> It wouldn't hurt to provide the output of &quot;fetchmail --configdump&quot; so
+</I>&gt;<i> we can see what fetchmail thinks of it's config file.
+</I>
+Below (I've cut out the entries for the other servers I check, but
+they're all very similar in terms of configuration).
+
+TRUE=1; FALSE=0
+
+os_type = 'linux'
+feature_options = ('pop3','imap','sdps','etrn','odmr','ssl',)
+# Start of configuration initializer
+fetchmailrc = {
+  'poll_interval':0,
+  &quot;logfile&quot;:None,
+  &quot;idfile&quot;:&quot;/var/lib/fetchmail/.fetchids&quot;,
+  &quot;postmaster&quot;:&quot;fetchmail&quot;,
+  'bouncemail':TRUE,
+  'spambounce':FALSE,
+  &quot;properties&quot;:None,
+  'invisible':FALSE,
+  'showdots':TRUE,
+  'syslog':FALSE,
+  # List of server entries begins here
+  'servers': [
+      # Entry for site `xxx.xxx.xxx.xxx' begins:
+      {
+          &quot;pollname&quot;:&quot;xxx.xxx.xxx.xxx&quot;,
+          'active':TRUE,
+          &quot;via&quot;:None,
+          &quot;protocol&quot;:&quot;POP3&quot;,
+          &quot;service&quot;:None,
+          'timeout':300,
+          'interval':0,
+          &quot;envelope&quot;:&quot;Delivered-To&quot;,
+          'envskip':1,
+          &quot;qvirtual&quot;:&quot;45-&quot;,
+          &quot;auth&quot;:&quot;any&quot;,
+          'dns':TRUE,
+          'uidl':TRUE,
+          &quot;aka&quot;:[],
+          &quot;localdomains&quot;:[&quot;xxx.xxx.xxx&quot;],
+          &quot;interface&quot;:None,
+          &quot;monitor&quot;:None,
+          &quot;plugin&quot;:None,
+          &quot;plugout&quot;:None,
+          &quot;principal&quot;:None,
+          'tracepolls':FALSE,
+          'users': [
+              {
+                  &quot;remote&quot;:&quot;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">xxx at xxx.xxx.xxx.xxx</A>&quot;,
+                  &quot;password&quot;:&quot;xxxxxxx&quot;,
+                  'localnames':[&quot;fetchmail&quot;, '*'],
+                  'fetchall':FALSE,
+                  'keep':TRUE,
+                  'flush':FALSE,
+                  'limitflush':FALSE,
+                  'rewrite':TRUE,
+                  'stripcr':FALSE,
+                  'forcecr':FALSE,
+                  'pass8bits':FALSE,
+                  'dropstatus':FALSE,
+                  'dropdelivered':FALSE,
+                  'mimedecode':FALSE,
+                  'idle':FALSE,
+                  &quot;mda&quot;:None,
+                  &quot;bsmtp&quot;:None,
+                  'lmtp':FALSE,
+                  &quot;preconnect&quot;:None,
+                  &quot;postconnect&quot;:None,
+                  'limit':0,
+                  'warnings':3600,
+                  'fetchlimit':0,
+                  'fetchsizelimit':100,
+                  'fastuidl':4,
+                  'batchlimit':0,
+                  'ssl':FALSE,
+                  &quot;sslkey&quot;:None,
+                  &quot;sslcert&quot;:None,
+                  &quot;sslproto&quot;:&quot;&quot;,
+                  'sslcertck':FALSE,
+                  &quot;sslcertpath&quot;:None,
+                  &quot;sslfingerprint&quot;:None,
+                  'expunge':0,
+                  &quot;properties&quot;:None,
+                  &quot;smtphunt&quot;:[&quot;localhost&quot;],
+                  &quot;fetchdomains&quot;:[],
+                  &quot;smtpaddress&quot;:&quot;yyy.yyy.yyy&quot;,
+                  &quot;smtpname&quot;:None,
+                  'antispam':'',
+                  &quot;mailboxes&quot;:[],
+              }
+              ,           ]
+      }
+  ]
+}
+# End of initializer
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000524.html">[fetchmail-users] Fwd: [fetchmail]Multidrop fetchmail bouncing	non-existing local addresses
+</A></li>
+	<LI>Next message: <A HREF="000526.html">[fetchmail-users] [fetchmail]Multidrop fetchmail bouncing	non-existing local addresses
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#525">[ date ]</a>
+              <a href="thread.html#525">[ thread ]</a>
+              <a href="subject.html#525">[ subject ]</a>
+              <a href="author.html#525">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

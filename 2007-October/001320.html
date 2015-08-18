@@ -1,0 +1,120 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] BCC issue on multidrop
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2007-October/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20BCC%20issue%20on%20multidrop&In-Reply-To=%3C43ea8d070710211204j4368a511l67c588a0c6312370%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001322.html">
+   <LINK REL="Next"  HREF="001321.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] BCC issue on multidrop</H1>
+    <B>Rob MacGregor</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20BCC%20issue%20on%20multidrop&In-Reply-To=%3C43ea8d070710211204j4368a511l67c588a0c6312370%40mail.gmail.com%3E"
+       TITLE="[fetchmail-users] BCC issue on multidrop">rob.macgregor at gmail.com
+       </A><BR>
+    <I>Sun Oct 21 21:04:03 CEST 2007</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001322.html">[fetchmail-users] BCC issue on multidrop
+</A></li>
+        <LI>Next message: <A HREF="001321.html">[fetchmail-users] BCC issue on multidrop
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1320">[ date ]</a>
+              <a href="thread.html#1320">[ thread ]</a>
+              <a href="subject.html#1320">[ subject ]</a>
+              <a href="author.html#1320">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On 10/21/07, Joe Acquisto &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">joea at j4computers.com</A>&gt; wrote:
+&gt;<i> Sigh.  As you may know, this if version 6.2.5.  Mulitdrop.  Works well enough, but BCC's are not working.
+</I>
+This suggests that either your ISP isn't using envelope-to type
+headers, or your configuration isn't correct.
+
+&gt;<i> The ISP is using modus, vircomm, or some such.
+</I>&gt;<i>
+</I>&gt;<i> The problem is that a single message is being delivered, only for the direct addressee's.  A Bcc message is never seen, in the mailbox.  I've looked at the headers.  (I disable fetchmail and to a webmail thing into the mailbox). Of course, fetchmail can know nothing about a Bcc in that case.
+</I>&gt;<i>
+</I>&gt;<i> The ISP acknowledges this and has attempted to work around this by creating individual mailboxes for each user and &quot;forwarding&quot; their mail to a single drop.  That does not seem to work well.  Fetchmail now rejects mail with a 550 error, no such recipient.  I don't know why, but the header may be the problem.
+</I>
+More details on that may help get that working.  A 550 error would be
+from your local SMTP server and suggest that you had an error in your
+own setup somewhere.
+
+&gt;<i> A typical header is below as is my .fetchmailrc.
+</I>&gt;<i>
+</I>&gt;<i> ****************************************************
+</I>&gt;<i> Resent-To: <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">allmail at x.com</A>
+</I>
+That's a potential candidate for the envelope header.
+
+&gt;<i> ************************************************************
+</I>&gt;<i> # Configuration created Fri Oct 19 14:14:53 2007 by fetchmailconf
+</I>&gt;<i> set logfile &quot;/var/log/fetchmail.log&quot;
+</I>&gt;<i> set postmaster &quot;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">admin at daybreakoffice.com</A>&quot;
+</I>&gt;<i> set bouncemail
+</I>&gt;<i> set no spambounce
+</I>&gt;<i> set properties &quot;&quot;
+</I>&gt;<i> set daemon 120
+</I>&gt;<i> #poll nn.nnn.nnn.nnn via mail.a.net
+</I>&gt;<i> # with proto POP3 envelope Delivered-to
+</I>&gt;<i> #    localdomains x.com
+</I>&gt;<i> #     user '<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">allmail at x.com</A>' there with password 'foo' is * here
+</I>&gt;<i> #    smtphost  192.168.0.xxx
+</I>&gt;<i> poll nn.nnn.nnn.nnn via mail.a.net
+</I>&gt;<i>  with proto POP3 envelope Received
+</I>
+Received header parsing is known to be problematic and will (from
+memory) be removed from a future release of fetchmail.
+
+&gt;<i>     localdomains x.com
+</I>&gt;<i>      user '<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">allmail at x.com</A>' there with password 'daybreak' is * here
+</I>&gt;<i>     smtphost  192.168.0.xxx
+</I>&gt;<i>
+</I>&gt;<i> *********************************
+</I>&gt;<i>
+</I>&gt;<i> In the uncommented lines, I attemped to change the &quot;envelope&quot; but apparently am off base.
+</I>
+Try the &quot;Resent-To&quot; header.  However I think your only choices are to
+move away from multidrop or change ISP.
+
+-- 
+                 Please keep list traffic on the list.
+
+Rob MacGregor
+      Whoever fights monsters should see to it that in the process he
+        doesn't become a monster.                  Friedrich Nietzsche
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001322.html">[fetchmail-users] BCC issue on multidrop
+</A></li>
+	<LI>Next message: <A HREF="001321.html">[fetchmail-users] BCC issue on multidrop
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1320">[ date ]</a>
+              <a href="thread.html#1320">[ thread ]</a>
+              <a href="subject.html#1320">[ subject ]</a>
+              <a href="author.html#1320">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,223 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Plus (+) Addressing Problem
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2011-April/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Plus%20%28%2B%29%20Addressing%20Problem&In-Reply-To=%3C20110424071013.7abb8df9%40scorpio%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002760.html">
+   <LINK REL="Next"  HREF="002763.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Plus (+) Addressing Problem</H1>
+    <B>Jerry</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Plus%20%28%2B%29%20Addressing%20Problem&In-Reply-To=%3C20110424071013.7abb8df9%40scorpio%3E"
+       TITLE="[fetchmail-users] Plus (+) Addressing Problem">fetchmail.user at seibercom.net
+       </A><BR>
+    <I>Sun Apr 24 13:10:13 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002760.html">[fetchmail-users] Plus (+) Addressing Problem
+</A></li>
+        <LI>Next message: <A HREF="002763.html">[fetchmail-users] Plus (+) Addressing Problem
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2761">[ date ]</a>
+              <a href="thread.html#2761">[ thread ]</a>
+              <a href="subject.html#2761">[ subject ]</a>
+              <a href="author.html#2761">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Sun, 24 Apr 2011 10:08:16 +0100
+Rob MacGregor &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">rob.macgregor at gmail.com</A>&gt; articulated:
+
+&gt;<i> On Sun, Apr 24, 2011 at 00:16, Jerry &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">fetchmail.user at seibercom.net</A>&gt;
+</I>&gt;<i> wrote:
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; OK, after making those changes all of the mail is now delivered to
+</I>&gt;<i> &gt; the &quot;Postmaster&quot; address. this is the new .fetchmailrc file:
+</I>&gt;<i> 
+</I>&gt;<i> That sounds like a problem with the local setup. Can you provide a log
+</I>&gt;<i> showing what fetchmail thinks is going on, and the corresponding log
+</I>&gt;<i> from your SMTP server.
+</I>
+I did provide you with one previously. Do you want another one?
+
+&gt;<i> &gt; # Configuration created Sat Apr 23 19:04:10 2011 by fetchmailconf
+</I>&gt;<i> &gt; 1.57 set logfile &quot;/var/log/fetchmail.log&quot;
+</I>&gt;<i> &gt; set idfile &quot;/var/tmp/.fetchids&quot;
+</I>&gt;<i> &gt; set postmaster &quot;postmaster&quot;
+</I>&gt;<i> &gt; set nobouncemail
+</I>&gt;<i> &gt; set no spambounce
+</I>&gt;<i> &gt; set no softbounce
+</I>&gt;<i> &gt; set properties &quot;&quot;
+</I>&gt;<i> &gt; poll imap.gmail.com with proto IMAP timeout 30 envelope
+</I>&gt;<i> &gt; Delivered-To and options no dns user '<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">jerry at domain.net</A>' there with
+</I>&gt;<i> &gt; password 'SecRet' is '*' here options forcecr ssl smtphost
+</I>&gt;<i> &gt; domain.net
+</I>&gt;<i> 
+</I>&gt;<i> That look's basically ok - can you provide the output of &quot;fetchmail
+</I>&gt;<i> --configdump&quot;?
+</I>
+Only the &quot;password&quot; was obscured in the output below.
+
+$ fetchmail --configdump
+TRUE=1; FALSE=0
+
+os_type = 'freebsd'
+feature_options = ('pop3','imap','rpa','sdps','etrn','odmr','ssl','opie',)
+# Start of configuration initializer
+fetchmailrc = {
+    'poll_interval':0,
+    &quot;logfile&quot;:&quot;/var/log/fetchmail.log&quot;,
+    &quot;idfile&quot;:&quot;/var/tmp/.fetchids&quot;,
+    &quot;postmaster&quot;:&quot;postmaster&quot;,
+    'bouncemail':FALSE,
+    'spambounce':FALSE,
+    'softbounce':FALSE,
+    &quot;properties&quot;:&quot;&quot;,
+    'invisible':FALSE,
+    'showdots':FALSE,
+    'syslog':FALSE,
+    # List of server entries begins here
+    'servers': [
+	# Entry for site `imap.gmail.com' begins:
+	{
+	    &quot;pollname&quot;:&quot;imap.gmail.com&quot;,
+	    'active':TRUE,
+	    &quot;via&quot;:None,
+	    &quot;protocol&quot;:&quot;IMAP&quot;,
+	    &quot;service&quot;:None,
+	    'timeout':30,
+	    'interval':0,
+	    &quot;envelope&quot;:&quot;Delivered-To&quot;,
+	    'envskip':0,
+	    &quot;qvirtual&quot;:None,
+	    &quot;auth&quot;:&quot;any&quot;,
+	    'dns':FALSE,
+	    'uidl':FALSE,
+	    &quot;aka&quot;:[],
+	    &quot;localdomains&quot;:[],
+	    &quot;interface&quot;:None,
+	    &quot;monitor&quot;:None,
+	    &quot;plugin&quot;:None,
+	    &quot;plugout&quot;:None,
+	    &quot;principal&quot;:None,
+	    'tracepolls':FALSE,
+	    'badheader': FALSE,
+	    'users': [
+		{
+		    &quot;remote&quot;:&quot;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">jerry at seibercom.net</A>&quot;,
+		    &quot;password&quot;:&quot;SECRET&quot;,
+		    'localnames':[&quot;gerard&quot;, '*'],
+		    'fetchall':FALSE,
+		    'keep':FALSE,
+		    'flush':FALSE,
+		    'limitflush':FALSE,
+		    'rewrite':TRUE,
+		    'stripcr':FALSE,
+		    'forcecr':TRUE,
+		    'pass8bits':FALSE,
+		    'dropstatus':FALSE,
+		    'dropdelivered':FALSE,
+		    'mimedecode':FALSE,
+		    'idle':FALSE,
+		    &quot;mda&quot;:None,
+		    &quot;bsmtp&quot;:None,
+		    'lmtp':FALSE,
+		    &quot;preconnect&quot;:None,
+		    &quot;postconnect&quot;:None,
+		    'limit':0,
+		    'warnings':3600,
+		    'fetchlimit':0,
+		    'fetchsizelimit':100,
+		    'fastuidl':4,
+		    'batchlimit':0,
+		    'ssl':TRUE,
+		    &quot;sslkey&quot;:None,
+		    &quot;sslcert&quot;:None,
+		    &quot;sslproto&quot;:None,
+		    'sslcertck':FALSE,
+		    &quot;sslcertpath&quot;:None,
+		    &quot;sslcommonname&quot;:None,
+		    &quot;sslfingerprint&quot;:None,
+		    'expunge':0,
+		    &quot;properties&quot;:None,
+		    &quot;smtphunt&quot;:[&quot;seibercom.net&quot;],
+		    &quot;fetchdomains&quot;:[],
+		    &quot;smtpaddress&quot;:None,
+		    &quot;smtpname&quot;:None,
+		    'antispam':'',
+		    &quot;mailboxes&quot;:[],
+		}
+		,	    ]
+	}
+    ]
+}
+# End of initializer
+
+In the above output, the localnames &quot;gerard&quot; was added fetchmail but
+doesw not exist in the .fetchmailrc file. Fetchmail, when run at bootup
+from the /etc/rc.conf file is run as user &quot;fetchmail&quot;. This is a
+FreeBSD-8.2 amd64 system I am presently working on. It should probably
+be remembered that this is a special &quot;.fetchmailrc&quot; file created simply
+to test the viability  of &quot;plus addressing&quot; on this system. The regular
+fetchmail config file with its normal entries works fine on this
+system; however, it does not contain any accounts that use &quot;plus
+addressing&quot;
+
+&gt;<i> 
+</I>&gt;<i> &gt; I am seriously thinking of telling my client that this is just not
+</I>&gt;<i> &gt; going to work and to get rid of this Google garbage entirely.
+</I>&gt;<i> 
+</I>&gt;<i> Speaking as somebody who's been doing this for years with Google and
+</I>&gt;<i> other providers I can tell you that it does work. You just need to, as
+</I>&gt;<i> Derek said, troubleshoot it step by step in a calm manner.
+</I>
+Believe me, I am calm. I am just getting frustrated with the whole
+matter. Personally, I would rather talk my client into dumping Google
+and letting me configure Postfix for virtual &quot;Domains&quot;, something I
+have done numerous times before. The problem would then be solved
+since Postfix/Dovecot with sieve are working perfectly with &quot;plus&quot;
+addressing. Furthermore, I am not blaming Fetchmail, but rather Google
+and its crappy mail system.
+
+-- 
+Jerry &#9996;
+<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">Fetchmail.user at seibercom.net</A>
+
+Disclaimer: off-list followups get on-list replies or get ignored.
+Please do not ignore the Reply-To header.
+__________________________________________________________________
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002760.html">[fetchmail-users] Plus (+) Addressing Problem
+</A></li>
+	<LI>Next message: <A HREF="002763.html">[fetchmail-users] Plus (+) Addressing Problem
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2761">[ date ]</a>
+              <a href="thread.html#2761">[ thread ]</a>
+              <a href="subject.html#2761">[ subject ]</a>
+              <a href="author.html#2761">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

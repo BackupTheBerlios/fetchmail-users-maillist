@@ -1,0 +1,110 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] fetchmail: Query status=2 (SOCKET)
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2008-January/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%3A%20Query%20status%3D2%20%28SOCKET%29&In-Reply-To=%3C43ea8d070801282300m737fbe64q527f23cc3f644369%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001441.html">
+   <LINK REL="Next"  HREF="001443.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] fetchmail: Query status=2 (SOCKET)</H1>
+    <B>Rob MacGregor</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%3A%20Query%20status%3D2%20%28SOCKET%29&In-Reply-To=%3C43ea8d070801282300m737fbe64q527f23cc3f644369%40mail.gmail.com%3E"
+       TITLE="[fetchmail-users] fetchmail: Query status=2 (SOCKET)">rob.macgregor at gmail.com
+       </A><BR>
+    <I>Tue Jan 29 08:00:53 CET 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001441.html">[fetchmail-users] fetchmail: Query status=2 (SOCKET)
+</A></li>
+        <LI>Next message: <A HREF="001443.html">[fetchmail-users] fetchmail: Query status=2 (SOCKET) on Cygwin
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1442">[ date ]</a>
+              <a href="thread.html#1442">[ thread ]</a>
+              <a href="subject.html#1442">[ subject ]</a>
+              <a href="author.html#1442">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Jan 28, 2008 11:00 PM,  &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">avi at phpclub.org</A>&gt; wrote:
+&lt;---SNIP---&gt;
+&gt;<i> It seems that yahoo.com mail sends out some mails with attachments listed not as
+</I>&gt;<i> binary but as text/plain files, seems like a specific file type (that I
+</I>&gt;<i> encountered) .PLT while being sent as text/plain creates the following problem.
+</I>
+That seems, unlikely - at least from the fetchmail perspective.
+Fetchmail neither knows nor cares about the contents.
+
+&gt;<i> Platform is cygwin fetchmail 6.3.8 reading mail from qmail server (using pop3)
+</I>&gt;<i> and posting it to an exchange server (using smtp)
+</I>
+Normally I'd be asking for the SMTP server's logs at this point, but
+given that you're pushing to Exchange, I'm not sure what you can get.
+
+&lt;----SNIP----&gt;
+&gt;<i> fetchmail: SMTP&lt; 354 Start mail input; end with &lt;CRLF&gt;.&lt;CRLF&gt;
+</I>&gt;<i> #******fetchmail: Cygwin socket read retry
+</I>
+So, something is causing one of the connections to fail, either the
+connection to the remote POP3 server or the SMTP server.
+
+&gt;<i> I must say that I encountered this problem about 3 individual times over the
+</I>&gt;<i> last year I have been using this configuration, everything has always worked
+</I>&gt;<i> flawlessly without any communication or socket errors whatsoever.
+</I>&gt;<i> This only happened when yahoo mail users has sent .plt attachments (Might be
+</I>&gt;<i> that yahoo attaches unknown file types as text/plain).
+</I>
+Fetchmail doesn't care.  I can't speak for Exchange however.
+
+&gt;<i> One such email is enough to stuck all communication between qmail and exchange
+</I>&gt;<i> and in a company that relies heavily on email, it is cruical that I find a
+</I>&gt;<i> solution to this problem - as of now I am pretty much begging for whoever can
+</I>&gt;<i> help me with this as I have no idea what more I can do.
+</I>
+Options that spring to mind:
+
+1) Install fetchmail on a Linux/BSD host with a local SMTP server
+2) Get the assistance of somebody who knows Exchange to help you
+identify what Exchange is seeing/doing
+3) Perform network captures of a failed transaction to identify the
+nature of the network communication failure
+
+-- 
+                 Please keep list traffic on the list.
+
+Rob MacGregor
+      Whoever fights monsters should see to it that in the process he
+        doesn't become a monster.                  Friedrich Nietzsche
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001441.html">[fetchmail-users] fetchmail: Query status=2 (SOCKET)
+</A></li>
+	<LI>Next message: <A HREF="001443.html">[fetchmail-users] fetchmail: Query status=2 (SOCKET) on Cygwin
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1442">[ date ]</a>
+              <a href="thread.html#1442">[ thread ]</a>
+              <a href="subject.html#1442">[ subject ]</a>
+              <a href="author.html#1442">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,82 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] About mail header
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2008-August/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20About%20mail%20header&In-Reply-To=%3C43ea8d070808190610s5fd2fb68sa605ebcb08f6ae85%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001673.html">
+   <LINK REL="Next"  HREF="001675.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] About mail header</H1>
+    <B>Rob MacGregor</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20About%20mail%20header&In-Reply-To=%3C43ea8d070808190610s5fd2fb68sa605ebcb08f6ae85%40mail.gmail.com%3E"
+       TITLE="[fetchmail-users] About mail header">rob.macgregor at gmail.com
+       </A><BR>
+    <I>Tue Aug 19 15:10:51 CEST 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001673.html">[fetchmail-users] About mail header
+</A></li>
+        <LI>Next message: <A HREF="001675.html">[fetchmail-users] About mail header
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1674">[ date ]</a>
+              <a href="thread.html#1674">[ thread ]</a>
+              <a href="subject.html#1674">[ subject ]</a>
+              <a href="author.html#1674">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Tue, Aug 19, 2008 at 13:45, Ismail OZATAY &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">ismail at ismailozatay.net</A>&gt; wrote:
+&gt;<i> Hi all,
+</I>&gt;<i>
+</I>&gt;<i> I am new for this group. I am using fetchmail as a pop connector. It
+</I>&gt;<i> downloads a lot of pop3 inbox from some isps and it works properly. Today i
+</I>&gt;<i> installed postfix and mailscanner for filtering virus and spam mails on the
+</I>&gt;<i> same server but there is something wrong with mail headers. Because mail
+</I>&gt;<i> header says that mail coming from localhost 127.0.0.1 which is already
+</I>&gt;<i> whitelisted. So every incoming mail is tagged as clean. How can i fix this
+</I>&gt;<i> problem ? Can i send incoming mails to smtp with the original header?
+</I>
+You can configure fetchmail to pass it to the real interface, rather
+than the default of loopback, just use the &quot;smtphost&quot; option and
+provide the &quot;real&quot; IP (see the manual).
+
+-- 
+ Please keep list traffic on the list.
+
+Rob MacGregor
+ Whoever fights monsters should see to it that in the process he
+ doesn't become a monster. Friedrich Nietzsche
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001673.html">[fetchmail-users] About mail header
+</A></li>
+	<LI>Next message: <A HREF="001675.html">[fetchmail-users] About mail header
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1674">[ date ]</a>
+              <a href="thread.html#1674">[ thread ]</a>
+              <a href="subject.html#1674">[ subject ]</a>
+              <a href="author.html#1674">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

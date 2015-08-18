@@ -1,0 +1,100 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Socket error with IMAP
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2007-June/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Socket%20error%20with%20IMAP&In-Reply-To=%3C466CA686.6000209%40lists.wasmer.ca%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001094.html">
+   <LINK REL="Next"  HREF="001093.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Socket error with IMAP</H1>
+    <B>Jean-Luc Wasmer</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Socket%20error%20with%20IMAP&In-Reply-To=%3C466CA686.6000209%40lists.wasmer.ca%3E"
+       TITLE="[fetchmail-users] Socket error with IMAP">jl+fetchmail at lists.wasmer.ca
+       </A><BR>
+    <I>Mon Jun 11 03:33:58 CEST 2007</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001094.html">[fetchmail-users] Disable TLS
+</A></li>
+        <LI>Next message: <A HREF="001093.html">[fetchmail-users] Socket error with IMAP
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1091">[ date ]</a>
+              <a href="thread.html#1091">[ thread ]</a>
+              <a href="subject.html#1091">[ subject ]</a>
+              <a href="author.html#1091">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+I run fetchmail as a daemon to poll an IMAP server which implements the 
+IDLE command. For some reason, I'm getting a lot of &quot;socket error&quot; which 
+very rarely happened before (when I was using POP3).
+
+The error occurs when an email is received and the server sends 
+fetchmail a notification:
+
+Jun 10 14:57:03 hostname fetchmail[4951]: re-poll failed
+Jun 10 14:57:03 hostname fetchmail[4951]: socket error while fetching 
+from imap.isp.com
+Jun 10 14:57:03 hostname fetchmail[4951]: Query status=2 (SOCKET)
+Jun 10 14:57:03 hostname fetchmail[4951]: sleeping at Sun Jun 10 
+14:57:03 2007
+Jun 10 14:58:03 hostname fetchmail[4951]: awakened at Sun Jun 10 
+14:58:03 2007
+Jun 10 15:11:31 hostname fetchmail[4951]: 1 message for m38549482-5 at 
+imap.1and1.com.
+Jun 10 15:11:32 hostname fetchmail[4951]: reading message 
+<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">username at imap.isp.com</A>:1 of 1 (1602 header octets)
+Jun 10 15:11:32 hostname fetchmail[4951]:  (1689 body octets)
+Jun 10 15:11:32 hostname fetchmail[4951]:  flushed
+
+It seems, fetchmail poll the server every 28 minutes if no email 
+notification was received (and the same pbm happens).
+
+I've checked the FAQ and I don't think the isp uses virtual server names 
+and round-robin, but I can't be sure about this.
+
+As you can see from these logs, the polling interval is 60 seconds which 
+means I was getting my emails 1 minute late. To workaround this problem, 
+I've set the polling interval to 1 second.
+
+Any ideas why this is happening?
+
+Thanks,
+
+Jean-Luc
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001094.html">[fetchmail-users] Disable TLS
+</A></li>
+	<LI>Next message: <A HREF="001093.html">[fetchmail-users] Socket error with IMAP
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1091">[ date ]</a>
+              <a href="thread.html#1091">[ thread ]</a>
+              <a href="subject.html#1091">[ subject ]</a>
+              <a href="author.html#1091">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

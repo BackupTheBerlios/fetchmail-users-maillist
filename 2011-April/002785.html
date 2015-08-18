@@ -1,0 +1,154 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Plus (+) Addressing Problem {Epilogue}
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2011-April/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Plus%20%28%2B%29%20Addressing%20Problem%20%7BEpilogue%7D&In-Reply-To=%3C4DBBE50D.6000108%40gmx.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002783.html">
+   <LINK REL="Next"  HREF="002786.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Plus (+) Addressing Problem {Epilogue}</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Plus%20%28%2B%29%20Addressing%20Problem%20%7BEpilogue%7D&In-Reply-To=%3C4DBBE50D.6000108%40gmx.de%3E"
+       TITLE="[fetchmail-users] Plus (+) Addressing Problem {Epilogue}">matthias.andree at gmx.de
+       </A><BR>
+    <I>Sat Apr 30 12:31:41 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002783.html">[fetchmail-users] Plus (+) Addressing Problem {Epilogue}
+</A></li>
+        <LI>Next message: <A HREF="002786.html">[fetchmail-users] Plus (+) Addressing Problem {Epilogue}
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2785">[ date ]</a>
+              <a href="thread.html#2785">[ thread ]</a>
+              <a href="subject.html#2785">[ subject ]</a>
+              <a href="author.html#2785">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Am 29.04.2011 03:13, schrieb Derek Simkowiak:
+&gt;<i> M&gt;  All I'm saying is that the computer that fetchmail _gets_ its mail from
+</I>&gt;<i> and the computer that fetchmail _forwards_ its mail to should have
+</I>&gt;<i> different names, ...
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i>     Mattias,
+</I>&gt;<i>     Why do you think this?  This is contrary to what I have observed as
+</I>&gt;<i> a consultant.  I have several business customers that have this situation.
+</I>
+Derek,
+
+I think that because the hostnames need not be the same as the mail
+domain names, at least not if Postfix or Exim are used.
+
+&gt;<i>     The most common case is that the business has an unreliable,
+</I>&gt;<i> low-bandwidth Internet connection to their office (such as cablemodem,
+</I>&gt;<i> DSL, or cell phone), frequently with a dynamic IP address.  They want to
+</I>&gt;<i> run a Linux box to store mail, and to act as their primary mail server. 
+</I>&gt;<i> But they also use an email service provider (like GMail), so that their
+</I>&gt;<i> customer emails don't bounce every time their crappy Comcast modem goes
+</I>&gt;<i> offline.
+</I>
+While I understand and support use of external MXes or backup MXes in
+that case, no mail should bounce at the sender's SMTP site due to a
+network outage for the MX, unless the links goes down for a couple of
+days in a row.  Possibly you get &quot;still being retried, do not resend
+yet&quot; notifications.  SMTP retry policies should take care of delivery.
+
+&gt;<i> Or sometimes they don't have the technical expertise necessary
+</I>&gt;<i> to run a secure, low-spam email server with port 25 open to the public. 
+</I>&gt;<i> Or maybe their ISP filters port 25 (like Comcast does), so they can't
+</I>&gt;<i> receive mail for their domain from the outside.
+</I>
+That still doesn't explain why they need to have the same domain names
+in Delivered-To: headers of the upstream mail provider (the one
+fetchmail talks POP3/IMAP to) and their own downstream Postfix or Exim
+box (that fetchmail talks SMTP/LMTP to), which is what the discussion is
+about.
+
+&gt;<i>     I've also seen a growing mix of web-based applications that would be
+</I>&gt;<i> in this situation.  Consider an incident tracker (like Trac or Mantis)
+</I>&gt;<i> that accepts email for &quot;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">support at company.com</A>&quot;, and automatically
+</I>&gt;<i> generates tickets from that.  Often the easiest way to set those up is
+</I>&gt;<i> to have fetchmail pull the emails from a remote IMAP server and then
+</I>&gt;<i> feed it to localhost, so that the local MTA doesn't need to listen on
+</I>&gt;<i> anything but 127.0.0.1.  This is especially true of virtual machines,
+</I>&gt;<i> where a generic disk image (with a pre-built MTA config) can be deployed
+</I>&gt;<i> many times over on different IP addresses.  Scripting the creation of a
+</I>&gt;<i> two-line .fetchmailrc is far easier, cheaper, and more secure than
+</I>&gt;<i> finding a qualified mail admin to set up a unique Postfix configuration
+</I>&gt;<i> for each virtual machine (and then set up a new DNS record for it). 
+</I>
+Yes indeed - still the VM won't have the same IP as other IPs, and can
+just as easily use a different hostname. Enter DHCP, for instance. :)
+The automatically assigned hostname doesn't get in the way of accepting
+mail for, say, <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">support at example.com.</A>
+
+And you do want different hostnames in the logs and Received: headers,
+too, lest debugging become a major search operation.
+
+&gt;<i> It's not just incident trackers... it's also groupware, calendars,
+</I>&gt;<i> accounting systems, asset trackers, etc.
+</I>&gt;<i> 
+</I>&gt;<i>     I understand that, according to the SMTP protocols (and RFCs) two
+</I>&gt;<i> different computers should not both consider themselves the primary MX
+</I>&gt;<i> for a particular domain.  But fetchmail has been one of the best tools
+</I>&gt;<i> to work around that (broken) assumption.
+</I>
+That isn't my point, and the downstream computer wouldn't be
+usually be an MX at all in the unreliable-Internet SOHO case you
+outlined first.  Two computers being the primary MX is perfectly safe,
+but they should not share the actual internal hostname even though they
+handle the same domains, possibly to a set of IMAP servers running off
+some NAS or SAN or some other load-balancing rig.
+
+And using separate hostnames should take care of that.
+
+If we find we still need some kind of delivered-to: handling then surely
+dropping the header isn't right, but a particular rewriting scheme
+should be applied that leaves the loop jamming property of Delivered-To:
+intact.  I've more often than not seen people set up forwarding loops,
+and as many of the unsuitable procmail examples you find with Google or
+Bing or Yahoo eliminate a great deal of headers, we need to jam loops in
+as many places as possible.
+
+I don't plan to remove essential functionality, but I don't want to keep
+around the most dangerous approach either.
+
+What do you think?
+
+Best regards,
+Matthias
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002783.html">[fetchmail-users] Plus (+) Addressing Problem {Epilogue}
+</A></li>
+	<LI>Next message: <A HREF="002786.html">[fetchmail-users] Plus (+) Addressing Problem {Epilogue}
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2785">[ date ]</a>
+              <a href="thread.html#2785">[ thread ]</a>
+              <a href="subject.html#2785">[ subject ]</a>
+              <a href="author.html#2785">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

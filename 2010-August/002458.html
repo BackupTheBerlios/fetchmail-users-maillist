@@ -1,0 +1,123 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] how to have kept messages on MS Exchange Server as unread
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2010-August/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20how%20to%20have%20kept%20messages%20on%20MS%20Exchange%0A%20Server%20as%20unread&In-Reply-To=%3Cop.vhqbbtgv1e62zd%40merlin.emma.line.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002460.html">
+   <LINK REL="Next"  HREF="002462.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] how to have kept messages on MS Exchange Server as unread</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20how%20to%20have%20kept%20messages%20on%20MS%20Exchange%0A%20Server%20as%20unread&In-Reply-To=%3Cop.vhqbbtgv1e62zd%40merlin.emma.line.org%3E"
+       TITLE="[fetchmail-users] how to have kept messages on MS Exchange Server as unread">matthias.andree at gmx.de
+       </A><BR>
+    <I>Fri Aug 20 11:00:55 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002460.html">[fetchmail-users] how to have kept messages on MS Exchange Server as unread
+</A></li>
+        <LI>Next message: <A HREF="002462.html">[fetchmail-users] Server certificate verification error: self	signed certificate
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2458">[ date ]</a>
+              <a href="thread.html#2458">[ thread ]</a>
+              <a href="subject.html#2458">[ subject ]</a>
+              <a href="author.html#2458">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Am 19.08.2010, 19:15 Uhr, schrieb Globe Trotter:
+
+
+&gt;<i> Next I tried changing the protocol to POP3 so that I could perhaps use  
+</I>&gt;<i> uidl and had the following authentication error:
+</I>&gt;<i>
+</I>&gt;<i> $ fetchmail -cv
+</I>&gt;<i> Enter password for <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">trotter at exchange.uia.edu</A>:
+</I>&gt;<i> fetchmail: --check mode enabled, not fetching mail
+</I>&gt;<i> fetchmail: 6.3.17 querying exchange.uia.edu (protocol POP3) at Thu 19  
+</I>&gt;<i> Aug 2010 12:13:10 PM CDT: poll started
+</I>&gt;<i> Trying to connect to xxx.xxx.xx.xxx/995...connected.
+</I>&gt;<i> fetchmail: Server certificate:
+</I>&gt;<i> fetchmail: Issuer Organization: Thawte Consulting cc
+</I>&gt;<i> fetchmail: Issuer CommonName: Thawte Premium Server CA
+</I>&gt;<i> fetchmail: Subject CommonName: exchange.uia.edu
+</I>&gt;<i> fetchmail: exchange.uia.edu key fingerprint:  
+</I>&gt;<i> BF:74:A5:F0:B0:7B:BA:FA:6A:DA:FC:C7:32:02:E5:04
+</I>&gt;<i> fetchmail: POP3&lt; +OK The Microsoft Exchange POP3 service is ready.
+</I>&gt;<i> fetchmail: POP3&gt; CAPA
+</I>&gt;<i> fetchmail: POP3&lt; +OK
+</I>&gt;<i> fetchmail: POP3&lt; TOP
+</I>&gt;<i> fetchmail: POP3&lt; UIDL
+</I>&gt;<i> fetchmail: POP3&lt; SASL NTLM GSSAPI PLAIN
+</I>&gt;<i> fetchmail: POP3&lt; USER
+</I>&gt;<i> fetchmail: POP3&lt; .
+</I>&gt;<i> fetchmail: POP3&gt; AUTH GSSAPI
+</I>&gt;<i> fetchmail: POP3&lt; +
+</I>&gt;<i> fetchmail: Sending credentials
+</I>&gt;<i> fetchmail: Error exchanging credentials
+</I>&gt;<i> fetchmail: POP3&lt; +  
+</I>&gt;<i> YGoGBisGAQUFAqBgMF6gMDAuBgkqhkiC9xIBAgIGCSqGSIb3EgECAgYKKoZIhvcSAQICAwYKKwYBBAGCNwICCqMqMCigJhskbm90X2RlZmluZWRfaW5fUkZDNDE3OEBwbGVhc2VfaWdub3Jl
+</I>&gt;<i> fetchmail: POP3&gt; USER trotter
+</I>&gt;<i> fetchmail: POP3&lt; -ERR Logon failure: unknown user name or bad password.
+</I>&gt;<i> fetchmail: Logon failure: unknown user name or bad password.
+</I>&gt;<i> fetchmail: Authorization failure on <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">trotter at exits701.its.uia.edu</A>
+</I>&gt;<i> fetchmail: POP3&gt; QUIT
+</I>&gt;<i> fetchmail: POP3&lt; +OK Microsoft Exchange Server 2007 POP3 server signing  
+</I>&gt;<i> off.
+</I>&gt;<i> fetchmail: 6.3.17 querying exchange.uia.edu (protocol POP3) at Thu 19  
+</I>&gt;<i> Aug 2010 12:13:10 PM CDT: poll completed
+</I>&gt;<i> fetchmail: normal termination, status 3
+</I>&gt;<i>
+</I>&gt;<i> Any suggestions?
+</I>
+*Please* try arranging for a test account for me (details please off-list)  
+so that I can debug and test against Exchange 2007. This has been reported  
+several times, but users always used the brutest and mindless approach of  
+recompiling fetchmail without GSSAPI support.
+
+For the nonce, try either of this:
+
+(1) kinit trotter (this needs krb5.conf configured), then re-run fetchmail
+
+If that does not help, try:
+
+(2) fetchmail -cv --auth password
+
+And report what you get.
+
+-- 
+Matthias Andree
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002460.html">[fetchmail-users] how to have kept messages on MS Exchange Server as unread
+</A></li>
+	<LI>Next message: <A HREF="002462.html">[fetchmail-users] Server certificate verification error: self	signed certificate
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2458">[ date ]</a>
+              <a href="thread.html#2458">[ thread ]</a>
+              <a href="subject.html#2458">[ subject ]</a>
+              <a href="author.html#2458">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

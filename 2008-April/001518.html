@@ -1,0 +1,84 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Fecthmail deletes mail from IMAP server
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2008-April/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Fecthmail%20deletes%20mail%20from%20IMAP%20server&In-Reply-To=%3C4816181C.7000904%40gmx.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001516.html">
+   <LINK REL="Next"  HREF="001517.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Fecthmail deletes mail from IMAP server</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Fecthmail%20deletes%20mail%20from%20IMAP%20server&In-Reply-To=%3C4816181C.7000904%40gmx.de%3E"
+       TITLE="[fetchmail-users] Fecthmail deletes mail from IMAP server">matthias.andree at gmx.de
+       </A><BR>
+    <I>Mon Apr 28 20:31:56 CEST 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001516.html">[fetchmail-users] Fecthmail deletes mail from IMAP server
+</A></li>
+        <LI>Next message: <A HREF="001517.html">[fetchmail-users] Fecthmail deletes mail from IMAP server
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1518">[ date ]</a>
+              <a href="thread.html#1518">[ thread ]</a>
+              <a href="subject.html#1518">[ subject ]</a>
+              <a href="author.html#1518">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Wade Smart schrieb:
+&gt;<i> Aniruddha wrote:
+</I>
+&gt;&gt;&gt;<i> poll *****l with proto IMAP
+</I>&gt;&gt;&gt;<i>        user '****' there with password '****' is '****' here
+</I>&gt;&gt;&gt;<i> mda '/usr/bin/procmail -d %T'
+</I>&gt;<i> 
+</I>&gt;<i> This from the documentation:
+</I>&gt;<i> 
+</I>&gt;<i> &quot;DO NOT ENCLOSE THE %F OR %T STRING IN SINGLE QUOTES! For both %T and %F,
+</I>&gt;<i> fetchmail encloses the addresses in single quotes (&#8217;), after removing any single 
+</I>&gt;<i> quotes they may contain, before the MDA command is passed to the shell.
+</I>&gt;<i> 
+</I>&gt;<i> Do either of these affect your situation?
+</I>
+No, it doesn't. The problem is, as Rob points out, a missing &quot;--keep&quot;
+option/keyword.
+
+The &quot;do not enclose&quot; does not apply here since this outer quotation level
+from mda &quot; ... &quot; is removed by the configuration parser already.
+
+-- 
+Matthias Andree
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001516.html">[fetchmail-users] Fecthmail deletes mail from IMAP server
+</A></li>
+	<LI>Next message: <A HREF="001517.html">[fetchmail-users] Fecthmail deletes mail from IMAP server
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1518">[ date ]</a>
+              <a href="thread.html#1518">[ thread ]</a>
+              <a href="subject.html#1518">[ subject ]</a>
+              <a href="author.html#1518">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

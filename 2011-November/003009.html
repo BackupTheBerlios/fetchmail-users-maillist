@@ -1,0 +1,108 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] the message fetch should be completed before quitting
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2011-November/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20the%20message%20fetch%20should%20be%20completed%20before%0A%20quitting&In-Reply-To=%3C26888557.4985441322409611673.JavaMail.root%40wmail2.libero.it%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003007.html">
+   <LINK REL="Next"  HREF="003010.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] the message fetch should be completed before quitting</H1>
+    <B>rossi.f at inwind.it</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20the%20message%20fetch%20should%20be%20completed%20before%0A%20quitting&In-Reply-To=%3C26888557.4985441322409611673.JavaMail.root%40wmail2.libero.it%3E"
+       TITLE="[fetchmail-users] the message fetch should be completed before quitting">rossi.f at inwind.it
+       </A><BR>
+    <I>Sun Nov 27 17:00:11 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003007.html">[fetchmail-users] R: Re: the message fetch should be completed before quitting
+</A></li>
+        <LI>Next message: <A HREF="003010.html">[fetchmail-users] the message fetch should be completed before quitting
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3009">[ date ]</a>
+              <a href="thread.html#3009">[ thread ]</a>
+              <a href="subject.html#3009">[ subject ]</a>
+              <a href="author.html#3009">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>&gt;<i>Regarding your proposal of having the signal delivered to maildrop, too,
+</I>&gt;<i>can you please try this:
+</I>
+I think this is the way to go :-)
+
+&gt;<i>unpack the fetchmail source and configure as usual.
+</I>&gt;<i>
+</I>&gt;<i>Open fetchmail.c in a text editor (which may not show line numbers) and
+</I>&gt;<i>find this section:
+</I>&gt;<i>
+</I>&gt;<i>   446     if (quitonly) {
+</I>&gt;<i>   447 fprintf(stderr,GT_(&quot;fetchmail: no other fetchmail is running\n&quot;));
+</I>&gt;<i>   448 exit(PS_EXCLUDE);
+</I>&gt;<i>   449     }
+</I>&gt;<i>   450 }
+</I>&gt;<i>   451 else if (kill(pid, SIGTERM) &lt; 0)
+</I>&gt;<i>   452 {
+</I>&gt;<i>   453     fprintf(stderr,GT_(&quot;fetchmail: error killing %s fetchmail at
+</I>&gt;<i>%ld; bailing out.\n&quot;),
+</I>&gt;<i>   454     bkgd ? GT_(&quot;background&quot;) : GT_(&quot;foreground&quot;), (long)pid);
+</I>&gt;<i>   455     exit(PS_EXCLUDE);
+</I>&gt;<i>   456 }
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i>In the kill line that reads &quot;SIGTERM&quot;, modify the kill(pid, SIGTERM) so
+</I>&gt;<i>it reads kill(-pid, SIGTERM), i. e. insert a minus before the pid.  Then
+</I>&gt;<i>build, install, and test if fetchmail --quit now shuts down maildrop.
+</I>&gt;<i>
+</I>&gt;<i>The difference that makes it that the signal is delivered to the process
+</I>&gt;<i>group (which should encompass maildrop), not just a single process.
+</I>
+I have tried with the attached patch (-pid is not the group process id). The
+effect seems different than killing the process via CTRL-C at the terminal. 
+The
+maildrop child process is not killed and the message is accordingly delivered.
+Something is still not working correctly: might it be due to the fact that the
+parent process is killed before the child? If this is the case the signal
+handler in fetchmail should kill its children before dying
+
+Fabio
+
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: fm-killpg.patch
+Type: text/x-patch
+Size: 401 bytes
+Desc: not available
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/fetchmail-users/attachments/20111127/91233f4d/attachment.bin">https://lists.berlios.de/pipermail/fetchmail-users/attachments/20111127/91233f4d/attachment.bin</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003007.html">[fetchmail-users] R: Re: the message fetch should be completed before quitting
+</A></li>
+	<LI>Next message: <A HREF="003010.html">[fetchmail-users] the message fetch should be completed before quitting
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3009">[ date ]</a>
+              <a href="thread.html#3009">[ thread ]</a>
+              <a href="subject.html#3009">[ subject ]</a>
+              <a href="author.html#3009">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

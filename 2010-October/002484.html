@@ -1,0 +1,172 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] fetchmail 6.3.18 regression/bug fix release
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2010-October/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%206.3.18%20regression/bug%20fix%20release&In-Reply-To=%3C20101009230015.GB7891%40merlin.emma.line.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   
+   <LINK REL="Next"  HREF="002485.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] fetchmail 6.3.18 regression/bug fix release</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%206.3.18%20regression/bug%20fix%20release&In-Reply-To=%3C20101009230015.GB7891%40merlin.emma.line.org%3E"
+       TITLE="[fetchmail-users] fetchmail 6.3.18 regression/bug fix release">matthias.andree at gmx.de
+       </A><BR>
+    <I>Sun Oct 10 01:00:15 CEST 2010</I>
+    <P><UL>
+        
+        <LI>Next message: <A HREF="002485.html">[fetchmail-users] multidrop RC configuration help
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2484">[ date ]</a>
+              <a href="thread.html#2484">[ thread ]</a>
+              <a href="subject.html#2484">[ subject ]</a>
+              <a href="author.html#2484">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>The 6.3.18 release of fetchmail is now available at the usual locations,
+including &lt;<A HREF="http://developer.berlios.de/projects/fetchmail">http://developer.berlios.de/projects/fetchmail</A>&gt;.
+
+It should fix the nasty authentication errors between fetchmail and
+Kerberized (GSSAPI) servers, and more issues - detailed below.
+
+The source archive is available at:
+&lt;<A HREF="http://prdownload.berlios.de/fetchmail/fetchmail-6.3.18.tar.bz2">http://prdownload.berlios.de/fetchmail/fetchmail-6.3.18.tar.bz2</A>&gt;
+
+Here are the release notes:
+
+fetchmail-6.3.18 (released 2010-10-09, 25936 LoC):
+
+# SECURITY IMPROVEMENTS TO DEFANG X.509 CERTIFICATE ABUSE
+* Fetchmail now only accepts wildcard certificate common names and subject
+  alternative names if they start with &quot;*.&quot;. Previous versions would accept
+  wildcards even if no period followed immediately.
+* Fetchmail now disallows wildcards in certificates to match domain literals
+  (such as 10.9.8.7), or wildcards in domain literals (&quot;*.168.23.23&quot;).
+  The test is overly picky and triggers if the pattern (after skipping the
+  initial wildcard &quot;*&quot;) or domain consists solely of digits and dots, and thus
+  matches more than needed.
+* Fetchmail now disallows wildcarding top-level domains.
+
+# CRITICAL BUG FIXES AND REGRESSION FIXES
+* Fetchmail 6.3.15, 6.3.16, and 6.3.17 would pick up libmd5 to obtain MD5*
+  functions, as an effect of an undocumented Solaris MD5 fix.
+  This caused all MD5-related functions to malfunction if, for instance,
+  libmd5.so was installed on other operating systems as part of libwww on
+  machines where long isn't 32-bits, i. e. usually on 64-bit computers.
+  Fixes Gentoo Bug #319283, reported, including libwww hint, by Karl Hakimian.
+  Side effect: fetchmail will now use -lmd on Solaris rather than -lmd5.
+* Fetchmail 6.3.17 warned about insecure SSL/TLS connections even if a matching
+  --sslfingerprint was specified. This is an omission from an SSL usability
+  change made in 6.3.17.
+  Fixes Debian Bug#580796 reported by Roland Stigge.
+* Fetchmail will now apply timeouts to the authentication stage.
+  This stage encompasses STARTTLS/STLS negotiation in IMAP/POP3.
+  Reported missing by Thomas Jarosch.
+* Fetchmail now cancels GSSAPI authentication properly when encountering GSS
+  errors, such as no or unsuitable credentials.
+  It now sends an asterisk on a line by its own, as required in SASL.
+    This fixes protocol synchronization issues that cause Authentication
+  failures, often observed with kerberized MS Exchange servers.
+  Fixes Debian Bug #568455 reported by Patrick Rynhart, and Alan Murrell, to the
+  fetchmail-users list. Fix verified by Thomas Voigtmann.
+
+# BUG FIXES
+* Fetchmail will no longer print connection attempts and errors for one host
+  in &quot;silent&quot; and &quot;normal&quot; logging modes, unless all connections fail. This
+  should reduce irritation around refused-connection logging if services are
+  only on an IPv4 socket if the host also supports IPv6. Often observed as
+  connections refused to ::1/25 when the subsequent connection to 127.0.0.1/25
+  then - silently - succeeds.  Fetchmail, unless in verbose mode, will collect
+  all connect errors and only report them if all of them fail.
+* Fetchmail will not try GSSAPI authentication automatically, unless it has GSS
+  credentials. However, if GSSAPI authentication is requested explicitly,
+  fetchmail will always try it.
+* Fetchmail now parses response to &quot;FETCH n:m RFC822.SIZE&quot; and &quot;FETCH n
+  RFC822.HEADER&quot; in a more flexible manner. (Sunil Shetye)
+* The manual page clearly states that --principal is for Kerberos 4 only, not
+  for Kerberos 5 or GSSAPI. Found by Thomas Voigtmann.
+
+# CHANGES
+* When encountering incorrect headers, fetchmail will refer to the bad-header
+  option in the manpage.
+  Fixes BerliOS Bug #17272, change suggested by Bj&#246;rn Voigt.
+* Fetchmail now decodes and reports GSSAPI status codes upon errors.
+* Fetchmail now autoprobes NTLM also for POP3.
+* The Fetchmail FAQ has a new item #R15 on authentication failures.
+
+# INTERNAL CHANGES
+* The common NTLM authentication code was factored out from pop3.c and imap.c.
+
+# TRANSLATION UPDATES
+  [zh_CN] Chinese/simplified (Ji Zheng-Yu)
+  [cs]    Czech (Petr Pisar)
+  [nl]    Dutch (Erwin Poeze)
+  [fr]    French (Fr&#233;d&#233;ric Marchal)
+  [de]    German
+  [it]    Italian (Vincenzo Campanella)
+  [ja]    Japanese (Takeshi Hamasaki)
+  [pl]    Polish (Jakub Bogusz)
+  [sk]    Slovak (Marcel Telka)
+
+# KNOWN BUGS AND WORKAROUNDS:
+  (this section floats upwards through the NEWS file so it stays with the
+  current release information - however, it was stuck with 6.3.8 for a while)
+* fetchmail does not handle messages without Message-ID header well
+  (See sourceforge.net bug #780933)
+* BSMTP is mostly untested and errors can cause corrupt output.
+* Sun Workshop 6 (SPARC) is known to miscompile the configuration file lexer in
+  64-bit mode.  Either compile 32-bit code or use GCC to compile 64-bit
+  fetchmail.  Note that fetchmail doesn't take advantage of 64-bit code,
+  so compiling 32-bit SPARC code should not cause any difficulties.
+* fetchmail does not track pending deletes over crashes.
+* the command line interface is sometimes a bit stubborn, for instance,
+  fetchmail -s doesn't work with a daemon running.
+* Linux systems may return duplicates of an IP address in some circumstances if
+  no or no global IPv6 addresses are configured.
+  (No workaround. Ubuntu Bug#582585, Novell Bug#606980.)
+* Kerberos 5 may be broken, particularly on Heimdal, and provide bogus error
+  messages. This will not be fixed, because the maintainer has no Kerberos 5
+  server to test against. Use GSSAPI.
+
+-- 
+Matthias Andree
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: not available
+Type: application/pgp-signature
+Size: 198 bytes
+Desc: not available
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/fetchmail-users/attachments/20101010/5357eb6f/attachment.pgp">https://lists.berlios.de/pipermail/fetchmail-users/attachments/20101010/5357eb6f/attachment.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	
+	<LI>Next message: <A HREF="002485.html">[fetchmail-users] multidrop RC configuration help
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2484">[ date ]</a>
+              <a href="thread.html#2484">[ thread ]</a>
+              <a href="subject.html#2484">[ subject ]</a>
+              <a href="author.html#2484">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

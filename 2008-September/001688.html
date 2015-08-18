@@ -1,0 +1,89 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] losing mails because of &quot;incorrect header line	found&quot;
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2008-September/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20losing%20mails%20because%20of%20%22incorrect%20header%20line%0A%09found%22&In-Reply-To=%3C20080916204703.GA15540%40spiegl.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001710.html">
+   <LINK REL="Next"  HREF="001689.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] losing mails because of &quot;incorrect header line	found&quot;</H1>
+    <B>Andy Spiegl</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20losing%20mails%20because%20of%20%22incorrect%20header%20line%0A%09found%22&In-Reply-To=%3C20080916204703.GA15540%40spiegl.de%3E"
+       TITLE="[fetchmail-users] losing mails because of &quot;incorrect header line	found&quot;">fetchmail.andy at spiegl.de
+       </A><BR>
+    <I>Tue Sep 16 22:47:03 CEST 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001710.html">[fetchmail-users] unable to get local issuer certificate
+</A></li>
+        <LI>Next message: <A HREF="001689.html">[fetchmail-users] losing mails because of &quot;incorrect header	line found&quot;
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1688">[ date ]</a>
+              <a href="thread.html#1688">[ thread ]</a>
+              <a href="subject.html#1688">[ subject ]</a>
+              <a href="author.html#1688">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+I just had to find out that I lost quite a few mails throughout the
+last year because fetchmail found an &quot;incorrect header line while
+scanning headers&quot;.  *sigh*
+Of course it's not fetchmail's fault that there was an incorrect
+header line in these mails (bad mailer of the sender) but I can't
+believe that fetchmail simply dumped those mails!  I entrusted my
+mails to fetchmail for decades and was never disappointed so much.
+
+More so because I found reports of this bug in the mailing list
+archives, e.g. this one by Frederic Marchal from July 2008:
+ [fetchmail-users] Incorrect header line and lost mails
+
+If it's so hard to fix (which I can understand) why doesn't fetchmail
+simply reject to receive (i.e. not send a DELE) this mail from the
+mailserver?  I suppose I am not understanding the full story, but I
+refuse to believe that _dumping_ the mail is the best solution.
+
+Please let me know how to change this behaviour.
+
+Thanks,
+ Andy.
+
+PS: I've tried version 6.3.8-11 (Debian unstable) and 6.3.8-10ubuntu1.
+
+-- 
+ A mathematician is a machine for converting coffee into theorems.
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001710.html">[fetchmail-users] unable to get local issuer certificate
+</A></li>
+	<LI>Next message: <A HREF="001689.html">[fetchmail-users] losing mails because of &quot;incorrect header	line found&quot;
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1688">[ date ]</a>
+              <a href="thread.html#1688">[ thread ]</a>
+              <a href="subject.html#1688">[ subject ]</a>
+              <a href="author.html#1688">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

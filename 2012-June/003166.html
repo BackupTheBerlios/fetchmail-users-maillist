@@ -1,0 +1,127 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] how to set up fetchmail for inbox.com POP3
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2012-June/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20how%20to%20set%20up%20fetchmail%20for%20inbox.com%20POP3&In-Reply-To=%3C4FE2464D.3030608%40gmx.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003165.html">
+   <LINK REL="Next"  HREF="003167.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] how to set up fetchmail for inbox.com POP3</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20how%20to%20set%20up%20fetchmail%20for%20inbox.com%20POP3&In-Reply-To=%3C4FE2464D.3030608%40gmx.de%3E"
+       TITLE="[fetchmail-users] how to set up fetchmail for inbox.com POP3">matthias.andree at gmx.de
+       </A><BR>
+    <I>Wed Jun 20 23:53:17 CEST 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003165.html">[fetchmail-users] how to set up fetchmail for inbox.com POP3
+</A></li>
+        <LI>Next message: <A HREF="003167.html">[fetchmail-users] how to set up fetchmail for inbox.com POP3
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3166">[ date ]</a>
+              <a href="thread.html#3166">[ thread ]</a>
+              <a href="subject.html#3166">[ subject ]</a>
+              <a href="author.html#3166">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Am 20.06.2012 20:03, schrieb Globe Trotter:
+&gt;<i> Thanks very much to both Schrieb and Jurgen for your help!
+</I>&gt;<i> 
+</I>&gt;<i> However, I have tried all sorts of things and I can not get it to work. 
+</I>&gt;<i> 
+</I>&gt;<i> Following instructions in: <A HREF="http://www.inbox.com/faq_email.aspx?id=3859">http://www.inbox.com/faq_email.aspx?id=3859</A>
+</I>&gt;<i> I even put the certificate available for download at <A HREF="https://knowledge.rapidssl.com/library/VERISIGN/INTERNATIONAL_AFFILIATES/RapidSSL/AR1548/RapidSSLPKCS7.p7b">https://knowledge.rapidssl.com/library/VERISIGN/INTERNATIONAL_AFFILIATES/RapidSSL/AR1548/RapidSSLPKCS7.p7b</A>
+</I>&gt;<i> in my local directory, but to no avail.
+</I>&gt;<i> 
+</I>&gt;<i> Here is what I put in my .fetchmailrc:
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> poll <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">John.Doe at inbox.com</A>
+</I>&gt;<i>      via my.inbox.com 
+</I>&gt;<i>      protocol POP3 
+</I>&gt;<i>      authenticate password
+</I>&gt;<i>      username &quot;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">John.Doe at inbox.com</A>&quot;
+</I>&gt;<i>      password &quot;mypasswd&quot; 
+</I>&gt;<i>      ssl 
+</I>&gt;<i>      sslcertpath /home/doejohn/ssl/certs/
+</I>&gt;<i>      sslcertfile &quot;/home/doejohn/ssl/certs/RapidSSLPKCS7.p7b&quot;
+</I>&gt;<i>     sslfingerprint &quot;65:FB:3E:7A:25:7D:CD:02:3A:27:30:54:21:EE:25:A6&quot;
+</I>&gt;<i> mda 'procmail -d %s'
+</I>&gt;<i> keep
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> and here is what I get using fetchmail -cvvv (after a long time: almost 4 minutes):
+</I>&gt;<i> 
+</I>&gt;<i> fetchmail: --check mode enabled, not fetching mail
+</I>&gt;<i> fetchmail: 6.3.21 querying <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">John.Doe at my.inbox.com</A> (protocol POP3) at Wed 20 Jun 2012 12:55:02 PM CDT: poll started
+</I>&gt;<i> Trying to connect to 64.135.83.10/995...connected.
+</I>&gt;<i> fetchmail: Server certificate:
+</I>&gt;<i> fetchmail: Issuer Organization: GeoTrust, Inc.
+</I>&gt;<i> fetchmail: Issuer CommonName: RapidSSL CA
+</I>&gt;<i> fetchmail: Subject CommonName: *.inbox.com
+</I>&gt;<i> fetchmail: Subject Alternative Name: *.inbox.com
+</I>&gt;<i> fetchmail: Subject Alternative Name: inbox.com
+</I>&gt;<i> fetchmail: <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">John.Doe at my.inbox.com</A> key fingerprint: 65:FB:3E:7A:25:7D:CD:02:3A:27:30:54:21:EE:25:A6
+</I>&gt;<i> fetchmail: <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">John.Doe at my.inbox.com</A> fingerprints match.
+</I>&gt;<i> fetchmail: Server certificate verification error: unable to get local issuer certificate
+</I>&gt;<i> fetchmail: This means that the root signing certificate (issued for /serialNumber=N-5PUN3n3ooFG8R8QqVU8dG9v-gxxa6U/C=US/O=*.inbox.com/OU=GT56839057/OU=See www.rapidssl.com/resources/cps (c)12/OU=Domain Control Validated - RapidSSL(R)/CN=*.inbox.com) is not in the trusted CA certificate locations, or that c_rehash needs to be run on the certificate directory. For details, please see the documentation of --sslcertpath and --sslcertfile in the manual page.
+</I>&gt;<i> 140218832394080:error:14090086:SSL routines:SSL3_GET_SERVER_CERTIFICATE:certificate verify failed:s3_clnt.c:1063:
+</I>&gt;<i> fetchmail: SSL connection failed.
+</I>&gt;<i> fetchmail: socket error while fetching from <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">John.Doe at inbox.com</A>@<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">John.Doe at my.inbox.com</A>
+</I>&gt;<i> fetchmail: 6.3.21 querying <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">John.Doe at my.inbox.com</A> (protocol POP3) at Wed 20 Jun 2012 12:55:02 PM CDT: poll completed
+</I>&gt;<i> Merged UID list from <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">John.Doe at my.inbox.com</A>: &lt;empty&gt;
+</I>&gt;<i> fetchmail: normal termination, status 2
+</I>&gt;<i> 
+</I>&gt;<i> I created and put the directory ssl/certs in my local home directory and then put in the certificate there. I also obtained c_rehash from <A HREF="http://openfsg.com/index.php/Running_fetchmail_with_SSL_support">http://openfsg.com/index.php/Running_fetchmail_with_SSL_support</A> and ran it there to no avail yet.
+</I>&gt;<i> 
+</I>&gt;<i> What am I doing wrong? Thanks again for helping me sort out these challenges!
+</I>
+c_rehash must(!!!) match your version of OpenSSL, 0.9.X vs. 1.0.0, else
+it will not work.
+
+Converting the .p7b to .pem as described in my other mail and then
+passing the .pem file as sslcertfile should work (at least it works with
+gnutls-cli -p 995 --x509cafile RapidSSL.pem my.inbox.com).
+
+You will not need sslcertpath then.
+
+-- 
+Matthias Andree
+
+
+</PRE>
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003165.html">[fetchmail-users] how to set up fetchmail for inbox.com POP3
+</A></li>
+	<LI>Next message: <A HREF="003167.html">[fetchmail-users] how to set up fetchmail for inbox.com POP3
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3166">[ date ]</a>
+              <a href="thread.html#3166">[ thread ]</a>
+              <a href="subject.html#3166">[ subject ]</a>
+              <a href="author.html#3166">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,102 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] User poll: how do you expect --sslcertpath to	behave?
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2010-April/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20User%20poll%3A%20how%20do%20you%20expect%20--sslcertpath%20to%0A%09behave%3F&In-Reply-To=%3Cr2r43ea8d071004190256pdcf84500ja070a15d52dac94%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002351.html">
+   <LINK REL="Next"  HREF="002353.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] User poll: how do you expect --sslcertpath to	behave?</H1>
+    <B>Rob MacGregor</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20User%20poll%3A%20how%20do%20you%20expect%20--sslcertpath%20to%0A%09behave%3F&In-Reply-To=%3Cr2r43ea8d071004190256pdcf84500ja070a15d52dac94%40mail.gmail.com%3E"
+       TITLE="[fetchmail-users] User poll: how do you expect --sslcertpath to	behave?">rob.macgregor at gmail.com
+       </A><BR>
+    <I>Mon Apr 19 11:56:48 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002351.html">[fetchmail-users] User poll: how do you expect --sslcertpath to	behave?
+</A></li>
+        <LI>Next message: <A HREF="002353.html">[fetchmail-users] (was: User poll: how do you expect --sslcertpath	to behave?)
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2352">[ date ]</a>
+              <a href="thread.html#2352">[ thread ]</a>
+              <a href="subject.html#2352">[ subject ]</a>
+              <a href="author.html#2352">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Mon, Apr 19, 2010 at 09:04, Matthias Andree &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">matthias.andree at gmx.de</A>&gt; wrote:
+&gt;<i>
+</I>&gt;<i> The two poll questions are:
+</I>&gt;<i>
+</I>&gt;<i> (1) Should fetchmail add the default OpenSSL certificate locations even if
+</I>&gt;<i> you specify --sslcertfile or --sslcertpath? You will be able to choose the
+</I>&gt;<i> other behaviour by setting an environment variable (I don't plan to add yet
+</I>&gt;<i> another option). Optional: why?
+</I>&gt;<i> Explanation:
+</I>&gt;<i> &#160;- yes means that fetchmail would look into the OpenSSL default locations
+</I>&gt;<i> AND additionally into those you specify. From a usability point of view this
+</I>&gt;<i> option is preferred, because Linux, *BSD and other distributions will often
+</I>&gt;<i> run c_rehash on the system directories automatically, so that this can mask
+</I>&gt;<i> the user's forgetting to run c_rehash.
+</I>&gt;<i> &#160;- no means that fetchmail will only look into those you specify. If neither
+</I>&gt;<i> of these two options are present, fetchmail will instead look into the
+</I>&gt;<i> OpenSSL default places. This is preferable from a security point of view, to
+</I>&gt;<i> only look into specified locations in order to be as mistrustful as
+</I>&gt;<i> possible.
+</I>
+No (or at least if yes then no should be the default - a secure
+solution by default is IMO preferable)
+
+I'd suggest that when running fetchmail with one of the ssl options
+then a message should be printed or logged reminding people to run
+c_rehash (with a link to a document providing details of when to do
+that).
+
+&gt;<i> (2) If you answered the previous one with &quot;yes&quot;, should the fetchmail or the
+</I>&gt;<i> OpenSSL directories be checked first?
+</I>
+OpenSSL directories first (just as with a path the user's directories
+should be last so that you can't trivially get people to run your
+version of &quot;ls&quot;).
+
+-- 
+                 Please keep list traffic on the list.
+
+Rob MacGregor
+      Whoever fights monsters should see to it that in the process he
+        doesn't become a monster.                  Friedrich Nietzsche
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002351.html">[fetchmail-users] User poll: how do you expect --sslcertpath to	behave?
+</A></li>
+	<LI>Next message: <A HREF="002353.html">[fetchmail-users] (was: User poll: how do you expect --sslcertpath	to behave?)
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2352">[ date ]</a>
+              <a href="thread.html#2352">[ thread ]</a>
+              <a href="subject.html#2352">[ subject ]</a>
+              <a href="author.html#2352">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

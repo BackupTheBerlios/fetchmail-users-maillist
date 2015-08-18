@@ -1,0 +1,131 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Yahoo Plus SSL Issue
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2010-July/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Yahoo%20Plus%20SSL%20Issue&In-Reply-To=%3C20100702131006.GA1189%40stryder.lamafam.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002402.html">
+   <LINK REL="Next"  HREF="002409.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Yahoo Plus SSL Issue</H1>
+    <B>Gerry LaMontagne</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Yahoo%20Plus%20SSL%20Issue&In-Reply-To=%3C20100702131006.GA1189%40stryder.lamafam.org%3E"
+       TITLE="[fetchmail-users] Yahoo Plus SSL Issue">gjlama94 at gmail.com
+       </A><BR>
+    <I>Fri Jul  2 15:10:07 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002402.html">[fetchmail-users] Yahoo Plus SSL Issue
+</A></li>
+        <LI>Next message: <A HREF="002409.html">[fetchmail-users] Yahoo Plus SSL Issue
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2405">[ date ]</a>
+              <a href="thread.html#2405">[ thread ]</a>
+              <a href="subject.html#2405">[ subject ]</a>
+              <a href="author.html#2405">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Fri, Jul 02, 2010 at 10:42:25AM +0200, Matthias Andree wrote:
+&gt;<i> At first glance this appears mysterious, because I don't know how
+</I>&gt;<i> openssl could &quot;uncork&quot;. Yahoo appear to do load balancing across
+</I>&gt;<i> several levels, meaning that there are several servers that you
+</I>&gt;<i> access by the same name, and behind that again different servers
+</I>&gt;<i> accessed through the same external IP.
+</I>&gt;<i> 
+</I>&gt;<i> Apparently not all have the same certificate.
+</I>&gt;<i> 
+</I>&gt;<i> The observation around the common names (which are part of the
+</I>&gt;<i> certificate) is key to understanding the issue, and suggest that
+</I>&gt;<i> some of the Yahoo servers in the load balanced server pool are
+</I>&gt;<i> misconfigured, or that their load balancing setup has been changed
+</I>&gt;<i> but not all DNS changes have propagated through caching DNS servers
+</I>&gt;<i> (although that is rather unlikely, Yahoo set a DNS timeout of 5
+</I>&gt;<i> minutes here for the Plus POP servers).
+</I>&gt;<i> 
+</I>&gt;<i> An explanation why openssl uncorks things would be that there are
+</I>&gt;<i> sort of two or three faulty servers you get &quot;drawn&quot;, and if you run
+</I>&gt;<i> openssl a couple of times, the balancer front-end has skipped over
+</I>&gt;<i> the faulty ones and next time fetchmail gets an intact again.
+</I>&gt;<i> 
+</I>&gt;<i> I'd suggest revisiting the Yahoo website for configuration
+</I>&gt;<i> instructions of the POP (perhaps your setup is old and Yahoo wants
+</I>&gt;<i> you to change it); however if your configuration is correct, I'd
+</I>&gt;<i> suggest reporting this to Yahoo. Be sure to mention the host names
+</I>&gt;<i> that are broken, from the greeting lines logged, for instance this:
+</I>&gt;<i> 
+</I>&gt;<i> +OK hello from popgate 2.45.2 on pop108.plus.mail.ac4.yahoo.com
+</I>&gt;<i> 
+</I>&gt;<i> You may need to remove &quot;--sslcertck&quot; to actually get fetchmail that
+</I>&gt;<i> far (hadn't checked if you have it set).
+</I>
+Matthias-
+
+Thanks for the reply and your explanation.  I've done quite a bit of
+investigating since my email and I've come to similar conclusions so
+it's good to get some independent verification.
+
+I did revisit Yahoo for configuration information and my setup is still
+the recommended one.  That had been a hope of mine early on.  Would have
+made for an easy fix.
+
+At this point, the errors have all but stopped.  So I think the upshot
+is that maintenance was being done, and it took some time for everything
+to settle out.  I agree that their load balancing during the maintenance
+was misconfigured as I took some time to investigate the certificates
+from &quot;plus&quot; and from &quot;pop&quot;.  Both have been valid for a couple years,
+and the one from &quot;pop&quot; doesn't expire until November.  Indicating, to me
+anyway, that they errantly thought the two server pools were compatible.
+At this point, seeing that the errors have all but stopped, I'm not sure
+reporting the problems will bring any joy.
+
+FWIW- I did have --sslcertck enabled.  Based on my understanding from
+the man page, I don't think I would have seen this problem without it?
+I've also added the --sslfingerprint option to my rc file.  I believe this
+should alert me to certificate changes in the future and allow me to
+attempt to verify them on my own at that point.
+
+Again, I think it's safe to conclude no problems with fetchmail and I'm
+considering it case closed.
+
+Regards-
+Gerry LaMontagne
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: signature.asc
+Type: application/pgp-signature
+Size: 230 bytes
+Desc: Digital signature
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/fetchmail-users/attachments/20100702/a777b753/attachment.pgp">https://lists.berlios.de/pipermail/fetchmail-users/attachments/20100702/a777b753/attachment.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002402.html">[fetchmail-users] Yahoo Plus SSL Issue
+</A></li>
+	<LI>Next message: <A HREF="002409.html">[fetchmail-users] Yahoo Plus SSL Issue
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2405">[ date ]</a>
+              <a href="thread.html#2405">[ thread ]</a>
+              <a href="subject.html#2405">[ subject ]</a>
+              <a href="author.html#2405">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,101 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] daemon mode and file permissions
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2009-May/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20daemon%20mode%20and%20file%20permissions&In-Reply-To=%3C200905241416.55799.finex%40finex.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001931.html">
+   <LINK REL="Next"  HREF="001933.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] daemon mode and file permissions</H1>
+    <B>FiNeX</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20daemon%20mode%20and%20file%20permissions&In-Reply-To=%3C200905241416.55799.finex%40finex.org%3E"
+       TITLE="[fetchmail-users] daemon mode and file permissions">finex at finex.org
+       </A><BR>
+    <I>Sun May 24 14:16:55 CEST 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001931.html">[fetchmail-users] fetchmail multiline SMTP error
+</A></li>
+        <LI>Next message: <A HREF="001933.html">[fetchmail-users] daemon mode and file permissions
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1932">[ date ]</a>
+              <a href="thread.html#1932">[ thread ]</a>
+              <a href="subject.html#1932">[ subject ]</a>
+              <a href="author.html#1932">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi! I've configured fetchmail in daemon mode. It downloads email from 5 remote 
+POP3 server for 5 different local user account. something like:
+
+# --- START /etc/fetchmailrc --- #
+poll SERVER proto POP3 user ACCOUNT1 with password ### is USER1 here
+poll SERVER proto POP3 user ACCOUNT2 with password ### is USER2 here
+poll SERVER proto POP3 user ACCOUNT3 with password ### is USER3 here
+poll SERVER proto POP3 user ACCOUNT4 with password ### is USER4 here
+poll SERVER proto POP3 user ACCOUNT5 with password ### is USER5 here
+# --- END /etc/fetchmailrc --- #
+
+The mails are processed by procmail and saved on a maildir in each user home
+
+  $HOME/Mail/
+
+Each user account have a &quot;.procmailrc&quot; files:
+
+# --- START .procmailrc --- #
+MAILDIR=$HOME/Mail
+:<i>0:
+</I>$DEFAULT
+# --- END .procmailrc --- #
+
+All the downloaded emails are stored with &quot;root&quot; user instead of the 
+destination user account.
+
+mailserver:/home/test/Mail/cur# ls -l
+total 4
+-rw-------  1 root mail 1705 2009-05-24 13:48 1243165709.6782_3.mailserver:2,
+
+Is this a fetchmail configuration problem?
+
+Many thanks.
+
+
+-- 
+by FiNeX
+<A HREF="http://www.finex.org">http://www.finex.org</A>
+finex (@) finex (.) org
+Linux Registered User #306523
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001931.html">[fetchmail-users] fetchmail multiline SMTP error
+</A></li>
+	<LI>Next message: <A HREF="001933.html">[fetchmail-users] daemon mode and file permissions
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1932">[ date ]</a>
+              <a href="thread.html#1932">[ thread ]</a>
+              <a href="subject.html#1932">[ subject ]</a>
+              <a href="author.html#1932">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,136 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] how to avoid ipv6 address?
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2007-March/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20how%20to%20avoid%20ipv6%20address%3F&In-Reply-To=%3C20070326103616.GE9899%40krille.blacktrash.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000928.html">
+   <LINK REL="Next"  HREF="000930.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] how to avoid ipv6 address?</H1>
+    <B>Christian Ebert</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20how%20to%20avoid%20ipv6%20address%3F&In-Reply-To=%3C20070326103616.GE9899%40krille.blacktrash.org%3E"
+       TITLE="[fetchmail-users] how to avoid ipv6 address?">blacktrash at gmx.org
+       </A><BR>
+    <I>Mon Mar 26 12:36:16 CEST 2007</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000928.html">[fetchmail-users] fetchmail at system startup
+</A></li>
+        <LI>Next message: <A HREF="000930.html">[fetchmail-users] how to avoid ipv6 address?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#929">[ date ]</a>
+              <a href="thread.html#929">[ thread ]</a>
+              <a href="subject.html#929">[ subject ]</a>
+              <a href="author.html#929">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hello,
+
+When polling, fetchmail gives the following warning after the
+first message:
+
+Trying to connect to ::1/25...connection failed.
+fetchmail: connection to localhost:smtp [::1/25] failed: Connection refused.
+Trying to connect to 127.0.0.1/25...connected.
+
+I believe this is due to the ipv6 loopback interface in my
+/etc/hosts:
+
+$ cat /etc/hosts
+##
+# Host Database
+#
+# localhost is used to configure the loopback interface
+# when the system is booting.  Do not change this entry.
+##
+127.0.0.1	localhost krille.blacktrash.org
+::<i>1		localhost krille.blacktrash.org
+</I>255.255.255.255	broadcasthost
+
+Otherwise everything is working fine, I just wanted to know
+whether there's an &quot;innocent&quot; way to get rid of this warning?
+
+$ fetchmail -V
+This is fetchmail release 6.3.8-rc2+SSL.
+
+Copyright (C) 2002, 2003 Eric S. Raymond
+Copyright (C) 2004 Matthias Andree, Eric S. Raymond, Rob F. Funk, Graham Wilson
+Copyright (C) 2005-2006 Sunil Shetye
+Copyright (C) 2005-2007 Matthias Andree
+Fetchmail comes with ABSOLUTELY NO WARRANTY. This is free software, and you
+are welcome to redistribute it under certain conditions. For details,
+please see the file COPYING in the source or documentation directory.
+
+Fallback MDA: (none)
+Darwin krille.blacktrash.org 7.9.0 Darwin Kernel Version 7.9.0: Wed Mar 30 20:11:17 PST 2005; root:xnu/xnu-517.12.7.obj~1/RELEASE_PPC  Power Macintosh powerpc
+Taking options from command line and /Users/chris/.fetchmailrc
+Idfile is /Users/chris/.fetchids
+Fetchmail will show progress dots even in logfiles.
+Fetchmail will forward misaddressed multidrop messages to chris.
+Options for retrieving from *******@pop.gmx.net:
+  True name of server is pop.gmx.net.
+  Protocol is POP3 (forcing UIDL use).
+  Password authentication will be forced.
+  SSL encrypted sessions enabled.
+  SSL key fingerprint (checked against the server key): *************
+  Server nonresponse timeout is 60 seconds.
+  Default mailbox selected.
+  All messages will be retrieved (--all on).
+  Fetched messages will not be kept on the server (--keep off).
+  Old messages will not be flushed before message retrieval (--flush off).
+  Oversized messages will not be flushed before message retrieval (--limitflush off).
+  Rewrite of server-local addresses is enabled (--norewrite off).
+  Carriage-return stripping is enabled (stripcr on).
+  Carriage-return forcing is disabled (forcecr off).
+  Interpretation of Content-Transfer-Encoding is enabled (pass8bits off).
+  MIME decoding is disabled (mimedecode off).
+  Idle after poll is disabled (idle off).
+  Nonempty Status lines will be kept (dropstatus off)
+  Delivered-To lines will be kept (dropdelivered off)
+  Fetch message size limit is 100 (--fetchsizelimit 100).
+  Do binary search of UIDs during 3 out of 4 polls (--fastuidl 4).
+  Messages will be SMTP-forwarded to: localhost (default)
+  Single-drop mode: 1 local name recognized.
+  No UIDs saved from this host.
+
+
+TIA
+
+c
+-- 
+_B A U S T E L L E N_ lesen! ---&gt;&gt; &lt;<A HREF="http://www.blacktrash.org/baustellen.html">http://www.blacktrash.org/baustellen.html</A>&gt;
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000928.html">[fetchmail-users] fetchmail at system startup
+</A></li>
+	<LI>Next message: <A HREF="000930.html">[fetchmail-users] how to avoid ipv6 address?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#929">[ date ]</a>
+              <a href="thread.html#929">[ thread ]</a>
+              <a href="subject.html#929">[ subject ]</a>
+              <a href="author.html#929">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

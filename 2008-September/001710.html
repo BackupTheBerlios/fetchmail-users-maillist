@@ -1,0 +1,203 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] unable to get local issuer certificate
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2008-September/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20unable%20to%20get%20local%20issuer%20certificate&In-Reply-To=%3CPine.LNX.4.58.0809261523040.30991%40mars.njit.edu%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001687.html">
+   <LINK REL="Next"  HREF="001688.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] unable to get local issuer certificate</H1>
+    <B>Andy Malato</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20unable%20to%20get%20local%20issuer%20certificate&In-Reply-To=%3CPine.LNX.4.58.0809261523040.30991%40mars.njit.edu%3E"
+       TITLE="[fetchmail-users] unable to get local issuer certificate">andym at oak.njit.edu
+       </A><BR>
+    <I>Fri Sep 26 21:25:51 CEST 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001687.html">[fetchmail-users] unable to get local issuer certificate
+</A></li>
+        <LI>Next message: <A HREF="001688.html">[fetchmail-users] losing mails because of &quot;incorrect header line	found&quot;
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1710">[ date ]</a>
+              <a href="thread.html#1710">[ thread ]</a>
+              <a href="subject.html#1710">[ subject ]</a>
+              <a href="author.html#1710">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>
+! Date: Sun, 14 Sep 2008 16:05:11 +0200
+! From: Matthias Andree &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">matthias.andree at gmx.de</A>&gt;
+! To: Andy Malato &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">andym at oak.njit.edu</A>&gt;
+! Cc: <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">fetchmail-users at lists.berlios.de</A>
+! Subject: Re: [fetchmail-users] unable to get local issuer certificate
+!
+! Andy Malato &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">andym at oak.njit.edu</A>&gt; writes:
+!
+! &gt; ! Date: Fri, 12 Sep 2008 18:23:39 +0200
+! &gt; ! From: Matthias Andree &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">matthias.andree at gmx.de</A>&gt;
+! &gt; ! To: <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">fetchmail-users at lists.berlios.de</A>
+! &gt; ! Subject: Re: [fetchmail-users] unable to get local issuer certificate
+! &gt; !
+! &gt; ! Andy Malato schrieb:
+! &gt; ! &gt; Hello All,
+! &gt; ! &gt;
+! &gt; ! &gt;
+! &gt; ! &gt; I'm currently trying to get fetchmail release 6.3.8+SSL+HESIOD+NLS
+! &gt; ! &gt; working but am running into problems with SSL certificate verification.
+! &gt; ! &gt;
+! &gt; ! &gt; The version of OpenSSL I am using is OpenSSL 0.9.8d on RHEL 4.
+! &gt; ! &gt;
+! &gt; ! &gt;
+! &gt; ! &gt; I have specified the following options in my config file :
+! &gt; ! &gt;
+! &gt; ! &gt; poll mymailhost proto pop3 uidl no dns
+! &gt; ! &gt; user mailuser
+! &gt; ! &gt; sslcertck sslcertpath /usr/share/ssl/certs
+! &gt; ! &gt;
+! &gt; ! &gt; When I invoke fetchmail, I get the following :
+! &gt; ! &gt;
+! &gt; ! &gt; Enter password for <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">mailuser at mymailhost</A>:
+! &gt; ! &gt; fetchmail: 6.3.8 querying mymailhost (protocol POP3) at Fri Sep 12
+! &gt; ! &gt; 10:59:10 2008: poll started
+! &gt; ! &gt; Trying to connect to 10.0.0.17/995...connected.
+! &gt; ! &gt; fetchmail: Server certificate verification error: unable to get local
+! &gt; ! &gt; issuer certificate
+! &gt; ! &gt; 29071:error:14090086:SSL
+! &gt; ! &gt; routines:SSL3_GET_SERVER_CERTIFICATE:certificate verify
+! &gt; ! &gt; failed:s3_clnt.c:843:
+! &gt; ! ...
+! &gt; ! &gt; If I remove the sslcertck option, things work fine.
+! &gt; ! &gt;
+! &gt; ! &gt;
+! &gt; ! &gt; If I run :
+! &gt; ! &gt;
+! &gt; ! &gt; 	openssl s_client -connect mymailhost:993 -CApath /usr/share/ssl/certs
+! &gt; ! &gt;
+! &gt; ! &gt; Things appear to be OK, i.e., The SSL Handshake completes ok with Verify
+! &gt; ! &gt; return code of 0.
+!
+! Given the three tests pass, I find this strange. Can you run:
+!
+! strace -e trace=file fetchmail -d0 --nodetach -vv
+!
+! and see if it misses files it tries to open?
+
+Thanks, and sorry for the delayed reply.  I have listed the output of
+strace below.  From what I can see, it seems to be looking for
+ed524cf5.1 which doesn't exist.  I'm not sure why it is looking for
+this?
+
+
+yellow-92 certs&gt;: strace -e trace=file fetchmail -d0 --nodetach -vv
+execve(&quot;/usr/local/bin/fetchmail&quot;, [&quot;fetchmail&quot;, &quot;-d0&quot;, &quot;--nodetach&quot;, &quot;-vv&quot;], [/* 39 vars */]) = 0
+access(&quot;/etc/ld.so.preload&quot;, R_OK)      = -1 ENOENT (No such file or directory)
+open(&quot;/etc/ld.so.cache&quot;, O_RDONLY)      = 3
+open(&quot;/usr/lib64/libhesiod.so.0&quot;, O_RDONLY) = 3
+open(&quot;/lib64/libcrypt.so.1&quot;, O_RDONLY)  = 3
+open(&quot;/lib64/libresolv.so.2&quot;, O_RDONLY) = 3
+open(&quot;/lib64/libssl.so.4&quot;, O_RDONLY)    = 3
+open(&quot;/lib64/libcrypto.so.4&quot;, O_RDONLY) = 3
+open(&quot;/lib64/tls/libc.so.6&quot;, O_RDONLY)  = 3
+open(&quot;/usr/lib64/libgssapi_krb5.so.2&quot;, O_RDONLY) = 3
+open(&quot;/usr/lib64/libkrb5.so.3&quot;, O_RDONLY) = 3
+open(&quot;/lib64/libcom_err.so.2&quot;, O_RDONLY) = 3
+open(&quot;/usr/lib64/libk5crypto.so.3&quot;, O_RDONLY) = 3
+open(&quot;/lib64/libdl.so.2&quot;, O_RDONLY)     = 3
+open(&quot;/usr/lib64/libz.so.1&quot;, O_RDONLY)  = 3
+open(&quot;/etc/nsswitch.conf&quot;, O_RDONLY)    = 3
+open(&quot;/etc/ld.so.cache&quot;, O_RDONLY)      = 3
+open(&quot;/lib64/libnss_files.so.2&quot;, O_RDONLY) = 3
+open(&quot;/etc/passwd&quot;, O_RDONLY)           = 3
+open(&quot;/etc/passwd&quot;, O_RDONLY)           = 3
+stat(&quot;/home/guest23/.fetchmailrc&quot;, {st_mode=S_IFREG|0710, st_size=255, ...}) = 0
+lstat(&quot;/home/guest23/.fetchmailrc&quot;, {st_mode=S_IFREG|0710, st_size=255, ...}) = 0
+open(&quot;/home/guest23/.fetchmailrc&quot;, O_RDONLY) = 3
+open(&quot;/etc/passwd&quot;, O_RDONLY)           = 3
+lstat(&quot;/home/guest23/.fetchids&quot;, {st_mode=S_IFREG|0600, st_size=239, ...}) = 0
+lstat(&quot;/home/guest23/.fetchids&quot;, {st_mode=S_IFREG|0600, st_size=239, ...}) = 0
+open(&quot;/home/guest23/.fetchids&quot;, O_RDONLY) = 3
+Old UID list from mymailhost: 9 10 11 12 13 14 15 16 17 18 &lt;empty&gt;
+Scratch list of UIDs: &lt;empty&gt;
+open(&quot;/home/guest23/.netrc&quot;, O_RDONLY) = -1 ENOENT (No such file or directory)
+open(&quot;/home/guest23/.fetchmail.pid&quot;, O_RDONLY) = -1 ENOENT (No such file or directory)
+open(&quot;/dev/tty&quot;, O_RDWR)                = 3
+Enter password for <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">tpine at mymailhost</A>:
+open(&quot;/home/guest23/.fetchmail.pid&quot;, O_WRONLY|O_CREAT|O_EXCL, 0666) = 3
+stat(&quot;/home/guest23/.fetchmailrc&quot;, {st_mode=S_IFREG|0710, st_size=255, ...}) = 0
+open(&quot;/etc/resolv.conf&quot;, O_RDONLY)      = 3
+open(&quot;/etc/localtime&quot;, O_RDONLY)        = 3
+stat(&quot;/etc/localtime&quot;, {st_mode=S_IFREG|0644, st_size=1267, ...}) = 0
+stat(&quot;/etc/localtime&quot;, {st_mode=S_IFREG|0644, st_size=1267, ...}) = 0
+stat(&quot;/etc/localtime&quot;, {st_mode=S_IFREG|0644, st_size=1267, ...}) = 0
+fetchmail: 6.3.8 querying mymailhost (protocol POP3) at Fri Sep 26 15:13:52 2008: poll started
+open(&quot;/etc/services&quot;, O_RDONLY)         = 3
+open(&quot;/etc/hosts&quot;, O_RDONLY)            = 3
+open(&quot;/etc/hosts&quot;, O_RDONLY)            = 3
+open(&quot;/etc/ld.so.cache&quot;, O_RDONLY)      = 3
+open(&quot;/lib64/libnss_dns.so.2&quot;, O_RDONLY) = 3
+Trying to connect to 128.235.208.17/995...connected.
+stat(&quot;/dev/random&quot;, {st_mode=S_IFCHR|0666, st_rdev=makedev(1, 8), ...}) = 0
+open(&quot;/dev/urandom&quot;, O_RDONLY|O_NOCTTY|O_NONBLOCK) = 4
+stat(&quot;/usr/share/ssl/certs/ed524cf5.0&quot;, {st_mode=S_IFREG|0644, st_size=2516, ...}) = 0
+open(&quot;/usr/share/ssl/certs/ed524cf5.0&quot;, O_RDONLY) = 4
+stat(&quot;/usr/share/ssl/certs/ed524cf5.1&quot;, 0x7fbfffa830) = -1 ENOENT (No such file or directory)
+fetchmail: Server certificate verification error: unable to get local issuer certificate
+30773:error:14090086:SSL routines:SSL3_GET_SERVER_CERTIFICATE:certificate verify failed:s3_clnt.c:843:
+fetchmail: SSL connection failed.
+fetchmail: socket error while fetching from <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">tpine at mymailhost</A>
+stat(&quot;/etc/localtime&quot;, {st_mode=S_IFREG|0644, st_size=1267, ...}) = 0
+stat(&quot;/etc/localtime&quot;, {st_mode=S_IFREG|0644, st_size=1267, ...}) = 0
+stat(&quot;/etc/localtime&quot;, {st_mode=S_IFREG|0644, st_size=1267, ...}) = 0
+fetchmail: 6.3.8 querying mymailhost (protocol POP3) at Fri Sep 26 15:13:52 2008: poll completed
+Merged UID list from mymailhost: 9 = 1 10 = 1 11 = 1 12 = 1 13 = 1 14 = 1 15 = 1 16 = 1 17 = 1 18 = 1 &lt;empty&gt;
+fetchmail: Query status=2 (SOCKET)
+fetchmail: Writing fetchids file.
+unlink(&quot;/home/guest23/.fetchids_&quot;) = -1 ENOENT (No such file or directory)
+open(&quot;/home/guest23/.fetchids_&quot;, O_WRONLY|O_CREAT|O_TRUNC, 0666) = 3
+rename(&quot;/home/guest23/.fetchids_&quot;, &quot;/home/guest23/.fetchids&quot;) = 0
+fetchmail: normal termination, status 2
+fetchmail: Writing fetchids file.
+unlink(&quot;/home/guest23/.fetchids_&quot;) = -1 ENOENT (No such file or directory)
+open(&quot;/home/guest23/.fetchids_&quot;, O_WRONLY|O_CREAT|O_TRUNC, 0666) = 3
+rename(&quot;/home/guest23/.fetchids_&quot;, &quot;/home/guest23/.fetchids&quot;) = 0
+unlink(&quot;/home/guest23/.fetchmail.pid&quot;) = 0
+yellow-93 certs&gt;:
+! --
+! Matthias Andree
+!
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001687.html">[fetchmail-users] unable to get local issuer certificate
+</A></li>
+	<LI>Next message: <A HREF="001688.html">[fetchmail-users] losing mails because of &quot;incorrect header line	found&quot;
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1710">[ date ]</a>
+              <a href="thread.html#1710">[ thread ]</a>
+              <a href="subject.html#1710">[ subject ]</a>
+              <a href="author.html#1710">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

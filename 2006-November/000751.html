@@ -1,0 +1,90 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] fetchmail 6.3.6-rc4 release candidate
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2006-November/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%206.3.6-rc4%20release%20candidate&In-Reply-To=%3C20061129163829.GA8059%40merlin.emma.line.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000750.html">
+   <LINK REL="Next"  HREF="000752.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] fetchmail 6.3.6-rc4 release candidate</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%206.3.6-rc4%20release%20candidate&In-Reply-To=%3C20061129163829.GA8059%40merlin.emma.line.org%3E"
+       TITLE="[fetchmail-users] fetchmail 6.3.6-rc4 release candidate">matthias.andree at gmx.de
+       </A><BR>
+    <I>Wed Nov 29 17:38:29 CET 2006</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000750.html">[fetchmail-users] fetchmail 6.3.6-rc4 release candidate
+</A></li>
+        <LI>Next message: <A HREF="000752.html">[fetchmail-users] fetchmail 6.3.6-rc4 release candidate
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#751">[ date ]</a>
+              <a href="thread.html#751">[ thread ]</a>
+              <a href="subject.html#751">[ subject ]</a>
+              <a href="author.html#751">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Jakob Hirsch schrieb am 2006-11-29:
+
+&gt;<i> But why the superfluous CAPA? I know the server does not support SSL or
+</I>&gt;<i> TLS, and I have no &quot;ssl&quot; for it in my fetchmailrc, so why look for it at
+</I>&gt;<i> all? It probably does not harm much, but I think we should not bother
+</I>&gt;<i> the server unnecessarily, so the extra connect should be avoided. We
+</I>&gt;<i> could instead try to login despite of the failed CAPA, and only
+</I>&gt;<i> reconnect after this login failed (which will surely happen with some
+</I>&gt;<i> servers).
+</I>
+1. You did not ask for SSL, but you did probably not prohibit TLS
+either, so fetchmail will - that's its default - look if it has the
+opportunity to use TLS.  Using 'sslproto &quot;&quot;' should defeat this CAPA
+probe. This goes along with &lt;<A HREF="http://www.fetchmail.info/fetchmail-FAQ.html#K6">http://www.fetchmail.info/fetchmail-FAQ.html#K6</A>&gt;
+
+2. ESR got reports that some servers dropped the connection later on
+when probed for capabilities, and a reconnect was chosen as a solution.
+I don't know many of the details though, if someone knows URLs off-hand,
+let me know. I'm a bit loathe to change this part of the behavior at
+this time though.
+
+Given that CAPA doesn't cause state change, servers that change behavior
+after &quot;reconnect without CAPA&quot; are broken anyways.
+
+3. Does fetchmail re-probe capabilities in daemon mode for the 2nd and
+subsequent polls? It shouldn't.
+
+-- 
+Matthias Andree
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000750.html">[fetchmail-users] fetchmail 6.3.6-rc4 release candidate
+</A></li>
+	<LI>Next message: <A HREF="000752.html">[fetchmail-users] fetchmail 6.3.6-rc4 release candidate
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#751">[ date ]</a>
+              <a href="thread.html#751">[ thread ]</a>
+              <a href="subject.html#751">[ subject ]</a>
+              <a href="author.html#751">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

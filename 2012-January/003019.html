@@ -1,0 +1,115 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Troubleshooting SSL error
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2012-January/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Troubleshooting%20SSL%20error&In-Reply-To=%3C4F072EEC.4010305%40gmx.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003018.html">
+   <LINK REL="Next"  HREF="003020.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Troubleshooting SSL error</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Troubleshooting%20SSL%20error&In-Reply-To=%3C4F072EEC.4010305%40gmx.de%3E"
+       TITLE="[fetchmail-users] Troubleshooting SSL error">matthias.andree at gmx.de
+       </A><BR>
+    <I>Fri Jan  6 18:27:08 CET 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003018.html">[fetchmail-users] Troubleshooting SSL error
+</A></li>
+        <LI>Next message: <A HREF="003020.html">[fetchmail-users] Troubleshooting SSL error
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3019">[ date ]</a>
+              <a href="thread.html#3019">[ thread ]</a>
+              <a href="subject.html#3019">[ subject ]</a>
+              <a href="author.html#3019">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Am 06.01.2012 14:47, schrieb <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">dishwasher at cheflisa.com</A>:
+&gt;<i> Quoting &quot;Matthias Andree&quot; &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">matthias.andree at gmx.de</A>&gt;:
+</I>&gt;<i> 
+</I>&gt;&gt;<i> Am 05.01.2012 04:25, schrieb <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">dishwasher at cheflisa.com</A>:
+</I>&gt;&gt;&gt;<i> Environment:
+</I>&gt;&gt;&gt;<i> CentOS 5.7
+</I>&gt;&gt;&gt;<i> Fetchmail RPM is fetchmail-6.3.6-1.1.el5_3.1
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> I am sorry, but I do not have the resources to support older versions
+</I>&gt;&gt;<i> other than offering upgrades -- and there *have* been SSL-related fixes
+</I>&gt;&gt;<i> galore between 6.3.6 and 6.3.21.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> I stopped reading where I stopped quoting.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Please either build an up-to-date version from source, or use the
+</I>&gt;&gt;<i> CentOS-specific support channels (if any).
+</I>&gt;<i> 
+</I>&gt;<i> fetchmail -V
+</I>&gt;<i> This is fetchmail release 6.3.21+SSL+NLS.
+</I>&gt;<i> 
+</I>&gt;<i> I have built 6.3.21 version from your source and installed. There is no
+</I>&gt;<i> change in the error result from fetchmail when run. Open SSL still
+</I>&gt;<i> conects to the servers when I run openssl from the bash prompt;
+</I>&gt;<i> fetchmail still reports the same protocol error.
+</I>&gt;<i> 
+</I>&gt;<i> 19010:error:140770FC:SSL routines:SSL23_GET_SERVER_HELLO:unknown
+</I>&gt;<i> protocol:s23_clnt.c:588:
+</I>&gt;<i> 
+</I>&gt;<i> Do you have any other suggestions I may use to troubleshoot or further
+</I>&gt;<i> understand this erorr message from Fetchmail?
+</I>
+Revisiting the original fetchmail log you've posted, I see two things:
+
+- you are using a plugin option with openssl,
+
+- you are using the ssl option,
+
+both at the same time.
+
+And basically the OpenSSL library does not recognize the server's
+handshake, because it's intermixed with debug output from OpenSSL. Also
+note that OpenSSL's s_client does not terminate the connection if the
+server certificate verification fails, so it is unsuitable for use as
+plugin.
+
+Remove the plugin option from the configuration file and retry, and I
+suggest adding --sslcertck so as to be sure nobody is running an SSL
+hijacker tool on your connection.
+
+I for one can successfully connect to pod51011.outlook.com port 993 with
+SSL and strict certificate validation.
+
+Hope that helps,
+Matthias
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003018.html">[fetchmail-users] Troubleshooting SSL error
+</A></li>
+	<LI>Next message: <A HREF="003020.html">[fetchmail-users] Troubleshooting SSL error
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3019">[ date ]</a>
+              <a href="thread.html#3019">[ thread ]</a>
+              <a href="subject.html#3019">[ subject ]</a>
+              <a href="author.html#3019">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

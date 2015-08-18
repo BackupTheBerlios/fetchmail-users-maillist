@@ -1,0 +1,127 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Recipient address rejected: User unknown in	local recipient table
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2007-August/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Recipient%20address%20rejected%3A%20User%20unknown%20in%0A%09local%20recipient%20table&In-Reply-To=%3C43ea8d070708150538p7e225b8brc6375a6f732d226b%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001148.html">
+   <LINK REL="Next"  HREF="001150.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Recipient address rejected: User unknown in	local recipient table</H1>
+    <B>Rob MacGregor</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Recipient%20address%20rejected%3A%20User%20unknown%20in%0A%09local%20recipient%20table&In-Reply-To=%3C43ea8d070708150538p7e225b8brc6375a6f732d226b%40mail.gmail.com%3E"
+       TITLE="[fetchmail-users] Recipient address rejected: User unknown in	local recipient table">rob.macgregor at gmail.com
+       </A><BR>
+    <I>Wed Aug 15 14:38:29 CEST 2007</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001148.html">[fetchmail-users] Recipient address rejected: User unknown in local recipient table
+</A></li>
+        <LI>Next message: <A HREF="001150.html">[fetchmail-users] Recipient address rejected: User unknown in local recipient table
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1149">[ date ]</a>
+              <a href="thread.html#1149">[ thread ]</a>
+              <a href="subject.html#1149">[ subject ]</a>
+              <a href="author.html#1149">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On 8/15/07, Johan Vandeweerd &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">fetchmail at bobsworld.be</A>&gt; wrote:
+&gt;<i>
+</I>&gt;<i> My fetchmailrc looks like this:
+</I>&gt;<i>
+</I>&gt;<i>     set no bouncemail
+</I>
+So, if you're running as root bounced mail will be directed to
+postmaster, otherwise the user running fetchmail (as detailed in the
+man page).
+
+&gt;<i>    set daemon 600
+</I>&gt;<i>    defaults:
+</I>&gt;<i>      antispam -1
+</I>
+The default antispam list is empty - I'm not sure what you're thinking
+to achieve with this.
+
+&gt;<i> In the logs I find things like this:
+</I>&gt;<i>
+</I>&lt;---SNIP---&gt;
+&gt;<i>     Aug 12 06:12:01 cyclops postfix/smtpd[19251]: connect from
+</I>&gt;<i>     localhost[127.0.0.1]
+</I>&gt;<i>     Aug 12 06:12:01 cyclops postfix/smtpd[19251]: EBAE7214DF2:
+</I>&gt;<i>     client=localhost[127.0.0.1]
+</I>
+Fetchmail starts the process of sending the bounce message
+
+&gt;<i>     Aug 12 06:12:01 cyclops fetchmail[3067]: mail from
+</I>&gt;<i>     <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">MAILER-DAEMON at localserver</A> bounced to fetchmail
+</I>&gt;<i>     Aug 12 06:12:02 cyclops postfix/cleanup[19252]: EBAE7214DF2:
+</I>&gt;<i>     message-id=&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">20070812041201.EBAE7214DF2 at localserver</A>&gt;
+</I>&gt;<i>     Aug 12 06:12:02 cyclops postfix/smtpd[19251]: disconnect from
+</I>&gt;<i>     localhost[127.0.0.1]
+</I>&gt;<i>     Aug 12 06:12:02 cyclops postfix/qmgr[2967]: EBAE7214DF2: from=&lt;&gt;,
+</I>&gt;<i>     size=2340, nrcpt=1 (queue active)
+</I>&gt;<i>     Aug 12 06:12:02 cyclops postfix/smtpd[19248]: 0B354214DF4:
+</I>&gt;<i>     client=localhost[127.0.0.1]
+</I>&gt;<i>     Aug 12 06:12:02 cyclops postfix/cleanup[19252]: 0B354214DF4:
+</I>&gt;<i>     message-id=&lt;be1a01c7dca5$f0d405d0$<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">0fff6d29 at fredcoxaaxue</A>&gt;
+</I>&gt;<i>     Aug 12 06:12:02 cyclops postfix/local[19253]: EBAE7214DF2:
+</I>&gt;<i>     to=&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">fetchmail at localserver</A>&gt;, orig_to=&lt;fetchmail&gt;, relay=local,
+</I>&gt;<i>     delay=0.13, delays=0.1/0.01/0/0.02, dsn=2.0.0, status=sent
+</I>&gt;<i>     (delivered to maildir)
+</I>
+Bounce message delivered to the account &quot;fetchmail&quot;
+
+&gt;<i> Where are those bouncemessage sent to? Or how could I have noticed this
+</I>&gt;<i> earlier?
+</I>
+They're delivered to the &quot;fetchmail&quot; user (the one running fetchmail).
+ You could have noticed this earlier by monitoring that account's
+email :)  Easiest approach is probably to alias that to the postmaster
+address, which you should also be monitoring.
+
+&gt;<i> The old mails are lost, I presume?
+</I>
+Depends on what was in the bounce - I haven't seen a fetchmail bounce
+so I can't say.  If fetchmail is only providing the minimal &quot;Your
+message titled X could not be delivered&quot; then you're out of luck.
+
+-- 
+                 Please keep list traffic on the list.
+
+Rob MacGregor
+      Whoever fights monsters should see to it that in the process he
+        doesn't become a monster.                  Friedrich Nietzsche
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001148.html">[fetchmail-users] Recipient address rejected: User unknown in local recipient table
+</A></li>
+	<LI>Next message: <A HREF="001150.html">[fetchmail-users] Recipient address rejected: User unknown in local recipient table
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1149">[ date ]</a>
+              <a href="thread.html#1149">[ thread ]</a>
+              <a href="subject.html#1149">[ subject ]</a>
+              <a href="author.html#1149">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,198 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] antispam
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2007-June/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20antispam&In-Reply-To=%3Cbba6100b0706021348s9128a54k1669b65dbec3d155%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001071.html">
+   <LINK REL="Next"  HREF="001073.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] antispam</H1>
+    <B>Nick Smith</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20antispam&In-Reply-To=%3Cbba6100b0706021348s9128a54k1669b65dbec3d155%40mail.gmail.com%3E"
+       TITLE="[fetchmail-users] antispam">nick.smith79 at gmail.com
+       </A><BR>
+    <I>Sat Jun  2 22:48:42 CEST 2007</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001071.html">[fetchmail-users] antispam
+</A></li>
+        <LI>Next message: <A HREF="001073.html">[fetchmail-users] antispam
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1072">[ date ]</a>
+              <a href="thread.html#1072">[ thread ]</a>
+              <a href="subject.html#1072">[ subject ]</a>
+              <a href="author.html#1072">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On 6/2/07, Rob MacGregor &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">rob.macgregor at gmail.com</A>&gt; wrote:
+&gt;<i> On 6/2/07, Nick Smith &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">nick.smith79 at gmail.com</A>&gt; wrote:
+</I>&gt;<i> &gt; I can seem to get fetchmail to flush mail marked with 450:
+</I>&gt;<i> &lt;---SNIP---&gt;
+</I>&gt;<i> &gt; Im using this line in a fetchmail.sh in my rc.d directory:
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; /usr/local/bin/fetchmail --syslog --antispam 450,451 -f
+</I>&gt;<i> &gt; /usr/local/etc/fetchmail.cf
+</I>&gt;<i>
+</I>&gt;<i> What's in /usr/local/etc/fetchmail.cf?
+</I>&gt;<i>
+</I>I have several user/pass for accounts im checking here is one line:
+poll mail.mydomain.com
+with protocol pop3
+username myuser password mypassword is <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">NSmith at mydomain.local</A>
+
+&gt;<i> Also, what is the output if you append &quot;--configdump&quot; to your usual
+</I>&gt;<i> command line?
+</I>&gt;<i>
+</I>TRUE=1; FALSE=0
+
+os_type = 'freebsd'
+feature_options =
+('pop2','pop3','imap','rpa','sdps','etrn','odmr','ssl','opie',)
+# Start of configuration initializer
+fetchmailrc = {
+    'poll_interval':0,
+    &quot;logfile&quot;:None,
+    &quot;idfile&quot;:&quot;/root/.fetchids&quot;,
+    &quot;postmaster&quot;:&quot;postmaster&quot;,
+    'bouncemail':TRUE,
+    'spambounce':FALSE,
+    &quot;properties&quot;:None,
+    'invisible':FALSE,
+    'showdots':TRUE,
+    'syslog':TRUE,
+    # List of server entries begins here
+    'servers': [
+        # Entry for site `mail.mydomain.com' begins:
+        {
+            &quot;pollname&quot;:&quot;mail.mydomain.com&quot;,
+            'active':TRUE,
+            &quot;via&quot;:None,
+            &quot;protocol&quot;:&quot;POP3&quot;,
+            &quot;service&quot;:None,
+            'timeout':300,
+            'interval':0,
+            &quot;envelope&quot;:&quot;Received&quot;,
+            'envskip':0,
+            &quot;qvirtual&quot;:None,
+            &quot;auth&quot;:&quot;any&quot;,
+            'dns':TRUE,
+            'uidl':FALSE,
+            &quot;aka&quot;:[],
+            &quot;localdomains&quot;:[],
+            &quot;interface&quot;:None,
+            &quot;monitor&quot;:None,
+            &quot;plugin&quot;:None,
+            &quot;plugout&quot;:None,
+            &quot;principal&quot;:None,
+            'tracepolls':FALSE,
+            'users': [
+                {
+                    &quot;remote&quot;:&quot;myuser&quot;,
+                    &quot;password&quot;:&quot;password&quot;,
+                    'localnames':[&quot;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">NSmith at mydomain.local</A>&quot;],
+                    'fetchall':FALSE,
+                    'keep':FALSE,
+                    'flush':FALSE,
+                    'limitflush':FALSE,
+                    'rewrite':TRUE,
+                    'stripcr':FALSE,
+                    'forcecr':FALSE,
+                    'pass8bits':FALSE,
+                    'dropstatus':FALSE,
+                    'dropdelivered':FALSE,
+                    'mimedecode':FALSE,
+                    'idle':FALSE,
+                    &quot;mda&quot;:None,
+                    &quot;bsmtp&quot;:None,
+                    'lmtp':FALSE,
+                    &quot;preconnect&quot;:None,
+                    &quot;postconnect&quot;:None,
+                    'limit':0,
+                    'warnings':3600,
+                    'fetchlimit':0,
+                    'fetchsizelimit':100,
+                    'fastuidl':10,
+                    'batchlimit':0,
+                    'ssl':FALSE,
+                    &quot;sslkey&quot;:None,
+                    &quot;sslcert&quot;:None,
+                    &quot;sslproto&quot;:None,
+                    'sslcertck':FALSE,
+                    &quot;sslcertpath&quot;:None,
+                    &quot;sslfingerprint&quot;:None,
+                    'expunge':0,
+                    &quot;properties&quot;:None,
+                    &quot;smtphunt&quot;:[&quot;localhost&quot;],
+                    &quot;fetchdomains&quot;:[],
+                    &quot;smtpaddress&quot;:None,
+                    &quot;smtpname&quot;:None,
+                    'antispam':'450 451',
+                    &quot;mailboxes&quot;:[],
+                }
+
+I see that &quot;spambounce&quot; is set to false, is that what i need to enable
+to make it reject it? I cant seem to find where that is listed in any
+of the files....
+
+&gt;<i> &gt; version info:
+</I>&gt;<i> &gt; This is fetchmail release 6.3.2+POP2+RPA+SDPS+SSL+OPIE+NLS.
+</I>&gt;<i>
+</I>&gt;<i> Wouldn't hurt to get current - 6.3.8.
+</I>&gt;<i>
+</I>It is a pre-made virtual machine, but ill look into it. it sould work
+without the upgrade right?
+
+&gt;<i> I've certainly done this before and had the antispam working, so it's possible.
+</I>&gt;<i>
+</I>thats good to know, I hope i can get it working as well.
+&gt;<i> --
+</I>&gt;<i>                 Please keep list traffic on the list.
+</I>&gt;<i>
+</I>&gt;<i> Rob MacGregor
+</I>&gt;<i>      Whoever fights monsters should see to it that in the process he
+</I>&gt;<i>        doesn't become a monster.                  Friedrich Nietzsche
+</I>&gt;<i> _______________________________________________
+</I>&gt;<i> fetchmail-users mailing list
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">fetchmail-users at lists.berlios.de</A>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">https://lists.berlios.de/mailman/listinfo/fetchmail-users</A>
+</I>&gt;<i>
+</I>
+
+-- 
+Linux, because I'd rather own a free OS than steal one that's not
+worth paying for.
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001071.html">[fetchmail-users] antispam
+</A></li>
+	<LI>Next message: <A HREF="001073.html">[fetchmail-users] antispam
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1072">[ date ]</a>
+              <a href="thread.html#1072">[ thread ]</a>
+              <a href="subject.html#1072">[ subject ]</a>
+              <a href="author.html#1072">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

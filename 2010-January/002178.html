@@ -1,0 +1,108 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] antispam 501 doesn&#180;t delete mail from pop3
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2010-January/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%0A%20%3D%3Futf-8%3Fq%3Fantispam_501_doesn%3DC2%3DB4t_delete_mail%3F%3D%0A%20%3D%3Futf-8%3Fq%3F_from_pop3%3F%3D&In-Reply-To=%3Cop.u5491wai1e62zd%40merlin.emma.line.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002177.html">
+   <LINK REL="Next"  HREF="002179.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] antispam 501 doesn&#180;t delete mail from pop3</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%0A%20%3D%3Futf-8%3Fq%3Fantispam_501_doesn%3DC2%3DB4t_delete_mail%3F%3D%0A%20%3D%3Futf-8%3Fq%3F_from_pop3%3F%3D&In-Reply-To=%3Cop.u5491wai1e62zd%40merlin.emma.line.org%3E"
+       TITLE="[fetchmail-users] antispam 501 doesn&#180;t delete mail from pop3">matthias.andree at gmx.de
+       </A><BR>
+    <I>Thu Jan  7 05:14:10 CET 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002177.html">[fetchmail-users] antispam 501 doesn&#180;t delete mail from pop3
+</A></li>
+        <LI>Next message: <A HREF="002179.html">[fetchmail-users] antispam 501 doesn&#180;t delete mail from pop3
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2178">[ date ]</a>
+              <a href="thread.html#2178">[ thread ]</a>
+              <a href="subject.html#2178">[ subject ]</a>
+              <a href="author.html#2178">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Am 05.01.2010, 16:31 Uhr, schrieb Aljoscha Vollmerhaus  
+&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">vollmerhausa at vollmerhaus-plettenberg.de</A>&gt;:
+
+&gt;<i> Hello dear fetchmail users,
+</I>&gt;<i>
+</I>&gt;<i> this is my first post to a mailing list ever, so please don&#180;t get too
+</I>&gt;<i> mad at me if i make a mistake.
+</I>&gt;<i>
+</I>&gt;<i> I&#180;m currently using fetchmail-6.3.11-r1 on a gentoo-based mail server.
+</I>&gt;<i>
+</I>&gt;<i> Fetchmail gets mails from a remote pop3 server and feeds them to a local
+</I>&gt;<i> postfix installation.
+</I>&gt;<i>
+</I>&gt;<i> Today i got a malformed mail, 501 - Illegal address syntax, according to
+</I>&gt;<i> postfix. It&#180;s got a &quot;-&quot; as the first character, clearly invalid.
+</I>&gt;<i>
+</I>&gt;<i> I added &quot;antispam 501&quot; to the &quot;defaults&quot; section of my fetchmailrc file,
+</I>&gt;<i> but that didn&#180;t help, so i added fetchall as well - again, to no avail.
+</I>&gt;<i> Fetchmail still says &quot;not flushed&quot; on every run and i get an ugly error
+</I>&gt;<i> in my postfix log.
+</I>&gt;<i>
+</I>&gt;<i> I&#180;d like fetchmail to just delete the mail, what should i do? I&#180;ve read
+</I>&gt;<i> tons of threads with this kind of problem, however they almost all get
+</I>&gt;<i> resolved by adding the antispam option.
+</I>&gt;<i> Am I missing something?
+</I>
+Hi Aljoscha,
+
+Note that you may need to upgrade to 6.3.13 if Gentoo backported the  
+security fix from 6.3.12 to 6.3.11-r1; and you will have to configure the  
+softbounce option properly. See the manual page for details.
+
+If that does not help, please provide a full report as shown in  
+&lt;<A HREF="http://www.fetchmail.info/fetchmail-FAQ.html#G3">http://www.fetchmail.info/fetchmail-FAQ.html#G3</A>&gt;, notably the log is  
+missing from your report.
+
+
+Please also note that addresses with &quot;-&quot; as the first character are valid  
+(see RFC 5321, RFC 5322), it's only a Postfix default setting that causes  
+these addresses to be rejected (to protect the innocent on the assumption  
+that many scripts will be foolish enough not to escape and quote things  
+properly and miss the &quot;--&quot; argument separator).
+
+HTH
+
+-- 
+Matthias Andree
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002177.html">[fetchmail-users] antispam 501 doesn&#180;t delete mail from pop3
+</A></li>
+	<LI>Next message: <A HREF="002179.html">[fetchmail-users] antispam 501 doesn&#180;t delete mail from pop3
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2178">[ date ]</a>
+              <a href="thread.html#2178">[ thread ]</a>
+              <a href="subject.html#2178">[ subject ]</a>
+              <a href="author.html#2178">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

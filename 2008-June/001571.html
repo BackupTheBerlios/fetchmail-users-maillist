@@ -1,0 +1,93 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] .fetchids file doesn't grow pass the 2.0Meg size.
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2008-June/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20.fetchids%20file%20doesn%27t%20grow%20pass%20the%202.0Meg%0A%20size.&In-Reply-To=%3C48579A82.5070904%40gmx.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001570.html">
+   <LINK REL="Next"  HREF="001572.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] .fetchids file doesn't grow pass the 2.0Meg size.</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20.fetchids%20file%20doesn%27t%20grow%20pass%20the%202.0Meg%0A%20size.&In-Reply-To=%3C48579A82.5070904%40gmx.de%3E"
+       TITLE="[fetchmail-users] .fetchids file doesn't grow pass the 2.0Meg size.">matthias.andree at gmx.de
+       </A><BR>
+    <I>Tue Jun 17 13:05:38 CEST 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001570.html">[fetchmail-users] .fetchids file doesn't grow pass the 2.0Meg size.
+</A></li>
+        <LI>Next message: <A HREF="001572.html">[fetchmail-users] .fetchids file doesn't grow pass the 2.0Meg size.
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1571">[ date ]</a>
+              <a href="thread.html#1571">[ thread ]</a>
+              <a href="subject.html#1571">[ subject ]</a>
+              <a href="author.html#1571">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE><A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">tony.kivits at oyco.com</A> schrieb:
+
+&gt;<i>  Currently I am having a problem when using UIDL that I am getting
+</I>&gt;<i> extra copies of some emails.
+</I>
+Are these extra copies or perhaps real intended copies? Check all headers,
+if there is only one difference (except in the Received: header written by
+fetchmail and those Received: headers that appear above fetchmail's), it's
+not a copy.
+
+&gt;<i>  I have been monitoring the .fetchids file and have noticed that it
+</I>&gt;<i> will grow to just a little larger then 212000 bytes in size and then
+</I>&gt;<i> shrinks back down again.
+</I>&gt;<i>  Is there a maximum size that this file can be?
+</I>
+Usually what your operating system and hardware can handle - it is kept in
+memory with a reasonable overhead per line; but no artificial limits are
+imposed by fetchmail itself. It may also be that the server expires older
+and/or downloaded messages after some time, and if the influx of mail over
+time is roughly constant, that would explain why the file size also remains
+sort of constant.
+
+Check the computer's memory (memtest86+ for x86/amd64 computers) and fans
+and heat sinks, and if very dusty, clean them.
+
+(Note that there's an order of magnitude missing, 212000 are rather 0.2
+than 2 Mb).
+
+HTH
+
+-- 
+Matthias Andree
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001570.html">[fetchmail-users] .fetchids file doesn't grow pass the 2.0Meg size.
+</A></li>
+	<LI>Next message: <A HREF="001572.html">[fetchmail-users] .fetchids file doesn't grow pass the 2.0Meg size.
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1571">[ date ]</a>
+              <a href="thread.html#1571">[ thread ]</a>
+              <a href="subject.html#1571">[ subject ]</a>
+              <a href="author.html#1571">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

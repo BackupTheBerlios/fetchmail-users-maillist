@@ -1,0 +1,107 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Problem with Demon's new Microsoft Exchange	Server 2010 service
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2012-May/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Problem%20with%20Demon%27s%20new%20Microsoft%20Exchange%0A%09Server%202010%20service&In-Reply-To=%3C1336401140.98133.YahooMailNeo%40web192606.mail.sg3.yahoo.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003107.html">
+   <LINK REL="Next"  HREF="003109.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Problem with Demon's new Microsoft Exchange	Server 2010 service</H1>
+    <B>Sunil Shetye</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Problem%20with%20Demon%27s%20new%20Microsoft%20Exchange%0A%09Server%202010%20service&In-Reply-To=%3C1336401140.98133.YahooMailNeo%40web192606.mail.sg3.yahoo.com%3E"
+       TITLE="[fetchmail-users] Problem with Demon's new Microsoft Exchange	Server 2010 service">sunilshetye at rocketmail.com
+       </A><BR>
+    <I>Mon May  7 16:32:20 CEST 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003107.html">[fetchmail-users] Problem with Demon's new Microsoft Exchange	Server 2010 service
+</A></li>
+        <LI>Next message: <A HREF="003109.html">[fetchmail-users] Problem with Demon's new Microsoft Exchange	Server 2010 service
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3108">[ date ]</a>
+              <a href="thread.html#3108">[ thread ]</a>
+              <a href="subject.html#3108">[ subject ]</a>
+              <a href="author.html#3108">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>
+
+Dear John Connett,
+
+
+
+
+________________________________
+ &gt; From: John Connett &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">jrc at skylon.demon.co.uk</A>&gt;
+&gt;<i> 
+</I>&gt;<i> I have recently been migrated to Demon's new service which appears to be based on Microsoft Exchange Server 2010.&#160; The migration appeared to have been successful with messages being fetched.&#160; Then fetching of messages ceased.&#160; I added &quot;-vvv&quot; to /etc/init.d/fetchmail and restarted fetchmail.&#160; Here are edited highlights from /var/log/fetchmail:
+</I>&gt;<i> 
+</I>&gt;<i> fetchmail: IMAP&lt; A0004 NO AUTHENTICATE failed.
+</I>&gt;<i> fetchmail: IMAP&gt; A0005 LOGIN &quot;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">xxx at yyy.demon.co.uk</A>&quot; *
+</I>&gt;<i> fetchmail: IMAP&lt; A0005 OK LOGIN completed.
+</I>
+Please include the signature line / output of CAPABILITY command of your imap server in your report. This is to show the imap version supported.
+
+&gt;<i> fetchmail: IMAP&gt; A0009 FETCH 1 RFC822.HEADER
+</I>&gt;<i> fetchmail: IMAP&lt; A0009 OK FETCH completed.
+</I>&gt;<i> fetchmail: Incorrect FETCH response: OK FETCH COMPLETED..
+</I>
+...
+
+&gt;<i> The problem seems to be the &quot;A0009 OK FETCH completed.&quot; response to &quot;A0009 FETCH 1 RFC822.HEADER&quot;.&#160; There are no patches touching &quot;imap.c&quot; in the openSUSE source RPM and I have confirmed that it is identical to the 6.3.21 original.
+</I>&gt;<i> 
+</I>&gt;<i> The &quot;Incorrect FETCH response: OK FETCH COMPLETED..&quot; appears to be generated from within imap_fetch_headers() by &quot;an unexpected tagged response&quot;.&#160; Is this an exciting new innovation in Microsoft Exchange Server 2010?
+</I>
+As is documented in imap.c, fetchmail expects response in the following format:
+
+IMAP&gt; A0006 FETCH 1 RFC822.HEADER&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; 
+IMAP&lt; * 1 FETCH (RFC822.HEADER {1360}&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; 
+.... mail headers here ...
+IMAP&lt; A0006 OK FETCH completed.
+ &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; 
+
+In your case, the middle part of the response is missing. Can you check by using telnet to the server if there are any headers in the mail and response to the variouse commands listed below:
+
+A0010 FETCH 1 RFC822.TEXT
+
+A0011 FETCH 1 BODY[TEXT]
+
+for the mail causing the problem? Or check the mail through some other client and see if it is visible properly.
+
+-- 
+Sunil Shetye.
+</PRE>
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003107.html">[fetchmail-users] Problem with Demon's new Microsoft Exchange	Server 2010 service
+</A></li>
+	<LI>Next message: <A HREF="003109.html">[fetchmail-users] Problem with Demon's new Microsoft Exchange	Server 2010 service
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3108">[ date ]</a>
+              <a href="thread.html#3108">[ thread ]</a>
+              <a href="subject.html#3108">[ subject ]</a>
+              <a href="author.html#3108">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,110 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] unable to get local issuer certificate
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2008-September/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20unable%20to%20get%20local%20issuer%20certificate&In-Reply-To=%3C48CA978B.5090405%40gmx.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001684.html">
+   <LINK REL="Next"  HREF="001686.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] unable to get local issuer certificate</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20unable%20to%20get%20local%20issuer%20certificate&In-Reply-To=%3C48CA978B.5090405%40gmx.de%3E"
+       TITLE="[fetchmail-users] unable to get local issuer certificate">matthias.andree at gmx.de
+       </A><BR>
+    <I>Fri Sep 12 18:23:39 CEST 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001684.html">[fetchmail-users] unable to get local issuer certificate
+</A></li>
+        <LI>Next message: <A HREF="001686.html">[fetchmail-users] unable to get local issuer certificate
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1685">[ date ]</a>
+              <a href="thread.html#1685">[ thread ]</a>
+              <a href="subject.html#1685">[ subject ]</a>
+              <a href="author.html#1685">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Andy Malato schrieb:
+&gt;<i> Hello All,
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> I'm currently trying to get fetchmail release 6.3.8+SSL+HESIOD+NLS
+</I>&gt;<i> working but am running into problems with SSL certificate verification.
+</I>&gt;<i> 
+</I>&gt;<i> The version of OpenSSL I am using is OpenSSL 0.9.8d on RHEL 4.
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> I have specified the following options in my config file :
+</I>&gt;<i> 
+</I>&gt;<i> poll mymailhost proto pop3 uidl no dns
+</I>&gt;<i> user mailuser
+</I>&gt;<i> sslcertck sslcertpath /usr/share/ssl/certs
+</I>&gt;<i> 
+</I>&gt;<i> When I invoke fetchmail, I get the following :
+</I>&gt;<i> 
+</I>&gt;<i> Enter password for <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">mailuser at mymailhost</A>:
+</I>&gt;<i> fetchmail: 6.3.8 querying mymailhost (protocol POP3) at Fri Sep 12
+</I>&gt;<i> 10:59:10 2008: poll started
+</I>&gt;<i> Trying to connect to 10.0.0.17/995...connected.
+</I>&gt;<i> fetchmail: Server certificate verification error: unable to get local
+</I>&gt;<i> issuer certificate
+</I>&gt;<i> 29071:error:14090086:SSL
+</I>&gt;<i> routines:SSL3_GET_SERVER_CERTIFICATE:certificate verify
+</I>&gt;<i> failed:s3_clnt.c:843:
+</I>...
+&gt;<i> If I remove the sslcertck option, things work fine.
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> If I run :
+</I>&gt;<i> 
+</I>&gt;<i> 	openssl s_client -connect mymailhost:993 -CApath /usr/share/ssl/certs
+</I>&gt;<i> 
+</I>&gt;<i> Things appear to be OK, i.e., The SSL Handshake completes ok with Verify
+</I>&gt;<i> return code of 0.
+</I>
+Do you get the same results with &quot;-verify 5&quot; here?
+
+Did you run c_rehash /usr/share/ssl/certs after installing any certificates?
+
+Is your RHEL fully patched?
+
+HTH
+
+-- 
+Matthias Andree
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001684.html">[fetchmail-users] unable to get local issuer certificate
+</A></li>
+	<LI>Next message: <A HREF="001686.html">[fetchmail-users] unable to get local issuer certificate
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1685">[ date ]</a>
+              <a href="thread.html#1685">[ thread ]</a>
+              <a href="subject.html#1685">[ subject ]</a>
+              <a href="author.html#1685">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

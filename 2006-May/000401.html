@@ -1,0 +1,85 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Marking messages 'unread' in fetchmail
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2006-May/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Marking%20messages%20%27unread%27%20in%20fetchmail&In-Reply-To=%3C43ea8d070605120839j99e0ad9mff235ccecd4c6079%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000400.html">
+   <LINK REL="Next"  HREF="000402.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Marking messages 'unread' in fetchmail</H1>
+    <B>Rob MacGregor</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Marking%20messages%20%27unread%27%20in%20fetchmail&In-Reply-To=%3C43ea8d070605120839j99e0ad9mff235ccecd4c6079%40mail.gmail.com%3E"
+       TITLE="[fetchmail-users] Marking messages 'unread' in fetchmail">rob.macgregor at gmail.com
+       </A><BR>
+    <I>Fri May 12 17:39:06 CEST 2006</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000400.html">[fetchmail-users] Marking messages 'unread' in fetchmail
+</A></li>
+        <LI>Next message: <A HREF="000402.html">[fetchmail-users] Marking messages 'unread' in fetchmail
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#401">[ date ]</a>
+              <a href="thread.html#401">[ thread ]</a>
+              <a href="subject.html#401">[ subject ]</a>
+              <a href="author.html#401">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On 5/12/06, Balaji Krishnamoorthy &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">balajik at ti.com</A>&gt; wrote:
+&gt;<i>
+</I>&gt;<i>  I have fetchmail setup running to pull messages from the IMAP server
+</I>&gt;<i>  using procmail as the mda. I use mozilla as the mail client and use
+</I>&gt;<i>  procmail+fetchmail to run some scripts. I wish fetchmail should not mark
+</I>&gt;<i>  the messages as &quot;read&quot; after downloading them as my mozilla email client
+</I>&gt;<i>  doesn't recognize the new messages as unread.
+</I>&gt;<i>
+</I>&gt;<i>  Is there a option to specify in .fetchmailrc to mark the messages
+</I>&gt;<i>  &quot;unread&quot; in the server as I can view them as usual in the mozilla.
+</I>
+In short, no.  Fetchmail was written with the assumption that it would
+be the only program accessing a mailbox.
+
+You *might* find that if your ISP uses POP3 that you can use that
+interface (ensuring you configure fetchmail with the &quot;keep&quot; and &quot;uidl&quot;
+options) to achieve what you want.
+
+-- 
+                 Please keep list traffic on the list.
+
+Rob MacGregor
+      Whoever fights monsters should see to it that in the process he
+        doesn't become a monster.                  Friedrich Nietzsche
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000400.html">[fetchmail-users] Marking messages 'unread' in fetchmail
+</A></li>
+	<LI>Next message: <A HREF="000402.html">[fetchmail-users] Marking messages 'unread' in fetchmail
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#401">[ date ]</a>
+              <a href="thread.html#401">[ thread ]</a>
+              <a href="subject.html#401">[ subject ]</a>
+              <a href="author.html#401">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

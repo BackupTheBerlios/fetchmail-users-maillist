@@ -1,0 +1,116 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] probably outdated msn local certificate
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2011-February/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20probably%20outdated%20msn%20local%20certificate&In-Reply-To=%3Calpine.BSF.2.00.1102261057310.32180%40freire1.furyyjbeyq.arg%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002674.html">
+   <LINK REL="Next"  HREF="002678.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] probably outdated msn local certificate</H1>
+    <B>Jude DaShiell</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20probably%20outdated%20msn%20local%20certificate&In-Reply-To=%3Calpine.BSF.2.00.1102261057310.32180%40freire1.furyyjbeyq.arg%3E"
+       TITLE="[fetchmail-users] probably outdated msn local certificate">jdashiel at shellworld.net
+       </A><BR>
+    <I>Sat Feb 26 17:12:16 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002674.html">[fetchmail-users] strange polling errors
+</A></li>
+        <LI>Next message: <A HREF="002678.html">[fetchmail-users] probably outdated msn local certificate
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2676">[ date ]</a>
+              <a href="thread.html#2676">[ thread ]</a>
+              <a href="subject.html#2676">[ subject ]</a>
+              <a href="author.html#2676">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>I probably have an outdated local msn certificate found in 
+/usr/share/curl/ca-bundle.crt.  There's probably a password connected 
+syntax problem in .fetchmailrc too since my passwords are in my .netrc 
+file but fetchmail asks for the pop3.live.com password when I try to use 
+it.
+
+Script started on Sat 26 Feb 2011 10:55:23 AM EST
+<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">jude at md</A>:~$ cat .fetchmailrc
+set no syslog
+set logfile /home/jude/fetchmail.log
+
+skip imap.gmail.com
+with proto IMAP
+user 'jdashiel'
+there is 'jude' here
+mda &quot;/usr/bin/procmail -d %T&quot;
+options
+warnings 3600 no keep ssl
+sslcertck sslcertpath /home/jude/.certs
+
+poll pop3.live.com
+with proto pop3
+user &quot;dashielljt3&quot;
+there is 'jude' here
+mda &quot;/usr/bin/procmail -d %T&quot;
+options
+warnings 3600 no keep ssl
+sslcertck sslcertfile /home/jude/.certs/GTECyberTrustRoot.pem
+<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">jude at md</A>:~$ cat fetchmail.log
+fetchmail: Server certificate verification error: unable to get local issuer certificate
+fetchmail: This means that the root signing certificate (issued for /CN=Microsoft Internet Authority) is not in the trusted CA certificate locations, or that c_rehash needs to be run on the certificate directory. For details, please see the documentation of --sslcertpath and --sslcertfile in the manual page.
+3315:error:14090086:SSL routines:SSL3_GET_SERVER_CERTIFICATE:certificate verify failed:s3_clnt.c:984:
+fetchmail: SSL connection failed.
+fetchmail: socket error while fetching from <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">dashielljt3 at pop3.live.com</A>
+fetchmail: Query status=2 (SOCKET)
+<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">jude at md</A>:~$ cat /home/jude/c .certs/GTECyberTrustRoot.pem
+GTE CyberTrust Root CA
+======================
+-----BEGIN CERTIFICATE-----
+MIIB+jCCAWMCAgGjMA0GCSqGSIb3DQEBBAUAMEUxCzAJBgNVBAYTAlVTMRgwFgYDVQQKEw9HVEUg
+Q29ycG9yYXRpb24xHDAaBgNVBAMTE0dURSBDeWJlclRydXN0IFJvb3QwHhcNOTYwMjIzMjMwMTAw
+WhcNMDYwMjIzMjM1OTAwWjBFMQswCQYDVQQGEwJVUzEYMBYGA1UEChMPR1RFIENvcnBvcmF0aW9u
+MRwwGgYDVQQDExNHVEUgQ3liZXJUcnVzdCBSb290MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKB
+gQC45k+625h8cXyvRLfTD0bZZOWTwUKOx7pJjTUteueLveUFMVnGsS8KDPufpz+iCWaEVh43KRuH
+6X4MypqfpX/1FZSj1aJGgthoTNE3FQZor734sLPwKfWVWgkWYXcKIiXUT0Wqx73llt/51KiOQswk
+wB6RJ0q1bQaAYznEol44AwIDAQABMA0GCSqGSIb3DQEBBAUAA4GBABKzdcZfHeFhVYAA1IFLezEP
+I2PnPfMD+fQ2qLvZ46WXTeorKeDWanOB5sCJo9Px4KWlIjeaY8JIILTbcuPI9tl8vrGvU9oUtCG4
+1tWW4/5ODFlitppK+ULdjG+BqXH/9ApybW1EDp3zdHSo1TRJ6V6e6bR64eVaH4QwnNOfpSXY
+-----END CERTIFICATE-----
+<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">jude at md</A>:~$ exit
+exit
+
+Script done on Sat 26 Feb 2011 10:57:29 AM EST
+
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002674.html">[fetchmail-users] strange polling errors
+</A></li>
+	<LI>Next message: <A HREF="002678.html">[fetchmail-users] probably outdated msn local certificate
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2676">[ date ]</a>
+              <a href="thread.html#2676">[ thread ]</a>
+              <a href="subject.html#2676">[ subject ]</a>
+              <a href="author.html#2676">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

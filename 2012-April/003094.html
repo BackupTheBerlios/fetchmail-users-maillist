@@ -1,0 +1,149 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] AUTHFAIL
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2012-April/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20AUTHFAIL&In-Reply-To=%3C87obr6sw55.wl%25nomiya%40galaxy.dti.ne.jp%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   
+   <LINK REL="Next"  HREF="003100.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] AUTHFAIL</H1>
+    <B>Masaru Nomiya</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20AUTHFAIL&In-Reply-To=%3C87obr6sw55.wl%25nomiya%40galaxy.dti.ne.jp%3E"
+       TITLE="[fetchmail-users] AUTHFAIL">nomiya at galaxy.dti.ne.jp
+       </A><BR>
+    <I>Thu Apr  5 05:19:34 CEST 2012</I>
+    <P><UL>
+        
+        <LI>Next message: <A HREF="003100.html">[fetchmail-users] AUTHFAIL
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3094">[ date ]</a>
+              <a href="thread.html#3094">[ thread ]</a>
+              <a href="subject.html#3094">[ subject ]</a>
+              <a href="author.html#3094">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hello,
+
+I'm using fetchmail 6.3.21 on openSUSE 12.1 (x86_64).
+From this month, my university changed Mail Server to;
+
+IMAP
+imap4 protocol over tls/ssl port 993
+SMTP
+smtp protocol over tls/ssl port 465
+
+So, I got ssl sever certificate file, then installed.
+
+I wrote .fetchmailrc as follows;
+
+poll imap.ris.ac.jp
+     protocol imap
+     port 993
+     user 'USERNAME'
+     pass 'PASSWORD' 
+     ssl
+     sslproto tls
+     sslfingerprint '21:AE:77:33:59:58:3D:6E:A5:9A:FB:C6:86:42:94:F2'
+     sslcertck
+     sslcertpath '/home/masaru/.certs'
+
+At the moment, fetchmail -v gave me an error message;
+
+[...]
+fetchmail: IMAP&lt; * OK [CAPABILITY IMAP4rev1 LITERAL+ SASL-IR LOGIN-REFERRALS ID ENABLE AUTH=PLAIN] Dovecot ready
+fetchmail: IMAP&gt; A0001 CAPABILITY
+fetchmail: IMAP&lt; * CAPABILITY IMAP4rev1 LITERAL+ SASL-IR LOGIN-REFERRALS ID ENABLE SORT SORT=DISPLAY THREAD=REFERENCES THREAD=REFS MULTIAPPEND UNSELECT IDLE CHILDREN NAMESPACE UIDPLUS LIST-EXTENDED I18NLEVEL=1 CONDSTORE QRESYNC ESEARCH ESORT SEARCHRES WITHIN CONTEXT=SEARCH LIST-STATUS AUTH=PLAIN
+fetchmail: IMAP&lt; A0001 OK Capability completed.
+fetchmail: IMAP&gt; A0002 LOGIN &quot;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">nomiya at ris.ac.jp</A>&quot; *
+fetchmail: IMAP&lt; A0002 NO [AUTHENTICATIONFAILED] Authentication failed.
+fetchmail: <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">USERNAME at imap.ris.ac.jp</A> &#12398;&#35469;&#35388;&#12395;&#22833;&#25943;&#12375;&#12414;&#12375;&#12383;
+fetchmail: &#12371;&#12428;&#12395;&#12388;&#12356;&#12390;&#12398;&#12504;&#12523;&#12503;&#12399; <A HREF="http://www.fetchmail.info/fetchmail-FAQ.html#R15">http://www.fetchmail.info/fetchmail-FAQ.html#R15</A> &#12434;&#35211;&#12390;&#12367;&#12384;&#12373;&#12356;
+fetchmail: IMAP&gt; A0003 LOGOUT
+fetchmail: IMAP&lt; * BYE Logging out
+fetchmail: IMAP&lt; A0003 OK Logout completed.
+fetchmail: 6.3.21 &#12399; imap.ris.ac.jp &#12392;&#12503;&#12525;&#12488;&#12467;&#12523; IMAP &#12434;&#29992;&#12356;&#12390; 2012&#24180;04&#26376;05&#26085; 11&#26178;58&#20998;58&#31186; &#12395;&#20132;&#20449;&#12375;&#12390;&#12356;&#12414;&#12377;&#12290;&#20132;&#20449;&#12364;&#32066;&#20102;&#12375;&#12414;&#12375;&#12383;&#12290;
+fetchmail: Query status=3 (AUTHFAIL)
+[...]
+
+That is, the system failed to authenticate my password.
+
+I added --auth, for example;
+
+poll imap.ris.ac.jp
+     protocol imap
+     port 993
+     auth any
+     user 'USERNAME'
+     pass 'PASSWORD' 
+     ssl
+     sslproto tls
+     sslfingerprint '21:AE:77:33:59:58:3D:6E:A5:9A:FB:C6:86:42:94:F2'
+     sslcertck
+     sslcertpath '/home/masaru/.certs'
+
+But they are to no avail.
+
+[...]
+fetchmail: IMAP&lt; * OK [CAPABILITY IMAP4rev1 LITERAL+ SASL-IR LOGIN-REFERRALS ID ENABLE AUTH=PLAIN] Dovecot ready
+fetchmail: IMAP&gt; A0001 CAPABILITY
+fetchmail: IMAP&lt; * CAPABILITY IMAP4rev1 LITERAL+ SASL-IR LOGIN-REFERRALS ID ENABLE SORT SORT=DISPLAY THREAD=REFERENCES THREAD=REFS MULTIAPPEND UNSELECT IDLE CHILDREN NAMESPACE UIDPLUS LIST-EXTENDED I18NLEVEL=1 CONDSTORE QRESYNC ESEARCH ESORT SEARCHRES WITHIN CONTEXT=SEARCH LIST-STATUS AUTH=PLAIN
+fetchmail: IMAP&lt; A0001 OK Capability completed.
+fetchmail: IMAP&gt; A0002 LOGIN &quot;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">nomiya at ris.ac.jp</A>&quot; *
+fetchmail: IMAP&lt; A0002 NO [AUTHENTICATIONFAILED] Authentication failed.
+fetchmail: <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">nomiya at ris.ac.jp</A>@imap.ris.ac.jp &#12398;&#35469;&#35388;&#12395;&#22833;&#25943;&#12375;&#12414;&#12375;&#12383;
+fetchmail: &#12371;&#12428;&#12395;&#12388;&#12356;&#12390;&#12398;&#12504;&#12523;&#12503;&#12399; <A HREF="http://www.fetchmail.info/fetchmail-FAQ.html#R15">http://www.fetchmail.info/fetchmail-FAQ.html#R15</A> &#12434;&#35211;&#12390;&#12367;&#12384;&#12373;&#12356;
+fetchmail: IMAP&gt; A0003 LOGOUT
+fetchmail: IMAP&lt; * BYE Logging out
+fetchmail: IMAP&lt; A0003 OK Logout completed.
+fetchmail: 6.3.21 &#12399; imap.ris.ac.jp &#12392;&#12503;&#12525;&#12488;&#12467;&#12523; IMAP &#12434;&#29992;&#12356;&#12390; 2012&#24180;04&#26376;05&#26085; 12&#26178;15&#20998;13&#31186; &#12395;&#20132;&#20449;&#12375;&#12390;&#12356;&#12414;&#12377;&#12290;&#20132;&#20449;&#12364;&#32066;&#20102;&#12375;&#12414;&#12375;&#12383;&#12290;
+fetchmail: Query status=3 (AUTHFAIL)
+[...]
+
+What's worng with me, I wonder?
+
+Any hints?
+
+Thanks in advance.
+
+---
+&#9487;&#9473;&#9473;&#9491;&#24417; Masaru Nomiya             mail-to: nomiya @ galaxy.dti.ne.jp
+&#9475;&#65340;&#65295;&#24417;
+&#9495;&#9473;&#9473;&#9499; &quot;Bill! You married with Computers.
+          Not with Me!&quot;
+         &quot;No..., with money.&quot;
+</PRE>
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	
+	<LI>Next message: <A HREF="003100.html">[fetchmail-users] AUTHFAIL
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3094">[ date ]</a>
+              <a href="thread.html#3094">[ thread ]</a>
+              <a href="subject.html#3094">[ subject ]</a>
+              <a href="author.html#3094">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

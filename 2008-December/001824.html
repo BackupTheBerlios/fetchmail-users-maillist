@@ -1,0 +1,115 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Error showing in fetchmail log
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2008-December/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Error%20showing%20in%20fetchmail%20log&In-Reply-To=%3C20081229121419.GA1137%40straylight.m.ringlet.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001823.html">
+   <LINK REL="Next"  HREF="001825.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Error showing in fetchmail log</H1>
+    <B>Peter Pentchev</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Error%20showing%20in%20fetchmail%20log&In-Reply-To=%3C20081229121419.GA1137%40straylight.m.ringlet.net%3E"
+       TITLE="[fetchmail-users] Error showing in fetchmail log">roam at ringlet.net
+       </A><BR>
+    <I>Mon Dec 29 13:14:19 CET 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001823.html">[fetchmail-users] Error showing in fetchmail log
+</A></li>
+        <LI>Next message: <A HREF="001825.html">[fetchmail-users] Difference in headers - Was Re: Error showing in fetchmail log
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1824">[ date ]</a>
+              <a href="thread.html#1824">[ thread ]</a>
+              <a href="subject.html#1824">[ subject ]</a>
+              <a href="author.html#1824">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Mon, Dec 29, 2008 at 11:34:24AM +0900, Bret Busby wrote:
+&gt;<i> 
+</I>&gt;<i> Hello, everyone.
+</I>&gt;<i> 
+</I>&gt;<i> I am new to this list (haven't received any messages since I subscribed, 
+</I>&gt;<i> so I hope that the list is active).
+</I>&gt;<i> 
+</I>&gt;<i> Our web hosting ISP made some changes to their hosting, and it wrecked 
+</I>&gt;<i> our downloading of email from that ISP to our mail server. The ISP had 
+</I>&gt;<i> been using a &quot;self made certificate&quot; or something similar, that had 
+</I>&gt;<i> expired, that ended up preventing us from donloading email, and they did 
+</I>&gt;<i> a (apparently cheap and nasty) patch, that led from one error that we 
+</I>&gt;<i> received, to another.
+</I>
+According to the message below...
+
+&gt;<i> &quot;fetchmail: awakened at Mon Dec 29 11:40:41 2008
+</I>&gt;<i> fetchmail: Server CommonName mismatch: plesk3.distributeit.com.au != 
+</I>&gt;<i> mail.busby.net
+</I>&gt;<i> fetchmail: sleeping at Mon Dec 29 11:40:42 2008 for 300 seconds&quot;
+</I>
+...the current setup is that the name &quot;mail.busby.net&quot; points to a server
+that thinks of itself as &quot;plesk3.distributeit.com.au&quot;.  Both of those
+names resolve to the same IP address - 114.31.74.40.
+
+Apparently, until now the ISP has had mail.busby.net on a separate
+IP address with a certificate issued for the name &quot;mail.busby.net&quot;.
+Now, the certificate's common name says &quot;plesk3.distributeit.com.au&quot; -
+which would be just fine if the client thought it was connecting to
+plesk3.distributeit.com.au.
+
+So the solution - or the dirty hack that would let you download your
+e-mail messages for the present - is very simple: change your fetchmail
+configuration to &quot;poll plesk3.distributeit.com.au&quot; instead of
+&quot;poll mail.busby.net&quot;, and fetchmail will accept the certificate.
+After that, talk to your ISP about a certificate issued to the name of
+&quot;mail.busby.net&quot;.
+
+Hope that helps.
+
+G'luck,
+Peter
+
+-- 
+Peter Pentchev	<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">roam at ringlet.net</A>    <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">roam at space.bg</A>    <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">roam at FreeBSD.org</A>
+PGP key:	<A HREF="http://people.FreeBSD.org/~roam/roam.key.asc">http://people.FreeBSD.org/~roam/roam.key.asc</A>
+Key fingerprint	FDBA FD79 C26F 3C51 C95E  DF9E ED18 B68D 1619 4553
+I am the meaning of this sentence.
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: not available
+Type: application/pgp-signature
+Size: 195 bytes
+Desc: not available
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/fetchmail-users/attachments/20081229/63a871ff/attachment.pgp">https://lists.berlios.de/pipermail/fetchmail-users/attachments/20081229/63a871ff/attachment.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001823.html">[fetchmail-users] Error showing in fetchmail log
+</A></li>
+	<LI>Next message: <A HREF="001825.html">[fetchmail-users] Difference in headers - Was Re: Error showing in fetchmail log
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1824">[ date ]</a>
+              <a href="thread.html#1824">[ thread ]</a>
+              <a href="subject.html#1824">[ subject ]</a>
+              <a href="author.html#1824">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

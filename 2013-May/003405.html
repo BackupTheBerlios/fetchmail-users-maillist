@@ -1,0 +1,101 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Changing the logging style of fetchmail
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2013-May/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Changing%20the%20logging%20style%20of%20fetchmail&In-Reply-To=%3C51966131.3070606%40gmx.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003404.html">
+   <LINK REL="Next"  HREF="003406.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Changing the logging style of fetchmail</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Changing%20the%20logging%20style%20of%20fetchmail&In-Reply-To=%3C51966131.3070606%40gmx.de%3E"
+       TITLE="[fetchmail-users] Changing the logging style of fetchmail">matthias.andree at gmx.de
+       </A><BR>
+    <I>Fri May 17 18:56:17 CEST 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003404.html">[fetchmail-users] Changing the logging style of fetchmail
+</A></li>
+        <LI>Next message: <A HREF="003406.html">[fetchmail-users] Accept emails with malformed sender address / domain name with exim 4 on Debian 7.0
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3405">[ date ]</a>
+              <a href="thread.html#3405">[ thread ]</a>
+              <a href="subject.html#3405">[ subject ]</a>
+              <a href="author.html#3405">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA1
+
+Am 17.05.2013 14:39, schrieb Jerry:
+&gt;<i> When using logging with fetchmail, this is the normal output.
+</I>&gt;<i> Obviously, I have altered the actual names to protect the innocent.
+</I>
+Jerry,
+
+Next time, please use &quot;example.org&quot;, &quot;example.com&quot;, or &quot;.invalid&quot; or
+&quot;.example&quot; TLDs for that so you don't have spammers harrass the innocent.
+
+[...log snipped...]
+
+&gt;<i> It is evident that the output from the Postfix logging is far more
+</I>&gt;<i> useful. Since Dovecot also includes vital information; ie. the &quot;message
+</I>&gt;<i> id&quot;, I can trace an individual email throughout the system. Would it be
+</I>&gt;<i> possible in future versions of Fetchmail to make the logging more
+</I>&gt;<i> robust? Including the &quot;date&quot; + &quot;time&quot; + &quot;message-id&quot; would be extremely
+</I>&gt;<i> useful. There doesn't seem to be much sense in including &quot;fetchmail: &quot;
+</I>&gt;<i> at the beginning of each new line in a dedicated log file.
+</I>
+Yes, that's a sensible suggestion, will put it on my TODO list. It will
+probably also be useful to include the &quot;250 Ok&quot; line from the SMTP/LMTP
+listener because that can contain the queue ID of the next stage.
+Postfix would for instance show &quot;250 2.0.0 Ok: queued as 8770723D2B1&quot;.
+
+Thank you for taking the time to write this up.
+
+Best regards
+Matthias
+
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1.4.11 (GNU/Linux)
+Comment: Using GnuPG with undefined - <A HREF="http://www.enigmail.net/">http://www.enigmail.net/</A>
+
+iEYEARECAAYFAlGWYSwACgkQvmGDOQUufZVIoACginZvfVrKeN47TiwIc7YMjXoR
+WtUAoJa3PU+/RDzgwPuZz9RKibUKFQQq
+=oKje
+-----END PGP SIGNATURE-----
+</PRE>
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003404.html">[fetchmail-users] Changing the logging style of fetchmail
+</A></li>
+	<LI>Next message: <A HREF="003406.html">[fetchmail-users] Accept emails with malformed sender address / domain name with exim 4 on Debian 7.0
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3405">[ date ]</a>
+              <a href="thread.html#3405">[ thread ]</a>
+              <a href="subject.html#3405">[ subject ]</a>
+              <a href="author.html#3405">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,98 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Sparse logging (SSL connection failed)
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2009-December/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Sparse%20logging%20%28SSL%20connection%20failed%29&In-Reply-To=%3C4B1C34D0.7070801%40realloc.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   
+   <LINK REL="Next"  HREF="002163.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Sparse logging (SSL connection failed)</H1>
+    <B>Derek Simkowiak</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Sparse%20logging%20%28SSL%20connection%20failed%29&In-Reply-To=%3C4B1C34D0.7070801%40realloc.net%3E"
+       TITLE="[fetchmail-users] Sparse logging (SSL connection failed)">dereks at realloc.net
+       </A><BR>
+    <I>Sun Dec  6 23:48:48 CET 2009</I>
+    <P><UL>
+        
+        <LI>Next message: <A HREF="002163.html">[fetchmail-users] Sparse logging (SSL connection failed)
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2162">[ date ]</a>
+              <a href="thread.html#2162">[ thread ]</a>
+              <a href="subject.html#2162">[ subject ]</a>
+              <a href="author.html#2162">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>    I'm trying to connect to my IMAP server with SSL.
+
+    Here is my .fetchmailrc:
+
+poll internal protocol imap port 993
+ username &quot;xxx&quot; password &quot;xxx&quot; is &quot;www-data&quot; here ssl
+ mda &quot;/usr/local/bin/email2trac --project=project --ticket_prefix=support&quot;
+
+    Note that &quot;internal&quot; is the DNS name of my IMAP mail server, and 
+that name resolved correctly on the client machine.  The local user is 
+&quot;www-data&quot; because I'm trying to pipe mails to a web-app called Trac.
+
+    When I run fetchmail, the SSL connection immediately fails but does 
+not explain why:
+
+<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">www-data at trac</A>:~$ fetchmail --verbose
+fetchmail: 6.3.8 querying internal (protocol IMAP) at Sun 06 Dec 2009 
+02:35:45 PM PST: poll started
+Trying to connect to 192.168.1.149/993...connected.
+fetchmail: SSL connection failed.
+fetchmail: socket error while fetching from <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">xxx at internal</A>
+fetchmail: 6.3.8 querying internal (protocol IMAP) at Sun 06 Dec 2009 
+02:35:45 PM PST: poll completed
+fetchmail: Query status=2 (SOCKET)
+fetchmail: normal termination, status 2
+<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">www-data at trac</A>:~$
+
+    All it tells me is &quot;SSL connection failed.&quot;  When I google that 
+message, I see that other people get other interesting messages about 
+things like certificates.
+
+    I have verified that the IMAP server is working.  (I use the same 
+server for my personal inbox.)
+
+    Why is the &quot;--verbose&quot; option not giving me any useful information?
+
+
+Thanks,
+Derek
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	
+	<LI>Next message: <A HREF="002163.html">[fetchmail-users] Sparse logging (SSL connection failed)
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2162">[ date ]</a>
+              <a href="thread.html#2162">[ thread ]</a>
+              <a href="subject.html#2162">[ subject ]</a>
+              <a href="author.html#2162">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

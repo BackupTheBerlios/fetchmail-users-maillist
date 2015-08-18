@@ -1,0 +1,114 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] ssl troubles
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2012-July/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20ssl%20troubles&In-Reply-To=%3C500F1040.5030706%40gmx.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003190.html">
+   <LINK REL="Next"  HREF="003192.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] ssl troubles</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20ssl%20troubles&In-Reply-To=%3C500F1040.5030706%40gmx.de%3E"
+       TITLE="[fetchmail-users] ssl troubles">matthias.andree at gmx.de
+       </A><BR>
+    <I>Tue Jul 24 23:14:40 CEST 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003190.html">[fetchmail-users] ssl troubles
+</A></li>
+        <LI>Next message: <A HREF="003192.html">[fetchmail-users] ssl troubles
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3191">[ date ]</a>
+              <a href="thread.html#3191">[ thread ]</a>
+              <a href="subject.html#3191">[ subject ]</a>
+              <a href="author.html#3191">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Am 24.07.2012 16:05, schrieb Anton Shterenlikht:
+&gt;<i> Hi, I've read
+</I>&gt;<i> <A HREF="http://fetchmail.berlios.de/fetchmail-FAQ.html#K5,">http://fetchmail.berlios.de/fetchmail-FAQ.html#K5,</A>
+</I>&gt;<i> <A HREF="http://www.fetchmail.info/fetchmail-FAQ.html#R15,">http://www.fetchmail.info/fetchmail-FAQ.html#R15,</A>
+</I>&gt;<i> but still don't understand how to use ssl
+</I>&gt;<i> with fetchmail.
+</I>&gt;<i> 
+</I>&gt;<i> I have:
+</I>&gt;<i> 
+</I>&gt;<i> $ cat .fetchmailrc 
+</I>&gt;<i> poll imap.gmail.com protocol imap user &quot;mexas&quot; password &quot;xxx&quot; ssl fetchall
+</I>&gt;<i> 
+</I>&gt;<i> $ fetchmail
+</I>&gt;<i> fetchmail: Server certificate verification error: unable to get local issuer certificate
+</I>&gt;<i> fetchmail: This means that the root signing certificate (issued for /C=US/O=Google Inc/CN=Google Internet Authority) is not in the trusted CA certificate locations, or that c_rehash needs to be run on the certificate directory. For details, please see the documentation of --sslcertpath and --sslcertfile in the manual page.
+</I>&gt;<i> fetchmail: Server certificate verification error: certificate not trusted
+</I>&gt;<i> fetchmail: Warning: the connection is insecure, continuing anyways. (Better use --sslcertck!)
+</I>&gt;<i> fetchmail: Authorization failure on <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">mexas at gmail-imap.l.google.com</A>
+</I>&gt;<i> fetchmail: For help, see <A HREF="http://www.fetchmail.info/fetchmail-FAQ.html#R15">http://www.fetchmail.info/fetchmail-FAQ.html#R15</A>
+</I>&gt;<i> fetchmail: Query status=3 (AUTHFAIL)
+</I>&gt;<i> 
+</I>&gt;<i> This is on FreeBSD 10.0-CURRENT #6 r237134 ia64
+</I>&gt;<i> with fetchmail built from ports with these options:
+</I>
+Anton,
+
+which OpenSSL implementation is your fetchmail linked against?
+[&quot;ldd /usr/local/bin/fetchmail&quot; should tell you that] -- From base
+system or from ports?  I've admittedly never used the one from ports,
+however, proper SSL verification with Google isn't a problem for me,
+with fetchmail on amd64 FreeBSD 9-STABLE and with OpenSSL from the base
+system.
+
+Can you check if you have the ca_root_nss port installed, and if so, adding
+
+  --sslcertfile /usr/local/share/certs/ca-root-nss.crt
+
+should do the trick in quenching the &quot;unable to get local issuer
+certificate&quot; and &quot;certificate not trusted&quot; warnings.
+
+Note that if Bristol University are using Kerberos for single-sign-on,
+grabbing a proper krb5.ini or .conf and running &quot;kinit YOURLOGIN&quot; may
+permit Kerberos authentication with fetchmail, too.
+
+Regarding the login, see Rob's posting.
+
+Hope that helps.
+
+Note, if you plan to discuss anything fetchmail-on-FreeBSD-specific on
+FreeBSD lists, feel free to Cc: me on your list mail.
+
+Best regards
+Matthias
+</PRE>
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003190.html">[fetchmail-users] ssl troubles
+</A></li>
+	<LI>Next message: <A HREF="003192.html">[fetchmail-users] ssl troubles
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3191">[ date ]</a>
+              <a href="thread.html#3191">[ thread ]</a>
+              <a href="subject.html#3191">[ subject ]</a>
+              <a href="author.html#3191">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

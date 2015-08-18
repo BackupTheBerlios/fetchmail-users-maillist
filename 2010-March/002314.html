@@ -1,0 +1,77 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] watch instead of cron
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2010-March/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20watch%20instead%20of%20cron&In-Reply-To=%3C35bb67931003191806g38422493r172ff33a72bbaa92%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002315.html">
+   <LINK REL="Next"  HREF="002317.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] watch instead of cron</H1>
+    <B>pete b.</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20watch%20instead%20of%20cron&In-Reply-To=%3C35bb67931003191806g38422493r172ff33a72bbaa92%40mail.gmail.com%3E"
+       TITLE="[fetchmail-users] watch instead of cron">phpete48 at gmail.com
+       </A><BR>
+    <I>Sat Mar 20 02:06:21 CET 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002315.html">[fetchmail-users] fetchmail 6.3.15-beta3 tests needed - your chance to help!
+</A></li>
+        <LI>Next message: <A HREF="002317.html">[fetchmail-users] watch instead of cron
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2314">[ date ]</a>
+              <a href="thread.html#2314">[ thread ]</a>
+              <a href="subject.html#2314">[ subject ]</a>
+              <a href="author.html#2314">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>the command &gt;watch -n 30 fetchmail.run
+operates correctly once.
+
+the command &gt;watch -n 30 fetchmail.run &amp;
+does not work at all.
+
+Does someone have the correct syntax for this command?
+
+thx.,
+pete
+
+
+fetchmail.run
+if [&quot;`ps --User pete | grep fetchmail`&quot; == &quot;&quot;]; then
+/usr/bin/fetchmail -f ~/.fetchmailrc --mda &quot;procmail -f %F&quot; &gt; /dev/null
+2&gt;&amp;1; fi
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002315.html">[fetchmail-users] fetchmail 6.3.15-beta3 tests needed - your chance to help!
+</A></li>
+	<LI>Next message: <A HREF="002317.html">[fetchmail-users] watch instead of cron
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2314">[ date ]</a>
+              <a href="thread.html#2314">[ thread ]</a>
+              <a href="subject.html#2314">[ subject ]</a>
+              <a href="author.html#2314">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

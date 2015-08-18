@@ -1,0 +1,209 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Fetchmail 6.3.7+NLS not deleting one specific	message from server
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2007-March/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Fetchmail%206.3.7%2BNLS%20not%20deleting%20one%20specific%0A%09message%20from%20server&In-Reply-To=%3C200703201957.11588.cpollock%40earthlink.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000907.html">
+   <LINK REL="Next"  HREF="000915.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Fetchmail 6.3.7+NLS not deleting one specific	message from server</H1>
+    <B>Chris</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Fetchmail%206.3.7%2BNLS%20not%20deleting%20one%20specific%0A%09message%20from%20server&In-Reply-To=%3C200703201957.11588.cpollock%40earthlink.net%3E"
+       TITLE="[fetchmail-users] Fetchmail 6.3.7+NLS not deleting one specific	message from server">cpollock at earthlink.net
+       </A><BR>
+    <I>Wed Mar 21 01:57:11 CET 2007</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000907.html">[fetchmail-users] fetchmail 6.3.8-rc2 release candidate
+</A></li>
+        <LI>Next message: <A HREF="000915.html">[fetchmail-users] Fetchmail 6.3.7+NLS not deleting one specific	message from server
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#914">[ date ]</a>
+              <a href="thread.html#914">[ thread ]</a>
+              <a href="subject.html#914">[ subject ]</a>
+              <a href="author.html#914">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>I reported this back on the 11th of March, since then I've upgraded to what I 
+understand is the latest version. Looking at the required information for a 
+problem in the FAQ I'll try to provide it:
+
+   1. Your operating system
+
+Mandrake Linux 10.1 (Official) kernel 2.6.8.1-12mdk
+
+   2. Your compiler version, if you built from source; otherwise, the name and 
+origin of the RPM or other binary package you installed.
+
+gcc (GCC) 3.4.1 (Mandrakelinux 10.1 3.4.1-4mdk)
+(hopfully this is whats being asked for, this came from my config.log)
+
+   3. A copy of your POP or IMAP server's greeting line.
+
+220-elasmtp-masked.atl.sa.earthlink.net ESMTP Exim 4.34 #1 Tue,
+20 Mar 2007 20:22:57 -0400..
+220-NO UCE.  EarthLink does not authorize the use of its computers or 
+network..
+220 equipment to accept, transmit, or distribute unsolicited e-mail..
+(I hope the above is whats wanted)
+                                       .
+   4. The name and version of the SMTP listener or MDA you are forwarding to.
+
+      Procmail 3.22
+
+   5. Any command-line options you used.
+
+     I usually just use $fetchmail -m procmail
+
+   6. The output of fetchmail -V called with whatever other command-line 
+options you used. (I've added in the -v -v -v yesterday evening)
+
+[<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">chris at cpollock</A> ~]$ fetchmail -V -v -v -v -m procmail
+This is fetchmail release 6.3.7+NLS.
+
+Copyright (C) 2002, 2003 Eric S. Raymond
+Copyright (C) 2004 Matthias Andree, Eric S. Raymond, Rob F. Funk, Graham 
+Wilson
+Copyright (C) 2005-2006 Sunil Shetye
+Copyright (C) 2005-2007 Matthias Andree
+Fetchmail comes with ABSOLUTELY NO WARRANTY. This is free software, and you
+are welcome to redistribute it under certain conditions. For details,
+please see the file COPYING in the source or documentation directory.
+
+Fallback MDA: (none)
+Linux cpollock 2.6.8.1-12mdk #1 Fri Oct 1 12:53:41 CEST 2004 i686 AMD 
+Sempron(tm) Processor 2800+ unknown GNU/Linux
+Taking options from command line and /home/chris/.fetchmailrc
+Poll interval is 120 seconds
+Idfile is /home/chris/.fetchids
+Progress messages will be logged via syslog
+Fetchmail will forward misaddressed multidrop messages to cpollock.
+Fetchmail will direct error mail to the postmaster.
+Options for retrieving from <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">cpollock at pop.earthlink.net</A>:
+  True name of server is pop.earthlink.net.
+  This host will be queried when no host is specified.
+  Password = &quot;*********&quot;.
+  Protocol is POP3 (using default port).
+  All available authentication methods will be tried.
+  Server nonresponse timeout is 180 seconds.
+  Default mailbox selected.
+  Only new messages will be retrieved (--all off).
+  Fetched messages will not be kept on the server (--keep off).
+  Old messages will not be flushed before message retrieval (--flush off).
+  Oversized messages will not be flushed before message retrieval 
+(--limitflush off).
+  Rewrite of server-local addresses is enabled (--norewrite off).
+  Carriage-return stripping is enabled (stripcr on).
+  Carriage-return forcing is disabled (forcecr off).
+  Interpretation of Content-Transfer-Encoding is enabled (pass8bits off).
+  MIME decoding is disabled (mimedecode off).
+  Idle after poll is disabled (idle off).
+  Nonempty Status lines will be kept (dropstatus off)
+  Delivered-To lines will be kept (dropdelivered off)
+  No received-message limit (--fetchlimit 0).
+  Fetch message size limit is 100 (--fetchsizelimit 100).
+  Do binary search of UIDs during 3 out of 4 polls (--fastuidl 4).
+  No SMTP message batch limit (--batchlimit 0).
+  No forced expunges (--expunge 0).
+  Messages will be delivered with &quot;procmail&quot;.
+  Spam-blocking disabled
+  No pre-connection command.
+  No post-connection command.
+  Single-drop mode: 1 local name recognized.
+        cpollock
+  No interface requirement specified.
+  No monitor interface specified.
+  No plugin command specified.
+  No plugout command specified.
+  No UIDs saved from this host.
+  No poll trace information will be added to the Received header.
+
+The below headers are for the message that was downloaded over 50 times 
+yesterday without being deleted from earthlinks server, I had to manually 
+delete it. 
+
+Return-Path: &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">todoturismo.com at localwebshopping.com</A>&gt;
+ Received: from pop00.earthlink.net [209.86.93.201] 
+&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;by localhost.localdomain with POP3 (fetchmail-6.3.7) 
+&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;for &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">cpollock at localhost</A>&gt; (single-drop); Mon, 19 Mar 2007 15:07:01 
+-0500 (CDT)
+ Received: from noehlo.host ([127.0.0.1]) 
+&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;by mx-mcdonald.atl.sa.earthlink.net (EarthLink SMTP Server) with SMTP 
+id 1hto6T1sB3Nl36F0; Mon, 19 Mar 2007 16:05:39 -0400 (EDT)
+ Received: from localhost ([62.97.195.108]) 
+&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;by mx-mcdonald.atl.sa.earthlink.net (EarthLink SMTP Server) with SMTP 
+id 1hto6QAx3Nl36F0 
+&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;for &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">cpollock at earthlink.net</A>&gt;; Mon, 19 Mar 2007 16:05:39 -0400 (EDT)
+ Message-ID: &lt;000001c76a61$9820b200$<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">0100007f at localhost</A>&gt;
+ From: &quot;Arthur Davis&quot; &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">todoturismo.com at localwebshopping.com</A>&gt;
+ To: &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">cpollock at earthlink.com</A>&gt;
+ Subject: Photoshop, Windows, Office
+ Date: Mon, 19 Mar 2007 21:08:30 +0100
+ Content-Type: text/plain; 
+&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;charset=&quot;us-ascii&quot;
+ Content-Transfer-Encoding: 7bit
+ X-Priority: 3 (Normal)
+ X-MSMail-Priority: Normal
+ X-Mailer: Microsoft Outlook, Build 10.0.2520
+ Importance: Normal
+ X-MimeOLE: Produced By Microsoft MimeOLE V6.00.2900.0000
+ X-ELNK-Info: sbv=0; sbrc=.0; sbf=00; sbw=000;
+ X-SenderIP: 62.97.195.108
+ X-ASN: ASN-8542
+ X-CIDR: 62.97.192.0/18
+
+One other thing of note, 
+
+Mar 19 15:07:17 localhost spamd[22069]: dkim: lookup failed: DNS query timeout 
+for _policy._domainkey.localwebshopping.com 
+Mar 19 15:11:25 localhost spamd[22069]: dkim: lookup failed: DNS query timeout 
+for _policy._domainkey.localwebshopping.com 
+
+The above was logged every time fetchmail poll'd the server. I doubt whether 
+its a fetchmail problem but maybe someone can give me a clue as to what may 
+be the cause. The happens very seldom but when it does the bad message blocks 
+all other message downloads except itself.
+
+Thanks, and I hope I provided the correct information above. If I didn't 
+someone please let me know what I should have included.
+
+Chris
+
+-- 
+Chris
+KeyID 0xE372A7DA98E6705C
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000907.html">[fetchmail-users] fetchmail 6.3.8-rc2 release candidate
+</A></li>
+	<LI>Next message: <A HREF="000915.html">[fetchmail-users] Fetchmail 6.3.7+NLS not deleting one specific	message from server
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#914">[ date ]</a>
+              <a href="thread.html#914">[ thread ]</a>
+              <a href="subject.html#914">[ subject ]</a>
+              <a href="author.html#914">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,212 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] help forwarding to Exchange 2010 with TLS
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2011-April/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20help%20forwarding%20to%20Exchange%202010%20with%20TLS&In-Reply-To=%3C4D9BC59E.4050102%40gmx.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002737.html">
+   <LINK REL="Next"  HREF="002739.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] help forwarding to Exchange 2010 with TLS</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20help%20forwarding%20to%20Exchange%202010%20with%20TLS&In-Reply-To=%3C4D9BC59E.4050102%40gmx.de%3E"
+       TITLE="[fetchmail-users] help forwarding to Exchange 2010 with TLS">matthias.andree at gmx.de
+       </A><BR>
+    <I>Wed Apr  6 03:45:02 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002737.html">[fetchmail-users] fetchmail is marking messages as seen (even with keep specified)
+</A></li>
+        <LI>Next message: <A HREF="002739.html">[fetchmail-users] mapi status
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2738">[ date ]</a>
+              <a href="thread.html#2738">[ thread ]</a>
+              <a href="subject.html#2738">[ subject ]</a>
+              <a href="author.html#2738">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Sorry, it's been a while, and this has been lingering in my Drafts
+folder.  I suppose I got distracted while writing it.  I'll still answer
+even after four weeks.
+
+Am 09.03.2011 17:45, schrieb Jerry:
+&gt;<i> On Wed, 09 Mar 2011 16:14:21 +0100
+</I>&gt;<i> Matthias Andree &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">matthias.andree at gmx.de</A>&gt; articulated:
+</I>&gt;<i> 
+</I>&gt;&gt;<i> Am 09.03.2011 15:45, schrieb Jerry:
+</I>&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> Thanks for your quick reply. I do concur with most of what you have
+</I>&gt;&gt;&gt;<i> stated. One area in which I do not totally agree is the
+</I>&gt;&gt;&gt;<i> &quot;SSL/TLS-wrapped&quot; proposal. That protocol is deprecated. It usually
+</I>&gt;&gt;&gt;<i> required port 465 I believe (I forget right now). Even Postfix does
+</I>&gt;&gt;&gt;<i> not by default support that protocol; although, it obviously can be
+</I>&gt;&gt;&gt;<i> made to use it. I believe that the only real user of that protocol
+</I>&gt;&gt;&gt;<i> was MS Outlook &lt;=2002. All modern MUAs support TLS on port 587
+</I>&gt;&gt;&gt;<i> which is also supported by RFCs. What I am trying to say is that I
+</I>&gt;&gt;&gt;<i> would certainly not waste anytime on an obsolete/deprecated
+</I>&gt;&gt;&gt;<i> protocol, especially one not supported by current RFCs. I would
+</I>&gt;&gt;&gt;<i> first work on making Fetchmail fully TLS (STARTTLS) compliant
+</I>&gt;&gt;&gt;<i> {Fetchmail 7} before working or wasting time on a dead protocol.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Well, I know that there is an ongoing effort to get rid of the
+</I>&gt;&gt;<i> SSL-wrapped service ports, but they are simply not going away just
+</I>&gt;&gt;<i> because someone says so -- I postulate that established SSL-wrapped
+</I>&gt;&gt;<i> services will be around for quite long and new ones will be rolled
+</I>&gt;&gt;<i> out.
+</I>&gt;<i> 
+</I>&gt;<i> SSL over 465 was never supported by any RFC as far as I know. It was
+</I>&gt;<i> something Microsoft, and I believe Eudora concocted.
+</I>
+Possibly not by any RFC, but there was a time (long ago, in the late
+1990s) when 465/tcp was officially registered (meaning through IANA, the
+Internet Assigned Numbers Authority), following specifications in SSL
+3.0, to be revoked later when STARTTLS was published.
+
+&lt;<A HREF="http://www.mozilla.org/projects/security/pki/nss/ssl/draft302.txt">http://www.mozilla.org/projects/security/pki/nss/ssl/draft302.txt</A>&gt;
+&lt;<A HREF="http://lists.w3.org/Archives/Public/ietf-tls/1997JanMar/0023.html">http://lists.w3.org/Archives/Public/ietf-tls/1997JanMar/0023.html</A>&gt;
+
+&gt;<i> While they may invariably be around for awhile, I would question as to
+</I>&gt;<i> whether new ones would be rolled out. Even pathetic services like GMail
+</I>
+New sites and/or smtps/port 465 services have been rolled out since.
+
+&gt;<i> which claim to support SSL on port 465 actually fully support STARTTLS
+</I>&gt;<i> on 587. However, I will bow to your expertise. If someone wants to
+</I>&gt;<i> implement a non RFC conforming mail system, I guess there is not much
+</I>&gt;<i> that can be done about it. However, forcing Fetchmail to conform to the
+</I>
+And I don't think that offering passive (server-side) services on that
+port would conflict anywhere.  It may be frowned upon, but one of the
+the robustness principle clauses is &quot;be liberal in what you accept&quot; and
+will keep that service alive for a while.
+
+&gt;<i> lowest common denominator does not seem like an advantageous solution
+</I>&gt;<i> either; although, probably an inevitable one.
+</I>
+The question is if I plan to stand in the way of a pragmatic solution
+that is actually the easier one to implement.
+
+How much exposure such a feature gets is a different question though:
+the functional code isn't a lot to write, but exposing this in some form
+of user interface (i. e. rcfile, command line) and documenting it is
+also quite some effort. Some fetchmail features are only accessible
+through environment variables.
+&lt;<A HREF="http://www.fetchmail.info/fetchmail-man.html#51">http://www.fetchmail.info/fetchmail-man.html#51</A>&gt;
+
+&gt;&gt;<i> The key argument for SSL-wrapped service (as opposed to STARTTLS) is
+</I>&gt;&gt;<i> simplicity in implementation, in that it does not require protocol
+</I>&gt;&gt;<i> changes, unlike STARTTLS.
+</I>&gt;<i> 
+</I>&gt;<i> I fully agree to a point. Since new code must be written anyway, why
+</I>&gt;<i> not start with the latest RFC compliant modes and then work on the
+</I>&gt;<i> deprecated ones? It is my own belief, somewhat supported by surveys,
+</I>&gt;<i> that obsoleted/deprecated protocols remain in effect simply because
+</I>&gt;<i> users still support them. Once the support for them dries up, their use
+</I>&gt;<i> evaporates. In this one respect I give Wietse Venema a lot of credit.
+</I>
+True enough.
+
+&gt;<i> He has refused to make changes to Postfix simply because someone else
+</I>&gt;<i> is &quot;doing it&quot; in most cases. In fact, he gets rather cranky when
+</I>&gt;<i> someone suggests that he change his position. I know Postfix can be
+</I>&gt;<i> configured to support SSL-wrapped; however, he has wisely turned that
+</I>&gt;<i> off by default. In any case, it was a relic from when Postfix was first
+</I>&gt;<i> written circa 1999 or there about.
+</I>
+Indeed, and it was long gone when TLS was merged into Postfix around
+2004/Postfix 2.2, with a changed interface in 2.3.
+
+&gt;&gt;<i> That the channel (data stream, usually TCP) gets shared between
+</I>&gt;&gt;<i> plaintext and ciphered protocol data also exhibited its own host of
+</I>&gt;&gt;<i> problems in STARTTLS that SSL-wrapped implementations are usually
+</I>&gt;&gt;<i> immune to, and requires precise synchronization. See
+</I>&gt;&gt;<i> &lt;<A HREF="http://www.postfix.org/CVE-2011-0411.html">http://www.postfix.org/CVE-2011-0411.html</A>&gt;.
+</I>&gt;<i> 
+</I>&gt;<i> I am fully aware of that notice. US-CERT issued an alert regarding it a
+</I>&gt;<i> few days ago. You might be interested in this URL if you have not all
+</I>&gt;<i> ready perused it: <A HREF="http://www.kb.cert.org/vuls/id/555316;">http://www.kb.cert.org/vuls/id/555316;</A> however, to
+</I>&gt;<i> delay the implementation of true TLS due to a flaw that was only
+</I>&gt;<i> discovered within the last month or so and has absolutely no proof that
+</I>&gt;<i> it was in fact ever actually implemented seems like a rather weak
+</I>&gt;<i> excuse to me. 
+</I>
+I'm not trying to excuse anything but stating that there are valid
+reasons to also implement SSL-wrapped SMTP even if not backed by
+standards and why I expect it's not going away -- and that STARTTLS
+isn't as trivial as it may seem either.
+
+&gt;<i> In any case, it appears that &quot;openssl&quot; might implement
+</I>&gt;<i> the one line change in the code to prevent this problem to begin with.
+</I>
+For as long as the server will be using an up to date OpenSSL version, yes.
+
+&gt;<i> if those ISPs or whatever were to start being blitzed with complaints
+</I>&gt;<i> from their users about not supporting modern protocols a change in
+</I>&gt;<i> their infrastructure might ensue. Then again, that is my own opinion. I
+</I>
+Depends on if the support inquiries are actually escalated to tech
+staff, and if they bought licenses for commercial server software that
+actually speaks those protocols.
+
+&gt;<i> In any event and to save yourself a lot of grief from unhappy users, I
+</I>&gt;<i> would STRONGLY recommend that you put a disclaimer in the man pages,
+</I>&gt;<i> perhaps elsewhere also, that SSL-wrapped in not on by default in
+</I>&gt;<i> Postfix and certain other MTAs. If the user is going to go that route
+</I>&gt;<i> they must be made aware of this fact or else you will inevitably be
+</I>&gt;<i> getting a barrage of complaints from users wanting to know why they are
+</I>&gt;<i> having connection problems.
+</I>
+My current idea is to support some limited kind of autoprobing all ports
+with a timeout, and the first secure one get the award of the connection.
+
+&gt;<i> By the way, do you have any idea when a release candidate for
+</I>&gt;<i> Fetchmail 7 might be available? I am assuming it is a year or so away. I
+</I>&gt;<i> would be happy to do some beta testing on it. I am getting ready to set
+</I>&gt;<i> up a PC devoted to testing beta products right now.
+</I>
+No guess or promise at all because fetchmail is a spare-time project.
+
+If someone (or possibly company) wants to upgrade my fetchmail
+priorities for part time, contact me off-list on short notice.
+
+The Git repository is public, and the future version is on the &quot;next&quot;
+branch but I'd consider it alpha state, and configure.ac identifies it
+as such. See &lt;<A HREF="http://gitorious.org/fetchmail/fetchmail">http://gitorious.org/fetchmail/fetchmail</A>&gt; - however apart
+from a few cleanups (&quot;remove support for obsolete protocols or systems&quot;)
+and a speed-up of the UIDL code contributed by Rainer Weikusat with kind
+permission of his employer, not much has happened, again, due to
+real-life obligations :)
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002737.html">[fetchmail-users] fetchmail is marking messages as seen (even with keep specified)
+</A></li>
+	<LI>Next message: <A HREF="002739.html">[fetchmail-users] mapi status
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2738">[ date ]</a>
+              <a href="thread.html#2738">[ thread ]</a>
+              <a href="subject.html#2738">[ subject ]</a>
+              <a href="author.html#2738">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

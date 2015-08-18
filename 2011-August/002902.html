@@ -1,0 +1,179 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] fetchmail 7.0.0-alpha2+MAPI alpha preview release
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2011-August/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%207.0.0-alpha2%2BMAPI%20alpha%20preview%20release&In-Reply-To=%3C20110816154752.GA18345%40merlin.emma.line.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002877.html">
+   <LINK REL="Next"  HREF="002903.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] fetchmail 7.0.0-alpha2+MAPI alpha preview release</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%207.0.0-alpha2%2BMAPI%20alpha%20preview%20release&In-Reply-To=%3C20110816154752.GA18345%40merlin.emma.line.org%3E"
+       TITLE="[fetchmail-users] fetchmail 7.0.0-alpha2+MAPI alpha preview release">matthias.andree at gmx.de
+       </A><BR>
+    <I>Tue Aug 16 17:47:52 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002877.html">[fetchmail-users] fetchmail bad header problem
+</A></li>
+        <LI>Next message: <A HREF="002903.html">[fetchmail-users] download mail and stere it
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2902">[ date ]</a>
+              <a href="thread.html#2902">[ thread ]</a>
+              <a href="subject.html#2902">[ subject ]</a>
+              <a href="author.html#2902">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Greetings,
+
+in an effort to get sufficient testing, I have released the next alpha
+version of fetchmail 7.0.0.
+
+This version ports the MAPI support from GSoC 2008 forward onto the
+current branch and onto openchange 0.11, but is untested -- I have no
+Exchange account and cannot test beyond &quot;it compiles, with massive
+warnings&quot;.  Chances are it works on 32-bit versions of Ubuntu 11.04
+(natty narwhal), but chances are MAPI support does not work at all.
+
+I need help to bring this forward.
+
+The alpha version isn't available through BerliOS, but only from
+DOWNLOAD: &lt;<A HREF="http://home.pages.de/~mandree/fetchmail/">http://home.pages.de/~mandree/fetchmail/</A>&gt;
+
+The corresponding git tag is SNAPSHOT_7-0-0-alpha2+MAPI, the branch is
+&quot;master&quot;.
+
+Please send feedback to <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">fetchmail-devel at lists.berlios.de.</A>
+
+Happy fetches!
+Matthias
+
+--------------------------------------------------------------------------------
+
+fetchmail-7.0.0 (not yet released):
+
+NOTE THIS IS AN ALPHA RELEASE THAT HAS NOT BEEN THOROUGHLY TESTED!
+
+NOTE THAT THE MAPI FEATURE IS ENTIRELY UNTESTED AND UNSUPPORTED!
+
+# MAJOR CHANGES
+* The UIDL handler code is now much faster, especially noticable with lots of
+  mail kept on a POP3 server. Where the 6.3.X code was of O(n^2) complexity,
+  we're down to O(n log n).
+  Contributed by Rainer Weikusat, MAD Partners Ltd./MSS GmbH.
+* The POP3 code now always uses UIDL, except if &quot;fetchall&quot; is in effect.
+  Fixes BerliOS Bug #16172. Fixes Debian Bug#345788.
+* Fetchmail now enables SSL support by default. If this is undesired,
+  ./configure --without-ssl should help.
+
+# FEATURES ADDED
+* Fetchmail can now retrieve credentials from PWMD. This needs to be enabled at
+  compile-time and requires run-time configuration. See README.PWMD for details.
+  Contributed by Ben Kibbey, author of libpwmd and pwmd.
+* Fetchmail now supports a retrieve-error command line or rcfile option that
+  takes exactly one argument, abort (default), continue or markseen.  This
+  specifies the policy used by fetchmail to handle messages whose bodies
+  fail to be retrieved due to server errors.  Both the continue and markseen
+  options will skip the message with errors and allow the session to
+  continue so that subsequent messages can be retrieved.  The markseen
+  option will also mark the message with errors as seen.
+  The default policy is to abort the session whenever a server error occurs.
+  Contributed by Craig Brown.
+* Fetchmailconf offers cram-md5 and apop authentication.
+* EXPERIMENTAL/UNSUPPORTED:
+  MAPI support through OpenChange. Yang-Yan Li, Google Summer of Code 2008.
+  With fixes from Mojmir Svoboda.
+  Ported to OpenChange 0.11 by Matthias Andree.
+  May not work properly on 64-bit computers.
+  Note the code requires further cleanups and fixes and has not yet been audited
+  for security. Do not use as privileged user. Use at your own risk.
+  If you're ready to take all these risks, ./configure --enable-MAPI is the key.
+
+# REMOVED FEATURES
+* IMAP2 protocol support was removed.
+* POP2 protocol support was removed.
+* RPOP (not actually a protocol, but a variant of POP3) was removed
+* POP3: the uidl option has been removed. It is always on.
+* POP3: LAST is no longer used. It was removed from POP3 in 1994, and it could
+  cause mail loss when the connection was interrupted or if clients besides
+  fetchmail polled the mailbox.
+* Trio was removed, fetchmail expects reasonable stdio.h quality levels.
+* Support for systems that do not conform to C89 and POSIX 2001 was removed,
+  this means that BeOS, EMX, NeXTSTEP quirks are no longer worked around.
+* The MX and host alias DNS lookups that fetchmail performs in multidrop mode
+  have been removed. They were based on the mistaken assumption that the
+  IMAP/POP3 server was also the MX server, which is rarely the case.  They have
+  never supported IPv6 (including IPv6-mapped IPv4) either.
+  Non-DNS based alias keywords such as &quot;aka&quot; remain.
+* Kerberos IV support was removed.
+* fetchmail no longer supports SSL v2, nor the corresponding SSL2 option to
+  --sslproto. SSLv2 is insecure and had been deprecated 15 years ago. fetchmail
+  will actively forbid SSLv2 negotiation by means of SSL_OP_NO_SSLv2.
+  To fix Debian Bug#622054.
+* A lot of outdated and/or unsafe-to-use material got dropped from contrib/.
+
+# REGRESSION FIXES
+* The mimedecode feature now properly detects multipart/mixed-type matches, so
+  that quoted-printable-encoded multipart messages can get decoded.
+  (Regression in 5.0.0 on 1999-03-27, as a side effect of a PGP-mimedecode fix
+  attributed to Henrik Storner.)
+
+# BUG FIXES
+* The mimedecode feature failed to ship the last line of the body if it was
+  encoded as quoted-printable and had a MIME soft line break in the very last
+  line.  Reported by Lars Hecking in June 2011.
+  Bug introduced on 1998-03-20 when the mimedecode support was added by ESR
+  before release 4.4.1 through code contributed by Henrik Storner.
+  Workaround for older releases: do not use mimedecode feature.
+* Fetchmail now detects singly-quoted % expansions in the mda option and refuses
+  to deliver for safety reasons. Fixes Debian Bug#347909.
+
+# CHANGES
+* A foreground fetchmail can now accept a few more options while another copy is
+  running in the background.
+* APOP is no longer a protocol, but an authentication method. In order to use
+  it, use protocol POP3 auth APOP, or on the commandline, -p pop3 --auth apop.
+  If no authentication method is specified, APOP is automatically tried if
+  offered by the server before we resort to sending the password as clear text.
+
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: not available
+Type: application/pgp-signature
+Size: 198 bytes
+Desc: not available
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/fetchmail-users/attachments/20110816/f3b3713a/attachment.pgp">https://lists.berlios.de/pipermail/fetchmail-users/attachments/20110816/f3b3713a/attachment.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002877.html">[fetchmail-users] fetchmail bad header problem
+</A></li>
+	<LI>Next message: <A HREF="002903.html">[fetchmail-users] download mail and stere it
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2902">[ date ]</a>
+              <a href="thread.html#2902">[ thread ]</a>
+              <a href="subject.html#2902">[ subject ]</a>
+              <a href="author.html#2902">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

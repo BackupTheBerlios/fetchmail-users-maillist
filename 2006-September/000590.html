@@ -1,0 +1,246 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] query state=2 (SOCKET)
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2006-September/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20query%20state%3D2%20%28SOCKET%29&In-Reply-To=%3C9bfbfec30609121527j28eaceadkdeb270286ff70fe3%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000589.html">
+   <LINK REL="Next"  HREF="000591.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] query state=2 (SOCKET)</H1>
+    <B>Roberto Meyer</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20query%20state%3D2%20%28SOCKET%29&In-Reply-To=%3C9bfbfec30609121527j28eaceadkdeb270286ff70fe3%40mail.gmail.com%3E"
+       TITLE="[fetchmail-users] query state=2 (SOCKET)">roberto.s.meyer at gmail.com
+       </A><BR>
+    <I>Wed Sep 13 00:27:02 CEST 2006</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000589.html">[fetchmail-users] query state=2 (SOCKET)
+</A></li>
+        <LI>Next message: <A HREF="000591.html">[fetchmail-users] query state=2 (SOCKET)
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#590">[ date ]</a>
+              <a href="thread.html#590">[ thread ]</a>
+              <a href="subject.html#590">[ subject ]</a>
+              <a href="author.html#590">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>2006/9/12, Rob MacGregor &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">rob.macgregor at gmail.com</A>&gt;:
+
+&gt;<i> On 9/11/06, Roberto Meyer &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">roberto.s.meyer at gmail.com</A>&gt; wrote:
+</I>&gt;<i> &gt; Hi,
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; I translated the error message in the subject of this mail from
+</I>&gt;<i> &gt; spanish, I don't know if it shows exactly like this in other systems.
+</I>&gt;<i> The error relates to fetchmail being unable to communicate with the
+</I>&gt;<i> remote server.  This is almost always a network issue.
+</I>
+[snip]
+
+Still having problems with it, I decided to put tcpdump in action. The
+problem is I don't really know much about it. I read the man pages and
+understood a little about flags, etc. but don't know a lot of tcp/ip.
+
+I've attached the output of two connections triggered at the same time
+for two different users through cron jobs. One of them was successful,
+the other one failed with a socket, status=2 result.
+
+The command I issued was:
+&quot;tcpdump -v -s1500 -i eth0 -n tcp port 110 -w /tmp/tcpdump.raw&quot;
+
+I've attached the 'text' version of it which I rescued through
+&quot;tcpdump -r /tmp/tcpdump.raw&quot;
+
+I know this is a bit off-topic but as this thread started with
+fetchmail maybe someone knows help:
+
+TIA,
+
+PD: the mail server is only one and always the same, at least it
+resolves always to a single IP.
+
+-- 
+Roberto
+-------------- next part --------------
+Command issued: tcpdump -v -s1500 -i eth0 -n tcp port 110 -w
+Simultaneous connections: 2 different users from cron jobs
+
+
+13:24:02.102697 IP myfetchmachine.com.43402 &gt; remotmailserver.com.pop3: S 2551774451:2551774451(0) win 5840 &lt;mss 1460,sackOK,timestamp 33280594 0,nop,wscale 0&gt;
+13:24:02.152444 IP remotmailserver.com.pop3 &gt; myfetchmachine.com.43402: S 672333652:672333652(0) ack 2551774452 win 5840 &lt;mss 1460&gt;
+13:24:02.152497 IP myfetchmachine.com.43402 &gt; remotmailserver.com.pop3: . ack 1 win 5840
+13:24:02.212442 IP remotmailserver.com.pop3 &gt; myfetchmachine.com.43402: P 1:19(18) ack 1 win 5840
+13:24:02.212465 IP myfetchmachine.com.43402 &gt; remotmailserver.com.pop3: . ack 19 win 5840
+13:24:02.212705 IP myfetchmachine.com.43402 &gt; remotmailserver.com.pop3: P 1:7(6) ack 19 win 5840
+13:24:02.314939 IP remotmailserver.com.pop3 &gt; myfetchmachine.com.43402: . ack 7 win 5840
+13:24:02.317466 IP remotmailserver.com.pop3 &gt; myfetchmachine.com.43402: P 19:136(117) ack 7 win 5840
+13:24:02.317655 IP myfetchmachine.com.43402 &gt; remotmailserver.com.pop3: P 7:13(6) ack 136 win 5840
+13:24:02.367441 IP remotmailserver.com.pop3 &gt; myfetchmachine.com.43402: P 136:172(36) ack 13 win 5840
+13:24:02.372443 IP remotmailserver.com.pop3 &gt; myfetchmachine.com.43402: F 172:172(0) ack 13 win 5840
+13:24:02.374630 IP myfetchmachine.com.43402 &gt; remotmailserver.com.pop3: P 13:113(100) ack 173 win 5840
+13:24:02.375000 IP myfetchmachine.com.43402 &gt; remotmailserver.com.pop3: F 113:113(0) ack 173 win 5840
+13:24:02.375286 IP myfetchmachine.com.43403 &gt; remotmailserver.com.pop3: S 2550687563:2550687563(0) win 5840 &lt;mss 1460,sackOK,timestamp 33280622 0,nop,wscale 0&gt;
+13:24:02.694059 IP myfetchmachine.com.43402 &gt; remotmailserver.com.pop3: FP 13:113(100) ack 173 win 5840
+13:24:02.772434 IP remotmailserver.com.pop3 &gt; myfetchmachine.com.43402: R 672333825:672333825(0) win 0
+13:24:05.356278 IP myfetchmachine.com.4503 &gt; remotmailserver.com.pop3: S 13615337:13615337(0) win 8192 &lt;mss 1460,nop,nop,sackOK&gt;
+13:24:05.356926 IP myfetchmachine.com.4504 &gt; remotmailserver.com.pop3: S 13615338:13615338(0) win 8192 &lt;mss 1460,nop,nop,sackOK&gt;
+13:24:05.357593 IP myfetchmachine.com.4505 &gt; remotmailserver.com.pop3: S 13615339:13615339(0) win 8192 &lt;mss 1460,nop,nop,sackOK&gt;
+13:24:05.358215 IP myfetchmachine.com.4506 &gt; remotmailserver.com.pop3: S 13615339:13615339(0) win 8192 &lt;mss 1460,nop,nop,sackOK&gt;
+13:24:05.358819 IP myfetchmachine.com.4507 &gt; remotmailserver.com.pop3: S 13615340:13615340(0) win 8192 &lt;mss 1460,nop,nop,sackOK&gt;
+13:24:05.359424 IP myfetchmachine.com.4508 &gt; remotmailserver.com.pop3: S 13615340:13615340(0) win 8192 &lt;mss 1460,nop,nop,sackOK&gt;
+13:24:05.360051 IP myfetchmachine.com.4509 &gt; remotmailserver.com.pop3: S 13615341:13615341(0) win 8192 &lt;mss 1460,nop,nop,sackOK&gt;
+13:24:05.360667 IP myfetchmachine.com.4510 &gt; remotmailserver.com.pop3: S 13615342:13615342(0) win 8192 &lt;mss 1460,nop,nop,sackOK&gt;
+13:24:05.361274 IP myfetchmachine.com.4511 &gt; remotmailserver.com.pop3: S 13615342:13615342(0) win 8192 &lt;mss 1460,nop,nop,sackOK&gt;
+13:24:05.368393 IP myfetchmachine.com.4512 &gt; remotmailserver.com.pop3: S 13615349:13615349(0) win 8192 &lt;mss 1460,nop,nop,sackOK&gt;
+13:24:05.374061 IP myfetchmachine.com.43403 &gt; remotmailserver.com.pop3: S 2550687563:2550687563(0) win 5840 &lt;mss 1460,sackOK,timestamp 33280922 0,nop,wscale 0&gt;
+13:24:05.419887 IP remotmailserver.com.pop3 &gt; myfetchmachine.com.4503: S 683067494:683067494(0) ack 13615338 win 5840 &lt;mss 1460&gt;
+13:24:05.420028 IP myfetchmachine.com.4503 &gt; remotmailserver.com.pop3: . ack 1 win 8760
+13:24:05.423046 IP remotmailserver.com.pop3 &gt; myfetchmachine.com.4505: S 677827443:677827443(0) ack 13615340 win 5840 &lt;mss 1460&gt;
+13:24:05.423187 IP myfetchmachine.com.4505 &gt; remotmailserver.com.pop3: . ack 1 win 8760
+13:24:05.423548 IP remotmailserver.com.pop3 &gt; myfetchmachine.com.4506: S 681606160:681606160(0) ack 13615340 win 5840 &lt;mss 1460&gt;
+13:24:05.423668 IP myfetchmachine.com.4506 &gt; remotmailserver.com.pop3: . ack 1 win 8760
+13:24:05.424052 IP remotmailserver.com.pop3 &gt; myfetchmachine.com.4507: S 687688123:687688123(0) ack 13615341 win 5840 &lt;mss 1460&gt;
+13:24:05.424262 IP myfetchmachine.com.4507 &gt; remotmailserver.com.pop3: . ack 1 win 8760
+13:24:05.424667 IP remotmailserver.com.pop3 &gt; myfetchmachine.com.4508: S 682879671:682879671(0) ack 13615341 win 5840 &lt;mss 1460&gt;
+13:24:05.424779 IP myfetchmachine.com.4508 &gt; remotmailserver.com.pop3: . ack 1 win 8760
+13:24:05.425167 IP remotmailserver.com.pop3 &gt; myfetchmachine.com.4509: S 681850950:681850950(0) ack 13615342 win 5840 &lt;mss 1460&gt;
+13:24:05.425282 IP myfetchmachine.com.4509 &gt; remotmailserver.com.pop3: . ack 1 win 8760
+13:24:05.425666 IP remotmailserver.com.pop3 &gt; myfetchmachine.com.4510: S 675882565:675882565(0) ack 13615343 win 5840 &lt;mss 1460&gt;
+13:24:05.425783 IP myfetchmachine.com.4510 &gt; remotmailserver.com.pop3: . ack 1 win 8760
+13:24:05.437439 IP remotmailserver.com.pop3 &gt; myfetchmachine.com.4511: S 681494636:681494636(0) ack 13615343 win 5840 &lt;mss 1460&gt;
+13:24:05.437574 IP myfetchmachine.com.4511 &gt; remotmailserver.com.pop3: . ack 1 win 8760
+13:24:05.442709 IP remotmailserver.com.pop3 &gt; myfetchmachine.com.4512: S 685636709:685636709(0) ack 13615350 win 5840 &lt;mss 1460&gt;
+13:24:05.442845 IP myfetchmachine.com.4512 &gt; remotmailserver.com.pop3: . ack 1 win 8760
+13:24:05.447398 IP remotmailserver.com.pop3 &gt; myfetchmachine.com.43403: S 671181580:671181580(0) ack 2550687564 win 5840 &lt;mss 1460&gt;
+13:24:05.447436 IP myfetchmachine.com.43403 &gt; remotmailserver.com.pop3: . ack 1 win 5840
+13:24:05.469889 IP remotmailserver.com.pop3 &gt; myfetchmachine.com.4503: P 1:19(18) ack 1 win 5840
+13:24:05.470430 IP myfetchmachine.com.4503 &gt; remotmailserver.com.pop3: P 1:28(27) ack 19 win 8742
+13:24:05.492388 IP remotmailserver.com.pop3 &gt; myfetchmachine.com.4505: P 1:19(18) ack 1 win 5840
+13:24:05.492854 IP myfetchmachine.com.4505 &gt; remotmailserver.com.pop3: P 1:31(30) ack 19 win 8742
+13:24:05.495266 IP remotmailserver.com.pop3 &gt; myfetchmachine.com.4506: P 1:19(18) ack 1 win 5840
+13:24:05.495527 IP remotmailserver.com.pop3 &gt; myfetchmachine.com.4507: P 1:19(18) ack 1 win 5840
+13:24:05.495778 IP myfetchmachine.com.4506 &gt; remotmailserver.com.pop3: P 1:30(29) ack 19 win 8742
+13:24:05.496043 IP myfetchmachine.com.4507 &gt; remotmailserver.com.pop3: P 1:26(25) ack 19 win 8742
+13:24:05.496413 IP remotmailserver.com.pop3 &gt; myfetchmachine.com.4508: F 1:1(0) ack 1 win 5840
+13:24:05.496538 IP myfetchmachine.com.4508 &gt; remotmailserver.com.pop3: . ack 2 win 8760
+13:24:05.497543 IP remotmailserver.com.pop3 &gt; myfetchmachine.com.4509: F 1:1(0) ack 1 win 5840
+13:24:05.497725 IP myfetchmachine.com.4509 &gt; remotmailserver.com.pop3: . ack 2 win 8760
+13:24:05.512696 IP remotmailserver.com.pop3 &gt; myfetchmachine.com.4512: F 1:1(0) ack 1 win 5840
+13:24:05.512973 IP myfetchmachine.com.4512 &gt; remotmailserver.com.pop3: . ack 2 win 8760
+13:24:05.514838 IP remotmailserver.com.pop3 &gt; myfetchmachine.com.43403: F 1:1(0) ack 1 win 5840
+13:24:05.514898 IP myfetchmachine.com.43403 &gt; remotmailserver.com.pop3: F 1:1(0) ack 2 win 5840
+13:24:05.537447 IP remotmailserver.com.pop3 &gt; myfetchmachine.com.4503: . ack 28 win 5840
+13:24:05.539843 IP remotmailserver.com.pop3 &gt; myfetchmachine.com.4503: P 19:43(24) ack 28 win 5840
+13:24:05.559887 IP remotmailserver.com.pop3 &gt; myfetchmachine.com.4505: P 19:43(24) ack 31 win 5840
+13:24:05.565273 IP remotmailserver.com.pop3 &gt; myfetchmachine.com.4506: . ack 30 win 5840
+13:24:05.565536 IP remotmailserver.com.pop3 &gt; myfetchmachine.com.4506: P 19:43(24) ack 30 win 5840
+13:24:05.565792 IP remotmailserver.com.pop3 &gt; myfetchmachine.com.4507: . ack 26 win 5840
+13:24:05.566052 IP remotmailserver.com.pop3 &gt; myfetchmachine.com.4507: P 19:43(24) ack 26 win 5840
+13:24:05.575036 IP myfetchmachine.com.4508 &gt; remotmailserver.com.pop3: F 1:1(0) ack 2 win 8760
+13:24:05.576032 IP myfetchmachine.com.4503 &gt; remotmailserver.com.pop3: P 28:41(13) ack 43 win 8718
+13:24:05.576914 IP myfetchmachine.com.4509 &gt; remotmailserver.com.pop3: F 1:1(0) ack 2 win 8760
+13:24:05.577408 IP myfetchmachine.com.4505 &gt; remotmailserver.com.pop3: P 31:44(13) ack 43 win 8718
+13:24:05.577762 IP myfetchmachine.com.4506 &gt; remotmailserver.com.pop3: P 30:43(13) ack 43 win 8718
+13:24:05.578028 IP myfetchmachine.com.4507 &gt; remotmailserver.com.pop3: P 26:39(13) ack 43 win 8718
+13:24:05.578828 IP myfetchmachine.com.4512 &gt; remotmailserver.com.pop3: F 1:1(0) ack 2 win 8760
+13:24:05.582477 IP remotmailserver.com.pop3 &gt; myfetchmachine.com.43403: . ack 2 win 5840
+13:24:05.624884 IP remotmailserver.com.pop3 &gt; myfetchmachine.com.4508: . ack 2 win 5840
+13:24:05.647442 IP remotmailserver.com.pop3 &gt; myfetchmachine.com.4512: . ack 2 win 5840
+13:24:05.653754 IP remotmailserver.com.pop3 &gt; myfetchmachine.com.4503: P 43:59(16) ack 41 win 5840
+13:24:05.654305 IP myfetchmachine.com.4503 &gt; remotmailserver.com.pop3: P 41:47(6) ack 59 win 8702
+13:24:05.658076 IP remotmailserver.com.pop3 &gt; myfetchmachine.com.4505: P 43:59(16) ack 44 win 5840
+13:24:05.658442 IP myfetchmachine.com.4505 &gt; remotmailserver.com.pop3: P 44:50(6) ack 59 win 8702
+13:24:05.659838 IP remotmailserver.com.pop3 &gt; myfetchmachine.com.4506: P 43:59(16) ack 43 win 5840
+13:24:05.660184 IP myfetchmachine.com.4506 &gt; remotmailserver.com.pop3: P 43:49(6) ack 59 win 8702
+13:24:05.662437 IP remotmailserver.com.pop3 &gt; myfetchmachine.com.4507: P 43:59(16) ack 39 win 5840
+13:24:05.662808 IP myfetchmachine.com.4507 &gt; remotmailserver.com.pop3: P 39:45(6) ack 59 win 8702
+13:24:05.757442 IP remotmailserver.com.pop3 &gt; myfetchmachine.com.4505: P 59:68(9) ack 50 win 5840
+13:24:05.757885 IP myfetchmachine.com.4505 &gt; remotmailserver.com.pop3: P 50:56(6) ack 68 win 8693
+13:24:05.762334 IP remotmailserver.com.pop3 &gt; myfetchmachine.com.4506: P 59:68(9) ack 49 win 5840
+13:24:05.762744 IP myfetchmachine.com.4506 &gt; remotmailserver.com.pop3: P 49:55(6) ack 68 win 8693
+13:24:05.764940 IP remotmailserver.com.pop3 &gt; myfetchmachine.com.4507: P 59:68(9) ack 45 win 5840
+13:24:05.765342 IP myfetchmachine.com.4507 &gt; remotmailserver.com.pop3: P 45:51(6) ack 68 win 8693
+13:24:05.832381 IP remotmailserver.com.pop3 &gt; myfetchmachine.com.4505: F 82:82(0) ack 56 win 5840
+13:24:05.832545 IP myfetchmachine.com.4505 &gt; remotmailserver.com.pop3: . ack 68 win 8693
+13:24:05.852381 IP remotmailserver.com.pop3 &gt; myfetchmachine.com.4506: P 68:82(14) ack 55 win 5840
+13:24:05.855121 IP remotmailserver.com.pop3 &gt; myfetchmachine.com.4506: F 82:82(0) ack 55 win 5840
+13:24:05.855314 IP myfetchmachine.com.4506 &gt; remotmailserver.com.pop3: . ack 83 win 8679
+13:24:05.855629 IP remotmailserver.com.pop3 &gt; myfetchmachine.com.4507: P 68:82(14) ack 51 win 5840
+13:24:05.855886 IP remotmailserver.com.pop3 &gt; myfetchmachine.com.4507: F 82:82(0) ack 51 win 5840
+13:24:05.856537 IP myfetchmachine.com.4507 &gt; remotmailserver.com.pop3: . ack 83 win 8679
+13:24:05.932817 IP myfetchmachine.com.4506 &gt; remotmailserver.com.pop3: F 55:55(0) ack 83 win 8679
+13:24:05.933477 IP myfetchmachine.com.4507 &gt; remotmailserver.com.pop3: F 51:51(0) ack 83 win 8679
+13:24:05.964879 IP remotmailserver.com.pop3 &gt; myfetchmachine.com.4503: P 59:68(9) ack 47 win 5840
+13:24:05.965428 IP myfetchmachine.com.4503 &gt; remotmailserver.com.pop3: P 47:53(6) ack 68 win 8693
+13:24:05.979879 IP remotmailserver.com.pop3 &gt; myfetchmachine.com.4506: . ack 56 win 5840
+13:24:05.999861 IP remotmailserver.com.pop3 &gt; myfetchmachine.com.4507: . ack 52 win 5840
+13:24:06.024839 IP remotmailserver.com.pop3 &gt; myfetchmachine.com.4503: P 68:82(14) ack 53 win 5840
+13:24:06.029806 IP remotmailserver.com.pop3 &gt; myfetchmachine.com.4503: F 82:82(0) ack 53 win 5840
+13:24:06.032815 IP myfetchmachine.com.4503 &gt; remotmailserver.com.pop3: . ack 83 win 8679
+13:24:06.076436 IP myfetchmachine.com.4503 &gt; remotmailserver.com.pop3: F 53:53(0) ack 83 win 8679
+13:24:06.097549 IP remotmailserver.com.pop3 &gt; myfetchmachine.com.4505: FP 68:82(14) ack 56 win 5840
+13:24:06.097718 IP myfetchmachine.com.4505 &gt; remotmailserver.com.pop3: . ack 83 win 8679
+13:24:06.138476 IP myfetchmachine.com.4505 &gt; remotmailserver.com.pop3: F 56:56(0) ack 83 win 8679
+13:24:06.184874 IP remotmailserver.com.pop3 &gt; myfetchmachine.com.4505: . ack 57 win 5840
+13:24:07.503175 IP myfetchmachine.com.4503 &gt; remotmailserver.com.pop3: F 53:53(0) ack 83 win 8679
+13:24:07.549853 IP remotmailserver.com.pop3 &gt; myfetchmachine.com.4503: . ack 54 win 5840
+13:24:08.303042 IP myfetchmachine.com.4504 &gt; remotmailserver.com.pop3: S 13615338:13615338(0) win 8192 &lt;mss 1460,nop,nop,sackOK&gt;
+13:24:08.375385 IP remotmailserver.com.pop3 &gt; myfetchmachine.com.4504: S 676283797:676283797(0) ack 13615339 win 5840 &lt;mss 1460&gt;
+13:24:08.375543 IP myfetchmachine.com.4504 &gt; remotmailserver.com.pop3: . ack 1 win 8760
+13:24:08.432339 IP remotmailserver.com.pop3 &gt; myfetchmachine.com.4504: P 1:19(18) ack 1 win 5840
+13:24:08.432765 IP myfetchmachine.com.4504 &gt; remotmailserver.com.pop3: P 1:28(27) ack 19 win 8742
+13:24:08.477337 IP remotmailserver.com.pop3 &gt; myfetchmachine.com.4504: . ack 28 win 5840
+13:24:08.479794 IP remotmailserver.com.pop3 &gt; myfetchmachine.com.4504: P 19:43(24) ack 28 win 5840
+13:24:08.480206 IP myfetchmachine.com.4504 &gt; remotmailserver.com.pop3: P 28:41(13) ack 43 win 8718
+13:24:08.489837 IP remotmailserver.com.pop3 &gt; myfetchmachine.com.4510: F 1:1(0) ack 1 win 5840
+13:24:08.489969 IP myfetchmachine.com.4510 &gt; remotmailserver.com.pop3: . ack 2 win 8760
+13:24:08.492288 IP remotmailserver.com.pop3 &gt; myfetchmachine.com.4511: F 1:1(0) ack 1 win 5840
+13:24:08.492546 IP myfetchmachine.com.4511 &gt; remotmailserver.com.pop3: . ack 2 win 8760
+13:24:08.503032 IP myfetchmachine.com.4509 &gt; remotmailserver.com.pop3: F 1:1(0) ack 2 win 8760
+13:24:08.529847 IP remotmailserver.com.pop3 &gt; myfetchmachine.com.4504: P 43:59(16) ack 41 win 5840
+13:24:08.541602 IP myfetchmachine.com.4510 &gt; remotmailserver.com.pop3: F 1:1(0) ack 2 win 8760
+13:24:08.542032 IP myfetchmachine.com.4504 &gt; remotmailserver.com.pop3: P 41:47(6) ack 59 win 8702
+13:24:08.542493 IP myfetchmachine.com.4511 &gt; remotmailserver.com.pop3: F 1:1(0) ack 2 win 8760
+13:24:08.569865 IP remotmailserver.com.pop3 &gt; myfetchmachine.com.4509: . ack 2 win 5840
+13:24:08.594818 IP remotmailserver.com.pop3 &gt; myfetchmachine.com.4510: . ack 2 win 5840
+13:24:08.602278 IP remotmailserver.com.pop3 &gt; myfetchmachine.com.4504: P 59:68(9) ack 47 win 5840
+13:24:08.602829 IP myfetchmachine.com.4504 &gt; remotmailserver.com.pop3: P 47:53(6) ack 68 win 8693
+13:24:08.605517 IP remotmailserver.com.pop3 &gt; myfetchmachine.com.4511: . ack 2 win 5840
+13:24:08.649806 IP remotmailserver.com.pop3 &gt; myfetchmachine.com.4504: P 68:82(14) ack 53 win 5840
+13:24:08.652261 IP remotmailserver.com.pop3 &gt; myfetchmachine.com.4504: F 82:82(0) ack 53 win 5840
+13:24:08.652488 IP myfetchmachine.com.4504 &gt; remotmailserver.com.pop3: . ack 83 win 8679
+13:24:08.690486 IP myfetchmachine.com.4504 &gt; remotmailserver.com.pop3: F 53:53(0) ack 83 win 8679
+13:24:08.744833 IP remotmailserver.com.pop3 &gt; myfetchmachine.com.4504: . ack 54 win 5840
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000589.html">[fetchmail-users] query state=2 (SOCKET)
+</A></li>
+	<LI>Next message: <A HREF="000591.html">[fetchmail-users] query state=2 (SOCKET)
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#590">[ date ]</a>
+              <a href="thread.html#590">[ thread ]</a>
+              <a href="subject.html#590">[ subject ]</a>
+              <a href="author.html#590">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

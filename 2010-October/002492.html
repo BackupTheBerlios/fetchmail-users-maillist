@@ -1,0 +1,95 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] multidrop RC configuration help
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2010-October/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20multidrop%20RC%20configuration%20help&In-Reply-To=%3CAANLkTim3mnWUh-_LfB2V6em%2BBjQYdjZBfW9BMDqjectp%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002491.html">
+   <LINK REL="Next"  HREF="002494.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] multidrop RC configuration help</H1>
+    <B>W I M</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20multidrop%20RC%20configuration%20help&In-Reply-To=%3CAANLkTim3mnWUh-_LfB2V6em%2BBjQYdjZBfW9BMDqjectp%40mail.gmail.com%3E"
+       TITLE="[fetchmail-users] multidrop RC configuration help">wim1036 at gmail.com
+       </A><BR>
+    <I>Mon Oct 11 09:27:51 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002491.html">[fetchmail-users] multidrop RC configuration help
+</A></li>
+        <LI>Next message: <A HREF="002494.html">[fetchmail-users] multidrop RC configuration help
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2492">[ date ]</a>
+              <a href="thread.html#2492">[ thread ]</a>
+              <a href="subject.html#2492">[ subject ]</a>
+              <a href="author.html#2492">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Mon, Oct 11, 2010 at 11:04 AM, Jeffrey Shawn McKinzie
+&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">Jeff at jeffmckinzie.com</A>&gt; wrote:
+&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> On 10/10/10 6:15 PM, Matthias Andree wrote:
+</I>&gt;&gt;<i>
+</I>.
+.
+&gt;<i>
+</I>&gt;<i> I saw some reference to &quot;envelope 1 Received&quot; in the documents to tell
+</I>&gt;<i> fetchmail to skip the
+</I>&gt;<i> first received header look at the second header. &#160;I'm not sure if it goes in
+</I>&gt;<i> the fetchmailrc or
+</I>&gt;<i> on the command line when I launch fetchmail. &#160;When I've tried to mess around
+</I>&gt;<i> with it, fetchmail
+</I>&gt;<i> seems to try to look at the header but gives me an error that it cannot find
+</I>&gt;<i> the user and
+</I>&gt;<i> then forwards the emails to postmaster.
+</I>&gt;<i>
+</I>
+You can do it in your fetchmailrc like:
+
+poll ISP.pop3.host interval 1 envelope 1 Received
+   ...etc...
+
+&gt;<i> I think I'm close and hate to give up. &#160;Am I just not getting the syntax or
+</I>&gt;<i> is this truely impossible?
+</I>
+You're indeed close ... I was using 'envelope n Received' myself for a
+long time until I moved to an ISP with the correct headers in the
+messages.
+
+
+Willie
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002491.html">[fetchmail-users] multidrop RC configuration help
+</A></li>
+	<LI>Next message: <A HREF="002494.html">[fetchmail-users] multidrop RC configuration help
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2492">[ date ]</a>
+              <a href="thread.html#2492">[ thread ]</a>
+              <a href="subject.html#2492">[ subject ]</a>
+              <a href="author.html#2492">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

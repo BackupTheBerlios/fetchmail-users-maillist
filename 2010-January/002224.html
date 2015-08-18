@@ -1,0 +1,132 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] fetchmail certificates problem
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2010-January/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%20certificates%20problem&In-Reply-To=%3C4B54622F.5080104%40gmx.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002223.html">
+   <LINK REL="Next"  HREF="002225.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] fetchmail certificates problem</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%20certificates%20problem&In-Reply-To=%3C4B54622F.5080104%40gmx.de%3E"
+       TITLE="[fetchmail-users] fetchmail certificates problem">matthias.andree at gmx.de
+       </A><BR>
+    <I>Mon Jan 18 14:29:19 CET 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002223.html">[fetchmail-users] fetchmail certificates problem
+</A></li>
+        <LI>Next message: <A HREF="002225.html">[fetchmail-users] fetchmail certificates problem
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2224">[ date ]</a>
+              <a href="thread.html#2224">[ thread ]</a>
+              <a href="subject.html#2224">[ subject ]</a>
+              <a href="author.html#2224">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Am 18.01.2010 13:55, schrieb robert:
+
+&gt;<i> Also, there is a document README.SSL that ships with fetchmail (if it  
+</I>&gt;<i> doesn't, complain to your distributor) - which explains the OP's  
+</I>&gt;<i> &quot;certificate business&quot;. If people would use the existing documentation,  
+</I>&gt;<i> that'd answer surely at least half of their questions without waiting for  
+</I>&gt;<i> answers on lists...
+</I>&gt;<i> 
+</I>&gt;<i> -- Matthias Andree _______________________________________________ 
+</I>&gt;<i> fetchmail-users mailing list <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">fetchmail-users at lists.berlios.de</A> 
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">https://lists.berlios.de/mailman/listinfo/fetchmail-users</A>
+</I>&gt;<i> 
+</I>&gt;<i> i've read, but not thoroughly understood, README.SSL
+</I>&gt;<i> ca-certificates is already the newest version
+</I>
+Please help me improve the document -- what exactly remained unclear? Also try
+the latest version, currently at
+&lt;<A HREF="http://mknod.org/svn/fetchmail/branches/BRANCH_6-3/README.SSL">http://mknod.org/svn/fetchmail/branches/BRANCH_6-3/README.SSL</A>&gt;; I think I
+improved it after 6.3.8, but didn't check when exactly I did.
+
+&gt;<i> startup fetchmail writes the following to log:
+</I>&gt;<i> fetchmail: starting fetchmail 6.3.8 daemon
+</I>
+I can't support versions that old. Be sure that it was patched to close all
+known security issues, else compile the newest version from scratch. Also
+compile the newest version from scratch if the hints below don't help.
+
+&gt;<i> fetchmail: Server certificate verification error: unable to get local 
+</I>&gt;<i> issuer certificate
+</I>&gt;<i> 7311:error:14090086:SSL routines:SSL3_GET_SERVER_CERTIFICATE:certificate 
+</I>&gt;<i> verify failed:s3_clnt.c:951:
+</I>&gt;<i> fetchmail: SSL connection failed.
+</I>&gt;<i> fetchmail: socket error while fetching from 
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">mullinrobert at gmail.com</A>@pop.gmail.com
+</I>&gt;<i> fetchmail: Query status=2 (SOCKET)
+</I>&gt;<i> fetchmail: sleeping at Mon 18 Jan 2010 06:25:26 AM CST for 600 seconds
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> .fetchmailrc:
+</I>&gt;<i> set postmaster &quot;robert&quot;
+</I>&gt;<i> set daemon 600
+</I>&gt;<i> set logfile logs/fetchmail.log
+</I>&gt;<i> poll pop.gmail.com with proto POP3
+</I>&gt;<i>     user '<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">mullinrobert at gmail.com</A>' there with password 'xxxxxxxxxxxxx' is 
+</I>&gt;<i> robert here options ssl
+</I>&gt;<i>     sslcertck sslproto ssl3 sslcertpath /home/robert/.certs/
+</I>
+Try removing the sslcertpath option and its argument, or leave it in and specify
+the default path (this is needed on some older fetchmail releases); where the
+default path is usually /etc/ssl/certs or /usr/ssl/certs.
+
+&gt;<i> fetchmail -V reports:
+</I>&gt;<i> This is fetchmail release 6.3.8+GSS+NTLM+SDPS+SSL+NLS+KRB5.
+</I>&gt;<i>  
+</I>&gt;<i> .......
+</I>&gt;<i> 
+</I>&gt;<i> Fallback MDA: (none)
+</I>&gt;<i> Linux acer1 2.6.24-19-generic #1 SMP Wed Aug 20 22:56:21 UTC 2008 i686 
+</I>&gt;<i> GNU/Linux
+</I>&gt;<i> Taking options from command line and /home/robert/.fetchmailrc
+</I>&gt;<i> Poll interval is 600 seconds
+</I>&gt;<i> Logfile is /home/robert/logs/fetchmail.log
+</I>&gt;<i> 
+</I>&gt;<i> Idfile is /home/robert/.fetchids  ........................ I do not see 
+</I>&gt;<i> a ~/.fetchids file ...should I have one?
+</I>
+No, not in your case. It would be generated if and only if: you were keeping
+messages on the server AND you (or fetchmail) were using UIDL.
+
+HTH
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002223.html">[fetchmail-users] fetchmail certificates problem
+</A></li>
+	<LI>Next message: <A HREF="002225.html">[fetchmail-users] fetchmail certificates problem
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2224">[ date ]</a>
+              <a href="thread.html#2224">[ thread ]</a>
+              <a href="subject.html#2224">[ subject ]</a>
+              <a href="author.html#2224">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,98 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Using fetchmail to add &quot;X-UIDL:&quot; header?
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2008-June/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Using%20fetchmail%20to%20add%20%22X-UIDL%3A%22%20header%3F&In-Reply-To=%3C48500421.601%40redhat.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001567.html">
+   <LINK REL="Next"  HREF="001570.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Using fetchmail to add &quot;X-UIDL:&quot; header?</H1>
+    <B>Zak Brown</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Using%20fetchmail%20to%20add%20%22X-UIDL%3A%22%20header%3F&In-Reply-To=%3C48500421.601%40redhat.com%3E"
+       TITLE="[fetchmail-users] Using fetchmail to add &quot;X-UIDL:&quot; header?">zbrown at redhat.com
+       </A><BR>
+    <I>Wed Jun 11 18:58:09 CEST 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001567.html">[fetchmail-users] HOW to run more then one fetchmail for the	same ${USER}?
+</A></li>
+        <LI>Next message: <A HREF="001570.html">[fetchmail-users] .fetchids file doesn't grow pass the 2.0Meg size.
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1569">[ date ]</a>
+              <a href="thread.html#1569">[ thread ]</a>
+              <a href="subject.html#1569">[ subject ]</a>
+              <a href="author.html#1569">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>
+Hey Fetchmail list,
+
+I'm working on a large POP3 mail migration project (UW to Dovecot) where it's
+become critical to preserve the UIDLs from the old POP server for use with the
+new.  I can do this if I handle the migration using files, but considering how
+many mailboxes and how much mail is involved the downtime required to conduct
+the migration becomes a problem.
+
+I'm hoping to use fetchmail to grab mail from the old mail server and have it
+deliver on the new mail server.  This way I can start the migration while the
+old server is still in production, preserving mail and keeping track of UIDLs
+(fetchmail -p pop3 -k -U) and then during a short downtime do a final fetch and
+cut over.
+
+The problem is that all the UIDLs will change and all the pop messages will 
+appear as new on the new dovecot server.  If I could add the X-UIDL: header to 
+the messages when fetchmail grabs them then I could set Dovecot to honor the 
+UIDL listed in the message and the problem would be avoided.
+
+Is there a fetchmail patch out there that does this?
+
+Any clues would be appreciated, thank you.
+
+-- 
+Zak Brown, RHCE/RHCX
+Solutions Architect
+Red Hat, Inc.
+(310) 293-1949
+
+
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: signature.asc
+Type: application/pgp-signature
+Size: 259 bytes
+Desc: OpenPGP digital signature
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/fetchmail-users/attachments/20080611/2573efa8/attachment.pgp">https://lists.berlios.de/pipermail/fetchmail-users/attachments/20080611/2573efa8/attachment.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001567.html">[fetchmail-users] HOW to run more then one fetchmail for the	same ${USER}?
+</A></li>
+	<LI>Next message: <A HREF="001570.html">[fetchmail-users] .fetchids file doesn't grow pass the 2.0Meg size.
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1569">[ date ]</a>
+              <a href="thread.html#1569">[ thread ]</a>
+              <a href="subject.html#1569">[ subject ]</a>
+              <a href="author.html#1569">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

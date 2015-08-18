@@ -1,0 +1,136 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Fetchmail crash (SIGSERV)
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2006-March/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Fetchmail%20crash%20%28SIGSERV%29&In-Reply-To=%3C20060321133941.GA15128%40itc.tsu.ru%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000321.html">
+   <LINK REL="Next"  HREF="000325.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Fetchmail crash (SIGSERV)</H1>
+    <B>Voldemar</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Fetchmail%20crash%20%28SIGSERV%29&In-Reply-To=%3C20060321133941.GA15128%40itc.tsu.ru%3E"
+       TITLE="[fetchmail-users] Fetchmail crash (SIGSERV)">deka at itc.tsu.ru
+       </A><BR>
+    <I>Tue Mar 21 14:39:41 CET 2006</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000321.html">[fetchmail-users] fetchmail 6.3.3.rc2 release candidate
+</A></li>
+        <LI>Next message: <A HREF="000325.html">[fetchmail-users] Fetchmail crash (SIGSERV)
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#323">[ date ]</a>
+              <a href="thread.html#323">[ thread ]</a>
+              <a href="subject.html#323">[ subject ]</a>
+              <a href="author.html#323">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Fetchmail crash (SIGSERV)
+
+Hello !
+
+$ uname -a                                                                      
+FreeBSD netadmin.ssmu.ru 4.11-RELEASE FreeBSD 4.11-RELEASE #3: Wed Aug 17 10:31:
+07 OMSST 2005     <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">root at netadmin.ssmu.ru</A>:/usr/src/sys/compile/netadmin  i386
+
+fetchmail-6.3.2_1
+Build from FreeBSD-ports (from source)
+
+$ gcc -v                                 
+Using builtin specs.                     
+gcc version 2.95.4 20020320 [FreeBSD]    
+
+$ fetchmail -V
+This is fetchmail release 6.3.2+POP2+RPA+SDPS+SSL+OPIE+NLS.
+
+$ cat .fetchmailrc
+poll inet.tsu.ru    
+timeout 120         
+protocol pop3       
+user deka           
+pass ****
+                    
+poll pop3.mail.ru   
+timeout 180         
+protocol pop3       
+user vega0          
+pass ****
+                    
+poll 212.192.112.206
+timeout 30          
+protocol pop3       
+user deka           
+pass ****
+
+$ fetchmail                                                     
+fetchmail: No mail for deka at inet.tsu.ru                      
+POP3 connection to pop3.mail.ru failed: Connection refused      
+fetchmail: Query status=2 (SOCKET)                              
+Segmentation fault                                              
+
+$ gdb fetchmail
+...[skip]...
+Program received signal SIGSEGV, Segmentation fault.
+0x8061c20 in xstrdup (s=0x0) at xmalloc.c:56
+56          p = (char *) xmalloc(strlen(s)+1);
+(gdb) backtrace
+#0  0x8061c20 in xstrdup (s=0x0) at xmalloc.c:56
+#1  0x805478d in do_session (ctl=0x8081600, proto=0x80642c0, maxfetch=0) at driver.c:1030
+#2  0x8055573 in do_protocol (ctl=0x8081600, proto=0x80642c0) at driver.c:1630
+#3  0x804bf6e in doPOP3 (ctl=0x8081600) at pop3.c:1304
+#4  0x80501cd in query_host (ctl=0x8081600) at fetchmail.c:1403
+#5  0x804eac4 in main (argc=1, argv=0xbfbffb10) at fetchmail.c:685
+
+It seems to me, the function getaddrinfo returns 0 (no error),
+but thus res-&gt;ai_canonname == 0, that leads SIGSERV at attempt
+strcpy(0) in xmalloc.c:xstrdup.
+
+I do not know, whether is a mistake: fetchmail or incorrect behaviour libc.
+My variant of patch (not assured of its correctness,
+however fetchmail starts to work normally):
+
+$ diff driver.c ../driver.c
+1030c1030,1034                                                               
+&lt;                   ctl-&gt;server.truename = xstrdup(res-&gt;ai_canonname);       
+---                                                                          
+&gt;<i>                   if (res-&gt;ai_canonname) {                                 
+</I>&gt;<i>                     ctl-&gt;server.truename = xstrdup(res-&gt;ai_canonname);     
+</I>&gt;<i>                   } else {                                                 
+</I>&gt;<i>                     ctl-&gt;server.truename = xstrdup(ctl-&gt;server.queryname); 
+</I>&gt;<i>                   };      
+</I>
+Excuse me, if to you already informed on this mistake. Thanks 
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000321.html">[fetchmail-users] fetchmail 6.3.3.rc2 release candidate
+</A></li>
+	<LI>Next message: <A HREF="000325.html">[fetchmail-users] Fetchmail crash (SIGSERV)
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#323">[ date ]</a>
+              <a href="thread.html#323">[ thread ]</a>
+              <a href="subject.html#323">[ subject ]</a>
+              <a href="author.html#323">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

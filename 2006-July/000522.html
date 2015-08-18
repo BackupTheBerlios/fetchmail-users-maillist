@@ -1,0 +1,162 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Fwd: [fetchmail]Multidrop fetchmail bouncing	non-existing local addresses
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2006-July/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Fwd%3A%20%5Bfetchmail%5DMultidrop%20fetchmail%20bouncing%0A%09non-existing%20local%20addresses&In-Reply-To=%3Cde89fe2f0607170843l7f2c26a8oa18853082747132e%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000520.html">
+   <LINK REL="Next"  HREF="000523.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Fwd: [fetchmail]Multidrop fetchmail bouncing	non-existing local addresses</H1>
+    <B>Andy Hawkins</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Fwd%3A%20%5Bfetchmail%5DMultidrop%20fetchmail%20bouncing%0A%09non-existing%20local%20addresses&In-Reply-To=%3Cde89fe2f0607170843l7f2c26a8oa18853082747132e%40mail.gmail.com%3E"
+       TITLE="[fetchmail-users] Fwd: [fetchmail]Multidrop fetchmail bouncing	non-existing local addresses">adhawkins at gmail.com
+       </A><BR>
+    <I>Mon Jul 17 17:43:43 CEST 2006</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000520.html">[fetchmail-users] Has anyone ever seen &quot;Fetchmail saw more than	N timouts while attempting to get mail from ...&quot;
+</A></li>
+        <LI>Next message: <A HREF="000523.html">[fetchmail-users] Fwd: [fetchmail]Multidrop fetchmail bouncing	non-existing local addresses
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#522">[ date ]</a>
+              <a href="thread.html#522">[ thread ]</a>
+              <a href="subject.html#522">[ subject ]</a>
+              <a href="author.html#522">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+
+On 7/17/06, Rob MacGregor &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">rob.macgregor at gmail.com</A>&gt; wrote:
+&gt;<i> These lists are depreciated - please use the lists found at www.fetchmail.info
+</I>
+Should we continue this here for now, or move to there?
+
+&gt;<i> On 7/17/06, Andy Hawkins &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">adhawkins at gmail.com</A>&gt; wrote:
+</I>&gt;<i> Upgrade to 6.3.4
+</I>
+Ok, didn't want to do that as it involves building from source, but
+I've done that now.
+
+&gt;<i> Spam messages almost never have a legit return address.  All you'll
+</I>&gt;<i> end up doing is annoying some poor innocent sod, and possibly becoming
+</I>&gt;<i> a spam source yourself.  Better to drop them on the floor.
+</I>
+True, but I want legitimate mail (but with invalid addresses) to be
+bounced so that the sender knows they've got it wrong.
+
+&gt;<i> Otherwise, once you've upgraded to 6.3.4 please submit the output of
+</I>&gt;<i> &quot;fetchmail -v -v -v&quot; showing the problem.
+</I>
+This is the config:
+
+set bouncemail
+poll xxx.xxx.xxx.xxx
+       protocol pop3
+       envelope 1 &quot;Delivered-To&quot;
+       qvirtual &quot;45-&quot;
+       localdomains xxx.xxx.xxx
+       username <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">xxx at xxx.xxx.xxx</A> password &quot;xxxxxx&quot; is * here
+       nokeep smtpaddress zzz.zzz.zzz
+Below:
+
+fetchmail: POP3&gt; RETR 7
+fetchmail: POP3&lt; +OK 475 octets follow.
+reading message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">xxx at xxx.xxx.xxx</A>@yyy.yyy:7 of 7 (475 octets)
+About to rewrite Return-Path: &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">yyy at yyy.yyy</A>&gt;
+Rewritten version is Return-Path: &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">yyy at yyy.yyy</A>&gt;
+
+About to rewrite From: <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">yyy at yyy.yyy</A>
+Rewritten version is From: <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">yyy at yyy.yyy</A>
+
+About to rewrite To: <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">xxx at xxx.xxx</A>
+Rewritten version is To: <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">xxx at xxx.xxx</A>
+
+fetchmail: passed through <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">xxx at xxx.xxx</A> matching xxx.xxx.xxx
+fetchmail: SMTP&lt; 220 zzz.zzz.zzz ESMTP Exim 4.50 Mon, 17 Jul 2006 16:15:41 +0100
+fetchmail: SMTP&gt; EHLO zzz.zzz.zzz
+fetchmail: SMTP&lt; 250-zzz.zzz.zzz Hello localhost [127.0.0.1]
+fetchmail: SMTP&lt; 250-SIZE 52428800
+fetchmail: SMTP&lt; 250-PIPELINING
+fetchmail: SMTP&lt; 250 HELP
+fetchmail: forwarding to localhost
+fetchmail: SMTP&gt; MAIL FROM:&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">xxx at xxx.xxx</A>&gt; SIZE=475
+fetchmail: SMTP&lt; 250 OK
+fetchmail: SMTP&gt; RCPT TO:&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">yyy at yyy.yyy</A>&gt;
+fetchmail: SMTP&lt; 550 unknown user
+fetchmail: SMTP error: 550 unknown user
+fetchmail: SMTP listener doesn't like recipient address `<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">yyy at yyy.yyy</A>'
+fetchmail: SMTP&lt; 220 zzz.zzz.zzz ESMTP Exim 4.50 Mon, 17 Jul 2006 16:15:41 +0100
+fetchmail: SMTP&gt; HELO zzz.zzz.zzz
+fetchmail: SMTP&lt; 250 zzz.zzz.zzz Hello localhost [127.0.0.1]
+fetchmail: SMTP&gt; MAIL FROM:&lt;&gt;
+fetchmail: SMTP&lt; 250 OK
+fetchmail: SMTP&gt; RCPT TO:&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">xxx at xxx.xxx</A>&gt;
+fetchmail: SMTP&lt; 250 Accepted
+fetchmail: SMTP&gt; DATA
+fetchmail: SMTP&lt; 354 Enter message, ending with &quot;.&quot; on a line by itself
+fetchmail: SMTP: (bounce-message body)
+fetchmail: SMTP&gt;. (EOM)
+fetchmail: SMTP&lt; 250 OK id=1G2Uov-0005GD-HY
+fetchmail: SMTP&gt; QUIT
+fetchmail: SMTP&lt; 221 zzz.zzz.zzz closing connection
+fetchmail: SMTP&gt; RCPT TO:&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">postmaster at zzz.zzz.zzz</A>&gt;
+fetchmail: SMTP&lt; 250 Accepted
+fetchmail: no address matches; forwarding to postmaster.
+fetchmail: SMTP&gt; DATA
+fetchmail: SMTP&lt; 354 Enter message, ending with &quot;.&quot; on a line by itself
+#*fetchmail: SMTP&gt;. (EOM)
+fetchmail: SMTP&lt; 250 OK id=1G2Uov-0005GC-Kh
+ not flushed
+fetchmail: POP3&gt; QUIT
+fetchmail: POP3&lt; +OK Bye-bye.
+fetchmail: SMTP&gt; QUIT
+fetchmail: SMTP&lt; 221 zzz.zzz.zzz closing connection
+fetchmail: 6.3.4 querying yyy.yyy.yyy (protocol POP3) at Mon Jul 17
+16:15:41 2006: poll completed
+fetchmail: swapping UID lists
+fetchmail: Writing fetchids file.
+fetchmail: normal termination, status 0
+fetchmail: Writing fetchids file.
+
+It looks like it has sent a bounce, but still forwarded the mail to
+the postmaster.
+
+Any ideas?
+
+Andy
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000520.html">[fetchmail-users] Has anyone ever seen &quot;Fetchmail saw more than	N timouts while attempting to get mail from ...&quot;
+</A></li>
+	<LI>Next message: <A HREF="000523.html">[fetchmail-users] Fwd: [fetchmail]Multidrop fetchmail bouncing	non-existing local addresses
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#522">[ date ]</a>
+              <a href="thread.html#522">[ thread ]</a>
+              <a href="subject.html#522">[ subject ]</a>
+              <a href="author.html#522">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

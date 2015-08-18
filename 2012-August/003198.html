@@ -1,0 +1,102 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] fetchmail gotcha, one that needs fixed I believe
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2012-August/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%20gotcha%2C%20one%20that%20needs%20fixed%20I%20believe&In-Reply-To=%3C201208011154.07963.gheskett%40wdtv.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   
+   <LINK REL="Next"  HREF="003199.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] fetchmail gotcha, one that needs fixed I believe</H1>
+    <B>Gene Heskett</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%20gotcha%2C%20one%20that%20needs%20fixed%20I%20believe&In-Reply-To=%3C201208011154.07963.gheskett%40wdtv.com%3E"
+       TITLE="[fetchmail-users] fetchmail gotcha, one that needs fixed I believe">gheskett at wdtv.com
+       </A><BR>
+    <I>Wed Aug  1 17:53:42 CEST 2012</I>
+    <P><UL>
+        
+        <LI>Next message: <A HREF="003199.html">[fetchmail-users] fetchmail gotcha,	one that needs fixed I believe
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3198">[ date ]</a>
+              <a href="thread.html#3198">[ thread ]</a>
+              <a href="subject.html#3198">[ subject ]</a>
+              <a href="author.html#3198">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Greetings;
+
+Ping!  No echo from the mailing list server in nearly a day, is it a black 
+hole?
+
+New member of this list, but long time, very long time, user of fetchmail.
+Current version.
+
+I also use mailfilter-0.8.2 in my attempts to control the spam that qmail 
+lets through.
+
+One of the mail servers I have a lifetime access to is running qmail, and 
+it will occasionally cause mailfilter to output a usually bogus bad 
+timestamp error and bail out, returning a -1 which causes fetchmail to 
+report a syntax error and skip the fetch.  
+
+If mailfilter is launched with the -r option on the cli, it returns the 
+number of good msgs to pull.  Seems rather handy.
+
+However, any non-zero return seems to be interpreted by fetchmail, freshly 
+downloaded and built 3 days back, as a failure.
+
+It should, IMO treat any zero _or_ _positive_ _value_ as success.
+So, in order to stop hammering the servers by doing a double poll but 
+without the preconnect option the 2nd time, I have had to write wrapper 
+scripts that gobble up mailfilters return value so that the defective msgs 
+is pulled, otherwise that server never gets the bad msg pulled.  This is 
+true even if I remove the -r from the mailfilter invocation wrapper.
+
+Can this be fixed in a subsequent fetchmail release?
+
+Thank you.
+
+Cheers, Gene
+-- 
+&quot;There are four boxes to be used in defense of liberty:
+ soap, ballot, jury, and ammo. Please use in that order.&quot;
+-Ed Howdershelt (Author)
+My web page: &lt;<A HREF="http://coyoteden.dyndns-free.com:85/gene">http://coyoteden.dyndns-free.com:85/gene</A>&gt; is up!
+I stopped believing in Santa Claus when I was six.  Mother took me to
+see him in a department store and he asked for my autograph.
+		-- Shirley Temple
+
+</PRE>
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	
+	<LI>Next message: <A HREF="003199.html">[fetchmail-users] fetchmail gotcha,	one that needs fixed I believe
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3198">[ date ]</a>
+              <a href="thread.html#3198">[ thread ]</a>
+              <a href="subject.html#3198">[ subject ]</a>
+              <a href="author.html#3198">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

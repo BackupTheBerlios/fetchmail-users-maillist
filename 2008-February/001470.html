@@ -1,0 +1,159 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Fetchmail not collecting HTML messages using	IMAP
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2008-February/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Fetchmail%20not%20collecting%20HTML%20messages%20using%0A%09IMAP&In-Reply-To=%3C932d4ef50802181527u942a25dg7a107286064a613c%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001469.html">
+   <LINK REL="Next"  HREF="001471.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Fetchmail not collecting HTML messages using	IMAP</H1>
+    <B>Barnaby Garrett</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Fetchmail%20not%20collecting%20HTML%20messages%20using%0A%09IMAP&In-Reply-To=%3C932d4ef50802181527u942a25dg7a107286064a613c%40mail.gmail.com%3E"
+       TITLE="[fetchmail-users] Fetchmail not collecting HTML messages using	IMAP">barney at telinformix.com
+       </A><BR>
+    <I>Tue Feb 19 00:27:23 CET 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001469.html">[fetchmail-users] Fetchmail not collecting HTML messages using	IMAP
+</A></li>
+        <LI>Next message: <A HREF="001471.html">[fetchmail-users] Redirecting/forwarding emails to Gmail
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1470">[ date ]</a>
+              <a href="thread.html#1470">[ thread ]</a>
+              <a href="subject.html#1470">[ subject ]</a>
+              <a href="author.html#1470">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Thanks for your help  I've done some more testing and it appears you are
+right ... if I install fetchmail on a linux box and deliver to sendmail it
+works fine.
+Barney
+
+On 2/18/08, Rob MacGregor &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">rob.macgregor at gmail.com</A>&gt; wrote:
+&gt;<i>
+</I>&gt;<i> On Feb 18, 2008 9:14 PM, Barnaby Garrett &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">barney at telinformix.com</A>&gt; wrote:
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; It might not know about the content but I've tested with plain text
+</I>&gt;<i> &gt; (with and without attachments), rich text and html emails and it only
+</I>&gt;<i> &gt; affects html ones.
+</I>&gt;<i> &gt; It looks to me like something about the way the google IMAP servers
+</I>&gt;<i> &gt; respond to the request for a message causes fetchmail to not send the
+</I>&gt;<i> &gt; &lt;EOM&gt; to the SMTP server causing a timeout.
+</I>&gt;<i>
+</I>&gt;<i> Have you done a tcpdump/wireshark/whatever to confirm this?
+</I>&gt;<i>
+</I>&gt;<i> I'm just saying that I've *never* seen a case where fetchmail changed
+</I>&gt;<i> *it's* behaviour because of the content.  How other servers behave is
+</I>&gt;<i> beyond fetchmail's control.
+</I>&gt;<i> &gt; Indeed but why does it only happen when the message is picked up using
+</I>&gt;<i> &gt; IMAP ?  Same message gets delivered to the SMTP server fine when
+</I>&gt;<i> &gt; picked up using POP3
+</I>&gt;<i>
+</I>&gt;<i> I don't know - ask your Exchange server ;)
+</I>&gt;<i>
+</I>&gt;<i> &gt; Yep running under Cygwin on Windows server 2003 ( The same one that is
+</I>&gt;<i> &gt; running the Exchange server )
+</I>&gt;<i>
+</I>&gt;<i> Known to be problematic - I would highly recommend that you run
+</I>&gt;<i> fetchmail on a *nix box (even if only under VMWare).
+</I>&gt;<i>
+</I>&gt;<i> &gt; Logs from fetchmail :
+</I>&gt;<i> &gt; fetchmail: 6.3.6 querying imap.googlemail.com (protocol IMAP) at Mon
+</I>&gt;<i>
+</I>&gt;<i> You could try upgrading to 6.3.8, though I doubt it'll help.  You may
+</I>&gt;<i> want to search the archive for other cygwin posts as there may have
+</I>&gt;<i> been suggestions posted that can help.
+</I>&gt;<i>
+</I>&gt;<i> &lt;---SNIP---&gt;
+</I>&gt;<i> &gt; fetchmail: IMAP&lt; * 7 FETCH (RFC822.HEADER {1445}
+</I>&gt;<i> &gt; reading message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">USER at DOMAIN.COM</A>@googlemail-imap.l.google.com:7 of 11
+</I>&gt;<i> &gt; (1445 header octets)
+</I>&gt;<i> &gt; About to rewrite Return-Path: &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">SENDER at SENDER.DOMAIN.COM</A>&gt;
+</I>&gt;<i> &lt;---SNIP---&gt;
+</I>&gt;<i> &gt; Trying to connect to 127.0.0.1/25...connected.
+</I>&gt;<i> &gt; fetchmail: SMTP&lt; 220 HOST.DOMAIN.COM Microsoft ESMTP MAIL Service,
+</I>&gt;<i> &gt; Version: 6.0.3790.3959 ready at  Mon, 18 Feb 2008 20:45:53 +0000
+</I>&gt;<i> &gt; fetchmail: SMTP&gt; EHLO HOST.DOMAIN.COM
+</I>&gt;<i> &gt; fetchmail: SMTP&lt; 250-HOST.DOMAIN.COM Hello [127.0.0.1]
+</I>&gt;<i> &lt;---SNIP---&gt;
+</I>&gt;<i> &gt; fetchmail: SMTP&lt; 250 OK
+</I>&gt;<i> &gt; fetchmail: forwarding to localhost
+</I>&gt;<i> &gt; fetchmail: SMTP&gt; MAIL FROM:&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">SENDER at SENDER.DOMAIN.COM</A>&gt; BODY=7BIT
+</I>&gt;<i> &gt; SIZE=1570
+</I>&gt;<i> &gt; fetchmail: SMTP&lt; 250 2.1.0 <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">SENDER at SENDER.DOMAIN.COM....Sender</A> OK
+</I>&gt;<i> &gt; fetchmail: SMTP&gt; RCPT TO:&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">USER at DOMAIN.COM</A>&gt;
+</I>&gt;<i> &gt; fetchmail: SMTP&lt; 250 2.1.5 <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">USER at DOMAIN.COM</A>
+</I>&gt;<i> &gt; fetchmail: SMTP&gt; DATA
+</I>&gt;<i> &gt; fetchmail: SMTP&lt; 354 Start mail input; end with &lt;CRLF&gt;.&lt;CRLF&gt;
+</I>&gt;<i> &gt; fetchmail: IMAP&lt; )
+</I>&gt;<i> &gt; fetchmail: IMAP&lt; A0006 OK Success
+</I>&gt;<i> &gt; fetchmail: IMAP&gt; A0007 FETCH 7 BODY.PEEK[TEXT]
+</I>&gt;<i> &gt; fetchmail: IMAP&lt; * 7 FETCH (BODY[TEXT] {130}
+</I>&gt;<i> &gt;   (130 body octets)fetchmail: IMAP&lt; )
+</I>&gt;<i> &gt; fetchmail: IMAP&lt; A0007 OK Success
+</I>&gt;<i> &gt; fetchmail: message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">USER at DOMAIN.COM</A>@googlemail-imap.l.google.com:7 was
+</I>&gt;<i> &gt; not the expected length (1575 actual != 1570 expected)
+</I>&gt;<i> &gt; fetchmail: SMTP&gt;. (EOM)
+</I>&gt;<i> &gt; smtp listener protocol error
+</I>&gt;<i> &gt;   not flushed
+</I>&gt;<i>
+</I>&gt;<i> Ok, Fetchmail got the body (generated a warning to the effect that the
+</I>&gt;<i> body was 5 bytes longer than expected), everything else looks fine.
+</I>&gt;<i>
+</I>&gt;<i> I think you need to run packet capture to see exactly what's going on
+</I>&gt;<i> between fetchmail and Exchange.  From what you've posted fetchmail
+</I>&gt;<i> isn't badly configured and it looks like it's behaving correctly.
+</I>&gt;<i>
+</I>&gt;<i> If it helps, I've just run fetchmail (6.3.8) against GMail's IMAP
+</I>&gt;<i> server from a FreeBSD host and pulled down 10 emails (all passed to my
+</I>&gt;<i> local Sendmail server), most of which were at least mixed plain/HTML
+</I>&gt;<i> and some of which were pure HTML - supporting my statement that
+</I>&gt;<i> fetchmail doesn't change it's behaviour depending on the content of
+</I>&gt;<i> the email.
+</I>&gt;<i>
+</I>&gt;<i> --
+</I>&gt;<i>                  Please keep list traffic on the list.
+</I>&gt;<i>
+</I>&gt;<i> Rob MacGregor
+</I>&gt;<i>       Whoever fights monsters should see to it that in the process he
+</I>&gt;<i>         doesn't become a monster.                  Friedrich Nietzsche
+</I>&gt;<i> _______________________________________________
+</I>&gt;<i> fetchmail-users mailing list
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">fetchmail-users at lists.berlios.de</A>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">https://lists.berlios.de/mailman/listinfo/fetchmail-users</A>
+</I>&gt;<i>
+</I>
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001469.html">[fetchmail-users] Fetchmail not collecting HTML messages using	IMAP
+</A></li>
+	<LI>Next message: <A HREF="001471.html">[fetchmail-users] Redirecting/forwarding emails to Gmail
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1470">[ date ]</a>
+              <a href="thread.html#1470">[ thread ]</a>
+              <a href="subject.html#1470">[ subject ]</a>
+              <a href="author.html#1470">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

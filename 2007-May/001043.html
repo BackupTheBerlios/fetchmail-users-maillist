@@ -1,0 +1,125 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Error messages with fetchmail 6.3.8
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2007-May/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Error%20messages%20with%20fetchmail%206.3.8&In-Reply-To=%3C43ea8d070705141131u25f103c3qce125c2462ae9dbd%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001042.html">
+   <LINK REL="Next"  HREF="001044.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Error messages with fetchmail 6.3.8</H1>
+    <B>Rob MacGregor</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Error%20messages%20with%20fetchmail%206.3.8&In-Reply-To=%3C43ea8d070705141131u25f103c3qce125c2462ae9dbd%40mail.gmail.com%3E"
+       TITLE="[fetchmail-users] Error messages with fetchmail 6.3.8">rob.macgregor at gmail.com
+       </A><BR>
+    <I>Mon May 14 20:31:53 CEST 2007</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001042.html">[fetchmail-users] Error messages with fetchmail 6.3.8
+</A></li>
+        <LI>Next message: <A HREF="001044.html">[fetchmail-users] Error messages with fetchmail 6.3.8
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1043">[ date ]</a>
+              <a href="thread.html#1043">[ thread ]</a>
+              <a href="subject.html#1043">[ subject ]</a>
+              <a href="author.html#1043">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On 5/14/07, Pongthep Kulkrisada &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">ptkrisada at gmail.com</A>&gt; wrote:
+&gt;<i> &gt; Pongthep, the easiest way for FreeBSD installations of fetchmail is to use
+</I>&gt;<i> &gt; the FreeBSD port - but your installation went apparently right anyways,
+</I>&gt;<i> &gt; except for the SSL certificates.
+</I>&gt;<i> I dont know about SSL certificates.
+</I>&gt;<i> Once I just cd /usr/ports/mail/fetchmail and make install. It brought me the old version. I don't know how to use cvsup. Once I read handbook, it came with tonnes of documentation, I just don't understand only confuse I got. So I downloaded a tarball and compiled from source. I am a noobie.
+</I>
+Ok, simply, as root:
+
+1) pkg_add -r cvsup-without-gui
+2) cp /usr/share/examples/cvsup/ports-supfile /root
+3) vi /root/ports-supfile
+    (or use your favourite text editor, if you're not comfortable with any do:
+        sed &quot;s/CHANGE_THIS/cvsup3/&quot; /root/ports-supfile &gt; /root/my-ports-supfile
+        mv /root/my-ports-supfile /root/ports-supfile
+4) cvsup /root/ports-supfile
+
+Repeat command (4) when you're expecting to install or update software
+- at most daily.
+
+I'd recommend portsnap instead personally, but cvsup is easier to get
+going with initially (pre FreeBSD 6).  Don't overlook help from the
+various freebsd mailing lists (including freebsd-questions) - people
+there are generally helpful.
+
+The FreeBSD manual goes into more detail:
+
+<A HREF="http://www.freebsd.org/doc/handbook/ports-using.html">http://www.freebsd.org/doc/handbook/ports-using.html</A>
+
+It is available in more than English, but I not many and I don't know
+what languages you read.
+
+&gt;<i> What is root certificate? please give me a bit of more details.
+</I>
+I'd suggest a look at the Wikipedia article for &quot;ssl certificate&quot; as
+without knowing how much you know there's a risk of making it too
+simple (and boring you) or assuming too much (and confusing you) :-)
+
+    <A HREF="http://en.wikipedia.org/wiki/Ssl_certificate#Security">http://en.wikipedia.org/wiki/Ssl_certificate#Security</A>
+
+(very) briefly a certificate is a way of being certain that a host is
+what it claims to be (eg mail.google.com).  There are different types,
+with a root certificate being able of validating other certificates.
+
+&gt;<i> Can you please give me a brief example of --sslcertck? I did not find it in the provided handbook or man pages.
+</I>
+It *is* detailed in at least the online manual:
+
+ <A HREF="http://www.fetchmail.info/fetchmail-man.html">http://www.fetchmail.info/fetchmail-man.html</A>
+
+&gt;<i> Shall I just cd /usr/ports/security/ca-roots and make install?
+</I>
+Yes, but update your ports first.
+
+&gt;<i> How to obtain the new version?
+</I>
+See the details on use of cvsup above.
+
+-- 
+                 Please keep list traffic on the list.
+
+Rob MacGregor
+      Whoever fights monsters should see to it that in the process he
+        doesn't become a monster.                  Friedrich Nietzsche
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001042.html">[fetchmail-users] Error messages with fetchmail 6.3.8
+</A></li>
+	<LI>Next message: <A HREF="001044.html">[fetchmail-users] Error messages with fetchmail 6.3.8
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1043">[ date ]</a>
+              <a href="thread.html#1043">[ thread ]</a>
+              <a href="subject.html#1043">[ subject ]</a>
+              <a href="author.html#1043">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

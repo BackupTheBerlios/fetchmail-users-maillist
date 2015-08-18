@@ -1,0 +1,134 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] [BUG] fetchmail daemon does not resume fetching after a network outage
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2006-June/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20%5BBUG%5D%20fetchmail%20daemon%20does%20not%20resume%20fetching%20after%20a%20network%20outage&In-Reply-To=%3Cm3odweqf7p.fsf%40merlin.emma.line.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000462.html">
+   <LINK REL="Next"  HREF="000466.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] [BUG] fetchmail daemon does not resume fetching after a network outage</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20%5BBUG%5D%20fetchmail%20daemon%20does%20not%20resume%20fetching%20after%20a%20network%20outage&In-Reply-To=%3Cm3odweqf7p.fsf%40merlin.emma.line.org%3E"
+       TITLE="[fetchmail-users] [BUG] fetchmail daemon does not resume fetching after a network outage">matthias.andree at gmx.de
+       </A><BR>
+    <I>Wed Jun 28 02:46:50 CEST 2006</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000462.html">[fetchmail-users] [BUG] fetchmail daemon does not resume fetching after a network outage
+</A></li>
+        <LI>Next message: <A HREF="000466.html">[fetchmail-users] [BUG] fetchmail daemon does not resume fetching after a network outage
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#463">[ date ]</a>
+              <a href="thread.html#463">[ thread ]</a>
+              <a href="subject.html#463">[ subject ]</a>
+              <a href="author.html#463">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Uli Zappe &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">uli at ritual.org</A>&gt; writes:
+
+&gt;<i> When getaddrinfo() is called while the Internet is down, it may take
+</I>&gt;<i> quite some time until it returns the respective error. Now, if the
+</I>&gt;<i> &quot;timeout&quot; variable in fetchmail is set to a value shorter than this
+</I>&gt;<i> time that getaddrinfo() needs, a call to SockOpen() (socket.c, line
+</I>&gt;<i> 266) from (at least) line 1053 in driver.c will be interrupted by the
+</I>&gt;<i> timeout signal handler. In this situation, freeaddrinfo() (line 311  in
+</I>&gt;<i> socket.c) will never be called to close ai0 correctly. This, in  turn,
+</I>&gt;<i> seems to produce the corrupted behavior of future getaddrinfo()  calls
+</I>&gt;<i> (at least in Mac OS X's implementation).
+</I>
+I haven't yet investigated all details, but your research looks valuable
+and plausible, thank you!
+
+While I'll certainly plug the leak (it may take until the week-end
+though), there might still be a related MacOS X bug.  There is no
+obligation to call freeaddrinfo() before calling getaddrinfo() again,
+plus this function is required to be thread-safe (i. e. it needs to be
+reentrant). However, you say that the problems happen after a certain...
+
+&gt;<i> In my test case, getaddrinfo() may need up to 180s to time out. However,
+</I>&gt;<i> I had set fetchmail's &quot;timeout&quot; parameter to only 60s. In my  tests,
+</I>&gt;<i> during the time when the Internet connection was down, at  least one
+</I>&gt;<i> &quot;timeout after 60 seconds waiting to connect to server xy&quot;  did indeed
+</I>&gt;<i> appear in the log for each server.
+</I>
+...amount of time. Can you check with &quot;lsof&quot; or similar tools (that can
+list open files and sockets) how many files and sockets fetchmail holds
+open at the time when the problems start? It might be that the OS itself
+is leaking sockets here which might appear in fetchmail's address space.
+
+&gt;<i> I have now set fetchmail's &quot;timeout&quot; variable to 6000 and repeated my
+</I>&gt;<i> tests. No timeout message occurred, and after the Internet connection
+</I>&gt;<i> was up again, fetchmail resumed fetching mails just as it should.
+</I>&gt;<i>
+</I>&gt;<i> So I'm quite sure that's the bug: Care must be taken that freeaddrinfo
+</I>&gt;<i> () is called even if SockOpen() is interrupted by a timeout.
+</I>
+Certainly, and to avoid leaking memory on disconnected computers would
+be reason enough to justify such a fix.
+
+&gt;<i> So you must either make ai0 a global variable (which won't work if you
+</I>&gt;<i> plan to make fetchmail open more than one socket simultaneously), or
+</I>&gt;<i> declare it in the calling code (driver.c or whatever) and pass it to
+</I>&gt;<i> SockOpen.
+</I>
+&quot;you'll have to&quot; or &quot;you may have to&quot; sounds more polite than &quot;you must&quot;
+(no offense taken, don't worry).
+
+&gt;<i> My question now is how to proceed. Since you definitely know fetchmail's
+</I>&gt;<i> code much better than I do, it would make sense that you  fix the bug in
+</I>&gt;<i> all places where it might occur.
+</I>
+Bugs related to signal handling (which is used for timeout handling)
+require extra care. I myself will have to review the code again before
+making changes in that area.
+
+&gt;<i> However, since the bug is crucial at least for me, I'd need a fix
+</I>&gt;<i> soon. So do you think you will come up with a fix in a short amount of
+</I>&gt;<i> time, of should I provide a fix temporarily (but I will probably
+</I>&gt;<i> overlook some of the situations where this bug might possibly occur -
+</I>&gt;<i> so far I'm only aware of driver.c line 1053 calling SockOpen())?
+</I>
+I don't think I'll be able to handle this before Saturday, perhaps
+Sunday; but providing patches for you to test should be feasible.
+
+Note that I don't have MacOS X machines to test on either.
+
+Thank you!
+
+-- 
+Matthias Andree
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000462.html">[fetchmail-users] [BUG] fetchmail daemon does not resume fetching after a network outage
+</A></li>
+	<LI>Next message: <A HREF="000466.html">[fetchmail-users] [BUG] fetchmail daemon does not resume fetching after a network outage
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#463">[ date ]</a>
+              <a href="thread.html#463">[ thread ]</a>
+              <a href="subject.html#463">[ subject ]</a>
+              <a href="author.html#463">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

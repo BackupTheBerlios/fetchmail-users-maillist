@@ -1,0 +1,114 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] unable to get local issuer certificate
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2008-September/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20unable%20to%20get%20local%20issuer%20certificate&In-Reply-To=%3Cm3bpyqddrc.fsf%40merlin.emma.line.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001686.html">
+   <LINK REL="Next"  HREF="001710.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] unable to get local issuer certificate</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20unable%20to%20get%20local%20issuer%20certificate&In-Reply-To=%3Cm3bpyqddrc.fsf%40merlin.emma.line.org%3E"
+       TITLE="[fetchmail-users] unable to get local issuer certificate">matthias.andree at gmx.de
+       </A><BR>
+    <I>Sun Sep 14 16:05:11 CEST 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001686.html">[fetchmail-users] unable to get local issuer certificate
+</A></li>
+        <LI>Next message: <A HREF="001710.html">[fetchmail-users] unable to get local issuer certificate
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1687">[ date ]</a>
+              <a href="thread.html#1687">[ thread ]</a>
+              <a href="subject.html#1687">[ subject ]</a>
+              <a href="author.html#1687">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Andy Malato &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">andym at oak.njit.edu</A>&gt; writes:
+
+&gt;<i> ! Date: Fri, 12 Sep 2008 18:23:39 +0200
+</I>&gt;<i> ! From: Matthias Andree &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">matthias.andree at gmx.de</A>&gt;
+</I>&gt;<i> ! To: <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">fetchmail-users at lists.berlios.de</A>
+</I>&gt;<i> ! Subject: Re: [fetchmail-users] unable to get local issuer certificate
+</I>&gt;<i> !
+</I>&gt;<i> ! Andy Malato schrieb:
+</I>&gt;<i> ! &gt; Hello All,
+</I>&gt;<i> ! &gt;
+</I>&gt;<i> ! &gt;
+</I>&gt;<i> ! &gt; I'm currently trying to get fetchmail release 6.3.8+SSL+HESIOD+NLS
+</I>&gt;<i> ! &gt; working but am running into problems with SSL certificate verification.
+</I>&gt;<i> ! &gt;
+</I>&gt;<i> ! &gt; The version of OpenSSL I am using is OpenSSL 0.9.8d on RHEL 4.
+</I>&gt;<i> ! &gt;
+</I>&gt;<i> ! &gt;
+</I>&gt;<i> ! &gt; I have specified the following options in my config file :
+</I>&gt;<i> ! &gt;
+</I>&gt;<i> ! &gt; poll mymailhost proto pop3 uidl no dns
+</I>&gt;<i> ! &gt; user mailuser
+</I>&gt;<i> ! &gt; sslcertck sslcertpath /usr/share/ssl/certs
+</I>&gt;<i> ! &gt;
+</I>&gt;<i> ! &gt; When I invoke fetchmail, I get the following :
+</I>&gt;<i> ! &gt;
+</I>&gt;<i> ! &gt; Enter password for <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">mailuser at mymailhost</A>:
+</I>&gt;<i> ! &gt; fetchmail: 6.3.8 querying mymailhost (protocol POP3) at Fri Sep 12
+</I>&gt;<i> ! &gt; 10:59:10 2008: poll started
+</I>&gt;<i> ! &gt; Trying to connect to 10.0.0.17/995...connected.
+</I>&gt;<i> ! &gt; fetchmail: Server certificate verification error: unable to get local
+</I>&gt;<i> ! &gt; issuer certificate
+</I>&gt;<i> ! &gt; 29071:error:14090086:SSL
+</I>&gt;<i> ! &gt; routines:SSL3_GET_SERVER_CERTIFICATE:certificate verify
+</I>&gt;<i> ! &gt; failed:s3_clnt.c:843:
+</I>&gt;<i> ! ...
+</I>&gt;<i> ! &gt; If I remove the sslcertck option, things work fine.
+</I>&gt;<i> ! &gt;
+</I>&gt;<i> ! &gt;
+</I>&gt;<i> ! &gt; If I run :
+</I>&gt;<i> ! &gt;
+</I>&gt;<i> ! &gt; 	openssl s_client -connect mymailhost:993 -CApath /usr/share/ssl/certs
+</I>&gt;<i> ! &gt;
+</I>&gt;<i> ! &gt; Things appear to be OK, i.e., The SSL Handshake completes ok with Verify
+</I>&gt;<i> ! &gt; return code of 0.
+</I>
+Given the three tests pass, I find this strange. Can you run:
+
+strace -e trace=file fetchmail -d0 --nodetach -vv 
+
+and see if it misses files it tries to open?
+
+-- 
+Matthias Andree
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001686.html">[fetchmail-users] unable to get local issuer certificate
+</A></li>
+	<LI>Next message: <A HREF="001710.html">[fetchmail-users] unable to get local issuer certificate
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1687">[ date ]</a>
+              <a href="thread.html#1687">[ thread ]</a>
+              <a href="subject.html#1687">[ subject ]</a>
+              <a href="author.html#1687">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

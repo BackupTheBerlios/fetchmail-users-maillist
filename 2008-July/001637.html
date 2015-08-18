@@ -1,0 +1,151 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Fetchmail + postfix + tls delivery problem
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2008-July/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Fetchmail%20%2B%20postfix%20%2B%20tls%20delivery%20problem&In-Reply-To=%3CD6561B98704244B880876427487A65F3%40bantboru.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001619.html">
+   <LINK REL="Next"  HREF="001638.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Fetchmail + postfix + tls delivery problem</H1>
+    <B>Enis B&#252;y&#252;kg&#252;ner</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Fetchmail%20%2B%20postfix%20%2B%20tls%20delivery%20problem&In-Reply-To=%3CD6561B98704244B880876427487A65F3%40bantboru.com%3E"
+       TITLE="[fetchmail-users] Fetchmail + postfix + tls delivery problem">enis at bantboru.com
+       </A><BR>
+    <I>Fri Jul 18 11:14:47 CEST 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001619.html">[fetchmail-users] &quot;sslcert&quot; not found
+</A></li>
+        <LI>Next message: <A HREF="001638.html">[fetchmail-users] Fetchmail + postfix + tls delivery problem
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1637">[ date ]</a>
+              <a href="thread.html#1637">[ thread ]</a>
+              <a href="subject.html#1637">[ subject ]</a>
+              <a href="author.html#1637">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi all
+
+ 
+
+I'm using fetchmail 6.3.6-1etch1 + postfix  2.3.8-2 on debian etch. In my
+postfix main.cf file, smtpd_tls_security_level = encrypt is set like below. 
+
+ 
+
+disable_vrfy_command = yes
+
+smtpd_sasl_type = dovecot
+
+smtpd_sasl_path = private/auth
+
+smtpd_sasl_auth_enable = yes
+
+smtpd_recipient_restrictions = permit_auth_destination, check_sender_access
+mysql:/etc/postfix/mysql-virtual-dismail-maps.cf,permit_sasl_authenticated,
+reject_unauth_destination
+
+smtpd_use_tls = yes
+
+smtpd_tls_auth_only = yes
+
+smtpd_tls_security_level = encrypt
+
+smtpd_tls_loglevel = 1
+
+smtpd_tls_received_header = yes
+
+smtpd_tls_session_cache_timeout = 3600s
+
+smtpd_tls_cert_file=/etc/ssl/certs/dovecot.pem
+
+smtpd_tls_key_file=/etc/ssl/private/dovecot.pem
+
+smtpd_tls_session_cache_database = btree:${queue_directory}/smtpd_scache
+
+tls_random_source = dev:/dev/urandom
+
+smtpd_helo_required = yes
+
+broken_sasl_auth_clients = yes
+
+ 
+
+ 
+
+my fetchmailrc is like that;
+
+ 
+
+poll mail.myisp.com proto pop3 user <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">username at mydomain.com</A> pass &quot;mypass&quot; is
+<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">username at mydomain.com</A> here
+
+ 
+
+ 
+
+my problem is; when I start fetchmail , it gives me a error regarding TLS
+like as below.
+
+ 
+
+fetchmail: reading message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">username at mydomain.com</A> @ mail.myisp.com:1 of 1
+(3077 octets) (log message incomplete)fetchmail: SMTP error: 530 5.7.0 Must
+issue a STARTTLS command first
+
+ 
+
+But if I change smtpd_tls_security_level parameter in main.cf from encrypt
+to may. It works fine. As I understood by this error, fetchmail can not use
+TLS while it delivers mail to the local MTA.
+
+ 
+
+So how can I solve this problem without changing smtpd_tls_security_level
+parameter? 
+
+ 
+
+Best regards 
+
+ 
+
+ 
+
+ 
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001619.html">[fetchmail-users] &quot;sslcert&quot; not found
+</A></li>
+	<LI>Next message: <A HREF="001638.html">[fetchmail-users] Fetchmail + postfix + tls delivery problem
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1637">[ date ]</a>
+              <a href="thread.html#1637">[ thread ]</a>
+              <a href="subject.html#1637">[ subject ]</a>
+              <a href="author.html#1637">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,119 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] server problems
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2007-January/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20server%20problems&In-Reply-To=%3C43ea8d070701032339s37b43397ld408a4b0c89e7d1%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000771.html">
+   <LINK REL="Next"  HREF="000773.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] server problems</H1>
+    <B>Rob MacGregor</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20server%20problems&In-Reply-To=%3C43ea8d070701032339s37b43397ld408a4b0c89e7d1%40mail.gmail.com%3E"
+       TITLE="[fetchmail-users] server problems">rob.macgregor at gmail.com
+       </A><BR>
+    <I>Thu Jan  4 08:39:46 CET 2007</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000771.html">[fetchmail-users] server problems
+</A></li>
+        <LI>Next message: <A HREF="000773.html">[fetchmail-users] fetchmail 6.3.6 security fix release
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#772">[ date ]</a>
+              <a href="thread.html#772">[ thread ]</a>
+              <a href="subject.html#772">[ subject ]</a>
+              <a href="author.html#772">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On 1/3/07, Thomas Isenbarger &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">isen at charter.net</A>&gt; wrote:
+&gt;<i> I am still having problems with fetchmail and my 3 mail servers.  I
+</I>&gt;<i> have read the Retrieval Failure Modes section of the fetchmail man
+</I>&gt;<i> page, but I still cannot solve my problem.  I was able to use nmap to
+</I>&gt;<i> determine that the servers I am polling are all pop3, so the issues
+</I>&gt;<i> with pop2 listed in that section of the man page are not relevant.
+</I>
+You obviously missed the FAQ about the information needed :-)  I'd
+point you at the online one, but currently the people that host the
+fetchmail website are off the air.d
+
+&gt;<i> Do you have any other advice for using nmap to troubleshoot this?
+</I>
+You're over complicating the solution, honestly.
+
+&gt;<i> Any other suggestions?
+</I>
+Yeah, read the man page :)
+
+&gt;<i> Below is my original message describing the problem.  In short, I
+</I>&gt;<i> receive all mail from the the 2 problematic servers every time I poll
+</I>&gt;<i> them.  I only want to receive unread mail.
+</I>
+Try the UIDL option (as specified in the description of the &quot;keep&quot;
+keyword in the man page).
+
+&gt;<i> I check my mail from a number of computers, and I want all my mail to
+</I>&gt;<i> be available to all the computers, but have each computer only
+</I>&gt;<i> download the mail that is new for that particular computer (but which
+</I>&gt;<i> I may have read on another one already)
+</I>
+UIDL is the *ONLY* way forwards if you're using POP.  Without it then
+the server tracks state, which isn't what you want.  Quoting the man
+page:
+
+|<i> (Keyword: uidl) Force  UIDL  use  (effective  only  with  POP3).
+</I>|<i> Force client-side tracking of 'newness' of messages (UIDL stands
+</I>|<i> for &quot;unique ID listing&quot; and is described in RFC1939).  Use  with
+</I>|<i> 'keep'  to  use  a  mailbox  as  a baby news drop for a group of
+</I>|<i> users.
+</I>
+&gt;<i> defaults
+</I>&gt;<i>    no fetchall
+</I>
+This is already a fetchmail default, there's no need to specify it.
+
+&gt;<i> poll server1
+</I>&gt;<i>    protocol pop3
+</I>
+For a (2 line) shorter .fetchmailrc you may as well specify pop3 as
+the default protocol since all your remote servers use it.
+
+-- 
+                 Please keep list traffic on the list.
+
+Rob MacGregor
+      Whoever fights monsters should see to it that in the process he
+        doesn't become a monster.                  Friedrich Nietzsche
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000771.html">[fetchmail-users] server problems
+</A></li>
+	<LI>Next message: <A HREF="000773.html">[fetchmail-users] fetchmail 6.3.6 security fix release
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#772">[ date ]</a>
+              <a href="thread.html#772">[ thread ]</a>
+              <a href="subject.html#772">[ subject ]</a>
+              <a href="author.html#772">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

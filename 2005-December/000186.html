@@ -1,0 +1,133 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] fetchmail 6.3.1 release candidate - please test
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2005-December/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%206.3.1%20release%20candidate%20-%20please%20test&In-Reply-To=%3C20051218111359.GA3423%40merlin.emma.line.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000192.html">
+   <LINK REL="Next"  HREF="000193.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] fetchmail 6.3.1 release candidate - please test</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%206.3.1%20release%20candidate%20-%20please%20test&In-Reply-To=%3C20051218111359.GA3423%40merlin.emma.line.org%3E"
+       TITLE="[fetchmail-users] fetchmail 6.3.1 release candidate - please test">matthias.andree at gmx.de
+       </A><BR>
+    <I>Sun Dec 18 12:13:59 CET 2005</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000192.html">[fetchmail-users] Correction to example in fetchmail(1) manual page
+</A></li>
+        <LI>Next message: <A HREF="000193.html">[fetchmail-users] fetchmail 6.2.5.5 legacy release fixes Denial of Service bug
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#186">[ date ]</a>
+              <a href="thread.html#186">[ thread ]</a>
+              <a href="subject.html#186">[ subject ]</a>
+              <a href="author.html#186">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA1
+
+Greetings,
+
+I have released the final 6.3.1 release candidate,
+dubbed fetchmail-6.3.1-rc1. It is available from
+<A HREF="http://home.pages.de/~mandree/fetchmail/">http://home.pages.de/~mandree/fetchmail/</A>
+
+Unless regressions since 6.3.0 are found, this will be released
+as 6.3.1 somewhen next week.
+
+The French translation lacks six messages I cannot translate properly by
+myself, help will be appreciated (just send the missing msgid/msgstr
+pairs to me either on- or off-list).
+
+Please follow up to &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">fetchmail-users at lists.berlios.de</A>&gt; only.
+
+Note that the fetchmail-friends@ list is supposed to be discontinued,
+please resubscribe at BerliOS, for information, please see
+&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">https://lists.berlios.de/mailman/listinfo/fetchmail-users</A>&gt;
+
+These are the changes since 6.3.0:
+
+&gt;<i>-------------------------------------------------------------------------------
+</I>* The multidrop To/Cc guessing code along with the fragile duplicate suppressor
+  is deprecated and may be removed from a future release. (MA)
+&gt;<i>-------------------------------------------------------------------------------
+</I>* Fix broken default port in POP2. Patch by Stanislav Brabec, SUSE [CZ]. (MA)
+* Fix manual page, some lines starting with ' were escaped by \&amp;.
+  Reported by Simon Barner. (MA)
+* Ship with gettext-0.14.3 again, as 6.2.9-rc10 did. Found by Sunil Shetye. (MA)
+* Actually set default SSL certificate path if --sslcertpath is unset.
+  Reported by Heino Tiedemann and Rob MacGregor. (MA)
+* Remove bogus Netscape IMAP4rev1 Service &gt;= 3.6 warning about BODY[TEXT]
+  that we are not using. Patch by Sunil Shetye. (MA)
+* Plug potential memory and socket leak when polling multiple folders or when
+  the upstream sends bogus message sizes.  Patch by Sunil Shetye. (MA)
+* Fix segfault (null pointer dereference) in multidrop mode with headerless
+  email.  Reported by Daniel Drake, patch by Sunil Shetye. (MA)
+* Update Catalan translation, by Ernest Adrogu&#195;&#169; Calveras. (MA)
+* Fix segfault (null pointer dereference) on some operating systems with
+  fetchmail's obsolete DNS MX/host alias lookups in multidrop mode.
+  Patch by Dr.-Ing. Andreas Haakh. (MA)
+* Close SMTP sockets early, to reduce resource usage, trigger earlier delivery
+  with some MTAs and avoid SIGPIPE (SIG 13) when the SMTP listener gets bored
+  and drops the connection after timeout.  Patch by Sunil Shetye. (MA)
+* Don't treat hitting a fetch limit as error.  Patch by Sunil Shetye. (MA)
+* Fix negative &quot;messages left on server&quot; on idle/repoll with fetchlimit.
+  Patch by Sunil Shetye. (MA)
+* Properly track logout stage.  Patch by Sunil Shetye. (MA)
+* Preserve error conditions across postconnect script.  Sunil Shetye. (MA)
+* Do not trash destination domain if multiple messages are forwarded into the
+  same SMTP/LMTP connection. Reported by Joachim Feise, Berlios Bug #5849. (MA)
+  (This patch had not been committed to SVN at the time of the 6.3.1-pre1
+  release on 2005-12-13.)
+* Manual page: Add &quot;-md5&quot; to &quot;openssl x509&quot; example in --sslfingerprint
+  documentation.  Suggested by Jason White. (MA)
+* Cope with servers that return UID information in response to non-UID
+  RFC822.{SIZE|HEADER} requests. Reported by Jason White.
+  Patch suggestion by by Sunil Shetye, simplified by MA.
+&gt;<i>-------------------------------------------------------------------------------
+</I>
+- -- 
+Matthias Andree
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1.4.0 (GNU/Linux)
+
+iD8DBQFDpUR3vmGDOQUufZURAguXAJ9tslzlbNY3Xn7LiWwQdOqZfUXIlACgi6mJ
+9glYchTf96xevABPML/kByE=
+=o61G
+-----END PGP SIGNATURE-----
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000192.html">[fetchmail-users] Correction to example in fetchmail(1) manual page
+</A></li>
+	<LI>Next message: <A HREF="000193.html">[fetchmail-users] fetchmail 6.2.5.5 legacy release fixes Denial of Service bug
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#186">[ date ]</a>
+              <a href="thread.html#186">[ thread ]</a>
+              <a href="subject.html#186">[ subject ]</a>
+              <a href="author.html#186">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

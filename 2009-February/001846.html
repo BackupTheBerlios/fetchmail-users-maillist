@@ -1,0 +1,91 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] error after rc file edit
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2009-February/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20error%20after%20rc%20file%20edit&In-Reply-To=%3Cop.uo447wj11e62zd%40balu.cs.uni-paderborn.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001845.html">
+   <LINK REL="Next"  HREF="001849.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] error after rc file edit</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20error%20after%20rc%20file%20edit&In-Reply-To=%3Cop.uo447wj11e62zd%40balu.cs.uni-paderborn.de%3E"
+       TITLE="[fetchmail-users] error after rc file edit">matthias.andree at gmx.de
+       </A><BR>
+    <I>Tue Feb 10 15:58:34 CET 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001845.html">[fetchmail-users] error after rc file edit
+</A></li>
+        <LI>Next message: <A HREF="001849.html">[fetchmail-users] error after rc file edit
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1846">[ date ]</a>
+              <a href="thread.html#1846">[ thread ]</a>
+              <a href="subject.html#1846">[ subject ]</a>
+              <a href="author.html#1846">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Am 10.02.2009, 15:14 Uhr, schrieb Ken Gillett &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">ken at ukgb.net</A>&gt;:
+
+&gt;<i> I made a change to the rc file (deleted one user) and thereafter
+</I>&gt;<i> fetchmail logged the following errors
+</I>&gt;<i>
+</I>&gt;<i> &quot;fetchmail: awakened by User defined signal 1
+</I>&gt;<i> fetchmail: awakened at Tue, 10 Feb 2009 13:58:27 +0000 (GMT)
+</I>&gt;<i> could not lookup DNS configuration info service: (ipc/send) invalid
+</I>&gt;<i> destination port
+</I>
+The previous line looks rather suspicious - has firewall or network  
+configuration changed at the same time or the DNS server/resolver crashed?
+
+&gt;<i> fetchmail: getaddrinfo(&quot;&lt;servername&gt;&quot;,&quot;imap&quot;) error: Temporary failure
+</I>&gt;<i> in name resolution
+</I>&gt;<i> fetchmail: IMAP connection to &lt;pollname&gt; failed: Invalid argument
+</I>&gt;<i> fetchmail: Query status=2 (SOCKET)&quot;
+</I>&gt;<i>
+</I>&gt;<i> The last 3 lines then repeated several times. I do not believe there
+</I>&gt;<i> was any such DNS or name resolution problem whatsoever and when i quit
+</I>&gt;<i> fetchmail and started it again, all ran perfectly once more. This is
+</I>&gt;<i> not the first time I have noticed it failing with spurious errors
+</I>&gt;<i> after editing the config file. It seems not to notice that it's
+</I>&gt;<i> changed (no automatic restart), but has a problem with the new data. A
+</I>&gt;<i> forced restart always fixes it.
+</I>
+A restart (such as fetchmail -q ; fetchmail) shouldn't trigger such errors.
+
+-- 
+Matthias Andree
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001845.html">[fetchmail-users] error after rc file edit
+</A></li>
+	<LI>Next message: <A HREF="001849.html">[fetchmail-users] error after rc file edit
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1846">[ date ]</a>
+              <a href="thread.html#1846">[ thread ]</a>
+              <a href="subject.html#1846">[ subject ]</a>
+              <a href="author.html#1846">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

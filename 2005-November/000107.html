@@ -1,0 +1,144 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Re: unsafe MDA procmail recommended by fetchmail
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2005-November/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Re%3A%20unsafe%20MDA%20procmail%20recommended%20by%20fetchmail&In-Reply-To=%3C200511021658.jA2GwSDm012230%40ns-srv-2.bln1.siemens.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000106.html">
+   <LINK REL="Next"  HREF="000108.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Re: unsafe MDA procmail recommended by fetchmail</H1>
+    <B>Thomas Wolff</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Re%3A%20unsafe%20MDA%20procmail%20recommended%20by%20fetchmail&In-Reply-To=%3C200511021658.jA2GwSDm012230%40ns-srv-2.bln1.siemens.de%3E"
+       TITLE="[fetchmail-users] Re: unsafe MDA procmail recommended by fetchmail">towo at towo.net
+       </A><BR>
+    <I>Wed Nov  2 17:58:28 CET 2005</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000106.html">[fetchmail-users] Re: unsafe MDA procmail recommended by fetchmail
+</A></li>
+        <LI>Next message: <A HREF="000108.html">[fetchmail-users] Re: unsafe MDA procmail recommended by fetchmail
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#107">[ date ]</a>
+              <a href="thread.html#107">[ thread ]</a>
+              <a href="subject.html#107">[ subject ]</a>
+              <a href="author.html#107">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>I wrote:
+&gt;<i> I had a &quot;disk quota exceeded&quot; condition here which procmail failed
+</I>&gt;<i> to handle properly. It accepted its input, threw it away and just
+</I>&gt;<i> returned success.
+</I>
+Stephen van den Berg wrote:
+&gt;<i> Procmail handles quota-exceeded problems
+</I>&gt;<i> with flying colours since about 1993.
+</I>
+&gt;<i> There is a 99.997% probability that the serious
+</I>&gt;<i> issue is a user error on your part.
+</I>&gt;<i> ...
+</I>&gt;<i> In order to clarify the issue, it would be helpful
+</I>&gt;<i> if you can show the used procmailrc files, ...
+</I>When I did this, the issue did actually clarify (see below), ...
+
+&gt;<i> Nonetheless, in order to assure timely assistance,
+</I>&gt;<i> it would be prudent to forward this
+</I>&gt;<i> information to the procmail mailinglist (instead
+</I>&gt;<i> of me personally), so they
+</I>&gt;<i> can help you fix the procmail recipe(s).
+</I>&gt;<i> See procmail -v as to the address of the list.
+</I>Right; I'm not doing this now because the issue has been clarified. 
+Actually, it would also be prudent to add the mailing list address to 
+the man page, in either the AUTHORS section or at least the -v description.
+
+
+So here is the essential info:
+bash&gt; cd
+bash&gt; cat .procmailrc
+MAILDIR=$HOME/Post
+
+:<i>0:
+</I>testbox
+
+bash&gt; cat testmail
+From: <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">towo at towo.net</A>
+To: <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">towo at towo.net</A>
+Subject: test mail
+
+1234567890123456789012345678901234567890123456789012345678901234567890
+
+bash&gt; if procmail -p &lt; testmail ; then echo y ; fi
+procmail: Quota exceeded while writing &quot;testbox&quot;
+y
+bash&gt; ls -l Post/testbox 
+-rw-------   1 demsn702 mdd            0 Nov  2 17:08 Post/testbox
+bash&gt; cat /tmp/procmail.log.
+procmail: Quota exceeded while writing &quot;testbox&quot;
+procmail: Truncated file to former size
+ Subject: test mail
+  Folder: /var/mail/....                                                 1266
+bash&gt; 
+
+
+At this point, I noticed that procmail has a fallback behaviour 
+that when delivery to a local folder fails, it delivers into 
+/var/mail instead. So actually the mail was not lost.
+This is, however, not documented anywhere. It is very unexpected 
+behaviour for a user who has a configuration file that refers only 
+to local folders (for mail sorting, spam filtering, etc). After all, 
+if I configure local folders, I'm doing it just because I do not 
+intend (or cannot) use /var/mail.
+The event that procmail redirects into the system mailbox due to 
+a failure should be noted clearly to the user in this case (on 
+stdout/stderr, as well as in the logfile folder).
+
+So, quoting you again
+&gt;<i> There is a 99.997% probability that the serious
+</I>&gt;<i> issue is a user error on your part.
+</I>I would not say this issue was a user error on my part (because it's 
+not properly documented), but it's not a serious issue as I said 
+before. Procmail handles an inaccessible system mailbox well (this is 
+documented); I was not able to check what would happen if /var/mail is 
+completely inaccessible but I assume something reasonable should 
+happen too, so I withdraw my statement that procmail is an unsafe MDA.
+
+User feedback and documentation should be improved, though, and maybe 
+this case of redirection should not be applied at all (or be configurable) 
+and rather a proper error indication returned instead.
+
+Thanks and kind regards,
+Thomas Wolff
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000106.html">[fetchmail-users] Re: unsafe MDA procmail recommended by fetchmail
+</A></li>
+	<LI>Next message: <A HREF="000108.html">[fetchmail-users] Re: unsafe MDA procmail recommended by fetchmail
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#107">[ date ]</a>
+              <a href="thread.html#107">[ thread ]</a>
+              <a href="subject.html#107">[ subject ]</a>
+              <a href="author.html#107">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

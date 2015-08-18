@@ -1,0 +1,114 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Fetchmail and domains
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2007-March/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Fetchmail%20and%20domains&In-Reply-To=%3C43ea8d070703280859pe9c8492q36fbcb9fd70892e1%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000939.html">
+   <LINK REL="Next"  HREF="000942.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Fetchmail and domains</H1>
+    <B>Rob MacGregor</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Fetchmail%20and%20domains&In-Reply-To=%3C43ea8d070703280859pe9c8492q36fbcb9fd70892e1%40mail.gmail.com%3E"
+       TITLE="[fetchmail-users] Fetchmail and domains">rob.macgregor at gmail.com
+       </A><BR>
+    <I>Wed Mar 28 17:59:15 CEST 2007</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000939.html">[fetchmail-users] Fetchmail and domains
+</A></li>
+        <LI>Next message: <A HREF="000942.html">[fetchmail-users] Fetchmail and domains
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#941">[ date ]</a>
+              <a href="thread.html#941">[ thread ]</a>
+              <a href="subject.html#941">[ subject ]</a>
+              <a href="author.html#941">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On 3/28/07, Kramer, Barbara &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">B.Kramer at nutricia.com</A>&gt; wrote:
+&gt;<i> Hi,
+</I>&gt;<i> There is a mailbox on an exchange server, named NTBV-shipment. This box is
+</I>&gt;<i> receiving mail. I want to fetch the mail there and bring it to my HPUX,
+</I>&gt;<i> where the file will be read into a software. I chose to use fetchmail.
+</I>&gt;<i>
+</I>&gt;<i> Just installed fetchmail on my hp server with hpux 11.11 on it.
+</I>&gt;<i> I have done the following:
+</I>&gt;<i> *       Created a user named podeliv
+</I>&gt;<i> *       Started a mail box for him /var/mail/podeliv
+</I>&gt;<i> *       Send mail to him through sendmail - mail podeliv - mail was received
+</I>&gt;<i> ok
+</I>
+So we know the basics of your sendmail config are good.
+
+&gt;<i> *       Logged on as podeliv and send a mail to my mail account - which is
+</I>&gt;<i> an exchange server - mail kam ok and sender is <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">podeliv at nutricia.com</A>
+</I>&gt;<i> *       Installed ixFetchmail A.08.00-6.3.6 for HPUX 11.11 - all went well
+</I>
+Close enough to current (6.3.7 is current).
+
+&gt;<i> *       Created a .fetchmailrc for user podeliv, which reads:
+</I>&gt;<i>
+</I>&gt;<i> set logfile /home/podeliv/fetch.log
+</I>&gt;<i> poll pnw2k01.pfrimmer.de
+</I>&gt;<i> proto pop3 port 110
+</I>&gt;<i> user pfrimmer\\NTBV-shipment
+</I>&gt;<i> there has password *******
+</I>&gt;<i> no keep
+</I>&gt;<i>
+</I>&gt;<i> *       Fetch.log is being filled with entries, when I do fetchmail -av, as
+</I>&gt;<i> user podeliv
+</I>&gt;<i> *       Now the problem: - I always read message  SMTP&lt; 501 Sender domain
+</I>&gt;<i> must exist - podeliv is always being shown as <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">podeliv at localhost</A>
+</I>&gt;<i> From my Mail Delivery System [<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">MAILER-DAEMON at erlaap05.pfrimmer.de</A>], which is
+</I>&gt;<i> root on the hpux machine:
+</I>&gt;<i>  <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">podeliv at localhost</A>
+</I>&gt;<i>    SMTP error: 501 Sender domain must exist
+</I>&gt;<i> What did I forget to do?
+</I>
+Not sure, because...
+
+&gt;<i> Attached you'll find the fetch.log, after I had send a mail to
+</I>&gt;<i> NTBV-shipment, as user podeliv I did fetchmail -av  &lt;&lt;fetch.log&gt;&gt;
+</I>
+No log attached.
+
+-- 
+                 Please keep list traffic on the list.
+
+Rob MacGregor
+      Whoever fights monsters should see to it that in the process he
+        doesn't become a monster.                  Friedrich Nietzsche
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000939.html">[fetchmail-users] Fetchmail and domains
+</A></li>
+	<LI>Next message: <A HREF="000942.html">[fetchmail-users] Fetchmail and domains
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#941">[ date ]</a>
+              <a href="thread.html#941">[ thread ]</a>
+              <a href="subject.html#941">[ subject ]</a>
+              <a href="author.html#941">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

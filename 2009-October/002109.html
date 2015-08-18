@@ -1,0 +1,119 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] fetchmail 6.3.12 regression/bug fix release	available (STABLE)
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2009-October/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%206.3.12%20regression/bug%20fix%20release%0A%09available%20%28STABLE%29&In-Reply-To=%3C20091005201159.GB12711%40merlin.emma.line.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002108.html">
+   <LINK REL="Next"  HREF="002110.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] fetchmail 6.3.12 regression/bug fix release	available (STABLE)</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%206.3.12%20regression/bug%20fix%20release%0A%09available%20%28STABLE%29&In-Reply-To=%3C20091005201159.GB12711%40merlin.emma.line.org%3E"
+       TITLE="[fetchmail-users] fetchmail 6.3.12 regression/bug fix release	available (STABLE)">matthias.andree at gmx.de
+       </A><BR>
+    <I>Mon Oct  5 22:11:59 CEST 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002108.html">[fetchmail-users] Fetchmail refuses to deliver some messages
+</A></li>
+        <LI>Next message: <A HREF="002110.html">[fetchmail-users] fetchmail - &quot;not flushed&quot; Vs viewed	mail/downloaded
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2109">[ date ]</a>
+              <a href="thread.html#2109">[ thread ]</a>
+              <a href="subject.html#2109">[ subject ]</a>
+              <a href="author.html#2109">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA1
+
+Greetings,
+
+I am announcing the release of fetchmail 6.3.12.  This new stable
+version of fetchmail fixes a crash when 6.3.11 is run on SSL servers
+without --verbose mode, and other bugs, and it updates translations.
+See below for details.
+
+The software is available from:
+&lt;<A HREF="http://developer.berlios.de/project/showfiles.php?group_id=1824">http://developer.berlios.de/project/showfiles.php?group_id=1824</A>&gt;
+
+The fetchmail home pages are:
+&lt;<A HREF="http://www.fetchmail.info/">http://www.fetchmail.info/</A>&gt;  or  &lt;<A HREF="http://fetchmail.berlios.de/">http://fetchmail.berlios.de/</A>&gt;
+
+These are the relevant changes in 6.3.12 since the previous release.
+Unless otherwise noted, changes to this release were made by Matthias Andree:
+
+# REGRESSION FIXES
+* The CVS-2009-2666 fix in fetchmail release 6.3.11 caused a free() of
+  unallocated memory on SSL connections, which caused crashes or program aborts
+  on some systems (depending on how initialization and free() of unallocated
+  memory is handled in compiler and libc).
+  Workaround for older versions: run in verbose mode.
+  Patch courtesy of Thomas Heinz, fixes Gentoo Bug #280760.
+  This regression affected only the 6.3.11 release, but not the patch that was
+  part of the security announcement fetchmail-SA-2009-01.
+
+# BUG FIXES
+* Fix error reporting for GSSAPI on Heimdal (h5l) Kerberos.
+* Look for MD5_Init in libcrypto rather than libssl, fixes Gentoo Kerberos
+  builds; fixes upstream parts of Gentoo Bugs #231400 and #185652, and fixes
+  BerliOS Bug #16134.
+* Report multiline SMTP errors properly, reported by Earl Chew; fixes Debian Bug
+  #569899, reported by Akihiro Terasaki.
+* Replace control characters in SMTP replies by '?'.
+* Fetchmailconf: Fix descriptions for smtpaddress and smtpname options;
+  smtpaddress is for RCPT TO, not MAIL FROM. Found by Gerard Seibert.
+
+# TRANSLATION UPDATES AND ADDITIONS (ordered by language name):
+* [ca]    Catalan (Ernest Adrogu&#233; Calveras)
+* [zh_CN] Chinese/Simplified (Ji ZhengYu)
+* [cs]    Czech (Petr Pisar)
+* [ja]    Japanese (Takeshi Hamasaki)
+* [pl]    Polish (Jakub Bogusz)
+* [es]    Spanish/Castilian (Francisco Molinero)
+* [vi]    Vietnamese (Clytie Siddall)
+
+- -- 
+Matthias Andree
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v2.0.9 (GNU/Linux)
+
+iEYEARECAAYFAkrKUw8ACgkQvmGDOQUufZXSpgCg8C5DoVRWN4RDLYBp+LLGXnRE
+c9kAnAuxK1zWAbf2guw3VtOjIllNCTjG
+=IQDb
+-----END PGP SIGNATURE-----
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002108.html">[fetchmail-users] Fetchmail refuses to deliver some messages
+</A></li>
+	<LI>Next message: <A HREF="002110.html">[fetchmail-users] fetchmail - &quot;not flushed&quot; Vs viewed	mail/downloaded
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2109">[ date ]</a>
+              <a href="thread.html#2109">[ thread ]</a>
+              <a href="subject.html#2109">[ subject ]</a>
+              <a href="author.html#2109">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

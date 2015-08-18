@@ -1,0 +1,124 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] losing mails because of &quot;incorrect	header	line found&quot;
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2008-September/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20losing%20mails%20because%20of%20%22incorrect%0A%09header%09line%20found%22&In-Reply-To=%3C20080917192408.GA28598%40merlin.emma.line.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001692.html">
+   <LINK REL="Next"  HREF="001694.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] losing mails because of &quot;incorrect	header	line found&quot;</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20losing%20mails%20because%20of%20%22incorrect%0A%09header%09line%20found%22&In-Reply-To=%3C20080917192408.GA28598%40merlin.emma.line.org%3E"
+       TITLE="[fetchmail-users] losing mails because of &quot;incorrect	header	line found&quot;">matthias.andree at gmx.de
+       </A><BR>
+    <I>Wed Sep 17 21:24:08 CEST 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001692.html">[fetchmail-users] losing mails because of &quot;incorrect	header	line found&quot;
+</A></li>
+        <LI>Next message: <A HREF="001694.html">[fetchmail-users] losing mails because of &quot;incorrect header	line found&quot;
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1693">[ date ]</a>
+              <a href="thread.html#1693">[ thread ]</a>
+              <a href="subject.html#1693">[ subject ]</a>
+              <a href="author.html#1693">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Andy Spiegl schrieb am 2008-09-17:
+
+&gt;<i> Matthias Andree wrote:
+</I>&gt;<i> 
+</I>&gt;<i> &gt; Well, fetchmail cannot make promises as to whether the next hop
+</I>&gt;<i> &gt; (MTA, LDA, whatever) will accept the message, so why bother?
+</I>&gt;<i> No. I'd say the correct question would be: why not take a chance?
+</I>
+Well - basically what the source comment (I just checked) states is that
+fetchmail would otherwise segfault.
+
+This is code I inherited. I'd tend to say if the major rationale is
+to mask other errors (segfault) later down the code path, we'd better be
+fixing them instead - what should have happened in the first place.
+
+Apparently people such as Fr&#233;d&#233;ric Marchal and distros have had some
+success with just having fetchmail pass on the garbage and let the next
+hop deal with it: fetchmail doesn't crash. So chances are the segfault
+suggested in the source code has been dealt with long ago, but the
+segfault not retested, whatever.
+
+Still I'm not comfortable with just tossing garbage down the
+MTA/MDA/LMTP listener...
+
+We might consider such a line &quot;end-of-header&quot; and pretend we'd seen the
+blank line - but that, as well as &quot;send as message/rfc822 attachment&quot;
+(as discussed previously, and which has shortcomings on its own,
+particularly with multidrop), is a major change.
+
+Yet another (and simple to attain) solution would be to not forward and
+not delete the message, which OTOH means it will stick on the server
+forever.
+
+Depending on whom you ask, there are various opinions on how to deal
+with that, so maybe we should start with a switch that says
+&quot;brokenheader = { skip_message, pass_message, prepend_blank_line }&quot; with perhaps a
+later extension of a fourth &quot;attach_instead&quot; state.
+
+The default would clearly be refuse in 6.3.10+ (I don't think I'll add
+this option to 6.3.9) for compatibility, some distros would patch it to
+default to try_pass (which is what Fr&#233;d&#233;ric's and other patches already
+do), and I'm not sure if a &quot;bounce_message&quot; would work.
+
+NB: &quot;bouncing&quot; doesn't work with MDA... (except if it has, as sendmail
+and perhaps exim, a -oem delivery mode or operates in a manner that it
+will guarantee someone gets either the message or a notification).
+
+&gt;<i> In case that the next hop really cannot cope with the broken mail
+</I>&gt;<i> it will drop it itself or bounce it or something like that.
+</I>&gt;<i> But in the other case the mail will reach its recipient.
+</I>&gt;<i> I am sure you will agree that not 100% fall into the first category
+</I>&gt;<i> and therefore fetchmail should TRY to deliver it to the next hop
+</I>&gt;<i> instead of deliberately deleting it.
+</I>
+It's subtler: fetchmail considers this broken message &quot;refused&quot;
+(PS_REFUSED as internal state) and suppresses forwarding, but not
+deleting.  When run with --keep, the message remains on the server.
+
+Yes I know the situation is unsatisfactory, but lack of time for doing
+it right and all that...
+
+-- 
+Matthias Andree
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001692.html">[fetchmail-users] losing mails because of &quot;incorrect	header	line found&quot;
+</A></li>
+	<LI>Next message: <A HREF="001694.html">[fetchmail-users] losing mails because of &quot;incorrect header	line found&quot;
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1693">[ date ]</a>
+              <a href="thread.html#1693">[ thread ]</a>
+              <a href="subject.html#1693">[ subject ]</a>
+              <a href="author.html#1693">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

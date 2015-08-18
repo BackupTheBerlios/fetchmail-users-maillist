@@ -1,0 +1,155 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] getting fetchmail to work with postfix
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2012-May/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20getting%20fetchmail%20to%20work%20with%20postfix&In-Reply-To=%3C4FBF80C4.1050500%40echter-kuechen-elektro.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003139.html">
+   <LINK REL="Next"  HREF="003138.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] getting fetchmail to work with postfix</H1>
+    <B>J&#252;rgen Echter</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20getting%20fetchmail%20to%20work%20with%20postfix&In-Reply-To=%3C4FBF80C4.1050500%40echter-kuechen-elektro.de%3E"
+       TITLE="[fetchmail-users] getting fetchmail to work with postfix">j.echter at echter-kuechen-elektro.de
+       </A><BR>
+    <I>Fri May 25 14:53:24 CEST 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003139.html">[fetchmail-users] [solved] non-default &quot;mailbox selection	failed&quot;
+</A></li>
+        <LI>Next message: <A HREF="003138.html">[fetchmail-users] getting fetchmail to work with postfix
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3137">[ date ]</a>
+              <a href="thread.html#3137">[ thread ]</a>
+              <a href="subject.html#3137">[ subject ]</a>
+              <a href="author.html#3137">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+i try to setup fetchmail to get mails and send them with postfix to my 
+local dovecot imapd.
+
+If i try to run fetchmail i get this in the logs:
+
+fetchmail[4514]: 1 message for <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">test at mydomain.de</A> at mailserver.external.de.
+fetchmail[4514]: reading message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">test at mydomain</A>@mailserver.external.de:1 
+of 1 (649 header octets) (log message incomplete)
+fetchmail[4514]: connection to localhost:smtp [::1/25] failed: 
+Connection refused.
+postfix/smtpd[4516]: connect from localhost[127.0.0.1]
+postfix/smtpd[4516]: NOQUEUE: reject: RCPT from localhost[127.0.0.1]: 
+550 5.1.1 &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">test at mydomain.de</A>&gt;: Recipient address rejected: mydomain.de; 
+from=&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">j.echter at mydomain.de</A>&gt; to=&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">test at mydomain.de</A>&gt; proto=ESMTP 
+helo=&lt;mehlbox.workgroup.local&gt;
+fetchmail[4514]: SMTP error: 550 5.1.1 &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">test at mydomain.de</A>&gt;: Recipient 
+address rejected: mydomain.de
+fetchmail[4514]: connection to localhost:smtp [::1/25] failed: 
+Connection refused.
+postfix/smtpd[4519]: connect from localhost[127.0.0.1]
+postfix/smtpd[4519]: NOQUEUE: reject: RCPT from localhost[127.0.0.1]: 
+550 5.1.1 &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">j.echter at mydomain.de</A>&gt;: Recipient address rejected: 
+mydomain.de; from=&lt;&gt; to=&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">j.echter at mydomain.de</A>&gt; proto=SMTP 
+helo=&lt;mehlbox.workgroup.local&gt;
+postfix/smtpd[4519]: disconnect from localhost[127.0.0.1]
+postfix/smtpd[4516]: NOQUEUE: reject: RCPT from localhost[127.0.0.1]: 
+550 5.1.1 &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">j.echter at mydomain.de</A>&gt;: Recipient address rejected: 
+mydomain.de; from=&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">j.echter at mydomain.de</A>&gt; to=&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">j.echter at mydomain.de</A>&gt; 
+proto=ESMTP helo=&lt;mehlbox.workgroup.local&gt;
+fetchmail[4514]: can't even send to <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">j.echter at echter-kuechen-elektro.de</A>!
+fetchmail[4514]:  flushed
+postfix/smtpd[4516]: disconnect from localhost[127.0.0.1]
+fetchmail[4514]: sleeping at Fr 25 Mai 2012 14:42:00 CEST for 300 seconds
+
+
+my fetchmailrc looks like this:
+
+set postmaster &quot;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">j.echter at mydomain.de</A>&quot;
+set bouncemail
+set no spambounce
+set properties &quot;&quot;
+set syslog
+set daemon 300
+
+poll mailserver.external.de with proto IMAP
+        user '<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">test at mydomain.de</A>' there with password 's3cr3t' is 
+'<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">test at mydomain.de</A>' here ssl
+
+is the problem because i told fetchmail to send mails also to 
+<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">test at mydomain.de</A>?
+
+postfix looks up users via ldap, which works afaik
+
+postmap -q <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">test at mydomain.de</A> ldap:/etc/postfix/ldap-aliases.cf
+<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">test at mydomain.de</A>
+
+
+sorry if this is too simple, for me its not easy to get whats wrong.
+
+greets
+
+juergen
+
+
+
+-- 
+Mit freundlichen Gr&#252;ssen
+
+J&#252;rgen Echter
+Logo
+
+ECHTER K&#252;chen &amp; Elektro GmbH
+Augsburger Str. 49
+
+*86529* Schrobenhausen
+
+*Tel:* 08252 / 8976 - 0
+*Fax:* 08252 / 8976 - 10
+*e-mail:* <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">info at echter-kuechen-elektro.de</A> 
+&lt;mailto:<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">info at echter-kuechen-elektro.de</A>&gt;
+*web:* www.echter-kuechen-elektro.de &lt;<A HREF="http://www.echter-kuechen-elektro.de">http://www.echter-kuechen-elektro.de</A>&gt;
+	*Reg.-Gericht: *Ingolstadt Nr. HR B 101907
+
+*Ust.-Id. Nr.:* DE234419866
+*
+Steuernummer:* 124/125/51166
+*
+Gesch&#228;ftsf&#252;hrer:* Thomas Echter
+
+
+
+</PRE>
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003139.html">[fetchmail-users] [solved] non-default &quot;mailbox selection	failed&quot;
+</A></li>
+	<LI>Next message: <A HREF="003138.html">[fetchmail-users] getting fetchmail to work with postfix
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3137">[ date ]</a>
+              <a href="thread.html#3137">[ thread ]</a>
+              <a href="subject.html#3137">[ subject ]</a>
+              <a href="author.html#3137">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

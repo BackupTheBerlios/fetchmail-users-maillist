@@ -1,0 +1,88 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] fetchmail 6.3.11 security fix release available (STABLE)
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2009-August/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%206.3.11%20security%20fix%20release%0A%20available%20%28STABLE%29&In-Reply-To=%3C4A7D3B9F.8020209%40telejeck.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002034.html">
+   <LINK REL="Next"  HREF="002022.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] fetchmail 6.3.11 security fix release available (STABLE)</H1>
+    <B>Juergen Edner</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%206.3.11%20security%20fix%20release%0A%20available%20%28STABLE%29&In-Reply-To=%3C4A7D3B9F.8020209%40telejeck.de%3E"
+       TITLE="[fetchmail-users] fetchmail 6.3.11 security fix release available (STABLE)">fli4l-eisfair at telejeck.de
+       </A><BR>
+    <I>Sat Aug  8 10:47:27 CEST 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002034.html">[fetchmail-users] Authentication failure against an ssl-enabled MS-Exchange server
+</A></li>
+        <LI>Next message: <A HREF="002022.html">[fetchmail-users] fetchmail 6.3.11 security fix release	available (STABLE)
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2021">[ date ]</a>
+              <a href="thread.html#2021">[ thread ]</a>
+              <a href="subject.html#2021">[ subject ]</a>
+              <a href="author.html#2021">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hello Matthias,
+
+&gt;<i> I am announcing the release of fetchmail 6.3.11.  This new stable
+</I>&gt;<i> version of fetchmail fixes a security bug, CVE-2009-2666, and two other
+</I>&gt;<i> issues, see below for details.
+</I>
+due to your security announcement I've translated the new
+binary for the Eisfair (<A HREF="http://www.eisfair.org">http://www.eisfair.org</A>) community.
+Right after several people have installed it, they reported
+the following error when trying to start the deamon:
+
+*** glibc detected *** double free or corruption (out): 0xbfffb6c0 ***
+fetchmail: terminated with signal 6
+
+One user reported that his was able to start the deamon right
+after he has deactivated all account for which SSL encryption
+is used. Falling back to Fetchmail v6.3.9 solves the problem
+for the moment. Therefore I assume that this error may be caused
+by the newly introduced fix.
+
+Can you please advice what information I need to provide to
+assist you solving this problem.
+
+Thanks
+Juergen
+-- 
+Mail: <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">fli4l-eisfair at telejeck.de</A>
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002034.html">[fetchmail-users] Authentication failure against an ssl-enabled MS-Exchange server
+</A></li>
+	<LI>Next message: <A HREF="002022.html">[fetchmail-users] fetchmail 6.3.11 security fix release	available (STABLE)
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2021">[ date ]</a>
+              <a href="thread.html#2021">[ thread ]</a>
+              <a href="subject.html#2021">[ subject ]</a>
+              <a href="author.html#2021">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

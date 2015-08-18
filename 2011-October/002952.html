@@ -1,0 +1,625 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Query status=3 (AUTHFAIL): known problem I realise, but none of the reasons seem to apply to my set up
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2011-October/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Query%20status%3D3%20%28AUTHFAIL%29%3A%20known%20problem%20I%0A%20realise%2C%20but%20none%20of%20the%20reasons%20seem%20to%20apply%20to%20my%20set%20up&In-Reply-To=%3C4E91C56E.2060101%40glidos.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002951.html">
+   <LINK REL="Next"  HREF="002953.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Query status=3 (AUTHFAIL): known problem I realise, but none of the reasons seem to apply to my set up</H1>
+    <B>Paul Gardiner</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Query%20status%3D3%20%28AUTHFAIL%29%3A%20known%20problem%20I%0A%20realise%2C%20but%20none%20of%20the%20reasons%20seem%20to%20apply%20to%20my%20set%20up&In-Reply-To=%3C4E91C56E.2060101%40glidos.net%3E"
+       TITLE="[fetchmail-users] Query status=3 (AUTHFAIL): known problem I realise, but none of the reasons seem to apply to my set up">lists at glidos.net
+       </A><BR>
+    <I>Sun Oct  9 18:01:50 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002951.html">[fetchmail-users] Query status=3 (AUTHFAIL): known problem I realise, but none of the reasons seem to apply to my set up
+</A></li>
+        <LI>Next message: <A HREF="002953.html">[fetchmail-users] Query status=3 (AUTHFAIL): known problem I realise, but none of the reasons seem to apply to my set up
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2952">[ date ]</a>
+              <a href="thread.html#2952">[ thread ]</a>
+              <a href="subject.html#2952">[ subject ]</a>
+              <a href="author.html#2952">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On 08/10/2011 18:07, Rob MacGregor wrote:
+&gt;<i> On Sat, Oct 8, 2011 at 15:32, Paul Gardiner&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">lists at glidos.net</A>&gt;  wrote:
+</I>&gt;&gt;<i> Hi,
+</I>&gt;&gt;<i> I'm trying to pull email off of red003.mail.apac.microsoftonline.com
+</I>&gt;&gt;<i> with fetchmail, but in the logs I see &quot;Query status=3 (AUTHFAIL)&quot;.
+</I>&gt;&gt;<i> I'm running version 6.3.19, so it's not the known problem with
+</I>&gt;&gt;<i> older versions. My conf line is:
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> poll red003.mail.apac.microsoftonline.com auth password protocol POP3 : user
+</I>&gt;&gt;<i> &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">name at domain</A>&gt;  there with password&lt;password&gt;  is&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">name at localhost</A>&gt;  here ssl
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Any help would be much appreciated.
+</I>&gt;<i>
+</I>&gt;<i> Please provide the information listed in section G3 of the FAQ
+</I>&gt;<i> (<A HREF="http://fetchmail.berlios.de/fetchmail-FAQ.html#G3">http://fetchmail.berlios.de/fetchmail-FAQ.html#G3</A>).
+</I>
+Thanks for the reply. The info requested is below. It looks to be saying
+that I simply have the wrong username and password. I guess that could
+be the case. It's one of the microsoft online servers. I'm trying to
+use the webmail username and password for pop access. Perhaps that's
+not supposed to work, but I cannot see options to enable pop or set
+up a separate password.
+
+Cheers,
+	Paul.
+
+
+OS: Linux opensuse 11.4
+
+Origin: released as part of opensuse 11.4
+
+Forwarding: I have fetchmail forwarding to postfix
+
+Command line: /usr/bin/fetchmail -d 600 -a -f /etc/fetchmailrc -L 
+/var/log/fethmail
+
+Output of  &quot;env LC_ALL=C /usr/bin/fetchmail -V -d 600 -a -f 
+/etc/fetchmailrc -L /var/log/fetchmail&quot;:
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+This is fetchmail release 6.3.19+POP2+GSS+RPA+NTLM+SDPS+SSL+OPIE+NLS+KRB5.
+
+Copyright (C) 2002, 2003 Eric S. Raymond
+Copyright (C) 2004 Matthias Andree, Eric S. Raymond,
+                    Robert M. Funk, Graham Wilson
+Copyright (C) 2005 - 2006, 2010 Sunil Shetye
+Copyright (C) 2005 - 2010 Matthias Andree
+Fetchmail comes with ABSOLUTELY NO WARRANTY. This is free software, and you
+are welcome to redistribute it under certain conditions. For details,
+please see the file COPYING in the source or documentation directory.
+This product includes software developed by the OpenSSL Project
+for use in the OpenSSL Toolkit. (<A HREF="http://www.openssl.org/">http://www.openssl.org/</A>)
+
+Fallback MDA: (none)
+Linux glidos 2.6.37.6-0.7-desktop #1 SMP PREEMPT 2011-07-21 02:17:24 
++0200 i686 athlon i386 GNU/Linux
+Taking options from command line and /etc/fetchmailrc
+Poll interval is 600 seconds
+Logfile is /var/log/fetchmail
+Idfile is /var/lib/fetchmail/.fetchids
+Fetchmail will forward misaddressed multidrop messages to fetchmail.
+Fetchmail will direct error mail to the postmaster.
+Options for retrieving from 
+<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">asmu36 at dsl.pipex.com</A>@pop3.tiscali-business.co.uk:
+   True name of server is pop3.tiscali-business.co.uk.
+   Protocol is POP3.
+   All available authentication methods will be tried.
+   Server nonresponse timeout is 300 seconds (default).
+   Default mailbox selected.
+   All messages will be retrieved (--all on).
+   Fetched messages will not be kept on the server (--keep off).
+   Old messages will not be flushed before message retrieval (--flush off).
+   Oversized messages will not be flushed before message retrieval 
+(--limitflush off).
+   Rewrite of server-local addresses is enabled (--norewrite off).
+   Carriage-return stripping is disabled (stripcr off).
+   Carriage-return forcing is disabled (forcecr off).
+   Interpretation of Content-Transfer-Encoding is enabled (pass8bits off).
+   MIME decoding is disabled (mimedecode off).
+   Idle after poll is disabled (idle off).
+   Nonempty Status lines will be kept (dropstatus off)
+   Delivered-To lines will be kept (dropdelivered off)
+   Fetch message size limit is 100 (--fetchsizelimit 100).
+   Do binary search of UIDs during 3 out of 4 polls (--fastuidl 4).
+   Messages will be SMTP-forwarded to: 127.0.0.1/25
+   Recognized listener spam block responses are: 550
+   Single-drop mode: 1 local name recognized.
+   No UIDs saved from this host.
+Options for retrieving from <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">zen191922 at zen.co.uk</A>@mailhost.zen.co.uk:
+   True name of server is mailhost.zen.co.uk.
+   Protocol is POP3.
+   All available authentication methods will be tried.
+   Server nonresponse timeout is 300 seconds (default).
+   Default mailbox selected.
+   All messages will be retrieved (--all on).
+   Fetched messages will not be kept on the server (--keep off).
+   Old messages will not be flushed before message retrieval (--flush off).
+   Oversized messages will not be flushed before message retrieval 
+(--limitflush off).
+   Rewrite of server-local addresses is enabled (--norewrite off).
+   Carriage-return stripping is disabled (stripcr off).
+   Carriage-return forcing is disabled (forcecr off).
+   Interpretation of Content-Transfer-Encoding is enabled (pass8bits off).
+   MIME decoding is disabled (mimedecode off).
+   Idle after poll is disabled (idle off).
+   Nonempty Status lines will be kept (dropstatus off)
+   Delivered-To lines will be kept (dropdelivered off)
+   Fetch message size limit is 100 (--fetchsizelimit 100).
+   Do binary search of UIDs during 3 out of 4 polls (--fastuidl 4).
+   Messages will be SMTP-forwarded to: 127.0.0.1/25
+   Recognized listener spam block responses are: 550
+   Single-drop mode: 1 local name recognized.
+   No UIDs saved from this host.
+Options for retrieving from <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">glidossecondary at wss.co.uk</A>@mail.wss.co.uk:
+   True name of server is mail.wss.co.uk.
+   Protocol is POP3.
+   All available authentication methods will be tried.
+   Server nonresponse timeout is 300 seconds (default).
+   Default mailbox selected.
+   All messages will be retrieved (--all on).
+   Fetched messages will not be kept on the server (--keep off).
+   Old messages will not be flushed before message retrieval (--flush off).
+   Oversized messages will not be flushed before message retrieval 
+(--limitflush off).
+   Rewrite of server-local addresses is enabled (--norewrite off).
+   Carriage-return stripping is disabled (stripcr off).
+   Carriage-return forcing is disabled (forcecr off).
+   Interpretation of Content-Transfer-Encoding is enabled (pass8bits off).
+   MIME decoding is disabled (mimedecode off).
+   Idle after poll is disabled (idle off).
+   Nonempty Status lines will be kept (dropstatus off)
+   Delivered-To lines will be kept (dropdelivered off)
+   Fetch message size limit is 100 (--fetchsizelimit 100).
+   Do binary search of UIDs during 3 out of 4 polls (--fastuidl 4).
+   Messages will be SMTP-forwarded to: 127.0.0.1/25
+   Recognized listener spam block responses are: 550
+   Single-drop mode: 1 local name recognized.
+   No UIDs saved from this host.
+Options for retrieving from <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">laserpoint.freeserve.co.uk at pop3.freeserve.net</A>:
+   True name of server is pop3.freeserve.net.
+   Protocol is POP3.
+   All available authentication methods will be tried.
+   Server nonresponse timeout is 300 seconds (default).
+   Default mailbox selected.
+   All messages will be retrieved (--all on).
+   Fetched messages will not be kept on the server (--keep off).
+   Old messages will not be flushed before message retrieval (--flush off).
+   Oversized messages will not be flushed before message retrieval 
+(--limitflush off).
+   Rewrite of server-local addresses is enabled (--norewrite off).
+   Carriage-return stripping is disabled (stripcr off).
+   Carriage-return forcing is disabled (forcecr off).
+   Interpretation of Content-Transfer-Encoding is enabled (pass8bits off).
+   MIME decoding is disabled (mimedecode off).
+   Idle after poll is disabled (idle off).
+   Nonempty Status lines will be kept (dropstatus off)
+   Delivered-To lines will be kept (dropdelivered off)
+   Fetch message size limit is 100 (--fetchsizelimit 100).
+   Do binary search of UIDs during 3 out of 4 polls (--fastuidl 4).
+   Messages will be SMTP-forwarded to: 127.0.0.1/25
+   Recognized listener spam block responses are: 550
+   Single-drop mode: 1 local name recognized.
+   No UIDs saved from this host.
+Options for retrieving from 
+<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">asoy73 at dsl.pipex.com</A>@pop3.tiscali-business.co.uk:
+   True name of server is pop3.tiscali-business.co.uk.
+   Protocol is POP3.
+   All available authentication methods will be tried.
+   Server nonresponse timeout is 300 seconds (default).
+   Default mailbox selected.
+   All messages will be retrieved (--all on).
+   Fetched messages will not be kept on the server (--keep off).
+   Old messages will not be flushed before message retrieval (--flush off).
+   Oversized messages will not be flushed before message retrieval 
+(--limitflush off).
+   Rewrite of server-local addresses is enabled (--norewrite off).
+   Carriage-return stripping is disabled (stripcr off).
+   Carriage-return forcing is disabled (forcecr off).
+   Interpretation of Content-Transfer-Encoding is enabled (pass8bits off).
+   MIME decoding is disabled (mimedecode off).
+   Idle after poll is disabled (idle off).
+   Nonempty Status lines will be kept (dropstatus off)
+   Delivered-To lines will be kept (dropdelivered off)
+   Fetch message size limit is 100 (--fetchsizelimit 100).
+   Do binary search of UIDs during 3 out of 4 polls (--fastuidl 4).
+   Messages will be SMTP-forwarded to: 127.0.0.1/25
+   Recognized listener spam block responses are: 550
+   Single-drop mode: 1 local name recognized.
+   No UIDs saved from this host.
+Options for retrieving from <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">grg21 at imaphost.bath.ac.uk</A>:
+   True name of server is imaphost.bath.ac.uk.
+   Protocol is IMAP.
+   All available authentication methods will be tried.
+   SSL encrypted sessions enabled.
+   Server nonresponse timeout is 300 seconds (default).
+   Default mailbox selected.
+   All messages will be retrieved (--all on).
+   Fetched messages will not be kept on the server (--keep off).
+   Old messages will not be flushed before message retrieval (--flush off).
+   Oversized messages will not be flushed before message retrieval 
+(--limitflush off).
+   Rewrite of server-local addresses is enabled (--norewrite off).
+   Carriage-return stripping is disabled (stripcr off).
+   Carriage-return forcing is disabled (forcecr off).
+   Interpretation of Content-Transfer-Encoding is enabled (pass8bits off).
+   MIME decoding is disabled (mimedecode off).
+   Idle after poll is disabled (idle off).
+   Nonempty Status lines will be kept (dropstatus off)
+   Delivered-To lines will be kept (dropdelivered off)
+   Fetch message size limit is 100 (--fetchsizelimit 100).
+   Do binary search of UIDs during 3 out of 4 polls (--fastuidl 4).
+   Messages will be SMTP-forwarded to: 127.0.0.1/25
+   Recognized listener spam block responses are: 550
+   Single-drop mode: 1 local name recognized.
+   No UIDs saved from this host.
+Options for retrieving from 
+<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">paul.gardiner at ideeplabs.com</A>@red003.mail.apac.microsoftonline.com:
+   True name of server is red003.mail.apac.microsoftonline.com.
+   Protocol is POP3.
+   Password authentication will be forced.
+   SSL encrypted sessions enabled.
+   Server nonresponse timeout is 300 seconds (default).
+   Default mailbox selected.
+   All messages will be retrieved (--all on).
+   Fetched messages will not be kept on the server (--keep off).
+   Old messages will not be flushed before message retrieval (--flush off).
+   Oversized messages will not be flushed before message retrieval 
+(--limitflush off).
+   Rewrite of server-local addresses is enabled (--norewrite off).
+   Carriage-return stripping is disabled (stripcr off).
+   Carriage-return forcing is disabled (forcecr off).
+   Interpretation of Content-Transfer-Encoding is enabled (pass8bits off).
+   MIME decoding is disabled (mimedecode off).
+   Idle after poll is disabled (idle off).
+   Nonempty Status lines will be kept (dropstatus off)
+   Delivered-To lines will be kept (dropdelivered off)
+   Fetch message size limit is 100 (--fetchsizelimit 100).
+   Do binary search of UIDs during 3 out of 4 polls (--fastuidl 4).
+   Messages will be SMTP-forwarded to: 127.0.0.1/25
+   Recognized listener spam block responses are: 550
+   Single-drop mode: 1 local name recognized.
+   No UIDs saved from this host.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+&quot;env LC_ALL=C /usr/bin/fetchmail --nodetach -vvv --nosyslog -d 600 -a -f 
+/etc/fetchmailrc -L /var/log/fetchmail&quot;
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+fetchmail: Old UID list from pop3.tiscali-business.co.uk: &lt;empty&gt;
+fetchmail: Old UID list from mailhost.zen.co.uk: &lt;empty&gt;
+fetchmail: Old UID list from mail.wss.co.uk: &lt;empty&gt;
+fetchmail: Old UID list from pop3.freeserve.net: &lt;empty&gt;
+fetchmail: Old UID list from pop3.tiscali-business.co.uk: &lt;empty&gt;
+fetchmail: Old UID list from imaphost.bath.ac.uk: &lt;empty&gt;
+fetchmail: Old UID list from red003.mail.apac.microsoftonline.com: &lt;empty&gt;
+fetchmail: Scratch list of UIDs: &lt;empty&gt;
+fetchmail: starting fetchmail 6.3.19 daemon
+fetchmail: 6.3.19 querying pop3.tiscali-business.co.uk (protocol POP3) 
+at Sun Oct  9 15:46:16 2011: poll started
+fetchmail: Trying to connect to 212.74.112.80/110...connected.
+fetchmail: POP3&lt; +OK Dovecot ready.
+fetchmail: POP3&gt; CAPA
+fetchmail: POP3&lt; +OK
+fetchmail: POP3&lt; CAPA
+fetchmail: POP3&lt; TOP
+fetchmail: POP3&lt; UIDL
+fetchmail: POP3&lt; RESP-CODES
+fetchmail: POP3&lt; PIPELINING
+fetchmail: POP3&lt; STLS
+fetchmail: POP3&lt; USER
+fetchmail: POP3&lt; SASL PLAIN LOGIN
+fetchmail: POP3&lt; .
+fetchmail: POP3&gt; STLS
+fetchmail: POP3&lt; +OK Begin TLS negotiation now.
+fetchmail: Certificate chain, from root to peer, starting at depth 3:
+fetchmail: Issuer Organization: Thawte Consulting cc
+fetchmail: Issuer CommonName: Thawte Premium Server CA
+fetchmail: Subject CommonName: Thawte Premium Server CA
+fetchmail: Certificate at depth 2:
+fetchmail: Issuer Organization: Thawte Consulting cc
+fetchmail: Issuer CommonName: Thawte Premium Server CA
+fetchmail: Subject CommonName: thawte Primary Root CA
+fetchmail: Certificate at depth 1:
+fetchmail: Issuer Organization: thawte, Inc.
+fetchmail: Issuer CommonName: thawte Primary Root CA
+fetchmail: Subject CommonName: Thawte SSL CA
+fetchmail: Server certificate:
+fetchmail: Issuer Organization: Thawte, Inc.
+fetchmail: Issuer CommonName: Thawte SSL CA
+fetchmail: Subject CommonName: pop3.tiscali-business.co.uk
+fetchmail: pop3.tiscali-business.co.uk key fingerprint: 
+C8:66:DB:BF:10:58:E0:D5:29:9B:F9:81:50:7C:F3:CA
+fetchmail: POP3&gt; CAPA
+fetchmail: POP3&lt; +OK
+fetchmail: POP3&lt; CAPA
+fetchmail: POP3&lt; TOP
+fetchmail: POP3&lt; UIDL
+fetchmail: POP3&lt; RESP-CODES
+fetchmail: POP3&lt; PIPELINING
+fetchmail: POP3&lt; USER
+fetchmail: POP3&lt; SASL PLAIN LOGIN
+fetchmail: POP3&lt; .
+fetchmail: pop3.tiscali-business.co.uk: upgrade to TLS succeeded.
+fetchmail: POP3&gt; USER <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">asmu36 at dsl.pipex.com</A>
+fetchmail: POP3&lt; +OK
+fetchmail: POP3&gt; PASS *
+fetchmail: POP3&lt; +OK Logged in.
+fetchmail: selecting or re-polling default folder
+fetchmail: POP3&gt; STAT
+fetchmail: POP3&lt; +OK 0 0
+fetchmail: No mail for <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">asmu36 at dsl.pipex.com</A> at pop3.tiscali-business.co.uk
+fetchmail: POP3&gt; QUIT
+fetchmail: POP3&lt; +OK Logging out.
+fetchmail: 6.3.19 querying pop3.tiscali-business.co.uk (protocol POP3) 
+at Sun Oct  9 15:46:17 2011: poll completed
+fetchmail: New UID list from pop3.tiscali-business.co.uk: &lt;empty&gt;
+fetchmail: not swapping UID lists, no UIDs seen this query
+fetchmail: Query status=1 (NOMAIL)
+fetchmail: 6.3.19 querying mailhost.zen.co.uk (protocol POP3) at Sun Oct 
+  9 15:46:17 2011: poll started
+fetchmail: Trying to connect to 212.23.3.98/110...connected.
+fetchmail: POP3&lt; +OK smarthost04, Zen Internet POP3 Server Ready
+fetchmail: POP3&gt; CAPA
+fetchmail: POP3&lt; -ERR You must login first.
+fetchmail: You must login first.
+fetchmail: Repoll immediately on 
+<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">zen191922 at zen.co.uk</A>@mailhost.lb.mbr-roch.zen.net.uk
+fetchmail: Trying to connect to 212.23.3.98/110...connected.
+fetchmail: POP3&lt; +OK smarthost04, Zen Internet POP3 Server Ready
+fetchmail: POP3&gt; USER <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">zen191922 at zen.co.uk</A>
+fetchmail: POP3&lt; +OK Please enter your pass, with the PASS command.
+fetchmail: POP3&gt; PASS *
+fetchmail: POP3&lt; +OK Logged in.
+fetchmail: selecting or re-polling default folder
+fetchmail: POP3&gt; STAT
+fetchmail: POP3&lt; +OK 0 0
+fetchmail: No mail for <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">zen191922 at zen.co.uk</A> at mailhost.zen.co.uk
+fetchmail: POP3&gt; QUIT
+fetchmail: POP3&lt; +OK Goodbye. See you again sometime :)
+fetchmail: 6.3.19 querying mailhost.zen.co.uk (protocol POP3) at Sun Oct 
+  9 15:46:18 2011: poll completed
+fetchmail: New UID list from mailhost.zen.co.uk: &lt;empty&gt;
+fetchmail: not swapping UID lists, no UIDs seen this query
+fetchmail: Query status=1 (NOMAIL)
+fetchmail: 6.3.19 querying mail.wss.co.uk (protocol POP3) at Sun Oct  9 
+15:46:18 2011: poll started
+fetchmail: Trying to connect to 98.130.1.233/110...connected.
+fetchmail: POP3&lt; +OK &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">7636.1318171578 at mail1211.opentransfer.com</A>&gt;
+fetchmail: POP3&gt; CAPA
+fetchmail: POP3&lt; +OK capability list follows
+fetchmail: POP3&lt; USER
+fetchmail: POP3&lt; TOP
+fetchmail: POP3&lt; UIDL
+fetchmail: POP3&lt; .
+fetchmail: POP3&gt; USER <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">glidossecondary at wss.co.uk</A>
+fetchmail: POP3&lt; +OK
+fetchmail: POP3&gt; PASS *
+fetchmail: POP3&lt; +OK
+fetchmail: selecting or re-polling default folder
+fetchmail: POP3&gt; STAT
+fetchmail: POP3&lt; +OK 0 0
+fetchmail: No mail for <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">glidossecondary at wss.co.uk</A> at mail.wss.co.uk
+fetchmail: POP3&gt; QUIT
+fetchmail: POP3&lt; +OK
+fetchmail: 6.3.19 querying mail.wss.co.uk (protocol POP3) at Sun Oct  9 
+15:46:19 2011: poll completed
+fetchmail: New UID list from mail.wss.co.uk: &lt;empty&gt;
+fetchmail: not swapping UID lists, no UIDs seen this query
+fetchmail: Query status=1 (NOMAIL)
+fetchmail: 6.3.19 querying pop3.freeserve.net (protocol POP3) at Sun Oct 
+  9 15:46:19 2011: poll started
+fetchmail: Trying to connect to 193.252.22.155/110...connected.
+fetchmail: POP3&lt; +OK connected to pop3 on 3407
+fetchmail: POP3&gt; CAPA
+fetchmail: POP3&lt; +OK List of capabilities follows
+fetchmail: POP3&lt; USER
+fetchmail: POP3&lt; .
+fetchmail: POP3&gt; USER laserpoint.freeserve.co.uk
+fetchmail: POP3&lt; +OK name is a valid mailbox
+fetchmail: POP3&gt; PASS *
+fetchmail: POP3&lt; +OK user exist with that password
+fetchmail: selecting or re-polling default folder
+fetchmail: POP3&gt; STAT
+fetchmail: POP3&lt; +OK 0 0
+fetchmail: No mail for laserpoint.freeserve.co.uk at pop3.freeserve.net
+fetchmail: POP3&gt; QUIT
+fetchmail: POP3&lt; +OK
+fetchmail: 6.3.19 querying pop3.freeserve.net (protocol POP3) at Sun Oct 
+  9 15:46:20 2011: poll completed
+fetchmail: New UID list from pop3.freeserve.net: &lt;empty&gt;
+fetchmail: not swapping UID lists, no UIDs seen this query
+fetchmail: Query status=1 (NOMAIL)
+fetchmail: 6.3.19 querying pop3.tiscali-business.co.uk (protocol POP3) 
+at Sun Oct  9 15:46:20 2011: poll started
+fetchmail: Trying to connect to 212.74.112.80/110...connected.
+fetchmail: POP3&lt; +OK Dovecot ready.
+fetchmail: POP3&gt; CAPA
+fetchmail: POP3&lt; +OK
+fetchmail: POP3&lt; CAPA
+fetchmail: POP3&lt; TOP
+fetchmail: POP3&lt; UIDL
+fetchmail: POP3&lt; RESP-CODES
+fetchmail: POP3&lt; PIPELINING
+fetchmail: POP3&lt; STLS
+fetchmail: POP3&lt; USER
+fetchmail: POP3&lt; SASL PLAIN LOGIN
+fetchmail: POP3&lt; .
+fetchmail: POP3&gt; STLS
+fetchmail: POP3&lt; +OK Begin TLS negotiation now.
+fetchmail: Certificate chain, from root to peer, starting at depth 3:
+fetchmail: Issuer Organization: Thawte Consulting cc
+fetchmail: Issuer CommonName: Thawte Premium Server CA
+fetchmail: Subject CommonName: Thawte Premium Server CA
+fetchmail: Certificate at depth 2:
+fetchmail: Issuer Organization: Thawte Consulting cc
+fetchmail: Issuer CommonName: Thawte Premium Server CA
+fetchmail: Subject CommonName: thawte Primary Root CA
+fetchmail: Certificate at depth 1:
+fetchmail: Issuer Organization: thawte, Inc.
+fetchmail: Issuer CommonName: thawte Primary Root CA
+fetchmail: Subject CommonName: Thawte SSL CA
+fetchmail: Server certificate:
+fetchmail: Issuer Organization: Thawte, Inc.
+fetchmail: Issuer CommonName: Thawte SSL CA
+fetchmail: Subject CommonName: pop3.tiscali-business.co.uk
+fetchmail: pop3.tiscali-business.co.uk key fingerprint: 
+C8:66:DB:BF:10:58:E0:D5:29:9B:F9:81:50:7C:F3:CA
+fetchmail: POP3&gt; CAPA
+fetchmail: POP3&lt; +OK
+fetchmail: POP3&lt; CAPA
+fetchmail: POP3&lt; TOP
+fetchmail: POP3&lt; UIDL
+fetchmail: POP3&lt; RESP-CODES
+fetchmail: POP3&lt; PIPELINING
+fetchmail: POP3&lt; USER
+fetchmail: POP3&lt; SASL PLAIN LOGIN
+fetchmail: POP3&lt; .
+fetchmail: pop3.tiscali-business.co.uk: upgrade to TLS succeeded.
+fetchmail: POP3&gt; USER <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">asoy73 at dsl.pipex.com</A>
+fetchmail: POP3&lt; +OK
+fetchmail: POP3&gt; PASS *
+fetchmail: POP3&lt; +OK Logged in.
+fetchmail: selecting or re-polling default folder
+fetchmail: POP3&gt; STAT
+fetchmail: POP3&lt; +OK 0 0
+fetchmail: No mail for <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">asoy73 at dsl.pipex.com</A> at pop3.tiscali-business.co.uk
+fetchmail: POP3&gt; QUIT
+fetchmail: POP3&lt; +OK Logging out.
+fetchmail: 6.3.19 querying pop3.tiscali-business.co.uk (protocol POP3) 
+at Sun Oct  9 15:46:20 2011: poll completed
+fetchmail: New UID list from pop3.tiscali-business.co.uk: &lt;empty&gt;
+fetchmail: not swapping UID lists, no UIDs seen this query
+fetchmail: Query status=1 (NOMAIL)
+fetchmail: 6.3.19 querying imaphost.bath.ac.uk (protocol IMAP) at Sun 
+Oct  9 15:46:20 2011: poll started
+fetchmail: Trying to connect to 138.38.3.83/993...connected.
+fetchmail: Certificate chain, from root to peer, starting at depth 3:
+fetchmail: Issuer Organization: AddTrust AB
+fetchmail: Issuer CommonName: AddTrust External CA Root
+fetchmail: Subject CommonName: AddTrust External CA Root
+fetchmail: Certificate at depth 2:
+fetchmail: Issuer Organization: AddTrust AB
+fetchmail: Issuer CommonName: AddTrust External CA Root
+fetchmail: Subject CommonName: UTN-USERFirst-Hardware
+fetchmail: Certificate at depth 1:
+fetchmail: Issuer Organization: The USERTRUST Network
+fetchmail: Issuer CommonName: UTN-USERFirst-Hardware
+fetchmail: Subject CommonName: TERENA SSL CA
+fetchmail: Server certificate:
+fetchmail: Issuer Organization: TERENA
+fetchmail: Issuer CommonName: TERENA SSL CA
+fetchmail: Subject CommonName: imaphost.bath.ac.uk
+fetchmail: Subject Alternative Name: imaphost.bath.ac.uk
+fetchmail: imaphost.bath.ac.uk key fingerprint: 
+12:43:C9:22:21:A2:3D:B9:30:E5:B3:59:E1:38:14:00
+fetchmail: IMAP&lt; * OK [CAPABILITY IMAP4 IMAP4rev1 LITERAL+ ID 
+MUPDATE=<A HREF="mupdate://imaphost.bath.ac.uk/">mupdate://imaphost.bath.ac.uk/</A> AUTH=PLAIN AUTH=GSSAPI SASL-IR] 
+imaphost.bath.ac.uk Cyrus IMAP Murder v2.3.13 server ready
+fetchmail: IMAP&gt; A0001 CAPABILITY
+fetchmail: IMAP&lt; * CAPABILITY IMAP4 IMAP4rev1 LITERAL+ ID 
+MUPDATE=<A HREF="mupdate://imaphost.bath.ac.uk/">mupdate://imaphost.bath.ac.uk/</A> AUTH=PLAIN AUTH=GSSAPI SASL-IR 
+ACL RIGHTS=kxte QUOTA MAILBOX-REFERRALS NAMESPACE UIDPLUS 
+NO_ATOMIC_RENAME UNSELECT CHILDREN MULTIAPPEND BINARY SORT SORT=MODSEQ 
+THREAD=ORDEREDSUBJECT THREAD=REFERENCES ANNOTATEMORE CATENATE CONDSTORE 
+SCAN IDLE LISTEXT LIST-SUBSCRIBED URLAUTH
+fetchmail: IMAP&lt; A0001 OK Completed
+fetchmail: Protocol identified as IMAP4 rev 1
+fetchmail: GSSAPI error gss_inquire_cred: Unspecified GSS failure. Minor 
+code may provide more information
+fetchmail: GSSAPI error gss_inquire_cred: Credentials cache file 
+'/tmp/krb5cc_107' not found
+fetchmail: No suitable GSSAPI credentials found. Skipping GSSAPI 
+authentication.
+fetchmail: If you want to use GSSAPI, you need credentials first, 
+possibly from kinit.
+fetchmail: IMAP&gt; A0002 LOGIN &quot;grg21&quot; *
+fetchmail: IMAP&lt; A0002 OK [CAPABILITY IMAP4 IMAP4rev1 LITERAL+ ID 
+MUPDATE=<A HREF="mupdate://imaphost.bath.ac.uk/">mupdate://imaphost.bath.ac.uk/</A> LOGINDISABLED AUTH=PLAIN 
+AUTH=GSSAPI ACL RIGHTS=kxte QUOTA MAILBOX-REFERRALS NAMESPACE UIDPLUS 
+NO_ATOMIC_RENAME UNSELECT CHILDREN MULTIAPPEND BINARY SORT SORT=MODSEQ 
+THREAD=ORDEREDSUBJECT THREAD=REFERENCES ANNOTATEMORE CATENATE CONDSTORE 
+SCAN IDLE LISTEXT LIST-SUBSCRIBED URLAUTH] User logged in
+fetchmail: selecting or re-polling default folder
+fetchmail: IMAP&gt; A0003 SELECT &quot;INBOX&quot;
+fetchmail: IMAP&lt; * FLAGS (\Answered \Flagged \Draft \Deleted \Seen)
+fetchmail: IMAP&lt; * OK [PERMANENTFLAGS (\Answered \Flagged \Draft 
+\Deleted \Seen \*)]
+fetchmail: IMAP&lt; * 0 EXISTS
+fetchmail: IMAP&lt; * 0 RECENT
+fetchmail: IMAP&lt; * OK [UIDVALIDITY 1124726410]
+fetchmail: IMAP&lt; * OK [UIDNEXT 8975]
+fetchmail: IMAP&lt; * OK [NOMODSEQ] Sorry, modsequences have not been 
+enabled on this mailbox
+fetchmail: IMAP&lt; * OK [URLMECH INTERNAL]
+fetchmail: IMAP&lt; A0003 OK [READ-WRITE] Completed
+fetchmail: 0 messages waiting after first poll
+fetchmail: No mail for grg21 at imaphost.bath.ac.uk
+fetchmail: IMAP&gt; A0004 LOGOUT
+fetchmail: IMAP&lt; * BYE LOGOUT received
+fetchmail: IMAP&lt; A0004 OK Completed
+fetchmail: 6.3.19 querying imaphost.bath.ac.uk (protocol IMAP) at Sun 
+Oct  9 15:46:21 2011: poll completed
+fetchmail: New UID list from imaphost.bath.ac.uk: &lt;empty&gt;
+fetchmail: not swapping UID lists, no UIDs seen this query
+fetchmail: Query status=1 (NOMAIL)
+fetchmail: 6.3.19 querying red003.mail.apac.microsoftonline.com 
+(protocol POP3) at Sun Oct  9 15:46:21 2011: poll started
+fetchmail: Trying to connect to 207.46.62.158/995...connected.
+fetchmail: Certificate chain, from root to peer, starting at depth 3:
+fetchmail: Issuer Organization: GTE Corporation
+fetchmail: Issuer CommonName: GTE CyberTrust Global Root
+fetchmail: Subject CommonName: GTE CyberTrust Global Root
+fetchmail: Certificate at depth 2:
+fetchmail: Issuer Organization: GTE Corporation
+fetchmail: Issuer CommonName: GTE CyberTrust Global Root
+fetchmail: Subject CommonName: Microsoft Internet Authority
+fetchmail: Certificate at depth 1:
+fetchmail: Unknown Organization
+fetchmail: Issuer CommonName: Microsoft Internet Authority
+fetchmail: Subject CommonName: Microsoft Secure Server Authority
+fetchmail: Server certificate:
+fetchmail: Unknown Organization
+fetchmail: Issuer CommonName: Microsoft Secure Server Authority
+fetchmail: Subject CommonName: *.mail.apac.microsoftonline.com
+fetchmail: red003.mail.apac.microsoftonline.com key fingerprint: 
+E0:F6:59:F4:02:E5:83:FB:44:DB:91:CE:DA:A7:18:66
+fetchmail: POP3&lt; +OK The Microsoft Exchange POP3 service is ready.
+fetchmail: POP3&gt; USER <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">paul.gardiner at ideeplabs.com</A>
+fetchmail: POP3&lt; +OK
+fetchmail: POP3&gt; PASS *
+fetchmail: POP3&lt; -ERR Logon failure: unknown user name or bad password.
+fetchmail: Logon failure: unknown user name or bad password.
+fetchmail: Authorization failure on 
+<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">paul.gardiner at ideeplabs.com</A>@red003.mail.apac.microsoftonline.com
+fetchmail: POP3&gt; QUIT
+fetchmail: POP3&lt; +OK Microsoft Exchange Server 2007 POP3 server signing off.
+fetchmail: 6.3.19 querying red003.mail.apac.microsoftonline.com 
+(protocol POP3) at Sun Oct  9 15:46:24 2011: poll completed
+fetchmail: Merged UID list from red003.mail.apac.microsoftonline.com: 
+&lt;empty&gt;
+fetchmail: Query status=3 (AUTHFAIL)
+fetchmail: sleeping at Sun Oct  9 15:46:24 2011 for 600 seconds
+fetchmail: terminated with signal 2
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002951.html">[fetchmail-users] Query status=3 (AUTHFAIL): known problem I realise, but none of the reasons seem to apply to my set up
+</A></li>
+	<LI>Next message: <A HREF="002953.html">[fetchmail-users] Query status=3 (AUTHFAIL): known problem I realise, but none of the reasons seem to apply to my set up
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2952">[ date ]</a>
+              <a href="thread.html#2952">[ thread ]</a>
+              <a href="subject.html#2952">[ subject ]</a>
+              <a href="author.html#2952">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

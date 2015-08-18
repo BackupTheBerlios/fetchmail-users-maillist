@@ -1,0 +1,106 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Authorization Failiure:	user at domain.com@domain.com
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2012-July/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Authorization%20Failiure%3A%0A%09user%40domain.com%40domain.com&In-Reply-To=%3C50077AF8.4050308%40gmx.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003187.html">
+   <LINK REL="Next"  HREF="003189.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Authorization Failiure:	user at domain.com@domain.com</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Authorization%20Failiure%3A%0A%09user%40domain.com%40domain.com&In-Reply-To=%3C50077AF8.4050308%40gmx.de%3E"
+       TITLE="[fetchmail-users] Authorization Failiure:	user at domain.com@domain.com">matthias.andree at gmx.de
+       </A><BR>
+    <I>Thu Jul 19 05:11:52 CEST 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003187.html">[fetchmail-users] Authorization Failiure:	user at domain.com@domain.com
+</A></li>
+        <LI>Next message: <A HREF="003189.html">[fetchmail-users] ssl troubles
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3188">[ date ]</a>
+              <a href="thread.html#3188">[ thread ]</a>
+              <a href="subject.html#3188">[ subject ]</a>
+              <a href="author.html#3188">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Am 17.07.2012 05:55, schrieb Michael Munger:
+&gt;<i> Well played. The relevant error was the subject message,
+</I>
+I had seen the subject, but the relevant error message was neither in
+your original nor your follow-up post.
+
+&gt;<i> but in
+</I>&gt;<i> re-reading my message, I can see it wasn't sufficient. Per your request,
+</I>&gt;<i> here is a transaction from the log that demonstrates the issue:
+</I>&gt;<i> 
+</I>&gt;<i> Jul 16 13:51:06 BackupMX fetchmail[24732]: starting fetchmail 6.3.18 daemon
+</I>&gt;<i> Jul 16 13:51:06 BackupMX fetchmail[24732]: Server certificate
+</I>&gt;<i> verification error: self signed certificate
+</I>&gt;<i> Jul 16 13:51:06 BackupMX fetchmail[24732]: This means that the root
+</I>&gt;<i> signing certificate (issued for /C=US/ST=NY/L=New York/O=Courier Mail
+</I>&gt;<i> Server/OU=Automatically-genera
+</I>&gt;<i> Jul 16 13:51:06 BackupMX fetchmail[24732]: Warning: the connection is
+</I>&gt;<i> insecure, continuing anyways. (Better use --sslcertck!)
+</I>&gt;<i> Jul 16 13:51:06 BackupMX imapd-ssl: Connection, ip=[::ffff:192.168.1.24]
+</I>&gt;<i> Jul 16 13:51:06 BackupMX imapd-ssl: LOGIN FAILED,
+</I>&gt;<i> user=<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">michael at highpoweredhelp.com</A>, ip=[::ffff:192.168.1.24]
+</I>&gt;<i> Jul 16 13:51:11 BackupMX fetchmail[24732]: Authorization failure on
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">michael at highpoweredhelp.com</A>@mxbackup.highpoweredhelp.com
+</I>&gt;<i> Jul 16 13:51:11 BackupMX fetchmail[24732]: For help, see
+</I>&gt;<i> <A HREF="http://www.fetchmail.info/fetchmail-FAQ.html#R15">http://www.fetchmail.info/fetchmail-FAQ.html#R15</A>
+</I>&gt;<i> Jul 16 13:51:11 BackupMX fetchmail[24732]: Query status=3 (AUTHFAIL)
+</I>&gt;<i> Jul 16 13:51:11 BackupMX imapd-ssl: LOGOUT, ip=[::ffff:192.168.1.24],
+</I>&gt;<i> rcvd=87, sent=500
+</I>&gt;<i> 
+</I>&gt;<i> The authorization failure is likely (I Think) becuase
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">michael at highpowerehdelp.com</A>@mxbackup.highpoweredhelp.com is a mal-formed
+</I>&gt;<i> address. (Unless that's how fetchmail records the users in the log).
+</I>&gt;<i> This server has virtual domains (postfix with MySQL on the backend for
+</I>&gt;<i> virtual domains).
+</I>&gt;<i> 
+</I>&gt;<i> Thoughts?
+</I>
+Be sure to check that the authdaemon is running, properly configured,
+and its socket reachable for the IMAPd, a common problem in Courier
+outfits.  You may want to crank up Courier's logging, too.
+
+Sorry for the confusing logging in fetchmail, but don't let that keep
+you from providing the required information, transaction logs in
+particular (FAQ G3).
+
+</PRE>
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003187.html">[fetchmail-users] Authorization Failiure:	user at domain.com@domain.com
+</A></li>
+	<LI>Next message: <A HREF="003189.html">[fetchmail-users] ssl troubles
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3188">[ date ]</a>
+              <a href="thread.html#3188">[ thread ]</a>
+              <a href="subject.html#3188">[ subject ]</a>
+              <a href="author.html#3188">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

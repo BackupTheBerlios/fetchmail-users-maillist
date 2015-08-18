@@ -1,0 +1,121 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] fetchmail - maildrop: non delivery
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2013-January/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%20-%20maildrop%3A%20non%20delivery&In-Reply-To=%3C20130122082521.GA6476%40straylight.m.ringlet.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003320.html">
+   <LINK REL="Next"  HREF="003322.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] fetchmail - maildrop: non delivery</H1>
+    <B>Peter Pentchev</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%20-%20maildrop%3A%20non%20delivery&In-Reply-To=%3C20130122082521.GA6476%40straylight.m.ringlet.net%3E"
+       TITLE="[fetchmail-users] fetchmail - maildrop: non delivery">roam at ringlet.net
+       </A><BR>
+    <I>Tue Jan 22 09:25:21 CET 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003320.html">[fetchmail-users] fetchmail - maildrop: non delivery
+</A></li>
+        <LI>Next message: <A HREF="003322.html">[fetchmail-users] fetchmail - maildrop: non delivery
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3321">[ date ]</a>
+              <a href="thread.html#3321">[ thread ]</a>
+              <a href="subject.html#3321">[ subject ]</a>
+              <a href="author.html#3321">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Mon, Jan 21, 2013 at 12:44:44PM -0500, Gene Heskett wrote:
+&gt;<i> On Monday 21 January 2013 12:31:42 Peter Pentchev did opine:
+</I>&gt;<i> Message additions Copyright Monday 21 January 2013 by Gene Heskett
+</I>&gt;<i> 
+</I>&gt;<i> &gt; On Mon, Jan 21, 2013 at 12:32:48AM +1100, Dr Michael Daly wrote:
+</I>&gt;<i> &gt; &gt; Hi
+</I>&gt;<i> &gt; &gt; Wondering if someone can give any clues as to why Mail is not being
+</I>&gt;<i> &gt; &gt; delivered...I would like to check with this fetchmail list prior to
+</I>&gt;<i> &gt; &gt; checking with the courier/maildrop people. This is all running on a
+</I>&gt;<i> &gt; &gt; QNAP NAS device. Dovecot is running.
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; [snip]
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; &gt; .mailfilter(39): Missing )
+</I>&gt;<i> &gt; &gt; fetchmail: MDA returned nonzero status 75
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; [snip]
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; &gt; I have no idea why .mailfilter cant be found...its definitely in the
+</I>&gt;<i> &gt; &gt; $HOME dir of mdtesting
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; It's not complaining that .mailfilter can't be found; it says that in
+</I>&gt;<i> &gt; the .mailfilter file, on line 39, there is a missing &quot;)&quot; (left bracket)
+</I>&gt;<i> &gt; character.
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; Check your .mailfilter file for matching ( ) characters and, generally,
+</I>&gt;<i> &gt; for syntax correctness.
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; G'luck,
+</I>&gt;<i> &gt; Peter
+</I>&gt;<i> 
+</I>&gt;<i> Actually, I am sitting here trying to figure out why he even has a &quot;(&quot; or 
+</I>&gt;<i> &quot;)&quot; character in his .mailfilterrc.
+</I>&gt;<i> 
+</I>&gt;<i> Its a regex pattern matcher...
+</I>
+Well, to be precise, in the mailfilter(5) syntax the () characters may
+also have other meaning, e.g. function calls when setting a variable,
+expression delimiters in conditionals and loops (C-style if (...),
+Perl-style foreach (...), etc).  So it's hard to say without seeing the
+original poster's .mailfilter file - but it would be slightly off-topic
+for this list - enough to say that the problem does indeed seem to be in
+it, so he should go to the Courier/maildrop people as he mentioned in
+his original message.
+
+G'luck,
+Peter
+
+-- 
+Peter Pentchev	<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">roam at ringlet.net</A> <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">roam at FreeBSD.org</A> <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">p.penchev at storpool.com</A>
+PGP key:	<A HREF="http://people.FreeBSD.org/~roam/roam.key.asc">http://people.FreeBSD.org/~roam/roam.key.asc</A>
+Key fingerprint 2EE7 A7A5 17FC 124C F115  C354 651E EFB0 2527 DF13
+This inert sentence is my body, but my soul is alive, dancing in the sparks of your brain.
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: signature.asc
+Type: application/pgp-signature
+Size: 836 bytes
+Desc: Digital signature
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/fetchmail-users/attachments/20130122/8b640866/attachment.pgp">https://lists.berlios.de/pipermail/fetchmail-users/attachments/20130122/8b640866/attachment.pgp</A>&gt;
+</PRE>
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003320.html">[fetchmail-users] fetchmail - maildrop: non delivery
+</A></li>
+	<LI>Next message: <A HREF="003322.html">[fetchmail-users] fetchmail - maildrop: non delivery
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3321">[ date ]</a>
+              <a href="thread.html#3321">[ thread ]</a>
+              <a href="subject.html#3321">[ subject ]</a>
+              <a href="author.html#3321">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

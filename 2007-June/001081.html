@@ -1,0 +1,111 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] change helo/ehlo
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2007-June/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20change%20helo/ehlo&In-Reply-To=%3C4667AB4C.6060005%40agilolfinger.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001080.html">
+   <LINK REL="Next"  HREF="001084.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] change helo/ehlo</H1>
+    <B>Florian</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20change%20helo/ehlo&In-Reply-To=%3C4667AB4C.6060005%40agilolfinger.de%3E"
+       TITLE="[fetchmail-users] change helo/ehlo">tslbai at agilolfinger.de
+       </A><BR>
+    <I>Thu Jun  7 08:53:00 CEST 2007</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001080.html">[fetchmail-users] change helo/ehlo
+</A></li>
+        <LI>Next message: <A HREF="001084.html">[fetchmail-users] change helo/ehlo
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1081">[ date ]</a>
+              <a href="thread.html#1081">[ thread ]</a>
+              <a href="subject.html#1081">[ subject ]</a>
+              <a href="author.html#1081">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Rob MacGregor schrieb:
+&gt;<i> On 6/7/07, Florian &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">tslbai at agilolfinger.de</A>&gt; wrote:
+</I>&gt;<i>   
+</I>&gt;&gt;<i> Hello List,
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> i installed fetchmail 6.3.8+SSL on Trustix.
+</I>&gt;&gt;<i> Fetching of Mails works, but delivering the mails crashes:
+</I>&gt;&gt;<i>     
+</I>&gt;<i>
+</I>&gt;<i> Contents of .fetchmailrc?
+</I>&gt;<i>
+</I>&gt;<i> In my case, presumably because I've used &quot;set invisible&quot; I see &quot;EHLO
+</I>&gt;<i> &lt;remote server&gt;&quot;.  If I don't set that then I see &quot;EHLO &lt;hostname&gt;&quot;.
+</I>&gt;<i>   
+</I>poll pop.gmx.net proto pop3 user &quot;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">myfreemailaccount at gmx.net</A>&quot; password
+&quot;password&quot; is &quot;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">my.name at mydomain.de</A>&quot;
+fetchall
+
+fetchmail ist called for testing just with : &quot;fetchmail -v&quot;
+
+I'll try the &quot;set invisible&quot;
+&gt;&gt;<i> How can the HELO/EHLO string be changed?
+</I>&gt;&gt;<i>     
+</I>&gt;<i>
+</I>&gt;<i> Change the system's hostname, ie so that &quot;hostname&quot; provides
+</I>&gt;<i> &quot;myhostname.mydomain.de&quot; rather than just &quot;myhostname&quot;.
+</I>&gt;<i>   
+</I>The system has several ip-addresses. Every ip-address corresponds to an
+valid name in the DNS (forward and reverse). I'd like to use one of
+these names for fetchmail-EHLO.
+Is there a onfig-value for customizing the EHLO-String?
+Can fetchmail be bound to a certail outgoing interface (like e.g.
+postfix : smtp_bind_address)?
+How is the EHLO-String determined?
+&gt;&gt;<i> According to rfc 2821 i'd like use the fqdn &quot;myhostname.mydomain.de&quot; as
+</I>&gt;&gt;<i> EHLO-String.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> &quot;4.1.1.1  Extended HELLO (EHLO) or HELLO (HELO)
+</I>&gt;&gt;<i> [...] The argument field contains the fully-qualified domain name
+</I>&gt;&gt;<i> of the SMTP client if one is available.&quot;
+</I>&gt;&gt;<i>     
+</I>&gt;<i>
+</I>&gt;<i> Given how few clients actually obey that, if you expect any clients to
+</I>&gt;<i> connect to that server it's probably best to relax that check.
+</I>&gt;<i>   
+</I>I use this check for Spam protection and it works very well! You are
+right, that this is a source for false-positives ;-(
+I'd like to form my own outgoing traffic in an rfc-conform manner.
+
+Florian
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001080.html">[fetchmail-users] change helo/ehlo
+</A></li>
+	<LI>Next message: <A HREF="001084.html">[fetchmail-users] change helo/ehlo
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1081">[ date ]</a>
+              <a href="thread.html#1081">[ thread ]</a>
+              <a href="subject.html#1081">[ subject ]</a>
+              <a href="author.html#1081">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

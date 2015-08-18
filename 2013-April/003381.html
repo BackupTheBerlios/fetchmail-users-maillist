@@ -1,0 +1,91 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] fetchmail options limit and warnings
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2013-April/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%20options%20limit%20and%20warnings&In-Reply-To=%3C515A677B.2000406%40gmx.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003380.html">
+   <LINK REL="Next"  HREF="003382.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] fetchmail options limit and warnings</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%20options%20limit%20and%20warnings&In-Reply-To=%3C515A677B.2000406%40gmx.de%3E"
+       TITLE="[fetchmail-users] fetchmail options limit and warnings">matthias.andree at gmx.de
+       </A><BR>
+    <I>Tue Apr  2 07:07:07 CEST 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003380.html">[fetchmail-users] fetchmail options limit and warnings
+</A></li>
+        <LI>Next message: <A HREF="003382.html">[fetchmail-users] fetchmail options limit and warnings
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3381">[ date ]</a>
+              <a href="thread.html#3381">[ thread ]</a>
+              <a href="subject.html#3381">[ subject ]</a>
+              <a href="author.html#3381">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Am 01.04.2013 10:10, schrieb Martin Koeppe:
+&gt;<i> 
+</I>&gt;<i> Hi all,
+</I>&gt;<i> 
+</I>&gt;<i> I'm using fetchmail 6.3.21 on cygwin to retrieve mails for multiple
+</I>&gt;<i> users in single-drop mode. I use the limit option in fetchmailrc. I
+</I>&gt;<i> currently don't use daemon mode, but have another way to regularily
+</I>&gt;<i> start fetchmail (windows planned tasks).
+</I>&gt;<i> 
+</I>&gt;<i> Now I would like to send a warning message to the users if an oversized
+</I>&gt;<i> message is detected, even if fetchmail is not in daemon mode, because
+</I>&gt;<i> the output only goes to a log file which can't be read by the users.
+</I>&gt;<i> Ideally, the warning would go to the address that would have received
+</I>&gt;<i> the mail if it were not oversized. But a single recipient of the
+</I>&gt;<i> oversize warnings would also help.
+</I>
+Well, most of the warnings will be shipped only in daemon mode.
+
+If fetchmail is run from the user's crontab, and Exim or some other MTA
+installed, you can also have cron mail the results instead.
+
+Note though that 6.3.21 is vulnerable if NTLM is used, see
+<A HREF="http://www.fetchmail.info/fetchmail-SA-2012-02.txt">http://www.fetchmail.info/fetchmail-SA-2012-02.txt</A> and prod your kind
+Cygwin package maintainer (that used to be Jason Tishler) to upgrade to
+6.3.25.
+See &lt;<A HREF="http://gitorious.org/fetchmail/fetchmail/blobs/raw/legacy_63/NEWS">http://gitorious.org/fetchmail/fetchmail/blobs/raw/legacy_63/NEWS</A>&gt;
+for the changes since 6.3.21.
+
+6.3.25 does not fix your problem, though (no 6.3.X version will do that).
+
+</PRE>
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003380.html">[fetchmail-users] fetchmail options limit and warnings
+</A></li>
+	<LI>Next message: <A HREF="003382.html">[fetchmail-users] fetchmail options limit and warnings
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3381">[ date ]</a>
+              <a href="thread.html#3381">[ thread ]</a>
+              <a href="subject.html#3381">[ subject ]</a>
+              <a href="author.html#3381">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,88 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Fetchamil is very slow
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2006-May/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Fetchamil%20is%20very%20slow&In-Reply-To=%3C43ea8d070605080948g571d1c53ub6292dee7eb3923d%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000391.html">
+   <LINK REL="Next"  HREF="000399.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Fetchamil is very slow</H1>
+    <B>Rob MacGregor</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Fetchamil%20is%20very%20slow&In-Reply-To=%3C43ea8d070605080948g571d1c53ub6292dee7eb3923d%40mail.gmail.com%3E"
+       TITLE="[fetchmail-users] Fetchamil is very slow">rob.macgregor at gmail.com
+       </A><BR>
+    <I>Mon May  8 18:48:57 CEST 2006</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000391.html">[fetchmail-users] Fetchamil is very slow
+</A></li>
+        <LI>Next message: <A HREF="000399.html">[fetchmail-users] only one message gets fetched using IMAP idle
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#393">[ date ]</a>
+              <a href="thread.html#393">[ thread ]</a>
+              <a href="subject.html#393">[ subject ]</a>
+              <a href="author.html#393">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On 5/8/06, Shukla Vipul &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">vipulshukal at gmail.com</A>&gt; wrote:
+&gt;<i> HI,
+</I>&gt;<i>
+</I>&gt;<i>      I am using fetchmail for downloading mails from server, but fetchmail
+</I>&gt;<i> is very slow i got my mail after 12hours i want to get it fast.
+</I>
+There are only 2 things that can cause fetchmail to run slow (assuming
+you're not trying to run it on a 386 or older):
+
+1) Slow network link
+2) Slow MTA for delivery
+
+What we really need to see are:
+
+1) Contents of .fetchmailrc (masking passwords etc)
+2) Output of &quot;fetchmail -v -v --nosyslog&quot;
+3) Contents of your mail log (probably /var/log/maillog or similar)
+for the same run as (2)
+
+To help you identify where your problem lies.
+
+--
+                 Please keep list traffic on the list.
+
+Rob MacGregor
+      Whoever fights monsters should see to it that in the process he
+        doesn't become a monster.                  Friedrich Nietzsche
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000391.html">[fetchmail-users] Fetchamil is very slow
+</A></li>
+	<LI>Next message: <A HREF="000399.html">[fetchmail-users] only one message gets fetched using IMAP idle
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#393">[ date ]</a>
+              <a href="thread.html#393">[ thread ]</a>
+              <a href="subject.html#393">[ subject ]</a>
+              <a href="author.html#393">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

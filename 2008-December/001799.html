@@ -1,0 +1,105 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] fetchmail does not more give ExitStatus 13 if	--fetchlimit is used
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2008-December/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%20does%20not%20more%20give%20ExitStatus%2013%0A%20if%09--fetchlimit%20is%20used&In-Reply-To=%3C49451A0C.40102%40gmx.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001797.html">
+   <LINK REL="Next"  HREF="001801.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] fetchmail does not more give ExitStatus 13 if	--fetchlimit is used</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%20does%20not%20more%20give%20ExitStatus%2013%0A%20if%09--fetchlimit%20is%20used&In-Reply-To=%3C49451A0C.40102%40gmx.de%3E"
+       TITLE="[fetchmail-users] fetchmail does not more give ExitStatus 13 if	--fetchlimit is used">matthias.andree at gmx.de
+       </A><BR>
+    <I>Sun Dec 14 15:37:00 CET 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001797.html">[fetchmail-users] fetchmail does not more give ExitStatus 13 if	--fetchlimit is used
+</A></li>
+        <LI>Next message: <A HREF="001801.html">[fetchmail-users] fetchmail does not more give ExitStatus 13 if	--fetchlimit is used
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1799">[ date ]</a>
+              <a href="thread.html#1799">[ thread ]</a>
+              <a href="subject.html#1799">[ subject ]</a>
+              <a href="author.html#1799">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Michelle Konzack schrieb:
+&gt;<i> Package: fetchmail
+</I>&gt;<i> Version: 6.3.6-1etch1
+</I>&gt;<i> Severity: normal
+</I>&gt;<i> 
+</I>&gt;<i> ATTENTION:  I am CC'ing the fetchmail list...
+</I>&gt;<i> 
+</I>&gt;<i> Hello Maintainer,
+</I>&gt;<i> 
+</I>&gt;<i> I had a fetchmail error on my  intranet  server  where  a  crash  of  my
+</I>&gt;<i> cellphone (Nokia 6120 classic) has interrupted the  Internet  connection
+</I>&gt;<i> and pppd has not detected it.
+</I>&gt;<i> 
+</I>&gt;<i> While checking  the  logfiles  I  have  seen  fetchmail  had  stoped  at
+</I>&gt;<i> 2008-12-13 02:01:13 and it hangs forever without timing out...
+</I>&gt;<i> 
+</I>&gt;<i> Now checking the wraper logfiles I have encountered if I start fetchmail
+</I>&gt;<i> with the option --fetchlimit, it does not more exit with status  13,  if
+</I>&gt;<i> the fetchlimit is reached...
+</I>&gt;<i> 
+</I>&gt;<i> Unfortunately this ExitStatus is essencial for my  Intranet  server  and
+</I>&gt;<i> its user Webinterface.
+</I>&gt;<i> 
+</I>&gt;<i> It seems, this error happen since 6.3.6-1etch1 because versions prior to
+</I>&gt;<i> it do not show this behaviour.
+</I>&gt;<i> 
+</I>&gt;<i> Please can you chek it?
+</I>
+It seems however that this is due to pppd blackholing traffic (you may want
+to do some sort of keepalive with pppd so it goes down quick and can then
+deconfigure the interface); depending on firewalling (ICMP) applications
+may only notice the blackhole underneath pppd after hours.
+
+for the exit status and hang debugging, I need:
+
+- configuration
+- log of fetchmail -vvv --nosyslog
+- backtrace when it gets stuck
+
+
+
+-- 
+Matthias Andree
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001797.html">[fetchmail-users] fetchmail does not more give ExitStatus 13 if	--fetchlimit is used
+</A></li>
+	<LI>Next message: <A HREF="001801.html">[fetchmail-users] fetchmail does not more give ExitStatus 13 if	--fetchlimit is used
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1799">[ date ]</a>
+              <a href="thread.html#1799">[ thread ]</a>
+              <a href="subject.html#1799">[ subject ]</a>
+              <a href="author.html#1799">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

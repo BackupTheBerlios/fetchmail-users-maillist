@@ -1,0 +1,89 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Fetchmail via SSL? Pipe into SpamBayes, how?
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2010-December/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Fetchmail%20via%20SSL%3F%20Pipe%20into%20SpamBayes%2C%20how%3F&In-Reply-To=%3CAANLkTinK6QT4NYQamtEROYjhKE7H2BQ1f_FzM%2BvPyEfr%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002597.html">
+   <LINK REL="Next"  HREF="002599.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Fetchmail via SSL? Pipe into SpamBayes, how?</H1>
+    <B>Rob MacGregor</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Fetchmail%20via%20SSL%3F%20Pipe%20into%20SpamBayes%2C%20how%3F&In-Reply-To=%3CAANLkTinK6QT4NYQamtEROYjhKE7H2BQ1f_FzM%2BvPyEfr%40mail.gmail.com%3E"
+       TITLE="[fetchmail-users] Fetchmail via SSL? Pipe into SpamBayes, how?">rob.macgregor at gmail.com
+       </A><BR>
+    <I>Sun Dec 12 22:26:12 CET 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002597.html">[fetchmail-users] Fetchmail via SSL?  Pipe into SpamBayes, how?
+</A></li>
+        <LI>Next message: <A HREF="002599.html">[fetchmail-users] Fetchmail via SSL? Pipe into SpamBayes, how?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2598">[ date ]</a>
+              <a href="thread.html#2598">[ thread ]</a>
+              <a href="subject.html#2598">[ subject ]</a>
+              <a href="author.html#2598">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Sun, Dec 12, 2010 at 14:50, &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">skip at pobox.com</A>&gt; wrote:
+&gt;<i>
+</I>&gt;<i> I'm trying to help out a SpamBayes user on Windows who is trying to grab
+</I>&gt;<i> mail from Windows Live via SSL (from pop.live.com:995). &#160;The SpamBayes
+</I>&gt;<i> package doesn't do POP3S correctly, so he's having no luck pumping his email
+</I>&gt;<i> through SpamBayes via that connection.
+</I>&gt;<i>
+</I>&gt;<i> I believe he should be able to use fetchmail to grab his mail (that's how I
+</I>&gt;<i> get mail from Gmail), but I don't know what to tell him to insert between
+</I>&gt;<i> fetchmail and the SpamBayes POP3 proxy on his Windows machine. &#160;Any
+</I>&gt;<i> suggestions?
+</I>
+It looks like your out of luck.  Fetchmail won't do anything for you
+that your mail client won't since SpamBayes is just a POP3 proxy.
+That means that it needs to be SSL aware since it is doing the actual
+communication with the remote POP server.  As it's over 5 years old I
+wouldn't expect to see SSL support in it any time soon.
+
+A few seconds with Google (SpamBayes SSL) found various guides to
+using stunnel to solve your problem, including
+<A HREF="http://www.peterbe.com/plog/blogitem-20031117-1600">http://www.peterbe.com/plog/blogitem-20031117-1600</A>
+
+--
+&#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160;&#160; Please keep list traffic on the list.
+
+Rob MacGregor
+&#160; &#160; &#160; Whoever fights monsters should see to it that in the process he
+&#160; &#160; &#160; &#160; doesn't become a monster.&#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; Friedrich Nietzsche
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002597.html">[fetchmail-users] Fetchmail via SSL?  Pipe into SpamBayes, how?
+</A></li>
+	<LI>Next message: <A HREF="002599.html">[fetchmail-users] Fetchmail via SSL? Pipe into SpamBayes, how?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2598">[ date ]</a>
+              <a href="thread.html#2598">[ thread ]</a>
+              <a href="subject.html#2598">[ subject ]</a>
+              <a href="author.html#2598">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

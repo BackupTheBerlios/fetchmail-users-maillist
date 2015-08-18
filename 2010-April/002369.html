@@ -1,0 +1,92 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] logging
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2010-April/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20logging&In-Reply-To=%3Calpine.DEB.2.00.1004261744390.640%40localhost%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002368.html">
+   <LINK REL="Next"  HREF="002370.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] logging</H1>
+    <B>Robert Holtzman</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20logging&In-Reply-To=%3Calpine.DEB.2.00.1004261744390.640%40localhost%3E"
+       TITLE="[fetchmail-users] logging">holtzm at cox.net
+       </A><BR>
+    <I>Tue Apr 27 02:45:50 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002368.html">[fetchmail-users] logging
+</A></li>
+        <LI>Next message: <A HREF="002370.html">[fetchmail-users] POP3 auth error
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2369">[ date ]</a>
+              <a href="thread.html#2369">[ thread ]</a>
+              <a href="subject.html#2369">[ subject ]</a>
+              <a href="author.html#2369">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Sun, 25 Apr 2010, Rob MacGregor wrote:
+
+&gt;<i> On Sun, Apr 25, 2010 at 01:23, Robert Holtzman &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">holtzm at cox.net</A>&gt; wrote:
+</I>&gt;&gt;<i> I added &quot;set syslog&quot; to my .fetchmailrc files. The first thing that I noted
+</I>&gt;&gt;<i> was that the download messages that used to be written to the terminal were
+</I>&gt;&gt;<i> instead written to the log files. The second thing was that it is a bad idea
+</I>&gt;&gt;<i> to write to /var/log/syslog because the the output gets mixed up with all
+</I>&gt;&gt;<i> the other log entries. In addiion, the log messages are written to
+</I>&gt;&gt;<i> /var/log/mail.log. That makes sense but I cannot find a way to 1) write to
+</I>&gt;&gt;<i> /var/log/mail.log *only*
+</I>&gt;<i>
+</I>&gt;<i> That's caused by your syslog configuration.  Exactly what you do
+</I>&gt;<i> depends on your version of syslog and what operating system you're
+</I>&gt;<i> running.  In general the configuration file is /etc/syslog.conf and
+</I>&gt;<i> you'll either want to remove &quot;mail.*&quot; or add &quot;!mail.*&quot; to the line
+</I>&gt;<i> containing /var/log/syslog.  As I suggested previously, try switching
+</I>&gt;<i> to syslog-ng which you'll probably find better suits you since you'll
+</I>&gt;<i> be able to keep all of fetchmail's logging in a single file.
+</I>&gt;<i>
+</I>&gt;&gt;<i> and 2) have the download messages appear on the
+</I>&gt;&gt;<i> terminal also.
+</I>&gt;<i>
+</I>&gt;<i> The only way to do that is to run &quot;tail -f /var/log/mail.log&quot;.
+</I>
+That did it. Thanks.
+
+-- 
+Bob Holtzman
+Key ID: 8D549279
+&quot;If you think you're getting free lunch,
+  check the price of the beer&quot;
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002368.html">[fetchmail-users] logging
+</A></li>
+	<LI>Next message: <A HREF="002370.html">[fetchmail-users] POP3 auth error
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2369">[ date ]</a>
+              <a href="thread.html#2369">[ thread ]</a>
+              <a href="subject.html#2369">[ subject ]</a>
+              <a href="author.html#2369">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

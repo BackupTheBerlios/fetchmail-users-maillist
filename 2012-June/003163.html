@@ -1,0 +1,161 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] how to set up fetchmail for inbox.com POP3
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2012-June/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20how%20to%20set%20up%20fetchmail%20for%20inbox.com%20POP3&In-Reply-To=%3C1340225230.17247.YahooMailClassic%40web39405.mail.mud.yahoo.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003161.html">
+   <LINK REL="Next"  HREF="003164.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] how to set up fetchmail for inbox.com POP3</H1>
+    <B>Globe Trotter</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20how%20to%20set%20up%20fetchmail%20for%20inbox.com%20POP3&In-Reply-To=%3C1340225230.17247.YahooMailClassic%40web39405.mail.mud.yahoo.com%3E"
+       TITLE="[fetchmail-users] how to set up fetchmail for inbox.com POP3">itsme_410 at yahoo.com
+       </A><BR>
+    <I>Wed Jun 20 22:47:10 CEST 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003161.html">[fetchmail-users] how to set up fetchmail for inbox.com POP3
+</A></li>
+        <LI>Next message: <A HREF="003164.html">[fetchmail-users] how to set up fetchmail for inbox.com POP3
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3163">[ date ]</a>
+              <a href="thread.html#3163">[ thread ]</a>
+              <a href="subject.html#3163">[ subject ]</a>
+              <a href="author.html#3163">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Thank you very much! I am sorry to say that I have dug arond a fair bit, and I am quite lost. I wonder if the fact that the certificate being checked against:
+
+<A HREF="https://knowledge.rapidssl.com/library/VERISIGN/INTERNATIONAL_AFFILIATES/RapidSSL/AR1548/RapidSSLPKCS7.p7b">https://knowledge.rapidssl.com/library/VERISIGN/INTERNATIONAL_AFFILIATES/RapidSSL/AR1548/RapidSSLPKCS7.p7b</A>
+
+is a pkcs#7 certificate? How would fetchmail handle it? Is that (me not being able to set it correctly) the problem?
+
+Many thanks,
+Trotter
+
+--- On Wed, 6/20/12, grarpamp &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">grarpamp at gmail.com</A>&gt; wrote:
+
+&gt;<i> From: grarpamp &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">grarpamp at gmail.com</A>&gt;
+</I>&gt;<i> Subject: Re: [fetchmail-users] how to set up fetchmail for inbox.com POP3
+</I>&gt;<i> To: <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">fetchmail-users at lists.berlios.de</A>
+</I>&gt;<i> Date: Wednesday, June 20, 2012, 3:44 PM
+</I>&gt;<i> &gt; &#160; &#160; protocol POP3
+</I>&gt;<i> 
+</I>&gt;<i> Though not required, I'd also specify 'service 995' because
+</I>&gt;<i> 'POP3' proto
+</I>&gt;<i> runs over 110 and specifying 'ssl' doesn't magically make
+</I>&gt;<i> 110 servers speak
+</I>&gt;<i> pop3s, it sneakily twists the config over to 995... so just
+</I>&gt;<i> explicitly say so
+</I>&gt;<i> with 'service'.
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> &gt; fetchmail: Server certificate verification error:
+</I>&gt;<i> unable to get local issuer certificate
+</I>&gt;<i> &gt; fetchmail: This means that the root signing certificate
+</I>&gt;<i> (for CN=*.inbox.com) is not in the trusted CA certificate
+</I>&gt;<i> locations, or that c_rehash needs to be run on the
+</I>&gt;<i> certificate directory.
+</I>&gt;<i> 
+</I>&gt;<i> &gt; I created and put the directory ssl/certs in my local
+</I>&gt;<i> home directory and then put in the certificate there. I also
+</I>&gt;<i> obtained c_rehash and ran it there to no avail yet.
+</I>&gt;<i> 
+</I>&gt;<i> &gt; &#160; &#160; sslcertpath /home/doejohn/ssl/certs/
+</I>&gt;<i> &gt; &#160; &#160; sslcertfile
+</I>&gt;<i> &quot;/home/doejohn/ssl/certs/RapidSSLPKCS7.p7b&quot;
+</I>&gt;<i> 
+</I>&gt;<i> These are only needed if the root (and/or any intermediate)
+</I>&gt;<i> certs
+</I>&gt;<i> are not present in your default system certificate store.
+</I>&gt;<i> But as in the man page, they will ignore the system store
+</I>&gt;<i> (which
+</I>&gt;<i> is safer, but more of a pain)... and that rapidssl cert is
+</I>&gt;<i> probably an
+</I>&gt;<i> intermediate, so you then would then have an incomplete
+</I>&gt;<i> chain loaded.
+</I>&gt;<i> I'd recommend using path or file, not both. And if file,
+</I>&gt;<i> and
+</I>&gt;<i> file has more than one cert, don't call it by the name of a
+</I>&gt;<i> single
+</I>&gt;<i> cert but by the purpose of the group of certs within it.
+</I>&gt;<i> 
+</I>&gt;<i> You also really want 'sslcertck'. Otherwise I think it's
+</I>&gt;<i> just checking for
+</I>&gt;<i> issuer/subject cert presence... not also the sig chain,
+</I>&gt;<i> expiry, etc.
+</I>&gt;<i> 
+</I>&gt;<i> &gt;&#160; &#160;&#160;&#160;via my.inbox.com
+</I>&gt;<i> &gt; &#160; &#160;sslfingerprint
+</I>&gt;<i> &quot;65:FB:3E:7A:25:7D:CD:02:3A:27:30:54:21:EE:25:A6&quot;
+</I>&gt;<i> &gt;&gt; Trying to connect to 64.135.83.10/995...connected.
+</I>&gt;<i> &gt;&gt; fetchmail: Server certificate:
+</I>&gt;<i> &gt;&gt; fetchmail: Issuer CommonName: RapidSSL CA
+</I>&gt;<i> &gt;&gt; fetchmail: Subject CommonName: *.inbox.com
+</I>&gt;<i> 
+</I>&gt;<i> openssl s_client -connect 64.135.83.10:995 &lt; /dev/null
+</I>&gt;<i> 2&gt;/dev/null |
+</I>&gt;<i> openssl x509 -text -issuer_hash -subject_hash -fingerprint
+</I>&gt;<i> -md5
+</I>&gt;<i> 
+</I>&gt;<i> The fingerprint of the server cert there is:
+</I>&gt;<i>  SHA1
+</I>&gt;<i> Fingerprint=F1:E2:89:DA:7A:62:2B:A6:05:68:F3:54:B4:C1:95:0D:0B:93:46:EC
+</I>&gt;<i> but since fetchmail still doesn't support SHA1,
+</I>&gt;<i> the more easily fakeable MD5 hash you will need to specify
+</I>&gt;<i> is:
+</I>&gt;<i>  MD5
+</I>&gt;<i> Fingerprint=81:FB:6C:4F:52:9E:EB:20:A3:42:43:50:45:AA:62:E5
+</I>&gt;<i> 
+</I>&gt;<i> &gt; fetchmail: <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">John.Doe at my.inbox.com</A>
+</I>&gt;<i> key fingerprint:
+</I>&gt;<i> 65:FB:3E:7A:25:7D:CD:02:3A:27:30:54:21:EE:25:A6
+</I>&gt;<i> &gt; fetchmail: <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">John.Doe at my.inbox.com</A>
+</I>&gt;<i> fingerprints match.
+</I>&gt;<i> 
+</I>&gt;<i> This is probably a bug, telling you that, as configured,
+</I>&gt;<i> your
+</I>&gt;<i> specified fingerprint matches the (possibly intermediate)
+</I>&gt;<i> cert you filed, not the actual server's cert off the wire,
+</I>&gt;<i> oops!!!
+</I>&gt;<i> 
+</I>&gt;<i> Someone should look into this!
+</I>&gt;<i> _______________________________________________
+</I>&gt;<i> fetchmail-users mailing list
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">fetchmail-users at lists.berlios.de</A>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">https://lists.berlios.de/mailman/listinfo/fetchmail-users</A>
+</I></PRE>
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003161.html">[fetchmail-users] how to set up fetchmail for inbox.com POP3
+</A></li>
+	<LI>Next message: <A HREF="003164.html">[fetchmail-users] how to set up fetchmail for inbox.com POP3
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3163">[ date ]</a>
+              <a href="thread.html#3163">[ thread ]</a>
+              <a href="subject.html#3163">[ subject ]</a>
+              <a href="author.html#3163">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

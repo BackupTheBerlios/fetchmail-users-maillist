@@ -1,0 +1,81 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] fetchmail and virtual domains - each using own smtp server
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2006-November/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%20and%20virtual%20domains%20-%20each%20using%0A%20own%20smtp%20server&In-Reply-To=%3C4562258C.1040803%40gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000718.html">
+   <LINK REL="Next"  HREF="000713.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] fetchmail and virtual domains - each using own smtp server</H1>
+    <B>Adam D</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%20and%20virtual%20domains%20-%20each%20using%0A%20own%20smtp%20server&In-Reply-To=%3C4562258C.1040803%40gmail.com%3E"
+       TITLE="[fetchmail-users] fetchmail and virtual domains - each using own smtp server">emlists at gmail.com
+       </A><BR>
+    <I>Mon Nov 20 23:00:44 CET 2006</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000718.html">[fetchmail-users] fetchmail and virtual domains - each using	own smtp server
+</A></li>
+        <LI>Next message: <A HREF="000713.html">[fetchmail-users] fetchmail 6.3.6-rc3 release candidate
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#719">[ date ]</a>
+              <a href="thread.html#719">[ thread ]</a>
+              <a href="subject.html#719">[ subject ]</a>
+              <a href="author.html#719">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Rob MacGregor wrote:
+&gt;<i> On 11/20/06, Adam D &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">emlists at gmail.com</A>&gt; wrote:
+</I>&gt;&gt;<i> I have been reading over fetchamil and smtp and the man page over the weekend and today and sadly I am not understanding how to assign a particular smtp server to the fetchmail config.  Here is my scenario:
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> I am running fetchmail as an init daemon and right now the config file resides in /etc as fetchmailrc.  I am creating postfix to run multiple domains each on its own smtp server accepting mail on a different ethernet address.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> What I would like to have are separate fetchmail configs for each postfix domain and the mail being retrieved belonging to that particular domain.
+</I>&gt;<i> 
+</I>&gt;<i> poll pop.isp1.net user UserA password PassA to LocalA smtphost localhost
+</I>&gt;<i> poll pop.isp2.net user UserB password PassB to LocalB smtphost example1.com
+</I>&gt;<i> 
+</I>&gt;<i> And so on.  See the section on &quot;Delivery Control Options&quot;, also listed
+</I>&gt;<i> under the user options.
+</I>&gt;<i> 
+</I>
+LOL, that is why I have not been able to find it.  I have been looking in the 'set..' settings (found none) and server settings and would not think they would have been in the user settings.  So adding smtphost at the end of each user I can have multiple smtp host configs all in the same /etc/fetchmailrc file :) thus much easier to maintain :).
+
+Thank you Rob for your help now I can go back to the man page and look more into user settings.
+
+-Adam
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000718.html">[fetchmail-users] fetchmail and virtual domains - each using	own smtp server
+</A></li>
+	<LI>Next message: <A HREF="000713.html">[fetchmail-users] fetchmail 6.3.6-rc3 release candidate
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#719">[ date ]</a>
+              <a href="thread.html#719">[ thread ]</a>
+              <a href="subject.html#719">[ subject ]</a>
+              <a href="author.html#719">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

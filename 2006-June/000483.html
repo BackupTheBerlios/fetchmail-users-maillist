@@ -1,0 +1,151 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Multi-drop problems
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2006-June/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Multi-drop%20problems&In-Reply-To=%3C1151581674.2653.3.camel%40localhost.localdomain%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000479.html">
+   <LINK REL="Next"  HREF="000484.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Multi-drop problems</H1>
+    <B>Andrew Longland-Meech</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Multi-drop%20problems&In-Reply-To=%3C1151581674.2653.3.camel%40localhost.localdomain%3E"
+       TITLE="[fetchmail-users] Multi-drop problems">andrew at longland-meech.me.uk
+       </A><BR>
+    <I>Thu Jun 29 13:47:53 CEST 2006</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000479.html">[fetchmail-users] Multi-drop problems
+</A></li>
+        <LI>Next message: <A HREF="000484.html">[fetchmail-users] Multi-drop problems
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#483">[ date ]</a>
+              <a href="thread.html#483">[ thread ]</a>
+              <a href="subject.html#483">[ subject ]</a>
+              <a href="author.html#483">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Thu, 2006-06-29 at 11:07 +0200, Matthias Andree wrote:
+&gt;<i> Andrew Longland-Meech &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">andrew at longland-meech.me.uk</A>&gt; writes:
+</I>&gt;<i> 
+</I>&gt;<i> &gt; Hello list members,
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; I hope someone can help me - I can't be the only person to have ever run
+</I>&gt;<i> &gt; into this problem. I've read the FAQ, but that doesn't seem to describe
+</I>&gt;<i> &gt; my situation and I've tried everything I can think of.
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; Here's my setup:
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; fetchmail version: 6.3.4
+</I>&gt;<i> &gt; Kernel:	2.6.16-1.2080.13.rdt.rhfc5.ccrma
+</I>&gt;<i> &gt; ISP: Freenetname.co.uk
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; My ISP provides forwarding from my own domain, and each and every email
+</I>&gt;<i> &gt; I receive has a proper Envelope-to; header.
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; I want to have mail for (mypartner)@(mydomain).me.uk delivered to
+</I>&gt;<i> &gt; localuser (mypartner) and everything else delivered to localuser (me).
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; Here's my .fetchmailrc file:
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; set postmaster &quot;(me)&quot;
+</I>&gt;<i> &gt; set bouncemail
+</I>&gt;<i> &gt; set no spambounce
+</I>&gt;<i> &gt; set properties &quot;&quot;
+</I>&gt;<i> &gt; #set daemon 900
+</I>&gt;<i> &gt; poll mail.freenetname.co.uk with proto POP3 envelope &quot;Envelope-to&quot;
+</I>&gt;<i> &gt;         user &quot;(username)@freenetname.co.uk&quot; with password &quot;(*******)&quot;
+</I>&gt;<i> &gt;                 to      &quot;(mypartner)@(mydomain).me.uk&quot;=&quot;(mypartner)&quot;
+</I>&gt;<i> &gt;                         &quot;(username)@freenetname.co.uk&quot;=&quot;(me)&quot;
+</I>&gt;<i> &gt;                         &quot;(myname)@(mydomain).me.uk&quot;=&quot;(me)&quot;
+</I>&gt;<i> &gt;                 here
+</I>&gt;<i> &gt;         options keep fetchall
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; Now, I think this is setup correctly, following the example in the man
+</I>&gt;<i> &gt; page for a multi-drop setup, and indeed fetchmail seems to be using the
+</I>&gt;<i> &gt; Envelope-to address according to the output of 'fetchmail -v -v' but it
+</I>&gt;<i> &gt; simply isn't doing what it's supposed to and matching the server names
+</I>&gt;<i> &gt; to the local names! Everything still gets delivered to (me) and contains
+</I>&gt;<i> &gt; a header of the form -
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; X-Fetchmail-Warning: recipient address (Envelope-to address) didn't
+</I>&gt;<i> &gt; match any local name
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; Does anyone have any suggestions?
+</I>&gt;<i> 
+</I>&gt;<i> Well, fetchmail doesn't support full addresses in user mappings yet,
+</I>&gt;<i> thus you'll need to rewrite your configuration a bit, hoping that
+</I>&gt;<i> (mypartner) is different from (username) and that
+</I>&gt;<i> (mypartner) is also different from (myname).
+</I>&gt;<i> 
+</I>&gt;<i> fetchmail doesn't seem to recognize the recipient addresses either since
+</I>&gt;<i> the MX servers for these are most likely not the same as
+</I>&gt;<i> mail.freenetname.co.uk.
+</I>&gt;<i> 
+</I>&gt;<i> Please add between the poll and user lines these three:
+</I>&gt;<i> 
+</I>&gt;<i> poll mail.freenetname.co.uk
+</I>&gt;<i>        aka &quot;(mydomain).me.uk&quot;
+</I>&gt;<i>        aka &quot;freenetname.co.uk&quot;
+</I>&gt;<i>        proto POP3
+</I>&gt;<i>        options UIDL
+</I>&gt;<i>        envelope &quot;Envelope-To&quot;
+</I>&gt;<i> user &quot;(username)@freenetname.co.uk&quot; 
+</I>&gt;<i>        password &quot;(*******)&quot;
+</I>&gt;<i>   is   &quot;(mypartner)&quot;=&quot;(mypartner)&quot;
+</I>&gt;<i>        &quot;(username)&quot;=&quot;(me)&quot;
+</I>&gt;<i>        &quot;(myname)&quot;=&quot;(me)&quot;
+</I>&gt;<i>   here
+</I>&gt;<i> options keep
+</I>&gt;<i> 
+</I>&gt;<i> Remarks:
+</I>&gt;<i> 1. fetchall and keep together is usually wrong
+</I>&gt;<i> 2. UIDL is needed to make &quot;keep&quot; setups reliable
+</I>&gt;<i> 
+</I>Matthias,
+
+Thank you so much. It works! I didn't understand the bit in the manual
+about 'aka', but having now re-read it, it sort of makes sense.
+
+I only used keep and fetchall together so that I'd always got some
+fetchable messages on the server whilst I was trying to get this to
+work. Do I still need 'uidl' if I don't use 'keep'?
+
+Thanks again.
+
+Andrew
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000479.html">[fetchmail-users] Multi-drop problems
+</A></li>
+	<LI>Next message: <A HREF="000484.html">[fetchmail-users] Multi-drop problems
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#483">[ date ]</a>
+              <a href="thread.html#483">[ thread ]</a>
+              <a href="subject.html#483">[ subject ]</a>
+              <a href="author.html#483">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

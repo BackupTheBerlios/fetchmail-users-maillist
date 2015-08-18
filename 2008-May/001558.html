@@ -1,0 +1,142 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] smtp listener protocol error
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2008-May/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20smtp%20listener%20protocol%20error&In-Reply-To=%3C483FCE17.50607%40luminosity.co.uk%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001557.html">
+   <LINK REL="Next"  HREF="001559.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] smtp listener protocol error</H1>
+    <B>Gary Lawton</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20smtp%20listener%20protocol%20error&In-Reply-To=%3C483FCE17.50607%40luminosity.co.uk%3E"
+       TITLE="[fetchmail-users] smtp listener protocol error">lists at luminosity.co.uk
+       </A><BR>
+    <I>Fri May 30 11:51:19 CEST 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001557.html">[fetchmail-users] [fetchmail-devel] delete keeped message after	X day
+</A></li>
+        <LI>Next message: <A HREF="001559.html">[fetchmail-users] smtp listener protocol error
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1558">[ date ]</a>
+              <a href="thread.html#1558">[ thread ]</a>
+              <a href="subject.html#1558">[ subject ]</a>
+              <a href="author.html#1558">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi all
+
+I have an occassional issue whereby fetchmail is pulling down an email 
+multiple times and not deleting the email from the server.
+
+I am using fetchmail 6.3.5 and with qmail although I have just updated 
+to 6.3.8 to see if this resolves the issue.
+
+I have included snippets (with email address changed) from the logs 
+below - the qmail logs show the mail was successfully delivered - any 
+pointers on how I might resolve this?
+
+Many thanks
+Gary
+
+
+fetchmail:
+
+2008-05-30 09:14:27.310451500 fetchmail: POP3&gt; USER <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">test at nowhere.com</A>
+2008-05-30 09:14:27.356182500 fetchmail: POP3&lt; +OK password required for 
+user &quot;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">test at nowhere.com</A>&quot;
+2008-05-30 09:14:27.357838500 fetchmail: POP3&gt; PASS *
+2008-05-30 09:14:27.433062500 fetchmail: POP3&lt; +OK mailbox 
+&quot;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">test at nowhere.com</A>&quot; has 1 messages (104422 octets) H mimap37
+2008-05-30 09:14:27.434294500 fetchmail: POP3&gt; STAT
+2008-05-30 09:14:27.483391500 fetchmail: POP3&lt; +OK 1 104422
+2008-05-30 09:14:27.484214500 fetchmail: POP3&gt; LAST
+2008-05-30 09:14:27.529509500 fetchmail: POP3&lt; -ERR unknown command
+2008-05-30 09:14:27.530083500 fetchmail: unknown command
+2008-05-30 09:14:27.530740500 fetchmail: POP3&gt; UIDL
+2008-05-30 09:14:27.576547500 fetchmail: POP3&lt; +OK
+2008-05-30 09:14:27.577184500 fetchmail: POP3&lt; 1 0MKx9w-1K1zcj0BYg-0007vl
+2008-05-30 09:14:27.577538500 fetchmail: POP3&lt; .
+2008-05-30 09:14:27.577879500 1 message for <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">test at nowhere.com</A> at 
+pop.myisp.co.uk (104422 octets).
+2008-05-30 09:14:27.578434500 fetchmail: POP3&gt; LIST 1
+2008-05-30 09:14:27.621721500 fetchmail: POP3&lt; +OK 1 104422
+2008-05-30 09:14:27.622737500 fetchmail: POP3&gt; TOP 1 99999999
+2008-05-30 09:14:27.678160500 fetchmail: POP3&lt; +OK 104422 octets
+2008-05-30 09:14:27.678759500 reading message 
+<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">test at nowhere.com</A>@pop.myisp.co.uk:1 of 1 (104422 octets)
+2008-05-30 09:14:27.895791500 fetchmail: SMTP&lt; 220 mail.myserver.co.uk ESMTP
+2008-05-30 09:14:27.896744500 fetchmail: SMTP&gt; EHLO mail.myserver.co.uk
+2008-05-30 09:14:27.898247500 fetchmail: SMTP&lt; 250-mail.myserver.co.uk
+2008-05-30 09:14:27.898722500 fetchmail: SMTP&lt; 250-PIPELINING
+2008-05-30 09:14:27.899672500 fetchmail: SMTP&lt; 250 8BITMIME
+2008-05-30 09:14:27.900329500 fetchmail: SMTP&gt; MAIL 
+FROM:&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">sender at nowhere.com</A>&gt;
+2008-05-30 09:14:27.902340500 fetchmail: SMTP&lt; 250 ok
+2008-05-30 09:14:27.904403500 fetchmail: SMTP&gt; RCPT TO:&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">test at nowhere.com</A>&gt;
+2008-05-30 09:14:27.905897500 fetchmail: SMTP&lt; 250 ok
+2008-05-30 09:14:27.906562500 fetchmail: SMTP&gt; DATA
+2008-05-30 09:14:27.925013500 fetchmail: SMTP&lt; 354 go ahead
+2008-05-30 09:14:27.927412500 
+#*********************************************.**************************************.****************$
+2008-05-30 09:19:29.636029500 fetchmail: smtp listener protocol error
+2008-05-30 09:19:29.636049500  not flushed
+2008-05-30 09:19:29.636062500 fetchmail: POP3&gt; QUIT
+
+
+qmail_smtp:
+
+2008-05-30 09:14:27.855293500 tcpserver: status: 1/20
+2008-05-30 09:14:27.886063500 tcpserver: pid 9406 from 127.0.0.1
+2008-05-30 09:14:27.886082500 tcpserver: ok 9406 
+mail.myserver.co.uk:127.0.0.1:25 localhost:127.0.0.1::33893
+2008-05-30 09:19:30.815287500 tcpserver: end 9406 status 256
+2008-05-30 09:19:30.815306500 tcpserver: status: 0/20
+
+
+qmail_current:
+
+2008-05-30 09:19:30.805023500 info msg 655366: bytes 102982 from 
+&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">sender at nowhere.com</A>&gt; qp 9409 uid 1001
+2008-05-30 09:19:30.931758500 starting delivery 520: msg 655366 to local 
+<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">nowhere-test at nowhere.com</A>
+2008-05-30 09:19:30.931779500 status: local 1/10 remote 0/20
+2008-05-30 09:19:31.394464500 delivery 520: success: did_0+0+1/
+2008-05-30 09:19:31.394483500 status: local 0/10 remote 0/20
+2008-05-30 09:19:31.394497500 end msg 655366
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001557.html">[fetchmail-users] [fetchmail-devel] delete keeped message after	X day
+</A></li>
+	<LI>Next message: <A HREF="001559.html">[fetchmail-users] smtp listener protocol error
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1558">[ date ]</a>
+              <a href="thread.html#1558">[ thread ]</a>
+              <a href="subject.html#1558">[ subject ]</a>
+              <a href="author.html#1558">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

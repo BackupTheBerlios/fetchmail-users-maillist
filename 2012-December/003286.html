@@ -1,0 +1,119 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] fetchmail tries to connect to localhost
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2012-December/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%20tries%20to%20connect%20to%20localhost&In-Reply-To=%3C50C3C64A.6030106%40gmx.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003285.html">
+   <LINK REL="Next"  HREF="003287.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] fetchmail tries to connect to localhost</H1>
+    <B>Hendrik Haddorp</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%20tries%20to%20connect%20to%20localhost&In-Reply-To=%3C50C3C64A.6030106%40gmx.net%3E"
+       TITLE="[fetchmail-users] fetchmail tries to connect to localhost">hendrik.haddorp at gmx.net
+       </A><BR>
+    <I>Sat Dec  8 23:59:22 CET 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003285.html">[fetchmail-users] fetchmail tries to connect to localhost
+</A></li>
+        <LI>Next message: <A HREF="003287.html">[fetchmail-users] The 6.3.23 release of fetchmail is available
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3286">[ date ]</a>
+              <a href="thread.html#3286">[ thread ]</a>
+              <a href="subject.html#3286">[ subject ]</a>
+              <a href="author.html#3286">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>The problem occurs when your domain has a * record and you added the 
+domain as a search domain in /etc/resolv.conf. When you do now a lookup 
+for a server that has no AAAA record you will get the A records with the 
+correct values but additionally a lookup will be made for the host plus 
+your search domain. That will then consequently match your * record and 
+your own server is found as well, just as it happens for pop.gmx.net.
+It's almost what is described here: 
+<A HREF="http://serverfault.com/questions/383266/search-and-domain-in-resolv-conf-slow-lookups-on-ubuntu">http://serverfault.com/questions/383266/search-and-domain-in-resolv-conf-slow-lookups-on-ubuntu</A> 
+
+Once I remove the search domain things work as I would like them to do. 
+What would be nice would a optional similar to ndots 
+(<A HREF="http://manpages.ubuntu.com/manpages/lucid/man5/resolv.conf.5.html">http://manpages.ubuntu.com/manpages/lucid/man5/resolv.conf.5.html</A>) that 
+allows you to only append the search domain if the given hostname has 
+more then n dots or matches some expression or so.
+So for now the best solution seems to be to either not have a * reconrd 
+for your domain or to not have a search domain configured.
+
+regards,
+Hendrik
+
+On 08/12/12 23:45, Carlos E. R. wrote:
+&gt;<i> -----BEGIN PGP SIGNED MESSAGE-----
+</I>&gt;<i> Hash: SHA1
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> On Friday, 2012-12-07 at 21:30 +0100, Matthias Andree wrote:
+</I>&gt;&gt;<i> Am 07.12.2012 20:53, schrieb Hendrik Haddorp:
+</I>&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> I also suspected something like that. It's just strange that &quot;host&quot; 
+</I>&gt;&gt;&gt;<i> does
+</I>&gt;&gt;&gt;<i> return the expected data and if I invoke &quot;host&quot; with my domain then I
+</I>&gt;&gt;&gt;<i> also get the correct data. However when I take my IPv6 address out 
+</I>&gt;&gt;&gt;<i> of my
+</I>&gt;&gt;&gt;<i> /etc/network/interfaces file the strange connection attempt is gone.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Host does not use getaddrinfo() or similar from the libc's resolver
+</I>&gt;&gt;<i> interface, but does its own DNS lookup, using BIND 9 libraries, so it
+</I>&gt;&gt;<i> does not match what fetchmail is doing.
+</I>&gt;<i>
+</I>&gt;<i> Perhaps use ping instead.
+</I>&gt;<i>
+</I>&gt;<i> - -- Cheers,
+</I>&gt;<i>        Carlos E. R.
+</I>&gt;<i>        (from 12.1 x86_64 &quot;Asparagus&quot; at Telcontar)
+</I>&gt;<i>
+</I>&gt;<i> -----BEGIN PGP SIGNATURE-----
+</I>&gt;<i> Version: GnuPG v2.0.18 (GNU/Linux)
+</I>&gt;<i>
+</I>&gt;<i> iEYEARECAAYFAlDDw2gACgkQtTMYHG2NR9WlBgCbB9LglD1WDOn4xiWFMNRzzqaH
+</I>&gt;<i> HncAni62Rv4ZInRYoupQhYzftIWlM7Ev
+</I>&gt;<i> =+R30
+</I>&gt;<i> -----END PGP SIGNATURE-----
+</I>&gt;<i> _______________________________________________
+</I>&gt;<i> fetchmail-users mailing list
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">fetchmail-users at lists.berlios.de</A>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">https://lists.berlios.de/mailman/listinfo/fetchmail-users</A>
+</I>
+</PRE>
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003285.html">[fetchmail-users] fetchmail tries to connect to localhost
+</A></li>
+	<LI>Next message: <A HREF="003287.html">[fetchmail-users] The 6.3.23 release of fetchmail is available
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3286">[ date ]</a>
+              <a href="thread.html#3286">[ thread ]</a>
+              <a href="subject.html#3286">[ subject ]</a>
+              <a href="author.html#3286">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

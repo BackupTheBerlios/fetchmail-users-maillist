@@ -1,0 +1,128 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Automatically backing up my email
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2012-August/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Automatically%20backing%20up%20my%20email&In-Reply-To=%3C502A7665.4040208%40gmx.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003211.html">
+   <LINK REL="Next"  HREF="003216.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Automatically backing up my email</H1>
+    <B>Robert Dahlem</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Automatically%20backing%20up%20my%20email&In-Reply-To=%3C502A7665.4040208%40gmx.net%3E"
+       TITLE="[fetchmail-users] Automatically backing up my email">Robert.Dahlem at gmx.net
+       </A><BR>
+    <I>Tue Aug 14 18:01:41 CEST 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003211.html">[fetchmail-users] Fetchmail suddenly started segfaulting with Exchange
+</A></li>
+        <LI>Next message: <A HREF="003216.html">[fetchmail-users] Automatically backing up my email
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3215">[ date ]</a>
+              <a href="thread.html#3215">[ thread ]</a>
+              <a href="subject.html#3215">[ subject ]</a>
+              <a href="author.html#3215">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On 2012-06-03 10:49:34 +0100, Mike Burns wrote:
+
+&gt;<i> Quick background: I use Fastmail as my email server, which provides IMAP
+</I>&gt;<i> access. I read my email using mutt, K-9, the Web interface, etc.
+</I>&gt;<i> 
+</I>&gt;<i> I'd like to grab each email as soon as possible (in practice, faster
+</I>&gt;<i> than I can read it) and commit it to a git repo.
+</I>&gt;<i> 
+</I>&gt;<i> I've tried this using fetchmail but, due to a combination of the IMAP
+</I>&gt;<i> RFC and how the `keep' flag works, the email is immediately marked as
+</I>&gt;<i> \Seen . This means that mutt, etc. never show emails as &quot;new&quot;.
+</I>
+&gt;<i> Any advice?
+</I>
+If you are willing to recompile fetchmail, apply the attached patch.
+This changes fetchmails behaviour from setting the \Seen flag to setting
+the \Flagged flag.
+
+I use this to copy mail from an Exchange server without marking all mail
+as seen.
+
+Perhaps someone could make this a configurable option ...
+
+Regards,
+Robert
+
+
+
+
+-------------- next part --------------
+diff -ur fetchmail-6.3.9-rc2.orig/imap.c fetchmail-6.3.9-rc2/imap.c
+--- fetchmail-6.3.9-rc2.orig/imap.c	2008-03-06 09:59:39.000000000 +0100
++++ fetchmail-6.3.9-rc2/imap.c	2012-08-14 16:53:20.000000000 +0200
+@@ -854,7 +854,7 @@
+ 	unseen = 0;
+ 
+ 	/* don't count deleted messages, in case user enabled keep last time */
+-	gen_send(sock, &quot;SEARCH UNSEEN NOT DELETED&quot;);
++	gen_send(sock, &quot;SEARCH UNFLAGGED NOT DELETED&quot;);
+ 	do {
+ 	    ok = gen_recv(sock, buf, sizeof(buf));
+ 	    if (ok != 0)
+@@ -1219,8 +1219,8 @@
+      */
+     if ((ok = gen_transact(sock,
+ 			imap_version == IMAP4 
+-				? &quot;STORE %d +FLAGS.SILENT (\\Seen \\Deleted)&quot;
+-				: &quot;STORE %d +FLAGS (\\Seen \\Deleted)&quot;, 
++				? &quot;STORE %d +FLAGS.SILENT (\\Flagged \\Deleted)&quot;
++				: &quot;STORE %d +FLAGS (\\Flagged \\Deleted)&quot;, 
+ 			number)))
+ 	return(ok);
+     else
+@@ -1251,8 +1251,8 @@
+ 
+     return(gen_transact(sock,
+ 	imap_version == IMAP4
+-	? &quot;STORE %d +FLAGS.SILENT (\\Seen)&quot;
+-	: &quot;STORE %d +FLAGS (\\Seen)&quot;,
++	? &quot;STORE %d +FLAGS.SILENT (\\Flagged)&quot;
++	: &quot;STORE %d +FLAGS (\\Flagged)&quot;,
+ 	number));
+ }
+ 
+</PRE>
+
+
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003211.html">[fetchmail-users] Fetchmail suddenly started segfaulting with Exchange
+</A></li>
+	<LI>Next message: <A HREF="003216.html">[fetchmail-users] Automatically backing up my email
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3215">[ date ]</a>
+              <a href="thread.html#3215">[ thread ]</a>
+              <a href="subject.html#3215">[ subject ]</a>
+              <a href="author.html#3215">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

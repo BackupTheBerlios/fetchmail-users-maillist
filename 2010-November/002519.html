@@ -1,0 +1,145 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] I'm getting a response &quot;NO you are not allowed to act as a proxy server&quot; from server at ISP
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2010-November/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20I%27m%20getting%20a%20response%20%22NO%20you%20are%20not%20allowed%20to%0A%20act%20as%20a%20proxy%20server%22%20from%20server%20at%20ISP&In-Reply-To=%3Calpine.LNX.2.00.1011091329310.5578%40Telcontar.valinor%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   
+   <LINK REL="Next"  HREF="002520.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] I'm getting a response &quot;NO you are not allowed to act as a proxy server&quot; from server at ISP</H1>
+    <B>Carlos E. R.</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20I%27m%20getting%20a%20response%20%22NO%20you%20are%20not%20allowed%20to%0A%20act%20as%20a%20proxy%20server%22%20from%20server%20at%20ISP&In-Reply-To=%3Calpine.LNX.2.00.1011091329310.5578%40Telcontar.valinor%3E"
+       TITLE="[fetchmail-users] I'm getting a response &quot;NO you are not allowed to act as a proxy server&quot; from server at ISP">carlos.e.r at opensuse.org
+       </A><BR>
+    <I>Tue Nov  9 13:50:59 CET 2010</I>
+    <P><UL>
+        
+        <LI>Next message: <A HREF="002520.html">[fetchmail-users] I'm getting a response &quot;NO you are not allowed to act as a proxy server&quot; from server at ISP
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2519">[ date ]</a>
+              <a href="thread.html#2519">[ thread ]</a>
+              <a href="subject.html#2519">[ subject ]</a>
+              <a href="author.html#2519">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>
+Hi,
+
+Starting last September I'm getting that response, randomly, ie, not 
+always, from my ISP imap server.  I have googled for it and the only match 
+are my own questions.  I suppose it is no bug of fetchmail, but you may 
+perhaps have an idea of what it is, and hopefully how to avoid it (no, 
+talking to my ISP is useless - I've tried in the past).  It happens with 
+all the accounts I have with them.
+
+Thunderbird doesn't seem to have problems with the same server.
+
+I'm using &quot;fetchmail-6.3.18-27.1.x86_64&quot; on openSUSE 11.2
+
+
+Log extract (names changed, encrypted response shortened with &quot;...&quot;)
+
+
+Nov  9 13:16:20 Telcontar fetchmail[9772]: Old UID list from imap.telefonica.net: &lt;empty&gt;
+Nov  9 13:16:20 Telcontar fetchmail[9772]: Scratch list of UIDs: &lt;empty&gt;
+Nov  9 13:16:20 Telcontar fetchmail[9772]: 6.3.18 querying imap.telefonica.net (protocol IMAP) at Tue Nov  9 13:16:20 2010: poll started
+Nov  9 13:16:20 Telcontar fetchmail[9772]: Trying to connect to 213.4.149.65/143...connected.
+Nov  9 13:16:20 Telcontar fetchmail[9772]: IMAP&lt; * OK IMAP4 PROXY server ready
+Nov  9 13:16:20 Telcontar fetchmail[9772]: IMAP&gt; A0001 CAPABILITY
+Nov  9 13:16:20 Telcontar fetchmail[9772]: IMAP&lt; * CAPABILITY IMAP4 IMAP4rev1 UIDPLUS IDLE LOGIN-REFERRALS NAMESPACE QUOTA CHILDREN SORT AUTH=CRAM-MD5
+Nov  9 13:16:20 Telcontar fetchmail[9772]: IMAP&lt; A0001 OK capabilities listed
+Nov  9 13:16:20 Telcontar fetchmail[9772]: Protocol identified as IMAP4 rev 1
+Nov  9 13:16:20 Telcontar fetchmail[9772]: imap.telefonica.net: opportunistic upgrade to TLS failed, trying to continue
+Nov  9 13:16:20 Telcontar fetchmail[9772]: IMAP&gt; A0002 NOOP
+Nov  9 13:16:20 Telcontar fetchmail[9772]: IMAP&lt; A0002 OK NOOP complete
+Nov  9 13:16:20 Telcontar fetchmail[9772]: GSSAPI error gss_inquire_cred: Unspecified GSS failure.  Minor code may provide more information
+Nov  9 13:16:20 Telcontar fetchmail[9772]: GSSAPI error gss_inquire_cred: Credentials cache file '/tmp/krb5cc_1000' not found
+Nov  9 13:16:20 Telcontar fetchmail[9772]: No suitable GSSAPI credentials found. Skipping GSSAPI authentication.
+Nov  9 13:16:20 Telcontar fetchmail[9772]: If you want to use GSSAPI, you need credentials first, possibly from kinit.
+Nov  9 13:16:20 Telcontar fetchmail[9772]: IMAP&gt; A0003 AUTHENTICATE CRAM-MD5
+Nov  9 13:16:20 Telcontar fetchmail[9772]: IMAP&lt; + PDZG....W8+
+Nov  9 13:16:20 Telcontar fetchmail[9772]: decoded as &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">6F...21 at ctmmp4.adm.correo</A>&gt;
+Nov  9 13:16:20 Telcontar fetchmail[9772]: IMAP&gt; cm9...0Mg==
+Nov  9 13:16:20 Telcontar fetchmail[9772]: IMAP&lt; * BYE disconnecting
+Nov  9 13:16:20 Telcontar fetchmail[9772]: Received BYE response from IMAP server:  DISCONNECTING
+Nov  9 13:16:20 Telcontar fetchmail[9772]: IMAP&lt; A0003 NO you are not allowed to act as a proxy server
+Nov  9 13:16:20 Telcontar fetchmail[9772]: IMAP&gt; A0004 LOGIN &quot;XXXXXX&quot; *
+Nov  9 13:16:20 Telcontar fetchmail[9772]: Unknown login or authentication error on <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">XXXXX at imap.telefonica.net</A>
+Nov  9 13:16:20 Telcontar fetchmail[9772]: socket error while fetching from <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">XXXXX at imap.telefonica.net</A>
+Nov  9 13:16:20 Telcontar fetchmail[9772]: 6.3.18 querying imap.telefonica.net (protocol IMAP) at Tue Nov  9 13:16:20 2010: poll completed
+Nov  9 13:16:20 Telcontar fetchmail[9772]: Merged UID list from imap.telefonica.net: &lt;empty&gt;
+Nov  9 13:16:20 Telcontar fetchmail[9772]: Query status=2 (SOCKET)
+Nov  9 13:16:20 Telcontar fetchmail[9772]: normal termination, status 2
+
+
+
+A successful attempt for comparison a minute before:
+
+
+Nov  9 13:15:49 Telcontar fetchmail[9753]: Old UID list from imap.telefonica.net: &lt;empty&gt;
+Nov  9 13:15:49 Telcontar fetchmail[9753]: Scratch list of UIDs: &lt;empty&gt;
+Nov  9 13:15:49 Telcontar fetchmail[9753]: 6.3.18 querying imap.telefonica.net (protocol IMAP) at Tue Nov  9 13:15:49 2010: poll started
+Nov  9 13:15:49 Telcontar fetchmail[9753]: Trying to connect to 213.4.149.65/143...connected.
+Nov  9 13:15:49 Telcontar fetchmail[9753]: IMAP&lt; * OK IMAP4 PROXY server ready
+Nov  9 13:15:49 Telcontar fetchmail[9753]: IMAP&gt; A0001 CAPABILITY
+Nov  9 13:15:49 Telcontar fetchmail[9753]: IMAP&lt; * CAPABILITY IMAP4 IMAP4rev1 UIDPLUS IDLE LOGIN-REFERRALS NAMESPACE QUOTA CHILDREN SORT AUTH=CRAM-MD5
+Nov  9 13:15:49 Telcontar fetchmail[9753]: IMAP&lt; A0001 OK capabilities listed
+Nov  9 13:15:49 Telcontar fetchmail[9753]: Protocol identified as IMAP4 rev 1
+Nov  9 13:15:49 Telcontar fetchmail[9753]: imap.telefonica.net: opportunistic upgrade to TLS failed, trying to continue
+Nov  9 13:15:49 Telcontar fetchmail[9753]: IMAP&gt; A0002 NOOP
+Nov  9 13:15:50 Telcontar fetchmail[9753]: IMAP&lt; A0002 OK NOOP complete
+Nov  9 13:15:50 Telcontar fetchmail[9753]: GSSAPI error gss_inquire_cred: Unspecified GSS failure.  Minor code may provide more information
+Nov  9 13:15:50 Telcontar fetchmail[9753]: GSSAPI error gss_inquire_cred: Credentials cache file '/tmp/krb5cc_1000' not found
+Nov  9 13:15:50 Telcontar fetchmail[9753]: No suitable GSSAPI credentials found. Skipping GSSAPI authentication.
+Nov  9 13:15:50 Telcontar fetchmail[9753]: If you want to use GSSAPI, you need credentials first, possibly from kinit.
+Nov  9 13:15:50 Telcontar fetchmail[9753]: IMAP&gt; A0003 AUTHENTICATE CRAM-MD5
+Nov  9 13:15:50 Telcontar fetchmail[9753]: IMAP&lt; + PE...ZW8+
+Nov  9 13:15:50 Telcontar fetchmail[9753]: decoded as &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">B1B...2 at ctmmp1.adm.correo</A>&gt;
+Nov  9 13:15:50 Telcontar fetchmail[9753]: IMAP&gt; cm...wYQ==
+Nov  9 13:15:50 Telcontar fetchmail[9753]: IMAP&lt; A0003 OK authentication successful
+Nov  9 13:15:50 Telcontar fetchmail[9753]: selecting or re-polling folder Inbox
+Nov  9 13:15:50 Telcontar fetchmail[9753]: IMAP&gt; A0004 SELECT &quot;Inbox&quot;
+Nov  9 13:15:50 Telcontar fetchmail[9753]: IMAP&lt; * 0 EXISTS
+Nov  9 13:15:50 Telcontar fetchmail[9753]: IMAP&lt; * 0 RECENT
+...
+
+
+-- 
+Cheers,
+        Carlos E. R.
+        (from 11.2 x86_64 &quot;Emerald&quot; at Telcontar)
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	
+	<LI>Next message: <A HREF="002520.html">[fetchmail-users] I'm getting a response &quot;NO you are not allowed to act as a proxy server&quot; from server at ISP
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2519">[ date ]</a>
+              <a href="thread.html#2519">[ thread ]</a>
+              <a href="subject.html#2519">[ subject ]</a>
+              <a href="author.html#2519">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,105 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] How do I write emails to disk and preserve	CRLF?
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2008-January/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20How%20do%20I%20write%20emails%20to%20disk%20and%20preserve%0A%09CRLF%3F&In-Reply-To=%3CD7A97E1B-C97A-4D22-8ECC-6766FB9C5314%40willowtreeinteractive.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001424.html">
+   <LINK REL="Next"  HREF="001416.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] How do I write emails to disk and preserve	CRLF?</H1>
+    <B>Michael Prichard</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20How%20do%20I%20write%20emails%20to%20disk%20and%20preserve%0A%09CRLF%3F&In-Reply-To=%3CD7A97E1B-C97A-4D22-8ECC-6766FB9C5314%40willowtreeinteractive.com%3E"
+       TITLE="[fetchmail-users] How do I write emails to disk and preserve	CRLF?">michael at willowtreeinteractive.com
+       </A><BR>
+    <I>Sat Jan 19 17:28:42 CET 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001424.html">[fetchmail-users] How do I write emails to disk and	preserve	CRLF?
+</A></li>
+        <LI>Next message: <A HREF="001416.html">[fetchmail-users] Having rights to Exchange mailbox for group,	how to get fetchmail to access that mailbox?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1427">[ date ]</a>
+              <a href="thread.html#1427">[ thread ]</a>
+              <a href="subject.html#1427">[ subject ]</a>
+              <a href="author.html#1427">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>That's it!! you rock!
+
+Here is the script I am using:
+
+#!/usr/bin/perl -w
+$dumpDir=&quot;/home/michael/fetchmail/dump&quot;;
+
+@timeData = gmtime(time);
+$myFileName= join('', @timeData);
+$range = 1000;
+$random_number = int(rand($range));
+$myFileName = $myFileName . &quot;_1&quot; . $random_number . &quot;.eml&quot;;
+open(FILE, &quot;&gt;&gt;$dumpDir/$myFileName&quot;) || die &quot;Cannot open my_file: $!\n&quot;;
+while(&lt;STDIN&gt;)
+{
+chomp;
+    print FILE $_ . &quot;\r\n&quot;;
+}
+close(FILE);
+exit;
+
+seems to work :)
+
+On Jan 19, 2008, at 3:33 AM, Matthias Andree wrote:
+
+&gt;<i> Michael Prichard schrieb am 2008-01-17:
+</I>&gt;<i>
+</I>&gt;&gt;<i> you know I was just starting to think about that :)  hehe...I am
+</I>&gt;&gt;<i> using PERL currently.  I think I may just try to SMTP to where I need
+</I>&gt;&gt;<i> it to go.  Unless I can still do it with PERL.
+</I>&gt;<i>
+</I>&gt;<i> Nastily speaking, it's down to your Perl skills whether you can do it,
+</I>&gt;<i> but it's possible to do that in Perl. :-)
+</I>&gt;<i>
+</I>&gt;<i> Seriously, as pointer: check the Perl manual for chomp in combination
+</I>&gt;<i> with using . &quot;\r\n&quot; for your output (print or whatever) commands.
+</I>&gt;<i>
+</I>&gt;<i> -- 
+</I>&gt;<i> Matthias Andree
+</I>&gt;<i> _______________________________________________
+</I>&gt;<i> fetchmail-users mailing list
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">fetchmail-users at lists.berlios.de</A>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">https://lists.berlios.de/mailman/listinfo/fetchmail-users</A>
+</I>
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001424.html">[fetchmail-users] How do I write emails to disk and	preserve	CRLF?
+</A></li>
+	<LI>Next message: <A HREF="001416.html">[fetchmail-users] Having rights to Exchange mailbox for group,	how to get fetchmail to access that mailbox?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1427">[ date ]</a>
+              <a href="thread.html#1427">[ thread ]</a>
+              <a href="subject.html#1427">[ subject ]</a>
+              <a href="author.html#1427">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

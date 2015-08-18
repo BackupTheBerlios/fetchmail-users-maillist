@@ -1,0 +1,245 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Fetchmail Error Message
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2006-November/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Fetchmail%20Error%20Message&In-Reply-To=%3C20061105152247.EE15.GERARD%40seibercom.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000670.html">
+   <LINK REL="Next"  HREF="000672.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Fetchmail Error Message</H1>
+    <B>Gerard Seibert</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Fetchmail%20Error%20Message&In-Reply-To=%3C20061105152247.EE15.GERARD%40seibercom.net%3E"
+       TITLE="[fetchmail-users] Fetchmail Error Message">gerard at seibercom.net
+       </A><BR>
+    <I>Sun Nov  5 21:28:34 CET 2006</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000670.html">[fetchmail-users] Script to check all user accounts
+</A></li>
+        <LI>Next message: <A HREF="000672.html">[fetchmail-users] Fetchmail Error Message
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#671">[ date ]</a>
+              <a href="thread.html#671">[ thread ]</a>
+              <a href="subject.html#671">[ subject ]</a>
+              <a href="author.html#671">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>FreeBSD 6.1 STABLE
+Postfix-2.4-20061019
+Fetchmail release 6.3.5+RPA+SDPS+SSL+OPIE+NLS.
+
+I have just updated to the latest version of Fetchmail. Prior to this
+update, Fetchmail had run flawlessly. Unfortunately, it now appears to
+be suffering some problems.
+
+This is a truncated version of my /var/log/maillog:
+
+Nov  5 00:01:28 scorpio fetchmail[734]: 1 message for <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">gerard at seibercom.net</A> at pop.gmail.com (4441 octets).
+Nov  5 00:01:29 scorpio fetchmail[734]: reading message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">gerard at seibercom.net</A>@gmail-pop.l.google.com:1 of 1 (4441 octets) (log message incomplete)
+Nov  5 00:01:29 scorpio fetchmail[734]: connection to localhost:smtp [::1/25] failed: Connection refused.
+--
+Nov  5 00:16:43 scorpio fetchmail[734]: 1 message for <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">gerard at seibercom.net</A> at pop.gmail.com (6285 octets).
+Nov  5 00:16:43 scorpio fetchmail[734]: reading message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">gerard at seibercom.net</A>@gmail-pop.l.google.com:1 of 1 (6285 octets) (log message incomplete)
+Nov  5 00:16:43 scorpio fetchmail[734]: connection to localhost:smtp [::1/25] failed: Connection refused.
+--
+Nov  5 00:47:11 scorpio fetchmail[734]: 1 message for <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">gerard at seibercom.net</A> at pop.gmail.com (5580 octets).
+Nov  5 00:47:11 scorpio fetchmail[734]: reading message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">gerard at seibercom.net</A>@gmail-pop.l.google.com:1 of 1 (5580 octets) (log message incomplete)
+Nov  5 00:47:11 scorpio fetchmail[734]: connection to localhost:smtp [::1/25] failed: Connection refused.
+--
+Nov  5 01:02:26 scorpio fetchmail[734]: 3 messages for <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">gerard at seibercom.net</A> at pop.gmail.com (13809 octets).
+Nov  5 01:02:26 scorpio fetchmail[734]: reading message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">gerard at seibercom.net</A>@gmail-pop.l.google.com:1 of 3 (4207 octets) (log message incomplete)
+Nov  5 01:02:26 scorpio fetchmail[734]: connection to localhost:smtp [::1/25] failed: Connection refused.
+--
+Nov  5 01:17:42 scorpio fetchmail[734]: 3 messages for <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">gerard at seibercom.net</A> at pop.gmail.com (13385 octets).
+Nov  5 01:17:42 scorpio fetchmail[734]: reading message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">gerard at seibercom.net</A>@gmail-pop.l.google.com:1 of 3 (5074 octets) (log message incomplete)
+Nov  5 01:17:42 scorpio fetchmail[734]: connection to localhost:smtp [::1/25] failed: Connection refused.
+--
+Nov  5 01:17:52 scorpio fetchmail[734]: 1 message for <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">beerstud at spamcop.net</A> at pop.spamcop.net (2679 octets).
+Nov  5 01:17:52 scorpio fetchmail[734]: reading message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">beerstud at spamcop.net</A>@pop.spamcop.net:1 of 1 (2679 octets) (log message incomplete)
+Nov  5 01:17:52 scorpio fetchmail[734]: connection to localhost:smtp [::1/25] failed: Connection refused.
+--
+Nov  5 01:17:53 scorpio fetchmail[734]: 1 message for gerard-seibert at mail.comcast.net (25369 octets).
+Nov  5 01:17:53 scorpio fetchmail[734]: reading message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">gerard-seibert at mail.comcast.net</A>:1 of 1 (25369 octets) (log message incomplete)
+Nov  5 01:17:53 scorpio fetchmail[734]: connection to localhost:smtp [::1/25] failed: Connection refused.
+--
+Nov  5 01:32:58 scorpio fetchmail[734]: 3 messages for <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">gerard at seibercom.net</A> at pop.gmail.com (13104 octets).
+Nov  5 01:32:59 scorpio fetchmail[734]: reading message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">gerard at seibercom.net</A>@gmail-pop.l.google.com:1 of 3 (4710 octets) (log message incomplete)
+Nov  5 01:32:59 scorpio fetchmail[734]: connection to localhost:smtp [::1/25] failed: Connection refused.
+--
+Nov  5 01:33:11 scorpio fetchmail[734]: 1 message for <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">beerstud at spamcop.net</A> at pop.spamcop.net (2682 octets).
+Nov  5 01:33:11 scorpio fetchmail[734]: reading message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">beerstud at spamcop.net</A>@pop.spamcop.net:1 of 1 (2682 octets) (log message incomplete)
+Nov  5 01:33:11 scorpio fetchmail[734]: connection to localhost:smtp [::1/25] failed: Connection refused.
+--
+Nov  5 02:18:43 scorpio fetchmail[734]: 1 message for <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">gerard at seibercom.net</A> at pop.gmail.com (3063 octets).
+Nov  5 02:18:44 scorpio fetchmail[734]: reading message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">gerard at seibercom.net</A>@gmail-pop.l.google.com:1 of 1 (3063 octets) (log message incomplete)
+Nov  5 02:18:44 scorpio fetchmail[734]: connection to localhost:smtp [::1/25] failed: Connection refused.
+--
+Nov  5 02:33:58 scorpio fetchmail[734]: 2 messages for <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">gerard at seibercom.net</A> at pop.gmail.com (10698 octets).
+Nov  5 02:33:59 scorpio fetchmail[734]: reading message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">gerard at seibercom.net</A>@gmail-pop.l.google.com:1 of 2 (5862 octets) (log message incomplete)
+Nov  5 02:33:59 scorpio fetchmail[734]: connection to localhost:smtp [::1/25] failed: Connection refused.
+--
+Nov  5 02:49:13 scorpio fetchmail[734]: 1 message for <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">gerard at seibercom.net</A> at pop.gmail.com (4368 octets).
+Nov  5 02:49:14 scorpio fetchmail[734]: reading message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">gerard at seibercom.net</A>@gmail-pop.l.google.com:1 of 1 (4368 octets) (log message incomplete)
+Nov  5 02:49:14 scorpio fetchmail[734]: connection to localhost:smtp [::1/25] failed: Connection refused.
+--
+Nov  5 03:19:48 scorpio fetchmail[734]: 1 message for gerard-seibert at mail.comcast.net (53903 octets).
+Nov  5 03:19:48 scorpio fetchmail[734]: reading message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">gerard-seibert at mail.comcast.net</A>:1 of 1 (53903 octets) (log message incomplete)
+Nov  5 03:19:48 scorpio fetchmail[734]: connection to localhost:smtp [::1/25] failed: Connection refused.
+--
+Nov  5 03:35:56 scorpio fetchmail[734]: 1 message for <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">gerard at seibercom.net</A> at pop.gmail.com (3871 octets).
+Nov  5 03:35:57 scorpio fetchmail[734]: reading message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">gerard at seibercom.net</A>@gmail-pop.l.google.com:1 of 1 (3871 octets) (log message incomplete)
+Nov  5 03:35:57 scorpio fetchmail[734]: connection to localhost:smtp [::1/25] failed: Connection refused.
+--
+Nov  5 03:36:05 scorpio fetchmail[734]: 1 message for gerard-seibert at mail.comcast.net (19008 octets).
+Nov  5 03:36:05 scorpio fetchmail[734]: reading message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">gerard-seibert at mail.comcast.net</A>:1 of 1 (19008 octets) (log message incomplete)
+Nov  5 03:36:05 scorpio fetchmail[734]: connection to localhost:smtp [::1/25] failed: Connection refused.
+--
+Nov  5 03:51:11 scorpio fetchmail[734]: 1 message for <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">gerard at seibercom.net</A> at pop.gmail.com (9056 octets).
+Nov  5 03:51:12 scorpio fetchmail[734]: reading message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">gerard at seibercom.net</A>@gmail-pop.l.google.com:1 of 1 (9056 octets) (log message incomplete)
+Nov  5 03:51:12 scorpio fetchmail[734]: connection to localhost:smtp [::1/25] failed: Connection refused.
+--
+Nov  5 04:06:26 scorpio fetchmail[734]: 1 message for <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">gerard at seibercom.net</A> at pop.gmail.com (4897 octets).
+Nov  5 04:06:26 scorpio fetchmail[734]: reading message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">gerard at seibercom.net</A>@gmail-pop.l.google.com:1 of 1 (4897 octets) (log message incomplete)
+Nov  5 04:06:26 scorpio fetchmail[734]: connection to localhost:smtp [::1/25] failed: Connection refused.
+--
+Nov  5 04:21:41 scorpio fetchmail[734]: 4 messages for <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">gerard at seibercom.net</A> at pop.gmail.com (19228 octets).
+Nov  5 04:21:41 scorpio fetchmail[734]: reading message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">gerard at seibercom.net</A>@gmail-pop.l.google.com:1 of 4 (5159 octets) (log message incomplete)
+Nov  5 04:21:41 scorpio fetchmail[734]: connection to localhost:smtp [::1/25] failed: Connection refused.
+--
+Nov  5 04:21:45 scorpio fetchmail[734]: 4 messages for <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">gerard.seibert at gmail.com</A> at pop.gmail.com (19278 octets).
+Nov  5 04:21:45 scorpio fetchmail[734]: reading message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">gerard.seibert at gmail.com</A>@gmail-pop.l.google.com:1 of 4 (5171 octets) (log message incomplete)
+Nov  5 04:21:45 scorpio fetchmail[734]: connection to localhost:smtp [::1/25] failed: Connection refused.
+--
+Nov  5 04:36:59 scorpio fetchmail[734]: 1 message for <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">gerard.seibert at gmail.com</A> at pop.gmail.com (5227 octets).
+Nov  5 04:36:59 scorpio fetchmail[734]: reading message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">gerard.seibert at gmail.com</A>@gmail-pop.l.google.com:1 of 1 (5227 octets) (log message incomplete)
+Nov  5 04:36:59 scorpio fetchmail[734]: connection to localhost:smtp [::1/25] failed: Connection refused.
+--
+Nov  5 05:07:24 scorpio fetchmail[734]: 2 messages for <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">gerard at seibercom.net</A> at pop.gmail.com (8169 octets).
+Nov  5 05:07:25 scorpio fetchmail[734]: reading message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">gerard at seibercom.net</A>@gmail-pop.l.google.com:1 of 2 (3921 octets) (log message incomplete)
+Nov  5 05:07:25 scorpio fetchmail[734]: connection to localhost:smtp [::1/25] failed: Connection refused.
+--
+Nov  5 05:22:40 scorpio fetchmail[734]: 5 messages for <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">gerard at seibercom.net</A> at pop.gmail.com (19922 octets).
+Nov  5 05:22:40 scorpio fetchmail[734]: reading message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">gerard at seibercom.net</A>@gmail-pop.l.google.com:1 of 5 (5131 octets) (log message incomplete)
+Nov  5 05:22:40 scorpio fetchmail[734]: connection to localhost:smtp [::1/25] failed: Connection refused.
+--
+Nov  5 05:37:57 scorpio fetchmail[734]: 4 messages for <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">gerard at seibercom.net</A> at pop.gmail.com (17748 octets).
+Nov  5 05:37:57 scorpio fetchmail[734]: reading message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">gerard at seibercom.net</A>@gmail-pop.l.google.com:1 of 4 (3556 octets) (log message incomplete)
+Nov  5 05:37:57 scorpio fetchmail[734]: connection to localhost:smtp [::1/25] failed: Connection refused.
+--
+Nov  5 05:53:13 scorpio fetchmail[734]: 2 messages for <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">gerard at seibercom.net</A> at pop.gmail.com (9826 octets).
+Nov  5 05:53:14 scorpio fetchmail[734]: reading message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">gerard at seibercom.net</A>@gmail-pop.l.google.com:1 of 2 (4913 octets) (log message incomplete)
+Nov  5 05:53:14 scorpio fetchmail[734]: connection to localhost:smtp [::1/25] failed: Connection refused.
+--
+Nov  5 06:08:28 scorpio fetchmail[734]: 5 messages for <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">gerard at seibercom.net</A> at pop.gmail.com (23260 octets).
+Nov  5 06:08:28 scorpio fetchmail[734]: reading message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">gerard at seibercom.net</A>@gmail-pop.l.google.com:1 of 5 (2371 octets) (log message incomplete)
+Nov  5 06:08:28 scorpio fetchmail[734]: connection to localhost:smtp [::1/25] failed: Connection refused.
+--
+Nov  5 06:23:45 scorpio fetchmail[734]: 2 messages for <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">gerard at seibercom.net</A> at pop.gmail.com (17912 octets).
+Nov  5 06:23:46 scorpio fetchmail[734]: reading message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">gerard at seibercom.net</A>@gmail-pop.l.google.com:1 of 2 (4209 octets) (log message incomplete)
+Nov  5 06:23:46 scorpio fetchmail[734]: connection to localhost:smtp [::1/25] failed: Connection refused.
+--
+Nov  5 06:39:00 scorpio fetchmail[734]: 3 messages for <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">gerard at seibercom.net</A> at pop.gmail.com (11760 octets).
+Nov  5 06:39:01 scorpio fetchmail[734]: reading message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">gerard at seibercom.net</A>@gmail-pop.l.google.com:1 of 3 (3766 octets) (log message incomplete)
+Nov  5 06:39:01 scorpio fetchmail[734]: connection to localhost:smtp [::1/25] failed: Connection refused.
+--
+Nov  5 06:54:18 scorpio fetchmail[734]: 2 messages for <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">gerard at seibercom.net</A> at pop.gmail.com (9014 octets).
+Nov  5 06:54:19 scorpio fetchmail[734]: reading message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">gerard at seibercom.net</A>@gmail-pop.l.google.com:1 of 2 (4093 octets) (log message incomplete)
+Nov  5 06:54:19 scorpio fetchmail[734]: connection to localhost:smtp [::1/25] failed: Connection refused.
+--
+Nov  5 07:09:33 scorpio fetchmail[734]: 1 message for <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">gerard at seibercom.net</A> at pop.gmail.com (56827 octets).
+Nov  5 07:09:34 scorpio fetchmail[734]: reading message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">gerard at seibercom.net</A>@gmail-pop.l.google.com:1 of 1 (56827 octets) (log message incomplete)
+Nov  5 07:09:34 scorpio fetchmail[734]: connection to localhost:smtp [::1/25] failed: Connection refused.
+--
+Nov  5 07:24:48 scorpio fetchmail[734]: 1 message for <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">gerard at seibercom.net</A> at pop.gmail.com (4189 octets).
+Nov  5 07:24:48 scorpio fetchmail[734]: reading message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">gerard at seibercom.net</A>@gmail-pop.l.google.com:1 of 1 (4189 octets) (log message incomplete)
+Nov  5 07:24:48 scorpio fetchmail[734]: connection to localhost:smtp [::1/25] failed: Connection refused.
+--
+Nov  5 07:24:56 scorpio fetchmail[734]: 1 message for <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">beerstud at spamcop.net</A> at pop.spamcop.net (3328 octets).
+Nov  5 07:24:57 scorpio fetchmail[734]: reading message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">beerstud at spamcop.net</A>@pop.spamcop.net:1 of 1 (3328 octets) (log message incomplete)
+Nov  5 07:24:57 scorpio fetchmail[734]: connection to localhost:smtp [::1/25] failed: Connection refused.
+--
+Nov  5 07:40:04 scorpio fetchmail[734]: 1 message for <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">gerard at seibercom.net</A> at pop.gmail.com (6122 octets).
+Nov  5 07:40:05 scorpio fetchmail[734]: reading message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">gerard at seibercom.net</A>@gmail-pop.l.google.com:1 of 1 (6122 octets) (log message incomplete)
+Nov  5 07:40:05 scorpio fetchmail[734]: connection to localhost:smtp [::1/25] failed: Connection refused.
+--
+Nov  5 07:40:13 scorpio fetchmail[734]: 1 message for <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">beerstud at spamcop.net</A> at pop.spamcop.net (3638 octets).
+Nov  5 07:40:13 scorpio fetchmail[734]: reading message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">beerstud at spamcop.net</A>@pop.spamcop.net:1 of 1 (3638 octets) (log message incomplete)
+Nov  5 07:40:13 scorpio fetchmail[734]: connection to localhost:smtp [::1/25] failed: Connection refused.
+--
+Nov  5 07:56:20 scorpio fetchmail[734]: 2 messages for <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">gerard at seibercom.net</A> at pop.gmail.com (7768 octets).
+Nov  5 07:56:20 scorpio fetchmail[734]: reading message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">gerard at seibercom.net</A>@gmail-pop.l.google.com:1 of 2 (4798 octets) (log message incomplete)
+Nov  5 07:56:20 scorpio fetchmail[734]: connection to localhost:smtp [::1/25] failed: Connection refused.
+--
+Nov  5 07:56:28 scorpio fetchmail[734]: 1 message for <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">beerstud at spamcop.net</A> at pop.spamcop.net (3542 octets).
+Nov  5 07:56:28 scorpio fetchmail[734]: reading message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">beerstud at spamcop.net</A>@pop.spamcop.net:1 of 1 (3542 octets) (log message incomplete)
+Nov  5 07:56:28 scorpio fetchmail[734]: connection to localhost:smtp [::1/25] failed: Connection refused.
+--
+Nov  5 08:11:36 scorpio fetchmail[734]: 2 messages for <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">gerard at seibercom.net</A> at pop.gmail.com (5639 octets).
+Nov  5 08:11:36 scorpio fetchmail[734]: reading message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">gerard at seibercom.net</A>@gmail-pop.l.google.com:1 of 2 (2187 octets) (log message incomplete)
+Nov  5 08:11:36 scorpio fetchmail[734]: connection to localhost:smtp [::1/25] failed: Connection refused.
+--
+Nov  5 08:26:53 scorpio fetchmail[734]: 1 message for <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">gerard at seibercom.net</A> at pop.gmail.com (4127 octets).
+Nov  5 08:26:54 scorpio fetchmail[734]: reading message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">gerard at seibercom.net</A>@gmail-pop.l.google.com:1 of 1 (4127 octets) (log message incomplete)
+Nov  5 08:26:54 scorpio fetchmail[734]: connection to localhost:smtp [::1/25] failed: Connection refused.
+--
+Nov  5 08:42:12 scorpio fetchmail[734]: 2 messages for <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">gerard at seibercom.net</A> at pop.gmail.com (8244 octets).
+Nov  5 08:42:13 scorpio fetchmail[734]: reading message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">gerard at seibercom.net</A>@gmail-pop.l.google.com:1 of 2 (3922 octets) (log message incomplete)
+Nov  5 08:42:13 scorpio fetchmail[734]: connection to localhost:smtp [::1/25] failed: Connection refused.
+--
+Nov  5 08:42:22 scorpio fetchmail[734]: 5 messages for gerard-seibert at mail.comcast.net (23670 octets).
+Nov  5 08:42:22 scorpio fetchmail[734]: reading message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">gerard-seibert at mail.comcast.net</A>:1 of 5 (5275 octets) (log message incomplete)
+Nov  5 08:42:22 scorpio fetchmail[734]: connection to localhost:smtp [::1/25] failed: Connection refused.
+
+
+It does not appear that I am losing any mail. However, all of the
+accounts are not setup as of yet. Once the system is fully functional, I
+cannot afford to have any problems.
+
+As I previously stated, I never experienced any problems with the older
+version of Fetchmail. Since that is the only thing that I have updated
+in a few weeks, this problem has to be related to that update.
+
+
+-- 
+Gerard
+<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">gerard at seibercom.net</A>
+
+
+Ah, SASL, the dark side of authentication it is.
+Yes, tempting, easy - but ultimately destroy you it will!
+But fear the path of misconfiguration, you should!
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000670.html">[fetchmail-users] Script to check all user accounts
+</A></li>
+	<LI>Next message: <A HREF="000672.html">[fetchmail-users] Fetchmail Error Message
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#671">[ date ]</a>
+              <a href="thread.html#671">[ thread ]</a>
+              <a href="subject.html#671">[ subject ]</a>
+              <a href="author.html#671">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

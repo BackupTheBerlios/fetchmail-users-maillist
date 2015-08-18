@@ -1,0 +1,117 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] fetchmail exis status 1 - Only few emails are	getting retrieved.
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2007-September/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%20exis%20status%201%20-%20Only%20few%20emails%20are%0A%09getting%20retrieved.&In-Reply-To=%3C43ea8d070709171148l5ba8747fh211988e3602a1a88%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001258.html">
+   <LINK REL="Next"  HREF="001260.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] fetchmail exis status 1 - Only few emails are	getting retrieved.</H1>
+    <B>Rob MacGregor</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%20exis%20status%201%20-%20Only%20few%20emails%20are%0A%09getting%20retrieved.&In-Reply-To=%3C43ea8d070709171148l5ba8747fh211988e3602a1a88%40mail.gmail.com%3E"
+       TITLE="[fetchmail-users] fetchmail exis status 1 - Only few emails are	getting retrieved.">rob.macgregor at gmail.com
+       </A><BR>
+    <I>Mon Sep 17 20:48:50 CEST 2007</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001258.html">[fetchmail-users] fetchmail exis status 1 - Only few emails are	getting retrieved.
+</A></li>
+        <LI>Next message: <A HREF="001260.html">[fetchmail-users] fetchmail exis status 1 - Only few emails	are	getting retrieved.
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1259">[ date ]</a>
+              <a href="thread.html#1259">[ thread ]</a>
+              <a href="subject.html#1259">[ subject ]</a>
+              <a href="author.html#1259">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On 9/17/07, Dilip M &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">dilip.mahadevappa at gmail.com</A>&gt; wrote:
+&gt;<i>
+</I>&gt;<i> I agree! Sorry of that :( But I couldn't wait for to get my fetchmail working!
+</I>
+Frankly, tough.  An approach like that will quite probably result in
+those that can help just ignoring you in future, in the theory that
+you may be making up log entries then too.
+
+&gt;<i> Should be. Some problem at gmail end, since they say they will allow
+</I>&gt;<i> email in batches for retrieval, if there is many emails!
+</I>
+Nothing fetchmail can do to help you.  As I said, if GMail only
+reports 712 emails, all of which fetchmail has downloaded, what do you
+expect fetchmail to be able to do?  It doesn't come with a crystal
+ball or magic &quot;--control-google&quot; command line option.
+
+&gt;<i> -- Finally the Correct log  --
+</I>&gt;<i>
+</I>&gt;<i> fetchmail: 6.3.8 querying pop.gmail.com (protocol POP3) at Monday 17
+</I>&gt;<i> September 2007 10:28:15 PM IST: poll started
+</I>&gt;<i> Trying to connect to 209.85.147.109/995...connected.
+</I>&lt;---SNIP---&gt;
+&gt;<i> .
+</I>&gt;<i> fetchmail: 759 is unseen
+</I>&gt;<i> fetchmail: POP3&lt; .
+</I>&gt;<i> 759 messages (197 seen) for <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">dilipm.lists at gmail.com</A> at pop.gmail.com
+</I>&gt;<i> (4319113 octets).
+</I>&gt;<i> skipping message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">dilipm.lists at gmail.com</A>@gmail-pop.l.google.com:1 not flushed
+</I>&gt;<i> skipping message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">dilipm.lists at gmail.com</A>@gmail-pop.l.google.com:2 not flushed
+</I>&gt;<i> .
+</I>&gt;<i> .
+</I>&gt;<i> fetchmail: fetchlimit 5 reached; 754 messages left on server
+</I>&gt;<i> gmail-pop.l.google.com account <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">dilipm.lists at gmail.com</A>
+</I>&gt;<i> fetchmail: POP3&gt; QUIT
+</I>&gt;<i> fetchmail: POP3&lt; +OK Farewell.
+</I>&gt;<i> fetchmail: 6.3.8 querying pop.gmail.com (protocol POP3) at Monday 17
+</I>&gt;<i> September 2007 10:28:29 PM IST: poll completed
+</I>&gt;<i> fetchmail: swapping UID lists
+</I>&gt;<i> fetchmail: Query status=13 (MAXFETCH)
+</I>&gt;<i> fetchmail: Writing fetchids file.
+</I>&gt;<i> fetchmail: normal termination, status 13
+</I>&gt;<i> fetchmail: Writing fetchids file.
+</I>
+Care to restate your problem?  You've configured fetchmail to download
+the emails in batches of 5 per run and you have 754 emails remaining.
+It will take 151 runs to completely download the existing emails that
+GMail reported at that point.  Why not remove the fetchlimit option?
+
+It would help to see your .fetchmailrc file if you want further help.
+
+-- 
+                 Please keep list traffic on the list.
+
+Rob MacGregor
+      Whoever fights monsters should see to it that in the process he
+        doesn't become a monster.                  Friedrich Nietzsche
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001258.html">[fetchmail-users] fetchmail exis status 1 - Only few emails are	getting retrieved.
+</A></li>
+	<LI>Next message: <A HREF="001260.html">[fetchmail-users] fetchmail exis status 1 - Only few emails	are	getting retrieved.
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1259">[ date ]</a>
+              <a href="thread.html#1259">[ thread ]</a>
+              <a href="subject.html#1259">[ subject ]</a>
+              <a href="author.html#1259">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

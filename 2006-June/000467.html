@@ -1,0 +1,85 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] option -v not working...
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2006-June/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20option%20-v%20not%20working...&In-Reply-To=%3C20060628053329.GA6210%40davescrunch%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000465.html">
+   <LINK REL="Next"  HREF="000460.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] option -v not working...</H1>
+    <B>Dave Patterson</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20option%20-v%20not%20working...&In-Reply-To=%3C20060628053329.GA6210%40davescrunch%3E"
+       TITLE="[fetchmail-users] option -v not working...">sdpatt2 at gmail.com
+       </A><BR>
+    <I>Wed Jun 28 07:33:29 CEST 2006</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000465.html">[fetchmail-users] option -v not working...
+</A></li>
+        <LI>Next message: <A HREF="000460.html">[fetchmail-users] [BUG] fetchmail daemon does not resume fetching after a network outage
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#467">[ date ]</a>
+              <a href="thread.html#467">[ thread ]</a>
+              <a href="subject.html#467">[ subject ]</a>
+              <a href="author.html#467">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>* Dave Patterson &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">sdpatt2 at gmail.com</A>&gt; [2006-06-28 08:58:29 +0700]:
+
+
+&gt;<i> Let me play with a couple settings here and I'll get back
+</I>&gt;<i> to list. 
+</I>Ok, here it is:
+
+set syslog DOES send status report to /var/log/mail.log, file cannot be read by
+normal user, this setting cannot be overriden by command line option
+--nodetach
+
+set logfile MUST be given the full path to logfile
+(/home/dave/.fetchmaillog) NOT ~/.fetchmaillog or the .fetchmailrc line
+'set logfile' is ignored and status is printed to screen.  This option CAN
+be overridden by the option --nodetach
+
+'set syslog' line before 'set logfile' line in .fetchmailrc has the effect
+of using 'set syslog' first, the second option ignored... (as most .rc files
+are executed top to bottom in common usage)
+
+-- 
+Cheers,
+
+  Dave 
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000465.html">[fetchmail-users] option -v not working...
+</A></li>
+	<LI>Next message: <A HREF="000460.html">[fetchmail-users] [BUG] fetchmail daemon does not resume fetching after a network outage
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#467">[ date ]</a>
+              <a href="thread.html#467">[ thread ]</a>
+              <a href="subject.html#467">[ subject ]</a>
+              <a href="author.html#467">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

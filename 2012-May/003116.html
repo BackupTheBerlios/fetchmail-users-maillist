@@ -1,0 +1,124 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] [PATCH] Re: Problem with Demon's new Microsoft Exchange Server 2010 service
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2012-May/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20%5BPATCH%5D%20Re%3A%20Problem%20with%20Demon%27s%20new%0A%20Microsoft%20Exchange%20Server%202010%20service&In-Reply-To=%3C4FABE031.10705%40gmx.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003115.html">
+   <LINK REL="Next"  HREF="003117.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] [PATCH] Re: Problem with Demon's new Microsoft Exchange Server 2010 service</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20%5BPATCH%5D%20Re%3A%20Problem%20with%20Demon%27s%20new%0A%20Microsoft%20Exchange%20Server%202010%20service&In-Reply-To=%3C4FABE031.10705%40gmx.de%3E"
+       TITLE="[fetchmail-users] [PATCH] Re: Problem with Demon's new Microsoft Exchange Server 2010 service">matthias.andree at gmx.de
+       </A><BR>
+    <I>Thu May 10 17:35:13 CEST 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003115.html">[fetchmail-users] [PATCH] Re: Problem with Demon's new Microsoft	Exchange Server 2010 service
+</A></li>
+        <LI>Next message: <A HREF="003117.html">[fetchmail-users] [PATCH] Re: Problem with Demon's new	Microsoft Exchange Server 2010 service
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3116">[ date ]</a>
+              <a href="thread.html#3116">[ thread ]</a>
+              <a href="subject.html#3116">[ subject ]</a>
+              <a href="author.html#3116">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Am 09.05.2012 10:35, schrieb Sunil Shetye:
+&gt;<i> Hi,
+</I>&gt;<i> 
+</I>&gt;&gt;&gt;<i> Problem:
+</I>&gt;<i> 
+</I>&gt;&gt;&gt;<i> I have recently been migrated to Demon's new service which appears to be
+</I>&gt;&gt;&gt;<i> based on Microsoft Exchange Server 2010.  The migration appeared to have
+</I>&gt;&gt;&gt;<i> been successful with messages being fetched.  Then fetching of messages
+</I>&gt;&gt;&gt;<i> ceased.  I added &quot;-vvv&quot; to /etc/init.d/fetchmail and restarted
+</I>&gt;&gt;&gt;<i> fetchmail.  Here are edited highlights from /var/log/fetchmail:
+</I>&gt;<i> 
+</I>&gt;<i> ...
+</I>&gt;<i> 
+</I>&gt;&gt;&gt;<i> fetchmail: IMAP&gt; A0009 FETCH 1 RFC822.HEADER
+</I>&gt;&gt;&gt;<i> fetchmail: IMAP&lt; A0009 OK FETCH completed.
+</I>&gt;&gt;&gt;<i> fetchmail: Incorrect FETCH response: OK FETCH COMPLETED..
+</I>&gt;<i> 
+</I>&gt;<i> Attached is a patch to fix this problem. Please note that this patch will not change the behaviour for mails with such responses. It will ensure that mails after the current mail will be fetched as is expected.
+</I>&gt;<i> 
+</I>&gt;&gt;<i> Sunil, for resilience towards massive faults on the server side, we'll
+</I>&gt;&gt;<i> probably have to add an error counter so that fetchmail won't attempt to
+</I>&gt;&gt;<i> fetch hundreds of messages' headers and skip over all of them when the
+</I>&gt;&gt;<i> server exhibits systematic faults (and not just some individual
+</I>&gt;&gt;<i> messages, as your report suggests).
+</I>&gt;<i> 
+</I>&gt;<i> I have added a counter to this patch to log the number of transient errors. I am tempted to add a open_warning_by_mail() instead of just logging it for too many transient errors. However, if such mails are accumulating, there will be a warning mail per poll leading to excessive warning mails.
+</I>&gt;<i> 
+</I>&gt;<i> Also note that the bug is that fetchmail currently stops fetching the remaining mails from the folder the moment it gets an unexpected response. As this problematic mail is not removed, fetchmail stops fetching mails from the folder completely across polls. This patch ensures that fetching of the remaining mails continues.
+</I>
+Sunil,
+
+thanks a lot, the patch looks good at first inspection.
+
+I think if the count of transient errors goes too high, we should skip
+to the next server (else counting is pointless).  I'll add that, too.  I
+understand your itch to add that &quot;send warning mail&quot;, but I think
+fetchmail needs a generic framework for reporting trouble by mail first
+- or at least such a feature would have to be structured in a way to
+support such a framework later on.  Not 6.3.X stuff though, but for
+future development version (although fine for 7.0.X).
+The underlying issue that has always been nagging (but not being
+annoying enough) is that fetchmail makes a distinction between daemon
+and regular mode...
+
+I don't think a tool like fetchmail can survive without any operator
+attention though.  We certainly don't want a message on every poll, but
+a message after 4 hours and then every 24 hours should be good.  Only we
+don't have code to support that outside daemon mode.
+
+I think that part is stuff for the -devel list.
+
+John,
+
+can you try Sunil's patch, i. e. unpack the fetchmail sources, apply the
+patch, ./configure --with-ssl --with-gssapi and install, then move the
+offending message back in your inbox, send yourself another test
+message, and see if the patched fetchmail version skips over the
+offending message and retrieves the test message?
+
+Thanks a bunch.
+
+Best regards
+Matthias
+</PRE>
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003115.html">[fetchmail-users] [PATCH] Re: Problem with Demon's new Microsoft	Exchange Server 2010 service
+</A></li>
+	<LI>Next message: <A HREF="003117.html">[fetchmail-users] [PATCH] Re: Problem with Demon's new	Microsoft Exchange Server 2010 service
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3116">[ date ]</a>
+              <a href="thread.html#3116">[ thread ]</a>
+              <a href="subject.html#3116">[ subject ]</a>
+              <a href="author.html#3116">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

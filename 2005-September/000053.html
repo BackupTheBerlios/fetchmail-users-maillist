@@ -1,0 +1,85 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] [PATCH] Re: fetchmail daemon problem
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2005-September/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20%5BPATCH%5D%20Re%3A%20fetchmail%20daemon%20problem&In-Reply-To=%3C20050902120137.GA6730%40session.bombay.retortsoft.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   
+   <LINK REL="Next"  HREF="000054.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] [PATCH] Re: fetchmail daemon problem</H1>
+    <B>Sunil Shetye</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20%5BPATCH%5D%20Re%3A%20fetchmail%20daemon%20problem&In-Reply-To=%3C20050902120137.GA6730%40session.bombay.retortsoft.com%3E"
+       TITLE="[fetchmail-users] [PATCH] Re: fetchmail daemon problem">shetye at bombay.retortsoft.com
+       </A><BR>
+    <I>Fri Sep  2 14:01:37 CEST 2005</I>
+    <P><UL>
+        
+        <LI>Next message: <A HREF="000054.html">[fetchmail-users] Re: fetchmail SSL problems on SunOS
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#53">[ date ]</a>
+              <a href="thread.html#53">[ thread ]</a>
+              <a href="subject.html#53">[ subject ]</a>
+              <a href="author.html#53">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Quoting from Martin Schlienger's mail on Wed, Aug 31, 2005 at 07:52:52PM +0200:
+&gt;<i> I'm running fetchmail 6.2.5 version of fetchmail from Debian Etch 
+</I>&gt;<i> package. I noticed that the daemon fails retrieving IMAP mails after a 
+</I>&gt;<i> certain time. I launch fetchmail as daemon with the init.d script 
+</I>&gt;<i> provided by debian. To analyse the problem, I added -v option, and here 
+</I>&gt;<i> is the full log illustrating the problem. It is quite long but quite 
+</I>&gt;<i> clear too.
+</I>
+Yes, there is an initialization bug. Could you try this patch?
+
+Index: fetchmail/transact.c
+===================================================================
+--- fetchmail/transact.c	(revision 4284)
++++ fetchmail/transact.c	(working copy)
+@@ -1382,6 +1382,7 @@
+ void init_transact(const struct method *proto)
+ /* initialize state for the send and receive functions */
+ {
++    suppress_tags = FALSE;
+     tagnum = 0;
+     tag[0] = '\0';	/* nuke any tag hanging out from previous query */
+     protocol = (struct method *)proto;
+===================================================================
+
+-- 
+Sunil Shetye.
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	
+	<LI>Next message: <A HREF="000054.html">[fetchmail-users] Re: fetchmail SSL problems on SunOS
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#53">[ date ]</a>
+              <a href="thread.html#53">[ thread ]</a>
+              <a href="subject.html#53">[ subject ]</a>
+              <a href="author.html#53">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

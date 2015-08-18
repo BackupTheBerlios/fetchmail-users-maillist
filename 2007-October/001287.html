@@ -1,0 +1,93 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] strange dns behaviour
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2007-October/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20strange%20dns%20behaviour&In-Reply-To=%3C1191671233.6155.8.camel%40uranos.pentacon.gov%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001286.html">
+   <LINK REL="Next"  HREF="001288.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] strange dns behaviour</H1>
+    <B>sp4rc</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20strange%20dns%20behaviour&In-Reply-To=%3C1191671233.6155.8.camel%40uranos.pentacon.gov%3E"
+       TITLE="[fetchmail-users] strange dns behaviour">sammyshome at gmx.net
+       </A><BR>
+    <I>Sat Oct  6 13:47:11 CEST 2007</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001286.html">[fetchmail-users] fetchmail-users Digest, Vol 16, Issue 1
+</A></li>
+        <LI>Next message: <A HREF="001288.html">[fetchmail-users] strange dns behaviour
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1287">[ date ]</a>
+              <a href="thread.html#1287">[ thread ]</a>
+              <a href="subject.html#1287">[ subject ]</a>
+              <a href="author.html#1287">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hello listmembers,
+
+I am running a local postfix+imap constellation in conjunction with
+fetchmail [1] on a gentoo system. If have just recognized that
+fetchmail(?) contructs strange queries. For example pop.gmx.net becomes
+pop.gmx.net.myLocalDomain.com. If I remove &quot;domain myLocalDomain.com&quot;
+from resolv.conf the queries stop. I have already tried the (no) dns
+option but with no luck. Is there a way to prevent this? 
+
+/sp4rc
+
+[1] # ~ $ fetchmail -V      
+This is fetchmail release 6.3.8+RPA+NTLM+SDPS+SSL+NLS.
+
+[2] # ~ $ cat /etc/resolv.conf 
+domain myLocalDomain.com
+nameserver 10.128.2.1
+
+[3] my fetchmailrc
+set postmaster &quot;myLocalUser&quot; 
+poll pop.gmx.net with proto POP3 dns auth password user
+&quot;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">emailOne at gmx.de</A>&quot; there with password &quot;passOne&quot; is myLocalUser here
+options ssl warnings 3600 
+
+poll pop.gmx.net with proto POP3 dns auth password user
+&quot;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">emailTwo at gmx.net</A>&quot; there with password &quot;passTwo&quot; is myLocalUser here
+options ssl warnings 3600 
+
+poll pop3.web.de with proto POP3 dns auth password user &quot;emailThree&quot;
+there with password &quot;passThree&quot; is myLocalUser here options ssl warnings
+3600
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001286.html">[fetchmail-users] fetchmail-users Digest, Vol 16, Issue 1
+</A></li>
+	<LI>Next message: <A HREF="001288.html">[fetchmail-users] strange dns behaviour
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1287">[ date ]</a>
+              <a href="thread.html#1287">[ thread ]</a>
+              <a href="subject.html#1287">[ subject ]</a>
+              <a href="author.html#1287">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

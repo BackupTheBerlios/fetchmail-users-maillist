@@ -1,0 +1,140 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] reasonable poll intervals
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2006-July/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20reasonable%20poll%20intervals&In-Reply-To=%3C739DCB46-2BDD-4F38-BD27-670B10ECE8BC%40ritual.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000506.html">
+   <LINK REL="Next"  HREF="000510.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] reasonable poll intervals</H1>
+    <B>Uli Zappe</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20reasonable%20poll%20intervals&In-Reply-To=%3C739DCB46-2BDD-4F38-BD27-670B10ECE8BC%40ritual.org%3E"
+       TITLE="[fetchmail-users] reasonable poll intervals">uli at ritual.org
+       </A><BR>
+    <I>Wed Jul 12 15:00:50 CEST 2006</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000506.html">[fetchmail-users] Re: reasonable poll intervals (was: Re: Rotating the log file)
+</A></li>
+        <LI>Next message: <A HREF="000510.html">[fetchmail-users] reasonable poll intervals
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#508">[ date ]</a>
+              <a href="thread.html#508">[ thread ]</a>
+              <a href="subject.html#508">[ subject ]</a>
+              <a href="author.html#508">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Am 12.07.2006 um 08:05 schrieb Matthias Andree:
+
+&gt;<i> And I even considered warning of deamon intervals shorter than 5  
+</I>&gt;<i> minutes. In fact, with many sites, polling in shorter intervals  
+</I>&gt;<i> just earns you a lockout.
+</I>
+I know this behavior from the pop mail server of my university.  
+However, the critical interval that triggers a lockout after a few  
+trials is 10 seconds (which sounds reasonable to me).
+
+&gt;<i> And it's not like a polling interval of 5, 10 or 15 minutes made a  
+</I>&gt;<i> real difference.
+</I>
+I've never heard of that. Just as a comparison, Mac OS X's Mail  
+application lets you choose polling intervals just in fixed steps via  
+a pop-up. The available intervals are 1, 5, 15, 30 and 60 minutes,  
+with 5 minute the default value. Judging from the respective  
+discussion groups and personal experience, however, many Mac users  
+switch the pop-up to 1 minute. Again, I never heard anyone complain  
+that his wouldn't work.
+
+&gt;<i> Trying short poll intervals with &quot;keep&quot; doesn't work too well either.
+</I>
+What could possibly go wrong?
+
+&gt;<i> In fact, SMTP and UUCP don't require fetchmail at all.
+</I>
+Of course - but they require a specific server setup. I suppose most  
+if not all ISPs would rather take care that their mail servers can  
+handle short polling intervals of their customers, than offer an  
+alternative SMTP solution which adds a lot of complexity for them.  
+Complexity is more expensive than faster hardware.
+
+Also, this would only be reasonably easy to configure if the client  
+machine had a fixed IP address. Not even one common fixed IP for a  
+local network (via NAT) would work as soon as more than one machine  
+in the local networks wanted to receive its specific mails. Yes, you  
+could differentiate the machines by private SMTP ports and respective  
+NAT translation, but this gets all too complex for a general purpose  
+setup. And note that even if IPv6 was already standard, and you could  
+easily get as many IPs of your own as you wanted, many people would  
+still prefer an NAT solution for their local network because of  
+security reasons.
+
+Besides, an SMTP solution has its disadvantages if you want to switch  
+between receiving your mail at home/work and with a laptop on the  
+road (where POP/IMAP are the only sensible solutions if you still  
+want all your mails on your desktop machine in the end).
+
+I have my own mail server that I can set up any way I want, and I  
+considered using SMTP, but found POP with short polling intervals  
+much more practical in the end.
+
+Of course, the ideal solution technically would be a mail server that  
+delivers mail directly via SMTP as long as this works, and  
+immediately switches to POP when the recipient's computer isn't  
+connected to the network anymore. If the recipient connects its  
+machine to the network again, it should fetch all mails from the POP  
+account that arrived while she/he was disconnected, and then send a  
+special command to the server that tells it to switch to direct SMTP  
+delivery again. (This last step would be necessary because it could  
+be that the mails where fetched from a laptop on the road, in which  
+case you wouldn't want to resume SMTP delivery to your desktop  
+machine afterwards.) But as long as there aren't any pre-configured  
+software solutions for the server and the client side, I doubt that  
+such a complex solution will ever happen.
+
+&quot;Brute-force fetchmailing&quot; ;-)) is just so much easier ...
+
+             Bye
+                     Uli
+________________________________________________________
+
+   Uli Zappe, Solmsstra&#223;e 5, D-65189 Wiesbaden, Germany
+   <A HREF="http://www.ritual.org">http://www.ritual.org</A>
+   Fon: +49-700-ULIZAPPE
+   Fax: +49-700-ZAPPEFAX
+________________________________________________________
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000506.html">[fetchmail-users] Re: reasonable poll intervals (was: Re: Rotating the log file)
+</A></li>
+	<LI>Next message: <A HREF="000510.html">[fetchmail-users] reasonable poll intervals
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#508">[ date ]</a>
+              <a href="thread.html#508">[ thread ]</a>
+              <a href="subject.html#508">[ subject ]</a>
+              <a href="author.html#508">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

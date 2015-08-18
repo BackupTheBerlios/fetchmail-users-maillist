@@ -1,0 +1,153 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Server CommonName: *.sslcert35.com
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2009-August/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Server%20CommonName%3A%20%2A.sslcert35.com&In-Reply-To=%3Cop.uy9sy5r41e62zd%40balu.cs.uni-paderborn.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002041.html">
+   <LINK REL="Next"  HREF="002043.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Server CommonName: *.sslcert35.com</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Server%20CommonName%3A%20%2A.sslcert35.com&In-Reply-To=%3Cop.uy9sy5r41e62zd%40balu.cs.uni-paderborn.de%3E"
+       TITLE="[fetchmail-users] Server CommonName: *.sslcert35.com">matthias.andree at gmx.de
+       </A><BR>
+    <I>Wed Aug 26 14:58:07 CEST 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002041.html">[fetchmail-users] Server CommonName: *.sslcert35.com
+</A></li>
+        <LI>Next message: <A HREF="002043.html">[fetchmail-users] (SOLVED) Server CommonName: *.sslcert35.com
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2042">[ date ]</a>
+              <a href="thread.html#2042">[ thread ]</a>
+              <a href="subject.html#2042">[ subject ]</a>
+              <a href="author.html#2042">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Greetings,
+
+Am 24.08.2009, 07:15 Uhr, schrieb James Leone  
+&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">that_isridiculous at yahoo.com</A>&gt;:
+
+&gt;<i> I have a problem in which I can't tell if there is a Fetchmail problem  
+</I>&gt;<i> or some issue with ssl.
+</I>&gt;<i>
+</I>&gt;<i> It results in a bunch of email messages I don't want that include the  
+</I>&gt;<i> same message:
+</I>&gt;<i>
+</I>&gt;<i> &quot;Server CommonName: *.sslcert35.com.&quot;
+</I>&gt;<i>
+</I>&gt;<i> Is there a way I can stop getting an email every time Fetchmail starts?
+</I>&gt;<i> I have enough spam to contend with already.
+</I>&gt;<i>
+</I>&gt;<i> Because I know it doesn't work.
+</I>
+
+As a more verbosely worded answer to the list because my earlier in this  
+thread caused irritations (that caused private replies):
+
+
+We generally have several options to address such problems:
+
+
+1. (recommended) the user experiencing the problem provides the  
+information requested in <A HREF="http://www.fetchmail.info/fetchmail-FAQ.html#G3">http://www.fetchmail.info/fetchmail-FAQ.html#G3</A> .
+
+If corporate policies or privacy concerns do not permit sending the debug  
+information to the list, send a public problem report with the unsensitive  
+data, and then a separate message with the sensitive information directly  
+to me (i. e. off list), please use a related subject, for instance, in  
+private, you'd write &quot;Log/Conf for fetchmail-users Server CommonName  
+sslcert35.com issue&quot; in this case. For confidential data, you can also  
+send GnuPG encrypted mail, please use my key 0x052e7d95.
+
+
+2. (discouraged) fix the symptoms and move on. For cronjobs, I would  
+suggest something similar to the following, which filters this particular  
+annoying line from fetchmail's output. (Running as a root user to redirect  
+cron mail is not a good idea.)
+
+3,33 * * * * fetchmail | egrep -v '^Server CommonName: \*\.sslcert35\.com'
+(this runs every x:03 and x:33 minutes 24 x 7)
+
+3. (bad luck) If you cannot disclose server names and IP addresses at all,  
+then I fear I cannot help you with issues related to DNS, SSL and TLS, and  
+possibly also multidrop. It's often that I cannot reproduce the problem  
+with the configuration that is shown if information partially masked, and  
+a similar problem isn't sufficient to reproduce the problem; and  
+particularly with SSL and TLS, I often need to talk to the same server as  
+your copy of fetchmail would do for you.
+
+
+I presumed James was in a &quot;cannot provide information&quot; like situation so  
+suggested to fix the symptom (I advise against running as root though).
+
+
+This isn't to erect artificial obstacles for support from my side, but my  
+time to support fetchmail generally is limited and shared with code  
+writing and other open source projects, so please bear with me if my  
+utterings are too terse (OTOH, terse usually means I have taken time to  
+reply earlier than I would have been able to for a long reply), and please  
+help me help you by not hiding essential information such as your server's  
+DNS name. (I don't usually need your username - your local site admin  
+might need that though, and I never need your password.)
+We may sometimes need - particularly for SSL/TLS issues - the assistance  
+of the admin of the server you're fetching from, too.
+
+Note also that I continually try to improve documentation to make sure it  
+answers questions that arise over time, and the most current versions of  
+6.3.X documentation are currently available by peeking at the SVN  
+repository, <A HREF="http://mknod.org/svn/fetchmail/branches/BRANCH_6-3">http://mknod.org/svn/fetchmail/branches/BRANCH_6-3</A> (check  
+README.SSL for instance) - courteously hosted by Graham Wilson, a former  
+fetchmail maintainer - my repeated thanks for this service.  The  
+documentation usually mentions when a feature was introduced or change, so  
+even if you're using an older version of fetchmail that your distributor  
+fixed WRT security holes, reading the most current manpage may be useful.
+
+
+I hope this clarifies irritations that may have arisen of my earlier  
+perhaps harsh-sounding reply.
+
+Sorry for that.
+
+
+I am interested in problem reports, but I need a complete picture and a  
+may need your further availability for further questions.
+
+Best regards and happy fetching
+Matthias
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002041.html">[fetchmail-users] Server CommonName: *.sslcert35.com
+</A></li>
+	<LI>Next message: <A HREF="002043.html">[fetchmail-users] (SOLVED) Server CommonName: *.sslcert35.com
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2042">[ date ]</a>
+              <a href="thread.html#2042">[ thread ]</a>
+              <a href="subject.html#2042">[ subject ]</a>
+              <a href="author.html#2042">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

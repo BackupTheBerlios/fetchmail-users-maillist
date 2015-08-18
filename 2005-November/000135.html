@@ -1,0 +1,127 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] fetchmail 6.2.9-rc8 available (bug fixes)
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2005-November/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%206.2.9-rc8%20available%20%28bug%20fixes%29&In-Reply-To=%3C20051118014050.GB23547%40merlin.emma.line.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000134.html">
+   <LINK REL="Next"  HREF="000136.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] fetchmail 6.2.9-rc8 available (bug fixes)</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%206.2.9-rc8%20available%20%28bug%20fixes%29&In-Reply-To=%3C20051118014050.GB23547%40merlin.emma.line.org%3E"
+       TITLE="[fetchmail-users] fetchmail 6.2.9-rc8 available (bug fixes)">matthias.andree at gmx.de
+       </A><BR>
+    <I>Fri Nov 18 02:40:50 CET 2005</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000134.html">[fetchmail-users] Re: [PATCH] Re: oversized messages notification provides server info but lacks user info
+</A></li>
+        <LI>Next message: <A HREF="000136.html">[fetchmail-users] fetchmail 6.2.5.4 released (security bugfix) (legacy)
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#135">[ date ]</a>
+              <a href="thread.html#135">[ thread ]</a>
+              <a href="subject.html#135">[ subject ]</a>
+              <a href="author.html#135">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA1
+
+Greetings,
+
+I have just released fetchmail 6.2.9-rc9, the hopefully last release
+candidate before 6.3.0, with minor bug fixes.
+
+For distributors, please upload this to every unstable/testing/current
+distribution that you have (do not upload to &quot;stable&quot;, it changes
+behavior in a few places) to expose this to wider testing.
+
+Changes since -rc8 are:
+* The default for --smtphost is now always &quot;localhost&quot; regardless of
+  authentication types and protocols, so as to simplify configurations for
+  workstations where the SMTP daemon only listens on the loopback interface.
+  Sunil Shetye &amp; Matthias Andree
+* Man page: update --smtphost documentation. Sunil Shetye, Matthias Andree.
+* Man page: update --smtpaddress documentation. Sunil Shetye.
+* Fix several memory leaks and bugs in the SMTP/LMTP retry logic where
+  fetchmail confused UNIX and Internet domain sockets. Sunil Shetye.
+* Man page (BUGS): document that passwords are length limited. Matthias Andree
+* Man page: Document that quoted strings that run across line boundaries
+  contain the control characters (CR or LF). Document explicitly the backslash
+  escape sequences and their differences from the escape sequences used in the
+  C programming language.  Matthias Andree
+* Fix segfault when run control file ends with a backslash inside an
+  unterminated quoted string. Matthias Andree.
+* In quoted strings, support backslash as last character on a line to join the
+  following line to the current. Matthias Andree.
+* Parsing untagged IMAP responses is more robust now. Matthias Andree.
+* Man page: Remove some procmail praises in --mda documentation, suggest
+  maildrop instead, warn of procmail fallthrough behavior. Matthias Andree.
+* Man page: Revise AUTHORS and SEE ALSO sections. Matthias Andree.
+* Updated translations: Albanian [sq] (Besnik Bleta), Catalan [ca] (Ernest
+  Adrogu&#233; Calveras), Czech [cs] (Miloslav Trmac), German [de] (MA),
+  Spanish (Castilian) [es] (Javier Kohen), French [fr] (MA),
+  Polish [pl] (Jakub Bogusz), Russian [ru] (Pavel Maryanov).
+* In oversized warning messages, print the account name, too. Fixes Debian
+  Bug#213299. Sunil Shetye (MA).
+* Fix '!: command not found' in configure script on nonconformant shells
+  such as Solaris' /bin/sh.
+* The IMAP trail-eating fix in -rc8 was broken and fixed by Sunil
+  Shetye.
+
+I seek everyone to test it out, report remaining bugs, update outdated
+translations (send your translated .po files to the translation
+project's robot, it'll forward your translation to the -devel list) or
+send patches for documentation or report inconsistencies (including
+formatting!) in the documentation.
+
+The software is available from:
+&lt;<A HREF="https://developer.berlios.de/project/showfiles.php?group_id=1824&amp;release_id=8049">https://developer.berlios.de/project/showfiles.php?group_id=1824&amp;release_id=8049</A>&gt;
+&lt;<A HREF="http://home.pages.de/~mandree/fetchmail/">http://home.pages.de/~mandree/fetchmail/</A>&gt;
+
+Regards,
+
+- -- 
+Matthias Andree
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1.4.0 (GNU/Linux)
+
+iD8DBQFDfTEivmGDOQUufZURAhvXAKD6MF7T8MhWvpjlJ/11PsRjaVjmRgCgnry2
+oGSAFM4uTU3QdG6IZB1FgcA=
+=82bb
+-----END PGP SIGNATURE-----
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000134.html">[fetchmail-users] Re: [PATCH] Re: oversized messages notification provides server info but lacks user info
+</A></li>
+	<LI>Next message: <A HREF="000136.html">[fetchmail-users] fetchmail 6.2.5.4 released (security bugfix) (legacy)
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#135">[ date ]</a>
+              <a href="thread.html#135">[ thread ]</a>
+              <a href="subject.html#135">[ subject ]</a>
+              <a href="author.html#135">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

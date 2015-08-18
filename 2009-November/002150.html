@@ -1,0 +1,87 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Rotating Fetchmail log
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2009-November/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Rotating%20Fetchmail%20log&In-Reply-To=%3Cop.u3uyi4fk1e62zd%40merlin.emma.line.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002149.html">
+   <LINK REL="Next"  HREF="002152.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Rotating Fetchmail log</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Rotating%20Fetchmail%20log&In-Reply-To=%3Cop.u3uyi4fk1e62zd%40merlin.emma.line.org%3E"
+       TITLE="[fetchmail-users] Rotating Fetchmail log">matthias.andree at gmx.de
+       </A><BR>
+    <I>Mon Nov 23 18:22:06 CET 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002149.html">[fetchmail-users] Rotating Fetchmail log
+</A></li>
+        <LI>Next message: <A HREF="002152.html">[fetchmail-users] Rotating Fetchmail log
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2150">[ date ]</a>
+              <a href="thread.html#2150">[ thread ]</a>
+              <a href="subject.html#2150">[ subject ]</a>
+              <a href="author.html#2150">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Am 22.11.2009, 12:22 Uhr, schrieb Heinz Diehl &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">htd at fancy-poultry.org</A>&gt;:
+
+&gt;<i> On 22.11.2009, Jerry wrote:
+</I>&gt;<i>
+</I>&gt;&gt;<i> Unfortunately, that means that I will have to manually rotate the files
+</I>&gt;&gt;<i> myself. I was hoping that I could have newsyslog use one of the
+</I>&gt;&gt;<i> following signals:
+</I>&gt;<i> [....]
+</I>&gt;<i>
+</I>&gt;<i> That's not neccessary at all. Just let your rotate script do a copy of  
+</I>&gt;<i> the
+</I>&gt;<i> fetchmail logfile, then rm it and touch it. You don't need to have
+</I>&gt;<i> fetchmail restarted either.
+</I>
+DO NOT DO THAT!
+
+That's the best way to DESTROY log lines. fetchmail does not release the  
+file descriptor until terminated, so you'll be appending your logs to a  
+deleted file, which is no longer accessible except to the running  
+fetchmail process - and once that goes away, so will the file.
+
+There's a reason why I wrote that fetchmail needs to be stopped. I wish  
+the know-it-alls could keep their smattering to themselves.
+
+-- 
+Matthias Andree
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002149.html">[fetchmail-users] Rotating Fetchmail log
+</A></li>
+	<LI>Next message: <A HREF="002152.html">[fetchmail-users] Rotating Fetchmail log
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2150">[ date ]</a>
+              <a href="thread.html#2150">[ thread ]</a>
+              <a href="subject.html#2150">[ subject ]</a>
+              <a href="author.html#2150">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

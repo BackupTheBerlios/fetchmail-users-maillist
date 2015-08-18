@@ -1,0 +1,138 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] [Fwd: fetchmail problem]
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2007-October/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20%5BFwd%3A%20fetchmail%20problem%5D&In-Reply-To=%3C12109.212.199.169.34.1193053253.squirrel%40mail.phpclub.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001325.html">
+   <LINK REL="Next"  HREF="001329.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] [Fwd: fetchmail problem]</H1>
+    <B>avi at phpclub.org</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20%5BFwd%3A%20fetchmail%20problem%5D&In-Reply-To=%3C12109.212.199.169.34.1193053253.squirrel%40mail.phpclub.org%3E"
+       TITLE="[fetchmail-users] [Fwd: fetchmail problem]">avi at phpclub.org
+       </A><BR>
+    <I>Mon Oct 22 13:40:53 CEST 2007</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001325.html">[fetchmail-users] Wildcard
+</A></li>
+        <LI>Next message: <A HREF="001329.html">[fetchmail-users] [Fwd: fetchmail problem]
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1327">[ date ]</a>
+              <a href="thread.html#1327">[ thread ]</a>
+              <a href="subject.html#1327">[ subject ]</a>
+              <a href="author.html#1327">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hello,
+
+I encountered the following problem with 3 specific emails from the same sender.
+The mail must be mailformed or something, since it happened only once with these
+specific mails with attachments.
+
+I read a similiar problem that was posted on May 2007, you suggested that a mail
+size limit should be applied, but for my case all emails comes with attachments
+and on pretty large sizes so it is not an option.
+
+You also asked if this is the behaviour of cygwin (which I am using too) - but I
+also tested it on Debian and the same appears there.
+
+.fetchmailrc looks ok, and is working properly for forwarding messages from
+qmail server to exchange server.
+
+This problem occured once so far in the past 3 months that I have been running
+it in the current configuration.
+
+But, I can't afford myself leaving it without fixing it, since it might happen
+sometime in the future when I am not available and the entire office work will
+stop.
+
+Perhaps you should consider (unrelated to this error) to add a configuration
+value to fetchmail to tell it to continue fetching other messages (e.g. skipping
+the problematic mail) rather than getting stuck on 1 mail and stopping the
+entire workflow.
+
+here is the output from fetchmail -vv and I will send .fetchmailrc contents
+later if needed.
+
+fetchmail is in the latest version using Cygwin (problem occured in Linux too)
+configured to forward messages from a remote qmail host to a local exchange
+server.
+
+There is no communication problems, two servers on the local network, working
+properly for 3 months with very large files (20mb+) besides these three mails.
+
+Thank you,
+Avi.
+
+
+fetchmail: SMTP&gt; EHLO xxxms.xxx.co.il
+fetchmail: SMTP&lt; 250-xxxms.xxx.co.il Hello [10.0.0.100]
+fetchmail: SMTP&lt; 250-TURN
+fetchmail: SMTP&lt; 250-ATRN
+fetchmail: SMTP&lt; 250-SIZE 51298304
+fetchmail: SMTP&lt; 250-ETRN
+fetchmail: SMTP&lt; 250-PIPELINING
+fetchmail: SMTP&lt; 250-DSN
+fetchmail: SMTP&lt; 250-ENHANCEDSTATUSCODES
+fetchmail: SMTP&lt; 250-8bitmime
+fetchmail: SMTP&lt; 250-BINARYMIME
+fetchmail: SMTP&lt; 250-CHUNKING
+fetchmail: SMTP&lt; 250-VRFY
+fetchmail: SMTP&lt; 250-X-EXPS GSSAPI NTLM
+fetchmail: SMTP&lt; 250-AUTH GSSAPI NTLM
+fetchmail: SMTP&lt; 250-X-LINK2STATE
+fetchmail: SMTP&lt; 250-XEXCH50
+fetchmail: SMTP&lt; 250 OK
+fetchmail: forwarding to 10.0.0.100
+fetchmail: SMTP&gt; MAIL FROM:&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">i_abuhabla at yahoo.com</A>&gt; BODY=8BITMIME SIZE=668827
+fetchmail: SMTP&lt; 250 2.1.0 <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">i_abuhabla at yahoo.com....Sender</A> OK
+fetchmail: SMTP&gt; RCPT TO:&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">mail at xxx.co.il</A>&gt;
+fetchmail: SMTP&lt; 250 2.1.5 <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">mail at xxx.co.il</A>
+fetchmail: SMTP&gt; DATA
+fetchmail: SMTP&lt; 354 Start mail input; end with &lt;CRLF&gt;.&lt;CRLF&gt;
+#*****************************.****fetchmail: socket error while fetching from
+<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">main at xxx.co.il</A>@192.168.253.100
+fetchmail: 6.3.8 querying 192.168.253.100 (protocol POP3) at Mon Oct 15 19:23:31
+2007: poll completed
+fetchmail: Query status=2 (SOCKET)
+fetchmail: Deleting fetchids file.
+fetchmail: normal termination, status 2
+fetchmail: Deleting fetchids file.
+
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001325.html">[fetchmail-users] Wildcard
+</A></li>
+	<LI>Next message: <A HREF="001329.html">[fetchmail-users] [Fwd: fetchmail problem]
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1327">[ date ]</a>
+              <a href="thread.html#1327">[ thread ]</a>
+              <a href="subject.html#1327">[ subject ]</a>
+              <a href="author.html#1327">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

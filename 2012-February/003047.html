@@ -1,0 +1,105 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] How to handle mail with broken headers?
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2012-February/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20How%20to%20handle%20mail%20with%20broken%20headers%3F&In-Reply-To=%3C4F29BB7F.1050400%40gmx.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   
+   <LINK REL="Next"  HREF="003048.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] How to handle mail with broken headers?</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20How%20to%20handle%20mail%20with%20broken%20headers%3F&In-Reply-To=%3C4F29BB7F.1050400%40gmx.de%3E"
+       TITLE="[fetchmail-users] How to handle mail with broken headers?">matthias.andree at gmx.de
+       </A><BR>
+    <I>Wed Feb  1 23:23:59 CET 2012</I>
+    <P><UL>
+        
+        <LI>Next message: <A HREF="003048.html">[fetchmail-users] How to handle mail with broken headers?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3047">[ date ]</a>
+              <a href="thread.html#3047">[ thread ]</a>
+              <a href="subject.html#3047">[ subject ]</a>
+              <a href="author.html#3047">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Am 30.01.2012 21:15, schrieb Johann 'Myrkraverk' Oskarsson:
+&gt;<i> Matthias Andree &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">matthias.andree at gmx.de</A>&gt; writes:
+</I>&gt;<i> 
+</I>&gt;&gt;<i> The version Johann is running is outdated, because a relevant switch
+</I>&gt;&gt;<i> named &quot;bad-header&quot; has been added in release 6.3.15 in Early 2010, and
+</I>&gt;&gt;<i> has been more prominent since 6.3.18.
+</I>&gt;<i> 
+</I>&gt;<i> Thank you.  I'm using 6.3.21 now and life is better.  It could be made
+</I>&gt;<i> more explicit in the manual how to use the option in the run control
+</I>&gt;<i> file.  I had to read the description on the command line flag to learn I
+</I>&gt;<i> have to use &quot;accept&quot; in there too.
+</I>
+Johann,
+
+improving documentation is a constant struggle, so please help me a bit:
+ Where did you look first, so that I can amend to that section, or
+redirect users to the command line options?
+
+Basically the options are the same, with two major differences:
+
+- rcfile options don't use the &quot;--&quot; hyphens
+
+- rcfile options need to be grouped into per-server and per-user
+options, whereas command line options can be given in arbitrary order
+(and then override all options from all servers in the rcfile).
+
+&gt;<i> For the record, this is how my yahoo entry reads at the moment:
+</I>&gt;<i> 
+</I>&gt;<i>   poll pop.mail.yahoo.com proto pop3 service 995 uidl bad-header accept
+</I>&gt;<i>     user &quot;myrkraverk&quot; 
+</I>&gt;<i>     ssl keep 
+</I>&gt;<i>     mda &quot;maildrop -f %F /home/johann/.maildroprc.yahoo&quot;
+</I>&gt;<i> 
+</I>&gt;<i> and the password is stored in the .netrc file.
+</I>
+I routinely suggest to add &quot;sslcertck&quot; (without quotes), too, it would
+go somewhere after the user option somewhere, for instance, &quot;ssl
+sslcertck keep&quot;.  A future fetchmail release will make that default, but
+considerations about compatibility with older versions made me not do
+that in 6.X.Y versions.
+
+To use that, one may need to install root certificates (if such a
+package is available and how it's named depends on the respective
+distribution).
+
+HTH
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	
+	<LI>Next message: <A HREF="003048.html">[fetchmail-users] How to handle mail with broken headers?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3047">[ date ]</a>
+              <a href="thread.html#3047">[ thread ]</a>
+              <a href="subject.html#3047">[ subject ]</a>
+              <a href="author.html#3047">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

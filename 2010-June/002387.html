@@ -1,0 +1,219 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] multi-drop problem on osx,	duplicate emails received.
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2010-June/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20multi-drop%20problem%20on%20osx%2C%0A%09duplicate%20emails%20received.&In-Reply-To=%3C649A7AB3-0E38-4E9F-88D9-746494410C8D%40bergehenegouwen.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002386.html">
+   <LINK REL="Next"  HREF="002388.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] multi-drop problem on osx,	duplicate emails received.</H1>
+    <B>Erick van Rijk</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20multi-drop%20problem%20on%20osx%2C%0A%09duplicate%20emails%20received.&In-Reply-To=%3C649A7AB3-0E38-4E9F-88D9-746494410C8D%40bergehenegouwen.com%3E"
+       TITLE="[fetchmail-users] multi-drop problem on osx,	duplicate emails received.">erick at bergehenegouwen.com
+       </A><BR>
+    <I>Mon Jun 14 15:24:03 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002386.html">[fetchmail-users] Using &quot;CAPA&quot; with Hotmail
+</A></li>
+        <LI>Next message: <A HREF="002388.html">[fetchmail-users] multi-drop problem on osx,	duplicate emails 	received.
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2387">[ date ]</a>
+              <a href="thread.html#2387">[ thread ]</a>
+              <a href="subject.html#2387">[ subject ]</a>
+              <a href="author.html#2387">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi All,
+new to fetchmail and this list of course.
+I've setup fetchmail to gather emails from a multi-drop email box on an external server.
+But I have been having some issues:
+1. duplicate emails are coming in when I have multiple recipients in the same multi-drop (tricky I know).
+2. BCC seems to be going to postmaster always.
+
+Both seem to be covered by the FAQ, but still i cannot seem to figure out what I am doing wrong (i think its more a config error than a bug anyway).
+Nevertheless I would really like to get this working properly and not being driven bonkers by multiple emails of the same subject every time ;)
+
+Regariding issue 1. I noticed the following.
+When I get the email messages of say 2 email addresses in the same multidrop.
+there are two separate identical emails in the mailbox in this case.
+Fetchmail fetches and deletes the first email and doesn't touch the second one.
+Even when I set fetchall it just reads it and leaves it alone until the second time it fetches email and processes it as new email.
+So it its read but not flushed. Any idea what can cause this?
+I included the log what I get when running fetchmail via fetchmailconf.
+Also the system output of fetchmail --version.
+
+Hope that anyone can show me what i'm doing wrong since its just puzzeling me at the moment
+thanks
+Erick
+
+
+fetchmail: WARNING: Running as root is discouraged.
+fetchmail: 6.3.11 querying mail.myserver.com (protocol POP3) at Mon, 14 Jun 2010 15:18:11 +0200 (CEST): poll started
+Trying to connect to 217.115.197.2/110...connected.
+fetchmail: POP3&lt; +OK Hello there.
+fetchmail: POP3&gt; CAPA
+fetchmail: POP3&lt; +OK Here's what I can do:
+fetchmail: POP3&lt; TOP
+fetchmail: POP3&lt; USER
+fetchmail: POP3&lt; LOGIN-DELAY 10
+fetchmail: POP3&lt; PIPELINING
+fetchmail: POP3&lt; UIDL
+fetchmail: POP3&lt; IMPLEMENTATION Courier Mail Server
+fetchmail: POP3&lt; .
+fetchmail: mail.myserver.com: opportunistic upgrade to TLS failed, trying to continue.
+fetchmail: POP3&gt; USER <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">catch_all at myserver.com</A>
+fetchmail: POP3&lt; +OK Password required.
+fetchmail: POP3&gt; PASS *
+fetchmail: POP3&lt; +OK logged in.
+fetchmail: POP3&gt; STAT
+fetchmail: POP3&lt; +OK 2 5512
+fetchmail: POP3&gt; UIDL
+fetchmail: POP3&lt; +OK
+fetchmail: POP3&lt; 1 UID718-1253262732
+fetchmail: POP3&lt; 2 UID719-1253262732
+fetchmail: POP3&lt; .
+2 messages for <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">catch_all at myserver.com</A> at mail.myserver.com (5512 octets).
+fetchmail: POP3&gt; LIST 1
+fetchmail: POP3&lt; +OK 1 2756
+fetchmail: POP3&gt; RETR 1
+fetchmail: POP3&lt; +OK 2756 octets follow.
+reading message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">catch_all at myserver.com</A>@mail.myserver.com:1 of 2 (2756 octets) Trying to connect to ::1/25...connection failed.
+fetchmail: connection to localhost:smtp [::1/25] failed: Connection refused.
+Trying to connect to fe80::1%lo0/25...connection failed.
+fetchmail: connection to localhost:smtp [fe80::1%lo0/25] failed: Connection refused.
+Trying to connect to 127.0.0.1/25...connected.
+fetchmail: SMTP&lt; 220 myserver.private ESMTP Postfix
+fetchmail: SMTP&gt; EHLO myserver.private
+fetchmail: SMTP&lt; 250-myserver.private
+fetchmail: SMTP&lt; 250-PIPELINING
+fetchmail: SMTP&lt; 250-SIZE 26214400
+fetchmail: SMTP&lt; 250-VRFY
+fetchmail: SMTP&lt; 250-ETRN
+fetchmail: SMTP&lt; 250-AUTH LOGIN CRAM-MD5 GSSAPI
+fetchmail: SMTP&lt; 250-STARTTLS
+fetchmail: SMTP&lt; 250-ENHANCEDSTATUSCODES
+fetchmail: SMTP&lt; 250-8BITMIME
+fetchmail: SMTP&lt; 250 DSN
+fetchmail: SMTP&gt; MAIL FROM:&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">Erick at other_domain.com</A>&gt; BODY=8BITMIME SIZE=2756
+fetchmail: SMTP&lt; 250 2.1.0 Ok
+fetchmail: SMTP&gt; RCPT TO:&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">admin at myserver.com</A>&gt;
+fetchmail: SMTP&lt; 250 2.1.5 Ok
+fetchmail: SMTP&gt; RCPT TO:&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">test at myserver.com</A>&gt;
+fetchmail: SMTP&lt; 250 2.1.5 Ok
+fetchmail: SMTP&gt; DATA
+fetchmail: SMTP&lt; 354 End data with &lt;CR&gt;&lt;LF&gt;.&lt;CR&gt;&lt;LF&gt;
+#***************fetchmail: SMTP&gt;. (EOM)
+fetchmail: SMTP&lt; 250 2.0.0 Ok: queued as 4DEF37D5401
+ flushed
+fetchmail: POP3&gt; DELE 1
+fetchmail: POP3&lt; +OK Deleted.
+fetchmail: POP3&gt; LIST 2
+fetchmail: POP3&lt; +OK 2 2756
+fetchmail: POP3&gt; RETR 2
+fetchmail: POP3&lt; +OK 2756 octets follow.
+reading message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">catch_all at myserver.com</A>@mail.myserver.com:2 of 2 (2756 octets)  not flushed
+fetchmail: POP3&gt; QUIT
+fetchmail: POP3&lt; +OK Bye-bye.
+fetchmail: SMTP&gt; QUIT
+fetchmail: SMTP&lt; 221 2.0.0 Bye
+fetchmail: 6.3.11 querying mail.myserver.com (protocol POP3) at Mon, 14 Jun 2010 15:18:12 +0200 (CEST): poll completed
+fetchmail: normal termination, status 0
+Done.
+
+
+ fetchmail --version
+fetchmail: WARNING: Running as root is discouraged.
+This is fetchmail release 6.3.11+GSS+SSL+KRB5.
+
+Copyright (C) 2002, 2003 Eric S. Raymond
+Copyright (C) 2004 Matthias Andree, Eric S. Raymond, Robert M. Funk, Graham Wilson
+Copyright (C) 2005 - 2006 Sunil Shetye
+Copyright (C) 2005 - 2009 Matthias Andree
+Fetchmail comes with ABSOLUTELY NO WARRANTY. This is free software, and you
+are welcome to redistribute it under certain conditions. For details,
+please see the file COPYING in the source or documentation directory.
+
+Fallback MDA: (none)
+Darwin myserver.private 10.2.0 Darwin Kernel Version 10.2.0: Tue Nov  3 10:35:19 PST 2009; root:xnu-1486.2.11~1/RELEASE_X86_64 x86_64
+Taking options from command line and /var/root/.fetchmailrc
+Poll interval is 300 seconds
+Idfile is /var/root/.fetchids
+Fetchmail will forward misaddressed multidrop messages to admin.
+Options for retrieving from catch_all@ <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">myserver.com at mail.</A> myserver.com:
+  True name of server is mail. myserver.com.
+  Protocol is POP3 (forcing UIDL use).
+  All available authentication methods will be tried.
+  Server nonresponse timeout is 180 seconds.
+  Default mailbox selected.
+  All messages will be retrieved (--all on).
+  Fetched messages will not be kept on the server (--keep off).
+  Old messages will be flushed before message retrieval (--flush on).
+  Oversized messages will not be flushed before message retrieval (--limitflush off).
+  Rewrite of server-local addresses is enabled (--norewrite off).
+  Carriage-return stripping is disabled (stripcr off).
+  Carriage-return forcing is disabled (forcecr off).
+  Interpretation of Content-Transfer-Encoding is enabled (pass8bits off).
+  MIME decoding is disabled (mimedecode off).
+  Idle after poll is disabled (idle off).
+  Nonempty Status lines will be kept (dropstatus off)
+  Delivered-To lines will be kept (dropdelivered off)
+  Fetch message size limit is 100 (--fetchsizelimit 100).
+  Do binary search of UIDs during 3 out of 4 polls (--fastuidl 4).
+  Messages will be SMTP-forwarded to: localhost (default)
+  Multi-drop mode: 7 local names recognized.
+  DNS lookup for multidrop addresses is disabled.
+  Envelope header is assumed to be: Received
+  Local domains: myserver.com
+  No UIDs saved from this host.
+
+
+Kind Regards/Vriendelijke Groeten,
+ 
+Erick van RijkPhone: +31 (0)71 331 11 40
+ Mobile: +31 (0)62 749 07 81
+Email: <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">Erick at bergehenegouwen.com</A>
+Web: <A HREF="http://www.bergehenegouwen.com/">http://www.bergehenegouwen.com/</A>
+ 
+ 
+Please visit our  portal at: <A HREF="http://www.youtube.com/vbhi2009">http://www.youtube.com/vbhi2009</A>
+<A HREF="http://www.youtube.com/vbhi2009">http://www.youtube.com/vbhi2009</A> 
+ 
+ 
+____________________
+ 
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002386.html">[fetchmail-users] Using &quot;CAPA&quot; with Hotmail
+</A></li>
+	<LI>Next message: <A HREF="002388.html">[fetchmail-users] multi-drop problem on osx,	duplicate emails 	received.
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2387">[ date ]</a>
+              <a href="thread.html#2387">[ thread ]</a>
+              <a href="subject.html#2387">[ subject ]</a>
+              <a href="author.html#2387">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

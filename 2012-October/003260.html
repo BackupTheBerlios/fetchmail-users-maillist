@@ -1,0 +1,113 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] fetchmail apprently uses mboxo format, which irrecoverably corrupts mail
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2012-October/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%20apprently%20uses%20mboxo%20format%2C%0A%20which%20irrecoverably%20corrupts%20mail&In-Reply-To=%3C1351259715.8210.18.camel%40heisenberg.scientia.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003259.html">
+   <LINK REL="Next"  HREF="003261.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] fetchmail apprently uses mboxo format, which irrecoverably corrupts mail</H1>
+    <B>Christoph Anton Mitterer</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%20apprently%20uses%20mboxo%20format%2C%0A%20which%20irrecoverably%20corrupts%20mail&In-Reply-To=%3C1351259715.8210.18.camel%40heisenberg.scientia.net%3E"
+       TITLE="[fetchmail-users] fetchmail apprently uses mboxo format, which irrecoverably corrupts mail">calestyo at scientia.net
+       </A><BR>
+    <I>Fri Oct 26 15:55:15 CEST 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003259.html">[fetchmail-users] fetchmail apprently uses mboxo format, which irrecoverably corrupts mail
+</A></li>
+        <LI>Next message: <A HREF="003261.html">[fetchmail-users] fetchmail apprently uses mboxo format,	which irrecoverably corrupts mail
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3260">[ date ]</a>
+              <a href="thread.html#3260">[ thread ]</a>
+              <a href="subject.html#3260">[ subject ]</a>
+              <a href="author.html#3260">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Fri, 2012-10-26 at 10:19 +0100, Rob MacGregor wrote:
+&gt;<i> Fetchmail doesn't use any format
+</I>Well it must... the mailserver gives you a mail with header and body via
+pop3 or imap ... and &quot;you&quot; store it then either as mbox, maildir etc.
+And it's not the mail server that tells you how the From_ lines look (in
+case of mbox) or how to name the single maildir files.
+
+
+&gt;<i> my emails are
+</I>&gt;<i> unmodified
+</I>Have you tried it with the transcript I've attached? And are you using
+mbox?
+
+
+&gt;<i> so I'm guessing your problem relates to the MTA or MDA
+</I>&gt;<i> you've configured Fetchmail to use.
+</I>Well...
+a) fetchmail doesn't contact a MTA or MDA, I use it with pop3 or
+IMAP,... and that's the mail server's business, not the MTA's or MDA's.
+
+b) It cannot be either of those, because when using other clients (e.g.
+KMail, mutt) or when speaking plain pop3 via telnet the mail comes as it
+should. And it's not the business of a mailserver to do any
+quoting/formatting for the format that is used to store mails on the
+client side.
+
+
+&gt;<i> As however you've not provided any
+</I>&gt;<i> details on your configuration that's about all I can guess - section
+</I>&gt;<i> G3 of the FAQ details the information we need to help you.
+</I>I saw that but haven't though it would be necessary, as the issue seems
+simply to be that fetchmail uses the broken mboxo format, nevertheless:
+1) Debian sid
+2) fetchmail package from Debian sid
+3) postifx, qmail  ... maildrop, sieve
+4) fetchmail with the fecthmailrc:
+poll pop3.example.org with proto POP3
+user <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">foo at example.org</A> there with password &quot;bar&quot; is &quot;foo&quot; here
+
+
+Cheers,
+Chris.
+
+&gt;<i>Please keep list traffic on the list.
+</I>Well the thing is... I don't use fetchmail myself, but reported this
+issue just out of courtesy.... and I'm already subscribed to far too
+many mailing lists. Unfortunately one can only post as subscriber.
+I thought my initial post would already explain everything in detail and
+how to reproduce and solve it.
+
+But apart from that, I didn't remove any traffic from the list, did I?
+</PRE>
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003259.html">[fetchmail-users] fetchmail apprently uses mboxo format, which irrecoverably corrupts mail
+</A></li>
+	<LI>Next message: <A HREF="003261.html">[fetchmail-users] fetchmail apprently uses mboxo format,	which irrecoverably corrupts mail
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3260">[ date ]</a>
+              <a href="thread.html#3260">[ thread ]</a>
+              <a href="subject.html#3260">[ subject ]</a>
+              <a href="author.html#3260">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

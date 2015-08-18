@@ -1,0 +1,86 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] How not to download mail for non-existing users?
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2007-February/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20How%20not%20to%20download%20mail%20for%20non-existing%0A%20users%3F&In-Reply-To=%3C20070222123152.056b8e05%40informatika.21oktobar.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000829.html">
+   <LINK REL="Next"  HREF="000833.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] How not to download mail for non-existing users?</H1>
+    <B>Ivan Imperl</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20How%20not%20to%20download%20mail%20for%20non-existing%0A%20users%3F&In-Reply-To=%3C20070222123152.056b8e05%40informatika.21oktobar.com%3E"
+       TITLE="[fetchmail-users] How not to download mail for non-existing users?">nospamtome at ml1.net
+       </A><BR>
+    <I>Thu Feb 22 12:31:52 CET 2007</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000829.html">[fetchmail-users] How not to download mail for non-existing	users?
+</A></li>
+        <LI>Next message: <A HREF="000833.html">[fetchmail-users] How not to download mail for	non-existingusers?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#830">[ date ]</a>
+              <a href="thread.html#830">[ thread ]</a>
+              <a href="subject.html#830">[ subject ]</a>
+              <a href="author.html#830">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Nedavno Sunil Shetye pise:
+
+
+|<i> In pop3 protocol, fetchmail does not download the mail headers and
+</I>|<i> body separately. This is because, the pop3 protocol does not allow
+</I>|<i> download of the body of a mail separately. So, even if the mail has
+</I>|<i> been refused, fetchmail still downloads the rest of the body.
+</I>|<i> 
+</I>|<i> To avoid downloading the body, you will have to:
+</I>|<i> - use imap instead of pop3,
+</I>|<i> - set postmaster to &quot;&quot; (empty).
+</I>
+
+My ISP does not have imap, I have to use pop3.
+
+I tried to setup postmaster to &quot;&quot;, but mail still gets downloaded, it
+only is not deleivered to my mailbox - not what I want.
+
+
+
+-- 
+      ___   ____
+     /__/  /    \      ** Registrovani korisnik Linuksa #291606 **
+    /  / \/  /\  \     ** Registered Linux user #291606 **
+   /__/\____/--\__\    ** <A HREF="http://counter.li.org/">http://counter.li.org/</A> **
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000829.html">[fetchmail-users] How not to download mail for non-existing	users?
+</A></li>
+	<LI>Next message: <A HREF="000833.html">[fetchmail-users] How not to download mail for	non-existingusers?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#830">[ date ]</a>
+              <a href="thread.html#830">[ thread ]</a>
+              <a href="subject.html#830">[ subject ]</a>
+              <a href="author.html#830">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

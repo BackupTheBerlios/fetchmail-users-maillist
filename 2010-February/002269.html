@@ -1,0 +1,88 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] config and password
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2010-February/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20config%20and%20password&In-Reply-To=%3C4B685881.3000400%40Message-ID.plonk.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002268.html">
+   <LINK REL="Next"  HREF="002270.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] config and password</H1>
+    <B>Jakob Hirsch</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20config%20and%20password&In-Reply-To=%3C4B685881.3000400%40Message-ID.plonk.de%3E"
+       TITLE="[fetchmail-users] config and password">jh at plonk.de
+       </A><BR>
+    <I>Tue Feb  2 17:53:21 CET 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002268.html">[fetchmail-users] config and password
+</A></li>
+        <LI>Next message: <A HREF="002270.html">[fetchmail-users] config and password
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2269">[ date ]</a>
+              <a href="thread.html#2269">[ thread ]</a>
+              <a href="subject.html#2269">[ subject ]</a>
+              <a href="author.html#2269">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Fabio Marcone, 2010-02-02 17:27:
+
+&gt;<i> I've a problem: I can't write no crypt password in config file, is there 
+</I>&gt;<i> a way to solve this?
+</I>&gt;<i> 
+</I>&gt;<i> I googled a lot without success.
+</I>
+See <A HREF="http://www.fetchmail.info/esrs-design-notes.html">http://www.fetchmail.info/esrs-design-notes.html</A>
+
+---quote---
+The most-requested features that I will never add, and why not:
+
+Password encryption in .fetchmailrc
+
+The reason there's no facility to store passwords encrypted in the
+.fetchmailrc file is because this doesn't actually add protection.
+
+Anyone who's acquired the 0600 permissions needed to read your
+.fetchmailrc file will be able to run fetchmail as you anyway -- and if
+it's your password they're after, they'd be able to rip the necessary
+decoder out of the fetchmail code itself to get it.
+
+All .fetchmailrc encryption would do is give a false sense of security
+to people who don't think very hard.
+---unquote---
+
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002268.html">[fetchmail-users] config and password
+</A></li>
+	<LI>Next message: <A HREF="002270.html">[fetchmail-users] config and password
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2269">[ date ]</a>
+              <a href="thread.html#2269">[ thread ]</a>
+              <a href="subject.html#2269">[ subject ]</a>
+              <a href="author.html#2269">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

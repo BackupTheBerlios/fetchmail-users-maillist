@@ -1,0 +1,105 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] sperate servers
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2010-April/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20sperate%20servers&In-Reply-To=%3Calpine.DEB.2.00.1004140117400.12333%40localhost%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002347.html">
+   <LINK REL="Next"  HREF="002340.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] sperate servers</H1>
+    <B>Robert Holtzman</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20sperate%20servers&In-Reply-To=%3Calpine.DEB.2.00.1004140117400.12333%40localhost%3E"
+       TITLE="[fetchmail-users] sperate servers">holtzm at cox.net
+       </A><BR>
+    <I>Wed Apr 14 10:38:14 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002347.html">[fetchmail-users] sperate servers[SOLVED-with luck]
+</A></li>
+        <LI>Next message: <A HREF="002340.html">[fetchmail-users] No pop/ssl since fetchmail 6.3.16
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2345">[ date ]</a>
+              <a href="thread.html#2345">[ thread ]</a>
+              <a href="subject.html#2345">[ subject ]</a>
+              <a href="author.html#2345">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>
+Michael, see my reply to Matthias.
+
+On Tue, 13 Apr 2010, Michael Banack wrote:
+
+&gt;<i> I'm not sure there's currently a way to specify different delivery
+</I>&gt;<i> mechanisms per account from fetchmail.
+</I>&gt;<i>
+</I>&gt;<i> Here are some ideas though:
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> 3.  Setup a script or cronjob that calls fetchmail -f fetchmailrc.other,
+</I>&gt;<i> and runs fetchmail with another fetchmailrc file, so you can have 2
+</I>&gt;<i> seperate fetchmail setups.
+</I>
+See my reply to Matthias. I've been doing that for months and I'm trying 
+to get away from it.
+
+&gt;<i> To test what's going on, procmail will log things for you if you specify
+</I>&gt;<i>    LOGFILE=$HOME/.procmaillog
+</I>&gt;<i> in your procmailrc, and you can read that to see where it decided it
+</I>&gt;<i> should send each message, or if it even saw them.  If procmail isn't
+</I>&gt;<i> even seeing the messages, then you may have actually specified two
+</I>&gt;<i> MDA's, and it's working.  In that case I would check the permissions on
+</I>&gt;<i> the other mailbox it's trying to access, or manually specify an MDA for
+</I>&gt;<i> the sonic account and make sure it works.
+</I>
+I've had procmaillog running ever since I first installed Procmail some 
+years ago. You forgot to note that VERBOSE has to be set to &quot;yes&quot; in 
+.procmailrc :-)
+
+The only MDA I specified is the one you see in my .fetchmailrc file 
+Which I *thought* would only apply to the cox server. Looks like I was 
+wrong.
+
+In any event it looks like I have it sorted out now.
+
+Thanks for your patience.
+
+-- 
+Bob Holtzman
+Key ID: 8D549279
+&quot;If you think you're getting free lunch,
+  check the price of the beer&quot;
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002347.html">[fetchmail-users] sperate servers[SOLVED-with luck]
+</A></li>
+	<LI>Next message: <A HREF="002340.html">[fetchmail-users] No pop/ssl since fetchmail 6.3.16
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2345">[ date ]</a>
+              <a href="thread.html#2345">[ thread ]</a>
+              <a href="subject.html#2345">[ subject ]</a>
+              <a href="author.html#2345">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,183 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] strange polling errors
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2011-February/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20strange%20polling%20errors&In-Reply-To=%3C20110228171001.4e3db218%40scorpio%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002689.html">
+   
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] strange polling errors</H1>
+    <B>Jerry</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20strange%20polling%20errors&In-Reply-To=%3C20110228171001.4e3db218%40scorpio%3E"
+       TITLE="[fetchmail-users] strange polling errors">fetchmail.user at seibercom.net
+       </A><BR>
+    <I>Mon Feb 28 23:10:01 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002689.html">[fetchmail-users] strange polling errors
+</A></li>
+        
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2690">[ date ]</a>
+              <a href="thread.html#2690">[ thread ]</a>
+              <a href="subject.html#2690">[ subject ]</a>
+              <a href="author.html#2690">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Mon, 28 Feb 2011 19:05:07 +0100
+Matthias Andree &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">matthias.andree at gmx.de</A>&gt; articulated:
+
+&gt;<i> Am 28.02.2011 17:58, schrieb Jerry:
+</I>&gt;<i> 
+</I>&gt;<i> &gt; According to the info on
+</I>&gt;<i> &gt; &quot;<A HREF="http://technet.microsoft.com/en-us/library/ff459598.aspx">http://technet.microsoft.com/en-us/library/ff459598.aspx</A>&quot;, the
+</I>&gt;<i> &gt; default setting is 30 minutes for the 2010 version. I have not been
+</I>&gt;<i> &gt; able to confirm it, however, it appears that the older 2007 version
+</I>&gt;<i> &gt; defaults to 20 minutes. Now, if the version is &lt;=2005, then all
+</I>&gt;<i> &gt; bets are off.
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; If the OP could post the version and possible the output of making a
+</I>&gt;<i> &gt; connection to the Exchange server, a better guess could be made as
+</I>&gt;<i> &gt; to where the problem lays.
+</I>&gt;<i> 
+</I>&gt;<i> Thanks, Jerry.
+</I>&gt;<i> 
+</I>&gt;<i> However, Jonathan stated earlier he had difficulties determining the
+</I>&gt;<i> Exchange server's version.  Exchange 2003 as provided by Alice DSL
+</I>&gt;<i> Germany greets me with &quot;version 6.5.mumble&quot; in case that helps.
+</I>&gt;<i> 
+</I>&gt;<i> Exchange 2010 apparently reveals its version not in greeting or
+</I>&gt;<i> capability, but when signing off after logout (even if you didn't log
+</I>&gt;<i> in in the first place).
+</I>&gt;<i> 
+</I>&gt;<i> &gt; I have confirmed that the settings are configurable on the Exchange
+</I>&gt;<i> &gt; server. Of course, the user has to know what version he/she is
+</I>&gt;<i> &gt; going to configure.
+</I>&gt;<i> 
+</I>&gt;<i> ...and have administrative access in the first place which I take he
+</I>&gt;<i> hasn't.
+</I>&gt;<i> 
+</I>&gt;<i> Thanks for quoting relevant sections from RFC material (I think the
+</I>&gt;<i> newer reference is RFC 3501.), saved me quite some digging.
+</I>
+For what its worth:
+
+	<A HREF="http://support.microsoft.com/kb/158530">http://support.microsoft.com/kb/158530</A>
+
+Exchange Server  4.0                                4.0.837                  
+		  April 1996 
+Microsoft Exchange Server  4.0 (a)                  4.0.993                  
+		  August 1996 
+Microsoft Exchange Server  4.0 SP1                  4.0.838                  
+		  May 1996 
+Microsoft Exchange Server  4.0 SP2                  4.0.993                  
+		  August 1996 
+Microsoft Exchange Server  4.0 SP3                  4.0.994                  
+		  November 1996 
+Microsoft Exchange Server  4.0 SP4                  4.0.995                  
+		  April 1997 
+Microsoft Exchange Server  4.0 SP5                  4.0.996                  
+		  May 1998 
+Microsoft Exchange Server  5.0                      5.0.1457                 
+		  March 1997 
+Microsoft Exchange Server  5.0 SP1                  5.0.1458                 
+		  June 1997 
+Microsoft Exchange Server  5.0 SP2                  5.0.1460                 
+		  February 1998 
+Microsoft Exchange Server  5.5                      5.5.1960                 
+		  November 1997 
+Microsoft Exchange Server  5.5 SP1                  5.5.2232                 
+		  July 1998 
+Microsoft Exchange Server  5.5 SP2                  5.5.2448                 
+		  December 1998 
+Microsoft Exchange Server  5.5 SP3                  5.5.2650                 
+		  September 1999 
+Microsoft Exchange Server  5.5 SP4                  5.5.2653                 
+		  November 2000 
+Microsoft Exchange 2000 Server                      6.0.4417                 
+		  October 2000 
+Microsoft Exchange 2000 Server (a)                  6.0.4417                 
+		  January 2001 
+Microsoft Exchange 2000 Server SP1                  6.0.4712                 
+		  July 2001 
+Microsoft Exchange 2000 Server SP2                  6.0.5762                 
+		  December 2001 
+Microsoft Exchange 2000 Server SP3                  6.0.6249                 
+		  August 2002 
+Microsoft Exchange 2000 Server post-SP3             6.0.6487                 
+		  September 2003 
+Microsoft Exchange 2000 Server post-SP3             6.0.6556                 
+		  April 2004 
+Microsoft Exchange 2000 Server post-SP3             6.0.6603                 
+		  August 2004
+Microsoft Exchange 2000 Server post-SP3             6.0.6620.5               
+		  March 2008    
+Microsoft Exchange 2000 Server post-SP3             6.0.6620.7               
+		  August 2008
+Microsoft Exchange Server  2003                     6.5.6944                 
+		  October 2003 
+Microsoft Exchange Server  2003 SP1                 6.5.7226                 
+		  May 2004 
+Microsoft Exchange Server  2003 SP2                 6.5.7638                 
+		  October 2005
+Microsoft Exchange Server  2003 post-SP2            6.5.7653.33              
+		  March 2008
+Microsoft Exchange Server  2003 post-SP2            6.5.7654.4               
+		  August 2008   
+Microsoft Exchange Server  2007                     8.0.685.24 or 8.0.685.25 
+		  December 2006 
+Microsoft Exchange Server  2007 SP1                 8.1.0240.006             
+		  November 2007
+Microsoft Exchange Server  2007 SP2                 8.2.0176.002             
+		  August 2009
+Microsoft Exchange Server  2007 SP3                 8.3.0083.006
+                  June  2010
+Microsoft Exchange Server  2010                     14.00.0639.021
+                  October 2009
+Microsoft Exchange Server  2010 SP1                 14.01.0218.015
+                  August 2010
+
+Perhaps this might help someone :)
+
+
+-- 
+Jerry &#9996;
+<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">Fetchmail.user at seibercom.net</A>
+
+Disclaimer: off-list followups get on-list replies or get ignored.
+Please do not ignore the Reply-To header.
+__________________________________________________________________
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002689.html">[fetchmail-users] strange polling errors
+</A></li>
+	
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2690">[ date ]</a>
+              <a href="thread.html#2690">[ thread ]</a>
+              <a href="subject.html#2690">[ subject ]</a>
+              <a href="author.html#2690">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

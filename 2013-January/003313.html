@@ -1,0 +1,165 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] unable to vrify certificate after provider	renewed it.
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2013-January/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20unable%20to%20vrify%20certificate%20after%20provider%0A%09renewed%20it.&In-Reply-To=%3C91E98956-D411-4897-AC20-651713197C19%40petervannes.nl%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003312.html">
+   <LINK REL="Next"  HREF="003314.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] unable to vrify certificate after provider	renewed it.</H1>
+    <B>Peter van Nes</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20unable%20to%20vrify%20certificate%20after%20provider%0A%09renewed%20it.&In-Reply-To=%3C91E98956-D411-4897-AC20-651713197C19%40petervannes.nl%3E"
+       TITLE="[fetchmail-users] unable to vrify certificate after provider	renewed it.">mailbox at petervannes.nl
+       </A><BR>
+    <I>Tue Jan 15 11:22:40 CET 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003312.html">[fetchmail-users] unable to vrify certificate after provider renewed it.
+</A></li>
+        <LI>Next message: <A HREF="003314.html">[fetchmail-users] unable to vrify certificate after provider renewed it.
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3313">[ date ]</a>
+              <a href="thread.html#3313">[ thread ]</a>
+              <a href="subject.html#3313">[ subject ]</a>
+              <a href="author.html#3313">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Same issue i think;
+
+s_client -showcerts -connect  mailserver.burg-gmbh.de:443
+CONNECTED(00000003)
+depth=0 /serialNumber=el/M-ztEKCz2UB9qtnYeu6vLkvizplHt/C=DE/ST=Nordrhein-Westfalen/L=Bad Oeynhausen/O=Burg GmbH/OU=IT/CN=*.burg-gmbh.de
+verify error:num=20:unable to get local issuer certificate
+verify return:1
+depth=0 /serialNumber=el/M-ztEKCz2UB9qtnYeu6vLkvizplHt/C=DE/ST=Nordrhein-Westfalen/L=Bad Oeynhausen/O=Burg GmbH/OU=IT/CN=*.burg-gmbh.de
+verify error:num=27:certificate not trusted
+verify return:1
+depth=0 /serialNumber=el/M-ztEKCz2UB9qtnYeu6vLkvizplHt/C=DE/ST=Nordrhein-Westfalen/L=Bad Oeynhausen/O=Burg GmbH/OU=IT/CN=*.burg-gmbh.de
+verify error:num=21:unable to verify the first certificate
+verify return:1
+
+
+
+Met vriendelijke groet/With kind regards
+
+Peter van Nes
+Mobile +31 652 694 792 | Fax +31 84 747 6999
+    
+
+
+ 
+
+On 15 jan. 2013, at 11:08, Peter van Nes &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">mailbox at petervannes.nl</A>&gt; wrote:
+
+&gt;<i> 
+</I>&gt;<i> Hi Jurgen,
+</I>&gt;<i> 
+</I>&gt;<i> Probably your certification chain is broken.
+</I>&gt;<i> When i validate the certificate for echter-kuechen-elektro.de, i get that it is issued by &quot;Thawte Premium Server CA&quot; and exired on Sunday August the 28th , so it is an expired certificate.
+</I>&gt;<i> Just open a browser and open the url <A HREF="https://echter-kuechen-elektro.de">https://echter-kuechen-elektro.de</A> and request the certificate details yourself.
+</I>&gt;<i> Seems that also the fingerprint mismatches.
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> Met vriendelijke groet/With kind regards
+</I>&gt;<i> 
+</I>&gt;<i> Peter van Nes
+</I>&gt;<i> Mobile +31 652 694 792 | Fax +31 84 747 6999
+</I>&gt;<i>     
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i>  
+</I>&gt;<i> 
+</I>&gt;<i> On 15 jan. 2013, at 10:34, J&#252;rgen Echter &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">j.echter at echter-kuechen-elektro.de</A>&gt; wrote:
+</I>&gt;<i> 
+</I>&gt;&gt;<i> Hi,
+</I>&gt;&gt;<i> 
+</I>&gt;&gt;<i> im struggling with cert verification.
+</I>&gt;&gt;<i> 
+</I>&gt;&gt;<i> our provider has renewed its cert and since then fetchmail isn't able to verify it.
+</I>&gt;&gt;<i> 
+</I>&gt;&gt;<i> my fetchmail rc looks like this:
+</I>&gt;&gt;<i> 
+</I>&gt;&gt;<i> poll mailserver.burg-gmbh.de with proto POP3 interval 3
+</I>&gt;&gt;<i> user &quot;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">j.echter at echter-kuechen-elektro.de</A>&quot; there with password &quot;p4ssw0rd&quot; is &quot;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">j.echter at echter-kuechen-elektro.de</A>&quot; here ssl smtphost 127.0.0.1 sslcertck sslcertpath /etc/ssl/certs/ sslfingerprint &quot;BE:87:7A:D4:D1:07:7C:E9:B4:79:CB:A3:EC:F7:34:E5&quot;
+</I>&gt;&gt;<i> 
+</I>&gt;&gt;<i> fetchmail -v tells me:
+</I>&gt;&gt;<i> 
+</I>&gt;&gt;<i> fetchmail: mailserver.burg-gmbh.de-Key-Fingerprint: BE:87:7A:D4:D1:07:7C:E9:B4:79:CB:A3:EC:F7:34:E5
+</I>&gt;&gt;<i> 
+</I>&gt;&gt;<i> fetchmail: Server-Certificate:
+</I>&gt;&gt;<i> fetchmail: Issuer-Organisation: GeoTrust, Inc.
+</I>&gt;&gt;<i> fetchmail: Issuer-CommonName: GeoTrust SSL CA
+</I>&gt;&gt;<i> fetchmail: Subjekt-CommonName: *.burg-gmbh.de
+</I>&gt;&gt;<i> fetchmail: Subject Alternative Name: *.burg-gmbh.de
+</I>&gt;&gt;<i> fetchmail: Subject Alternative Name: burg-gmbh.de
+</I>&gt;&gt;<i> fetchmail: Fehler bei Server-Zertifikat-&#195;berpr&#195;&#188;fung: certificate not trusted
+</I>&gt;&gt;<i> fetchmail: Server-Zertifikat:
+</I>&gt;&gt;<i> fetchmail: Herausgeber-Organisation: GeoTrust, Inc.
+</I>&gt;&gt;<i> fetchmail: Herausgeber-CommonName: GeoTrust SSL CA
+</I>&gt;&gt;<i> fetchmail: Subjekt-CommonName: *.burg-gmbh.de
+</I>&gt;&gt;<i> fetchmail: Subject Alternative Name: *.burg-gmbh.de
+</I>&gt;&gt;<i> fetchmail: Subject Alternative Name: burg-gmbh.de
+</I>&gt;&gt;<i> 
+</I>&gt;&gt;<i> under /etc/ssl/certs i have:
+</I>&gt;&gt;<i> 
+</I>&gt;&gt;<i> GeoTrust_Global_CA_2.pem
+</I>&gt;&gt;<i> GeoTrust_Primary_Certification_Authority_-_G2.pem
+</I>&gt;&gt;<i> GeoTrust_Primary_Certification_Authority.pem
+</I>&gt;&gt;<i> GeoTrust_Universal_CA.pem
+</I>&gt;&gt;<i> GeoTrust_Global_CA.pem
+</I>&gt;&gt;<i> GeoTrust_Primary_Certification_Authority_-_G3.pem
+</I>&gt;&gt;<i> GeoTrust_Universal_CA_2.pem
+</I>&gt;&gt;<i> 
+</I>&gt;&gt;<i> i also tried to issue a c_rehash on the dir, but still no luck.
+</I>&gt;&gt;<i> 
+</I>&gt;&gt;<i> before the renewal of the cert it worked without sslcertpath &amp; sslfingerprint
+</I>&gt;&gt;<i> 
+</I>&gt;&gt;<i> my os is Ubuntu 12.04 server 64bit
+</I>&gt;&gt;<i> 
+</I>&gt;&gt;<i> any hints into the right direction?
+</I>&gt;&gt;<i> 
+</I>&gt;&gt;<i> thanks
+</I>&gt;&gt;<i> 
+</I>&gt;&gt;<i> juergen
+</I>&gt;&gt;<i> 
+</I>&gt;&gt;<i> _______________________________________________
+</I>&gt;&gt;<i> fetchmail-users mailing list
+</I>&gt;&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">fetchmail-users at lists.berlios.de</A>
+</I>&gt;&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">https://lists.berlios.de/mailman/listinfo/fetchmail-users</A>
+</I>&gt;<i> 
+</I>
+</PRE>
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003312.html">[fetchmail-users] unable to vrify certificate after provider renewed it.
+</A></li>
+	<LI>Next message: <A HREF="003314.html">[fetchmail-users] unable to vrify certificate after provider renewed it.
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3313">[ date ]</a>
+              <a href="thread.html#3313">[ thread ]</a>
+              <a href="subject.html#3313">[ subject ]</a>
+              <a href="author.html#3313">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

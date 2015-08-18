@@ -1,0 +1,104 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Fetchmail hangs at start of mail collection .	. .
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2010-January/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Fetchmail%20hangs%20at%20start%20of%20mail%20collection%20.%0A%09.%20.&In-Reply-To=%3C43ea8d071001251103i4aca4a86vb5309226ecb6d7f8%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002249.html">
+   <LINK REL="Next"  HREF="002250.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Fetchmail hangs at start of mail collection .	. .</H1>
+    <B>Rob MacGregor</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Fetchmail%20hangs%20at%20start%20of%20mail%20collection%20.%0A%09.%20.&In-Reply-To=%3C43ea8d071001251103i4aca4a86vb5309226ecb6d7f8%40mail.gmail.com%3E"
+       TITLE="[fetchmail-users] Fetchmail hangs at start of mail collection .	. .">rob.macgregor at gmail.com
+       </A><BR>
+    <I>Mon Jan 25 20:03:19 CET 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002249.html">[fetchmail-users] [OT] Sendmail hangs at start of mail collection... (was: Fetchmail hangs at start of mail collection ...)
+</A></li>
+        <LI>Next message: <A HREF="002250.html">[fetchmail-users] fetchmail is not retrieving all messages?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2248">[ date ]</a>
+              <a href="thread.html#2248">[ thread ]</a>
+              <a href="subject.html#2248">[ subject ]</a>
+              <a href="author.html#2248">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Mon, Jan 25, 2010 at 18:10, John Williams
+&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">john.williams at seawindow.com</A>&gt; wrote:
+&gt;<i>
+</I>&gt;<i> I've run the env command as Rob suggested and will include the results below.
+</I>&gt;<i>
+</I>&gt;<i> In the meantime I have a question:
+</I>&gt;<i>
+</I>&gt;<i> The error message (substantially delayed) for the fetchmail command is
+</I>&gt;<i> &quot;listener protocol error&quot;.
+</I>&gt;<i>
+</I>&gt;<i> Could this error result from the reassignment of the smtp port by my ISP
+</I>&gt;<i> (Verizon) from port 25 to port 587?--I am able to telnet to port 25 at
+</I>&gt;<i> localhost).
+</I>&gt;<i>
+</I>&gt;<i> Here are the env command results:
+</I>&gt;<i>
+</I>&gt;<i> fetchmail: 6.3.10 querying mail.panix.com (protocol POP3) at Mon Jan 25
+</I>&gt;<i> 12:23:21 2010: poll started
+</I>
+I should have said (though it's covered in the FAQ I linked to) that
+you should also upgrade to the current release of fetchmail in case
+the problem is solved there.  You also didn't answer my question about
+how you installed - from source or from ports?
+
+&gt;<i> Trying to connect to 166.84.1.89/110...connected.
+</I>&gt;<i> fetchmail: POP3&lt; +OK Dovecot ready.
+</I>
+&lt;---SNIP---&gt;
+&gt;<i> fetchmail: SMTP&gt; RCPT TO:&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">jwilliam at localhost</A>&gt;
+</I>&gt;<i> fetchmail: smtp listener protocol error
+</I>&gt;<i> ............ not flushed
+</I>
+You almost certainly have a problem with your SMTP server.  If on the
+command line you try to email &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">jwilliam at localhost</A>&gt; what happens?  Did
+you enable greetpause by default?  What milters or changes have you
+made to the vanilla Sendmail configuration?
+
+-- 
+                 Please keep list traffic on the list.
+
+Rob MacGregor
+      Whoever fights monsters should see to it that in the process he
+        doesn't become a monster.                  Friedrich Nietzsche
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002249.html">[fetchmail-users] [OT] Sendmail hangs at start of mail collection... (was: Fetchmail hangs at start of mail collection ...)
+</A></li>
+	<LI>Next message: <A HREF="002250.html">[fetchmail-users] fetchmail is not retrieving all messages?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2248">[ date ]</a>
+              <a href="thread.html#2248">[ thread ]</a>
+              <a href="subject.html#2248">[ subject ]</a>
+              <a href="author.html#2248">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

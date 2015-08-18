@@ -1,0 +1,139 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Configure .fetchmailrc for hotwayd
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2013-March/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Configure%20.fetchmailrc%20for%20hotwayd&In-Reply-To=%3C20130302225715.GB12404%40histomat.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003367.html">
+   <LINK REL="Next"  HREF="003370.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Configure .fetchmailrc for hotwayd</H1>
+    <B>Haines Brown</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Configure%20.fetchmailrc%20for%20hotwayd&In-Reply-To=%3C20130302225715.GB12404%40histomat.net%3E"
+       TITLE="[fetchmail-users] Configure .fetchmailrc for hotwayd">haines at histomat.net
+       </A><BR>
+    <I>Sat Mar  2 23:57:15 CET 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003367.html">[fetchmail-users] Configure .fetchmailrc for hotwayd
+</A></li>
+        <LI>Next message: <A HREF="003370.html">[fetchmail-users] fetchmail/sendmail: Domain of sender address	does not exist
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3369">[ date ]</a>
+              <a href="thread.html#3369">[ thread ]</a>
+              <a href="subject.html#3369">[ subject ]</a>
+              <a href="author.html#3369">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Sat, Mar 02, 2013 at 06:49:05PM +0000, Rob MacGregor wrote:
+
+Thank you for the configuration example. I was googling in all the 
+wrong places. The problem is that hotwayd is unable to connect to my 
+local host. I was able to pursue some troubleshooting measures, and I'll 
+report the results here. Since the problem is not (yet) with 
+fetchmail, I'll ignore it.
+
+I compiled hotwayd and copied its executable to /usr/local/sbin/. I 
+then created a configuration file, /etc/inetd.d/hotwayd, and put in it:
+
+  service hotwayd
+    {
+    socket_type = stream
+    wait = no
+    user = engels
+    port = 11100
+    server = /usr/local/sbin/hotwayd
+    log_on_success += USERID
+    log_on_failure += USERID
+    disable = no
+    }
+
+The file is readable by anyone. Then I restarted the daemon:
+
+  # hotwayd start
+
+  This command did not release the terminal, but I found that
+  killing the terminal did not terminate the daemon process.
+
+OK, hotmaild should be able to connect to localhost:
+
+  $ telnet localhost 11100
+  Trying ::1...
+  Trying 127.0.0.1...
+  telnet: Unable to connect to remote host: Connection refused
+
+I don't understand this. I'm not trying to to connect to a remote host, 
+but the local host.
+
+So I next check if anything is listened on port 11100:
+
+  $ netstat -lp | grep 11100
+
+and there is no *:11100 port. I got the impression on line that this 
+information should be added to /etc/services automatically when the 
+daemon run, but there was no information there. So I added the lines 
+to /etc/services manually:
+
+  # Local services
+  hotwayd         11100/tcp   
+  hotsayd         11100/udp
+
+The inet daemon is running and has a PID:
+
+  $ ps -eo &quot;%p %c&quot; | grep inetd
+  26109 inetutils-inetd
+
+I'm unclear about relation of inetd, inetd-utils, and hotwayd.
+
+I then did:
+
+  # kill -HUP 26109
+
+and checked if inetd and hotwayd still running. 
+
+  $ ps aux | grep hotwayd
+  haines  29722  0.0  0.0  4212  1504 pts/1  S+  17:14  0:00 nano hotwayd
+
+In case I had a security issue I added the line to /etc/hosts.allow:
+
+  hotwayd : 127.0.0.1
+
+I still can't get hotwayd to access local port 11100. Got to be 
+something wrong with my hotwayd configuration I suppose.
+
+Haines
+
+</PRE>
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003367.html">[fetchmail-users] Configure .fetchmailrc for hotwayd
+</A></li>
+	<LI>Next message: <A HREF="003370.html">[fetchmail-users] fetchmail/sendmail: Domain of sender address	does not exist
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3369">[ date ]</a>
+              <a href="thread.html#3369">[ thread ]</a>
+              <a href="subject.html#3369">[ subject ]</a>
+              <a href="author.html#3369">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

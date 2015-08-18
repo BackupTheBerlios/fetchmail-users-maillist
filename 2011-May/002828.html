@@ -1,0 +1,121 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Network time-outs when handling IMAP IDLE
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2011-May/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Network%20time-outs%20when%20handling%20IMAP%20IDLE&In-Reply-To=%3C4DDAB1CF.2050008%40gmx.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002837.html">
+   <LINK REL="Next"  HREF="002830.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Network time-outs when handling IMAP IDLE</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Network%20time-outs%20when%20handling%20IMAP%20IDLE&In-Reply-To=%3C4DDAB1CF.2050008%40gmx.de%3E"
+       TITLE="[fetchmail-users] Network time-outs when handling IMAP IDLE">matthias.andree at gmx.de
+       </A><BR>
+    <I>Mon May 23 21:13:19 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002837.html">[fetchmail-users] fetchmail 6.3.20-pre1 release candidate	should fix STARTTLS hangs
+</A></li>
+        <LI>Next message: <A HREF="002830.html">[fetchmail-users] Fetchmail doesn't create and deletes fetchids file
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2828">[ date ]</a>
+              <a href="thread.html#2828">[ thread ]</a>
+              <a href="subject.html#2828">[ subject ]</a>
+              <a href="author.html#2828">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Am 14.01.2010 09:36, schrieb Matt Doran:
+&gt;<i> Matthias Andree wrote:
+</I>&gt;&gt;<i> Am 13.01.2010, 12:55 Uhr, schrieb Matt Doran &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">matt.doran at papercut.com</A>&gt;:
+</I>&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> Any thoughts on this?
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Hi Matt,
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> thanks for your interest and ideas, and sorry for not getting back to 
+</I>&gt;&gt;<i> you earlier, but I have not had time to inspect your findings and the 
+</I>&gt;&gt;<i> source code in more detail yet - for lack of time. Your findings and 
+</I>&gt;&gt;<i> logs are very useful though, and your suggestion...
+</I>&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> Maybe the timeout for IDLE could just be set to the global timeout?  
+</I>&gt;&gt;&gt;<i> e.g. 300 seconds.    It would cause more IDLE/DONE cycles, but it 
+</I>&gt;&gt;&gt;<i> would mean that it would be much faster to recover.    Having a 
+</I>&gt;&gt;&gt;<i> separate timeout config for idle would be nice, but that might be 
+</I>&gt;&gt;&gt;<i> overkill.      What other things could be done?
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> ...is sound, and I'd thought along the same lines already.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> There is also a related bug report, namely that fetchmail ignores the 
+</I>&gt;&gt;<i> repoll signal (SIGUSR2 IIRC) while an IMAP connection is IDLE-ing that 
+</I>&gt;&gt;<i> might/should be fixed in the same go.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> In the meanwhile, Jakob Hirsch has also provided demo code for setting 
+</I>&gt;&gt;<i> the TCP (stream socket) keepalive parameters (as a standalone 
+</I>&gt;&gt;<i> program), which may also help to detect connection loss easier. If you 
+</I>&gt;&gt;<i> want to play with it, find the code attached - but note I've not yet 
+</I>&gt;&gt;<i> checked how portable it is or if it even compiles for me.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i>
+</I>&gt;<i> I too am stretched for time, and would struggle to contribute dev time 
+</I>&gt;<i> right now.     I'm tempted to run a custom version of fetchmail that 
+</I>&gt;<i> changes the hard-coded IMAP idle time down to something smaller.    
+</I>&gt;<i> Hopefully a longer term fix can be done at some point. :)
+</I>&gt;<i> 
+</I>&gt;<i> Thanks for your efforts .... and support of a great little tool!
+</I>&gt;<i> Matt
+</I>
+Hi Matt, Jakob,
+
+long time since this was discussed... if you're still using fetchmail,
+can I ask you to test fetchmail-6.3.20-pre1 and see if that fixes your
+problems without breaking IDLE?
+
+Jakob,
+
+I'm now setting SO_KEEPALIVE, however some systems (such as FreeBSD 8)
+only permit system-wide time to be changed, so I haven't yet added code
+to reduce the keepalive timeout on systems that support that, for lack
+of time to do portability research.
+
+I seem however to gather from the FreeBSD documentation that there is a
+difference between &quot;no data transfer at all&quot; and &quot;data was previously
+transferred&quot;, where FreeBSD then reduces the keepalive check interval.
+Chances are that the SO_RCVTIMEO helps quite a bit here.
+
+Best regards,
+Matthias
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002837.html">[fetchmail-users] fetchmail 6.3.20-pre1 release candidate	should fix STARTTLS hangs
+</A></li>
+	<LI>Next message: <A HREF="002830.html">[fetchmail-users] Fetchmail doesn't create and deletes fetchids file
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2828">[ date ]</a>
+              <a href="thread.html#2828">[ thread ]</a>
+              <a href="subject.html#2828">[ subject ]</a>
+              <a href="author.html#2828">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

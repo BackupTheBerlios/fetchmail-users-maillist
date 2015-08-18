@@ -1,0 +1,108 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] fetchmail 6.3.15-beta1 beta release with	&quot;bad-header pass&quot; feature
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2010-February/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%206.3.15-beta1%20beta%20release%20with%0A%09%22bad-header%20pass%22%20feature&In-Reply-To=%3C20100224012842.GB29175%40merlin.emma.line.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002292.html">
+   <LINK REL="Next"  HREF="002296.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] fetchmail 6.3.15-beta1 beta release with	&quot;bad-header pass&quot; feature</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%206.3.15-beta1%20beta%20release%20with%0A%09%22bad-header%20pass%22%20feature&In-Reply-To=%3C20100224012842.GB29175%40merlin.emma.line.org%3E"
+       TITLE="[fetchmail-users] fetchmail 6.3.15-beta1 beta release with	&quot;bad-header pass&quot; feature">matthias.andree at gmx.de
+       </A><BR>
+    <I>Wed Feb 24 02:28:43 CET 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002292.html">[fetchmail-users] IMAP idle and connection losses?
+</A></li>
+        <LI>Next message: <A HREF="002296.html">[fetchmail-users] fetchmail 6.3.15-beta2 test release
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2295">[ date ]</a>
+              <a href="thread.html#2295">[ thread ]</a>
+              <a href="subject.html#2295">[ subject ]</a>
+              <a href="author.html#2295">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA1
+
+Greetings,
+
+I am asking interested fetchmail users to test a BETA release of
+fetchmail.  This beta1 has the long-desired feature to ignore bad
+headers in messages and pass them on.  Note that this features is OFF BY
+DEFAULT and YOU need to turn it on explicitly by command line or rcfile.
+
+The beta software is available from:
+&lt;<A HREF="http://home.pages.de/~mandree/fetchmail/">http://home.pages.de/~mandree/fetchmail/</A>&gt;
+
+These are the relevant changes since the previous release.  Unless
+otherwise noted, changes to this release were made by Matthias Andree:
+
+# FEATURE
+* Fetchmail now supports a bad-header command line or rcfile option that takes
+  exactly one argument, pass or reject (default).  If set to pass, fetchmail
+  will pass messages with bad headers on.  This has been rejected for a long
+  time, and the right behaviour was disputed for too long.
+
+# CHANGES
+* The repository has been converted and moved from the Subversion (SVN) format
+  kindly hosted by Graham Wilson over the past years to Git format hosted on
+  Gitorious.org.  My deepest thanks to Graham Wilson for this service that
+  kept us going when BerliOS's Subversion service was faulty in its early days.
+* This opportunity was used to convert BRANCH_6-2 and BRANCH_1-9-9 to
+  GnuPG-signed tags, as a sign that these are now closed.
+* The outdated SVN trunk is now called &quot;oldtrunk&quot; in Git just to save the work
+  for future reference. All development in the past few years was on BRANCH_6-3.
+* master was branched from BRANCH_6-3 for user convenience.
+
+# DOCUMENTATION
+* Web site and documentation were adjusted to reflect the SVN-&gt;Git move.
+* The fetchmail manual page is now much clearer on the user id switching
+  (seteuid) when using --mda while running as the super user.
+
+- -- 
+Matthias Andree
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v2.0.12 (GNU/Linux)
+
+iEYEARECAAYFAkuEgMoACgkQvmGDOQUufZV3mQCgtp8ccaUDTU7zhmL4CNilZzQZ
+uqAAnRraStvFdKswS8s1KFMyEi2w4wNy
+=neOa
+-----END PGP SIGNATURE-----
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002292.html">[fetchmail-users] IMAP idle and connection losses?
+</A></li>
+	<LI>Next message: <A HREF="002296.html">[fetchmail-users] fetchmail 6.3.15-beta2 test release
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2295">[ date ]</a>
+              <a href="thread.html#2295">[ thread ]</a>
+              <a href="subject.html#2295">[ subject ]</a>
+              <a href="author.html#2295">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

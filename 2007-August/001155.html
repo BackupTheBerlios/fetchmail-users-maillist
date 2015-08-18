@@ -1,0 +1,137 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] fetchmail on server unable to connect to postfix
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2007-August/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%20on%20server%20unable%20to%20connect%20to%20postfix&In-Reply-To=%3C3668.213.203.159.55.1187263742.squirrel%40nexaima.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001154.html">
+   <LINK REL="Next"  HREF="001156.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] fetchmail on server unable to connect to postfix</H1>
+    <B>M. Fioretti</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%20on%20server%20unable%20to%20connect%20to%20postfix&In-Reply-To=%3C3668.213.203.159.55.1187263742.squirrel%40nexaima.net%3E"
+       TITLE="[fetchmail-users] fetchmail on server unable to connect to postfix">mfioretti at nexaima.net
+       </A><BR>
+    <I>Thu Aug 16 13:29:02 CEST 2007</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001154.html">[fetchmail-users] Recipient address rejected: User unknown in local recipient table
+</A></li>
+        <LI>Next message: <A HREF="001156.html">[fetchmail-users] fetchmail on server unable to connect to	postfix
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1155">[ date ]</a>
+              <a href="thread.html#1155">[ thread ]</a>
+              <a href="subject.html#1155">[ subject ]</a>
+              <a href="author.html#1155">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hello,
+
+I have on my home computer the working fetchmail rc file shown below, to
+download all the messages from my ISP pop3 server to my home box.
+
+Now I want to reuse that file on a Centos server, separate from my home
+desktop, running postfix, dovecot and fetchmail-6.2.5-6.0.1.el4
+
+On that server there is no user &quot;marco&quot;. There are only virtual email
+users, and I'd rather not add other Unix users there. On the server there
+is ad-hoc user without shell which is only used by postfix and dovecot to
+deliver messages to mailboxes:
+
+# grep mail_only_account /etc/passwd:
+
+mail_only_account:x:2000:2000::/home/mail_only_account:/bin/false
+
+However, if I run as user mail_only_account:
+
+/usr/bin/fetchmail -vv  -f /usr/local/etc/Fetchmail/always
+
+fetchmail always gets from postfix:
+
+Helo command rejected: need fully-qualified hostname
+
+no matter what I write in place of &quot;marco&quot;: root, this complete address
+<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">mfioretti at nexaima.net</A>, whatever.
+
+More in detail:
+
+fetchmail: SMTP&lt; 220 the.server.com ESMTP Postfix
+fetchmail: SMTP&gt; EHLO localhost
+fetchmail: SMTP&lt; 250-the.server.com
+fetchmail: SMTP&lt; 250-PIPELINING
+fetchmail: SMTP&lt; 250-SIZE 10240000
+fetchmail: SMTP&lt; 250-ETRN
+fetchmail: SMTP&lt; 250-STARTTLS
+fetchmail: SMTP&lt; 250-ENHANCEDSTATUSCODES
+fetchmail: SMTP&lt; 250-8BITMIME
+fetchmail: SMTP&lt; 250 DSN
+fetchmail: forwarding to localhost
+fetchmail: SMTP&gt; MAIL FROM:&lt;test_address&gt; BODY=8BITMIME SIZE=1471
+fetchmail: SMTP&lt; 250 2.1.0 Ok
+fetchmail: SMTP&gt; RCPT TO:&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">mfioretti at nexaima.net</A>&gt;
+fetchmail: SMTP&lt; 504 5.5.2 &lt;localhost&gt;: Helo command rejected: need
+fully-qualified hostname
+
+Why does the rc file which works fine at home fail on the server?
+OK, if I understand correctly, the problem is that _postfix_ is
+configured differently, and it's not a fetchmail problem. However, I am
+not sure if I can (ask to) change the postfix configuration right now, so
+I'd be very grateful if somebody could let me know if there is any
+possibility to &quot;patch&quot; it by passing some other option to fetchmail.
+
+Alternatively, pointers to the specific postfix setting causing this are
+also welcome.
+
+Thank you in advance for any feedback,
+           Marco
+
+##################################################
+content of /usr/local/etc/Fetchmail/always:
+
+set logfile &quot;/var/log/procmail_logs/log_fetch_mail&quot;
+#set postmaster &quot;root&quot;
+set nobouncemail
+set properties &quot;&quot;
+#set daemon 60
+set no syslog
+
+poll pop3.my_isp.com with proto POP3 tracepolls
+   user mycustomer_login there with pass &quot;thepassword&quot; is marco here keep
+
+-- 
+Help *everybody* love Free Standards and Software:
+<A HREF="http://digifreedom.net">http://digifreedom.net</A>
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001154.html">[fetchmail-users] Recipient address rejected: User unknown in local recipient table
+</A></li>
+	<LI>Next message: <A HREF="001156.html">[fetchmail-users] fetchmail on server unable to connect to	postfix
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1155">[ date ]</a>
+              <a href="thread.html#1155">[ thread ]</a>
+              <a href="subject.html#1155">[ subject ]</a>
+              <a href="author.html#1155">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

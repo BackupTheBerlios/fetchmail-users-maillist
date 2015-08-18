@@ -1,0 +1,153 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] fetchmail-users Digest, Vol 29, Issue 1
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2008-November/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail-users%20Digest%2C%20Vol%2029%2C%20Issue%201&In-Reply-To=%3C49103BC9.5060606%40gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001742.html">
+   <LINK REL="Next"  HREF="001740.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] fetchmail-users Digest, Vol 29, Issue 1</H1>
+    <B>David Melik</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail-users%20Digest%2C%20Vol%2029%2C%20Issue%201&In-Reply-To=%3C49103BC9.5060606%40gmail.com%3E"
+       TITLE="[fetchmail-users] fetchmail-users Digest, Vol 29, Issue 1">dchmelik at gmail.com
+       </A><BR>
+    <I>Tue Nov  4 13:10:49 CET 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001742.html">[fetchmail-users] is fetchmail fixed for gmail?
+</A></li>
+        <LI>Next message: <A HREF="001740.html">[fetchmail-users] fetchmail-users Digest, Vol 29, Issue 1
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1738">[ date ]</a>
+              <a href="thread.html#1738">[ thread ]</a>
+              <a href="subject.html#1738">[ subject ]</a>
+              <a href="author.html#1738">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>
+&gt;<i> Within the limits of GMail's broken and non-standard POP and IMAP
+</I>&gt;<i> implementations, fetchmail works fine.  Maybe if you provided details
+</I>&gt;<i> of the problem somebody might be able to help you
+</I>&gt;<i> (<A HREF="http://www.fetchmail.info/fetchmail-FAQ.html#G3">http://www.fetchmail.info/fetchmail-FAQ.html#G3</A>).
+</I>&gt;<i>
+</I>&gt;<i> Fetchmail timing out could be many things, including the fact that
+</I>&gt;<i> you're not running a local SMTP server.
+</I>&gt;<i>
+</I>&gt;<i>   
+</I>I used to use sendmail on NetBSD and set it up the same on Slackware, 
+but lately, also on Slamd64, I cannot figure out how to.  I guess that 
+is the problem.  Sendmail was reasonably well-documented for NetBSD, but 
+is poorly documented at the sendmail website and for Linux: Slackware's 
+sendmail configuration files are also completely unclear.  Here are my 
+answers, though:
+
+1. Slamd64 12.1
+2. fetchmail-6.3.8-x86_64_slamd64-1.tgz
+3. fetchmail: WARNING: Running as root is discouraged.
+fetchmail: connection to pop.gmail.net:995 [67.117.168.86/995] failed: 
+Connection timed out.
+POP3 connection to pop.gmail.net failed: Connection timed out
+fetchmail: Query status=2 (SOCKET)
+4. none
+5. none
+6. fetchmail: WARNING: Running as root is discouraged.
+This is fetchmail release 6.3.8+SSL+NLS.
+
+Copyright (C) 2002, 2003 Eric S. Raymond
+Copyright (C) 2004 Matthias Andree, Eric S. Raymond, Robert M. Funk, 
+Graham Wilson
+Copyright (C) 2005-2006 Sunil Shetye
+Copyright (C) 2005-2007 Matthias Andree
+Fetchmail comes with ABSOLUTELY NO WARRANTY. This is free software, and you
+are welcome to redistribute it under certain conditions. For details,
+please see the file COPYING in the source or documentation directory.
+
+Fallback MDA: (none)
+Linux olympus 2.6.24.5 #1 SMP Sun May 4 16:51:34 BST 2008 x86_64 x86_64 
+x86_64 GNU/Linux
+Taking options from command line and /root/.fetchmailrc
+Idfile is /root/.fetchids
+Fetchmail will show progress dots even in logfiles.
+Fetchmail will forward misaddressed multidrop messages to postmaster.
+Options for retrieving from <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">dchmelik at gmail.com</A>@pop.gmail.net:
+  True name of server is pop.gmail.net.
+  Protocol is POP3 (using service 995).
+  All available authentication methods will be tried.
+  SSL encrypted sessions enabled.
+  Server nonresponse timeout is 300 seconds (default).
+  Default mailbox selected.
+  Only new messages will be retrieved (--all off).
+  Fetched messages will not be kept on the server (--keep off).
+  Old messages will not be flushed before message retrieval (--flush off).
+  Oversized messages will not be flushed before message retrieval 
+(--limitflush off).
+  Rewrite of server-local addresses is enabled (--norewrite off).
+  Carriage-return stripping is disabled (stripcr off).
+  Carriage-return forcing is disabled (forcecr off).
+  Interpretation of Content-Transfer-Encoding is enabled (pass8bits off).
+  MIME decoding is disabled (mimedecode off).
+  Idle after poll is disabled (idle off).
+  Nonempty Status lines will be kept (dropstatus off)
+  Delivered-To lines will be kept (dropdelivered off)
+  Fetch message size limit is 100 (--fetchsizelimit 100).
+  Do binary search of UIDs during 3 out of 4 polls (--fastuidl 4).
+  Messages will be SMTP-forwarded to: localhost (default)
+  Single-drop mode: 1 local name recognized.
+  No UIDs saved from this host.
+
+7. fetchmail: WARNING: Running as root is discouraged.
+fetchmail: 6.3.8 querying pop.gmail.net (protocol POP3) at Tue 04 Nov 
+2008 04:01:57 AM PST: poll started
+Trying to connect to 67.117.168.86/995...connection failed.
+fetchmail: connection to pop.gmail.net:995 [67.117.168.86/995] failed: 
+Connection timed out.
+POP3 connection to pop.gmail.net failed: Connection timed out
+fetchmail: 6.3.8 querying pop.gmail.net (protocol POP3) at Tue 04 Nov 
+2008 04:05:26 AM PST: poll completed
+fetchmail: Query status=2 (SOCKET)
+fetchmail: Deleting fetchids file.
+fetchmail: normal termination, status 2
+fetchmail: Deleting fetchids file.
+
+
+Also, this is my .fetchmailrc
+poll pop.gmail.net proto pop3 port 995 no dns
+user &quot;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">dchmelik at gmail.com</A>&quot; pass (omitted) is root here ssl
+
+--David
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001742.html">[fetchmail-users] is fetchmail fixed for gmail?
+</A></li>
+	<LI>Next message: <A HREF="001740.html">[fetchmail-users] fetchmail-users Digest, Vol 29, Issue 1
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1738">[ date ]</a>
+              <a href="thread.html#1738">[ thread ]</a>
+              <a href="subject.html#1738">[ subject ]</a>
+              <a href="author.html#1738">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

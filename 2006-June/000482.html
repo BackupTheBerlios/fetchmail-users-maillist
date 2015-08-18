@@ -1,0 +1,106 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Fetchmail problem - Need Help
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2006-June/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Fetchmail%20problem%20-%20Need%20Help&In-Reply-To=%3CA8F289FA873B22459CAF76C8BB280E3801931234%40hajmx211be06.tuid.msds.insite%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000481.html">
+   <LINK REL="Next"  HREF="000478.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Fetchmail problem - Need Help</H1>
+    <B>Dhandapani,Padmanabhan</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Fetchmail%20problem%20-%20Need%20Help&In-Reply-To=%3CA8F289FA873B22459CAF76C8BB280E3801931234%40hajmx211be06.tuid.msds.insite%3E"
+       TITLE="[fetchmail-users] Fetchmail problem - Need Help">Padmanabhan.Dhandapani at tui.de
+       </A><BR>
+    <I>Thu Jun 29 10:23:29 CEST 2006</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000481.html">[fetchmail-users] Multi-drop problems
+</A></li>
+        <LI>Next message: <A HREF="000478.html">[fetchmail-users] Re: Fetchmail problem - Need Help
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#482">[ date ]</a>
+              <a href="thread.html#482">[ thread ]</a>
+              <a href="subject.html#482">[ subject ]</a>
+              <a href="author.html#482">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Team,
+I am using the fetchmail release 6.2.5  in my Solaris 5.8. 
+
+I have installed sucssfully in the solaris box. 
+Then i have enabled the POP3 for my mail account and i have created the
+/etc/fetchmailrc files as guided by internet as below. Please find my
+below fetchmailrc file.
+
+# more fetchmailrc
+set syslog
+set postmaster &quot;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">applentp at tui.de</A>&quot;
+set nobouncemail
+set properties &quot;&quot;
+set idfile /var/run/fetchmail.ids
+poll pop3.tui.de.insite proto pop3
+user '<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">applentp at tuid.msds.insite</A>'
+poll pop3.tui.de.insite
+user '<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">applentp at tuid.msds.insite</A>'
+
+Now i am running the below command to fetchmail from my exchange box.
+But i am not receiving any mail. What is this &quot;/var/run/fetchmail.ids&quot;
+which is not created in my path. This is a plain text file which i have
+to create or it will create by itself.
+
+fetchmail -v -v -f /etc/fetchmailrc
+
+Please help us to resolve this issue to use the fetchmail is better way.
+
+Expecting your reply assoonas possible. 
+
+Many Thanks ....
+
+Regards
+Paddy
+ 
+Padmanabhan Dhandapani
+______________________
+Unix &amp; Middleware Team
+TUI InfoTec GmbH
+Direct Number: +49(0)511-567-55974
+Mail to: <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">padmanabhan.dhandapani at tui.de</A>
+Web Site: <A HREF="http://www.tui.de">http://www.tui.de</A> 
+
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/fetchmail-users/attachments/20060629/efd803f4/attachment.html">https://lists.berlios.de/pipermail/fetchmail-users/attachments/20060629/efd803f4/attachment.html</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000481.html">[fetchmail-users] Multi-drop problems
+</A></li>
+	<LI>Next message: <A HREF="000478.html">[fetchmail-users] Re: Fetchmail problem - Need Help
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#482">[ date ]</a>
+              <a href="thread.html#482">[ thread ]</a>
+              <a href="subject.html#482">[ subject ]</a>
+              <a href="author.html#482">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

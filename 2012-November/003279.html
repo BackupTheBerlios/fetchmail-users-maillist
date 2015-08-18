@@ -1,0 +1,126 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Passwords on command line?
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2012-November/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Passwords%20on%20command%20line%3F&In-Reply-To=%3CCAD2Ti2_52QiSJiHdv9zVzvMVY004K8jd_iNeFGWu86Z2GQL8yA%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003278.html">
+   <LINK REL="Next"  HREF="003280.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Passwords on command line?</H1>
+    <B>grarpamp</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Passwords%20on%20command%20line%3F&In-Reply-To=%3CCAD2Ti2_52QiSJiHdv9zVzvMVY004K8jd_iNeFGWu86Z2GQL8yA%40mail.gmail.com%3E"
+       TITLE="[fetchmail-users] Passwords on command line?">grarpamp at gmail.com
+       </A><BR>
+    <I>Wed Nov  7 02:41:18 CET 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003278.html">[fetchmail-users] Passwords on command line?
+</A></li>
+        <LI>Next message: <A HREF="003280.html">[fetchmail-users] Passwords on command line?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3279">[ date ]</a>
+              <a href="thread.html#3279">[ thread ]</a>
+              <a href="subject.html#3279">[ subject ]</a>
+              <a href="author.html#3279">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>&gt;<i> There is more than half a dozen places where a new option needs to be
+</I>&gt;<i> implemented, tested, documented, and thereabouts, in fetchmail's code
+</I>&gt;<i> and documentation, let alone discussing this :)
+</I>
+&gt;<i> unlike your earlier suggestion of ...
+</I>
+?, so you're suggesting support of multiple fingerprint / additional hash
+function mechanism is easier to implement than --password? That's
+news to me. But ok, fine, you have a deal... give me multiple fingerprint
+options and I'll shut up about --password :-) For now ;)
+
+&gt;<i> suggestion (talking in many months now) of &quot;multiple server certificates
+</I>&gt;<i> for SSL/TLS&quot;.
+</I>
+<A HREF="http://developer.berlios.de/bugs/?func=detailbug&amp;bug_id=16000&amp;group_id=1824">http://developer.berlios.de/bugs/?func=detailbug&amp;bug_id=16000&amp;group_id=1824</A>
+
+I interceded in bug 16000 over three years ago to stop the ridiculous
+assertion that 'sslfingerprint is unnecessary and should therefore be
+removed.' And I still have an unsent draft to correct the idea of 20090819
+that fingerprints aren't needed to detect mitm attacks. Though given
+20100409 it would be supportive to that effect. Certainly all the 'news'
+and ssl observatories these days are as well.
+
+&gt;&gt;<i> Instead of providing a missing item and/or being a per item override to the rc,
+</I>&gt;&gt;<i> -f *is* the exclusive rc. Writing the per invocation rc via pipe isn't
+</I>&gt;&gt;<i> really ideal either.
+</I>&gt;<i>
+</I>&gt;<i> Why not?  Because it deviates from your favourite?
+</I>
+No. I thought this was covered already. Because forcing all --password
+inquirers to write middleware is inefficient and error prone for them.
+Certainly more wtf's/grr's will come from that than their simply supplying
+--password on the command line.
+
+&gt;&gt;<i> It's also a binary which, with some platforms or shells, may work in a
+</I>&gt;&gt;<i> preferred or required manner to the builtin.
+</I>&gt;<i>
+</I>&gt;<i> True enough.  I still do not buy the argument that it is considerably
+</I>&gt;<i> more effort to write an rc file than to write a command line.  We are
+</I>&gt;<i> talking about convenience here.
+</I>
+Let's see...
+
+my convenience store way
+ cat uplist | while read u p ; do fm -f all_but_u_p_template -u $u -p $p ; done
+
+current fm provided way for users
+ cat uplist | while read u p ; do
+  figure out how to quote quotes and $ and things with echo/printf/cat &lt;&lt;eof
+  write and debug that
+  generate an rc
+  fm -f rc
+ done
+ rescript and generate a new rc for the next variant batch run of accounts.
+
+Add in the thousands of accounts across a few templates and
+--p is the simpler unix solution.
+
+I also need to go parallel and get rid of the
+ 'can't check mail while another fetchmail to same host is running'.
+
+There is a blurb about fetchmail prompting for a password,
+that might be stdin'able, though not as nice as --password.
+
+I also have poll argument bastardized as noted in a former post :)
+</PRE>
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003278.html">[fetchmail-users] Passwords on command line?
+</A></li>
+	<LI>Next message: <A HREF="003280.html">[fetchmail-users] Passwords on command line?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3279">[ date ]</a>
+              <a href="thread.html#3279">[ thread ]</a>
+              <a href="subject.html#3279">[ subject ]</a>
+              <a href="author.html#3279">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,196 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] [fetchmail-announce] fetchmail 6.3.20-rc3	final release candidate
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2011-May/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20%5Bfetchmail-announce%5D%20fetchmail%206.3.20-rc3%0A%09final%20release%20candidate&In-Reply-To=%3C4DE3A8A4.8070706%40ericsson.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002838.html">
+   <LINK REL="Next"  HREF="002840.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] [fetchmail-announce] fetchmail 6.3.20-rc3	final release candidate</H1>
+    <B>Jonathan Buschmann</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20%5Bfetchmail-announce%5D%20fetchmail%206.3.20-rc3%0A%09final%20release%20candidate&In-Reply-To=%3C4DE3A8A4.8070706%40ericsson.com%3E"
+       TITLE="[fetchmail-users] [fetchmail-announce] fetchmail 6.3.20-rc3	final release candidate">jonathan.buschmann at ericsson.com
+       </A><BR>
+    <I>Mon May 30 16:24:36 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002838.html">[fetchmail-users] fetchmail 6.3.20-rc3 final release candidate
+</A></li>
+        <LI>Next message: <A HREF="002840.html">[fetchmail-users] fetchmail 6.3.20-rc3 final release candidate
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2839">[ date ]</a>
+              <a href="thread.html#2839">[ thread ]</a>
+              <a href="subject.html#2839">[ subject ]</a>
+              <a href="author.html#2839">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Works for me.
+
+At precisely 29/05/2011 20.58, with renowned erudition Matthias Andree 
+eloquently scribed:
+&gt;<i> Greetings,
+</I>&gt;<i>
+</I>&gt;<i> this release candidate reverts ineffective changes and polishes
+</I>&gt;<i> documentation a bit, and should be fit for release.
+</I>&gt;<i>
+</I>&gt;<i> Please test fetchmail 6.3.20-rc3 on your operating system.
+</I>&gt;<i> To do that, please:
+</I>&gt;<i>
+</I>&gt;<i> 1. download and unpack the fetchmail tarball (URLs below)
+</I>&gt;<i> 2. cd to to the unpacked directory
+</I>&gt;<i> 3. ./configure and install as usual
+</I>&gt;<i> 4. run fetchmail with these additional options:
+</I>&gt;<i>     --auth any -vvvd0 --nodetach --nosyslog
+</I>&gt;<i> 5. report success or failure to the list or me personally.
+</I>&gt;<i>
+</I>&gt;<i> PLEASE HELP: If you can offer access to test servers that I can send a
+</I>&gt;<i> short test mail to and then log into to retrieve that test message -
+</I>&gt;<i> particularly Exchange 2007 or Exchange 2010 is desired, but others
+</I>&gt;<i> besides Cyrus IMAP and Dovecot are also welcome - please let me know.
+</I>&gt;<i>
+</I>&gt;<i> PLEASE HELP: fetchmail needs translators for the program strings. Some
+</I>&gt;<i> languages (such as those shown below) are in quite good shape, but
+</I>&gt;<i> others are lacking a bit.  Translation information can be found at
+</I>&gt;<i> &lt;<A HREF="http://translationproject.org/domain/fetchmail.html">http://translationproject.org/domain/fetchmail.html</A>&gt;
+</I>&gt;<i>
+</I>&gt;<i> +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+</I>&gt;<i>
+</I>&gt;<i> DOWNLOAD this beta software from:
+</I>&gt;<i> &lt;<A HREF="http://home.pages.de/~mandree/fetchmail/">http://home.pages.de/~mandree/fetchmail/</A>&gt;
+</I>&gt;<i>
+</I>&gt;<i> The repository can be browsed at and cloned from:
+</I>&gt;<i> &lt;<A HREF="http://gitorious.org/fetchmail/fetchmail">http://gitorious.org/fetchmail/fetchmail</A>&gt;  - the branch is &quot;legacy_63&quot;.
+</I>&gt;<i>
+</I>&gt;<i> Git (the software used to keep the fetchmail source code version
+</I>&gt;<i> controlled) information is at:&lt;<A HREF="http://git-scm.com/">http://git-scm.com/</A>&gt;
+</I>&gt;<i>
+</I>&gt;<i> CHANGES since the previous formal release of fetchmail listed below.
+</I>&gt;<i> Unless otherwise noted, the changes were made by Matthias Andree:
+</I>&gt;<i>
+</I>&gt;<i> (The `lines' figures total .c, .h, .l, and .y files under version control.
+</I>&gt;<i> Abbreviations in parentheses are the maintainers who committed the respective
+</I>&gt;<i> change.  MA = Matthias Andree, ESR = Eric S. Raymond, RF = Rob Funk.)
+</I>&gt;<i>
+</I>&gt;<i> # ADVANCE WARNING OF FEATURES TO BE REMOVED OR CHANGED IN FUTURE VERSIONS
+</I>&gt;<i> (There are no plans to remove features from a 6.3.X release, but they may be
+</I>&gt;<i> removed from a 6.4.0 or newer release.)
+</I>&gt;<i> * The MX and host alias DNS lookups that fetchmail performs in multidrop mode
+</I>&gt;<i>    are based on assumptions that are rarely met in practice, somewhat defective,
+</I>&gt;<i>    deprecated and may be removed from a future fetchmail version.
+</I>&gt;<i>    They have never supported IPv6 (including IPv6-mapped IPv4).
+</I>&gt;<i>    Non-DNS based alias keywords such as &quot;aka&quot; will remain in fetchmail.
+</I>&gt;<i> * The monitor and interface options may be removed from a future fetchmail
+</I>&gt;<i>    version as they are not reasonably portable across operating systems.
+</I>&gt;<i> * POP2 is obsolete, support will be removed from a future fetchmail version.
+</I>&gt;<i> * IMAP2 and IMAP4 (not IMAP4r1) are obsolete, support may be removed from a
+</I>&gt;<i>    future fetchmail version.
+</I>&gt;<i> * RPOP is obsolete, support will be removed from a future fetchmail release.
+</I>&gt;<i> * --sslcertck will become a default setting in a future fetchmail version.
+</I>&gt;<i> * The multidrop To/Cc guessing code along with the fragile duplicate suppressor
+</I>&gt;<i>    is deprecated and may be removed from a future release.
+</I>&gt;<i> * The &quot;envelope Received&quot; option may be removed from a future release, because
+</I>&gt;<i>    the Received header was never meant to be machine-readable, the format varies
+</I>&gt;<i>    widely, and various other differences in behavior make parsing Received an
+</I>&gt;<i>    unreliable undertaking. The envelope option as such will remain though, in
+</I>&gt;<i>    order to support Delivered-To, X-Envelope-To, X-Original-To and similar.
+</I>&gt;<i>    See also&lt;<A HREF="http://home.pages.de/~mandree/mail/multidrop">http://home.pages.de/~mandree/mail/multidrop</A>&gt;.
+</I>&gt;<i> * The --enable-fallback (fall back to MDA if MTA unavailable) will be removed
+</I>&gt;<i>    from a future fetchmail release, because it makes fetchmail's behavior
+</I>&gt;<i>    inconsistent and confusing.
+</I>&gt;<i> * The &quot;protocol auto&quot; default inside fetchmail may be removed from a future
+</I>&gt;<i>    fetchmail release. Explicit configuration of the protocol is recommended.
+</I>&gt;<i> * Kerberos IV support may be removed from a future fetchmail release.
+</I>&gt;<i> * Kerberos 5 support may be removed from a future fetchmail release.
+</I>&gt;<i> * The --principal option may be removed from a future fetchmail release.
+</I>&gt;<i> * SIGHUP wakeup support may be removed from a future fetchmail release and
+</I>&gt;<i>    cause fetchmail to terminate - it was broken for many years.
+</I>&gt;<i> * Support for operating systems that are not sufficiently POSIX compliant may be
+</I>&gt;<i>    removed or operation on such systems may be suboptimal for future releases.
+</I>&gt;<i>    This means that fetchmail may only continue to work on C99 and POSIX 2001
+</I>&gt;<i>    based systems.
+</I>&gt;<i> * The maintainer may migrate fetchmail to C++ with STL or C#, and impose further
+</I>&gt;<i>    requirements (dependencies), such as Boost or other class libraries.
+</I>&gt;<i> * The softbounce option default will change to &quot;false&quot; in the next release.
+</I>&gt;<i> * The --bsmtp - mode of operation may be removed in a future release.
+</I>&gt;<i> * Given that OpenSSL is severely underdocumented, and needs license exceptions,
+</I>&gt;<i>    fetchmail may switch to a different SSL library.
+</I>&gt;<i> * SSLv2 support will be removed from a future fetchmail release. It has been
+</I>&gt;<i>    obsolete for more than a decade.
+</I>&gt;<i>
+</I>&gt;<i> --------------------------------------------------------------------------------
+</I>&gt;<i>
+</I>&gt;<i> fetchmail-6.3.20 (not yet released, 26005 LoC):
+</I>&gt;<i>
+</I>&gt;<i> # SECURITY BUG FIXES
+</I>&gt;<i> * STARTTLS: Fetchmail runs the IMAP STARTTLS or POP3 STLS negotiation with the
+</I>&gt;<i>    set timeout (default five minutes) now. This was reported missing, with
+</I>&gt;<i>    observed fetchmail freezes beyond a week, by Thomas Jarosch.
+</I>&gt;<i>       SSL-wrapped connections were unaffected by this timeout, so users of older
+</I>&gt;<i>    versions can force ssl-wrapped connections -- if supported by the server --
+</I>&gt;<i>    with the --ssl command line or ssl rcfile option.
+</I>&gt;<i>
+</I>&gt;<i> # BUG FIXES
+</I>&gt;<i> * IMAP: Do not search for UNSEEN messages in ranges. Usually, there are very few
+</I>&gt;<i>    new messages and most of the range searches result in nothing. Instead, split
+</I>&gt;<i>    the long response to make the IMAP driver think that there are multiple lines
+</I>&gt;<i>    of response. (Sunil Shetye)
+</I>&gt;<i> * Do not print &quot;skipping message&quot; for old messages even in verbose mode. If
+</I>&gt;<i>    there are too many old messages, the logs just get filled without any real
+</I>&gt;<i>    activity. (Sunil Shetye) (suggested by Yunfan Jiang)
+</I>&gt;<i> * Build: fetchmail now always uses its own MD5 implementation rather than trying
+</I>&gt;<i>    to find a system library with matched header. The library and header variants
+</I>&gt;<i>    found on systems are too diverse, and the code size saving is not worth any
+</I>&gt;<i>    more wasted user or programmer time.
+</I>&gt;<i>
+</I>&gt;<i> # CHANGES
+</I>&gt;<i> * Call strlen() only once when removing CRLF from a line. (Sunil Shetye)
+</I>&gt;<i> * fetchmail sets Internet domain sockets to &quot;keepalive&quot; mode now. Note that
+</I>&gt;<i>    there is no portable way to configure actual timeouts for this mode, and some
+</I>&gt;<i>    systems only support a system-wide timeout setting. fetchmail does not
+</I>&gt;<i>    attempt to tune the time spans of keepalive mode.
+</I>&gt;<i>
+</I>&gt;<i> # TRANSLATION UPDATES
+</I>&gt;<i>    [cs]    Chech (Petr Pisar)
+</I>&gt;<i>    [nl]    Dutch (Erwin Poeze)
+</I>&gt;<i>    [fr]    French (Fr&#233;d&#233;ric Marchal)
+</I>&gt;<i>    [de]    German (Matthias Andree)
+</I>&gt;<i>    [ja]    Japanese (Takeshi Hamasaki)
+</I>&gt;<i>    [pl]    Polish (Jakub Bogusz)
+</I>&gt;<i>    [sk]    Slovak (Marcel Telka)
+</I>&gt;<i>
+</I>
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002838.html">[fetchmail-users] fetchmail 6.3.20-rc3 final release candidate
+</A></li>
+	<LI>Next message: <A HREF="002840.html">[fetchmail-users] fetchmail 6.3.20-rc3 final release candidate
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2839">[ date ]</a>
+              <a href="thread.html#2839">[ thread ]</a>
+              <a href="subject.html#2839">[ subject ]</a>
+              <a href="author.html#2839">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

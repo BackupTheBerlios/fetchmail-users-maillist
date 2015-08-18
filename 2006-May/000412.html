@@ -1,0 +1,117 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Re: [PATCH] Re: fix lost POP3 deletes
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2006-May/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Re%3A%20%5BPATCH%5D%20Re%3A%20fix%20lost%20POP3%20deletes&In-Reply-To=%3C446C4003.8080105%40wowcompany.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000411.html">
+   <LINK REL="Next"  HREF="000413.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Re: [PATCH] Re: fix lost POP3 deletes</H1>
+    <B>Frederic Marchal</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Re%3A%20%5BPATCH%5D%20Re%3A%20fix%20lost%20POP3%20deletes&In-Reply-To=%3C446C4003.8080105%40wowcompany.com%3E"
+       TITLE="[fetchmail-users] Re: [PATCH] Re: fix lost POP3 deletes">frederic.marchal at wowcompany.com
+       </A><BR>
+    <I>Thu May 18 11:36:03 CEST 2006</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000411.html">[fetchmail-users] [PATCH] Re: fix lost POP3 deletes
+</A></li>
+        <LI>Next message: <A HREF="000413.html">[fetchmail-users] Re: fix lost POP3 deletes
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#412">[ date ]</a>
+              <a href="thread.html#412">[ thread ]</a>
+              <a href="subject.html#412">[ subject ]</a>
+              <a href="author.html#412">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Sunil Shetye wrote:
+&gt;<i> Quoting from Matthias Andree's mail on Wed, May 17, 2006:
+</I>&gt;<i>   
+</I>&gt;&gt;<i> Frederic Marchal found a problem with POP3 deletes when --flush and
+</I>&gt;&gt;<i> --keep are both unset and UIDL is used for the connection:
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> If fetchmail sends a DELE command, but the POP3 connection aborts before
+</I>&gt;&gt;<i> the QUIT command can be sent, then fetchmail will skip the messages on
+</I>&gt;&gt;<i> the server and leaving them there forever.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> The patch below is somewhat intrusive but attempts to fix this. It
+</I>&gt;&gt;<i> changes the .fetchids file format, adding &quot; DELETED&quot; to UID lines of
+</I>&gt;&gt;<i> deleted messages when the QUIT hasn't been acknowledged. This should
+</I>&gt;&gt;<i> make fetchmail retry the delete on the next run.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Please test.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Opinions? Let it go in now or wait until 6.4.0?
+</I>&gt;&gt;<i>     
+</I>&gt;<i>
+</I>&gt;<i> A far safer option is to just redownload the mail. I think, there are
+</I>&gt;<i> issues regarding POP servers recycling UIDs, thereby assigning the
+</I>&gt;<i> same UID of a mail which was deleted to a new mail.
+</I>&gt;<i>
+</I>&gt;<i> For such servers, there could also be a race condition on a socket
+</I>&gt;<i> error. For example, if fetchmail sends a &quot;QUIT&quot; which the POP3 server
+</I>&gt;<i> receives and if the POP3 server sends an &quot;+OK&quot; which fetchmail does
+</I>&gt;<i> not receive due to socket error. In this situation, the server has
+</I>&gt;<i> already expunged the mails but fetchmail does not know that. Now, if
+</I>&gt;<i> the server assigns the same UID to a new mail, fetchmail may end up
+</I>&gt;<i> deleting that mail.
+</I>&gt;<i>
+</I>&gt;<i> This patch should now download the mail when used without 'flush'.
+</I>&gt;<i> This will lead to duplicate mails on socket errors.
+</I>&gt;<i>
+</I>&gt;<i> Frederic, your original query was whether 'flush' is safe or not. It
+</I>&gt;<i> is safe to use 'flush' with 'uidl', unless your mailserver is
+</I>&gt;<i> reassigning the same UIDs of mails which have been deleted recently to
+</I>&gt;<i> new mails received after the deletion.
+</I>&gt;<i>   
+</I>Using pop3, the size of the mail is one additional information that can 
+be used to ensure it is not the same message with the same UID. The list 
+command returns it and fetchmail does use it during the communication. I 
+expect it would be much less likely that a UID is recycled on a message 
+with the exact same size.
+
+If a message is using the same UID as a message we know should have been 
+deleted, then list its size and compare it. If it is the same, it can be 
+deleted again. If not, it is a new message and should be downloaded.
+
+Does it make sense ?
+
+Frederic
+
+
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000411.html">[fetchmail-users] [PATCH] Re: fix lost POP3 deletes
+</A></li>
+	<LI>Next message: <A HREF="000413.html">[fetchmail-users] Re: fix lost POP3 deletes
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#412">[ date ]</a>
+              <a href="thread.html#412">[ thread ]</a>
+              <a href="subject.html#412">[ subject ]</a>
+              <a href="author.html#412">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

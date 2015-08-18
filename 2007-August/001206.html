@@ -1,0 +1,176 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Fetchmail incorrect header yahoo
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2007-August/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Fetchmail%20incorrect%20header%20yahoo&In-Reply-To=%3C46D05234.7050102%40corridor9.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001208.html">
+   <LINK REL="Next"  HREF="001209.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Fetchmail incorrect header yahoo</H1>
+    <B>Andrew Buskov</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Fetchmail%20incorrect%20header%20yahoo&In-Reply-To=%3C46D05234.7050102%40corridor9.net%3E"
+       TITLE="[fetchmail-users] Fetchmail incorrect header yahoo">rescue at corridor9.net
+       </A><BR>
+    <I>Sat Aug 25 18:00:52 CEST 2007</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001208.html">[fetchmail-users] Fetchmail incorrect header yahoo
+</A></li>
+        <LI>Next message: <A HREF="001209.html">[fetchmail-users] Fetchmail incorrect header yahoo
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1206">[ date ]</a>
+              <a href="thread.html#1206">[ thread ]</a>
+              <a href="subject.html#1206">[ subject ]</a>
+              <a href="author.html#1206">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>First off... sorry for the double post.
+
+Second... I wait 3 days to join this list and right after joining I find 
+this post:
+<A HREF="http://forums.mozillazine.org/viewtopic.php?t=578578&amp;">http://forums.mozillazine.org/viewtopic.php?t=578578&amp;</A>
+
+Seems this may not be a fetchmail issue afterall. However, seeing as how 
+this may not be fixed anytime soon, is there a way to force fetchmail to 
+deliver the messages even if there isn't any header information?
+
+AB
+_____
+Visit Corridor9
+Blogging about BackpackGearTest.org, Firefighting, Linux, Hiking and more!
+<A HREF="http://www.corridor9.net">http://www.corridor9.net</A>
+__________________________________
+
+Andrew Buskov wrote:
+&gt;<i> I'm have lots of problems and I can't diagnose. Every now and then yahoo 
+</I>&gt;<i> screws with things on their end, so I'm not even sure it's my problem. 
+</I>&gt;<i> Everything was working fine about a week ago till I got a leaderless 
+</I>&gt;<i> email message. I deleted it thinking everything was cool, but after that 
+</I>&gt;<i> fetchmail wouldn't get anything from yahoo. The worst part was that it 
+</I>&gt;<i> would delete the mail from the yahoo server, so I'm not even sure how 
+</I>&gt;<i> many emails I lost.
+</I>&gt;<i> 
+</I>&gt;<i> I'm using FreePOPs 0.0.99, and fetchmail-6.3.8 (using the source to 
+</I>&gt;<i> test, but was using the ubuntu package for feisty).
+</I>&gt;<i> 
+</I>&gt;<i> Here's the fetchmail log from yahoo down:
+</I>&gt;<i> Code:
+</I>&gt;<i> 
+</I>&gt;<i> fetchmail: 6.3.8 querying localhost (protocol POP3) at Sat 25 Aug 2007 
+</I>&gt;<i> 08:08:50 AM CDT: poll started
+</I>&gt;<i> Trying to connect to 127.0.0.1/2000...connected.
+</I>&gt;<i> fetchmail: POP3&lt; +OK FreePOPs/0.0.99 pop3 server ready
+</I>&gt;<i> fetchmail: POP3&gt; CAPA
+</I>&gt;<i> fetchmail: POP3&lt; +OK ANSWER FOLLOW
+</I>&gt;<i> fetchmail: POP3&lt; TOP
+</I>&gt;<i> fetchmail: POP3&lt; USER
+</I>&gt;<i> fetchmail: POP3&lt; UIDL
+</I>&gt;<i> fetchmail: POP3&lt; .
+</I>&gt;<i> fetchmail: localhost: opportunistic upgrade to TLS failed, trying to 
+</I>&gt;<i> continue.
+</I>&gt;<i> fetchmail: POP3&gt; USER <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">rescue9 at yahoo.com</A>
+</I>&gt;<i> fetchmail: POP3&lt; +OK PLEASE ENTER PASSWORD
+</I>&gt;<i> fetchmail: POP3&gt; PASS *
+</I>&gt;<i> fetchmail: POP3&lt; +OK ACCESS ALLOWED
+</I>&gt;<i> fetchmail: selecting or re-polling default folder
+</I>&gt;<i> fetchmail: POP3&gt; STAT
+</I>&gt;<i> fetchmail: POP3&lt; +OK 1 1024
+</I>&gt;<i> 1 message for <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">rescue9 at yahoo.com</A> at localhost (1024 octets).
+</I>&gt;<i> fetchmail: POP3&gt; LIST 1
+</I>&gt;<i> fetchmail: POP3&lt; +OK 1 1024
+</I>&gt;<i> fetchmail: POP3&gt; RETR 1
+</I>&gt;<i> fetchmail: POP3&lt; +OK ANSWER FOLLOW
+</I>&gt;<i> reading message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">rescue9 at yahoo.com</A>@localhost.localdomain:1 of 1 (1024 
+</I>&gt;<i> octets)
+</I>&gt;<i> fetchmail: incorrect header line found while scanning headers
+</I>&gt;<i> fetchmail: line: &lt;!--web36610--&gt;
+</I>&gt;<i> .................................................................................................fetchmail: 
+</I>&gt;<i> message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">rescue9 at yahoo.com</A>@localhost.localdomain:1 was not the
+</I>&gt;<i> expected length (99730 actual != 1024 expected)
+</I>&gt;<i>  flushed
+</I>&gt;<i> fetchmail: POP3&gt; DELE 1
+</I>&gt;<i> fetchmail: POP3&lt; +OK MESSAGE MARKED FOR DELETION
+</I>&gt;<i> fetchmail: POP3&gt; QUIT
+</I>&gt;<i> fetchmail: POP3&lt; +OK BYE BYE, UPDATING
+</I>&gt;<i> fetchmail: 6.3.8 querying localhost (protocol POP3) at Sat 25 Aug 2007 
+</I>&gt;<i> 08:08:53 AM CDT: poll completed
+</I>&gt;<i> fetchmail: not swapping UID lists, no UIDs seen this query
+</I>&gt;<i> fetchmail: Deleting fetchids file.
+</I>&gt;<i> fetchmail: normal termination, status 0
+</I>&gt;<i> fetchmail: Deleting fetchids file.
+</I>&gt;<i> 
+</I>&gt;<i> My /etc/fetchmailrc file reads as such:
+</I>&gt;<i> Code:
+</I>&gt;<i> 
+</I>&gt;<i> ###################### BEGIN <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">rescue at corridor9.net</A>########################
+</I>&gt;<i> 
+</I>&gt;<i> poll pop.gmail.com port 995 proto pop3
+</I>&gt;<i> user &quot;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">mademt at gmail.com</A>&quot; password &quot;YouDon'tNeedThis&quot; ssl is &quot;c9rescue&quot; here
+</I>&gt;<i> 
+</I>&gt;<i> poll pop.gmail.com port 995 proto pop3
+</I>&gt;<i> user &quot;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">madfireman at gmail.com</A>&quot; password &quot;YouDon'tNeedThis&quot; ssl is 
+</I>&gt;<i> &quot;c9rescue&quot; here
+</I>&gt;<i> 
+</I>&gt;<i> poll localhost port 2000 proto pop3
+</I>&gt;<i> user &quot;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">rescue9 at yahoo.com</A>&quot; password &quot;YouDon'tNeedThis&quot; is &quot;c9rescue&quot; here
+</I>&gt;<i> 
+</I>&gt;<i> ###################### END <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">rescue at corridor9.net</A>##########################
+</I>&gt;<i> 
+</I>&gt;<i> A bit redundant, but /var/log/mail.info shows (NOTE: This was with 6.3.6 
+</I>&gt;<i> ubuntu package, not the source as listed above):
+</I>&gt;<i> Code:
+</I>&gt;<i> 
+</I>&gt;<i> Aug 25 07:42:06 sulaco fetchmail[28834]: starting fetchmail 6.3.6 daemon
+</I>&gt;<i> Aug 25 07:42:08 sulaco fetchmail[28834]: 1 message for <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">rescue9 at yahoo.com</A> 
+</I>&gt;<i> at localhost (1024 octets).
+</I>&gt;<i> Aug 25 07:42:09 sulaco fetchmail[28834]: reading message 
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">rescue9 at yahoo.com</A>@localhost.localdomain:1 of 1 (1024 octets) (log 
+</I>&gt;<i> message incomplete)
+</I>&gt;<i> Aug 25 07:42:09 sulaco fetchmail[28834]: incorrect header line found 
+</I>&gt;<i> while scanning headers
+</I>&gt;<i> Aug 25 07:42:09 sulaco fetchmail[28834]:  flushed
+</I>&gt;<i> Aug 25 07:42:10 sulaco fetchmail[28834]: sleeping at Sat 25 Aug 2007 
+</I>&gt;<i> 07:42:10 AM CDT for 300 seconds
+</I>&gt;<i> 
+</I>&gt;<i> Freepops is NOT setup for chroot jail.
+</I>&gt;<i> 
+</I>&gt;<i> I also tried setting sslproto ssl123 in the fetchmailrc file so it 
+</I>&gt;<i> wouldn't try to upgrade to TLS, but this didn't help.
+</I>&gt;<i> 
+</I>&gt;<i> Any help would be greatly appreciated as a majority of my mail goes 
+</I>&gt;<i> through the yahoo server. BTW, fetching gmail servers work fine.
+</I>
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001208.html">[fetchmail-users] Fetchmail incorrect header yahoo
+</A></li>
+	<LI>Next message: <A HREF="001209.html">[fetchmail-users] Fetchmail incorrect header yahoo
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1206">[ date ]</a>
+              <a href="thread.html#1206">[ thread ]</a>
+              <a href="subject.html#1206">[ subject ]</a>
+              <a href="author.html#1206">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

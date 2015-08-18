@@ -1,0 +1,273 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Multi-drop problems
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2006-June/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Multi-drop%20problems&In-Reply-To=%3C1151519113.6006.13.camel%40localhost.localdomain%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000484.html">
+   <LINK REL="Next"  HREF="000482.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Multi-drop problems</H1>
+    <B>Andrew Longland-Meech</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Multi-drop%20problems&In-Reply-To=%3C1151519113.6006.13.camel%40localhost.localdomain%3E"
+       TITLE="[fetchmail-users] Multi-drop problems">andrew at longland-meech.me.uk
+       </A><BR>
+    <I>Wed Jun 28 20:25:13 CEST 2006</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000484.html">[fetchmail-users] Multi-drop problems
+</A></li>
+        <LI>Next message: <A HREF="000482.html">[fetchmail-users] Fetchmail problem - Need Help
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#481">[ date ]</a>
+              <a href="thread.html#481">[ thread ]</a>
+              <a href="subject.html#481">[ subject ]</a>
+              <a href="author.html#481">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Rob,
+
+Thanks for the quick reply...
+
+&gt;<i>
+</I>&gt;&gt;<i> My ISP provides forwarding from my own domain, and each and every email
+</I>&gt;&gt;<i> I receive has a proper Envelope-to; header.
+</I>&gt;<i>
+</I>&gt;<i>Sample header, plus contents of .fetchmailrc?
+</I>&gt;<i>
+</I>Sample header is 
+
+Envelope-to: <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">andrew at longland-meech.me.uk</A>
+Received: from lists.gnu.org ([199.232.76.165])
+	by mx14.global.net.uk with esmtp (Exim 4.42)
+	id 1FvZD5-0004RH-RF
+	for <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">andrew at longland-meech.me.uk</A>; Wed, 28 Jun 2006 13:32:09 +0100
+Received: from localhost ([127.0.0.1] helo=lists.gnu.org)
+	by lists.gnu.org with esmtp (Exim 4.43)
+	id 1FvZD2-00010J-KI
+	for <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">andrew at longland-meech.me.uk</A>; Wed, 28 Jun 2006 08:31:56 -0400
+From: <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">lilypond-user-request at gnu.org</A>
+Subject: lilypond-user Digest, Vol 43, Issue 73
+To: <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">lilypond-user at gnu.org</A>
+Reply-To: <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">lilypond-user at gnu.org</A>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=&quot;us-ascii&quot;
+Content-Transfer-Encoding: 8bit
+X-BeenThere: <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">lilypond-user at gnu.org</A>
+X-Mailman-Version: 2.1.5
+Precedence: list
+List-Id: LilyPond user discussion &lt;lilypond-user.gnu.org&gt;
+List-Unsubscribe: &lt;<A HREF="http://lists.gnu.org/mailman/listinfo/lilypond-user">http://lists.gnu.org/mailman/listinfo/lilypond-user</A>&gt;,
+	&lt;mailto:<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">lilypond-user-request at gnu.org</A>?subject=unsubscribe&gt;
+List-Archive: &lt;<A HREF="http://lists.gnu.org/pipermail/lilypond-user">http://lists.gnu.org/pipermail/lilypond-user</A>&gt;
+List-Post: &lt;mailto:<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">lilypond-user at gnu.org</A>&gt;
+List-Help: &lt;mailto:<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">lilypond-user-request at gnu.org</A>?subject=help&gt;
+List-Subscribe: &lt;<A HREF="http://lists.gnu.org/mailman/listinfo/lilypond-user">http://lists.gnu.org/mailman/listinfo/lilypond-user</A>&gt;,
+	&lt;mailto:<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">lilypond-user-request at gnu.org</A>?subject=subscribe&gt;
+Sender: lilypond-user-bounces+andrew=<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">longland-meech.me.uk at gnu.org</A>
+Errors-To: lilypond-user-bounces+andrew=<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">longland-meech.me.uk at gnu.org</A>
+X-BV-Spam-Score: 1.6 (+)
+X-Envelope-From: lilypond-user-bounces+andrew=<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">longland-meech.me.uk at gnu.org</A>
+
+I did include my .fetchmailrc in my first post (with some obfuscation!)
+
+&gt;&gt;<i> X-Fetchmail-Warning: recipient address (Envelope-to address) didn't
+</I>&gt;&gt;<i> match any local name
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Does anyone have any suggestions?
+</I>&gt;<i>
+</I>&gt;<i>Output of &quot;fetchmail --nosyslog --nodetach -v -v -v&quot; showing this,
+</I>&gt;<i>along with the contents of your SMTP server's mail log for the same
+</I>&gt;<i>mail would be useful.
+</I>&gt;<i>
+</I>
+Here is the output of &quot;fetchmail --nosyslog --nodetach -v -v -v&quot;.
+I've edited for size, but there is nothing different for any of the other
+messages.
+
+
+fetchmail: 6.3.4 querying mail.freenetname.co.uk (protocol POP3) at Wed 28 Jun 2006 18:51:32 BST: poll started
+fetchmail: POP3&lt; +OK freenetname.co.uk POP3 server ready to roll [80.189.80.146]
+fetchmail: POP3&gt; CAPA
+fetchmail: POP3&lt; -ERR non-existant command
+fetchmail: POP3&lt; +OK freenetname.co.uk POP3 server ready to roll [80.189.80.146]
+fetchmail: POP3&gt; USER <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">meechpeach at freenetname.co.uk</A>
+fetchmail: POP3&lt; +OK Password required for <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">meechpeach at freenetname.co.uk</A>
+fetchmail: POP3&gt; PASS *
+fetchmail: POP3&lt; +OK Maildrop locked and loaded
+fetchmail: selecting or re-polling default folder
+fetchmail: POP3&gt; STAT
+fetchmail: POP3&lt; +OK 13 92562
+13 messages for <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">meechpeach at freenetname.co.uk</A> at mail.freenetname.co.uk (92562 octets).
+fetchmail: POP3&gt; LIST 1
+fetchmail: POP3&lt; +OK 1 875
+fetchmail: POP3&gt; RETR 1
+fetchmail: POP3&lt; +OK 875 octets
+reading message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">meechpeach at freenetname.co.uk</A>@mail.freenetname.co.uk:1 of 13 (875 octets)
+About to rewrite From: Andrew Longland-Meech &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">andrew at longland-meech.me.uk</A>&gt;
+Rewritten version is From: Andrew Longland-Meech &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">andrew at longland-meech.me.uk</A>&gt;
+
+About to rewrite To: <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">meechpeach at freenetname.co.uk</A>
+Rewritten version is To: <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">meechpeach at freenetname.co.uk</A>
+
+fetchmail: no local matches, forwarding to schmoo
+fetchmail: SMTP&lt; 220 localhost.localdomain ESMTP Sendmail 8.13.6/8.13.6; Wed, 28 Jun 2006 18:51:33 +0100
+fetchmail: SMTP&gt; EHLO localhost.localdomain
+fetchmail: SMTP&lt; 250-localhost.localdomain Hello localhost.localdomain [127.0.0.1], pleased to meet you
+fetchmail: SMTP&lt; 250-ENHANCEDSTATUSCODES
+fetchmail: SMTP&lt; 250-PIPELINING
+fetchmail: SMTP&lt; 250-8BITMIME
+fetchmail: SMTP&lt; 250-SIZE
+fetchmail: SMTP&lt; 250-DSN
+fetchmail: SMTP&lt; 250-ETRN
+fetchmail: SMTP&lt; 250-DELIVERBY
+fetchmail: SMTP&lt; 250 HELP
+fetchmail: forwarding to localhost
+fetchmail: SMTP&gt; MAIL FROM:&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">andrew at longland-meech.me.uk</A>&gt; BODY=7BIT SIZE=875
+fetchmail: SMTP&lt; 250 2.1.0 &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">andrew at longland-meech.me.uk</A>&gt;... Sender ok
+fetchmail: SMTP&gt; RCPT TO:&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">schmoo at localhost</A>&gt;
+fetchmail: SMTP&lt; 250 2.1.5 &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">schmoo at localhost</A>&gt;... Recipient ok
+fetchmail: SMTP&gt; DATA
+fetchmail: SMTP&lt; 354 Enter mail, end with &quot;.&quot; on a line by itself
+fetchmail: message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">meechpeach at freenetname.co.uk</A>@mail.freenetname.co.uk:1 was not the expected length (903 actual != 875 expected)
+fetchmail: SMTP&gt;. (EOM)
+fetchmail: SMTP&lt; 250 2.0.0 k5SHpX1K005829 Message accepted for delivery
+ not flushed
+fetchmail: POP3&gt; LIST 2
+fetchmail: POP3&lt; +OK 2 863
+fetchmail: POP3&gt; RETR 2
+fetchmail: POP3&lt; +OK 863 octets
+reading message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">meechpeach at freenetname.co.uk</A>@mail.freenetname.co.uk:2 of 13 (863 octets)
+About to rewrite From: Andrew Longland-Meech &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">andrew at longland-meech.me.uk</A>&gt;
+Rewritten version is From: Andrew Longland-Meech &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">andrew at longland-meech.me.uk</A>&gt;
+
+About to rewrite To: <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">matt at longland-meech.me.uk</A>
+Rewritten version is To: <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">matt at longland-meech.me.uk</A>
+
+fetchmail: no local matches, forwarding to schmoo
+fetchmail: forwarding to localhost
+fetchmail: SMTP&gt; MAIL FROM:&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">andrew at longland-meech.me.uk</A>&gt; BODY=7BIT SIZE=863
+fetchmail: SMTP&lt; 250 2.1.0 &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">andrew at longland-meech.me.uk</A>&gt;... Sender ok
+fetchmail: SMTP&gt; RCPT TO:&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">schmoo at localhost</A>&gt;
+fetchmail: SMTP&lt; 250 2.1.5 &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">schmoo at localhost</A>&gt;... Recipient ok
+fetchmail: SMTP&gt; DATA
+fetchmail: SMTP&lt; 354 Enter mail, end with &quot;.&quot; on a line by itself
+fetchmail: message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">meechpeach at freenetname.co.uk</A>@mail.freenetname.co.uk:2 was not the expected length (891 actual != 863 expected)
+fetchmail: SMTP&gt;. (EOM)
+fetchmail: SMTP&lt; 250 2.0.0 k5SHpX1L005829 Message accepted for delivery
+ not flushed
+
+&lt;SNIP&gt;---------------------------------------------------------------
+
+fetchmail: POP3&gt; LIST 9
+fetchmail: POP3&lt; +OK 9 19866
+fetchmail: POP3&gt; RETR 9
+fetchmail: POP3&lt; +OK 19866 octets
+reading message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">meechpeach at freenetname.co.uk</A>@mail.freenetname.co.uk:9 of 13 (19866 octets)
+About to rewrite From: <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">lilypond-user-request at gnu.org</A>
+Rewritten version is From: <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">lilypond-user-request at gnu.org</A>
+
+About to rewrite To: <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">lilypond-user at gnu.org</A>
+Rewritten version is To: <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">lilypond-user at gnu.org</A>
+
+About to rewrite Reply-To: <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">lilypond-user at gnu.org</A>
+Rewritten version is Reply-To: <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">lilypond-user at gnu.org</A>
+
+About to rewrite Sender: lilypond-user-bounces+andrew=<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">longland-meech.me.uk at gnu.org</A>
+Rewritten version is Sender: lilypond-user-bounces+andrew=<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">longland-meech.me.uk at gnu.org</A>
+
+fetchmail: no local matches, forwarding to schmoo
+fetchmail: forwarding to localhost
+fetchmail: SMTP&gt; MAIL FROM:&lt;lilypond-user-bounces+andrew=<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">longland-meech.me.uk at gnu.org</A>&gt; BODY=8BITMIME SIZE=19866
+fetchmail: SMTP&lt; 250 2.1.0 &lt;lilypond-user-bounces+andrew=<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">longland-meech.me.uk at gnu.org</A>&gt;... Sender ok
+fetchmail: SMTP&gt; RCPT TO:&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">schmoo at localhost</A>&gt;
+fetchmail: SMTP&lt; 250 2.1.5 &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">schmoo at localhost</A>&gt;... Recipient ok
+fetchmail: SMTP&gt; DATA
+fetchmail: SMTP&lt; 354 Enter mail, end with &quot;.&quot; on a line by itself
+..................fetchmail: message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">meechpeach at freenetname.co.uk</A>@mail.freenetname.co.uk:9 was not the expected length (20615 actual != 19866 expected)
+fetchmail: SMTP&gt;. (EOM)
+fetchmail: SMTP&lt; 250 2.0.0 k5SHpX1S005829 Message accepted for delivery
+ not flushed
+
+&lt;SNIP&gt;---------------------------------------------------------------
+
+fetchmail: POP3&gt; QUIT
+fetchmail: POP3&lt; +OK freenetname.co.uk POP3 server signing off
+fetchmail: SMTP&gt; QUIT
+fetchmail: SMTP&lt; 221 2.0.0 localhost.localdomain closing connection
+fetchmail: 6.3.4 querying mail.freenetname.co.uk (protocol POP3) at Wed 28 Jun 2006 18:51:57 BST: poll completed
+fetchmail: not swapping UID lists, no UIDs seen this query
+fetchmail: Deleting fetchids file.
+fetchmail: normal termination, status 0
+fetchmail: Deleting fetchids file.
+
+Also a copy of /var/spool/maillog. I don't know if this is what you wanted.
+
+Jun 28 18:51:35 localhost sendmail[5829]: k5SHpX1K005829: from=&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">andrew at longland-meech.me.uk</A>&gt;, size=1156, class=0, nrcpts=1, msgid=&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">1151354705.2459.10.camel at localhost.localdomain</A>&gt;, bodytype=7BIT, proto=ESMTP, daemon=MTA, relay=localhost.localdomain [127.0.0.1]
+Jun 28 18:51:35 localhost sendmail[5830]: k5SHpX1K005829: to=&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">schmoo at localhost</A>&gt;, delay=00:00:02, xdelay=00:00:00, mailer=local, pri=31356, dsn=2.0.0, stat=Sent
+Jun 28 18:51:37 localhost sendmail[5829]: k5SHpX1L005829: from=&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">andrew at longland-meech.me.uk</A>&gt;, size=1141, class=0, nrcpts=1, msgid=&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">1151354739.2459.14.camel at localhost.localdomain</A>&gt;, bodytype=7BIT, proto=ESMTP, daemon=MTA, relay=localhost.localdomain [127.0.0.1]
+Jun 28 18:51:37 localhost sendmail[5832]: k5SHpX1L005829: to=&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">schmoo at localhost</A>&gt;, delay=00:00:02, xdelay=00:00:00, mailer=local, pri=31341, dsn=2.0.0, stat=Sent
+Jun 28 18:51:37 localhost sendmail[5829]: k5SHpX1M005829: from=&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">andrew at longland-meech.me.uk</A>&gt;, size=2047, class=0, nrcpts=1, msgid=&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">1151354758.2459.16.camel at localhost.localdomain</A>&gt;, bodytype=7BIT, proto=ESMTP, daemon=MTA, relay=localhost.localdomain [127.0.0.1]
+Jun 28 18:51:38 localhost sendmail[5834]: k5SHpX1M005829: to=&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">schmoo at localhost</A>&gt;, delay=00:00:01, xdelay=00:00:01, mailer=local, pri=32243, dsn=2.0.0, stat=Sent
+Jun 28 18:51:39 localhost sendmail[5829]: k5SHpX1N005829: from=&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">andrew at longland-meech.me.uk</A>&gt;, size=2047, class=0, nrcpts=1, msgid=&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">1151354767.2459.18.camel at localhost.localdomain</A>&gt;, bodytype=7BIT, proto=ESMTP, daemon=MTA, relay=localhost.localdomain [127.0.0.1]
+Jun 28 18:51:39 localhost sendmail[5836]: k5SHpX1N005829: to=&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">schmoo at localhost</A>&gt;, delay=00:00:01, xdelay=00:00:00, mailer=local, pri=32243, dsn=2.0.0, stat=Sent
+Jun 28 18:51:41 localhost sendmail[5829]: k5SHpX1O005829: from=&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">andrew at longland-meech.me.uk</A>&gt;, size=2047, class=0, nrcpts=1, msgid=&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">1151354796.2459.20.camel at localhost.localdomain</A>&gt;, bodytype=7BIT, proto=ESMTP, daemon=MTA, relay=localhost.localdomain [127.0.0.1]
+Jun 28 18:51:41 localhost sendmail[5838]: k5SHpX1O005829: to=&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">schmoo at localhost</A>&gt;, delay=00:00:02, xdelay=00:00:00, mailer=local, pri=32243, dsn=2.0.0, stat=Sent
+Jun 28 18:51:42 localhost sendmail[5829]: k5SHpX1P005829: from=&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">andrew at longland-meech.me.uk</A>&gt;, size=1151, class=0, nrcpts=1, msgid=&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">1151354727.2459.12.camel at localhost.localdomain</A>&gt;, bodytype=7BIT, proto=ESMTP, daemon=MTA, relay=localhost.localdomain [127.0.0.1]
+Jun 28 18:51:42 localhost sendmail[5841]: k5SHpX1P005829: to=&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">schmoo at localhost</A>&gt;, delay=00:00:01, xdelay=00:00:00, mailer=local, pri=31351, dsn=2.0.0, stat=Sent
+Jun 28 18:51:43 localhost sendmail[5829]: k5SHpX1Q005829: from=&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">andrew at longland-meech.me.uk</A>&gt;, size=2035, class=0, nrcpts=1, msgid=&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">1151354837.2459.24.camel at localhost.localdomain</A>&gt;, bodytype=7BIT, proto=ESMTP, daemon=MTA, relay=localhost.localdomain [127.0.0.1]
+Jun 28 18:51:43 localhost sendmail[5843]: k5SHpX1Q005829: to=&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">schmoo at localhost</A>&gt;, delay=00:00:00, xdelay=00:00:00, mailer=local, pri=32231, dsn=2.0.0, stat=Sent
+Jun 28 18:51:46 localhost sendmail[5829]: k5SHpX1R005829: from=&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">andrew at longland-meech.me.uk</A>&gt;, size=2047, class=0, nrcpts=1, msgid=&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">1151354854.2459.26.camel at localhost.localdomain</A>&gt;, bodytype=7BIT, proto=ESMTP, daemon=MTA, relay=localhost.localdomain [127.0.0.1]
+Jun 28 18:51:46 localhost sendmail[5845]: k5SHpX1R005829: to=&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">schmoo at localhost</A>&gt;, delay=00:00:01, xdelay=00:00:00, mailer=local, pri=32243, dsn=2.0.0, stat=Sent
+Jun 28 18:51:51 localhost sendmail[5829]: k5SHpX1S005829: from=&lt;lilypond-user-bounces+andrew=<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">longland-meech.me.uk at gnu.org</A>&gt;, size=20146, class=-30, nrcpts=1, msgid=&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">200606281751.k5SHpX1S005829 at localhost.localdomain</A>&gt;, bodytype=8BITMIME, proto=ESMTP, daemon=MTA, relay=localhost.localdomain [127.0.0.1]
+Jun 28 18:51:51 localhost sendmail[5847]: k5SHpX1S005829: to=&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">schmoo at localhost</A>&gt;, delay=00:00:02, xdelay=00:00:00, mailer=local, pri=104440, dsn=2.0.0, stat=Sent
+Jun 28 18:51:53 localhost sendmail[5829]: k5SHpX1T005829: from=&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">support at themutual.net</A>&gt;, size=19276, class=0, nrcpts=1, msgid=&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">20060628152751.21600.qmail at keila</A>&gt;, proto=ESMTP, daemon=MTA, relay=localhost.localdomain [127.0.0.1]
+Jun 28 18:51:53 localhost sendmail[5849]: k5SHpX1T005829: to=&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">schmoo at localhost</A>&gt;, delay=00:00:02, xdelay=00:00:00, mailer=local, pri=49476, dsn=2.0.0, stat=Sent
+Jun 28 18:51:54 localhost sendmail[5829]: k5SHpX1U005829: from=&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">support at themutual.net</A>&gt;, size=20838, class=0, nrcpts=1, msgid=&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">20060628160510.12010.qmail at keila</A>&gt;, proto=ESMTP, daemon=MTA, relay=localhost.localdomain [127.0.0.1]
+Jun 28 18:51:54 localhost sendmail[5851]: k5SHpX1U005829: to=&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">schmoo at localhost</A>&gt;, delay=00:00:01, xdelay=00:00:00, mailer=local, pri=51038, dsn=2.0.0, stat=Sent
+Jun 28 18:51:55 localhost sendmail[5829]: k5SHpX1V005829: from=&lt;lilypond-user-bounces+andrew=<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">longland-meech.me.uk at gnu.org</A>&gt;, size=9176, class=-30, nrcpts=1, msgid=&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">200606281751.k5SHpX1V005829 at localhost.localdomain</A>&gt;, bodytype=7BIT, proto=ESMTP, daemon=MTA, relay=localhost.localdomain [127.0.0.1]
+Jun 28 18:51:55 localhost sendmail[5853]: k5SHpX1V005829: to=&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">schmoo at localhost</A>&gt;, delay=00:00:01, xdelay=00:00:00, mailer=local, pri=93470, dsn=2.0.0, stat=Sent
+Jun 28 18:51:57 localhost sendmail[5829]: k5SHpX1W005829: from=&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">support at themutual.net</A>&gt;, size=13098, class=0, nrcpts=1, msgid=&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">20060628161055.8573.qmail at keila</A>&gt;, proto=ESMTP, daemon=MTA, relay=localhost.localdomain [127.0.0.1]
+Jun 28 18:51:57 localhost sendmail[5856]: k5SHpX1W005829: to=&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">schmoo at localhost</A>&gt;, delay=00:00:02, xdelay=00:00:00, mailer=local, pri=43298, dsn=2.0.0, stat=Sent
+
+Sorry for such a long post. I hope this helps with diagnosing the problem.
+Thanks in advance for any help.
+
+Regards,
+
+Andrew
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000484.html">[fetchmail-users] Multi-drop problems
+</A></li>
+	<LI>Next message: <A HREF="000482.html">[fetchmail-users] Fetchmail problem - Need Help
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#481">[ date ]</a>
+              <a href="thread.html#481">[ thread ]</a>
+              <a href="subject.html#481">[ subject ]</a>
+              <a href="author.html#481">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,121 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] how to set up fetchmail for inbox.com POP3
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2012-June/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20how%20to%20set%20up%20fetchmail%20for%20inbox.com%20POP3&In-Reply-To=%3C4FE285E9.80906%40gmx.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003173.html">
+   <LINK REL="Next"  HREF="003175.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] how to set up fetchmail for inbox.com POP3</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20how%20to%20set%20up%20fetchmail%20for%20inbox.com%20POP3&In-Reply-To=%3C4FE285E9.80906%40gmx.de%3E"
+       TITLE="[fetchmail-users] how to set up fetchmail for inbox.com POP3">matthias.andree at gmx.de
+       </A><BR>
+    <I>Thu Jun 21 04:24:41 CEST 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003173.html">[fetchmail-users] how to set up fetchmail for inbox.com POP3
+</A></li>
+        <LI>Next message: <A HREF="003175.html">[fetchmail-users] how to set up fetchmail for inbox.com POP3
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3174">[ date ]</a>
+              <a href="thread.html#3174">[ thread ]</a>
+              <a href="subject.html#3174">[ subject ]</a>
+              <a href="author.html#3174">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Am 21.06.2012 00:27, schrieb Globe Trotter:
+&gt;&gt;<i> c_rehash must(!!!) match your version of OpenSSL, 0.9.X vs.
+</I>&gt;&gt;<i> 1.0.0, else
+</I>&gt;&gt;<i> it will not work.
+</I>&gt;<i> 
+</I>&gt;<i> Thanks, Matthias! My openssl and the c_rehash are both from 1.0.0j. 
+</I>&gt;<i> 
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Converting the .p7b to .pem as described in my other mail
+</I>&gt;&gt;<i> and then
+</I>&gt;&gt;<i> passing the .pem file as sslcertfile should work (at least
+</I>&gt;&gt;<i> it works with
+</I>&gt;&gt;<i> gnutls-cli -p 995 --x509cafile RapidSSL.pem my.inbox.com).
+</I>&gt;<i> 
+</I>&gt;<i> It appears to work for me here:
+</I>&gt;<i> 
+</I>&gt;&gt;<i> You will not need sslcertpath then.
+</I>&gt;<i> 
+</I>&gt;<i> I took it out. And put 
+</I>&gt;<i> sslcertfile &quot;/home/doejohn/ssl/certs/RapidSSL.pem&quot; in its place.
+</I>&gt;<i> But the problem with fetchmail does not appear to have gone away:
+</I>&gt;<i> 
+</I>&gt;<i> fetchmail: --check mode enabled, not fetching mail
+</I>&gt;<i> fetchmail: 6.3.21 querying <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">John.Doe at my.inbox.com</A> (protocol POP3) at Wed 20 Jun 2012 05:25:44 PM CDT: poll started
+</I>&gt;<i> Trying to connect to 64.135.83.10/995...connected.
+</I>&gt;<i> fetchmail: Certificate chain, from root to peer, starting at depth 2:
+</I>&gt;<i> fetchmail: Issuer Organization: Equifax
+</I>&gt;<i> fetchmail: Unknown Issuer CommonName
+</I>&gt;<i> fetchmail: Subject CommonName: GeoTrust Global CA
+</I>&gt;<i> fetchmail: Server certificate verification error: unable to get issuer certificate
+</I>&gt;<i> fetchmail: unknown issuer (first 256 characters): /C=US/O=Equifax/OU=Equifax Secure Certificate Authority
+</I>&gt;<i> fetchmail: This error usually happens when the server provides an incomplete certificate chain, which is nothing fetchmail could do anything about.  For details, please see the README.SSL-SERVER document that comes with fetchmail.
+</I>&gt;<i> 140566813271904:error:14090086:SSL routines:SSL3_GET_SERVER_CERTIFICATE:certificate verify failed:s3_clnt.c:1063:
+</I>&gt;<i> fetchmail: SSL connection failed.
+</I>&gt;<i> fetchmail: socket error while fetching from <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">John.Doe at inbox.com</A>@<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">John.Doe at my.inbox.com</A>
+</I>&gt;<i> fetchmail: 6.3.21 querying <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">John.Doe at my.inbox.com</A> (protocol POP3) at Wed 20 Jun 2012 05:25:44 PM CDT: poll completed
+</I>&gt;<i> Merged UID list from <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">John.Doe at my.inbox.com</A>: &lt;empty&gt;
+</I>
+I've seen that you've solved the problem after grarpamp's hint; why
+gnutls-cli accepts the certificates and openssl doesn't, is currently
+beyond me.
+
+Possibly prefixing
+
+	env FETCHMAIL_INCLUDE_DEFAULT_X509_CA_CERTS=1
+
+to fetchmail's command line might help, providing that your operating
+system comes with the Equifax cert' preinstalled by some means of
+ca-certificates or similar package.
+
+
+If it helps, then stuff RapidSSL.pem into your regular /etc/ssl/certs
+(or /usr/ssl/certs) - mode 0444 would seem fine, world readable - and
+run c_rehash /etc/ssl/certs (or /usr/ssl/certs).  Be sure to have
+RapidSSL's p7b certificate downloaded through a secure link if you do that.
+
+
+Exactly why fetchmail is pickier than gnutls-cli is currently beyond me,
+and I'm not going to speculate. As fetchmail's behaviour is on the safe
+side, it is not a reason for concern.
+</PRE>
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003173.html">[fetchmail-users] how to set up fetchmail for inbox.com POP3
+</A></li>
+	<LI>Next message: <A HREF="003175.html">[fetchmail-users] how to set up fetchmail for inbox.com POP3
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3174">[ date ]</a>
+              <a href="thread.html#3174">[ thread ]</a>
+              <a href="subject.html#3174">[ subject ]</a>
+              <a href="author.html#3174">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

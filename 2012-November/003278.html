@@ -1,0 +1,97 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Passwords on command line?
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2012-November/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Passwords%20on%20command%20line%3F&In-Reply-To=%3C50998252.8010708%40gmx.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003276.html">
+   <LINK REL="Next"  HREF="003279.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Passwords on command line?</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Passwords%20on%20command%20line%3F&In-Reply-To=%3C50998252.8010708%40gmx.de%3E"
+       TITLE="[fetchmail-users] Passwords on command line?">matthias.andree at gmx.de
+       </A><BR>
+    <I>Tue Nov  6 22:34:10 CET 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003276.html">[fetchmail-users] Passwords on command line?
+</A></li>
+        <LI>Next message: <A HREF="003279.html">[fetchmail-users] Passwords on command line?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3278">[ date ]</a>
+              <a href="thread.html#3278">[ thread ]</a>
+              <a href="subject.html#3278">[ subject ]</a>
+              <a href="author.html#3278">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Am 06.11.2012 21:18, schrieb grarpamp:
+
+&gt;<i> Yes, we can do this in our sleep. Yet the Unix philosophy is also to get
+</I>&gt;<i> the most win with the least effort. And instead of me, and every other
+</I>&gt;<i> admin and user on this list who has ever wanted (or will want) '--password',
+</I>&gt;<i> having to waste time coding around it... the most basic of '--password'
+</I>&gt;<i> implementations would be the better one-time investment for all, no
+</I>&gt;<i> middleware required.
+</I>
+And the effort is where an additional option comes costly.
+
+There is more than half a dozen places where a new option needs to be
+implemented, tested, documented, and thereabouts, in fetchmail's code
+and documentation, let alone discussing this :) -- unlike your earlier
+suggestion (talking in many months now) of &quot;multiple server certificates
+for SSL/TLS&quot;.
+
+&gt;&gt;<i> Note that you can specify password on command line indirectly even now in this way:
+</I>&gt;&gt;<i> echo 'poll &lt;mailserver&gt; user &lt;username&gt; pass &lt;password&gt;' | fetchmail -f -
+</I>&gt;<i> 
+</I>&gt;<i> Instead of providing a missing item and/or being a per item override to the rc,
+</I>&gt;<i> -f *is* the exclusive rc. Writing the per invocation rc via pipe isn't
+</I>&gt;<i> really ideal either.
+</I>
+Why not?  Because it deviates from your favourite?
+
+&gt;&gt;<i> As echo is a shell builtin, the password should not appear in ps listings.
+</I>&gt;<i> 
+</I>&gt;<i> It's also a binary which, with some platforms or shells, may work in a
+</I>&gt;<i> preferred or required manner to the builtin.
+</I>
+True enough.  I still do not buy the argument that it is considerably
+more effort to write an rc file than to write a command line.  We are
+talking about convenience here.
+
+/MA
+</PRE>
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003276.html">[fetchmail-users] Passwords on command line?
+</A></li>
+	<LI>Next message: <A HREF="003279.html">[fetchmail-users] Passwords on command line?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3278">[ date ]</a>
+              <a href="thread.html#3278">[ thread ]</a>
+              <a href="subject.html#3278">[ subject ]</a>
+              <a href="author.html#3278">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

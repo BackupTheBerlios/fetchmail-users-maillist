@@ -1,0 +1,178 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] user help needed: please test fetchmail 6.2.6.alpha1 snapshot
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2005-July/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20user%20help%20needed%3A%20please%20test%20fetchmail%206.2.6.alpha1%20snapshot&In-Reply-To=%3Cm3hdfdnzzi.fsf%40merlin.emma.line.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   
+   <LINK REL="Next"  HREF="000025.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] user help needed: please test fetchmail 6.2.6.alpha1 snapshot</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20user%20help%20needed%3A%20please%20test%20fetchmail%206.2.6.alpha1%20snapshot&In-Reply-To=%3Cm3hdfdnzzi.fsf%40merlin.emma.line.org%3E"
+       TITLE="[fetchmail-users] user help needed: please test fetchmail 6.2.6.alpha1 snapshot">matthias.andree at gmx.de
+       </A><BR>
+    <I>Sat Jul  2 14:39:45 CEST 2005</I>
+    <P><UL>
+        
+        <LI>Next message: <A HREF="000025.html">[fetchmail-users] fetchmail-6.2.6.alpha2 released - please test
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#24">[ date ]</a>
+              <a href="thread.html#24">[ thread ]</a>
+              <a href="subject.html#24">[ subject ]</a>
+              <a href="author.html#24">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Greetings,
+
+a long time ago, Eric S. Raymond released fetchmail 6.2.5. It was
+decided that the code was handed to new maintainers, but the handover
+didn't really improve the maintenance situation - it turned out that the
+new maintainers had only a little more time than ESR.
+
+We have tried to move development to BerliOS to make the development
+process more visible, but figured that BerliOS's SVN was instable at the
+time, so we moved the repository again - the new one is stable, and my
+thanks to Graham Wilson for arranging for the new repo.
+
+At any rate, some work has taken place though in spite of all
+difficulties; over two dozen bugfixes were made, and several other
+changes. Details below.
+
+We know many users appreciate fetchnews, and now it's your chance to
+help the fetchmail project, by testing the current code, so we can know
+the next release will be good.
+
+I have rolled a snapshot of the current SVN repository contents into a
+tarball, with the preliminary version tag 6.2.6.alpha1. Download from:
+&lt;<A HREF="http://home.pages.de/~mandree/fetchmail/fetchmail-6.2.6.alpha1.tar.bz2">http://home.pages.de/~mandree/fetchmail/fetchmail-6.2.6.alpha1.tar.bz2</A>&gt;.
+
+Users who can afford to run a test version of the code, or are annoyed
+by a particular 6.2.5 bug, are asked to test the code and see if their
+favorite 6.2.5 bugs are really gone from the alpha version, or if new
+bugs have appeared, and report problems, important bugs that remain AND
+are easy to fix to the lists. It is important that you drop a line even
+if you found that the alpha version worked well, otherwise we don't know
+that the alpha version has been tested and found to be no worse than
+6.2.5 - which is all we're after.
+
+Note that the current alpha is mostly untested, so run this on test
+machines first before putting into production. This comes, as usual,
+without any guarantees.
+
+User feedback on the alpha or upcoming beta versions is an absolute
+requirement before we can move forward to a new stable release.
+
+The changes since 6.2.5 are as follows (taken from the NEWS file):
+----------------------------------------------------------------------------
+Developer who merged or committed the patch in parentheses.
+
+* Sunil Shetye's fix to force fetchsizelimit to 1 for APOP and RPOP.
+* PopDel.py removed from contrib at author's request.
+* Matthias Andree's fix for Sunil Shetye's fetch-split patch
+* Include James Stone's moldremover.py script.
+* Enable .fetchmailrc permissions checking under Cygwin.
+* Nalin Dahyabai's fix for POP3 strong authentication.
+* Revised Nalin Dahyabai's fix for POP3 strong authentication (Matthias
+  Andree, the original version would go into an infinite loop when CAPA
+  failed; found by David Greaves.)
+* HOME_ETC patch for PLD Linux.
+* Sunil Shetye's fix for SSL configuration.
+* Simon Josefsson's patch for GSS library support.
+* Added Andrey Lelikov's recupe for Hotmail and Lycos Webmail.
+* Remove blank between MAIL FROM: and &lt;, which causes Cyrus to complain.
+  Patch by Phil Endecott. (Rob Funk)
+* Switched to automake. (Matthias Andree)
+* Build fixes for HESIOD and resolv.h trouble on FreeBSD. (Matthias Andree)
+* Fabrice Bellet's fix for Red Hat bug #113492, fetchmail hangs in IMAP
+  mode after EXPUNGE when the server (Dovecot 0.99.10) doesn't update
+  RECENT and EXISTS counts. (Matthias Andree)
+* Holger Mauermann's bounce patch, to use a NULL envelope from, not
+  write a Return-Path header (both to meet RFC-2821), changed From,
+  added Subject header, rewording the human readable part. (Matthias Andree)
+* Merge Sunil Shetye's time.h handling fix. (Matthias Andree)
+* Merge Gerd von Egidy's patch to avoid a segfault in multidrop/received
+  mode when the Received: headers are malformatted. (Matthias Andree)
+* MIME-encode bodies and Subject headers of warning messages (Matthias
+  Andree), limiting the header to 7 bits.
+* Normalize most locale codesets to IANA codesets, based on
+  norm_charmap.c by Markus Kuhn. (Matthias Andree)
+* Remove sleep(3) after POP3 login, patch by Brian Candler. (Matthias
+  Andree)
+* Fix option parsing bug that trashes the showdots setting when more
+  than one server is configured. Patch by Brian Candler. (Matthias
+  Andree)
+* Honor sslcertpath setting even if sslcertck is unset. Patch by Brian
+  Candler. (Matthias Andree)
+* SSL certificate checking fixes, don't display same error message twice
+  in succession, make sure that Common Name and fingerprint checking are
+  only done once. Print all validation warnings/errors even if not in
+  verbose mode. Patch by Brian Candler. (Matthias Andree)
+* Import Bjorn Reese and Daniel Stenberg's MIT-licensed Trio 1.10 from
+  <A HREF="http://daniel.haxx.se/projects/trio/">http://daniel.haxx.se/projects/trio/</A> for systems that do not support
+  snprintf or vsnprintf. (Matthias Andree)
+* Clean up the horrible #ifdef HAVE_[V]SNPRINTF that made the code
+  unreadable. Use Trio where [v]snprintf is/are missing. (Matthias Andree)
+* Default to Linux 2.2 /proc/net/dev format, and use uname(2) to determine the
+  kernel version instead of calling uname(1). Thanks to Paul Slootman.
+  (Matthias Andree)
+* Be more careful when swapping UID lists or writing the .fetchids file,
+  requested by Manfred Weihs. (Matthias Andree)
+* Print a warning if multidrop configuration is attempted without
+  envelope option. (Matthias Andree)
+* Split information on fetchmail versions before 6.0.0 to a separate
+  OLDNEWS file. (Matthias Andree)
+* Merge SuSE patches: (sent by Stanislav Brabec, merged by Matthias Andree)
+  - fetchmail-6.2.5-declaration.patch (double sigint_handler decl/getpass.c)
+  - fetchmail-6.2.5-implicit-declaration.patch (missing #include)
+  - fetchmail-6.2.5-random-result.patch (uninitialized variable/opie.c)
+* Revised some bogus assertions about POP3 LAST and UIDL use in the
+  manual page. UIDL isn't flaky as the man page suggested, but a
+  reliability feature. In fact, IMAP4 code is flaky in that it relies on
+  the upstream seen flags. (Matthias Andree)
+* Miloslav Trmac's patch for fetchmailconf to support string-type values
+  of the &quot;port&quot; variable, avoiding &quot;port None&quot; corruption in .fetchmailrc.
+  To fix Redhat Bug #55623 (Matthias Andree)
+* de.po fixes from Nico Golde (Matthias Andree)
+* es.po fixes from Jesus Roncero, Debian bug #286044 (Matthias Andree)
+* sink.c fix from Cesar Eduardo Barros, to avoid double @ in address
+  when username contains an @ and the envelope sender is null, Debian
+  bug #272289 (Matthias Andree)
+----------------------------------------------------------------------------
+
+-- 
+Matthias Andree
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	
+	<LI>Next message: <A HREF="000025.html">[fetchmail-users] fetchmail-6.2.6.alpha2 released - please test
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#24">[ date ]</a>
+              <a href="thread.html#24">[ thread ]</a>
+              <a href="subject.html#24">[ subject ]</a>
+              <a href="author.html#24">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

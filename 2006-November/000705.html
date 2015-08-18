@@ -1,0 +1,106 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] [SOLVED] fetchmail can't talk to dovecot
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2006-November/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20%5BSOLVED%5D%20fetchmail%20can%27t%20talk%20to%20dovecot&In-Reply-To=%3C20061115185235.GB4582%40mclink.it%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000703.html">
+   <LINK REL="Next"  HREF="000706.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] [SOLVED] fetchmail can't talk to dovecot</H1>
+    <B>M. Fioretti</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20%5BSOLVED%5D%20fetchmail%20can%27t%20talk%20to%20dovecot&In-Reply-To=%3C20061115185235.GB4582%40mclink.it%3E"
+       TITLE="[fetchmail-users] [SOLVED] fetchmail can't talk to dovecot">mfioretti at mclink.it
+       </A><BR>
+    <I>Wed Nov 15 19:52:35 CET 2006</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000703.html">[fetchmail-users] fetchmail authorization and socket errors
+</A></li>
+        <LI>Next message: <A HREF="000706.html">[fetchmail-users] [SOLVED] fetchmail can't talk to dovecot
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#705">[ date ]</a>
+              <a href="thread.html#705">[ thread ]</a>
+              <a href="subject.html#705">[ subject ]</a>
+              <a href="author.html#705">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>(sorry everybody for the very late answer, comments below)
+
+The problem was that I *could* talk to a dovecot server via webmail
+but not with fetchmail. no matter which options I passed to it, it
+always failed as &quot;unknown user or wrong password), even if the
+password and user name used by procmail were the SAME I used via
+webmail.
+
+On Sun, Oct 01, 2006 23:23:05 PM +0200, Michelle Konzack
+(<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">linux4michelle at freenet.de</A>) wrote:
+
+&gt;<i> Am 2006-09-30 17:48:49, schrieb M. Fioretti:
+</I>&gt;<i> 
+</I>&gt;<i> &gt; Being too clever for my own good, I have the home computer in such
+</I>&gt;<i> &gt; a state, thanks to a lot of experiments, that I cannot install
+</I>&gt;<i> &gt; other clients without a lot of work (my fault, yes). However, I
+</I>&gt;<i> &gt; have the
+</I>&gt;<i> 
+</I>&gt;<i> ???
+</I>&gt;<i> 
+</I>&gt;<i> I see you are using mutt 1.5.9 so why not try
+</I>&gt;<i> 
+</I>&gt;<i>     <A HREF="imaps://youraccount@server.tld">imaps://youraccount@server.tld</A>
+</I>
+(me blushing...) because I was sure, in that moment, mutt couldn't do
+it.  Please don't ask why I thought so, let's just say I wasn't
+sleeping well in those weeks...
+
+Anyway: after a few trials with mutt, which worked just fine, I had an
+inspiration (for lack of a better word): I opened fetchmailrc,
+canceled ALL the fetchmail &quot;recipe&quot; for downloading the messages and
+rewrote it from scratch, just as it was before. After that, believe it
+or not, everything worked.
+
+The only way I can explain this is that some weird, non printing
+character got mixed in the password and /or username strings someway.
+
+I hope this helps others to avoid the same waste of time I had :-(
+
+Ciao and thanks for your support,
+					Marco Fioretti
+
+-- 
+The best way to make everybody love Free Standards and Free Software:
+<A HREF="http://digifreedom.net/node/73">http://digifreedom.net/node/73</A>
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000703.html">[fetchmail-users] fetchmail authorization and socket errors
+</A></li>
+	<LI>Next message: <A HREF="000706.html">[fetchmail-users] [SOLVED] fetchmail can't talk to dovecot
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#705">[ date ]</a>
+              <a href="thread.html#705">[ thread ]</a>
+              <a href="subject.html#705">[ subject ]</a>
+              <a href="author.html#705">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

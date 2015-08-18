@@ -1,0 +1,90 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] uidl doesnt work in multiple account
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2011-September/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20uidl%20doesnt%20work%20in%20multiple%20account&In-Reply-To=%3C4E666F5A.3010300%40gmx.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002938.html">
+   
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] uidl doesnt work in multiple account</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20uidl%20doesnt%20work%20in%20multiple%20account&In-Reply-To=%3C4E666F5A.3010300%40gmx.de%3E"
+       TITLE="[fetchmail-users] uidl doesnt work in multiple account">matthias.andree at gmx.de
+       </A><BR>
+    <I>Tue Sep  6 21:07:06 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002938.html">[fetchmail-users] uidl doesnt work in multiple account
+</A></li>
+        
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2939">[ date ]</a>
+              <a href="thread.html#2939">[ thread ]</a>
+              <a href="subject.html#2939">[ subject ]</a>
+              <a href="author.html#2939">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Am 06.09.2011 04:01, schrieb Nelson Serafica:
+&gt;<i> I'm trying to use fetchmail in downloading my hosted email to another 2
+</I>&gt;<i> email account on my local machine. I want to copy the hosted emails to my 2
+</I>&gt;<i> local account. Here is the content of my .fetchmailrc
+</I>&gt;<i> 
+</I>&gt;<i> poll mail.foo.com protocol pop3 uidl:
+</I>&gt;<i>   user &quot;nelson&quot; password &quot;abc123&quot; is &quot;nelsonts2&quot; here options keep;
+</I>&gt;<i>   user &quot;nelson&quot; password &quot;abc123&quot; is &quot;nelsonts&quot; here options keep;
+</I>&gt;<i> 
+</I>&gt;<i> Then I run the command fetchmail -v -U -k -S localhost/587.
+</I>&gt;<i> 
+</I>&gt;<i> However, I notice that on the nelsonts account keeps on downloading the old
+</I>&gt;<i> emails. 
+</I>
+Fetchmail assumes that the <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">user at server</A> name is unique, but neither
+validates nor enforces that.  Your configuration violates that
+assumption and malfunctions in the observed way.
+
+I suppose that when reading back messages, all UIDs read from both user
+lines are actually stored for the first <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">nelson at mail.example.com</A> poll.
+
+I won't add a relevant check to fetchmail 6.X though, and probably not
+to 7.X either. I might do something about this in 8.X, but that's a long
+way from now.
+
+&gt;<i> Is this the real behavior of fetchmail?
+</I>
+Looks like it.
+
+For a different approach to what you might by trying to achieve, see
+Rob's response.
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002938.html">[fetchmail-users] uidl doesnt work in multiple account
+</A></li>
+	
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2939">[ date ]</a>
+              <a href="thread.html#2939">[ thread ]</a>
+              <a href="subject.html#2939">[ subject ]</a>
+              <a href="author.html#2939">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

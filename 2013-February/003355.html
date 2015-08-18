@@ -1,0 +1,115 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] &quot;retained&quot; in fetchmail log
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2013-February/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20%22retained%22%20in%20fetchmail%20log&In-Reply-To=%3C512C022C.9070109%40gmx.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003356.html">
+   <LINK REL="Next"  HREF="003357.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] &quot;retained&quot; in fetchmail log</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20%22retained%22%20in%20fetchmail%20log&In-Reply-To=%3C512C022C.9070109%40gmx.de%3E"
+       TITLE="[fetchmail-users] &quot;retained&quot; in fetchmail log">matthias.andree at gmx.de
+       </A><BR>
+    <I>Tue Feb 26 01:30:36 CET 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003356.html">[fetchmail-users] &quot;retained&quot; in fetchmail log
+</A></li>
+        <LI>Next message: <A HREF="003357.html">[fetchmail-users] &quot;retained&quot; in fetchmail log
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3355">[ date ]</a>
+              <a href="thread.html#3355">[ thread ]</a>
+              <a href="subject.html#3355">[ subject ]</a>
+              <a href="author.html#3355">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Am 25.02.2013 22:32, schrieb Pierre Frenkiel:
+&gt;<i> On Mon, 25 Feb 2013, Matthias Andree wrote:
+</I>&gt;<i> 
+</I>&gt;&gt;<i> Yes, you do, on some accounts, iff the message has an X-IMAP: header.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> How about you read the FAQ?
+</I>&gt;&gt;<i> &lt;<A HREF="http://www.fetchmail.info/fetchmail-FAQ.html#O15">http://www.fetchmail.info/fetchmail-FAQ.html#O15</A>&gt;
+</I>&gt;<i> 
+</I>&gt;<i>   thanks matthias for your reply, but reading the FAQ doesn't explain
+</I>&gt;<i>   why I get this &quot;retained&quot;
+</I>&gt;<i>   the 13-line X-IMAP header is created by alpine when I save
+</I>&gt;<i>   a mail to a new folder, but in this case I don't see any reason why
+</I>&gt;<i>   it could be there.
+</I>&gt;<i>   Actually, this problem occurs when I forward a mail to one of my
+</I>&gt;<i>   e-mail addresses, but not with the others, although I
+</I>&gt;<i>   use exactly the same command:
+</I>
+Some server software also generates such a message to store UIDVALIDITY
+information, or a monotonic message counter, particularly University of
+Washington imapd/pop3d is known to do that.
+
+Now, if you forward the message bearing the X-IMAP header to an account
+with empty mailbox, so that it happens to be the first message in the
+mailbox there, fetchmail will retain it; so in the end, this may also be
+an artifact of the way you are testing.
+
+The full condition is, with a Boolean &quot;and&quot;:
+
+- iff the protocol is not POP2 (which was ancient history...)
+
+  and the message number in the server's mailbox is #1
+   (that may be the crucial difference between your mailboxes).
+
+  and the message contains an X-IMAP: header,
+
+then fetchmail retains the message.
+
+&gt;<i>   An other problem is that fetchmail repeats the &quot;retained&quot; message
+</I>&gt;<i>   forever, every 20 seconds, and the only way I found to avoid
+</I>&gt;<i>   filling the log was to remove the corresponding entry from .fetchmailrc.
+</I>
+The other options are:
+
+- run fetchmail in silent mode (-s command line option) to suppress the
+message (and logging about other messages, too, except errors)
+
+- raise the polling interval and do not run every to 20 s, but, for
+instance, every 300 s,
+
+- make sure that such a message is not the first in your mailbox.
+
+HTH
+
+</PRE>
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003356.html">[fetchmail-users] &quot;retained&quot; in fetchmail log
+</A></li>
+	<LI>Next message: <A HREF="003357.html">[fetchmail-users] &quot;retained&quot; in fetchmail log
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3355">[ date ]</a>
+              <a href="thread.html#3355">[ thread ]</a>
+              <a href="subject.html#3355">[ subject ]</a>
+              <a href="author.html#3355">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

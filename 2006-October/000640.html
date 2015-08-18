@@ -1,0 +1,239 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] fetchmail 6.3.5 stable release
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2006-October/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%206.3.5%20stable%20release&In-Reply-To=%3C20061009065336.GA28199%40merlin.emma.line.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000638.html">
+   <LINK REL="Next"  HREF="000641.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] fetchmail 6.3.5 stable release</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%206.3.5%20stable%20release&In-Reply-To=%3C20061009065336.GA28199%40merlin.emma.line.org%3E"
+       TITLE="[fetchmail-users] fetchmail 6.3.5 stable release">matthias.andree at gmx.de
+       </A><BR>
+    <I>Mon Oct  9 08:53:36 CEST 2006</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000638.html">[fetchmail-users] smtphost option
+</A></li>
+        <LI>Next message: <A HREF="000641.html">[fetchmail-users] patch for fetchmail 6.3.5 stable release
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#640">[ date ]</a>
+              <a href="thread.html#640">[ thread ]</a>
+              <a href="subject.html#640">[ subject ]</a>
+              <a href="author.html#640">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA1
+
+Greetings,
+
+I am announcing the release of fetchmail 6.3.5. This new stable version
+of fetchmail fixes several minor bugs and revises the FAQ.
+
+- ---------------------------------------------------------------------
+NOTE THAT THE CCIL.ORG MAILING LISTS ARE DEPRECATED AND WILL BE SHUT
+DOWN LATER THIS YEAR. Please subscribe to the new lists at
+&lt;<A HREF="https://developer.berlios.de/mail/?group_id=1824">https://developer.berlios.de/mail/?group_id=1824</A>&gt;:
+- - for fetchmail-announce subscribers: subscribe to fetchmail-announce
+- - for fetchmail-friends subscribers: subscribe to fetchmail-users
+- ---------------------------------------------------------------------
+
+The software is available from:
+&lt;<A HREF="http://developer.berlios.de/project/showfiles.php?group_id=1824&amp;release_id=11358">http://developer.berlios.de/project/showfiles.php?group_id=1824&amp;release_id=11358</A>&gt;
+
+The fetchmail home pages are:
+&lt;<A HREF="http://www.fetchmail.info/">http://www.fetchmail.info/</A>&gt;  or  &lt;<A HREF="http://fetchmail.berlios.de/">http://fetchmail.berlios.de/</A>&gt;
+
+These are the relevant changes in 6.3.5 since 6.3.4;
+unless otherwise noted, changes to this release were made by Matthias Andree:
+
+fetchmail 6.3.5 (released 2006-10-09):
+
+# DEPRECATED FEATURES AND MAJOR INCOMPATIBLE CHANGE ADVANCE WARNINGS
+* The MX and host alias DNS lookups that fetchmail performs in multidrop mode
+  are obsolete, deprecated and may be removed from a future fetchmail version.
+  They have never supported IPv6 (including IPv6-mapped IPv4) anyhow.
+  Non-DNS based alias keywords such as &quot;aka&quot; will remain in fetchmail.
+* The monitor and interface options may be removed from a future fetchmail
+  version as they are not sufficiently portable.
+* POP2 is obsolete.
+  Support for POP2 may be removed from a future fetchmail version.
+* RPOP is obsolete, support may be removed from a future fetchmail release.
+* --sslcertck may become a default setting in a future fetchmail version.
+* The multidrop To/Cc guessing code along with the fragile duplicate suppressor
+  is deprecated and may be removed from a future release.
+* The &quot;envelope Received&quot; option may be removed from a future release, because
+  the Received header was never meant to be machine-readable, the format varies
+  widely, and various other differences in behavior make parsing Received an
+  unreliable undertaking. The enveloper option as such will remain though, in
+  order to support Delivered-To, X-Envelope-To, X-Original-To and similar.
+  See also &lt;<A HREF="http://home.pages.de/~mandree/mail/multidrop">http://home.pages.de/~mandree/mail/multidrop</A>&gt;.
+* The --enable-fallback (fall back to MDA if MTA unavailable) may be removed
+  from a future fetchmail release.
+* The &quot;protocol auto&quot; default inside fetchmail may be removed from a future
+  fetchmail release. Explicit configuration of the protocol is recommended.
+* Kerberos IV support may be removed from a future fetchmail release.
+* SIGHUP wakeup may be removed from a future fetchmail release and cause it
+  to terminate.
+* Support for operating systems that are not sufficiently POSIX compliant may be
+  removed or operation on such systems may be suboptimal for future releases.
+
+# KNOWN BUGS AND WORKAROUNDS:
+  (this section floats upwards through the NEWS to be on top of the list)
+* fetchmail does not handle messages without Message-ID header well
+  (See sourceforge.net bug #780933)
+* Sun Workshop 6 (SPARC) is known to miscompile the lexer in 64-bit mode.
+  Either compile 32-bit code or use GCC to compile 64-bit fetchmail.
+  Note that fetchmail doesn't take advantage of 64-bit code anyways,
+  so compiling 32-bit SPARC code should be fine.
+* fetchmail expects Received: headers in a particular format when parsing
+  envelopes.
+* fetchmail does not track pending deletes over crashes
+* the command line interface is a bit narrow-minded sometimes, for instance,
+  fetchmail -s doesn't work with a running daemon
+* some of the logging output is not very helpful
+* some of the documentation is still not up to date
+
+# BUG FIXES:
+* For protocols such as IMAP that are not delimited by &quot;.&quot; lines, truncate the
+  input buffer when the message has been completely read, to avoid taking
+  trailing garbage into the message if the terminal CRLF is missing. Fixes
+  Debian Bug#312415. (Patch suggested by Mike Jones, Manchester Univ.).
+* When using NTLM authentication, use regular IMAP response code handler after
+  completing NTLM handshake, for robustness and consistency.
+  (Taken from the NetBSD portable packages collection, patch-ac.)
+* Support Kerberos installations where krb5.h and perhaps roken.h are in
+  .../include/krb5.  Taken from NetBSD portable packages collection patch-ae.
+* On NetBSD, link against -lroken -lcom_err if --with-kerberos is enabled.
+* Drop #include &lt;com_err.h&gt; from Kerberos 5 header file, fixes compile error on
+  SUSE Linux 10.0.
+* Fix des_pcbc_encrypt compile warnings in kerberos.c line 246.
+* If krb5-config provides gssapi library information, use that rather than
+  guessing.
+* Improve --with-gssapi auto detection for /usr-based GSSAPI installs.
+* Fix --with-gssapi builds for NetBSD 3.0.
+* Improve KAME/getnameinfo.c portability to Linux libc5 systems.
+  Based on a patch by Dan Fandrich.
+* Provide INET6 to KAME/getnameinfo.c (only useful on IPv6-enabled systems that
+  lack getnameinfo, and there only visible in some Received: headers).
+  Found by Dan Fandrich.
+* POP3: some UID flags may not be set properly on UIDL lists. (Sunil Shetye)
+* Make IMAP4 IDLE work on servers that do not update RECENT counts.
+  Reported by Lars Tewes.
+* IMAP4 patch by Sunil Shetye:
+  - do not depend on server updating RECENT counts at all
+  - also enter IDLE loop when messages are present on the server.
+* Fix --flush description in the manual page, fetchmail does not mark messages
+  seen unless it has successfully delivered them. Suggested by Frederic Marchal.
+* Fetchmail no longer attempts to stat the &quot;-&quot; file in daemon mode -- this is a
+  special name to read the RC file from stdin, and cannot always be re-read
+  anyways. BerliOS bug #7858.
+* When looking up ports for a service, the lookup succeeds and the returned
+  address family isn't IPv4 or IPv6, properly free the allocated memory from the
+  service lookup. Found by Uli Zappe.
+* When looking up ports for a service, only look up TCP ports.
+* Avoid compiling empty files, to avoid diagnostics from strict compilers.
+* If the lockfile ends before the process ID, treat it as stale and unlink it.
+  Reported by Justin Pryzby, Debian Bug #376603.
+* SIGHUP wake-up behavior was broken since 5.9.13's Cygwin changes, in that for
+  non-root users, SIGHUP would abort the first poll and subsequently interfere
+  with new polls, and SIGHUP would be ignored for root users. SIGHUP now matches
+  documented behavior. SIGUSR1 has always been a wakeup signal for both root
+  (undocumented) and non-root users. See also the deprecation warning above.
+* Track getaddrinfo() results to properly free them after timeouts and make sure
+  that getaddrinfo() isn't interrupted by a timeout (which breaks on MacOS X),
+  reported by Uli Zappe.  This should fix Debian Bug#294547 and Bug#377135.
+* --logfile is now handled more carefully, errors opening the logfile are
+  now reported to the TTY where fetchmail was started from.
+* fetchmail now complains and aborts when it cannot properly daemonize itself.
+* fix compilation on systems that don't know struct addrinfo (Solaris 2.6).
+* ignore SIGPIPE signals and rely on functions to return EPIPE instead. This is
+  necessary because the former longjmp() from the signal handler is unsafe and
+  makes the whole fetchmail behavior undefined after the event.
+* Avoid crash in env.c/host_fqdn if we cannot canonicalize our own hostname.
+  Reported by Alexander Holler.
+* SSL fix by Miloslav Trmac (Red Hat): free the SSL contexts after the
+  connection, to avoid from growing SSL certpaths without bounds, avoid using
+  SSL contexts for unrelated connections, and to fix Red Hat Bug #206346.
+
+# CHANGES:
+* Rename all fetchmail-internal lock_* functions to fm_lock_*. Obsoletes
+  NetBSD portable packages collection patch-ah, patch-ai and patch-aj.
+* Configure prints a warning (but proceeds) if Kerberos IV support is enabled.
+* In verbose mode, log every IP fetchmail tries to connect to, to avoid
+  misleading the user. Suppress EAFNOSUPPORT errors from socket() call, too.
+  Fixes Debian Bug #361825, reported by Daniel Baur.
+* In idle mode, fetchmail complains about the fetchall option.
+* When a connection fails, log not only the IP address, but also host and
+  service name and the port number. Log the latter when trying to connect in
+  verbose mode, too.
+* Keep syslog output at one line per message (this works if no errors occur).
+* Fetchmail in verbose mode now logs if it opportunistically upgrades a POP3
+  or IMAP connection to TLS security with STLS/STARTTLS.
+* fetchmail now supports <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">foo at example.org</A>=bar user mappings for multidrop boxes.
+* switch setjmp/longjmp to sigsetjmp/siglongjmp
+* IMAP now supports the EXTERNAL authentication method, courtesy of
+  G&#246;tz 'nimrill' Babin-Ebell, BerliOS patch #1095 with minor changes.
+* The sslproto keywords are now case insensitive, courtesy of
+  G&#246;tz 'nimrill' Babin-Ebell, BerliOS patch #1095.
+* When going to sleep, log for how long.  Suggested by Claudia Ludwig.
+* When the server name cannot be canonicalized, log the gai_strerror value.
+
+# TRANSLATION UPDATES:
+* Catalan/ca (Ernest Adrogu&#233; Calveras), Japanese/ja (Takeshi Hamasaki) - also
+  made gettext 0.15 ready, Polish/pl (Jakub Bogusz), Russian/ru (Pavel
+  Maryanov), Spanish/es (H&#233;ctor Garc&#237;a &#193;lvarez), Vietnamese/vi (Clytie Siddall)
+
+# CONTRIBUTED SCRIPTS:
+* PopDel.py was revised by Joshua Crawford to display the From: address and
+  list every email, even if it has no Subject: header; and not delete the wrong
+  message in the presence of mail without Subject: headers.
+
+Regards,
+
+- -- 
+Matthias Andree
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1.4.2 (GNU/Linux)
+
+iD8DBQFFKfHwvmGDOQUufZURAgKqAKDKa6mUkNnJGMjXMSupaL9u5oCSzwCbBv+C
+G+3g7/T/1Rteh1hSP2TCDeA=
+=oOOH
+-----END PGP SIGNATURE-----
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000638.html">[fetchmail-users] smtphost option
+</A></li>
+	<LI>Next message: <A HREF="000641.html">[fetchmail-users] patch for fetchmail 6.3.5 stable release
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#640">[ date ]</a>
+              <a href="thread.html#640">[ thread ]</a>
+              <a href="subject.html#640">[ subject ]</a>
+              <a href="author.html#640">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

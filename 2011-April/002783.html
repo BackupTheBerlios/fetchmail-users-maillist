@@ -1,0 +1,106 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Plus (+) Addressing Problem {Epilogue}
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2011-April/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Plus%20%28%2B%29%20Addressing%20Problem%20%7BEpilogue%7D&In-Reply-To=%3C4DBA10D5.1030405%40realloc.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002782.html">
+   <LINK REL="Next"  HREF="002785.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Plus (+) Addressing Problem {Epilogue}</H1>
+    <B>Derek Simkowiak</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Plus%20%28%2B%29%20Addressing%20Problem%20%7BEpilogue%7D&In-Reply-To=%3C4DBA10D5.1030405%40realloc.net%3E"
+       TITLE="[fetchmail-users] Plus (+) Addressing Problem {Epilogue}">dereks at realloc.net
+       </A><BR>
+    <I>Fri Apr 29 03:13:57 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002782.html">[fetchmail-users] Plus (+) Addressing Problem {Epilogue}
+</A></li>
+        <LI>Next message: <A HREF="002785.html">[fetchmail-users] Plus (+) Addressing Problem {Epilogue}
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2783">[ date ]</a>
+              <a href="thread.html#2783">[ thread ]</a>
+              <a href="subject.html#2783">[ subject ]</a>
+              <a href="author.html#2783">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>M&gt;  All I'm saying is that the computer that fetchmail _gets_ its mail from
+and the computer that fetchmail _forwards_ its mail to should have
+different names, ...
+
+
+     Mattias,
+     Why do you think this?  This is contrary to what I have observed as 
+a consultant.  I have several business customers that have this situation.
+
+     The most common case is that the business has an unreliable, 
+low-bandwidth Internet connection to their office (such as cablemodem, 
+DSL, or cell phone), frequently with a dynamic IP address.  They want to 
+run a Linux box to store mail, and to act as their primary mail server.  
+But they also use an email service provider (like GMail), so that their 
+customer emails don't bounce every time their crappy Comcast modem goes 
+offline.  Or sometimes they don't have the technical expertise necessary 
+to run a secure, low-spam email server with port 25 open to the public.  
+Or maybe their ISP filters port 25 (like Comcast does), so they can't 
+receive mail for their domain from the outside.
+
+     I've also seen a growing mix of web-based applications that would 
+be in this situation.  Consider an incident tracker (like Trac or 
+Mantis) that accepts email for &quot;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">support at company.com</A>&quot;, and automatically 
+generates tickets from that.  Often the easiest way to set those up is 
+to have fetchmail pull the emails from a remote IMAP server and then 
+feed it to localhost, so that the local MTA doesn't need to listen on 
+anything but 127.0.0.1.  This is especially true of virtual machines, 
+where a generic disk image (with a pre-built MTA config) can be deployed 
+many times over on different IP addresses.  Scripting the creation of a 
+two-line .fetchmailrc is far easier, cheaper, and more secure than 
+finding a qualified mail admin to set up a unique Postfix configuration 
+for each virtual machine (and then set up a new DNS record for it).  
+It's not just incident trackers... it's also groupware, calendars, 
+accounting systems, asset trackers, etc.
+
+     I understand that, according to the SMTP protocols (and RFCs) two 
+different computers should not both consider themselves the primary MX 
+for a particular domain.  But fetchmail has been one of the best tools 
+to work around that (broken) assumption.
+
+
+Thanks,
+Derek Simkowiak
+
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002782.html">[fetchmail-users] Plus (+) Addressing Problem {Epilogue}
+</A></li>
+	<LI>Next message: <A HREF="002785.html">[fetchmail-users] Plus (+) Addressing Problem {Epilogue}
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2783">[ date ]</a>
+              <a href="thread.html#2783">[ thread ]</a>
+              <a href="subject.html#2783">[ subject ]</a>
+              <a href="author.html#2783">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

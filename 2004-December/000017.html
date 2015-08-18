@@ -1,0 +1,121 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Errors (mail to &quot;root&quot;) if &quot;user&quot; is missing
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2004-December/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Errors%20%28mail%20to%20%22root%22%29%20if%20%22user%22%20is%20missing&In-Reply-To=%3C20041231143222.GO31223%40freenet.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   
+   
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Errors (mail to &quot;root&quot;) if &quot;user&quot; is missing</H1>
+    <B>Michelle Konzack</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Errors%20%28mail%20to%20%22root%22%29%20if%20%22user%22%20is%20missing&In-Reply-To=%3C20041231143222.GO31223%40freenet.de%3E"
+       TITLE="[fetchmail-users] Errors (mail to &quot;root&quot;) if &quot;user&quot; is missing">linux4michelle at freenet.de
+       </A><BR>
+    <I>Fri Dec 31 15:32:22 CET 2004</I>
+    <P><UL>
+        
+        
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#17">[ date ]</a>
+              <a href="thread.html#17">[ thread ]</a>
+              <a href="subject.html#17">[ subject ]</a>
+              <a href="author.html#17">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hello *, 
+
+I have a FileServer with ~80 $USER curently. Because I am fetching
+for all $USER the messages with fetchmail and filter it with procmail/
+fprot/spamassassin I was running into resources trouble if some $USER
+fetch there Messages parallel... 512 MByte Memory was not enough.
+
+Now I have set fetchmail to 700 and the $USER can not use it
+anymore :-)
+
+OK, then I have created a Script (run from /etc/cron.d/tdfetchmail)
+which check one $USER after one and verify whether the 
+$HOME/.tdfetchmail/mail.fetch is there or not... 
+
+If it is there my &quot;tdfetchmail&quot; script downloads the messages from the
+accounts in the &quot;mail.fetch&quot; file (multiple files can be specified) :-)
+
+Now the Problem:
+
+If a $USER want to disable on of his/her accounts like:
+
+poll mx.freenet.de protocol imap
+    user email1         with password secret1   is the_user here
+#    user email2         with password secret2   is the_user here
+    user email3         with password secret3   is the_user here
+    user email4         with password secret4   is the_user here
+
+Then it works without any problems...
+But if it is only:
+
+poll mx.freenet.de protocol imap
+#    user email1         with password secret1   is the_user here
+
+then I (root) become bombed by fetchmail with:
+
+fetchmail: can't find a password for <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">root at mx.freenet.de.</A>
+
+Is there a possibility to avoid fetchmail to try to fetch my ISP's
+root-account ?
+
+I mean, if there is only a line of
+
+poll mx.freenet.de protocol imap
+
+that fetchmail does not try to fetch anything ?
+
+This will a very good feature which I am curenty missing.
+
+Another question: Is &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">fetchmail-users at lists.berlios.de</A>&gt; not more active ?
+
+Greetings
+Michelle
+
+-- 
+Linux-User #280138 with the Linux Counter, <A HREF="http://counter.li.org/">http://counter.li.org/</A> 
+Michelle Konzack   Apt. 917                  ICQ #328449886
+                   50, rue de Soultz         MSM LinuxMichi
+0033/3/88452356    67100 Strasbourg/France   IRC #Debian (irc.icq.com)
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: signature.pgp
+Type: application/pgp-signature
+Size: 189 bytes
+Desc: Digital signature
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/fetchmail-users/attachments/20041231/6ad4edd0/attachment.pgp">https://lists.berlios.de/pipermail/fetchmail-users/attachments/20041231/6ad4edd0/attachment.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	
+	
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#17">[ date ]</a>
+              <a href="thread.html#17">[ thread ]</a>
+              <a href="subject.html#17">[ subject ]</a>
+              <a href="author.html#17">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

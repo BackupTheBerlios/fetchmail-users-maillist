@@ -1,0 +1,111 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Re: fetchmail-users digest, Vol 1 #39 - 2 msgs
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2006-January/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Re%3A%20fetchmail-users%20digest%2C%20Vol%201%20%2339%20-%202%20msgs&In-Reply-To=%3C20060108155152.GB1021%40ego.co.th%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000237.html">
+   <LINK REL="Next"  HREF="000239.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Re: fetchmail-users digest, Vol 1 #39 - 2 msgs</H1>
+    <B>pongthep</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Re%3A%20fetchmail-users%20digest%2C%20Vol%201%20%2339%20-%202%20msgs&In-Reply-To=%3C20060108155152.GB1021%40ego.co.th%3E"
+       TITLE="[fetchmail-users] Re: fetchmail-users digest, Vol 1 #39 - 2 msgs">pkrisada at ego.co.th
+       </A><BR>
+    <I>Sun Jan  8 16:51:52 CET 2006</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000237.html">[fetchmail-users] Re: fetchmail 6.3.0 contained incompatible idfile change
+</A></li>
+        <LI>Next message: <A HREF="000239.html">[fetchmail-users] Re: fetchmail-users digest, Vol 1 #39 - 2 msgs
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#238">[ date ]</a>
+              <a href="thread.html#238">[ thread ]</a>
+              <a href="subject.html#238">[ subject ]</a>
+              <a href="author.html#238">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Sorry for dumping old thread.
+After failing with fetchmail 6.2.2 and retrieved mails with telnet for a while.
+Now I turn into FreeBSD5.4 with fetchmail 6.2.5 (old already).
+Same configuration, which did not work with fetchmail 6.2.2, works very nice with new fetchmail 6.2.5.
+So it seems my old fetchmail 6.2.2 was buggy or something wrong with that.
+Just for your information.
+
+thanks for all of your help :)
+
+pongthep
+
+* pongthep (<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">pkrisada at ego.co.th</A>) wrote:
+&gt;<i> &gt; However, some ISPs require you to login with your email address as the
+</I>&gt;<i> &gt; username, so you might try putting &quot;user <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">myname at isp.com</A>&quot; in your
+</I>&gt;<i> &gt; fetchmailrc instead of &quot;user myname&quot;.
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; But this is all questions between you and your ISP.
+</I>&gt;<i> 
+</I>&gt;<i> I've tried &quot;user <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">myname at isp.com</A>&quot;
+</I>&gt;<i> resulting in:
+</I>&gt;<i> 
+</I>&gt;<i> fetchmail: 6.2.2 querying mail.isp.com (protocol POP3) at Sun Oct  2 00:32:28 2005: poll started
+</I>&gt;<i> fetchmail: POP3&lt; +OK Hello there.
+</I>&gt;<i> fetchmail: POP3&gt; CAPA
+</I>&gt;<i> fetchmail: POP3&lt; +OK Here's what I can do:
+</I>&gt;<i> fetchmail: POP3&lt; STLS
+</I>&gt;<i> fetchmail: POP3&lt; TOP
+</I>&gt;<i> fetchmail: POP3&lt; USER
+</I>&gt;<i> fetchmail: POP3&lt; LOGIN-DELAY 10
+</I>&gt;<i> fetchmail: POP3&lt; PIPELINING
+</I>&gt;<i> fetchmail: POP3&lt; UIDL
+</I>&gt;<i> fetchmail: POP3&lt; IMPLEMENTATION Courier Mail Server
+</I>&gt;<i> fetchmail: POP3&lt; .
+</I>&gt;<i> fetchmail: POP3&gt; STLS
+</I>&gt;<i> fetchmail: POP3&lt; +OK Begin SSL/TLS negotiation now.
+</I>&gt;<i> fetchmail: POP3&gt; CAPA
+</I>&gt;<i> fetchmail: POP3&gt; USER <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">myname at isp.com</A>
+</I>&gt;<i> fetchmail: POP3&gt; PASS 
+</I>&gt;<i> fetchmail: Unknown login or authentication error on <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">myname at isp.com</A>@mail.isp.com
+</I>&gt;<i> fetchmail: POP3&gt; QUIT
+</I>&gt;<i> fetchmail: 6.2.2 querying mail.isp.com (protocol POP3) at Sun Oct  2 00:32:29 2005: poll completed
+</I>&gt;<i> fetchmail: Query status=15
+</I>&gt;<i> fetchmail: normal termination, status 15
+</I>&gt;<i> 
+</I>&gt;<i> &quot;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">myname at isp.com</A>@mail.isp.com&quot; does not make any sense.
+</I>&gt;<i> i'm sure that my config i.e. username and password are correct.
+</I>&gt;<i> perhaps i have to be away from fetchmail, telnet can do it also.
+</I>&gt;<i> anyway, thank you very much.
+</I>
+----- End forwarded message -----
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000237.html">[fetchmail-users] Re: fetchmail 6.3.0 contained incompatible idfile change
+</A></li>
+	<LI>Next message: <A HREF="000239.html">[fetchmail-users] Re: fetchmail-users digest, Vol 1 #39 - 2 msgs
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#238">[ date ]</a>
+              <a href="thread.html#238">[ thread ]</a>
+              <a href="subject.html#238">[ subject ]</a>
+              <a href="author.html#238">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

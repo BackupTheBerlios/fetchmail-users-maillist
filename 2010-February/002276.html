@@ -1,0 +1,173 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] keep option
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2010-February/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20keep%20option&In-Reply-To=%3C20100208155534.GA8501%40mumu.zuzunet.nl%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002281.html">
+   <LINK REL="Next"  HREF="002278.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] keep option</H1>
+    <B>Alex Dijk</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20keep%20option&In-Reply-To=%3C20100208155534.GA8501%40mumu.zuzunet.nl%3E"
+       TITLE="[fetchmail-users] keep option">alex.dijk at xs4all.nl
+       </A><BR>
+    <I>Mon Feb  8 16:55:34 CET 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002281.html">[fetchmail-users] incorrect header line found while scanning headers
+</A></li>
+        <LI>Next message: <A HREF="002278.html">[fetchmail-users] keep option
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2276">[ date ]</a>
+              <a href="thread.html#2276">[ thread ]</a>
+              <a href="subject.html#2276">[ subject ]</a>
+              <a href="author.html#2276">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Greetings,
+
+Since a short while I started using fetchmail, mutt and postfix on my Mac. It get's all
+the email from a POP3 server but deletes the messages on the server, regardless the
+'keep' option (I think) I'm using...
+
+Can anyone help me out with this?
+
+The log says the following, including the DELE command...
+
+fetchmail: 6.3.11 querying pops.xs4all.nl (protocol POP3) at Mon, 08 Feb 2010 14:15:00 +  0100 (CET): poll started
+fetchmail: Trying to connect to 194.109.6.55/995...connected.
+fetchmail: Issuer Organization: Equifax Secure Inc.
+fetchmail: Issuer CommonName: Equifax Secure eBusiness CA-1
+fetchmail: Server CommonName: *.xs4all.nl
+fetchmail: pops.xs4all.nl key fingerprint: FC:E5:17:98:58:C5:85:16:76:3C:ED:46:05:BF:26:76
+fetchmail: Server certificate verification error: unable to get local issuer certificate
+fetchmail: POP3&lt; +OK xs-pop3d (1.84 23-Dec-2009) at mailpop17.xs4all.net starting
+fetchmail: POP3&gt; CAPA
+fetchmail: POP3&lt; +OK Kappa 10-4
+fetchmail: POP3&lt; TOP
+fetchmail: POP3&lt; USER
+fetchmail: POP3&lt; UIDL
+fetchmail: POP3&lt; LAST
+fetchmail: POP3&lt; RESP-CODES
+fetchmail: POP3&lt; .
+fetchmail: POP3&gt; USER USERID
+fetchmail: POP3&lt; +OK Password required for USERID.
+fetchmail: POP3&gt; PASS *
+fetchmail: POP3&lt; +OK USERID has 1 message (4113 octets)
+fetchmail: POP3&gt; STAT
+fetchmail: POP3&lt; +OK 1 4113
+fetchmail: POP3&gt; UIDL
+fetchmail: POP3&lt; +OK UIDL listing follows
+fetchmail: POP3&lt; 1 1265634669._smtp.mxdrop137.37109,S=4047
+fetchmail: POP3&lt; .fetchmail: 1 message for USERID at pops.xs4all.nl (4113 octets).
+fetchmail: POP3&gt; LIST 1
+fetchmail: POP3&lt; +OK 1 4113
+fetchmail: POP3&gt; RETR 1
+fetchmail: POP3&lt; +OK 4113 octets
+procmail: [7198] Mon Feb  8 14:15:01 2010
+procmail: Assigning &quot;MAIL=/Users/alex/.mutt&quot;
+procmail: Assigning &quot;PMDIR=/Users/alex/.procmail&quot;
+procmail: Assigning &quot;LOGFILE=/Users/alex/.procmail/procmail.log&quot;
+procmail: Opening &quot;/Users/alex/.procmail/procmail.log&quot;
+fetchmail: reading message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">USERID at pop.xs4all.nl</A>:1 of 1 (4113 octets) flushed
+fetchmail: POP3&gt; DELE 1
+fetchmail: POP3&lt; +OK Message 1 deleted
+fetchmail: POP3&gt; QUIT
+fetchmail: POP3&lt; +OK Updating mailbox - exit
+fetchmail: 6.3.11 querying pops.xs4all.nl (protocol POP3) at Mon, 08 Feb 2010 14:15:01 +  0100 (CET): poll completed
+fetchmail: normal termination, status 0
+
+My .fetchmailrc is the following:
+
+set logfile &quot;/Users/alex/.fetchmail.log&quot;
+set postmaster &quot;alex&quot;
+poll pops.xs4all.nl with proto POP3
+    user 'USERID' there with password 'PASS' is 'alex' here 
+    options no rewrite stripcr keep 
+    ssl sslcertck sslcertpath '/Users/alex/.certs/'
+    mda &quot;/usr/bin/procmail -f %F -m /Users/alex/.procmailrc&quot;
+
+I call fetchmail from a script the following way:
+
+fetchmail -a --uidl -v -f $HOME/.fetchmailrc -K $EXTRAARG &gt;/dev/null 2&gt;&amp;1
+
+If I check the configuration with fetchmail -V it says '(--keep on)', but still :
+
+This is fetchmail release 6.3.11+GSS+SSL+KRB5.
+
+Fallback MDA: (none)
+Darwin HOSTNAME.nl 10.2.0 Darwin Kernel Version 10.2.0: Tue Nov  3 10:37:10 PST 2009; root:xnu-1486.2.11~1/RELEASE_I386 i386
+Taking options from command line and /Users/alex/.fetchmailrc
+Logfile is /Users/alex/.fetchmail.log
+Idfile is /Users/alex/.fetchids
+Fetchmail will forward misaddressed multidrop messages to alex.
+Options for retrieving from <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">USERID at pops.xs4all.nl</A>:
+  True name of server is pops.xs4all.nl.
+  Protocol is POP3.
+  All available authentication methods will be tried.
+  SSL encrypted sessions enabled.
+  SSL server certificate checking enabled.
+  SSL trusted certificate directory: /Users/alex/.certs/
+  Server nonresponse timeout is 300 seconds (default).
+  Default mailbox selected.
+  Only new messages will be retrieved (--all off).
+  Fetched messages will be kept on the server (--keep on).
+  Old messages will not be flushed before message retrieval (--flush off).
+  Oversized messages will not be flushed before message retrieval (--limitflush off).
+  Rewrite of server-local addresses is disabled (--norewrite on).
+  Carriage-return stripping is enabled (stripcr on).
+  Carriage-return forcing is disabled (forcecr off).
+  Interpretation of Content-Transfer-Encoding is enabled (pass8bits off).
+  MIME decoding is disabled (mimedecode off).
+  Idle after poll is disabled (idle off).
+  Nonempty Status lines will be kept (dropstatus off)
+  Delivered-To lines will be kept (dropdelivered off)
+  Fetch message size limit is 100 (--fetchsizelimit 100).
+  Do binary search of UIDs during 3 out of 4 polls (--fastuidl 4).
+  Messages will be delivered with &quot;/usr/bin/procmail -f %F -m /Users/alex/.procmailrc&quot;.
+  Single-drop mode: 1 local name recognized.
+  No UIDs saved from this host.
+
+I hope this is all the information needed to point me in a direction to solve this, in
+my opinion strange thing.
+ 
+Regards and thanks in advance!
+
+-- 
+alex 
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002281.html">[fetchmail-users] incorrect header line found while scanning headers
+</A></li>
+	<LI>Next message: <A HREF="002278.html">[fetchmail-users] keep option
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2276">[ date ]</a>
+              <a href="thread.html#2276">[ thread ]</a>
+              <a href="subject.html#2276">[ subject ]</a>
+              <a href="author.html#2276">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

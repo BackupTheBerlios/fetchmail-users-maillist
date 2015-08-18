@@ -1,0 +1,115 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] fetchmail authorization and socket errors
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2006-November/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%20authorization%20and%20socket%20errors&In-Reply-To=%3C20061111173316.9DD4.GERARD%40seibercom.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000686.html">
+   <LINK REL="Next"  HREF="000688.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] fetchmail authorization and socket errors</H1>
+    <B>Gerard Seibert</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%20authorization%20and%20socket%20errors&In-Reply-To=%3C20061111173316.9DD4.GERARD%40seibercom.net%3E"
+       TITLE="[fetchmail-users] fetchmail authorization and socket errors">gerard at seibercom.net
+       </A><BR>
+    <I>Sat Nov 11 23:43:56 CET 2006</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000686.html">[fetchmail-users] fetchmail authorization and socket errors
+</A></li>
+        <LI>Next message: <A HREF="000688.html">[fetchmail-users] fetchmail authorization and socket errors
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#687">[ date ]</a>
+              <a href="thread.html#687">[ thread ]</a>
+              <a href="subject.html#687">[ subject ]</a>
+              <a href="author.html#687">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Saturday November 11, 2006 at 05:04:08 (PM) wade wrote:
+
+&gt;<i> This is the .fetchmailrc
+</I>&gt;<i> # Configuration created Tue Oct 24 12:53:28 2006 by fetchmailconf 1.52
+</I>&gt;<i> $Revision: 4636 $
+</I>&gt;<i> set syslog
+</I>&gt;<i> set postmaster &quot;wadesmart&quot;
+</I>&gt;<i> set no bouncemail
+</I>&gt;<i> set no spambounce
+</I>&gt;<i> set properties &quot;&quot;
+</I>&gt;<i> set daemon 300
+</I>&gt;<i> 
+</I>&gt;<i> # setup first email service provider -&gt; WadeSmart
+</I>&gt;<i> 	poll mail.wadesmart.com
+</I>&gt;<i>        	uidl protocol pop3 auth password
+</I>&gt;<i>         user '<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">wade at wadesmart.com</A>' there with password 'password' is
+</I>&gt;<i> 'wade' here
+</I>&gt;<i>        	no keep
+</I>&gt;<i>        	
+</I>&gt;<i> 
+</I>&gt;<i> # setup third email service provider -&gt; Gmail
+</I>&gt;<i> 	poll pop.gmail.com
+</I>&gt;<i> 	uidl port 995 auth password
+</I>&gt;<i> 	user '<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">wadesmart at gmail.com</A>' there with password 'password'
+</I>&gt;<i> 	keep
+</I>&gt;<i> 	no fetchall
+</I>&gt;<i> 	ssl sslcertpath /etc/ssl/certs
+</I>
+
+I use fetchmail to access numerous accounts, including some 'gmail' ones also.
+My configuration for accessing 'gmail' is slightly different though.
+
+# Configuration created Sun Jul 30 19:38:15 2006 by fetchmailconf 1.52 $Revision: 4740 $
+set logfile &quot;/usr/home/ges/logs/fetchmail.log&quot;
+set postmaster &quot;postmaster&quot;
+set bouncemail
+set spambounce
+set properties &quot;&quot;
+set daemon 900
+poll pop.gmail.com with proto POP3 and options uidl
+    localdomains seibercom.net
+
+ user '<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">gerard.seibert at gmail.com</A>' there with password 'secret' is
+'gerard-gmail' here options fetchall forcecr pass8bits ssl mimedecode
+
+
+The only real difference is that I do not give it a specific port number.
+Have you tried removing it and seeing what transpires? Just a suggestion.
+
+
+-- 
+Gerard
+
+The average housefly lives for one month.
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000686.html">[fetchmail-users] fetchmail authorization and socket errors
+</A></li>
+	<LI>Next message: <A HREF="000688.html">[fetchmail-users] fetchmail authorization and socket errors
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#687">[ date ]</a>
+              <a href="thread.html#687">[ thread ]</a>
+              <a href="subject.html#687">[ subject ]</a>
+              <a href="author.html#687">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

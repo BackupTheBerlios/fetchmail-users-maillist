@@ -1,0 +1,132 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Accessing user mailbox from another account
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2006-June/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Accessing%20user%20mailbox%20from%20another%20account&In-Reply-To=%3C449BDB0D.4030107%40wowcompany.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000446.html">
+   <LINK REL="Next"  HREF="000448.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Accessing user mailbox from another account</H1>
+    <B>Frederic Marchal</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Accessing%20user%20mailbox%20from%20another%20account&In-Reply-To=%3C449BDB0D.4030107%40wowcompany.com%3E"
+       TITLE="[fetchmail-users] Accessing user mailbox from another account">frederic.marchal at wowcompany.com
+       </A><BR>
+    <I>Fri Jun 23 14:14:05 CEST 2006</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000446.html">[fetchmail-users] Accessing user mailbox from another account
+</A></li>
+        <LI>Next message: <A HREF="000448.html">[fetchmail-users] Accessing user mailbox from another account
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#447">[ date ]</a>
+              <a href="thread.html#447">[ thread ]</a>
+              <a href="subject.html#447">[ subject ]</a>
+              <a href="author.html#447">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Ian Murphy wrote:
+&gt;<i> Frederic, Thanks for responding,
+</I>&gt;<i>
+</I>&gt;<i> Mail is currently delivered to exchange. They are migrating to a linux
+</I>&gt;<i> server. No external boxes involved. This requires a visit to each and
+</I>&gt;<i> every desktop to modify the mail client, so the migration will take some
+</I>&gt;<i> time (multiple remote offices too to complicate matters) and will have
+</I>&gt;<i> to be done mailbox by mailbox. 
+</I>&gt;<i>
+</I>&gt;<i> Step one will be switch the mx record to deliver email to the linux
+</I>&gt;<i> server by default. Easy.
+</I>&gt;<i>
+</I>&gt;<i> Once email is arriving on the linux box, fetchmail is used to pull it
+</I>&gt;<i> out and redeliver it to the exchange server. Again easy.
+</I>&gt;<i>   
+</I>
+Something is missing here... Why do you need fetchmail to do this ?
+Don't you have one account per user with one password for each user on
+the linux server ? It seems to me that this part you have got running
+faces the same problem you are asking a solution for ? Fetchmail must
+download the mails from the user's mailbox and it must know about all
+the user names and passwords... How did you got it running ?
+
+BTW, here, a .forward file per user would be perfect and more reliable
+than fetchmail... If your server is running usermin, the user can even
+remove the redirection by himself when he starts fetching his mails on
+the linux server.
+
+&gt;<i> When a users mail client is switched from exchange to using pop3 against
+</I>&gt;<i> the linux server the pull-from-linux-push-to-exchange will be switched
+</I>&gt;<i> off for their mailbox. 
+</I>&gt;<i>
+</I>&gt;<i> However the problem is that internal users will continue to send email
+</I>&gt;<i> via exchange, which will deliver to the now unmonitored exchange
+</I>&gt;<i> mailbox.
+</I>&gt;<i>
+</I>&gt;<i> What I want to do is pull any mail which may arrive out of the exhange
+</I>&gt;<i> mailbox and deliver it to the users mailbox on the linux box. However
+</I>&gt;<i> since users change their passwords, and its not a good idea, I didn't
+</I>&gt;<i> want to make a big list of each user account and their password just to
+</I>&gt;<i> achieve this.
+</I>&gt;<i>
+</I>&gt;<i> I was hoping either pop3 or imap would have an authentication type which
+</I>&gt;<i> would allow me to do something like
+</I>&gt;<i>
+</I>&gt;<i> Fetch mail using user administrator password asecret from mailbox
+</I>&gt;<i> johndoe on server 1.2.3.4 deliver to smtpserver 1.2.3.5
+</I>&gt;<i>   
+</I>
+No. As far as I know, imap and pop3 provide access to one and only one
+mailbox and more specifically to the mailbox that was named during the
+authentication. In fact, you don't provide a user name with some rights
+attached to it when you use pop3 or imap. You provide the name of a
+mailbox. (Somebody fix this if I'm wrong !)
+
+But that doesn't mean you have to create the dreaded list of
+user/password now...
+
+Can you tell exchange to redirect the mails of the users that already
+moved to the linux server ? I'm thinking about an alias or something
+like that to an internal server name such as <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">user at linux.yourdomain.com.</A>
+That domain would be considered local by the linux server and the
+exchange server would just have to know the route to that server.
+
+Or could you divert the mails of those users to a single account on the
+exchange server and fetch the mails from that account ?
+
+Frederic
+
+
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000446.html">[fetchmail-users] Accessing user mailbox from another account
+</A></li>
+	<LI>Next message: <A HREF="000448.html">[fetchmail-users] Accessing user mailbox from another account
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#447">[ date ]</a>
+              <a href="thread.html#447">[ thread ]</a>
+              <a href="subject.html#447">[ subject ]</a>
+              <a href="author.html#447">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

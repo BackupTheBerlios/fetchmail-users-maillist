@@ -1,0 +1,98 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] message was not the expected length errors
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2005-December/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20message%20was%20not%20the%20expected%20length%20errors&In-Reply-To=%3C43ea8d070512231245t136bdb81g%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000196.html">
+   <LINK REL="Next"  HREF="000198.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] message was not the expected length errors</H1>
+    <B>Rob MacGregor</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20message%20was%20not%20the%20expected%20length%20errors&In-Reply-To=%3C43ea8d070512231245t136bdb81g%40mail.gmail.com%3E"
+       TITLE="[fetchmail-users] message was not the expected length errors">rob.macgregor at gmail.com
+       </A><BR>
+    <I>Fri Dec 23 21:45:18 CET 2005</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000196.html">[fetchmail-users] message was not the expected length errors
+</A></li>
+        <LI>Next message: <A HREF="000198.html">[fetchmail-users] message was not the expected length errors
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#197">[ date ]</a>
+              <a href="thread.html#197">[ thread ]</a>
+              <a href="subject.html#197">[ subject ]</a>
+              <a href="author.html#197">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On 23/12/05, Frederik &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">freggy at gmail.com</A>&gt; wrote:
+&gt;<i> Since tonight, I'm suffering from &quot;message [...] was not the expected
+</I>&gt;<i> length&quot; errors. I see it on one mailbox on my ISP (the other mailbox is
+</I>&gt;<i> unaffected though), and it makes fetchmail completely fail to retrieve
+</I>&gt;<i> mails from the mailbox concerned.
+</I>
+I've often seen this before and it's never caused a problem in the
+past.  However my days of using that horribly buggy POP server are
+long over :-)
+
+
+&gt;<i> fetchmail: POP3&lt; +OK 1 4693
+</I>&gt;<i> 1 message for username at pop.pandora.be (4693 octets).
+</I>&gt;<i> fetchmail: POP3&lt; +OK 1 4693
+</I>&gt;<i> fetchmail: POP3&lt; +OK 4693 octets
+</I>&gt;<i> reading message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">username at pop.pandora.be</A>:1 of 1 (4693 octets)
+</I>
+Right, so the POP server has stated that the message is 4693 bytes long, total.
+
+&gt;<i> fetchmail: SMTP&gt; MAIL FROM:&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">cooker-owner at mandrivalinux.org</A>&gt; SIZE=4693
+</I>
+And fetchmail passes this on.
+
+&gt;<i> #**********************************.****************fetchmail: message
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">username at pop.pandora.be</A>:1 was not the expected length (4803 actual != 4693
+</I>&gt;<i> expected) fetchmail: SMTP&gt;. (EOM)
+</I>&gt;<i> fetchmail: terminated with signal 2
+</I>
+And it turns out to be a bit longer.  It would be useful to see what
+the message from your SMTP server is - I suspect the problem may be on
+that end.
+
+--
+                 Please keep list traffic on the list.
+Rob MacGregor
+      Whoever fights monsters should see to it that in the process he
+        doesn't become a monster.                  Friedrich Nietzsche
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000196.html">[fetchmail-users] message was not the expected length errors
+</A></li>
+	<LI>Next message: <A HREF="000198.html">[fetchmail-users] message was not the expected length errors
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#197">[ date ]</a>
+              <a href="thread.html#197">[ thread ]</a>
+              <a href="subject.html#197">[ subject ]</a>
+              <a href="author.html#197">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

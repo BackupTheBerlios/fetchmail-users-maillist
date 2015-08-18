@@ -1,0 +1,104 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] server certificates
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2011-March/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20server%20certificates&In-Reply-To=%3CALA-MAIL06g2r1jV3xH000106b6%40ala-mail06.corp.ad.wrs.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002697.html">
+   <LINK REL="Next"  HREF="002699.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] server certificates</H1>
+    <B>Perry Hutchison</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20server%20certificates&In-Reply-To=%3CALA-MAIL06g2r1jV3xH000106b6%40ala-mail06.corp.ad.wrs.com%3E"
+       TITLE="[fetchmail-users] server certificates">phutchis at windriver.com
+       </A><BR>
+    <I>Fri Mar  4 00:12:38 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002697.html">[fetchmail-users] server certificates
+</A></li>
+        <LI>Next message: <A HREF="002699.html">[fetchmail-users] step-by-step
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2698">[ date ]</a>
+              <a href="thread.html#2698">[ thread ]</a>
+              <a href="subject.html#2698">[ subject ]</a>
+              <a href="author.html#2698">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>&gt;<i> &gt;   The problem is not with trusting a server's certificate
+</I>&gt;<i> &gt;   (vs the root certificate which signed it) as such, but with
+</I>&gt;<i> &gt;   authenticating a certificate -- any certificate -- before
+</I>&gt;<i> &gt;   trusting it ...
+</I>&gt;<i> &gt;   There is a lot more authentication work involved, with
+</I>&gt;<i> &gt;   attendant opportunities for mistakes and/or use of insecure
+</I>&gt;<i> &gt;   shortcuts, when trusting server certificates than when
+</I>&gt;<i> &gt;   trusting only root certificates.
+</I>
+&gt;<i> More fundamentally, you need to have ways to make sure that any
+</I>&gt;<i> certificate that you use for authentication purposes is really
+</I>&gt;<i> the one it pretends to be ...
+</I>
+That's what I meant by &quot;authenticating _a certificate_ before
+trusting it&quot;, but I can see where that wording might leave room
+for confusion since there are at least three different (although
+interrelated) authentication processes:
+
+1.  What I called &quot;authenticating the certificate&quot;:  making sure
+    that the certificate is really the one it claims to be.  SSL
+    does this automatically and transparently, _if_ the certificate
+    in question is signed by an already-trusted certificate.
+    Ultimately, however, there has to be at least one certificate
+    which the SSL administrator has defined as trusted in its own
+    right, without resort to signatures.  The process by which that
+    trust is established can't be fully automated.
+
+2.  Using the certificate to authenticate the server to which it
+    was issued.  SSL does this automatically and transparently,
+    based on its store of certificates &quot;trusted in their own right&quot;
+    from step 1.
+
+3.  Sending the user's credentials to the server, so that the server
+    can authenticate the user.  Fetchmail does this automatically,
+    having retrieved the credentials from the fetchmailrc file, but
+    only after SSL reports successful completion of step 2.
+
+Step 1 is critical because, if done insecurely, it can result in
+the step 3 credentials being revealed to an untrusted party.
+
+&gt;<i> And that's typically a much harder problem than it looks ...
+</I>
+Indeed.
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002697.html">[fetchmail-users] server certificates
+</A></li>
+	<LI>Next message: <A HREF="002699.html">[fetchmail-users] step-by-step
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2698">[ date ]</a>
+              <a href="thread.html#2698">[ thread ]</a>
+              <a href="subject.html#2698">[ subject ]</a>
+              <a href="author.html#2698">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

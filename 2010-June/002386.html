@@ -1,0 +1,81 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Using &quot;CAPA&quot; with Hotmail
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2010-June/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Using%20%22CAPA%22%20with%20Hotmail&In-Reply-To=%3C20100612085532.GA10101%40session.bombay.retortsoft.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002385.html">
+   <LINK REL="Next"  HREF="002387.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Using &quot;CAPA&quot; with Hotmail</H1>
+    <B>Sunil Shetye</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Using%20%22CAPA%22%20with%20Hotmail&In-Reply-To=%3C20100612085532.GA10101%40session.bombay.retortsoft.com%3E"
+       TITLE="[fetchmail-users] Using &quot;CAPA&quot; with Hotmail">shetye at bombay.retortsoft.com
+       </A><BR>
+    <I>Sat Jun 12 10:55:32 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002385.html">[fetchmail-users] Using &quot;CAPA&quot; with Hotmail
+</A></li>
+        <LI>Next message: <A HREF="002387.html">[fetchmail-users] multi-drop problem on osx,	duplicate emails received.
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2386">[ date ]</a>
+              <a href="thread.html#2386">[ thread ]</a>
+              <a href="subject.html#2386">[ subject ]</a>
+              <a href="author.html#2386">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Jerry,
+
+Quoting from Jerry's mail on Fri, Jun 11, 2010:
+&gt;<i> I have two accounts with Hotmail. Both accounts produce what appears to
+</I>&gt;<i> be an error message during mail retrival:
+</I>&gt;<i> 
+</I>&gt;<i> fetchmail: POP3&gt; CAPA
+</I>&gt;<i> fetchmail: POP3&lt; -ERR unrecognized command
+</I>
+It looks like capability probing is not supported. Please add 'auth
+password' to your fetchmailrc to avoid this error message. Something
+like this:
+
+poll pop3.live.com
+    protocol pop3
+    auth password
+    ...
+
+-- 
+Sunil Shetye.
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002385.html">[fetchmail-users] Using &quot;CAPA&quot; with Hotmail
+</A></li>
+	<LI>Next message: <A HREF="002387.html">[fetchmail-users] multi-drop problem on osx,	duplicate emails received.
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2386">[ date ]</a>
+              <a href="thread.html#2386">[ thread ]</a>
+              <a href="subject.html#2386">[ subject ]</a>
+              <a href="author.html#2386">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,118 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Fetchmail suddenly started segfaulting with Exchange
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2012-August/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Fetchmail%20suddenly%20started%20segfaulting%20with%0A%20Exchange&In-Reply-To=%3C20120813150454.GA21667%40auricle.charter.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003224.html">
+   <LINK REL="Next"  HREF="003215.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Fetchmail suddenly started segfaulting with Exchange</H1>
+    <B>J. Porter Clark</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Fetchmail%20suddenly%20started%20segfaulting%20with%0A%20Exchange&In-Reply-To=%3C20120813150454.GA21667%40auricle.charter.net%3E"
+       TITLE="[fetchmail-users] Fetchmail suddenly started segfaulting with Exchange">jpc+fetchmail at porterclark.com
+       </A><BR>
+    <I>Mon Aug 13 17:04:54 CEST 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003224.html">[fetchmail-users] Fetchmail suddenly started segfaulting with Exchange
+</A></li>
+        <LI>Next message: <A HREF="003215.html">[fetchmail-users] Automatically backing up my email
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3211">[ date ]</a>
+              <a href="thread.html#3211">[ thread ]</a>
+              <a href="subject.html#3211">[ subject ]</a>
+              <a href="author.html#3211">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Mon, Aug 13, 2012 at 02:59:47PM +0800, Sunil Shetye wrote:
+&gt;<i> 
+</I>&gt;<i> &gt; fetchmail: IMAP&gt; A0001 CAPABILITY
+</I>&gt;<i> &gt; fetchmail: IMAP&lt; * CAPABILITY IMAP4 IMAP4rev1 AUTH=NTLM AUTH=GSSAPI AUTH=PLAIN IDLE NAMESPACE LITERAL+
+</I>&gt;<i> &gt; fetchmail: IMAP&lt; A0001 OK CAPABILITY completed.
+</I>&gt;<i> &gt; fetchmail: Protocol identified as IMAP4 rev 1
+</I>&gt;<i> 
+</I>&gt;<i> This shows that AUTH=NTLM is supported. Can you check if
+</I>&gt;<i> AUTH=NTLM was advertised before the Exchange upgradation? If
+</I>&gt;<i> you are having old fetchmail verbose logs, you may be able to
+</I>&gt;<i> compare the CAPABILITY lines. If you have old verbose logs,
+</I>&gt;<i> also check which authentication method fetchmail was using
+</I>&gt;<i> before the Exchange upgradation. Note that this Exchange
+</I>&gt;<i> server is claiming to support three auth methods: NTLM,
+</I>&gt;<i> GSSAPI, and PLAIN.
+</I>
+Unfortunately, I haven't been able to find any old logs.
+
+&gt;<i> Here, fetchmail is trying to parse the &quot;A0002 NO AUTHENTICATE
+</I>&gt;<i> failed.&quot; and segfaulting. Though this needs to be fixed in
+</I>&gt;<i> fetchmail itself, you may try disabling NTLM authentication
+</I>&gt;<i> and trying. To disable NTLM authentication, try adding &quot;auth
+</I>&gt;<i> gssapi&quot; or &quot;auth password&quot; to your rc file. Something like
+</I>&gt;<i> this:
+</I>
+&gt;<i> 
+</I>&gt;<i> poll imap02.ndc.nasa.gov
+</I>&gt;<i> &#160; protocol imap
+</I>&gt;<i> &#160; auth gssapi&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; # or auth password
+</I>&gt;<i> &#160; user USERNAME
+</I>&gt;<i> &#160; ...
+</I>&gt;<i> 
+</I>&gt;<i> Note that auth is a server option and should come before the user options.
+</I>
+I don't have GSSAPI compiled in, but AUTH PASSWORD definitely
+works; I was rewarded with many new emails. :-)
+
+&gt;<i> Thanks for the detailed report. As mentioned above, this is a
+</I>&gt;<i> fetchmail bug. It should have trapped the NTLM AUTHFAIL and
+</I>&gt;<i> continued with the other authentication methods. Please check
+</I>&gt;<i> and report if the workaround works for you.
+</I>
+Indeed it does.  Of course, it transmits the password in the
+clear.  I'm fairly certain that this failed to work at some time
+in the past, and NTLM auth was the only method that worked.  I
+have no idea why or how this changed.
+
+Thanks very, very much for the help!
+
+-- 
+J. Porter Clark      &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">jpc+fetchmail at porterclark.com</A>&gt;
+</PRE>
+
+
+
+
+
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003224.html">[fetchmail-users] Fetchmail suddenly started segfaulting with Exchange
+</A></li>
+	<LI>Next message: <A HREF="003215.html">[fetchmail-users] Automatically backing up my email
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3211">[ date ]</a>
+              <a href="thread.html#3211">[ thread ]</a>
+              <a href="subject.html#3211">[ subject ]</a>
+              <a href="author.html#3211">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,127 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] How to to redirect user-related	error	messages to Postmaster
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2008-May/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20How%20to%20to%20redirect%20user-related%0A%09error%09messages%20to%20Postmaster&In-Reply-To=%3C20080511181505.GA7495%40merlin.emma.line.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001524.html">
+   <LINK REL="Next"  HREF="001526.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] How to to redirect user-related	error	messages to Postmaster</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20How%20to%20to%20redirect%20user-related%0A%09error%09messages%20to%20Postmaster&In-Reply-To=%3C20080511181505.GA7495%40merlin.emma.line.org%3E"
+       TITLE="[fetchmail-users] How to to redirect user-related	error	messages to Postmaster">matthias.andree at gmx.de
+       </A><BR>
+    <I>Sun May 11 20:15:05 CEST 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001524.html">[fetchmail-users] How to to redirect user-related error messages to	Postmaster
+</A></li>
+        <LI>Next message: <A HREF="001526.html">[fetchmail-users] Fetchmail sporadic socket errors
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1525">[ date ]</a>
+              <a href="thread.html#1525">[ thread ]</a>
+              <a href="subject.html#1525">[ subject ]</a>
+              <a href="author.html#1525">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Augusto Bortoluzzi schrieb am 2008-05-08:
+
+&gt;<i> I would like to know how to configure fetchmail in order to redirect
+</I>&gt;<i> error messages to Postmaster instead to deliver it to the involved user.
+</I>&gt;<i> 
+</I>&gt;<i> For example a remote mail server doesn't give a reply to fetchmail for a
+</I>&gt;<i> few minutes, so fetchmail sends an error notification to the user, which
+</I>&gt;<i> it could be fine. But some users get scared to death when they receive
+</I>&gt;<i> such a plain message:
+</I>&gt;<i> 
+</I>&gt;<i> From: <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">FETCHMAIL-DAEMON at localmachine.localdomain</A>
+</I>&gt;<i> Subject: fetchmail authentication failed on <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">user at address.com</A>
+</I>&gt;<i> 
+</I>&gt;<i>    Fetchmail could not get mail from <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">user at address.com</A>@mail.address.com.
+</I>&gt;<i>    [...]
+</I>&gt;<i>    The fetchmail daemon will continue running and attempt to connect
+</I>&gt;<i>    at each cycle.  No future notifications will be sent until service
+</I>&gt;<i>    is restored.
+</I>&gt;<i>    -- 
+</I>&gt;<i>    The Fetchmail Daemon
+</I>
+...
+
+&gt;<i> I've searched through the FAQ and documentation, but I don't how to
+</I>&gt;<i> solve this. Tanks in advance for your kind reply.
+</I>
+Hi Augusto,
+
+fetchmail does not have such a feature. The warning is only sent to
+postmaster if fetchmail is running in multidrop mode - unfortunately,
+you left out that part of the configuration you showed.
+
+In singledrop mode, the warning is always sent to the user who runs
+fetchmail.
+
+This may be seen as a shortcoming of fetchmail's, because it is not
+configurable; in this sense, fetchmail lacks a &quot;postmaster nannies his
+grandma's mail&quot; mode...
+
+
+If you are daring and are willing to experiment,
+hack sink.c, around line 1523 (in open_warning_by_mail()) (the line
+numbers are not in that file and may not exactly match your file), I
+just show them to easier reference the place:
+
+  1523      if (!MULTIDROP(ctl))                /* send to calling user */
+  1524      {
+  1525          save_str(&amp;reply.recipients, ctl-&gt;localnames-&gt;id, XMIT_ACCEPT);
+  1526          status = open_sink(ctl, &amp;reply, &amp;good, &amp;bad);
+  1527          free_str_list(&amp;reply.recipients);
+  1528      }
+  1529      else                                /* send to postmaster  */
+  1530          status = open_sink(ctl, &amp;reply, &amp;good, &amp;bad);
+
+Between lines 1522 and 1523, add:
+
+#if 0
+
+Between lines 1529 and 1530 (between the else and status=...), add:
+
+#endif
+
+Then recompile and reinstall fetchmail and see if that helps.
+
+Best regards,
+Matthias
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001524.html">[fetchmail-users] How to to redirect user-related error messages to	Postmaster
+</A></li>
+	<LI>Next message: <A HREF="001526.html">[fetchmail-users] Fetchmail sporadic socket errors
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1525">[ date ]</a>
+              <a href="thread.html#1525">[ thread ]</a>
+              <a href="subject.html#1525">[ subject ]</a>
+              <a href="author.html#1525">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

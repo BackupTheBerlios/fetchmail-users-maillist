@@ -1,0 +1,293 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Problem with Demon's new Exchange service and distribution lists. Can fetchmail be tested with e-mail on stdin?
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2012-May/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Problem%20with%20Demon%27s%20new%20Exchange%20service%20and%0A%20distribution%20lists.%20Can%20fetchmail%20be%20tested%20with%20e-mail%20on%20stdin%3F&In-Reply-To=%3C20120529222454.GA32345%40stronglg.demon.co.uk%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003143.html">
+   
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Problem with Demon's new Exchange service and distribution lists. Can fetchmail be tested with e-mail on stdin?</H1>
+    <B>Stanley Dziegiel</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Problem%20with%20Demon%27s%20new%20Exchange%20service%20and%0A%20distribution%20lists.%20Can%20fetchmail%20be%20tested%20with%20e-mail%20on%20stdin%3F&In-Reply-To=%3C20120529222454.GA32345%40stronglg.demon.co.uk%3E"
+       TITLE="[fetchmail-users] Problem with Demon's new Exchange service and distribution lists. Can fetchmail be tested with e-mail on stdin?">stanley at stronglg.demon.co.uk
+       </A><BR>
+    <I>Wed May 30 00:24:54 CEST 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003143.html">[fetchmail-users] Problem with Demon's new Exchange service and distribution lists. Can fetchmail be tested with e-mail on stdin?
+</A></li>
+        
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3144">[ date ]</a>
+              <a href="thread.html#3144">[ thread ]</a>
+              <a href="subject.html#3144">[ subject ]</a>
+              <a href="author.html#3144">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Tue, May 29, 2012 at 08:07:57PM +0200, Matthias Andree wrote:
+&gt;<i> Am 29.05.2012 18:40, schrieb Stanley Dziegiel:
+</I>&gt;<i> &gt; Hello,
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; Demon migrated their users to Microsoft Exchange earlier this
+</I>&gt;<i> &gt; month and after reconfiguring /etc/fetchmailrc it is distributing
+</I>&gt;<i> &gt; all mail correctly apart from that sent to mailing lists e.g.
+</I>&gt;<i> &gt; <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">opensuse-secuity-announce at opensuse.org.</A>
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; I believe that I have finally got /etc/fetchmailrc correct but I cannot
+</I>&gt;<i> &gt; prove it yet as the distribution lists that I subscribe to only send
+</I>&gt;<i> &gt; mail infrequently so I am looking for a way to simulate such e-mails.
+</I>&gt;<i> 
+</I>&gt;<i> You have configured multidrop, meaning that you may (that depends on
+</I>&gt;<i> Demon's configuration that I do not know) receive mail for multiple
+</I>&gt;<i> users in your sub-domain through the same mailbox.
+</I>&gt;<i> 
+</I>&gt;<i> Given the localdomains setting, fetchmail will take the local part of
+</I>&gt;<i> the destination address and assume that the user exists locally.
+</I>&gt;<i> 
+</I>&gt;<i> Is that what you are doing?  Then you may need to add an &quot;envelope&quot;
+</I>&gt;<i> option, on the provision that Demon retains the envelope destination
+</I>&gt;<i> address.
+</I>
+Yes that is what I am doing. To date I have not added an envelope option.
+
+&gt;<i> For details, I'd either need to see their documentation (if available to
+</I>&gt;<i> non-customers), or the unchanged headers as fetched from such an account.
+</I>&gt;<i> 
+</I>
+I am including here the headers and first line of text of what was placed 
+in my inbox for an opensuse mailing list posting after Demon's move to 
+Exchange but before I started to register all of my users on the Demon website:
+
+--- snip ---
+&gt;<i>From opensuse-security-announce+bounces-658-sdziegie=<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">stronglg.demon.co.uk at opensuse.org</A>  Wed May 23 00:13:42 2012
+</I>Return-Path: &lt;opensuse-security-announce+bounces-658-sdziegie=<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">stronglg.demon.co.uk at opensuse.org</A>&gt;
+Received: from stronglg.demon.co.uk (localhost [127.0.0.1])
+	by stronglg.demon.co.uk (8.14.4/8.14.4/SuSE Linux 0.8) with ESMTP id q4MNDd4o019154
+	for &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">fetchmail at localhost</A>&gt;; Wed, 23 May 2012 00:13:42 +0100
+MIME-Version: 1.0
+Received: from mail.demon.co.uk
+	by stronglg.demon.co.uk with IMAP (fetchmail-6.3.16)
+	for &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">fetchmail at localhost</A>&gt; (multi-drop); Wed, 23 May 2012 00:13:42 +0100 (BST)
+Received: from smtp.demon.co.uk (192.168.70.9) by HVUT02.thus.corp
+ (192.168.70.42) with Microsoft SMTP Server (TLS) id 14.1.218.12; Wed, 23 May
+ 2012 00:10:49 +0100
+Received: from mdfmta007.tbr.inty.net (unknown [127.0.0.1])	by
+ mdfmta007.tbr.inty.net (Postfix) with ESMTP id 51FB944C05F	for
+ &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">administrator at stronglg.demon.co.uk</A>&gt;; Wed, 23 May 2012 00:10:50 +0100 (BST)
+Received: from mdfmta007.tbr.inty.net (unknown [127.0.0.1])	by
+ mdfmta007.tbr.inty.net (Postfix) with ESMTP id 25D5C44C062	for
+ &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">administrator at stronglg.demon.co.uk</A>&gt;; Wed, 23 May 2012 00:10:50 +0100 (BST)
+Received: from mdfmta007.tbr.inty.net (unknown [127.0.0.1])	by
+ mdfmta007.tbr.inty.net (Postfix) with ESMTP id 020FD44C05F	for
+ &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">sdziegie at stronglg.demon.co.uk</A>&gt;; Wed, 23 May 2012 00:10:50 +0100 (BST)
+Received: from lists4.suse.de (unknown [195.135.221.135])	by
+ mdfmta007.tbr.inty.net (Postfix) with ESMTP	for
+ &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">sdziegie at stronglg.demon.co.uk</A>&gt;; Wed, 23 May 2012 00:10:46 +0100 (BST)
+Received: from lists4.suse.de (localhost [127.0.0.1])	by lists4.suse.de
+ (Postfix) with SMTP id 6899882B6FD;	Tue, 22 May 2012 23:08:49 +0000 (GMT)
+X-Original-To: <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">opensuse-security-announce at lists4.opensuse.org</A>
+Delivered-To: <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">opensuse-security-announce at lists4.opensuse.org</A>
+Received: from relay1.suse.de (relay1.suse.de [149.44.160.133])	by
+ lists4.suse.de (Postfix) with ESMTP id 8EF0682B030	for
+ &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">opensuse-security-announce at lists4.opensuse.org</A>&gt;; Tue, 22 May 2012 23:08:20
+ +0000 (GMT)
+Received: from maintenance.suse.de (maintenance.nue.suse.com [149.44.176.14])
+	by relay1.suse.de (Postfix) with ESMTP id 7E2BD344A07C	for
+ &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">opensuse-security-announce at opensuse.org</A>&gt;; Wed, 23 May 2012 01:08:20 +0200
+ (CEST)
+Received: by maintenance.suse.de (Postfix, from userid 16311)	id 7402F32414;
+ Wed, 23 May 2012 01:08:20 +0200 (CEST)
+From: &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">opensuse-security at opensuse.org</A>&gt;
+To: &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">opensuse-security-announce at opensuse.org</A>&gt;
+Subject: [security-announce] SUSE-SU-2012:0637-1: important: Security update for openssl
+Message-ID: &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">20120522230820.7402F32414 at maintenance.suse.de</A>&gt;
+Date: Wed, 23 May 2012 01:08:20 +0200
+Precedence: bulk
+Mailing-List: contact <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">opensuse-security-announce+help at opensuse.org</A>; run by mlmmj
+X-Mailinglist: opensuse-security-announce
+List-Post: &lt;mailto:<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">opensuse-security-announce at opensuse.org</A>&gt;
+List-Help: &lt;mailto:<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">opensuse-security-announce+help at opensuse.org</A>&gt;
+List-Subscribe: &lt;mailto:<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">opensuse-security-announce+subscribe at opensuse.org</A>&gt;
+List-Unsubscribe: &lt;mailto:<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">opensuse-security-announce+unsubscribe at opensuse.org</A>&gt;
+List-Owner: &lt;mailto:<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">opensuse-security-announce+owner at opensuse.org</A>&gt;
+List-Archive: &lt;<A HREF="http://lists.opensuse.org/opensuse-security-announce/">http://lists.opensuse.org/opensuse-security-announce/</A>&gt;
+X-MIME-Notice: attachments may have been removed from this message
+X-MDF-HostID: 6
+X-MDF-HostID: 6
+Content-Type: text/plain
+X-MS-Exchange-Organization-AuthSource: HVUT02.thus.corp
+X-MS-Exchange-Organization-AuthAs: Anonymous
+X-Fetchmail-Warning: recipient address <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">opensuse-security-announce at opensuse.org</A> didn't match any local name
+Status: RO
+X-Status: 
+X-Keywords:                 
+X-UID: 148
+
+   SUSE Security Update: Security update for openssl
+--- snip ---
+
+This shows what I describe as the headers being rewritten (from sdziegie to 
+administrator). 
+Once I registered all of the users I did not want 'rewritten' to 
+<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">administrator at ...</A> then e-mails to each such recipient stopped being rewritten.
+I only show the relevant lines for comparison here
+
+--- snip ---
+&gt;<i>From opensuse-security-announce+bounces-660-sdziegie=<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">stronglg.demon.co.uk at opensuse.org</A>  Tue May 29 14:17:56 2012
+</I>Return-Path: &lt;opensuse-security-announce+bounces-660-sdziegie=<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">stronglg.demon.co.uk at opensuse.org</A>&gt;
+Received: from stronglg.demon.co.uk (localhost [127.0.0.1])
+	by stronglg.demon.co.uk (8.14.4/8.14.4/SuSE Linux 0.8) with ESMTP id q4TDHsrg021949
+	for &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">sdziegie at stronglg.demon.co.uk</A>&gt;; Tue, 29 May 2012 14:17:56 +0100
+MIME-Version: 1.0
+Received: from mail.demon.co.uk
+	by stronglg.demon.co.uk with IMAP (fetchmail-6.3.16)
+	for &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">sdziegie at stronglg.demon.co.uk</A>&gt; (multi-drop); Tue, 29 May 2012 14:17:56 +0100 (BST)
+Received: from smtp.demon.co.uk (192.168.70.9) by HVUT02.thus.corp
+ (192.168.70.42) with Microsoft SMTP Server (TLS) id 14.1.218.12; Tue, 29 May
+ 2012 14:16:52 +0100
+Received: from mdfmta001.tch.inty.net (unknown [127.0.0.1])	by
+ mdfmta001.tch.inty.net (Postfix) with ESMTP id B17B3874066	for
+ &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">sdziegie at stronglg.demon.co.uk</A>&gt;; Tue, 29 May 2012 14:16:52 +0100 (BST)
+Received: from mdfmta001.tch.inty.net (unknown [127.0.0.1])	by
+ mdfmta001.tch.inty.net (Postfix) with ESMTP id 8836C87405F	for
+ &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">sdziegie at stronglg.demon.co.uk</A>&gt;; Tue, 29 May 2012 14:16:52 +0100 (BST)
+Received: from lists4.suse.de (unknown [195.135.221.135])	by
+ mdfmta001.tch.inty.net (Postfix) with ESMTP	for
+ &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">sdziegie at stronglg.demon.co.uk</A>&gt;; Tue, 29 May 2012 14:16:51 +0100 (BST)
+Received: from lists4.suse.de (localhost [127.0.0.1])	by lists4.suse.de
+ (Postfix) with SMTP id CBA8C82C751;	Tue, 29 May 2012 13:08:49 +0000 (GMT)
+X-Original-To: <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">opensuse-security-announce at lists4.opensuse.org</A>
+--- snip --- 
+
+as you can see it was 6 days between posts on this mailing list hence why
+I wanted to speed things up a bit. And the config that I showed does work.
+E-mails to mailing lists are now being delivered correctly (including this
+one).
+The most important change I had to make to /etc/fetchmailrc was the line:
+
+poll stronglg.demon.co.uk via &quot;mail.demon.co.uk&quot; aka inty.net
+
+in particular the inty.net bit.
+
+And I had to create one such poll stanza for each registered user, so 
+/etc/fetchmailrc has balloned in size.
+
+But the main thing is that it all works.  Looking back at it I have
+effectively had to copy my /etc/aliases file into Demon's web forms to
+get e-mail working as it was before.
+
+For completeness here are the relevant headers that had worked from 2003 
+until the 'upgrade' to Exchange:
+
+--- snip ---
+&gt;<i>From opensuse-security-announce+bounces-521-sdziegie=<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">stronglg.demon.co.uk at opensuse.org</A>  Wed Nov 30 16:18:32 2011
+</I>Return-Path: &lt;opensuse-security-announce+bounces-521-sdziegie=<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">stronglg.demon.co.uk at opensuse.org</A>&gt;
+Received: from stronglg.demon.co.uk (localhost [127.0.0.1])
+	by stronglg.demon.co.uk (8.14.4/8.14.4/SuSE Linux 0.8) with ESMTP id pAUGITL8025209
+	for &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">sdziegie at stronglg.demon.co.uk</A>&gt;; Wed, 30 Nov 2011 16:18:31 GMT
+Received: from pop3.demon.co.uk
+	by stronglg.demon.co.uk with POP3 (fetchmail-6.3.16)
+	for &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">sdziegie at stronglg.demon.co.uk</A>&gt; (multi-drop); Wed, 30 Nov 2011 16:18:31 +0000 (GMT)
+Received: from punt3.mail.demon.net by mailstore
+	for <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">sdziegie at stronglg.demon.co.uk</A> id 1RVmop-45D000-07-BHE;
+	Wed, 30 Nov 2011 16:15:35 +0000
+Received: from [194.217.242.223] (lhlo=lon1-hub.mail.demon.net)
+	by punt3.mail.demon.net with lmtp id 1RVmop-45D000-07
+	for <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">sdziegie at stronglg.demon.co.uk</A>; Wed, 30 Nov 2011 16:15:35 +0000
+Received: from [195.135.221.135] (helo=lists4.suse.de)
+	by lon1-hub.mail.demon.net with esmtp id 1RVmop-0007Na-De
+	for <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">sdziegie at stronglg.demon.co.uk</A>; Wed, 30 Nov 2011 16:15:35 +0000
+Received: from lists4.suse.de (localhost [127.0.0.1])
+	by lists4.suse.de (Postfix) with SMTP id E34AA804BD5;
+	Wed, 30 Nov 2011 16:13:12 +0000 (GMT)
+X-Original-To: <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">opensuse-security-announce at lists4.opensuse.org</A>
+--- snip ---
+
+&gt;<i> &gt; As part of the Demon 'upgrade' all e-mails get the mail headers rewritten
+</I>&gt;<i> &gt; to <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">administrator at hostname.demon.co.uk</A> before being stored in Exchange. The
+</I>&gt;<i> &gt; Demon FAQ suggests using their web forms to register any addresses that
+</I>&gt;<i> &gt; you don't want rewritten which I have done. However, that still leaves
+</I>&gt;<i> &gt; mailing lists broken.
+</I>&gt;<i> 
+</I>&gt;<i> What headers exactly are rewritten?
+</I>&gt;<i> 
+</I>&gt;<i> Is the original envelope retained in headers such as &quot;X-Delivered-To&quot;,
+</I>&gt;<i> &quot;X-Original-To&quot;, &quot;Envelope-To:&quot; or similar?
+</I>&gt;<i> 
+</I>&gt;<i> Is the original envelope, if retained, rewritten to <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">administrator at ...</A> too?
+</I>&gt;<i> 
+</I>
+Please see headers above.
+
+&gt;<i> &gt; What I want to be able to do:
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; is to take a 'failing' dlist e-mail and replay it through fetchmail to
+</I>&gt;<i> &gt; prove that mail to lists will work with the new fetchmailrc file. I am
+</I>&gt;<i> &gt; happy that the POP conversation has worked as all such e-mails end up
+</I>&gt;<i> &gt; in /var/mail/fetchmail. What I want to test is that I have configured
+</I>&gt;<i> &gt; /etc/fetchmailrc correctly.
+</I>&gt;<i> 
+</I>&gt;<i> Many mailing lists have an address that sends help texts back, and you
+</I>&gt;<i> get that by sending a message with &quot;help&quot; in the subject (without the
+</I>&gt;<i> quotes), and help as first and only line of the body to the -request
+</I>&gt;<i> address, such as fetchmail-users-request at lists.berlios.de. (replace
+</I>&gt;<i> the at).
+</I>&gt;<i> 
+</I>&gt;<i> &gt; I have read the FAQ but cannot see a way to replay a message in order to
+</I>&gt;<i> &gt; test configuration changes.
+</I>&gt;<i> 
+</I>&gt;<i> That is because fetchmail alone cannot achieve that, and I do not want
+</I>&gt;<i> to encourage people to randomly try around and possibly send dozens of
+</I>&gt;<i> test messages to the list post address when they goof up.
+</I>&gt;<i> 
+</I>
+That is a shame. From my point of view it would have broken the problem
+into two parts. It would have allowed me to test local delivery.
+
+&gt;<i> The only recourse is to generate such mail - possibly with an IMAP
+</I>&gt;<i> client that just copies the message you want to test to your INBOX
+</I>&gt;<i> folder, else by sending such a test mail. Some clients (mutt, or
+</I>&gt;<i> Thunderbird with Add-Ons) can &quot;bounce&quot; instead of &quot;forward&quot; a message -
+</I>&gt;<i> if you bounce that to those of your Demon addresses that will receive
+</I>&gt;<i> list mail, it might get close enough.
+</I>&gt;<i> 
+</I>&gt;<i> Best
+</I>&gt;<i> Matthias
+</I>&gt;<i> _______________________________________________
+</I>&gt;<i> fetchmail-users mailing list
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">fetchmail-users at lists.berlios.de</A>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">https://lists.berlios.de/mailman/listinfo/fetchmail-users</A>
+</I>
+I may try this later this week. Many thanks for the quick response.
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003143.html">[fetchmail-users] Problem with Demon's new Exchange service and distribution lists. Can fetchmail be tested with e-mail on stdin?
+</A></li>
+	
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3144">[ date ]</a>
+              <a href="thread.html#3144">[ thread ]</a>
+              <a href="subject.html#3144">[ subject ]</a>
+              <a href="author.html#3144">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

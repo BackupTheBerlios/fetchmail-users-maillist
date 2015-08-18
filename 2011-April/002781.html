@@ -1,0 +1,116 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Fetchmail using 2 envelope options
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2011-April/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Fetchmail%20using%202%20envelope%20options&In-Reply-To=%3C20110428135204.GA3583%40straylight.ringlet.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002777.html">
+   
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Fetchmail using 2 envelope options</H1>
+    <B>Peter Pentchev</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Fetchmail%20using%202%20envelope%20options&In-Reply-To=%3C20110428135204.GA3583%40straylight.ringlet.net%3E"
+       TITLE="[fetchmail-users] Fetchmail using 2 envelope options">roam at ringlet.net
+       </A><BR>
+    <I>Thu Apr 28 15:52:04 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002777.html">[fetchmail-users] Fetchmail using 2 envelope options
+</A></li>
+        
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2781">[ date ]</a>
+              <a href="thread.html#2781">[ thread ]</a>
+              <a href="subject.html#2781">[ subject ]</a>
+              <a href="author.html#2781">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Wed, Apr 27, 2011 at 07:37:12PM -0700, Hary Nurmansyah wrote:
+&gt;<i> Dear Peter and Rob,
+</I>&gt;<i> &#160;
+</I>&gt;<i> Thank you very much for your support. And Peter, I want to ask you, is it safe to use fetchmail which is build from &quot;backport&quot; package ?, if yes, i am very&#160;gratefull if you can build one for me.&#160;&#160;
+</I>
+Well, if you mean &quot;safe&quot; as in &quot;reliable&quot;, then yes, in this particular
+case (no weird library dependencies, no major changes in the Debian
+packaging that could affect the functionality) my backported package
+ought to be as reliable as the fetchmail-6.3.19-1 version in Debian
+testing.  If you mean &quot;safe&quot; as in &quot;secure&quot;, well then, mostly yes - in
+this particular case my backported package ought to be as secure as the
+6.3.19-1 version in Debian testing right now, and also as secure as the
+&quot;real&quot; fetchmail-6.3.19 distributed by Matthias Andree :)  You can
+always check the sources if you're feeling particularly paranoid :)
+
+&gt;<i> Here is the result from uname -a :
+</I>&gt;<i> &#160;
+</I>&gt;<i> Linux mail 2.6.26-2-686 #1 SMP Thu Nov 25 01:53:57 UTC 2010 i686 GNU/Linux
+</I>
+Great, this means you're on an i386 system, same as me, so you can use
+directly the binary packages I've just uploaded to
+<A HREF="http://devel.ringlet.net/mail/fetchmail/debian/">http://devel.ringlet.net/mail/fetchmail/debian/</A> - download the .deb
+files and install them using &quot;dpkg -i&quot;.
+
+You may verify the integrity of the download by installing the
+&quot;devscripts&quot; package and running &quot;dscverify&quot; on the *.changes file; it
+will most probably complain that the PGP key that signed the *.changes
+file is not in APT's keyring - this may be overcome by downloading my
+PGP key from the URL in my signature and passing it to &quot;apt-key add&quot;.
+Note that this will mean that your APT will trust all packages and
+repositories signed by me :)  It's your call as to how much of a problem
+that is (and since I'm already in the Debian Maintainers keyring and
+it'll probably not take much longer than a couple of months more for me
+to complete my full Debian Developer application process, I dare say
+that it might not be too much of a problem, even if I do say so myself
+:<i>P )
+</I>
+&gt;<i> Thx :)
+</I>
+No problem, and sorry for being a day late on my original promise.
+If there are any problems with this backported package, let me know and
+I'll see what I can do.
+
+G'luck,
+Peter
+
+-- 
+Peter Pentchev	<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">roam at ringlet.net</A> <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">roam at FreeBSD.org</A> <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">peter at packetscale.com</A>
+PGP key:	<A HREF="http://people.FreeBSD.org/~roam/roam.key.asc">http://people.FreeBSD.org/~roam/roam.key.asc</A>
+Key fingerprint	FDBA FD79 C26F 3C51 C95E  DF9E ED18 B68D 1619 4553
+The rest of this sentence is written in Thailand, on
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: signature.asc
+Type: application/pgp-signature
+Size: 836 bytes
+Desc: Digital signature
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/fetchmail-users/attachments/20110428/c5abe3f8/attachment.pgp">https://lists.berlios.de/pipermail/fetchmail-users/attachments/20110428/c5abe3f8/attachment.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002777.html">[fetchmail-users] Fetchmail using 2 envelope options
+</A></li>
+	
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2781">[ date ]</a>
+              <a href="thread.html#2781">[ thread ]</a>
+              <a href="subject.html#2781">[ subject ]</a>
+              <a href="author.html#2781">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

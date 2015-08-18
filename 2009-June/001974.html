@@ -1,0 +1,86 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Authentication problem with fetchmail
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2009-June/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Authentication%20problem%20with%20fetchmail&In-Reply-To=%3Cop.uvqr24ie1e62zd%40merlin.emma.line.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001973.html">
+   <LINK REL="Next"  HREF="001975.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Authentication problem with fetchmail</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Authentication%20problem%20with%20fetchmail&In-Reply-To=%3Cop.uvqr24ie1e62zd%40merlin.emma.line.org%3E"
+       TITLE="[fetchmail-users] Authentication problem with fetchmail">matthias.andree at gmx.de
+       </A><BR>
+    <I>Fri Jun 19 00:43:42 CEST 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001973.html">[fetchmail-users] Authentication problem with fetchmail
+</A></li>
+        <LI>Next message: <A HREF="001975.html">[fetchmail-users] Authentication problem with fetchmail
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1974">[ date ]</a>
+              <a href="thread.html#1974">[ thread ]</a>
+              <a href="subject.html#1974">[ subject ]</a>
+              <a href="author.html#1974">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>&gt;<i> Am 17.06.2009, 16:38 Uhr, schrieb Joep L. Blom &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">jlblom at neuroweave.nl</A>&gt;:
+</I>
+
+&gt;&gt;<i> fetchmail: awakened at Wed 17 Jun 2009 04:11:56 PM CEST
+</I>&gt;&gt;<i> fetchmail: Server certificate verification error: self signed  
+</I>&gt;&gt;<i> certificate
+</I>&gt;&gt;<i> fetchmail: Authorization failure on <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">jlblom at VhostID2.mcnolia.nl</A>
+</I>&gt;&gt;<i> fetchmail: Query status=3 (AUTHFAIL)
+</I>
+
+Further information:
+
+As a general debugging aid (Rob, this one's for you :-)):
+
+SSL and TLS failures get logged as &quot;upgrade to TLS failed&quot; or &quot;SSL  
+connection failed&quot;, followed by a /socket/ error.
+
+This however is logged as authorization failure, and as such it is really  
+a genuine authentication error unrelated to SSL/TLS - at least in recent  
+6.3.n versions.
+
+HTH
+
+-- 
+Matthias Andree
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001973.html">[fetchmail-users] Authentication problem with fetchmail
+</A></li>
+	<LI>Next message: <A HREF="001975.html">[fetchmail-users] Authentication problem with fetchmail
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1974">[ date ]</a>
+              <a href="thread.html#1974">[ thread ]</a>
+              <a href="subject.html#1974">[ subject ]</a>
+              <a href="author.html#1974">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

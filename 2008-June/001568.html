@@ -1,0 +1,108 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] HOW to run more then one fetchmail for	the	same ${USER}?
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2008-June/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20HOW%20to%20run%20more%20then%20one%20fetchmail%20for%0A%09the%09same%20%24%7BUSER%7D%3F&In-Reply-To=%3C20080609184128.GG1063%40straylight.m.ringlet.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001566.html">
+   <LINK REL="Next"  HREF="001567.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] HOW to run more then one fetchmail for	the	same ${USER}?</H1>
+    <B>Peter Pentchev</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20HOW%20to%20run%20more%20then%20one%20fetchmail%20for%0A%09the%09same%20%24%7BUSER%7D%3F&In-Reply-To=%3C20080609184128.GG1063%40straylight.m.ringlet.net%3E"
+       TITLE="[fetchmail-users] HOW to run more then one fetchmail for	the	same ${USER}?">roam at ringlet.net
+       </A><BR>
+    <I>Mon Jun  9 20:41:28 CEST 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001566.html">[fetchmail-users] HOW to run more then one fetchmail for the same	${USER}?
+</A></li>
+        <LI>Next message: <A HREF="001567.html">[fetchmail-users] HOW to run more then one fetchmail for the	same ${USER}?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1568">[ date ]</a>
+              <a href="thread.html#1568">[ thread ]</a>
+              <a href="subject.html#1568">[ subject ]</a>
+              <a href="author.html#1568">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Sun, Jun 08, 2008 at 07:37:09PM +0200, Michelle Konzack wrote:
+&gt;<i> ************************************************************************
+</I>&gt;<i> *       Do not Cc: me, because I READ THIS LIST, if I write here       *
+</I>&gt;<i> *    Keine Cc: am mich, ich LESE DIESE LISTE wenn ich hier schreibe    *
+</I>&gt;<i> ************************************************************************
+</I>&gt;<i> 
+</I>&gt;<i> Hello,
+</I>&gt;<i> 
+</I>&gt;<i> I run my regular fetchmail for my &quot;standard&quot; mailboxes  all  15  minutes
+</I>&gt;<i> but since I have installed a seperated tool which require fetchmail  and
+</I>&gt;<i> must run all 5 minutes I am running into trouble.
+</I>&gt;<i> 
+</I>&gt;<i> Since all two  fetchmail  instances  run  from  a  script,  how  must  I
+</I>&gt;<i> manipulate it, that I can run more then one instance of fetchmail?
+</I>&gt;<i> 
+</I>&gt;<i> OK, it is already enough, if the script of my second fetchmail  instance
+</I>&gt;<i> must be changed since the  &quot;normal&quot;  fetchmail  process  should  not  be
+</I>&gt;<i> touched.
+</I>
+If you specify all the options on the command line, just make sure there
+are different values for the --pidfile and, possibly, the --idfile
+parameter.  The --idfile may be important, since there might be trouble
+if two instances of fetchmail try to update the fetchids file at
+the same time, though I haven't checked if this is taken care of by
+some locking.
+
+My advice would be to create separate fetchmailrc files.  In those, make
+sure you specify different values in the &quot;set idfile&quot; statement, and
+you will still need to give a --pidfile command-line option to one of
+the fetchmail instances.
+
+Hope that helps... although I may not have worded it too clearly.
+
+G'luck,
+Peter
+
+-- 
+Peter Pentchev	<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">roam at ringlet.net</A>    <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">roam at cnsys.bg</A>    <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">roam at FreeBSD.org</A>
+PGP key:	<A HREF="http://people.FreeBSD.org/~roam/roam.key.asc">http://people.FreeBSD.org/~roam/roam.key.asc</A>
+Key fingerprint	FDBA FD79 C26F 3C51 C95E  DF9E ED18 B68D 1619 4553
+This sentence is false.
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: not available
+Type: application/pgp-signature
+Size: 195 bytes
+Desc: not available
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/fetchmail-users/attachments/20080609/1126c60d/attachment.pgp">https://lists.berlios.de/pipermail/fetchmail-users/attachments/20080609/1126c60d/attachment.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001566.html">[fetchmail-users] HOW to run more then one fetchmail for the same	${USER}?
+</A></li>
+	<LI>Next message: <A HREF="001567.html">[fetchmail-users] HOW to run more then one fetchmail for the	same ${USER}?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1568">[ date ]</a>
+              <a href="thread.html#1568">[ thread ]</a>
+              <a href="subject.html#1568">[ subject ]</a>
+              <a href="author.html#1568">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

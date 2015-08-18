@@ -1,0 +1,89 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Plain passwords in file?
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2010-August/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Plain%20passwords%20in%20file%3F&In-Reply-To=%3C201008040739.55237.frederic.marchal%40wowcompany.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002441.html">
+   <LINK REL="Next"  HREF="002442.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Plain passwords in file?</H1>
+    <B>Fr&#233;d&#233;ric Marchal</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Plain%20passwords%20in%20file%3F&In-Reply-To=%3C201008040739.55237.frederic.marchal%40wowcompany.com%3E"
+       TITLE="[fetchmail-users] Plain passwords in file?">frederic.marchal at wowcompany.com
+       </A><BR>
+    <I>Wed Aug  4 07:39:54 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002441.html">[fetchmail-users] Plain passwords in file?
+</A></li>
+        <LI>Next message: <A HREF="002442.html">[fetchmail-users] Plain text passwords?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2444">[ date ]</a>
+              <a href="thread.html#2444">[ thread ]</a>
+              <a href="subject.html#2444">[ subject ]</a>
+              <a href="author.html#2444">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Monday 02 August 2010, Depo Catcher wrote:
+&gt;<i> Well, it's 2010; common sense tells me it's a bad idea to have a file
+</I>&gt;<i> with dozens of plain text passwords.
+</I>&gt;<i> Anyways; I'm done with this.  I'm going to use a combination of pwsafe
+</I>&gt;<i> and truecrypt.
+</I>&gt;<i> Honestly I don't know why there is such hostility towards not having
+</I>&gt;<i> plain text passwords.
+</I>
+At least, when you see the plain text password sitting in your configuration 
+file, you know for sure you have to protect that file and make sure nobody 
+gets its hands on it (and that's exactly what you do by using 
+truecrypt :-) ).
+
+If you believe your password is safe in the file, then you may not care 
+enough...
+
+Encrypting the password will only prevent a user from reading it with a 
+simple &quot;cat fetchmailrc&quot; while you walk away from your terminal. Any really 
+dangerous user will know how to copy that file somewhere else where he will 
+have the leisure to decrypt it with the right tools. You *must* protect that 
+file against any illegitimate read access.
+
+You gain nothing by encrypting the password except a false sense of 
+confidence. But you may eventually loose the opportunity to double check the 
+password or simply read it yourself because you forgot what it was and where 
+the original clear text password had been stored a few years ago.
+
+Frederic
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002441.html">[fetchmail-users] Plain passwords in file?
+</A></li>
+	<LI>Next message: <A HREF="002442.html">[fetchmail-users] Plain text passwords?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2444">[ date ]</a>
+              <a href="thread.html#2444">[ thread ]</a>
+              <a href="subject.html#2444">[ subject ]</a>
+              <a href="author.html#2444">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

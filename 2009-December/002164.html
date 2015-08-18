@@ -1,0 +1,106 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Sparse logging (SSL connection failed)
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2009-December/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Sparse%20logging%20%28SSL%20connection%20failed%29&In-Reply-To=%3C4B1C4655.7090701%40realloc.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002163.html">
+   <LINK REL="Next"  HREF="002166.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Sparse logging (SSL connection failed)</H1>
+    <B>Derek Simkowiak</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Sparse%20logging%20%28SSL%20connection%20failed%29&In-Reply-To=%3C4B1C4655.7090701%40realloc.net%3E"
+       TITLE="[fetchmail-users] Sparse logging (SSL connection failed)">dereks at realloc.net
+       </A><BR>
+    <I>Mon Dec  7 01:03:33 CET 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002163.html">[fetchmail-users] Sparse logging (SSL connection failed)
+</A></li>
+        <LI>Next message: <A HREF="002166.html">[fetchmail-users] Sparse logging (SSL connection failed)
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2164">[ date ]</a>
+              <a href="thread.html#2164">[ thread ]</a>
+              <a href="subject.html#2164">[ subject ]</a>
+              <a href="author.html#2164">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>    Thanks.
+
+    Unfortunately, it doesn't give any more information about the SSL 
+failure:
+
+<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">www-data at trac</A>:~$ fetchmail -vvvvvvvvvvvvvvvvvvvv
+fetchmail: 6.3.8 querying internal (protocol IMAP) at Sun 06 Dec 2009 
+04:02:30 PM PST: poll started
+Trying to connect to 192.168.1.149/993...connected.
+fetchmail: SSL connection failed.
+fetchmail: socket error while fetching from <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">xxx at internal</A>
+fetchmail: 6.3.8 querying internal (protocol IMAP) at Sun 06 Dec 2009 
+04:02:30 PM PST: poll completed
+fetchmail: Query status=2 (SOCKET)
+fetchmail: Deleting fetchids file.
+fetchmail: normal termination, status 2
+fetchmail: Deleting fetchids file.
+<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">www-data at trac</A>:~$
+
+
+    Anyone know how to troubleshoot this?
+
+
+Thanks,
+Derek
+
+On 12/06/2009 03:58 PM, Christian Ebert wrote:
+&gt;<i> * Derek Simkowiak on Sunday, December 06, 2009 at 14:48:48 -0800
+</I>&gt;<i>   
+</I>&gt;&gt;<i>    Why is the &quot;--verbose&quot; option not giving me any useful information?
+</I>&gt;&gt;<i>     
+</I>&gt;<i>
+</I>&gt;<i> At least I know the answer to that one, or rather the fine manual
+</I>&gt;<i> does:
+</I>&gt;<i>
+</I>&gt;<i> -v | --verbose
+</I>&gt;<i>       Verbose  mode.  All control messages passed between
+</I>&gt;<i>       fetchmail and the mailserver are echoed to stdout.
+</I>&gt;<i>       Overrides --silent.  Doubling this option (-v -v) causes
+</I>&gt;<i>       extra diagnostic information to be printed.
+</I>&gt;<i>
+</I>&gt;<i> you can even do fetchmail -vvv ;-)
+</I>&gt;<i>
+</I>&gt;<i> c
+</I>&gt;<i>   
+</I>
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002163.html">[fetchmail-users] Sparse logging (SSL connection failed)
+</A></li>
+	<LI>Next message: <A HREF="002166.html">[fetchmail-users] Sparse logging (SSL connection failed)
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2164">[ date ]</a>
+              <a href="thread.html#2164">[ thread ]</a>
+              <a href="subject.html#2164">[ subject ]</a>
+              <a href="author.html#2164">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

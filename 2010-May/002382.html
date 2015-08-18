@@ -1,0 +1,113 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Appropriate shell for fetchmail user
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2010-May/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Appropriate%20shell%20for%20fetchmail%20user&In-Reply-To=%3CAANLkTikhQFH0ELv_vmZipyAWEka1T5kDtb8wHK7QD7N1%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002381.html">
+   <LINK REL="Next"  HREF="002383.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Appropriate shell for fetchmail user</H1>
+    <B>Brandon Perry</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Appropriate%20shell%20for%20fetchmail%20user&In-Reply-To=%3CAANLkTikhQFH0ELv_vmZipyAWEka1T5kDtb8wHK7QD7N1%40mail.gmail.com%3E"
+       TITLE="[fetchmail-users] Appropriate shell for fetchmail user">bperry.volatile at gmail.com
+       </A><BR>
+    <I>Tue May 11 15:12:38 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002381.html">[fetchmail-users] Appropriate shell for fetchmail user
+</A></li>
+        <LI>Next message: <A HREF="002383.html">[fetchmail-users] Appropriate shell for fetchmail user
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2382">[ date ]</a>
+              <a href="thread.html#2382">[ thread ]</a>
+              <a href="subject.html#2382">[ subject ]</a>
+              <a href="author.html#2382">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Thanks Matthias for your response.
+
+I was able to set the fetchmail user to use /bin/false with no change in how
+fetchmail was working. I will keep my fingers crossed something doesn't rear
+it's head though.
+
+On Mon, May 10, 2010 at 5:01 PM, Matthias Andree &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">matthias.andree at gmx.de</A>&gt;wrote:
+
+&gt;<i> Am 10.05.2010 22:52, schrieb Brandon Perry:
+</I>&gt;<i> &gt; Er, require shell access.
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; On Mon, May 10, 2010 at 3:51 PM, Brandon Perry &lt;
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">bperry.volatile at gmail.com</A>&gt;wrote:
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt;&gt; Hi, doing some clean up I noticed that the fetchmail user on my system
+</I>&gt;<i> is
+</I>&gt;<i> &gt;&gt; configged for /bin/sh ratehr than /bin/false or something else. Can I
+</I>&gt;<i> change
+</I>&gt;<i> &gt;&gt; this to /bin/false or does the user require execution permisions?
+</I>&gt;<i>
+</I>&gt;<i> Depends on how you're using (and particularly starting) it, and how your
+</I>&gt;<i> system handles such passwd entries.
+</I>&gt;<i>
+</I>&gt;<i> The passwd database usually lists login shells, whereas the system
+</I>&gt;<i> interfaces that fetchmail uses for mda/plugin/plugout would hardcode the
+</I>&gt;<i> use of &quot;sh&quot; and should be unaffected, at least on POSIX compliant
+</I>&gt;<i> systems (unless I have missed something).
+</I>&gt;<i>
+</I>&gt;<i> The exact impact is apparently system dependent, and also installation
+</I>&gt;<i> dependent, so I'd say the quickest way to find out is testing it,
+</I>&gt;<i> possibly with &quot;-all --keep&quot; options; and options that run commands are
+</I>&gt;<i> candidates for failure, such as mda, plugin, plugout.  If you do not
+</I>&gt;<i> need external commands through these options, and your system can still
+</I>&gt;<i> start fetchmail if the shell is /bin/false or /sbin/nologin or
+</I>&gt;<i> thereabouts, it should be safe to change. Be sure to have at least one
+</I>&gt;<i> message delivery attempt, else the test isn't useful.
+</I>&gt;<i>
+</I>&gt;<i> HTH
+</I>&gt;<i>
+</I>&gt;<i> --
+</I>&gt;<i> Matthias Andree
+</I>&gt;<i> _______________________________________________
+</I>&gt;<i> fetchmail-users mailing list
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">fetchmail-users at lists.berlios.de</A>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">https://lists.berlios.de/mailman/listinfo/fetchmail-users</A>
+</I>&gt;<i>
+</I>
+
+
+-- 
+<A HREF="http://volatile-minds.blogspot.com">http://volatile-minds.blogspot.com</A> -- blog
+<A HREF="http://www.volatileminds.net">http://www.volatileminds.net</A> -- website
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002381.html">[fetchmail-users] Appropriate shell for fetchmail user
+</A></li>
+	<LI>Next message: <A HREF="002383.html">[fetchmail-users] Appropriate shell for fetchmail user
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2382">[ date ]</a>
+              <a href="thread.html#2382">[ thread ]</a>
+              <a href="subject.html#2382">[ subject ]</a>
+              <a href="author.html#2382">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

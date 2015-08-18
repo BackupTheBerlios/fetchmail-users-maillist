@@ -1,0 +1,123 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] SMTP connect error with fetchmail under Cygwin
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2007-May/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20SMTP%20connect%20error%20with%20fetchmail%20under%20Cygwin&In-Reply-To=%3C43ea8d070705121503h4f69cd70o5ac07c9acab3396a%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001032.html">
+   <LINK REL="Next"  HREF="001036.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] SMTP connect error with fetchmail under Cygwin</H1>
+    <B>Rob MacGregor</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20SMTP%20connect%20error%20with%20fetchmail%20under%20Cygwin&In-Reply-To=%3C43ea8d070705121503h4f69cd70o5ac07c9acab3396a%40mail.gmail.com%3E"
+       TITLE="[fetchmail-users] SMTP connect error with fetchmail under Cygwin">rob.macgregor at gmail.com
+       </A><BR>
+    <I>Sun May 13 00:03:18 CEST 2007</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001032.html">[fetchmail-users] SMTP connect error with fetchmail under Cygwin
+</A></li>
+        <LI>Next message: <A HREF="001036.html">[fetchmail-users] SMTP connect error with fetchmail under Cygwin
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1033">[ date ]</a>
+              <a href="thread.html#1033">[ thread ]</a>
+              <a href="subject.html#1033">[ subject ]</a>
+              <a href="author.html#1033">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On 5/12/07, Kyle Contreras-Barbour &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">kylebarbour at gmail.com</A>&gt; wrote:
+&gt;<i> 6.3.8 and 3.22, respectively, according to setup.exe).
+</I>&gt;<i>
+</I>&gt;<i> I did indeed need to get exim running, it seems (thanks!) - I ran
+</I>&gt;<i> exim-config to get the daemon going and when I ran fetchmail, instead of
+</I>&gt;<i> giving &quot;connection to localhost failed&quot; it happily connected. However, it's
+</I>&gt;<i> still having certificate verification errors (I don't know if that's a big
+</I>&gt;<i> issue or not) and terminating with a socket error. This is what it's showing
+</I>&gt;<i> at the end:
+</I>
+Not a big deal.
+
+&gt;<i> It's been getting stuck at the same message, which appears to be fairly
+</I>&gt;<i> large (14003782 octets), so I'm starting to wonder if there isn't some issue
+</I>&gt;<i> there. Before it hits that message, it's giving this:
+</I>&gt;<i>
+</I>&gt;<i> 649 messages (292 seen) for <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">soandso at gmail.com</A> at pop.gmail.com (21915850
+</I>&gt;<i> octets).
+</I>&gt;<i> skipping message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">soandso at gmail.com</A>@pop.gmail.com:1 not flushed
+</I>&gt;<i> skipping message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">soandso at gmail.com</A>@pop.gmail.com:2 not flushed
+</I>&gt;<i> ...
+</I>&gt;<i> skipping message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">soandso at gmail.com</A>@pop.gmail.com:291 not flushed
+</I>&gt;<i> skipping message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">soandso at gmail.com</A>@pop.gmail.com:292 not flushed
+</I>&gt;<i> fetchmail: POP3&gt; LIST 293
+</I>&gt;<i> fetchmail: POP3&lt; +OK 293 14003782
+</I>&gt;<i> fetchmail: POP3&gt; RETR 293
+</I>&gt;<i> fetchmail: POP3&lt; +OK message follows
+</I>&gt;<i> reading message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">soandso at gmail.com</A>@pop.gmail.com:293 of 649 (14003782 octets)
+</I>&gt;<i>
+</I>&gt;<i> Trying to connect to 127.0.0.1/25...connected.
+</I>&gt;<i> fetchmail: SMTP&lt; 220 &lt;hostname&gt; ESMTP Exim 4.66 Sat, 12 May 2007 14:04:08
+</I>&gt;<i> -0700
+</I>&gt;<i> fetchmail: SMTP&gt; EHLO &lt;hostname&gt;
+</I>&gt;<i> fetchmail: SMTP&lt; 250-&lt;hostname&gt; Hello localhost [127.0.0.1]
+</I>&gt;<i> fetchmail: SMTP&lt; 250-SIZE 52428800
+</I>&gt;<i> fetchmail: SMTP&lt; 250-PIPELINING
+</I>&gt;<i> fetchmail: SMTP&lt; 250 HELP
+</I>&gt;<i> fetchmail: SMTP&gt; MAIL FROM:&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">soandso at gmail.com</A>&gt; SIZE=14003782
+</I>&gt;<i> fetchmail: SMTP&lt; 250 OK
+</I>&gt;<i> fetchmail: SMTP&gt; RCPT TO:&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">username at hostname</A>&gt;
+</I>&gt;<i> fetchmail: SMTP&lt; 250 Accepted
+</I>&gt;<i> fetchmail: SMTP&gt; DATA
+</I>&gt;<i> fetchmail: SMTP&lt; 354 Enter message, ending with &quot;.&quot; on a line by itself
+</I>&gt;<i> #&lt;massive string of asterisks, interrupted by periods&gt;
+</I>&lt;--- following section moved into what appears to be the right place ---&gt;
+&gt;<i> fetchmail: socket error while fetching from <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">soandso at gmail.com</A>@pop.gmail.com
+</I>&gt;<i> fetchmail: 6.3.8 querying pop.gmail.com (protocol POP3) at &lt;date&gt;: poll
+</I>&gt;<i> completed
+</I>&gt;<i> fetchmail: Query status=2 (SOCKET)
+</I>&gt;<i> fetchmail: normal termination, status 2
+</I>
+It could be a problem related to your exim config (14 MB is pretty
+large for an email).  The contents of the exim log would be useful to
+further diagnose, though from the snippet above it doesn't appear to
+be a fetchmail problem.
+
+-- 
+                 Please keep list traffic on the list.
+
+Rob MacGregor
+      Whoever fights monsters should see to it that in the process he
+        doesn't become a monster.                  Friedrich Nietzsche
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001032.html">[fetchmail-users] SMTP connect error with fetchmail under Cygwin
+</A></li>
+	<LI>Next message: <A HREF="001036.html">[fetchmail-users] SMTP connect error with fetchmail under Cygwin
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1033">[ date ]</a>
+              <a href="thread.html#1033">[ thread ]</a>
+              <a href="subject.html#1033">[ subject ]</a>
+              <a href="author.html#1033">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

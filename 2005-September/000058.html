@@ -1,0 +1,131 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] fetchmail 6.2.9-rc3 available
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2005-September/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%206.2.9-rc3%20available&In-Reply-To=%3C200509200857.j8K8vGDm011348%40ns-srv-2.bln1.siemens.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000061.html">
+   <LINK REL="Next"  HREF="000059.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] fetchmail 6.2.9-rc3 available</H1>
+    <B>Thomas Wolff</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%206.2.9-rc3%20available&In-Reply-To=%3C200509200857.j8K8vGDm011348%40ns-srv-2.bln1.siemens.de%3E"
+       TITLE="[fetchmail-users] fetchmail 6.2.9-rc3 available">towo at towo.net
+       </A><BR>
+    <I>Tue Sep 20 10:57:16 CEST 2005</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000061.html">[fetchmail-users] fetchmail 6.2.9-rc3 available
+</A></li>
+        <LI>Next message: <A HREF="000059.html">[fetchmail-users] Re: Socket error in fetchmail
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#58">[ date ]</a>
+              <a href="thread.html#58">[ thread ]</a>
+              <a href="subject.html#58">[ subject ]</a>
+              <a href="author.html#58">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>&gt;<i> &gt; The following error remains on SunOS:
+</I>&gt;<i> &gt; gcc -I/home/demsn702/opt/openssl-0.9.8/include -I/usr/kerberos/include 
+</I>&gt;<i> &gt; -g -O2 -L/home/demsn702/opt/openssl-0.9.8/lib  -o fetchmail  socket.o 
+</I>&gt;<i> &gt; getpass.o pop2.o pop3.o imap.o etrn.o odmr.o fetchmail.o env.o idle.o 
+</I>&gt;<i> &gt; options.o daemon.o driver.o transact.o sink.o smtp.o uid.o mxget.o 
+</I>&gt;<i> &gt; md5ify.o cram.o kerberos.o gssapi.o opie.o rpa.o interface.o netrc.o 
+</I>&gt;<i> &gt; unmime.o conf.o checkalias.o smbdes.o smbencrypt.o smbmd4.o smbutil.o 
+</I>&gt;<i> &gt; lock.o rcfile_l.o rcfile_y.o norm_charmap.o getaddrinfo.o getnameinfo.o 
+</I>&gt;<i> &gt; libfm.a  stpcpy.o  -lnsl -lsocket  -lintl -lresolv -lssl -lcrypto
+</I>&gt;<i> &gt; Undefined                       first referenced
+</I>&gt;<i> &gt;  symbol                             in file
+</I>&gt;<i> &gt; dlclose                             /home/demsn702/lib/libcrypto.a(dso_dlfcn.o)  (symbol belongs to implicit dependency /usr/lib/libdl.so.1)
+</I>&gt;<i> 
+</I>&gt;<i> Does adding -ldl to LIBS or LDFLAGS help?
+</I>Yes. I also see that this is contained somewhere in the configure script 
+but it is not generated into the Makefile on SunOS.
+
+
+&gt;<i> &gt; Also, as I had noted before, fetchmail --ssl apparently depends on 
+</I>&gt;<i> &gt; IMAPS being known to the system as a service - probably by listing it 
+</I>&gt;<i> &gt; in /etc/services. If this is not the case, getaddrinfo will fail.
+</I>&gt;<i> &gt; Now fetchmail seems to be the only tool that enables command line users 
+</I>&gt;<i> &gt; to set up a working mail environment on a system which is not 
+</I>&gt;<i> &gt; otherwise administrated for handling mail (together with ssmtp).
+</I>&gt;<i> &gt; Thus it should not depend on proper system configuration in any respect - 
+</I>&gt;<i> 
+</I>&gt;<i> Well, fetchmail isn't supported to work on arbitrarily broken systems
+</I>&gt;<i> that are years past their end of life. Let's see if we can get it to
+</I>&gt;<i> work without hardcoding this information...
+</I>Isn't it the purpose of such tools to enable the users to set up a 
+working mail environment?
+That would also mean they should work &quot;out-of-the-box&quot; in as many 
+situations as possible. It's not the fault of users if they have 
+to work on &quot;broken&quot; systems so don't punish them for it.
+
+Also I don't see from a software engineering perspective why it should 
+be harmful to consider even &quot;broken&quot; situations and handle them 
+properly in the interest of the user. You may consider it a workaround 
+but it's a workaround to an external problem and as such not a 
+software deficiency but rather a benefit.
+
+
+&gt;<i> &gt; it should work even if getaddrinfo does not &quot;know&quot; IMAPS!
+</I>&gt;<i> 
+</I>&gt;<i> ...so does it work to specify the port explicitly on the command line?
+</I>&gt;<i> &quot;--port 993&quot; should work. I don't feel like hacking port numbers in
+</I>&gt;<i> opaque data - that is not the intention of protocol independence
+</I>&gt;<i> patches.
+</I>--port 993 works, thank you. I see that the situation is even well 
+documented under the --port option. It's just not documented where 
+you would normally look for it, so please add a hint to the --ssl 
+option, too, to enable affected users to find the solution.
+Also, please improve error messages so they may give the unlucky 
+users a hint what to do.
+Currently it looks like this:
+
+fetchmail: fetchmail: getaddrinfo(&quot;msx&quot;,&quot;imaps&quot;) error: servname not for ai_socktype
+IMAP connection to msx.bln1.siemens.de failed: Bad file number
+fetchmail: Query status=2 (SOCKET)
+
+and that really does not inspire me to look for the --port option.
+
+
+With the suggested improvements it would be acceptable although I 
+still think that hardcoding a well-defined standard port as a 
+(fallback) default would not be harmful but rather a good feature.
+
+
+Kind regards,
+Thomas Wolff
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000061.html">[fetchmail-users] fetchmail 6.2.9-rc3 available
+</A></li>
+	<LI>Next message: <A HREF="000059.html">[fetchmail-users] Re: Socket error in fetchmail
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#58">[ date ]</a>
+              <a href="thread.html#58">[ thread ]</a>
+              <a href="subject.html#58">[ subject ]</a>
+              <a href="author.html#58">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

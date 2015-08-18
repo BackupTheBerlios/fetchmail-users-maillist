@@ -1,0 +1,196 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] configuring Fetchmail with RT
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2007-April/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20configuring%20Fetchmail%20with%20RT&In-Reply-To=%3C907163.29234.qm%40web63503.mail.re1.yahoo.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001010.html">
+   <LINK REL="Next"  HREF="001012.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] configuring Fetchmail with RT</H1>
+    <B>Sridhar Adabala</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20configuring%20Fetchmail%20with%20RT&In-Reply-To=%3C907163.29234.qm%40web63503.mail.re1.yahoo.com%3E"
+       TITLE="[fetchmail-users] configuring Fetchmail with RT">ramsrigroups at yahoo.com
+       </A><BR>
+    <I>Wed Apr 25 14:39:00 CEST 2007</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001010.html">[fetchmail-users] Documentation for configuring Fetchmail with	RT
+</A></li>
+        <LI>Next message: <A HREF="001012.html">[fetchmail-users] configuring Fetchmail with RT
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1011">[ date ]</a>
+              <a href="thread.html#1011">[ thread ]</a>
+              <a href="subject.html#1011">[ subject ]</a>
+              <a href="author.html#1011">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi All,
+
+Thanks for the reply. I'm able to start the Fetchmail. However, the previous question which I posted is for driver issue only, thanks for pointing out. Now after starting the Fetchmail I'm getting the following message:
+
+C:\Program Files\OurInternet\Common\fetchmail&gt;cd &quot;C:\Program Files\OurInternet\Common\fetchmail\bin&quot;
+
+C:\Program Files\OurInternet\Common\fetchmail\bin&gt;type ..\rt-mailgate.conf   | fetchmail.exe -N -d 300 -f -
+fetchmail: removing stale lockfile
+fetchmail: starting fetchmail 6.2.5 daemon
+72 messages for giri at mail.ekspertech.com (6913002 octets).
+reading message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">giri at mail.ekspertech.com</A>:1 of 72 (453 octets) fetchmail: MDA returned nonzero status 127 not flushed
+reading message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">giri at mail.ekspertech.com</A>:2 of 72 (32450 octets) ...fetchmail: SIGPIPE thrown from an MDA or a stream socket error
+fetchmail: socket error while delivering to SMTP host mail.ekspertech.com
+fetchmail: Query status=2 (SOCKET)
+fetchmail: sleeping at Wed Apr 25 10:27:34 2007
+
+
+Please suggest me which settings I might made wrong.
+
+Thanks and regards,
+Sridhar Adabala.
+
+<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">fetchmail-users-request at lists.berlios.de</A> wrote:Today's Topics:
+
+   1. Documentation for configuring Fetchmail with RT (Sridhar Adabala)
+   2. Re: Documentation for configuring Fetchmail with RT
+      (Matthias Andree)
+   3. Re: Documentation for configuring Fetchmail with RT
+      (Rob MacGregor)
+
+
+----------------------------------------------------------------------
+
+Message: 1
+Date: Tue, 24 Apr 2007 04:02:48 -0700 (PDT)
+From: Sridhar Adabala 
+Subject: [fetchmail-users] Documentation for configuring Fetchmail
+ with RT
+To: <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">fetchmail-users at lists.berlios.de</A>
+Message-ID: &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">832704.5512.qm at web63504.mail.re1.yahoo.com</A>&gt;
+Content-Type: text/plain; charset=iso-8859-1
+
+Hi All,
+
+I'm new to this tool. I want information on how to configure Fetchmail with RT. Unable to get details for configuring Fetchmail for Windows 2000 Server. I'm trying to implement on my local system so that if it running fine then I can implement on live server.
+
+I configured rt-mailgate.conf as follows:
+ 
+poll mail.ekspertech.com proto pop3:
+username giri password xxxx mda &quot;c:/Progra~1/OurInternet/Common/perl/bin/perl.exe c:/Progra~1/Ourinternet/Reques~1/rt/bin/rt-mailgate.in --url <A HREF="http://192.168.1.113:8284/">http://192.168.1.113:8284/</A> --queue GENERAL --action correspond&quot;
+
+
+When I'm trying to start it giving me a Bad Pool caller error message and restarting Windows 2000 server.
+
+Please help me, if anyone can provide me documentation for Windows that's much appreciated.
+
+Regards,
+Sridhar
+
+       
+-----------------------------
+
+Message: 2
+Date: Tue, 24 Apr 2007 13:38:42 +0200
+From: Matthias Andree 
+Subject: Re: [fetchmail-users] Documentation for configuring Fetchmail
+ with RT
+To: Sridhar Adabala 
+Cc: <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">fetchmail-users at lists.berlios.de</A>
+Message-ID: &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">462DEC42.9070901 at gmx.de</A>&gt;
+Content-Type: text/plain; charset=ISO-8859-1
+
+Sridhar Adabala schrieb:
+&gt;<i> Hi All,
+</I>&gt;<i> 
+</I>&gt;<i> I'm new to this tool. I want information on how to configure Fetchmail with RT. Unable to get details for configuring Fetchmail for Windows 2000 Server. I'm trying to implement on my local system so that if it running fine then I can implement on live server.
+</I>&gt;<i> 
+</I>&gt;<i> I configured rt-mailgate.conf as follows:
+</I>&gt;<i>  
+</I>&gt;<i> poll mail.ekspertech.com proto pop3:
+</I>&gt;<i> username giri password xxxx mda &quot;c:/Progra~1/OurInternet/Common/perl/bin/perl.exe c:/Progra~1/Ourinternet/Reques~1/rt/bin/rt-mailgate.in --url <A HREF="http://192.168.1.113:8284/">http://192.168.1.113:8284/</A> --queue GENERAL --action correspond&quot;
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> When I'm trying to start it giving me a Bad Pool caller error message and restarting Windows 2000 server.
+</I>
+Not a fetchmail issue.
+
+
+------------------------------
+
+Message: 3
+Date: Tue, 24 Apr 2007 15:11:58 +0100
+From: &quot;Rob MacGregor&quot; 
+Subject: Re: [fetchmail-users] Documentation for configuring Fetchmail
+ with RT
+To: <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">fetchmail-users at lists.berlios.de</A>
+Message-ID:
+ &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">43ea8d070704240711m4423a458y52994e8897a9ded2 at mail.gmail.com</A>&gt;
+Content-Type: text/plain; charset=UTF-8; format=flowed
+
+On 4/24/07, Sridhar Adabala  wrote:
+&gt;<i> Hi All,
+</I>&gt;<i>
+</I>&gt;<i> I'm new to this tool. I want information on how to configure Fetchmail with RT. Unable to get details for configuring Fetchmail for Windows 2000 Server. I'm trying to implement on my local system so that if it running fine then I can implement on live server.
+</I>
+I assume you're talking about something called &quot;Request Tracker&quot;?
+
+&gt;<i> Please help me, if anyone can provide me documentation for Windows that's much appreciated.
+</I>
+As Matthias said, this isn't fetchmail related, though it may be a
+driver issue (which is what a quick Google suggests).
+
+-- 
+                 Please keep list traffic on the list.
+
+Rob MacGregor
+      Whoever fights monsters should see to it that in the process he
+        doesn't become a monster.                  Friedrich Nietzsche
+
+
+------------------------------
+
+_______________________________________________
+fetchmail-users mailing list
+<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">fetchmail-users at lists.berlios.de</A>
+<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">https://lists.berlios.de/mailman/listinfo/fetchmail-users</A>
+
+
+End of fetchmail-users Digest, Vol 10, Issue 16
+***********************************************
+
+
+       
+---------------------------------
+Ahhh...imagining that irresistible &quot;new car&quot; smell?
+ Check outnew cars at Yahoo! Autos.
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001010.html">[fetchmail-users] Documentation for configuring Fetchmail with	RT
+</A></li>
+	<LI>Next message: <A HREF="001012.html">[fetchmail-users] configuring Fetchmail with RT
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1011">[ date ]</a>
+              <a href="thread.html#1011">[ thread ]</a>
+              <a href="subject.html#1011">[ subject ]</a>
+              <a href="author.html#1011">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

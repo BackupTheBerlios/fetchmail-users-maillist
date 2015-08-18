@@ -1,0 +1,155 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] fetchmail: message .....:1 was not the	expected length (30792 actual != 30347 expected), not flushed
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2007-April/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%3A%20message%20.....%3A1%20was%20not%0A%20the%09expected%20length%20%2830792%20actual%20%21%3D%2030347%20expected%29%2C%20not%20flushed&In-Reply-To=%3C461F8AF5.90604%40applied.com.sg%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000991.html">
+   <LINK REL="Next"  HREF="000993.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] fetchmail: message .....:1 was not the	expected length (30792 actual != 30347 expected), not flushed</H1>
+    <B>Otto Rodusek (AP-SGP)</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%3A%20message%20.....%3A1%20was%20not%0A%20the%09expected%20length%20%2830792%20actual%20%21%3D%2030347%20expected%29%2C%20not%20flushed&In-Reply-To=%3C461F8AF5.90604%40applied.com.sg%3E"
+       TITLE="[fetchmail-users] fetchmail: message .....:1 was not the	expected length (30792 actual != 30347 expected), not flushed">otto at applied.com.sg
+       </A><BR>
+    <I>Fri Apr 13 15:51:49 CEST 2007</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000991.html">[fetchmail-users] fetchmail: message .....:1 was not	the	expected length (30792 actual != 30347 expected), not flushed
+</A></li>
+        <LI>Next message: <A HREF="000993.html">[fetchmail-users] fetchmail: message .....:1 was not the	expected length (30792 actual != 30347 expected), not flushed
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#992">[ date ]</a>
+              <a href="thread.html#992">[ thread ]</a>
+              <a href="subject.html#992">[ subject ]</a>
+              <a href="author.html#992">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>
+
+Peter Pentchev wrote:
+&gt;<i> On Fri, Apr 13, 2007 at 09:30:34PM +0800, Otto Rodusek (AP-SGP) wrote:
+</I>&gt;<i>   
+</I>&gt;&gt;<i> Matthias Andree wrote:
+</I>&gt;&gt;<i>     
+</I>&gt;&gt;&gt;<i> Otto Rodusek (AP-SGP) schrieb:
+</I>&gt;&gt;&gt;<i>       
+</I>&gt;&gt;&gt;&gt;<i> I'm having some minor problems issues with fetchmail v6.3.5.
+</I>&gt;&gt;&gt;&gt;<i>         
+</I>&gt;&gt;&gt;<i>   
+</I>&gt;&gt;&gt;<i>       
+</I>&gt;&gt;&gt;&gt;<i> This only happens on junk mails and never on &quot;real&quot; mail.
+</I>&gt;&gt;&gt;&gt;<i>         
+</I>&gt;&gt;&gt;<i>   
+</I>&gt;&gt;&gt;<i>       
+</I>&gt;&gt;&gt;&gt;<i> Is there any possible solution to this?? (Currently I have to regularly 
+</I>&gt;&gt;&gt;&gt;<i> login to the webmail access on the ISP and manually clean those emails).
+</I>&gt;&gt;&gt;&gt;<i>         
+</I>&gt;&gt;&gt;<i> Not inside fetchmail.
+</I>&gt;&gt;&gt;<i>   
+</I>&gt;&gt;&gt;<i>       
+</I>&gt;&gt;&gt;&gt;<i> fetchmail: SMTP&gt; MAIL FROM:&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">allhailjeinny at click4solutions.com</A>&gt; SIZE=30347
+</I>&gt;&gt;&gt;&gt;<i> fetchmail: SMTP&lt; 451 DNS temporary failure (#4.5.1 - chkuser)
+</I>&gt;&gt;&gt;&gt;<i> fetchmail: SMTP error: 451 DNS temporary failure (#4.5.1 - chkuser)
+</I>&gt;&gt;&gt;&gt;<i>         
+</I>&gt;&gt;&gt;<i> As you see here, your local MTA doesn't accept the sender domain,
+</I>&gt;&gt;&gt;<i> click4solutions..., and temporarily refuses the message, so fetchmail
+</I>&gt;&gt;&gt;<i> tries again at the next poll cycle.
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> Messages about size mismatches are warnings (most of the time at least)
+</I>&gt;&gt;&gt;<i> and don't make fetchmail abort the delivery voluntarily.
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> You might try to blacklist that click4sol... domain in your MTA so it
+</I>&gt;&gt;&gt;<i> responds with some code between 500 and 599 inclusively, then fetchmail
+</I>&gt;&gt;&gt;<i> will know it's pointless to retry.
+</I>&gt;&gt;&gt;<i>       
+</I>&gt;&gt;<i> Hi Matthias,
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Thanks for the quick reply. I'm confused as to which failure part is 
+</I>&gt;&gt;<i> causing fetchmail to &quot;not flush&quot; messages on the ISP server. You say its 
+</I>&gt;&gt;<i> because of the &quot;dns&quot; error on my server - however this same &quot;dns&quot; error 
+</I>&gt;&gt;<i> happens on many other messages and these messages still gets flushed 
+</I>&gt;&gt;<i> from the ISP side.(I have analyzed the successful logs - where 
+</I>&gt;&gt;<i> successful means the message is download from ISP and flushed on ISP 
+</I>&gt;&gt;<i> side )( I only give you the log of the failed message ie the message 
+</I>&gt;&gt;<i> that does not get flushed).
+</I>&gt;&gt;<i>     
+</I>&gt;<i>
+</I>&gt;<i> (I've rearranged the messages a bit to provide some context; once again,
+</I>&gt;<i> top-posting seems to be a less-than-brilliant idea :)
+</I>&gt;<i>
+</I>&gt;<i> Errr...
+</I>&gt;<i>
+</I>&gt;<i> Are you really saying that in your logs you have seen a case when your
+</I>&gt;<i> mail server gives a 4xx response - a 451 DNS temporary failure or apny
+</I>&gt;<i> other 4xx response - AND fetchmail flushes the message on the ISP side?
+</I>&gt;<i>
+</I>&gt;<i> If you are saying that, please provide logs - that would be a very, very
+</I>&gt;<i> serious bug in fetchmail :)  A 4xx response means that your local mail
+</I>&gt;<i> server DID NOT receive the message, so fetchmail must not remove it from
+</I>&gt;<i> the ISP's mailbox, and it should retry downloading it later.
+</I>&gt;<i>
+</I>&gt;<i> I'm really not sure that is the case.  If you can really find such
+</I>&gt;<i> a situation in your logs - your mailserver giving a 4xx response and
+</I>&gt;<i> fetchmail DELE'ting the message from the ISP side - then you would have
+</I>&gt;<i> found a bug indeed.  Until then, Matthias's explanation seems correct,
+</I>&gt;<i> at least to me.
+</I>&gt;<i>
+</I>&gt;<i> Note that there is a big difference between a 4xx and a 5xx response;
+</I>&gt;<i> a 5xx code means a permanent failure, your mailserver will never accept
+</I>&gt;<i> this message, no matter how many times fetchmail tries again in the
+</I>&gt;<i> future, and in this case fetchmail may indeed flush the message on the
+</I>&gt;<i> ISP side - no sense keeping messages that it will never be able to
+</I>&gt;<i> deliver.
+</I>&gt;<i>
+</I>&gt;<i> G'luck,
+</I>&gt;<i> Peter
+</I>&gt;<i>
+</I>&gt;<i>   
+</I>Hi,
+
+Sorry for the top reply - diff user groups use diff protocols - I will 
+bottom post to this mailgroup.
+
+I will re-verify my logs just to make sure. I have read the follow up 
+email from Matthais and will disable dns lookup on fetchmail retrieval 
+and see if that solves the problem.
+
+Thanks for all the replies.
+
+Rgds. Otto.
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000991.html">[fetchmail-users] fetchmail: message .....:1 was not	the	expected length (30792 actual != 30347 expected), not flushed
+</A></li>
+	<LI>Next message: <A HREF="000993.html">[fetchmail-users] fetchmail: message .....:1 was not the	expected length (30792 actual != 30347 expected), not flushed
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#992">[ date ]</a>
+              <a href="thread.html#992">[ thread ]</a>
+              <a href="subject.html#992">[ subject ]</a>
+              <a href="author.html#992">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

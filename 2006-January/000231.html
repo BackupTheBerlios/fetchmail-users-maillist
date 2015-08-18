@@ -1,0 +1,95 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Re: [fetchmail]fetchmail 6.3.0 contained incompatible idfile change
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2006-January/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Re%3A%20%5Bfetchmail%5Dfetchmail%206.3.0%20contained%20incompatible%20idfile%20change&In-Reply-To=%3Cm364oxzage.fsf%40merlin.emma.line.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000230.html">
+   <LINK REL="Next"  HREF="000226.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Re: [fetchmail]fetchmail 6.3.0 contained incompatible idfile change</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Re%3A%20%5Bfetchmail%5Dfetchmail%206.3.0%20contained%20incompatible%20idfile%20change&In-Reply-To=%3Cm364oxzage.fsf%40merlin.emma.line.org%3E"
+       TITLE="[fetchmail-users] Re: [fetchmail]fetchmail 6.3.0 contained incompatible idfile change">matthias.andree at gmx.de
+       </A><BR>
+    <I>Fri Jan  6 15:40:17 CET 2006</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000230.html">[fetchmail-users] Re: [fetchmail]fetchmail 6.3.0 contained incompatible idfile change
+</A></li>
+        <LI>Next message: <A HREF="000226.html">[fetchmail-users] Re: [fetchmail-announce] fetchmail 6.3.0 contained incompatible idfile change
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#231">[ date ]</a>
+              <a href="thread.html#231">[ thread ]</a>
+              <a href="subject.html#231">[ subject ]</a>
+              <a href="author.html#231">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Dembe &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">david at dembe.co.uk</A>&gt; writes:
+
+&gt;<i> We hadn't spotted this and so presumably our .fetchids file hasn't been
+</I>&gt;<i> updated. However, we've also not had any errors in the logs saying that
+</I>&gt;<i> fetchmail couldn't update the .fetchids file (our system is stable so we
+</I>&gt;<i> don't run fetchmail with any -v 's). Shouldn't this perhaps be put forward
+</I>&gt;<i> as a change for a next version so that if fetchmail doesn't have access
+</I>&gt;<i> to the .fetchids file, a warning error is logged (even if the debug
+</I>&gt;<i> options aren't being explicitly enabled)?
+</I>
+David,
+
+fetchmail should be doing exactly that, log and print on standard error
+messages like &quot;Cannot open fetchids file ... for writing&quot; or &quot;Cannot
+rename fetchids file ... to ...&quot; and the like. I've checked this, it
+works for me in 6.3.2-rc1.
+
+The problem only matters for system-wide installs that pass an UIDL file
+to fetchmail that is in a directory where the fetchmail user has no
+write permission.  End-user installs and system-wide installs that leave
+the default --idfile are unaffected by the change, as these have write
+permission in their respective home directory.
+
+I issued the report since Debian is known to put the UID file in a
+directory that the fetchmail user cannot write, so they're going to fail
+when they upgrade.
+
+Note the error messages will appear localized when fetchmail is started
+with LANG or LC_MESSAGES environment variables set.
+
+HTH,
+
+-- 
+Matthias Andree
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000230.html">[fetchmail-users] Re: [fetchmail]fetchmail 6.3.0 contained incompatible idfile change
+</A></li>
+	<LI>Next message: <A HREF="000226.html">[fetchmail-users] Re: [fetchmail-announce] fetchmail 6.3.0 contained incompatible idfile change
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#231">[ date ]</a>
+              <a href="thread.html#231">[ thread ]</a>
+              <a href="subject.html#231">[ subject ]</a>
+              <a href="author.html#231">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

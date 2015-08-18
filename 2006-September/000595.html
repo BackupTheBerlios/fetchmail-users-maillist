@@ -1,0 +1,100 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] query state=2 (SOCKET)
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2006-September/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20query%20state%3D2%20%28SOCKET%29&In-Reply-To=%3C9bfbfec30609141710x66f133fwf522d3da96d2b278%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000594.html">
+   <LINK REL="Next"  HREF="000598.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] query state=2 (SOCKET)</H1>
+    <B>Roberto Meyer</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20query%20state%3D2%20%28SOCKET%29&In-Reply-To=%3C9bfbfec30609141710x66f133fwf522d3da96d2b278%40mail.gmail.com%3E"
+       TITLE="[fetchmail-users] query state=2 (SOCKET)">roberto.s.meyer at gmail.com
+       </A><BR>
+    <I>Fri Sep 15 02:10:16 CEST 2006</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000594.html">[fetchmail-users] query state=2 (SOCKET)
+</A></li>
+        <LI>Next message: <A HREF="000598.html">[fetchmail-users] query state=2 (SOCKET)
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#595">[ date ]</a>
+              <a href="thread.html#595">[ thread ]</a>
+              <a href="subject.html#595">[ subject ]</a>
+              <a href="author.html#595">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>2006/9/14, Matthias Andree &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">matthias.andree at gmx.de</A>&gt;:
+
+[snip]
+
+&gt;<i> &gt; Finally I got a couple of errors with single connections.
+</I>&gt;<i>
+</I>&gt;<i> Please update fetchmail (newer versions have fewer bugs and better error
+</I>&gt;<i> reporting) and if the problem persists, run:
+</I>&gt;<i>
+</I>&gt;<i> env LC_ALL=C fetchmail -vvv --nodetach --nosyslog -d0
+</I>&gt;<i>
+</I>&gt;<i> to obtain a more detailed log. However, it still looks like the problem
+</I>&gt;<i> is outside fetchmail to me.
+</I>
+Beacause it's a random error I agree with that.
+
+I thought about fetching e-mails from a different place, over a
+different ISP to figure out if the problem could be related to the ISP
+or the hosting service instead.
+
+Today I did an 'mtr' of 600 pings. Below you'll find the results
+which, BTW, I think are reasonable.
+
+HOST: myfetchmachine    Loss%   Snt   Last  Avg  Best  Wrst StDev
+1. host.200.55.19.330        0.0%   600   25.4  40.0  21.3 307.8  32.1
+2. 201.10.19.45                  0.0%   600   21.4  46.8  20.6 841.2  62.2
+3. 201.10.19.41                  0.0%   600   36.3  49.4  21.3 876.4  65.9
+4. 201.15.63.207                0.0%   600   56.5  77.6  38.9 806.1  74.6
+5. mng-ats.impsat.net.ar   0.0%   600   41.6  68.7  38.7 659.6  71.5
+6. remotemailserver.com   8.8%   600   46.3  72.8  42.8 669.9  64.5
+
+I'm really tired about it... I think I'll put my effort in testing the
+ISP and hosting service... fetchmail has a rock solid reputation and I
+think it's not fair for it to be the first suspect of this mistery ;-)
+
+Thanks a lot for your kind answers.
+
+-- 
+Roberto
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000594.html">[fetchmail-users] query state=2 (SOCKET)
+</A></li>
+	<LI>Next message: <A HREF="000598.html">[fetchmail-users] query state=2 (SOCKET)
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#595">[ date ]</a>
+              <a href="thread.html#595">[ thread ]</a>
+              <a href="subject.html#595">[ subject ]</a>
+              <a href="author.html#595">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

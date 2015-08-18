@@ -1,0 +1,103 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Error messages with fetchmail 6.3.8
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2007-May/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Error%20messages%20with%20fetchmail%206.3.8&In-Reply-To=%3C43ea8d070705160710t2e028718w3e478cfc44c608a5%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001050.html">
+   <LINK REL="Next"  HREF="001052.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Error messages with fetchmail 6.3.8</H1>
+    <B>Rob MacGregor</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Error%20messages%20with%20fetchmail%206.3.8&In-Reply-To=%3C43ea8d070705160710t2e028718w3e478cfc44c608a5%40mail.gmail.com%3E"
+       TITLE="[fetchmail-users] Error messages with fetchmail 6.3.8">rob.macgregor at gmail.com
+       </A><BR>
+    <I>Wed May 16 16:10:22 CEST 2007</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001050.html">[fetchmail-users] Error messages with fetchmail 6.3.8
+</A></li>
+        <LI>Next message: <A HREF="001052.html">[fetchmail-users] Error messages with fetchmail 6.3.8
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1051">[ date ]</a>
+              <a href="thread.html#1051">[ thread ]</a>
+              <a href="subject.html#1051">[ subject ]</a>
+              <a href="author.html#1051">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On 5/16/07, Pongthep Kulkrisada &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">ptkrisada at gmail.com</A>&gt; wrote:
+&gt;<i> &gt; &gt; Can I skip step 1) and carry on with steps 2), 3) and 4)?
+</I>&gt;<i> &gt; &gt; I have the binary of /usr/local/bin/cvsup
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; Yup, that will be fine.
+</I>&gt;<i> So what I shall do are
+</I>&gt;<i> - mv /usr/ports/* /somewhere/else/
+</I>
+No, leave it alone.
+
+&gt;<i> - cp /usr/share/examples/cvsup/ports-supfile /root
+</I>&gt;<i> - vim /root/ports-supfile
+</I>&gt;<i> - cvsup -g -L 2 /root/ports-supfile
+</I>
+Yes
+
+&gt;<i> - cd /usr/ports/mail/fetchmail
+</I>&gt;<i> - make install
+</I>
+Yes
+
+&gt;<i> - I shall do the same with its dependencies i.e. ca-roots, gettext, gmake, libiconv as ports should not know dependency.
+</I>
+Actually, the ports *WILL* know the dependencies, though ca-roots
+isn't a dependency.
+
+&gt;<i> Nope, those 3 errors still exist.
+</I>&gt;<i>
+</I>&gt;<i> fetchmail: Server certificate verification error: unable to get local issuer certificate
+</I>&gt;<i> fetchmail: Server certificate verification error: certificate not trusted
+</I>&gt;<i> fetchmail: Server certificate verification error: unable to verify the first certificate
+</I>
+Take a look at the section on &quot;sslcertpath&quot; in the manual.  You either
+need to run c_rehash (comes with OpenSSL), or tell fetchmail where to
+find the certificates.
+
+-- 
+                 Please keep list traffic on the list.
+
+Rob MacGregor
+      Whoever fights monsters should see to it that in the process he
+        doesn't become a monster.                  Friedrich Nietzsche
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001050.html">[fetchmail-users] Error messages with fetchmail 6.3.8
+</A></li>
+	<LI>Next message: <A HREF="001052.html">[fetchmail-users] Error messages with fetchmail 6.3.8
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1051">[ date ]</a>
+              <a href="thread.html#1051">[ thread ]</a>
+              <a href="subject.html#1051">[ subject ]</a>
+              <a href="author.html#1051">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

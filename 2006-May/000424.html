@@ -1,0 +1,125 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Re: fix lost POP3 deletes
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2006-May/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Re%3A%20fix%20lost%20POP3%20deletes&In-Reply-To=%3Cm3r72jwuxc.fsf_-_%40merlin.emma.line.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000423.html">
+   <LINK REL="Next"  HREF="000425.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Re: fix lost POP3 deletes</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Re%3A%20fix%20lost%20POP3%20deletes&In-Reply-To=%3Cm3r72jwuxc.fsf_-_%40merlin.emma.line.org%3E"
+       TITLE="[fetchmail-users] Re: fix lost POP3 deletes">matthias.andree at gmx.de
+       </A><BR>
+    <I>Wed May 24 12:58:55 CEST 2006</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000423.html">[fetchmail-users] [OFFTOPIC PATCH] Re: fix lost POP3 deletes
+</A></li>
+        <LI>Next message: <A HREF="000425.html">[fetchmail-users] Re: fix lost POP3 deletes
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#424">[ date ]</a>
+              <a href="thread.html#424">[ thread ]</a>
+              <a href="subject.html#424">[ subject ]</a>
+              <a href="author.html#424">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Sunil Shetye &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">shetye at bombay.retortsoft.com</A>&gt; writes:
+
+&gt;<i> While debugging the code, I have found a minor problem which causes
+</I>&gt;<i> some of the flags not being set properly on the old uid list. Here it
+</I>&gt;<i> is:
+</I>&gt;<i>
+</I>&gt;<i> ================================================================================
+</I>&gt;<i> Index: fetchmail-6.3/pop3.c
+</I>&gt;<i> ===================================================================
+</I>&gt;<i> --- fetchmail-6.3/pop3.c	(revision 4851)
+</I>&gt;<i> +++ fetchmail-6.3/pop3.c	(working copy)
+</I>&gt;<i> @@ -1019,8 +1019,9 @@
+</I>&gt;<i>  			     * the same mail will not be downloaded again.
+</I>&gt;<i>  			     */
+</I>&gt;<i>  			    old = save_str(&amp;ctl-&gt;oldsaved, id, UID_UNSEEN);
+</I>&gt;<i> -			    old-&gt;val.status.num = unum;
+</I>&gt;<i>  			}
+</I>&gt;<i> +			/* save the number */
+</I>&gt;<i> +			old-&gt;val.status.num = unum;
+</I>&gt;<i>  		    } else
+</I>&gt;<i>  			return PS_ERROR;
+</I>&gt;<i>  		} /* multi-line loop for UIDL reply */
+</I>&gt;<i> ================================================================================
+</I>&gt;<i>
+</I>&gt;<i> The above patch is not actually related to any of our patches!
+</I>
+Merged, thanks.
+
+&gt;<i> Quoting from Matthias Andree's mail on Sun, May 21, 2006:
+</I>&gt;&gt;<i> Well - fetchmail does not currently save the deleted status to its
+</I>&gt;&gt;<i> .fetchids file, so there will be a difference between daemon mode and
+</I>&gt;&gt;<i> &quot;fetchmail without daemon option from cron&quot; that I would like to avoid -
+</I>&gt;&gt;<i> and my patch is supposed to address this.
+</I>&gt;&gt;<i> 
+</I>&gt;&gt;<i> I am attaching a revised patch (against UIDL) that drops the UIDs (marks
+</I>&gt;&gt;<i> them UID_EXPUNGED) before sending the QUIT command.
+</I>&gt;<i>
+</I>&gt;<i> I think this assumes that the server necessarily receives the QUIT.
+</I>&gt;<i> What if the server does not receive the QUIT at all due to socket
+</I>&gt;<i> error? This will cause the mails to be downloaded again.
+</I>
+Yes, it will. But how can we reliably tell &quot;server received QUIT&quot; from
+&quot;server did not receive QUIT&quot;? Do we get OS errors because the TCP
+ACK-flagged packets didn't come back, or because we got some ICMP or
+RST? Was the crucial ICMP perhaps dropped by the usual asinine firewalls
+that block all inbound ICMP? What kernel and version uses which codes to
+report issues? We might perhaps try &quot;STAT&quot; before resetting the flags so
+as to check if the connection was broken at the time we reach the logout
+code, but how else can we handle this?
+
+&gt;&gt;<i> In that case, fetchmail would then safely retry the deletion.
+</I>&gt;<i>
+</I>&gt;<i> Undoubtedly, saving the flag is required. However, to keep things
+</I>&gt;<i> simpler, it would have been better if this issue was fixed separately.
+</I>
+Can you elaborate how to handle this separately?
+
+BTW, we need the &quot;DELETED&quot; flagging in .fetchids to make your
+&quot;UID_UNSEEN&quot; patch (re-fetch rather than mark seen) anyways. 
+Else everything becomes &quot;SEEN vs. UNSEEN&quot; next time fetchmail is
+(re-)started anyways.
+
+-- 
+Matthias Andree
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000423.html">[fetchmail-users] [OFFTOPIC PATCH] Re: fix lost POP3 deletes
+</A></li>
+	<LI>Next message: <A HREF="000425.html">[fetchmail-users] Re: fix lost POP3 deletes
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#424">[ date ]</a>
+              <a href="thread.html#424">[ thread ]</a>
+              <a href="subject.html#424">[ subject ]</a>
+              <a href="author.html#424">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

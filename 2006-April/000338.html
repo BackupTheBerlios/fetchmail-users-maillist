@@ -1,0 +1,101 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] fetchmail 6.3.4-rc1 release candidate
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2006-April/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%206.3.4-rc1%20release%20candidate&In-Reply-To=%3C20060402172507.GA19868%40merlin.emma.line.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   
+   <LINK REL="Next"  HREF="000339.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] fetchmail 6.3.4-rc1 release candidate</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%206.3.4-rc1%20release%20candidate&In-Reply-To=%3C20060402172507.GA19868%40merlin.emma.line.org%3E"
+       TITLE="[fetchmail-users] fetchmail 6.3.4-rc1 release candidate">matthias.andree at gmx.de
+       </A><BR>
+    <I>Sun Apr  2 19:25:07 CEST 2006</I>
+    <P><UL>
+        
+        <LI>Next message: <A HREF="000339.html">[fetchmail-users] Re: [fetchmail-announce] fetchmail 6.3.2 stable release fixes several bugs
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#338">[ date ]</a>
+              <a href="thread.html#338">[ thread ]</a>
+              <a href="subject.html#338">[ subject ]</a>
+              <a href="author.html#338">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA1
+
+Greetings,
+
+after Miloslav Trmac and I have fixed a few more bugs and I have added a
+- --pidfile option that helps running fetchmail in system-wide setups (in
+Debian Linux), I have uploaded the first 6.3.4 release candidate to:
+&lt;<A HREF="http://mandree.home.pages.de/fetchmail/">http://mandree.home.pages.de/fetchmail/</A>&gt;
+
+Please test! I strive to release 6.3.4 as soon as possible, hoping to
+get a few translations for the release candidate back though.
+(H&#233;ctor, feel free to directly send a diff for es.po.)
+
+My thanks go to Miloslav Trmac for his efforts in cleaning up the 6.3.3
+and 6.3.4 versions big time. (I think I should have mentioned him in the
+6.3.3 announcement already - my apologies.)
+
+Changes in fetchmail 6.3.4-rc1 (from the 6.3.3 release):
+
+# BUG FIXES:
+* configure: detect res_* functions properly with newer glibc ABIs.
+  Patch by Miloslav Trmac.
+* tracepolls: add folder information if available. Reported by Terry Brown.
+* lexer: add %option noyywrap to avoid link errors about missing yywrap().
+* a few more type fixes for report/snprintf, patch by Miloslav Trmac.
+
+# CHANGES:
+* pidfile: there is a new command-line (--pidfile PATH) and global option for
+  the rcfile (set pidfile [=] &quot;/path/to/pidfile&quot;) option to allow overriding
+  the default location of the PID file.
+  Requested by H&#233;ctor Garc&#237;a, Debian maintainer.
+
+Happy mailfetching,
+Matthias Andree
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1.4.0 (GNU/Linux)
+
+iD8DBQFEMAjzvmGDOQUufZURAhATAKDKM/GXVZlkgoTRQPg4sILahhXBFgCZAYE/
+NUG9e2g54Csgl3FTFtRVYQ0=
+=IHl8
+-----END PGP SIGNATURE-----
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	
+	<LI>Next message: <A HREF="000339.html">[fetchmail-users] Re: [fetchmail-announce] fetchmail 6.3.2 stable release fixes several bugs
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#338">[ date ]</a>
+              <a href="thread.html#338">[ thread ]</a>
+              <a href="subject.html#338">[ subject ]</a>
+              <a href="author.html#338">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

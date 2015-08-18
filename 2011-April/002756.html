@@ -1,0 +1,93 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Plus (+) Addressing Problem
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2011-April/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Plus%20%28%2B%29%20Addressing%20Problem&In-Reply-To=%3C20110423180705.5ebeb0fe%40scorpio%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002755.html">
+   <LINK REL="Next"  HREF="002757.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Plus (+) Addressing Problem</H1>
+    <B>Jerry</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Plus%20%28%2B%29%20Addressing%20Problem&In-Reply-To=%3C20110423180705.5ebeb0fe%40scorpio%3E"
+       TITLE="[fetchmail-users] Plus (+) Addressing Problem">fetchmail.user at seibercom.net
+       </A><BR>
+    <I>Sun Apr 24 00:07:05 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002755.html">[fetchmail-users] Plus (+) Addressing Problem
+</A></li>
+        <LI>Next message: <A HREF="002757.html">[fetchmail-users] Plus (+) Addressing Problem
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2756">[ date ]</a>
+              <a href="thread.html#2756">[ thread ]</a>
+              <a href="subject.html#2756">[ subject ]</a>
+              <a href="author.html#2756">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Sat, 23 Apr 2011 14:32:59 -0700
+Derek Simkowiak &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">dereks at realloc.net</A>&gt; articulated:
+
+&gt;<i>  &gt; This is the Postfix log entry:
+</I>&gt;<i>  &gt;
+</I>&gt;<i>  &gt; [...snip...] client=localhost[127.0.0.1]
+</I>&gt;<i>  &gt; [...snip...] status=sent (delivered via dovecot service)  
+</I>&gt;<i> 
+</I>&gt;<i>      This indicates that Fetchmail delivered to Postfix, and then 
+</I>&gt;<i> Postfix delivered it to &quot;dovecot&quot;.  From what you've posted here, it 
+</I>&gt;<i> looks like Fetchmail is doing its job.
+</I>&gt;<i> 
+</I>&gt;<i>      I think your next troubleshooting step is to take Fetchmail out
+</I>&gt;<i> of the picture.  Use the &quot;mail&quot; command to send mail to Postfix (from 
+</I>&gt;<i> localhost).  Once you can prove that is working (w/filtering), you'll 
+</I>&gt;<i> know that the problem is not in Postfix or Dovecot.  (And if that 
+</I>&gt;<i> doesn't work, then ask the Dovecot mailing list.  Post your main.cf 
+</I>&gt;<i> &quot;dovecot&quot; entry, and your dovecot.conf.)
+</I>
+I thought I had stated in my original post that mail sent directly to
+this server does get handled correctly. From what I was told on the
+Postfix forum, Postfix is not getting the correct envelope address from
+Fetchmail.
+
+-- 
+Jerry &#9996;
+<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">Fetchmail.user at seibercom.net</A>
+
+Disclaimer: off-list followups get on-list replies or get ignored.
+Please do not ignore the Reply-To header.
+__________________________________________________________________
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002755.html">[fetchmail-users] Plus (+) Addressing Problem
+</A></li>
+	<LI>Next message: <A HREF="002757.html">[fetchmail-users] Plus (+) Addressing Problem
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2756">[ date ]</a>
+              <a href="thread.html#2756">[ thread ]</a>
+              <a href="subject.html#2756">[ subject ]</a>
+              <a href="author.html#2756">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

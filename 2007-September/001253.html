@@ -1,0 +1,135 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] fetchmail exis status 1 - Only few emails are	getting retrieved.
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2007-September/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%20exis%20status%201%20-%20Only%20few%20emails%20are%0A%09getting%20retrieved.&In-Reply-To=%3C6e7aafb90709170310s56d42163p152d9954f547dd59%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001252.html">
+   <LINK REL="Next"  HREF="001254.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] fetchmail exis status 1 - Only few emails are	getting retrieved.</H1>
+    <B>Dilip M</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%20exis%20status%201%20-%20Only%20few%20emails%20are%0A%09getting%20retrieved.&In-Reply-To=%3C6e7aafb90709170310s56d42163p152d9954f547dd59%40mail.gmail.com%3E"
+       TITLE="[fetchmail-users] fetchmail exis status 1 - Only few emails are	getting retrieved.">dilip.mahadevappa at gmail.com
+       </A><BR>
+    <I>Mon Sep 17 12:10:04 CEST 2007</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001252.html">[fetchmail-users] fetchmail exis status 1 - Only few emails are	getting retrieved.
+</A></li>
+        <LI>Next message: <A HREF="001254.html">[fetchmail-users] fetchmail exis status 1 - Only few emails are	getting	retrieved.
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1253">[ date ]</a>
+              <a href="thread.html#1253">[ thread ]</a>
+              <a href="subject.html#1253">[ subject ]</a>
+              <a href="author.html#1253">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+===
+fetchmail version: 6.3.8. A default that comes with ubuntu.
+===
+
+Thank you for Andrew to make this setup easy for beginners :)
+<A HREF="http://people.aapt.net.au/~adjlstrong/mutt.html#fetchmail">http://people.aapt.net.au/~adjlstrong/mutt.html#fetchmail</A>
+
+
+** I'm getting a EXIT STATUS 1, using fetchmail to POP gmails! **
+
+1. First logged into gmail webmail and activated &quot;Enable POP for all
+mail (even mail that's already been downloaded)&quot;. + &quot;Keep a copy...&quot;
+
+There are ~ 3000 emails in my gmail inbox!
+
+2. My &quot;~/.fetcmailrc&quot;, is
+
+====
+poll pop.gmail.com                   # Tell fetchmail about server
+with proto POP3                      # Use the POP-protocol
+user '<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">username at gmail.com</A> '               # Your Gmail Username
+there with password '****' # Your Gmail Password
+is 'dilipm' here                   # Local Username
+mda &quot;/usr/bin/procmail -d %T&quot;        # Tell fetchmail which MDA to use
+options                              # Options duh
+keep                                 # Keep the mail on server = safe
+ssl
+sslcertck
+sslcertpath /etc/ssl/certs
+====
+
+3. Did 'fetchmail -vv' for the first time, and emails are getting
+fetched. Since gmail makes them available in batches. I executed
+fetchmail -vv, several times..
+
+[<A HREF="http://mail.google.com/support/bin/answer.py?answer=13291&amp;useful=1&amp;show_useful=1">http://mail.google.com/support/bin/answer.py?answer=13291&amp;useful=1&amp;show_useful=1</A>]
+
+4. What I noticed, is the logfile says...
+
+...snip...
+
+712 messages (712 seen) for ........at gmail.com at pop.gmail.com
+
+...snip....
+
+
+fetchmail: POP3&gt; QUIT
+fetchmail: POP3&lt; +OK Farewell.
+fetchmail: 6.2.5 querying pop.gmail.com (protocol POP3) at Fri Dec 23
+16:22:45 2005: poll completed
+fetchmail: normal termination, status 1
+
+Exit code 1 means, There was no mail awaiting retrieval. (There may
+have been old mail still on the server but not selected for
+retrieval.)
+
+But there are still many emails!  Don't know, why they are not selected for
+retrieval!
+
+I also did, rm ~/fetchids and moved the mailbox + again set the &quot;Enable
+POP for all mail (even mail that's already been downloaded)&quot;..and
+repeated the 4 steps again...I get the *same* emails...but not
+remaining.
+
+Has anyone faced a same problem?
+
+--
+Dilip
+
+
+-- 
+Dilip
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001252.html">[fetchmail-users] fetchmail exis status 1 - Only few emails are	getting retrieved.
+</A></li>
+	<LI>Next message: <A HREF="001254.html">[fetchmail-users] fetchmail exis status 1 - Only few emails are	getting	retrieved.
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1253">[ date ]</a>
+              <a href="thread.html#1253">[ thread ]</a>
+              <a href="subject.html#1253">[ subject ]</a>
+              <a href="author.html#1253">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,135 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] step-by-step
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2011-March/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20step-by-step&In-Reply-To=%3C4D764C3C.7040801%40gmx.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002705.html">
+   <LINK REL="Next"  HREF="002707.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] step-by-step</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20step-by-step&In-Reply-To=%3C4D764C3C.7040801%40gmx.de%3E"
+       TITLE="[fetchmail-users] step-by-step">matthias.andree at gmx.de
+       </A><BR>
+    <I>Tue Mar  8 16:33:16 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002705.html">[fetchmail-users] step-by-step
+</A></li>
+        <LI>Next message: <A HREF="002707.html">[fetchmail-users] step-by-step
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2706">[ date ]</a>
+              <a href="thread.html#2706">[ thread ]</a>
+              <a href="subject.html#2706">[ subject ]</a>
+              <a href="author.html#2706">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Can you please configure your mailer
+
+- not to send HTML mail (this is my guess because I see traces of MIME
+part removal in the header -- the list is configured to strip
+enriched/HTML/similar markup formats)
+
+- to indent quoted material?
+
+Thank you.  Other comments in line.
+
+Am 08.03.2011 15:17, schrieb Amalafrida:
+&gt;<i> Matthias Andree wrote:
+</I>&gt;<i> 
+</I>&gt;<i> Am 07.03.2011 21:18, schrieb Amalafrida:
+</I>&gt;<i> 
+</I>&gt;<i>     sslcertck sslcertpath **/home/robert/**.certs
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> The asterisks (stars) don't belong there.
+</I>&gt;<i> 
+</I>&gt;<i> a look at my original email indicates that asterisks were not there and are
+</I>&gt;<i> not in my .fetchmailrc
+</I>
+OK, then possibly it was HTML markup like B or STRONG that got converted
+because /some/ _markup_ like *bold* is rendered even in pure ASCII by
+some mailers.
+
+&gt;<i> downloaded the gmail certificates
+</I>&gt;<i> $ openssl s_client -connect pop.gmail.com:995 -showcerts
+</I>&gt;<i> saved one certificate as gmail.pem
+</I>&gt;<i> one as equifax.pem
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> Don't do that, you evidently don't know what you're doing, and whatever
+</I>&gt;<i> website proposed to do that, should be taken down.
+</I>&gt;<i> 
+</I>&gt;<i> Where have you read this procedure?
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> don't know what i'm doing? of course i know what i'm doing. i'm attempting
+</I>&gt;<i> to install and configure fetchmail in line with the best advice i am able to
+</I>&gt;<i> discover, while examining the clarity with which the
+</I>&gt;<i> installation/configuration process is presented.  in line with &quot;the weakest
+</I>&gt;<i> link&quot; maxim, software is only as good as its documentation.
+</I>
+Point taken.  SSL documentation is indeed a very weak part of all
+documentation, especially where it comes to certificate handling -- and
+I didn't mean to offend anyone.  The message I was trying to convey (but
+failed at) was, don't take random third-party material, and I have
+indeed asked the author to correct or remove the material in the past
+already, evidently it's still up.  It seems to be readily found with one
+of the major search engines.
+
+The open question is whether SSL &quot;consumers&quot; such as fetchmail are
+supposed to duplicate the effort and document certificate handling
+procedures.  Generally my answer would be &quot;no&quot;, but OpenSSL
+documentation is rather weak in this regard, too.
+
+I'll dig around to see if I find reasonable X.509 certificate handling
+material free on the web; if I don't, then I think I'll have to write it
+on my own.
+
+If anyone knows reasonable documents on cert handling, kindly let me
+know.  This isn't the first time people have fallen into this pit.
+
+&gt;<i> obviously, i am working with a knowledge/experience base inferior to your
+</I>&gt;<i> own, but asking for help seems to indicate something above &quot;not knowing what
+</I>&gt;<i> i'm doing&quot;.  i am sincerely trying to learn, so don't see the need for
+</I>&gt;<i> invidious comments.
+</I>
+Right.
+
+-- 
+Matthias Andree
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002705.html">[fetchmail-users] step-by-step
+</A></li>
+	<LI>Next message: <A HREF="002707.html">[fetchmail-users] step-by-step
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2706">[ date ]</a>
+              <a href="thread.html#2706">[ thread ]</a>
+              <a href="subject.html#2706">[ subject ]</a>
+              <a href="author.html#2706">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

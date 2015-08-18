@@ -1,0 +1,166 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Setting up e-mail capability
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2009-September/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Setting%20up%20e-mail%20capability&In-Reply-To=%3C43ea8d070908312342l3a159635m2e98fb88d3d8b3b6%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002057.html">
+   <LINK REL="Next"  HREF="002059.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Setting up e-mail capability</H1>
+    <B>Rob MacGregor</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Setting%20up%20e-mail%20capability&In-Reply-To=%3C43ea8d070908312342l3a159635m2e98fb88d3d8b3b6%40mail.gmail.com%3E"
+       TITLE="[fetchmail-users] Setting up e-mail capability">rob.macgregor at gmail.com
+       </A><BR>
+    <I>Tue Sep  1 08:42:13 CEST 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002057.html">[fetchmail-users] Setting up e-mail capability
+</A></li>
+        <LI>Next message: <A HREF="002059.html">[fetchmail-users] Setting up e-mail capability
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2058">[ date ]</a>
+              <a href="thread.html#2058">[ thread ]</a>
+              <a href="subject.html#2058">[ subject ]</a>
+              <a href="author.html#2058">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Tue, Sep 1, 2009 at 01:48, Dave Beach&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">drbeach at rogers.com</A>&gt; wrote:
+&gt;<i>
+</I>&gt;<i> I haven't been able to find one yet that describes itself as incorporating
+</I>&gt;<i> the ability to pop my mail from my ISP, in a manner similar to how Fetchmail
+</I>&gt;<i> describes itself. Am I missing something? Is there a package you would
+</I>&gt;<i> recommend by name?
+</I>
+Even if none of them include fetchmail, adding fetchmail is trivial.
+Packages I'm aware of (I've not used any of them) include Zimbra and
+OpenGroupware.
+
+&gt;<i> Er, okay. This confuses me. I thought fetchmail would, uh, fetch my mail
+</I>&gt;<i> from my ISP and hand it off to whatever mail server software I ran, which
+</I>&gt;<i> would somehow &quot;pop-to-smtp&quot; it and take care of storing it in an appropriate
+</I>&gt;<i> manner. I figured that &quot;sending&quot; mail would be handled by the mail server
+</I>&gt;<i> software (a term I'm using interchangeably with &quot;MTA&quot;, probably in error).
+</I>&gt;<i> How does Fetchmail send mail - unless I can interpret that to mean that
+</I>&gt;<i> Fetchmail would hand mail over to an MTA, which would send it if the user
+</I>&gt;<i> was not local to the server the MTA is running on. Is that generally
+</I>&gt;<i> correct, or am I missing something?
+</I>
+The process for inbound email, in general is:
+
+Sender -&gt; Their ISP's SMTP -&gt; Your ISP's SMTP -&gt; Your ISP's POP/IMAP
+
+When you add fetchmail this adds the following to the end of that:
+
+-&gt; fetchmail -&gt; Your SMTP -&gt; Your POP/IMAP
+
+Fetchmail simply collects the email from a remote POP/IMAP host and
+then hands it over to another SMTP server (MTA).
+
+&gt;<i> Okay, but mail has to be stored somewhere, right, by something?
+</I>
+By your POP/IMAP server.
+
+&gt;<i> If this is starting to sound like I really need to go away and read a decent
+</I>&gt;<i> book/website that will run me through some basic Internet e-mail concepts,
+</I>&gt;<i> architectures, and terminology, by the way, I'm happy to be pointed off to
+</I>&gt;<i> something appropriate.
+</I>
+Unfortunately I don't know of any - I've been doing this for a long time now ;)
+
+&gt;<i> Maybe it might help (me, anyway) if I hypothesize two different scenarios:
+</I>&gt;<i> (A), where I want to pop my mail from my ISP and store it on my server, and
+</I>&gt;<i> I will use a mail client on that same server to read and respond to the
+</I>&gt;<i> mail; and (B) where I will use a mail client on a different workstation to
+</I>&gt;<i> read and respond to mail stored on the server.
+</I>&gt;<i>
+</I>&gt;<i> Under scenario (A), I would perhaps need three different software packages:
+</I>&gt;<i> something like Fetchmail which will pop my mail for me, and hand it off to a
+</I>&gt;<i> mail server of some sort (postfix, courier, etc). Lastly, a mail client
+</I>&gt;<i> (mutt, etc), which will interact with the mail server to allow me to read
+</I>&gt;<i> and respond to messages. Generally correct so far?
+</I>&gt;<i>
+</I>&gt;<i> Under scenario (B), I need the same three types of software as in (A), plus
+</I>&gt;<i> something that will allow me to connect from my client workstation to the
+</I>&gt;<i> mail server (perhaps something like courier-imap). Generally correct so far?
+</I>
+Both scenarios need the same software.  The only difference is that in
+(A) the mail server is on the same host as the mail client.  That's
+it, nothing more.  Your MUA (Mail User Agent - the client) is still
+required.
+
+
+&gt;<i> Okay, then perhaps I really have a terminology problem here. As above, I've
+</I>&gt;<i> been using &quot;mail server&quot; as synonymous with &quot;SMTP server&quot; or &quot;MTA&quot;. It
+</I>&gt;<i> sounds like I need to think of the IMAP software (courier-imap, etc) as the
+</I>&gt;<i> &quot;mail server&quot;. Am I more correct now?
+</I>
+Maybe ;)
+
+A traditional &quot;mail server&quot; is both.  It contains the SMTP software to
+receive and send email and POP/IMAP software to allow people to read
+it.
+
+&gt;<i>&#160;If so, thinking back to my scenario
+</I>&gt;<i> (A) from above (mail client local to the server), what software would take
+</I>&gt;<i> care of storing the e-mail? Would I still need to run IMAP software (or POP3
+</I>&gt;<i> software, or some other kind of software) because my mail client will not,
+</I>&gt;<i> on purpose, interface directly with the SMTP software? I really hope I'm
+</I>&gt;<i> starting to get warmer now on this.
+</I>
+Correct - your mail client (MUA) will talk to the POP/IMAP server to
+read email.  It doesn't (and can't) communicate directly with the SMTP
+server to read email.
+
+&gt;<i> I don't need any kind of shared calendaring at all; independent calendars
+</I>&gt;<i> for each user are just fine. Right now, we're using full Outlook clients but
+</I>&gt;<i> not in an Exchange environment. Given the way I want to re-engineer our
+</I>&gt;<i> e-mail (still using Outlook clients), I want to make sure I'm able to retain
+</I>&gt;<i> the other associated functionality the Outlook clients provide, such as
+</I>&gt;<i> calendar, contacts, notes, etc. This probably veers wildly off-topic for the
+</I>&gt;<i> list, but if I can somehow keep that extra, non-email functionality (perhaps
+</I>&gt;<i> Outlook will be smart enough to keep a small PST local for it?) then I'm a
+</I>&gt;<i> happy camper.
+</I>
+Yes, and that's how I used to do it.
+
+-- 
+                 Please keep list traffic on the list.
+
+Rob MacGregor
+      Whoever fights monsters should see to it that in the process he
+        doesn't become a monster.                  Friedrich Nietzsche
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002057.html">[fetchmail-users] Setting up e-mail capability
+</A></li>
+	<LI>Next message: <A HREF="002059.html">[fetchmail-users] Setting up e-mail capability
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2058">[ date ]</a>
+              <a href="thread.html#2058">[ thread ]</a>
+              <a href="subject.html#2058">[ subject ]</a>
+              <a href="author.html#2058">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

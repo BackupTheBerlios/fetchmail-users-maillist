@@ -1,0 +1,192 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] questions using fetchmail with ssl
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2009-July/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20questions%20using%20fetchmail%20with%20ssl&In-Reply-To=%3C4A51F829.6030900%40gmx.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001984.html">
+   <LINK REL="Next"  HREF="001986.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] questions using fetchmail with ssl</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20questions%20using%20fetchmail%20with%20ssl&In-Reply-To=%3C4A51F829.6030900%40gmx.de%3E"
+       TITLE="[fetchmail-users] questions using fetchmail with ssl">matthias.andree at gmx.de
+       </A><BR>
+    <I>Mon Jul  6 15:12:09 CEST 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001984.html">[fetchmail-users] questions using fetchmail with ssl
+</A></li>
+        <LI>Next message: <A HREF="001986.html">[fetchmail-users] questions using fetchmail with ssl
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1985">[ date ]</a>
+              <a href="thread.html#1985">[ thread ]</a>
+              <a href="subject.html#1985">[ subject ]</a>
+              <a href="author.html#1985">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>chris schrieb:
+&gt;<i> hello,
+</I>&gt;<i> 
+</I>&gt;<i> i am using fetchmail 6.3.8 on a os x server (10.5.7).
+</I>&gt;<i> when testing fetchmail using ssl for a customer some questions came up.
+</I>&gt;<i> 
+</I>&gt;<i> my .fetchmailrc file looks like:
+</I>&gt;<i> 
+</I>&gt;<i> poll SSL_SERVER with
+</I>&gt;<i>       protocol pop3
+</I>&gt;<i>       uidl
+</I>&gt;<i>       username &quot;USER&quot;
+</I>&gt;<i>       password &quot;PASSWORD&quot;
+</I>&gt;<i>       ssl
+</I>&gt;<i>       sslcertck
+</I>&gt;<i>       sslcertpath &quot;/Users/chris/.certs&quot;
+</I>&gt;<i>       keep
+</I>&gt;<i> 
+</I>&gt;<i> my .certs directory looks like
+</I>&gt;<i> 
+</I>&gt;<i> lrwxr-xr-x   1 chris  staff    15 Jul  6 11:38 164c8de9.0 -&gt;  
+</I>&gt;<i> sslmailpool.pem
+</I>&gt;<i> lrwxr-xr-x   1 chris  staff    23 Jul  6 11:38 57692373.0 -&gt;  
+</I>&gt;<i> GeoTrust_Global_CA2.pem
+</I>&gt;<i> lrwxr-xr-x   1 chris  staff    40 Jul  6 11:38 594f1775.0 -&gt;  
+</I>&gt;<i> Equifax_Secure_Certificate_Authority.pem
+</I>&gt;<i> lrwxr-xr-x   1 chris  staff    40 Jul  6 11:38 74c26bd0.0 -&gt;  
+</I>&gt;<i> Equifax_Secure_Global_eBusiness_CA-1.pem
+</I>&gt;<i> lrwxr-xr-x   1 chris  staff    22 Jul  6 11:38 7999be0d.0 -&gt;  
+</I>&gt;<i> GeoTrust_Global_CA.pem
+</I>&gt;<i> lrwxr-xr-x   1 chris  staff    44 Jul  6 11:38 84f41b78.0 -&gt;  
+</I>&gt;<i> GeoTrust_Mobile_Device_Root_-_Privileged.pem
+</I>&gt;<i> lrwxr-xr-x   1 chris  staff    26 Jul  6 11:38 87753b0d.0 -&gt;  
+</I>&gt;<i> GeoTrust_Universal_CA2.pem
+</I>&gt;<i> lrwxr-xr-x   1 chris  staff    33 Jul  6 11:38 8f7b96c4.0 -&gt;  
+</I>&gt;<i> Equifax_Secure_eBusiness_CA-2.pem
+</I>&gt;<i> lrwxr-xr-x   1 chris  staff     9 Jul  6 11:38 9772ca32.0 -&gt; GTPCA.pem
+</I>&gt;<i> -rw-r--r--   1 chris  staff  1162 Jul  6 11:28  
+</I>&gt;<i> Equifax_Secure_Certificate_Authority.pem
+</I>&gt;<i> -rw-r--r--   1 chris  staff   964 Jul  6 11:28  
+</I>&gt;<i> Equifax_Secure_Global_eBusiness_CA-1.pem
+</I>&gt;<i> -rw-r--r--   1 chris  staff   948 Jun 30 07:35  
+</I>&gt;<i> Equifax_Secure_eBusiness_CA-1.pem
+</I>&gt;<i> -rw-r--r--   1 chris  staff  1162 Jul  6 11:28  
+</I>&gt;<i> Equifax_Secure_eBusiness_CA-2.pem
+</I>&gt;<i> -rw-r--r--   1 chris  staff  1686 Jul  6 11:29 GTEVCA.pem
+</I>&gt;<i> -rw-r--r--   1 chris  staff  1308 Jul  6 11:29 GTPCA.pem
+</I>&gt;<i> -rw-r--r--   1 chris  staff  1752 Jul  6 11:28 GeoTrust_CA_for_Adobe.pem
+</I>&gt;<i> -rw-r--r--   1 chris  staff  1236 Jul  6 11:28 GeoTrust_Global_CA.pem
+</I>&gt;<i> -rw-r--r--   1 chris  staff  1264 Jul  6 11:28 GeoTrust_Global_CA2.pem
+</I>&gt;<i> -rw-r--r--   1 chris  staff  1434 Jul  6 11:28  
+</I>&gt;<i> GeoTrust_Mobile_Device_Root_-_Privileged.pem
+</I>&gt;<i> -rw-r--r--   1 chris  staff  1442 Jul  6 11:28  
+</I>&gt;<i> GeoTrust_Mobile_Device_Root_-_Unprivileged.pem
+</I>&gt;<i> -rw-r--r--   1 chris  staff  1018 Jul  6 11:28  
+</I>&gt;<i> GeoTrust_True_Credentials_CA_2.pem
+</I>&gt;<i> -rw-r--r--   1 chris  staff  1968 Jul  6 11:28 GeoTrust_Universal_CA.pem
+</I>&gt;<i> -rw-r--r--   1 chris  staff  1968 Jul  6 11:28  
+</I>&gt;<i> GeoTrust_Universal_CA2.pem
+</I>&gt;<i> lrwxr-xr-x   1 chris  staff    10 Jul  6 11:38 b06f9739.0 -&gt; GTEVCA.pem
+</I>&gt;<i> lrwxr-xr-x   1 chris  staff    34 Jul  6 11:38 c82831b2.0 -&gt;  
+</I>&gt;<i> GeoTrust_True_Credentials_CA_2.pem
+</I>&gt;<i> lrwxr-xr-x   1 chris  staff    46 Jul  6 11:38 e57260b1.0 -&gt;  
+</I>&gt;<i> GeoTrust_Mobile_Device_Root_-_Unprivileged.pem
+</I>&gt;<i> lrwxr-xr-x   1 chris  staff    25 Jul  6 11:38 e775ed2d.0 -&gt;  
+</I>&gt;<i> GeoTrust_Universal_CA.pem
+</I>&gt;<i> lrwxr-xr-x   1 chris  staff    33 Jul  6 11:38 e7b8d656.0 -&gt;  
+</I>&gt;<i> Equifax_Secure_eBusiness_CA-1.pem
+</I>&gt;<i> lrwxr-xr-x   1 chris  staff    25 Jul  6 11:38 f47a93e0.0 -&gt;  
+</I>&gt;<i> GeoTrust_CA_for_Adobe.pem
+</I>&gt;<i> 
+</I>&gt;<i> when i use fetchmail i get the following result
+</I>&gt;<i> 
+</I>&gt;<i> mini:~ chris$ fetchmail -c -v -Nd0
+</I>&gt;<i> fetchmail: 6.3.8 querying SSL_SERVER (protocol POP3) at Mon, 06 Jul  
+</I>&gt;<i> 2009 13:58:23 +0200 (CEST): poll started
+</I>
+Note that 6.3.10 has been released. You should update to at least 6.3.9, unless
+your operating system vendor or distributor patched your version to close
+security bugs.
+<A HREF="http://www.fetchmail.info/fetchmail-SA-2007-02.txt">http://www.fetchmail.info/fetchmail-SA-2007-02.txt</A>
+<A HREF="http://www.fetchmail.info/fetchmail-SA-2008-01.txt">http://www.fetchmail.info/fetchmail-SA-2008-01.txt</A>
+
+&gt;<i> Trying to connect to IP_SSL_SERVER/995...connected.
+</I>&gt;<i> fetchmail: Issuer Organization: Equifax
+</I>&gt;<i> fetchmail: Unknown Issuer CommonName
+</I>&gt;<i> fetchmail: Server CommonName:SSL_SERVER
+</I>&gt;<i> fetchmail: SSL_SERVER key fingerprint:  
+</I>&gt;<i> D5:AB:D8:87:93:12:97:08:90:13:29:A4:97:CC:BC:DD
+</I>
+You're making up log information. Don't do that.
+The UIDLs betray the identity of the server anyways. 8-)
+
+Issuer Organization/Server CommonName however are hints that fetchmail uses SSL
+or TLS.
+
+&gt;<i> fetchmail: POP3&gt; USER &quot;USER&quot;
+</I>&gt;<i> fetchmail: POP3&lt; +OK
+</I>&gt;<i> fetchmail: POP3&gt; PASS *
+</I>&gt;<i> fetchmail: POP3&lt; +OK Logged in.
+</I>
+&gt;<i> now my questions
+</I>&gt;<i> 
+</I>&gt;<i> 1) how can i see/check that i am using ssl?
+</I>
+see above.
+
+&gt;<i> 2) does the content of line &quot;fetchmail: POP3&lt; SASL PLAIN LOGIN&quot; means  
+</I>&gt;<i> that i am using plain text for authentication?
+</I>
+You are using plain text authentication through a secure SSL-wrapped channel.
+
+However, you can tell that from the USER/PASS lines. SASL PLAIN LOGIN is the
+advertisement of the server and not what fetchmail has chosen. See RFC 1939 and
+RFC 2449.
+
+&gt;<i> 3) how can i see which certificate was used/tried for a connection?
+</I>
+You can't. Either the proper root certificate for the chain is in the
+.../ssl/certs/ directory (it is in your case, since you've used ssl and
+sslcertck and fetchmail has attempted to log in after the certificates were
+verified OK), then fetchmail/openSSL will trust all certificate chains signed by
+the respective root certificate, or it's not.
+
+&gt;<i> i guess i configured ssl but i am not using it.
+</I>
+Why do you guess that?
+What needs to be improved in logging to make you believe you're using SSL/TLS?
+
+HTH
+MA
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001984.html">[fetchmail-users] questions using fetchmail with ssl
+</A></li>
+	<LI>Next message: <A HREF="001986.html">[fetchmail-users] questions using fetchmail with ssl
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1985">[ date ]</a>
+              <a href="thread.html#1985">[ thread ]</a>
+              <a href="subject.html#1985">[ subject ]</a>
+              <a href="author.html#1985">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

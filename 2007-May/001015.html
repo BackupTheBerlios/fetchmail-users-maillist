@@ -1,0 +1,83 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] 'fetchmail --quit' behaviour
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2007-May/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20%27fetchmail%20--quit%27%20behaviour&In-Reply-To=%3C87bqh4xop5.fsf%40moley.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   
+   <LINK REL="Next"  HREF="001016.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] 'fetchmail --quit' behaviour</H1>
+    <B>Sebastian Tennant</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20%27fetchmail%20--quit%27%20behaviour&In-Reply-To=%3C87bqh4xop5.fsf%40moley.org%3E"
+       TITLE="[fetchmail-users] 'fetchmail --quit' behaviour">sebyte at smolny.plus.com
+       </A><BR>
+    <I>Tue May  1 22:40:22 CEST 2007</I>
+    <P><UL>
+        
+        <LI>Next message: <A HREF="001016.html">[fetchmail-users] 'fetchmail --quit' behaviour
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1015">[ date ]</a>
+              <a href="thread.html#1015">[ thread ]</a>
+              <a href="subject.html#1015">[ subject ]</a>
+              <a href="author.html#1015">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Happy International Worker's Day to all.
+
+I run a personal fetchmail daemon with the following user crontab
+entry:
+
+  @reboot /usr/bin/env FETCHMAILHOME=/home/sebyte/.fetchmail.d /usr/bin/fetchmail -e 100
+
+This works fine, but when I want to kill the daemon process, I receive
+the following message:
+
+  $ fetchmail --quit
+  fetchmail: no other fetchmail is running
+
+A fetchmail is most definitely running:
+
+  $ ps -A | grep fetch
+   3907 ?        00:00:00 fetchmail
+  $
+
+I suspect this is because I'm running fetchmail in its own
+environment, so how to cleanly kill fetchmail in this case?
+
+Sebastian
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	
+	<LI>Next message: <A HREF="001016.html">[fetchmail-users] 'fetchmail --quit' behaviour
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1015">[ date ]</a>
+              <a href="thread.html#1015">[ thread ]</a>
+              <a href="subject.html#1015">[ subject ]</a>
+              <a href="author.html#1015">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

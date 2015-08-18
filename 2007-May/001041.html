@@ -1,0 +1,94 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] SMTP connect error with fetchmail under Cygwin
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2007-May/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20SMTP%20connect%20error%20with%20fetchmail%20under%20Cygwin&In-Reply-To=%3C20070514135342.GB3968%40tishler.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001040.html">
+   <LINK REL="Next"  HREF="001047.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] SMTP connect error with fetchmail under Cygwin</H1>
+    <B>Jason Tishler</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20SMTP%20connect%20error%20with%20fetchmail%20under%20Cygwin&In-Reply-To=%3C20070514135342.GB3968%40tishler.net%3E"
+       TITLE="[fetchmail-users] SMTP connect error with fetchmail under Cygwin">jason at tishler.net
+       </A><BR>
+    <I>Mon May 14 15:53:42 CEST 2007</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001040.html">[fetchmail-users] SMTP connect error with fetchmail under Cygwin
+</A></li>
+        <LI>Next message: <A HREF="001047.html">[fetchmail-users] SMTP connect error with fetchmail under Cygwin
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1041">[ date ]</a>
+              <a href="thread.html#1041">[ thread ]</a>
+              <a href="subject.html#1041">[ subject ]</a>
+              <a href="author.html#1041">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Mon, May 14, 2007 at 02:39:06PM +0100, Rob MacGregor wrote:
+&gt;<i> On 5/14/07, Kyle Contreras-Barbour &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">kylebarbour at gmail.com</A>&gt; wrote:
+</I>&gt;<i> &gt; There isn't anything around that other than nearly identical &quot;start
+</I>&gt;<i> &gt; queue run&quot; and &quot;end queue run&quot; lines.  Based on your comments here
+</I>&gt;<i> &gt; and the addition of 'mda &quot;/usr/bin/procmail -d %T&quot;' to my
+</I>&gt;<i> &gt; .fetchmailrc I'm guessing that I'm not actually using exim.
+</I>&gt;<i> 
+</I>&gt;<i> I suspect you're right, which makes diagnosing this more difficult (I
+</I>&gt;<i> don't know if there is any way to get logging info out of procmail).
+</I>
+You can enable verbose procmail logging by adding &quot;VERBOSE=yes&quot; to the
+command line:
+
+    mda &quot;/usr/bin/procmail VERBOSE=yes -d %T&quot;
+
+&gt;<i> [snip]
+</I>&gt;<i> &gt; fetchmail: about to deliver with: /usr/bin/procmail -d 'snoutwood'
+</I>&gt;<i> &gt; #&lt;snip 250+ lines of asterisks&gt;
+</I>&gt;<i> &gt; fetchmail: socket error while fetching from <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">kylebarbour at gmail.com</A>
+</I>&gt;<i> &gt; @pop.gmail.com
+</I>&gt;<i> &lt;---SNIP---&gt;
+</I>&gt;<i> 
+</I>&gt;<i> That suggests a problem with the communication with the remote host
+</I>&gt;<i> (ppp.gmail.com).
+</I>
+Agreed.  However, can you try this from a non-Cygwin host (e.g., Linux)
+to rule out a Cygwin specific problem?
+
+Jason
+
+-- 
+PGP/GPG Key: <A HREF="http://www.tishler.net/jason/pubkey.asc">http://www.tishler.net/jason/pubkey.asc</A> or key servers
+Fingerprint: 7A73 1405 7F2B E669 C19D  8784 1AFD E4CC ECF4 8EF6
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001040.html">[fetchmail-users] SMTP connect error with fetchmail under Cygwin
+</A></li>
+	<LI>Next message: <A HREF="001047.html">[fetchmail-users] SMTP connect error with fetchmail under Cygwin
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1041">[ date ]</a>
+              <a href="thread.html#1041">[ thread ]</a>
+              <a href="subject.html#1041">[ subject ]</a>
+              <a href="author.html#1041">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

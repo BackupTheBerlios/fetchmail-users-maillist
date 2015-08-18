@@ -1,0 +1,119 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Anyone using NTLM versus Exchange server successfully?
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2005-September/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Anyone%20using%20NTLM%20versus%20Exchange%20server%20successfully%3F&In-Reply-To=%3Cm3u0g561t4.fsf%40merlin.emma.line.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000066.html">
+   <LINK REL="Next"  HREF="000068.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Anyone using NTLM versus Exchange server successfully?</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Anyone%20using%20NTLM%20versus%20Exchange%20server%20successfully%3F&In-Reply-To=%3Cm3u0g561t4.fsf%40merlin.emma.line.org%3E"
+       TITLE="[fetchmail-users] Anyone using NTLM versus Exchange server successfully?">matthias.andree at gmx.de
+       </A><BR>
+    <I>Wed Sep 28 10:20:39 CEST 2005</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000066.html">[fetchmail-users] fetchmail with pop3
+</A></li>
+        <LI>Next message: <A HREF="000068.html">[fetchmail-users] Re: fetchmail-users digest, Vol 1 #38 - 3 msgs
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#67">[ date ]</a>
+              <a href="thread.html#67">[ thread ]</a>
+              <a href="subject.html#67">[ subject ]</a>
+              <a href="author.html#67">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Greetings,
+
+if you are successfully using fetchmail with NTLM authentication against
+an Exchange server, please send me, off-list (Reply-To and
+Mail-Followup-To are set), the edited NTLM verbose output of &quot;fetchmail
+--nosyslog -vv&quot; and your fetchmail version (env LC_ALL=C fetchmail -V |
+head -3), and if you know it and it's not visible from the greeting
+banner, the Exchange server software version.
+
+IMPORTANT: Be sure to omit the long POP3 replies (appear in three
+places, I used &quot;...&quot;  below) and the LmResp and NTResp (each appears
+once, I used &quot;XXX LEAVE THIS OUT XXX&quot; below), these are both sensitive
+and irrelevant to me, don't take risks and edit these out.
+
+This is the version:
+
+This is fetchmail release 6.2.9-rc6+IMAP-GSS+RPA+NTLM+SDPS+SSL+NLS
+Fallback MDA: (none)
+Linux merlin 2.6.11.4-21.9-default #1 Fri Aug 19 11:58:59 UTC 2005 i686 athlon i386 GNU/Linux
+
+And now follows is the rest I'm interested in, only the part from the
+POP3 greeting until the first +OK after NTLM chat.  Thanks for your
+help,
+
+Matthias
+
+fetchmail: POP3&lt; +OK unimail Cyrus POP3 v2.2.12 server ready &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">1415259226.1127895161 at unimail</A>&gt;
+fetchmail: POP3&gt; AUTH NTLM
+fetchmail: POP3&lt; +
+NTLM Request:
+      Ident = NTLMSSP
+      mType = 1
+      Flags = 0000b207
+       User = ma
+     Domain =
+fetchmail: POP3&gt; TlRM...
+fetchmail: POP3&lt; + TlRM...
+NTLM Challenge:
+      Ident = NTLMSSP
+      mType = 2
+     Domain = UNIMAIL
+      Flags = 0002b205
+  Challenge = 73 fb 60 44 f9 4d c8 f4
+NTLM Response:
+      Ident = NTLMSSP
+      mType = 3
+     LmResp = XXX LEAVE THIS OUT XXX
+     NTResp = XXX LEAVE THIS OUT XXX
+     Domain = UNIMAIL
+       User = ma
+        Wks = ma
+       sKey =
+      Flags = 0002b205
+fetchmail: POP3&gt; TlRM...
+fetchmail: POP3&lt; +OK Mailbox locked and ready
+
+-- 
+Matthias Andree
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000066.html">[fetchmail-users] fetchmail with pop3
+</A></li>
+	<LI>Next message: <A HREF="000068.html">[fetchmail-users] Re: fetchmail-users digest, Vol 1 #38 - 3 msgs
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#67">[ date ]</a>
+              <a href="thread.html#67">[ thread ]</a>
+              <a href="subject.html#67">[ subject ]</a>
+              <a href="author.html#67">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,90 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] fetchmail ssl cipher
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2013-July/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%20ssl%20cipher&In-Reply-To=%3CCAD2Ti28MqjOq%3DC8NCSSTaLZUMob6_h-NoR%3D3kTiRkdPSxKFwgg%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003449.html">
+   
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] fetchmail ssl cipher</H1>
+    <B>grarpamp</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%20ssl%20cipher&In-Reply-To=%3CCAD2Ti28MqjOq%3DC8NCSSTaLZUMob6_h-NoR%3D3kTiRkdPSxKFwgg%40mail.gmail.com%3E"
+       TITLE="[fetchmail-users] fetchmail ssl cipher">grarpamp at gmail.com
+       </A><BR>
+    <I>Sun Jul 28 23:13:23 CEST 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003449.html">[fetchmail-users] fetchmail ssl cipher
+</A></li>
+        
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3450">[ date ]</a>
+              <a href="thread.html#3450">[ thread ]</a>
+              <a href="subject.html#3450">[ subject ]</a>
+              <a href="author.html#3450">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>&gt;&gt;<i> when using fetchmail 6.3.21/cygwin with --sslproto 'SSL3' or --sslproto
+</I>&gt;&gt;<i> 'TLS1', is it possible to see which SSL cipher has been chosen for a
+</I>&gt;&gt;<i> connection?
+</I>
+It should be in a function somewhere. As in...
+openssl s_client -connect www.google.com:https
+    Protocol  : TLSv1.2
+    Cipher    : ECDHE-RSA-AES128-GCM-SHA256
+
+&gt;&gt;<i> Or is it possible to show all supported server ciphers for SSL
+</I>&gt;&gt;<i> connections? With -vvv it shows the certificate, but apparently not the
+</I>&gt;&gt;<i> cipher.
+</I>
+Openssl probably has a code function to show the server side prefs but
+I can't find it presented as an example option in s_client at the moment.
+
+&gt;&gt;<i> Would it also be possible to limit the list of client supported ciphers
+</I>&gt;&gt;<i> offered to the server?
+</I>
+Similarly functioned as in...
+openssl s_client -connect www.google.com:https -cipher
+ECDHE-RSA-AES256-GCM-SHA384
+    Protocol  : TLSv1.2
+    Cipher    : ECDHE-RSA-AES256-GCM-SHA384
+
+&gt;<i> Not currently, sorry.  Fetchmail does not decode/present that
+</I>&gt;<i> information, or have options to limit/select the ciphers.  I have added
+</I>&gt;<i> that to the 7.X TODO.txt list, available from the Git repos.
+</I>
+There's now a general interest in and some movement toward perfect
+forward secrecy and stronger modes in general going on out there.
+People can google around for some talk on that.
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003449.html">[fetchmail-users] fetchmail ssl cipher
+</A></li>
+	
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3450">[ date ]</a>
+              <a href="thread.html#3450">[ thread ]</a>
+              <a href="subject.html#3450">[ subject ]</a>
+              <a href="author.html#3450">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

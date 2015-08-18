@@ -1,0 +1,102 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] fetchmail 6.3.5-beta2 snapshot
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2006-August/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%206.3.5-beta2%20snapshot&In-Reply-To=%3C20060814234131.GB9021%40merlin.emma.line.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000563.html">
+   <LINK REL="Next"  HREF="000569.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] fetchmail 6.3.5-beta2 snapshot</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%206.3.5-beta2%20snapshot&In-Reply-To=%3C20060814234131.GB9021%40merlin.emma.line.org%3E"
+       TITLE="[fetchmail-users] fetchmail 6.3.5-beta2 snapshot">matthias.andree at gmx.de
+       </A><BR>
+    <I>Tue Aug 15 01:41:31 CEST 2006</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000563.html">[fetchmail-users] Getting Postfix to add header info for	fetchmail
+</A></li>
+        <LI>Next message: <A HREF="000569.html">[fetchmail-users] confused about system wide and private setups
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#564">[ date ]</a>
+              <a href="thread.html#564">[ thread ]</a>
+              <a href="subject.html#564">[ subject ]</a>
+              <a href="author.html#564">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA1
+
+Greetings,
+
+I have uploaded a new fetchmail beta 6.3.5-beta2 snapshot to the usual
+download location: &lt;<A HREF="http://mandree.home.pages.de/fetchmail/">http://mandree.home.pages.de/fetchmail/</A>&gt;
+
+Please test:
+
+1. behavior after logged timeouts and report inconsistencies along with
+   your operating system and version.
+
+2. IMAP AUTH=EXTERNAL
+
+Thank you.
+
+Changes in fetchmail 6.3.5-beta2 since 6.3.5-beta1:
+
+* Track getaddrinfo() results to properly free them after timeouts and make sure
+  that getaddrinfo() isn't interrupted by a timeout (which breaks on MacOS X),
+  reported by Uli Zappe.  This should fix Debian Bug#294547 and Bug#377135.
+* fix compilation on systems that don't know struct addrinfo (Solaris 2.6).
+* ignore SIGPIPE signals and rely on functions to return EPIPE instead. This is
+  necessary because the former longjmp() from the signal handler is unsafe and
+  makes the whole fetchmail behavior undefined after the event.
+* switch setjmp/longjmp to sigsetjmp/siglongjmp
+* IMAP now supports the EXTERNAL authentication method, courtesy of
+  G&#246;tz 'nimrill' Babin-Ebell, BerliOS patch #1095 with minor changes.
+* The sslproto keywords are now case insensitive, courtesy of
+  G&#246;tz 'nimrill' Babin-Ebell, BerliOS patch #1095.
+
+Happy fetching,
+Matthias Andree
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1.4.2 (GNU/Linux)
+
+iD8DBQFE4QorvmGDOQUufZURAndcAJwIImfpRb6u23Pqz3RZpxKEpCW0hACgy369
+uS63EI3GT9eflaS80N8QmI0=
+=Du1r
+-----END PGP SIGNATURE-----
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000563.html">[fetchmail-users] Getting Postfix to add header info for	fetchmail
+</A></li>
+	<LI>Next message: <A HREF="000569.html">[fetchmail-users] confused about system wide and private setups
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#564">[ date ]</a>
+              <a href="thread.html#564">[ thread ]</a>
+              <a href="subject.html#564">[ subject ]</a>
+              <a href="author.html#564">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

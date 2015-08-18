@@ -1,0 +1,99 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Multi-Drop problem (two delivered to Header)
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2007-October/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Multi-Drop%20problem%20%28two%20delivered%20to%20Header%29&In-Reply-To=%3C43ea8d070710221124h7aba96e4m5d906addf31130b1%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001330.html">
+   <LINK REL="Next"  HREF="001349.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Multi-Drop problem (two delivered to Header)</H1>
+    <B>Rob MacGregor</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Multi-Drop%20problem%20%28two%20delivered%20to%20Header%29&In-Reply-To=%3C43ea8d070710221124h7aba96e4m5d906addf31130b1%40mail.gmail.com%3E"
+       TITLE="[fetchmail-users] Multi-Drop problem (two delivered to Header)">rob.macgregor at gmail.com
+       </A><BR>
+    <I>Mon Oct 22 20:24:25 CEST 2007</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001330.html">[fetchmail-users] Multi-Drop problem (two delivered to Header)
+</A></li>
+        <LI>Next message: <A HREF="001349.html">[fetchmail-users] Multi-Drop problem (two delivered to Header)
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1331">[ date ]</a>
+              <a href="thread.html#1331">[ thread ]</a>
+              <a href="subject.html#1331">[ subject ]</a>
+              <a href="author.html#1331">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On 10/22/07, Michelle Konzack &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">linux4michelle at freenet.de</A>&gt; wrote:
+&gt;<i> Hello,
+</I>&gt;<i>
+</I>&gt;<i> My ISP &lt;<A HREF="http://www.freenet.de/">http://www.freenet.de/</A>&gt; let me setup &quot;aliases&quot; to my regular
+</I>&gt;<i> E-Mail like
+</I>&gt;<i>
+</I>&gt;<i>     <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">michelle.konzack at freenet.de</A>
+</I>&gt;<i>         solarenergie4michelle
+</I>&gt;<i>         windenergie4michelle
+</I>&gt;<i>         biofuel4michelle
+</I>&gt;<i>
+</I>&lt;---SNIP---&gt;
+&gt;<i>
+</I>&gt;<i> where I have now TWO &quot;Delivered-To:&quot; headers and if using fetchmail with
+</I>&gt;<i> Multidrop, messages go into the wrong mailbox if I fetch the messages for
+</I>&gt;<i> &quot;michelle.konzack&quot;.
+</I>&gt;<i>
+</I>&gt;<i> I have now done some experiments (I can not lost any messsages, - they
+</I>&gt;<i> go only to the wrong mailbox) but without success.
+</I>&gt;<i>
+</I>&lt;---SNIP---&gt;
+&gt;<i>
+</I>&gt;<i> (1) envelope Delivered-to user michelle.konzack pass XXXXXX is michelle.konzack here
+</I>&gt;<i> (2) envelope Delivered-to user solarenergie4michelle pass XXXXXX is energia here
+</I>&gt;<i> (3) envelope Delivered-to user windenergie4michelle pass XXXXXX is energia here
+</I>&gt;<i> (4) envelope Delivered-to user biofuel4michelle pass XXXXXX is energia here
+</I>&gt;<i> (5) user linux4michelle pass XXXXXX is michelle.konzack here
+</I>&gt;<i> (6) user dos4michelle pass XXXXXX is michelle.konzack here
+</I>&gt;<i> ----8&lt;------------------------------------------------------------------
+</I>
+That's 6 separate polls for 6 separate mailboxes.  I don't think that
+is what you want.
+
+&gt;<i> Can anyone tell me how I must setup fetchmail that it works korrectly?
+</I>&gt;<i>
+</I>&gt;<i> Note:  When I was unsing only one Unix account all was working fine, but
+</I>&gt;<i>        since I have seperated my &quot;Activities on Renewable Energies&quot; to
+</I>&gt;<i>        another account on my server ALL was going wrong.
+</I>
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001330.html">[fetchmail-users] Multi-Drop problem (two delivered to Header)
+</A></li>
+	<LI>Next message: <A HREF="001349.html">[fetchmail-users] Multi-Drop problem (two delivered to Header)
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1331">[ date ]</a>
+              <a href="thread.html#1331">[ thread ]</a>
+              <a href="subject.html#1331">[ subject ]</a>
+              <a href="author.html#1331">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

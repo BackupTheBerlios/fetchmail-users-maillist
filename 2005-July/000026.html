@@ -1,0 +1,92 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Re: [fetchmail-devel] fetchmail-6.2.6.alpha2 released - please test
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2005-July/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Re%3A%20%5Bfetchmail-devel%5D%20fetchmail-6.2.6.alpha2%20released%20-%20please%20test&In-Reply-To=%3C20050703201902.GA30000%40uk.tiscali.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000025.html">
+   <LINK REL="Next"  HREF="000027.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Re: [fetchmail-devel] fetchmail-6.2.6.alpha2 released - please test</H1>
+    <B>Brian Candler</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Re%3A%20%5Bfetchmail-devel%5D%20fetchmail-6.2.6.alpha2%20released%20-%20please%20test&In-Reply-To=%3C20050703201902.GA30000%40uk.tiscali.com%3E"
+       TITLE="[fetchmail-users] Re: [fetchmail-devel] fetchmail-6.2.6.alpha2 released - please test">B.Candler at pobox.com
+       </A><BR>
+    <I>Sun Jul  3 22:19:02 CEST 2005</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000025.html">[fetchmail-users] fetchmail-6.2.6.alpha2 released - please test
+</A></li>
+        <LI>Next message: <A HREF="000027.html">[fetchmail-users] fetchmail-6.2.6.alpha2 released - please test
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#26">[ date ]</a>
+              <a href="thread.html#26">[ thread ]</a>
+              <a href="subject.html#26">[ subject ]</a>
+              <a href="author.html#26">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Sun, Jul 03, 2005 at 09:41:17PM +0200, Matthias Andree wrote:
+&gt;<i> I have released a snapshot of the current fetchmail development code,
+</I>&gt;<i> labelled as fetchmail-6.2.6.alpha2.
+</I>
+The INSTALL file is very Linux-specific (talking about required versions of
+glibc, for example).
+
+I run FreeBSD 5.4 and I note:
+
+&quot;Fetchmail has had serious grief from buggy versions of the gettext suite.
+If your version is older than 1.10.40, you should use the configure
+option --with-included-gettext'.&quot;
+
+I have package gettext-0.14.1 installed, and the one in the ports tree is
+currently 0.14.5. Any indication of the compatibility of those? It seems to
+work for me, but then again, I'm not translating into any non-English
+language.
+
+Separate point: it might be worth documenting how to set up certificate
+verification. I always have to rummage through the OpenSSL source to find
+out how to do this. For reference I did the following:
+
+- mkdir /etc/openssl/certs
+- from the openssl/certs directory: cp *.pem /etc/openssl/certs/
+- in the openssl/tools directory: edit c_rehash and set $dir = &quot;/etc/ssl&quot;
+  then run &quot;perl c_rehash&quot;
+- in .fetchmailrc, set option &quot;sslcertpath /etc/ssl/certs&quot;
+
+Regards,
+
+Brian.
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000025.html">[fetchmail-users] fetchmail-6.2.6.alpha2 released - please test
+</A></li>
+	<LI>Next message: <A HREF="000027.html">[fetchmail-users] fetchmail-6.2.6.alpha2 released - please test
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#26">[ date ]</a>
+              <a href="thread.html#26">[ thread ]</a>
+              <a href="subject.html#26">[ subject ]</a>
+              <a href="author.html#26">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

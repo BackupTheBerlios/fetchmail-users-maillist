@@ -1,0 +1,107 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] the message fetch should be completed before quitting
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2012-January/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20the%20message%20fetch%20should%20be%20completed%20before%0A%20quitting&In-Reply-To=%3C18860184.20537461328042525997.JavaMail.defaultUser%40defaultHost%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003045.html">
+   
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] the message fetch should be completed before quitting</H1>
+    <B>rossi.f at inwind.it</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20the%20message%20fetch%20should%20be%20completed%20before%0A%20quitting&In-Reply-To=%3C18860184.20537461328042525997.JavaMail.defaultUser%40defaultHost%3E"
+       TITLE="[fetchmail-users] the message fetch should be completed before quitting">rossi.f at inwind.it
+       </A><BR>
+    <I>Tue Jan 31 21:42:05 CET 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003045.html">[fetchmail-users] no dns option?
+</A></li>
+        
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3046">[ date ]</a>
+              <a href="thread.html#3046">[ thread ]</a>
+              <a href="subject.html#3046">[ subject ]</a>
+              <a href="author.html#3046">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>&gt;<i>----Messaggio originale----
+</I>&gt;<i>Da: <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">rossi.f at inwind.it</A>
+</I>&gt;<i>Data: 27/11/2011 19.17
+</I>&gt;<i>A: &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">matthias.andree at gmx.de</A>&gt;
+</I>&gt;<i>Cc: &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">fetchmail-users at lists.berlios.de</A>&gt;
+</I>&gt;<i>Ogg: Re: [fetchmail-users] the message fetch should be completed before 
+</I>quitting
+&gt;<i>
+</I>&gt;&gt;&gt;<i> I have tried with the attached patch (-pid is not the group process id). 
+</I>The
+&gt;&gt;&gt;<i> effect seems different than killing the process via CTRL-C at the 
+</I>&gt;<i>terminal. 
+</I>&gt;&gt;&gt;<i> The
+</I>&gt;&gt;&gt;<i> maildrop child process is not killed and the message is accordingly 
+</I>&gt;<i>delivered.
+</I>&gt;&gt;&gt;<i> Something is still not working correctly: might it be due to the fact 
+</I>that 
+&gt;<i>the
+</I>&gt;&gt;&gt;<i> parent process is killed before the child? If this is the case the signal
+</I>&gt;&gt;&gt;<i> handler in fetchmail should kill its children before dying
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i>The problem is that fetchmail uses popen(), thus does not know the PID
+</I>&gt;&gt;<i>of its child (and uses pclose() to reap the zombie process), so we'll
+</I>&gt;&gt;<i>have to rely on process group signalling.  Does maildrop respond
+</I>&gt;&gt;<i>differently to SIGTERM than to SIGINT?  I haven't got time to check that
+</I>&gt;&gt;<i>now, will do some time during the week.
+</I>&gt;<i>
+</I>&gt;<i>I have also tried to put SIGINT as signal to be sent by fetchmail on 
+</I>response 
+&gt;<i>to --quit, nothing changes :-(
+</I>&gt;<i>
+</I>&gt;<i>I'm attaching a stupid program for testing the killpg() function. On my 
+</I>&gt;<i>system, if I leave the program terminating by itself, the parent process is 
+</I>&gt;<i>always killed before the child one (so this is what happens also with the 
+</I>&gt;<i>patched fetchmail). If I send a manual CTRL-C command on the terminal it 
+</I>might 
+&gt;<i>happen that the signal handler for the child is called before the other.
+</I>&gt;<i>
+</I>&gt;<i>Fabio_______________________________________________
+</I>&gt;<i>fetchmail-users mailing list
+</I>&gt;<i><A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">fetchmail-users at lists.berlios.de</A>
+</I>&gt;<i><A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">https://lists.berlios.de/mailman/listinfo/fetchmail-users</A>
+</I>&gt;<i>
+</I>
+Are there any news about this issue?
+
+Cheers,
+Fabio
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003045.html">[fetchmail-users] no dns option?
+</A></li>
+	
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3046">[ date ]</a>
+              <a href="thread.html#3046">[ thread ]</a>
+              <a href="subject.html#3046">[ subject ]</a>
+              <a href="author.html#3046">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

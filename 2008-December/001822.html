@@ -1,0 +1,115 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Error showing in fetchmail log
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2008-December/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Error%20showing%20in%20fetchmail%20log&In-Reply-To=%3CPine.LNX.4.64.0812291119440.23701%40bretnewworkstation.busby.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001819.html">
+   <LINK REL="Next"  HREF="001823.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Error showing in fetchmail log</H1>
+    <B>Bret Busby</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Error%20showing%20in%20fetchmail%20log&In-Reply-To=%3CPine.LNX.4.64.0812291119440.23701%40bretnewworkstation.busby.net%3E"
+       TITLE="[fetchmail-users] Error showing in fetchmail log">bret at busby.net
+       </A><BR>
+    <I>Mon Dec 29 03:34:24 CET 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001819.html">[fetchmail-users] where is all my emails ?
+</A></li>
+        <LI>Next message: <A HREF="001823.html">[fetchmail-users] Error showing in fetchmail log
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1822">[ date ]</a>
+              <a href="thread.html#1822">[ thread ]</a>
+              <a href="subject.html#1822">[ subject ]</a>
+              <a href="author.html#1822">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>
+Hello, everyone.
+
+I am new to this list (haven't received any messages since I subscribed, 
+so I hope that the list is active).
+
+Our web hosting ISP made some changes to their hosting, and it wrecked 
+our downloading of email from that ISP to our mail server. The ISP had 
+been using a &quot;self made certificate&quot; or something similar, that had 
+expired, that ended up preventing us from donloading email, and they did 
+a (apparently cheap and nasty) patch, that led from one error that we 
+received, to another.
+
+We spent a few days tring to fix the issues caused by the ISP, and we 
+still have a persistent error, as shown in the entry below from our 
+fetchmail log.
+
+&quot;fetchmail: awakened at Mon Dec 29 11:40:41 2008
+fetchmail: Server CommonName mismatch: plesk3.distributeit.com.au != 
+mail.busby.net
+fetchmail: sleeping at Mon Dec 29 11:40:42 2008 for 300 seconds&quot;
+
+We can still down load email, but would like to eliminate the error.
+
+The mail.busby.net is the name of the mail server at the hosting ISP, 
+that we need to use, as the source for downloading our email. The 
+hosting ISP uses Plesk for their hosting.
+
+The relevant line from our .fetchmailrc file is
+&quot; poll mail.busby.net with proto POP3
+        user &lt;username&gt; there with password &lt;password&gt; is &lt;our mailserver 
+account name&gt; here warnings 3600&quot;
+
+Please advise how to eliminate the error and get our fetchmail 
+downloading of email, working without errors.
+
+Thank you in anticipation.
+
+--
+Bret Busby
+Armadale
+West Australia
+..............
+
+&quot;So once you do know what the question actually is,
+  you'll know what the answer means.&quot;
+- Deep Thought,
+   Chapter 28 of Book 1 of
+   &quot;The Hitchhiker's Guide to the Galaxy:
+   A Trilogy In Four Parts&quot;,
+   written by Douglas Adams,
+   published by Pan Books, 1992
+
+....................................................
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001819.html">[fetchmail-users] where is all my emails ?
+</A></li>
+	<LI>Next message: <A HREF="001823.html">[fetchmail-users] Error showing in fetchmail log
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1822">[ date ]</a>
+              <a href="thread.html#1822">[ thread ]</a>
+              <a href="subject.html#1822">[ subject ]</a>
+              <a href="author.html#1822">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

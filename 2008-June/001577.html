@@ -1,0 +1,111 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] unable to get local issuer
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2008-June/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20unable%20to%20get%20local%20issuer&In-Reply-To=%3C83151A9F-011A-1000-EB1C-F818060B1040-Webmail-10014%40mac.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001576.html">
+   <LINK REL="Next"  HREF="001578.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] unable to get local issuer</H1>
+    <B>Bill Jastram</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20unable%20to%20get%20local%20issuer&In-Reply-To=%3C83151A9F-011A-1000-EB1C-F818060B1040-Webmail-10014%40mac.com%3E"
+       TITLE="[fetchmail-users] unable to get local issuer">bjhm at mac.com
+       </A><BR>
+    <I>Tue Jun 24 04:59:25 CEST 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001576.html">[fetchmail-users] unable to get local issuer
+</A></li>
+        <LI>Next message: <A HREF="001578.html">[fetchmail-users] unable to get local issuer
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1577">[ date ]</a>
+              <a href="thread.html#1577">[ thread ]</a>
+              <a href="subject.html#1577">[ subject ]</a>
+              <a href="author.html#1577">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Matthias:
+
+Thanks for your response.  Since I'm a bit new at this could you go back over your previous information at bit slower.
+
+It might help you to know that this is happening with two different mail servers I'm trying to log in to:  comcast &amp; mac.com
+
+Thanks,
+
+Bill
+___________________________________________________________ 
+ 
+On Monday, June 23, 2008, at 03:29PM, &quot;Matthias Andree&quot; &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">matthias.andree at gmx.de</A>&gt; wrote:
+&gt;<i>Bill Jastram schrieb am 2008-06-23:
+</I>&gt;<i>
+</I>&gt;&gt;<i> I have been using Fetchmail &amp; Mutt for many years, but just recently Fetchmail ceased to retrieve 
+</I>&gt;&gt;<i> mail.  I tested it with fetchmail -c and got the following error:
+</I>&gt;&gt;<i> 
+</I>&gt;&gt;<i> fetchmail: Server certificate verification error: unable to get local issuer 
+</I>&gt;&gt;<i> certificate
+</I>&gt;&gt;<i> fetchmail: Server certificate verification error: certificate not trusted
+</I>&gt;&gt;<i> 16 messages for xxxx at mail.comcast.net (59239 octets).
+</I>&gt;&gt;<i> 
+</I>&gt;&gt;<i> What could have happened to cause this interruption in email retrieval?
+</I>&gt;<i>
+</I>&gt;<i>Hi Bill,
+</I>&gt;<i>
+</I>&gt;<i>likely a &quot;change&quot; (including expiry) in SSL certificates of the upstream
+</I>&gt;<i>server or the certification chain, or damage to the directory/file of
+</I>&gt;<i>trusted root issuers, or their recent enabling of SSL/TLS when it was
+</I>&gt;<i>disabled before; fetchmail 6.3.8 in verbose mode should print more
+</I>&gt;<i>detailed information so you can see better what's going on.
+</I>&gt;<i>
+</I>&gt;<i>What fetchmail says is basically that nobody told it (or the OpenSSL
+</I>&gt;<i>library for that matter) that the issuer of the upstream server's
+</I>&gt;<i>certificate is trustworthy - the latter usually happens by tossing the
+</I>&gt;<i>/issuer/ intermediate (if applicable) and root certificate(s) into the
+</I>&gt;<i>CApath (sslcertpath in fetchmail), often /usr/ssl/certs, /etc/ssl/certs,
+</I>&gt;<i>or thereabouts (after installation, c_rehash /etc/ssl/certs, or similar,
+</I>&gt;<i>has to be executed to generate links).
+</I>&gt;<i>
+</I>&gt;<i>HTH
+</I>&gt;<i>
+</I>&gt;<i>-- 
+</I>&gt;<i>Matthias Andree
+</I>&gt;<i>_______________________________________________
+</I>&gt;<i>fetchmail-users mailing list
+</I>&gt;<i><A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">fetchmail-users at lists.berlios.de</A>
+</I>&gt;<i><A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">https://lists.berlios.de/mailman/listinfo/fetchmail-users</A>
+</I>&gt;<i>
+</I>&gt;<i>
+</I>
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001576.html">[fetchmail-users] unable to get local issuer
+</A></li>
+	<LI>Next message: <A HREF="001578.html">[fetchmail-users] unable to get local issuer
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1577">[ date ]</a>
+              <a href="thread.html#1577">[ thread ]</a>
+              <a href="subject.html#1577">[ subject ]</a>
+              <a href="author.html#1577">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

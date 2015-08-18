@@ -1,0 +1,83 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] fetchmail bad header problem
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2011-August/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%20bad%20header%20problem&In-Reply-To=%3C4E3BB6C8.5090100%40gmx.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002894.html">
+   <LINK REL="Next"  HREF="002877.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] fetchmail bad header problem</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%20bad%20header%20problem&In-Reply-To=%3C4E3BB6C8.5090100%40gmx.de%3E"
+       TITLE="[fetchmail-users] fetchmail bad header problem">matthias.andree at gmx.de
+       </A><BR>
+    <I>Fri Aug  5 11:24:24 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002894.html">[fetchmail-users] fetchmail bad header problem
+</A></li>
+        <LI>Next message: <A HREF="002877.html">[fetchmail-users] fetchmail bad header problem
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2895">[ date ]</a>
+              <a href="thread.html#2895">[ thread ]</a>
+              <a href="subject.html#2895">[ subject ]</a>
+              <a href="author.html#2895">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Am 05.08.2011 11:18, schrieb Dirk Schleicher:
+&gt;<i> am 05.08.11 schrieb Matthias Andree
+</I>&gt;<i> 
+</I>&gt;&gt;&gt;<i> /var/log/fetschmail.log
+</I>&gt;&gt;&gt;<i> fetchmail: SMTP-Fehler: 501 5.1.7 Bad sender address syntax
+</I>&gt;&gt;&gt;<i> fetchmail:  nicht gel&#246;scht  
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> This looks like a Postfix complaint. (I think I also want to make sure
+</I>&gt;&gt;<i> that syslog stuff is in English language rather than localized.)
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> Can I use the option --antispam for this?
+</I>
+That depends on how close to the default configuration your actual
+Postfix configuration is. In 2.8.X, antispam 501 should do the job
+because &quot;invalid hostname&quot; is the only situation where Postfix should
+issue a 501 code.
+
+(Note that for fetchmail versions before 6.3.19, antispam is only
+effective in the rcfile, and is ignored on the command line, due to a
+bug that got fixed in 6.3.19.)
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002894.html">[fetchmail-users] fetchmail bad header problem
+</A></li>
+	<LI>Next message: <A HREF="002877.html">[fetchmail-users] fetchmail bad header problem
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2895">[ date ]</a>
+              <a href="thread.html#2895">[ thread ]</a>
+              <a href="subject.html#2895">[ subject ]</a>
+              <a href="author.html#2895">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,92 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] fetchmail with dovecot as mda
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2013-March/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%20with%20dovecot%20as%20mda&In-Reply-To=%3C20130309143352.4c0c0389%40scorpio%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003371.html">
+   <LINK REL="Next"  HREF="003373.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] fetchmail with dovecot as mda</H1>
+    <B>Jerry</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%20with%20dovecot%20as%20mda&In-Reply-To=%3C20130309143352.4c0c0389%40scorpio%3E"
+       TITLE="[fetchmail-users] fetchmail with dovecot as mda">jerry at seibercom.net
+       </A><BR>
+    <I>Sat Mar  9 20:33:52 CET 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003371.html">[fetchmail-users] fetchmail/sendmail: Domain of sender address	does not exist
+</A></li>
+        <LI>Next message: <A HREF="003373.html">[fetchmail-users] fetchmail with dovecot as mda
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3372">[ date ]</a>
+              <a href="thread.html#3372">[ thread ]</a>
+              <a href="subject.html#3372">[ subject ]</a>
+              <a href="author.html#3372">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>I was asked to see if it was possible to get fetchmail to deliver mail
+directly to a dovecot server. It is presently working with a Postfix
+MTA. The system is comprised of solely virtual users.
+
+From the Postfix &quot;master.cf&quot; file:
+
+dovecot   unix  -       n       n       -       -       pipe
+  flags=DRhu user=vmail:vmail argv=/usr/local/libexec/dovecot/deliver
+  -f ${sender} -d ${user}@${nexthop} -a ${recipient}
+
+I have tried different ways of configuring the &quot;mda&quot; settings in
+fetchmail; however, none of them work. This example stated that it
+couldn't open the dovecot log file and that it exited with an error 75.
+
+user '<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">user at isp</A>' there with password 'secret' is 'user' here options
+  forcecr dropdelivered smtpaddress 'isp.com' ssl sslcertpath
+  '/usr/local/etc/postfix/certs/' sslfingerprint
+  '74:8F:40:34:7F:B4:5E:23:99:B3:A9:92:93:67:13:8A' mda
+  &quot;/usr/local/libexec/dovecot/deliver -f %F -a %T&quot;
+
+I am not even sure if it is possible. I cannot find any real
+documentation via Google from anyone who has actually gotten it to
+work. This is being run on a FreeBSD machine.
+
+-- 
+Jerry &#9812;
+
+Disclaimer: off-list followups get on-list replies or get ignored.
+Please do not ignore the Reply-To header.
+__________________________________________________________________
+
+</PRE>
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003371.html">[fetchmail-users] fetchmail/sendmail: Domain of sender address	does not exist
+</A></li>
+	<LI>Next message: <A HREF="003373.html">[fetchmail-users] fetchmail with dovecot as mda
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3372">[ date ]</a>
+              <a href="thread.html#3372">[ thread ]</a>
+              <a href="subject.html#3372">[ subject ]</a>
+              <a href="author.html#3372">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

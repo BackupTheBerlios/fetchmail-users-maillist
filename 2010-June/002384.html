@@ -1,0 +1,134 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Using &quot;CAPA&quot; with Hotmail
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2010-June/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Using%20%22CAPA%22%20with%20Hotmail&In-Reply-To=%3C20100611152448.0e684398%40scorpio%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   
+   <LINK REL="Next"  HREF="002385.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Using &quot;CAPA&quot; with Hotmail</H1>
+    <B>Jerry</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Using%20%22CAPA%22%20with%20Hotmail&In-Reply-To=%3C20100611152448.0e684398%40scorpio%3E"
+       TITLE="[fetchmail-users] Using &quot;CAPA&quot; with Hotmail">fetchmail.user at seibercom.net
+       </A><BR>
+    <I>Fri Jun 11 21:24:48 CEST 2010</I>
+    <P><UL>
+        
+        <LI>Next message: <A HREF="002385.html">[fetchmail-users] Using &quot;CAPA&quot; with Hotmail
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2384">[ date ]</a>
+              <a href="thread.html#2384">[ thread ]</a>
+              <a href="subject.html#2384">[ subject ]</a>
+              <a href="author.html#2384">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>fetchmail release 6.3.17+RPA+SDPS+SSL+OPIE+NLS
+FreeBSD-8.1-PRERELEASE/amd64
+
+I have two accounts with Hotmail. Both accounts produce what appears to
+be an error message during mail retrival:
+
+fetchmail: POP3&gt; CAPA
+fetchmail: POP3&lt; -ERR unrecognized command
+
+The entire log for both accounts is shown below.
+
+fetchmail: 6.3.17 querying pop3.live.com (protocol POP3) at Fri Jun 11 15:12:00 2010: poll started
+fetchmail: Trying to connect to 65.55.172.253/995...connected.
+fetchmail: Server certificate:
+fetchmail: Unknown Organization
+fetchmail: Issuer CommonName: Microsoft Secure Server Authority
+fetchmail: Subject CommonName: pop3.live.com
+fetchmail: pop3.live.com key fingerprint: B1:2B:88:14:85:7C:BF:C3:90:EB:F8:88:3E:A3:A5:39
+fetchmail: pop3.live.com fingerprints match.
+fetchmail: POP3&lt; +OK BLU0-POP397 POP3 server ready
+fetchmail: POP3&gt; CAPA
+fetchmail: POP3&lt; -ERR unrecognized command
+fetchmail: unrecognized command
+fetchmail: Repoll immediately on <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">USER at hotmail.com</A>@pop3.hot.glbdns.microsoft.com
+fetchmail: Trying to connect to 65.55.172.253/995...connected.
+fetchmail: Server certificate:
+fetchmail: Unknown Organization
+fetchmail: Issuer CommonName: Microsoft Secure Server Authority
+fetchmail: Subject CommonName: pop3.live.com
+fetchmail: pop3.live.com key fingerprint: B1:2B:88:14:85:7C:BF:C3:90:EB:F8:88:3E:A3:A5:39
+fetchmail: pop3.live.com fingerprints match.
+fetchmail: POP3&lt; +OK BLU0-POP370 POP3 server ready
+fetchmail: POP3&gt; USER <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">USER at hotmail.com</A>
+fetchmail: POP3&lt; +OK password required
+fetchmail: POP3&gt; PASS *
+fetchmail: POP3&lt; +OK mailbox has 0 messages
+fetchmail: POP3&gt; STAT
+fetchmail: POP3&lt; +OK 0 0
+fetchmail: No mail for <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">USER at hotmail.com</A> at pop3.live.com
+fetchmail: POP3&gt; QUIT
+fetchmail: POP3&lt; +OK mailbox unchanged, POP3 server signing off
+fetchmail: 6.3.17 querying pop3.live.com (protocol POP3) at Fri Jun 11 15:12:02 2010: poll completed
+fetchmail: 6.3.17 querying pop3.live.com (protocol POP3) at Fri Jun 11 15:12:02 2010: poll started
+fetchmail: Trying to connect to 65.55.172.253/995...connected.
+fetchmail: Server certificate:
+fetchmail: Unknown Organization
+fetchmail: Issuer CommonName: Microsoft Secure Server Authority
+fetchmail: Subject CommonName: pop3.live.com
+fetchmail: pop3.live.com key fingerprint: B1:2B:88:14:85:7C:BF:C3:90:EB:F8:88:3E:A3:A5:39
+fetchmail: pop3.live.com fingerprints match.
+fetchmail: POP3&lt; +OK BLU0-POP161 POP3 server ready
+fetchmail: POP3&gt; CAPA
+fetchmail: POP3&lt; -ERR unrecognized command
+fetchmail: unrecognized command
+fetchmail: Repoll immediately on <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">USER-2 at hotmail.com</A>@pop3.hot.glbdns.microsoft.com
+fetchmail: Trying to connect to 65.55.32.247/995...connected.
+fetchmail: Server certificate:
+fetchmail: Unknown Organization
+fetchmail: Issuer CommonName: Microsoft Secure Server Authority
+fetchmail: Subject CommonName: pop3.live.com
+fetchmail: pop3.live.com key fingerprint: B1:2B:88:14:85:7C:BF:C3:90:EB:F8:88:3E:A3:A5:39
+fetchmail: pop3.live.com fingerprints match.
+fetchmail: POP3&lt; +OK COL0-POP146 POP3 server ready
+fetchmail: POP3&gt; USER <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">USER-2 at hotmail.com</A>
+fetchmail: POP3&lt; +OK password required
+fetchmail: POP3&gt; PASS *
+fetchmail: POP3&lt; +OK mailbox has 0 messages
+fetchmail: POP3&gt; STAT
+fetchmail: POP3&lt; +OK 0 0
+fetchmail: No mail for <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">USER-2 at hotmail.com</A> at pop3.live.com
+fetchmail: POP3&gt; QUIT
+fetchmail: POP3&lt; +OK mailbox unchanged, POP3 server signing off
+fetchmail: 6.3.17 querying pop3.live.com (protocol POP3) at Fri Jun 11 15:12:03 2010: poll completed
+fetchmail: normal termination, status 1
+Done.
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	
+	<LI>Next message: <A HREF="002385.html">[fetchmail-users] Using &quot;CAPA&quot; with Hotmail
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2384">[ date ]</a>
+              <a href="thread.html#2384">[ thread ]</a>
+              <a href="subject.html#2384">[ subject ]</a>
+              <a href="author.html#2384">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

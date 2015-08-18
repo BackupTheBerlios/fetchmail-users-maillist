@@ -1,0 +1,95 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] how to stop duplicate messages while still deleting messages from pop3
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2012-June/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20how%20to%20stop%20duplicate%20messages%20while%20still%0A%20deleting%20messages%20from%20pop3&In-Reply-To=%3C4FDA7AF8.60808%40gmx.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003154.html">
+   <LINK REL="Next"  HREF="003156.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] how to stop duplicate messages while still deleting messages from pop3</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20how%20to%20stop%20duplicate%20messages%20while%20still%0A%20deleting%20messages%20from%20pop3&In-Reply-To=%3C4FDA7AF8.60808%40gmx.de%3E"
+       TITLE="[fetchmail-users] how to stop duplicate messages while still deleting messages from pop3">matthias.andree at gmx.de
+       </A><BR>
+    <I>Fri Jun 15 01:59:52 CEST 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003154.html">[fetchmail-users] how to stop duplicate messages while still	deleting messages from pop3
+</A></li>
+        <LI>Next message: <A HREF="003156.html">[fetchmail-users] how to set up fetchmail for inbox.com POP3
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3155">[ date ]</a>
+              <a href="thread.html#3155">[ thread ]</a>
+              <a href="subject.html#3155">[ subject ]</a>
+              <a href="author.html#3155">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Am 14.06.2012 13:06, schrieb J&#252;rgen Echter:
+&gt;<i> Am 14.06.2012 11:58, schrieb J&#252;rgen Echter:
+</I>&gt;&gt;<i> Hi,
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> i have sadly lots of duplicate messages pulled from POP3.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> I'd like to achieve pulling messages from POP3 and delete them
+</I>&gt;&gt;<i> afterwards. There is a little bit of a storage space problem from our
+</I>&gt;&gt;<i> hoster.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Is there an option i could use to prevent downloading duplicate messages?
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> I've seen option -U in manpage, but as i understand it it leaves
+</I>&gt;&gt;<i> messages marked seen on the server so we may run in the space problem
+</I>&gt;&gt;<i> again after a while.
+</I>
+What the POP3 server marks seen or not is its own business and nothing
+fetchmail has reliable control over. Trying -U (aka --uidl) is worthwhile.
+
+I suggest that you try &quot;proto POP3 UIDL interval 3&quot; and, unrelated to
+your issue, possibly add &quot;sslcertck&quot; after ssl.
+
+Given your configuration does not comprise &quot;keep&quot;, messages are supposed
+to be removed after downloading (but old messages will remain on the
+server unless you use --flush), chances are this doesn't work properly.
+Logs as requested below would help diagnosing the problem.
+
+&gt;&gt;<i> any hints?
+</I>
+If problems persist, please use the latest released fetchmail version,
+and see &lt;<A HREF="http://www.fetchmail.info/fetchmail-FAQ.html#G3">http://www.fetchmail.info/fetchmail-FAQ.html#G3</A>&gt; for what
+information I need to assist you.
+
+HTH
+</PRE>
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003154.html">[fetchmail-users] how to stop duplicate messages while still	deleting messages from pop3
+</A></li>
+	<LI>Next message: <A HREF="003156.html">[fetchmail-users] how to set up fetchmail for inbox.com POP3
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3155">[ date ]</a>
+              <a href="thread.html#3155">[ thread ]</a>
+              <a href="subject.html#3155">[ subject ]</a>
+              <a href="author.html#3155">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

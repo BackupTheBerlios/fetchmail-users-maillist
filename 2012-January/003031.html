@@ -1,0 +1,111 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Suppress fetchmail auth failure messages to recipient address.
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2012-January/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Suppress%20fetchmail%20auth%20failure%20messages%20to%0A%20recipient%20address.&In-Reply-To=%3C4F1EF65A.4020308%40gmx.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003030.html">
+   <LINK REL="Next"  HREF="003032.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Suppress fetchmail auth failure messages to recipient address.</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Suppress%20fetchmail%20auth%20failure%20messages%20to%0A%20recipient%20address.&In-Reply-To=%3C4F1EF65A.4020308%40gmx.de%3E"
+       TITLE="[fetchmail-users] Suppress fetchmail auth failure messages to recipient address.">matthias.andree at gmx.de
+       </A><BR>
+    <I>Tue Jan 24 19:20:10 CET 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003030.html">[fetchmail-users] Suppress fetchmail auth failure messages to	recipient address.
+</A></li>
+        <LI>Next message: <A HREF="003032.html">[fetchmail-users] How to handle mail with broken headers?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3031">[ date ]</a>
+              <a href="thread.html#3031">[ thread ]</a>
+              <a href="subject.html#3031">[ subject ]</a>
+              <a href="author.html#3031">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Am 24.01.2012 14:34, schrieb Rolinson, Sean:
+
+&gt;<i> I am trying to suppress the &quot;fetchmail authentication failed on
+</I>&gt;<i> {address}&quot; messages which are sent to the delivery/recipient address
+</I>&gt;<i> when fetchmail has trouble logging in to a POP3 server.  Ultimately,
+</I>&gt;<i> there are 2 emails sent for every occurrence of the problem (one for
+</I>&gt;<i> the failure, and one for the OK)
+</I>
+Sean,
+
+I'll answer only those parts of your message that are not
+version-specific.  For version-specific support and code patching,
+you'll need to contact Red Hat (if using RHEL) or the CentOS community
+support channels -- the version you're using is too old to be supported
+here, but newer versions wouldn't fare much better.
+
+&gt;<i> We have a very busy Exchange servers that periodically fails to
+</I>&gt;<i> authenticate when logging in to it via POP3.  When this happens, an
+</I>&gt;<i> email is sent to the delivery/recipient address configured in
+</I>&gt;<i> fetchmail notifying of the failure.  I'd like to know how to suppress
+</I>&gt;<i> these messages if possible.
+</I>
+Then I'd suggest to fix the cause -- either tune Exchange, or put it on
+better hardware, or reduce the server's load somehow.
+
+&gt;<i> I realize we are aggressive in our how often we check (see config
+</I>&gt;<i> file below), and I'm sure increasing the polling interval would
+</I>&gt;<i> alleviate some of the failure, but I'd prefer to just suppress these
+</I>&gt;<i> messages completely if possible.
+</I>
+The workaround would be to use a shell script to emulate the &quot;daemon&quot;
+mode, and not use it (because the e-mail warnings only get sent in
+daemon mode). You may have to use grep -v to kill the message there,
+too, if you don't want it in the logs (not shown in the example below)
+and redirect the remainder of the output into the log file, such as:
+
+(This is assuming a Bourne shell:)
+
+while true ; do
+  fetchmail &gt;&gt;/home/users/srolinso/fetchmail/log/fetchmail_etg.log \
+    -d0 \
+    -f /home/users/srolinso/fetchmail/fetchmail_etg
+  sleep 10
+done
+
+The redirect is needed because the logfile option also only works in
+daemon mode in your version, if I remember correctly.
+
+Hope that helps,
+Matthias
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003030.html">[fetchmail-users] Suppress fetchmail auth failure messages to	recipient address.
+</A></li>
+	<LI>Next message: <A HREF="003032.html">[fetchmail-users] How to handle mail with broken headers?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3031">[ date ]</a>
+              <a href="thread.html#3031">[ thread ]</a>
+              <a href="subject.html#3031">[ subject ]</a>
+              <a href="author.html#3031">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,97 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] fetchmail 6.2.9-rc4 available
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2005-September/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%206.2.9-rc4%20available&In-Reply-To=%3C200509210943.j8L9hfDm029405%40ns-srv-2.bln1.siemens.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000060.html">
+   <LINK REL="Next"  HREF="000063.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] fetchmail 6.2.9-rc4 available</H1>
+    <B>Thomas.Wolff at siemens.com</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%206.2.9-rc4%20available&In-Reply-To=%3C200509210943.j8L9hfDm029405%40ns-srv-2.bln1.siemens.de%3E"
+       TITLE="[fetchmail-users] fetchmail 6.2.9-rc4 available">Thomas.Wolff at siemens.com
+       </A><BR>
+    <I>Wed Sep 21 11:43:41 CEST 2005</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000060.html">[fetchmail-users] fetchmail 6.2.9-rc4 available
+</A></li>
+        <LI>Next message: <A HREF="000063.html">[fetchmail-users] fetchmail 6.2.9-rc5 available (hopefully last before 6.3.0)
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#62">[ date ]</a>
+              <a href="thread.html#62">[ thread ]</a>
+              <a href="subject.html#62">[ subject ]</a>
+              <a href="author.html#62">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>&gt;<i> I have just released fetchmail 6.2.9-rc4, yet another release candidate
+</I>&gt;<i> for 6.3.0, after minor fixes to -rc3 became necessary.
+</I>&gt;<i> 
+</I>&gt;<i> I seek everyone to test it out, report remaining bugs, update outdated
+</I>&gt;<i> translations or send patches for documentation or report inconsistencies
+</I>&gt;<i> (including formatting!) in the documentation.
+</I>
+-ldl is still missing, and actually on Linux too as I missed to report 
+previously:
+
+gcc -I/home/thw/opt/openssl-0.9.8/include -I/usr/kerberos/include -g -O2 -L/home/thw/opt/openssl-0.9.8/lib  -o fetchmail  socket.o getpass.o pop2.o pop3.o imap.o etrn.o odmr.o fetchmail.o env.o idle.o options.o daemon.o driver.o transact.o sink.o smtp.o uid.o mxget.o md5ify.o cram.o kerberos.o gssapi.o opie.o rpa.o interface.o netrc.o unmime.o conf.o checkalias.o smbdes.o smbencrypt.o smbmd4.o smbutil.o lock.o rcfile_l.o rcfile_y.o norm_charmap.o getaddrinfo.o getnameinfo.o libfm.a  strlcpy.o strlcat.o  -lcrypt  -lresolv -lssl -lcrypto
+/home/thw/opt/openssl-0.9.8/lib/libcrypto.a(dso_dlfcn.o)(.text+0x145): In function `dlfcn_load':
+:<i> undefined reference to `dlopen'
+</I>/home/thw/opt/openssl-0.9.8/lib/libcrypto.a(dso_dlfcn.o)(.text+0x1a5): In function `dlfcn_load':
+:<i> undefined reference to `dlclose'
+</I>/home/thw/opt/openssl-0.9.8/lib/libcrypto.a(dso_dlfcn.o)(.text+0x1ce): In function `dlfcn_load':
+:<i> undefined reference to `dlerror'
+</I>/home/thw/opt/openssl-0.9.8/lib/libcrypto.a(dso_dlfcn.o)(.text+0x23b): In function `dlfcn_unload':
+:<i> undefined reference to `dlclose'
+</I>/home/thw/opt/openssl-0.9.8/lib/libcrypto.a(dso_dlfcn.o)(.text+0x2f3): In function `dlfcn_bind_var':
+:<i> undefined reference to `dlsym'
+</I>/home/thw/opt/openssl-0.9.8/lib/libcrypto.a(dso_dlfcn.o)(.text+0x361): In function `dlfcn_bind_var':
+:<i> undefined reference to `dlerror'
+</I>/home/thw/opt/openssl-0.9.8/lib/libcrypto.a(dso_dlfcn.o)(.text+0x3d7): In function `dlfcn_bind_func':
+:<i> undefined reference to `dlsym'
+</I>/home/thw/opt/openssl-0.9.8/lib/libcrypto.a(dso_dlfcn.o)(.text+0x423): In function `dlfcn_bind_func':
+:<i> undefined reference to `dlerror'
+</I>collect2: ld returned 1 exit status
+
+
+And, to be complete, the insufficient handling of the &quot;unknown IMAPS&quot; 
+situation is a remaining bug, too; it should be more user-friendly 
+as I had argued (handling, error messages, documentation).
+
+Kind regards,
+Thomas Wolff
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000060.html">[fetchmail-users] fetchmail 6.2.9-rc4 available
+</A></li>
+	<LI>Next message: <A HREF="000063.html">[fetchmail-users] fetchmail 6.2.9-rc5 available (hopefully last before 6.3.0)
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#62">[ date ]</a>
+              <a href="thread.html#62">[ thread ]</a>
+              <a href="subject.html#62">[ subject ]</a>
+              <a href="author.html#62">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

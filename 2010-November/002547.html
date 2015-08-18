@@ -1,0 +1,103 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Procmail callup
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2010-November/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Procmail%20callup&In-Reply-To=%3C20101114174011.GA2499%40cox.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002546.html">
+   <LINK REL="Next"  HREF="002550.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Procmail callup</H1>
+    <B>Robert Holtzman</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Procmail%20callup&In-Reply-To=%3C20101114174011.GA2499%40cox.net%3E"
+       TITLE="[fetchmail-users] Procmail callup">holtzm at cox.net
+       </A><BR>
+    <I>Sun Nov 14 18:40:11 CET 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002546.html">[fetchmail-users] Procmail callup
+</A></li>
+        <LI>Next message: <A HREF="002550.html">[fetchmail-users] Procmail callup
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2547">[ date ]</a>
+              <a href="thread.html#2547">[ thread ]</a>
+              <a href="subject.html#2547">[ subject ]</a>
+              <a href="author.html#2547">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Sun, Nov 14, 2010 at 01:27:29PM +0200, Danny wrote:
+&gt;<i> Hi guys,
+</I>&gt;<i> 
+</I>&gt;<i> I am running Debian 5.1 default installation.
+</I>&gt;<i> 
+</I>&gt;<i> Fetchmail is working fine, but I have slight difficulty trying to get procmail
+</I>&gt;<i> invoked by fetchmail.
+</I>&gt;<i> 
+</I>&gt;<i> Fetchmail just dumps all mails in /var/spool/mail/fetchmail even though I have
+</I>&gt;<i> specified to pipe it to procmail.
+</I>&gt;<i> 
+</I>&gt;<i> Here is fetchmail's rc file:
+</I>
+          .........snip.......
+
+Wow! That's some .fetchmailrc file. I have used this for years with
+success:
+
+
+poll &quot;pop.west.cox.net&quot;
+protocol pop3                   # we use the POP-protocol
+username &quot;xxxxxx&quot;               # who am i ?
+password &quot;xxxxxxxxxx&quot;           # passwords are always secret ;-)
+mimedecode                      # automaticaly deal with mime
+(attachements)
+mda &quot;/usr/bin/procmail -f -&quot;    # tell fetchmail which MDA to use
+ 
+It appears the problem is with your filters. What do your logs say? You
+have verbose logging turned on but don't say what it showed.
+ 
+You would get better answers from the procmail list:  
+
+<A HREF="http://mailman.rwth-aachen.de/mailman/listinfo/procmail">http://mailman.rwth-aachen.de/mailman/listinfo/procmail</A>
+
+BTW, I have run procmail for years with complete satisaction. I know
+some people don't like it and advocate maildrop. To each his own.
+
+-- 
+Bob Holtzman
+Key ID: 8D549279
+&quot;If you think you're getting free lunch,
+ check the price of the beer&quot;
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002546.html">[fetchmail-users] Procmail callup
+</A></li>
+	<LI>Next message: <A HREF="002550.html">[fetchmail-users] Procmail callup
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2547">[ date ]</a>
+              <a href="thread.html#2547">[ thread ]</a>
+              <a href="subject.html#2547">[ subject ]</a>
+              <a href="author.html#2547">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

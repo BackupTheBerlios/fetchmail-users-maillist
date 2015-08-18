@@ -1,0 +1,140 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Server certificate verification error: self signed certificate
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2010-August/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Server%20certificate%20verification%20error%3A%20self%0A%20signed%20certificate&In-Reply-To=%3C1282604008.28922.7.camel%40localhost.localdomain%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002463.html">
+   <LINK REL="Next"  HREF="002465.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Server certificate verification error: self signed certificate</H1>
+    <B>Chris</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Server%20certificate%20verification%20error%3A%20self%0A%20signed%20certificate&In-Reply-To=%3C1282604008.28922.7.camel%40localhost.localdomain%3E"
+       TITLE="[fetchmail-users] Server certificate verification error: self signed certificate">cpollock at embarqmail.com
+       </A><BR>
+    <I>Tue Aug 24 00:53:28 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002463.html">[fetchmail-users] Server certificate verification error: self signed certificate
+</A></li>
+        <LI>Next message: <A HREF="002465.html">[fetchmail-users] Server certificate verification error: self signed certificate
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2464">[ date ]</a>
+              <a href="thread.html#2464">[ thread ]</a>
+              <a href="subject.html#2464">[ subject ]</a>
+              <a href="author.html#2464">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Mon, 2010-08-23 at 07:01 +0100, Rob MacGregor wrote:
+&gt;<i> On Sun, Aug 22, 2010 at 23:25, Chris &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">cpollock at embarqmail.com</A>&gt; wrote:
+</I>&gt;<i> &gt; I've upgraded this morning from fetchmail 6.3.9 to 6.3.17 and noticed a
+</I>&gt;<i> &gt; change in the logging entries:
+</I>&gt;<i> &lt;---SNIP---&gt;
+</I>&gt;<i> &gt; Though this doesn't prevent mail from being picked up is there a way I
+</I>&gt;<i> &gt; can get the new certificate? The domain belongs to me however is hosted
+</I>&gt;<i> &gt; by someone else. I've contacted the person who is hosting it for me and
+</I>&gt;<i> &gt; hopefully he'll reply but I'd like to have a fallback way to get the
+</I>&gt;<i> &gt; cert just in case. I currently do not have a certificate for toadnet.com
+</I>&gt;<i> &gt; in my ~/certs/.certs folder.
+</I>&gt;<i> 
+</I>&gt;<i> The FAQ lists one option
+</I>&gt;<i> (<A HREF="http://fetchmail.berlios.de/fetchmail-FAQ.html#K5">http://fetchmail.berlios.de/fetchmail-FAQ.html#K5</A>).  I've also used
+</I>&gt;<i> the following to get the certificate:
+</I>&gt;<i> 
+</I>&gt;<i> openssl s_client -connect remote.server.net:993 &lt;/dev/null | sed -ne
+</I>&gt;<i> '/-BEGIN CERTIFICATE-/,/-END CERTIFICATE-/p'
+</I>&gt;<i> &gt;/my/ssl/path/remote.server.net.pem &amp;&amp; c_rehash
+</I>&gt;<i> 
+</I>&gt;<i> You'll possibly want to use the servers correct name too
+</I>&gt;<i> (linuxsrv01.usdcservers.net) to avoid the warning about the mis-match.
+</I>&gt;<i> 
+</I>
+Thanks Rob, the FAQ was a great help. I entered the fingerprint as shown
+and it seems to be working:
+
+etchmail: 6.3.17 querying toadnet.com (protocol POP3) at Mon 23 Aug 2010
+05:39:00 PM CDT: poll started
+fetchmail: Trying to connect to 208.78.40.140/995...connected.
+fetchmail: Server certificate:
+fetchmail: Issuer Organization: Unknown
+fetchmail: Issuer CommonName: linuxsrv01.usdcservers.net
+fetchmail: Subject CommonName: linuxsrv01.usdcservers.net
+fetchmail: Server CommonName mismatch: linuxsrv01.usdcservers.net !=
+toadnet.com
+fetchmail: toadnet.com key fingerprint:
+AB:FA:8A:16:81:80:F5:56:B7:0E:18:25:5B:A7:7E:29
+fetchmail: toadnet.com fingerprints match.
+fetchmail: Server certificate:
+fetchmail: Issuer Organization: Unknown
+fetchmail: Issuer CommonName: linuxsrv01.usdcservers.net
+fetchmail: Subject CommonName: linuxsrv01.usdcservers.net
+fetchmail: Server CommonName mismatch: linuxsrv01.usdcservers.net !=
+toadnet.com
+fetchmail: Warning: the connection is insecure, continuing anyways.
+(Better use --sslcertck!)
+
+Next I used your method to get the certificate, no problem, ran
+c_rehash, no problem but as the FAQ says 
+
+&quot;If the server certificate has not been signed by a known CA (e.g. it is
+a self-signed certificate), then this certificate validation will always
+fail.&quot;
+
+Which it does
+
+fetchmail: toadnet.com key fingerprint:
+AB:FA:8A:16:81:80:F5:56:B7:0E:18:25:5B:A7:7E:29
+fetchmail: Server certificate verification error: self signed
+certificate
+
+Though at least it now doesn't complain with the key fingerprint though
+I do still see the name mismatch.
+
+Thanks for your help
+
+Chris
+
+-- 
+Chris
+KeyID 0xE372A7DA98E6705C
+
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: signature.asc
+Type: application/pgp-signature
+Size: 197 bytes
+Desc: This is a digitally signed message part
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/fetchmail-users/attachments/20100823/338e41cc/attachment.pgp">https://lists.berlios.de/pipermail/fetchmail-users/attachments/20100823/338e41cc/attachment.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002463.html">[fetchmail-users] Server certificate verification error: self signed certificate
+</A></li>
+	<LI>Next message: <A HREF="002465.html">[fetchmail-users] Server certificate verification error: self signed certificate
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2464">[ date ]</a>
+              <a href="thread.html#2464">[ thread ]</a>
+              <a href="subject.html#2464">[ subject ]</a>
+              <a href="author.html#2464">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

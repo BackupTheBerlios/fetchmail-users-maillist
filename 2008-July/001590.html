@@ -1,0 +1,94 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] fetchmail and headers
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2008-July/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%20and%20headers&In-Reply-To=1a22b1b335c427c5291aaf39bb5ef4c6">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001620.html">
+   <LINK REL="Next"  HREF="001592.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] fetchmail and headers</H1>
+    <B>Sylvain Le Torrec</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%20and%20headers&In-Reply-To=1a22b1b335c427c5291aaf39bb5ef4c6"
+       TITLE="[fetchmail-users] fetchmail and headers">sylvain-letorrec at adswf.org
+       </A><BR>
+    <I>Tue Jul  1 23:06:48 CEST 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001620.html">[fetchmail-users] fetchmail drives me crazy... [I do not want	output on STDERR]
+</A></li>
+        <LI>Next message: <A HREF="001592.html">[fetchmail-users] fetchmail and headers
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1590">[ date ]</a>
+              <a href="thread.html#1590">[ thread ]</a>
+              <a href="subject.html#1590">[ subject ]</a>
+              <a href="author.html#1590">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hello,
+
+I know that there are a lot of questions about the headers, but I don't find
+anything about my problem. I'm using Qmail v1.03 and fetchmail v.6.2.4.
+I have some troubles with fetchmail with the headers of some mails.
+Sometimes, it happens that I have two 'To' in the header, so when fetchmail
+try to fetch it, it stops on the 2nd 'To' because it reads
+'Undisclosed-Recipient'.
+I don't know how to make fetchmail read the first 'To' and to read the only
+recipients for my domain (it also stops when there are mailing lists..)
+
+See below my fetchmail.rc :
+defaults
+set no bouncemail
+poll x.mydomaine protocol POP3
+localdomains mydomain
+tracepolls
+no envelope
+envelope &quot;Delivered-To:&quot;
+qvirtual &quot;Delivered-To:&quot;
+username x
+password x
+is *
+fetchall
+mda &quot;sed 1,2d | /usr/sbin/sendmail -i -f %F -- %T&quot;
+
+poll ...
+fetchall
+&#160;
+Thank you very much for any help.
+
+Sincerlery
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001620.html">[fetchmail-users] fetchmail drives me crazy... [I do not want	output on STDERR]
+</A></li>
+	<LI>Next message: <A HREF="001592.html">[fetchmail-users] fetchmail and headers
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1590">[ date ]</a>
+              <a href="thread.html#1590">[ thread ]</a>
+              <a href="subject.html#1590">[ subject ]</a>
+              <a href="author.html#1590">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

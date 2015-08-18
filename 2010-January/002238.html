@@ -1,0 +1,92 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] another fetchmail certificates problem
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2010-January/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20another%20fetchmail%20certificates%20problem&In-Reply-To=%3C4B586281.7080001%40gmx.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002237.html">
+   <LINK REL="Next"  HREF="002239.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] another fetchmail certificates problem</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20another%20fetchmail%20certificates%20problem&In-Reply-To=%3C4B586281.7080001%40gmx.de%3E"
+       TITLE="[fetchmail-users] another fetchmail certificates problem">matthias.andree at gmx.de
+       </A><BR>
+    <I>Thu Jan 21 15:19:45 CET 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002237.html">[fetchmail-users] another fetchmail certificates problem
+</A></li>
+        <LI>Next message: <A HREF="002239.html">[fetchmail-users] another fetchmail certificates problem
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2238">[ date ]</a>
+              <a href="thread.html#2238">[ thread ]</a>
+              <a href="subject.html#2238">[ subject ]</a>
+              <a href="author.html#2238">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Am 21.01.2010 15:07, schrieb Uli Zappe:
+&gt;<i> Hi everyone,
+</I>&gt;<i> 
+</I>&gt;<i> strange coincidence, but I've also run into a - very strange - fetchmail certificates problem recently.
+</I>&gt;<i> 
+</I>&gt;<i> This is with fetchmail release 6.3.11+GSS+SSL+KRB5 on Mac OS X 10.5.8 (Darwin Kernel Version 9.8.0: Wed Jul 15 16:55:01 PDT 2009; root:xnu-1228.15.4~1/RELEASE_I386 i386).
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> I had not looked at the mail logs for many months, but when I did now because of something else, I found that with each polling of one specific pop account fetchmail now always writes the following three error messages into the log:
+</I>&gt;<i> 
+</I>&gt;<i> Jan 21 14:51:05 hamlet fetchmail[3295]: Server certificate verification error: unable to get local issuer certificate
+</I>&gt;<i> Jan 21 14:51:05 hamlet fetchmail[3295]: Server certificate verification error: certificate not trusted
+</I>&gt;<i> Jan 21 14:51:05 hamlet fetchmail[3295]: Server certificate verification error: unable to verify the first certificate
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> The strange thing about this is:
+</I>&gt;<i> 
+</I>&gt;<i> 1. My fetchmail configuration has been working flawlessly for years and has *not* been changed in any way recently.
+</I>
+But the server configuration might have changed. The servers is not under your
+control, is it?
+
+&gt;<i> 2. Despite these messages, fetchmail is actually fetching mails just fine from this account
+</I>
+It's &quot;opportunistic&quot;, in other words &quot;no abort if TLS fails, but retry without&quot;.
+
+&gt;<i> 3. (the strangest one) fetchmail is not even configured to use ssl for this account! (It *is* configured to use ssl for other accounts, but polling these does *not* produce the above error messages.)
+</I>
+&lt;<A HREF="http://www.fetchmail.info/fetchmail-FAQ.html#K6">http://www.fetchmail.info/fetchmail-FAQ.html#K6</A>&gt;
+
+HTH
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002237.html">[fetchmail-users] another fetchmail certificates problem
+</A></li>
+	<LI>Next message: <A HREF="002239.html">[fetchmail-users] another fetchmail certificates problem
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2238">[ date ]</a>
+              <a href="thread.html#2238">[ thread ]</a>
+              <a href="subject.html#2238">[ subject ]</a>
+              <a href="author.html#2238">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

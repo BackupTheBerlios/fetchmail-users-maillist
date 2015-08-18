@@ -1,0 +1,172 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] [BUG] fetchmail daemon does not resume fetching after a network outage
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2006-June/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20%5BBUG%5D%20fetchmail%20daemon%20does%20not%20resume%20fetching%20after%20a%20network%20outage&In-Reply-To=%3C20060628094223.GA15611%40merlin.emma.line.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000466.html">
+   <LINK REL="Next"  HREF="000473.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] [BUG] fetchmail daemon does not resume fetching after a network outage</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20%5BBUG%5D%20fetchmail%20daemon%20does%20not%20resume%20fetching%20after%20a%20network%20outage&In-Reply-To=%3C20060628094223.GA15611%40merlin.emma.line.org%3E"
+       TITLE="[fetchmail-users] [BUG] fetchmail daemon does not resume fetching after a network outage">matthias.andree at gmx.de
+       </A><BR>
+    <I>Wed Jun 28 11:42:23 CEST 2006</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000466.html">[fetchmail-users] [BUG] fetchmail daemon does not resume fetching after a network outage
+</A></li>
+        <LI>Next message: <A HREF="000473.html">[fetchmail-users] [BUG] fetchmail daemon does not resume fetching after a network outage
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#468">[ date ]</a>
+              <a href="thread.html#468">[ thread ]</a>
+              <a href="subject.html#468">[ subject ]</a>
+              <a href="author.html#468">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Wed, 28 Jun 2006, Uli Zappe wrote:
+
+&gt;<i> Well, you *can* call getaddrinfo() a second time before calling  
+</I>&gt;<i> freeaddrinfo() first in Mac OS X without a crash or anything, and  
+</I>&gt;<i> it's thread-safe since Mac OS X 10.2 (though not before). The only  
+</I>&gt;<i> thing is that if you call it again with exactly the same query data  
+</I>&gt;<i> and without calling freeaddrinfo() in between, it will report the  
+</I>&gt;<i> data it cached from the last call. You might call this a bug, but  
+</I>&gt;<i> Apple most probably will call it a feature ... Note that on Mac OS X,  
+</I>&gt;<i> getaddrinfo() is nothing more than a wrapper around the system's so- 
+</I>&gt;<i> called &quot;lookupd&quot; daemon, which handles all network addressing issues  
+</I>&gt;<i> with code that's completely different from all other Unix  
+</I>&gt;<i> implementations.
+</I>
+Nothing wrong here.
+
+&gt;<i> If with &quot;amount of time&quot; you refer to the fact that the Internet must  
+</I>&gt;<i> be down a certain amount of time for the issue to occur, this seems  
+</I>&gt;<i> to be because the DNS data is cached for a certain amount of time,  
+</I>&gt;<i> either by getaddrinfo() itself, or by Mac OS X's local caching BIND,  
+</I>&gt;<i> or possibly by the caching name server of my router. Only when  
+</I>&gt;<i> there's no cache anymore and getaddrinfo() (unsuccessfully) tries to  
+</I>&gt;<i> retrieve that query data anew from the Internet, the timeout  
+</I>&gt;<i> interruption will occur and prevent freeaddrinfo() from being called.
+</I>&gt;<i> 
+</I>&gt;<i> At least that's how I interpret all these error lines in my  
+</I>&gt;<i> logfiles. ;-)
+</I>
+Well, that's plausible, but I wonder if the resolver would finally
+recover a long time after the network connection has been restored - and
+perhaps if the negative TTL of cache entries can be configured.
+
+But OTOH, if you say that proper freeaddrinfo() use avoids the problem,
+then we don't need to think about this part, because I will add the
+missed freeaddrinfo() calls.
+
+&gt;<i> Maybe it's a good idea to check for all occurrences of freeaddrinfo()  
+</I>&gt;<i> whether they are certain to be performed whenever they should.  
+</I>&gt;<i> Glimpsing at the code, e.g. in servport.c, line 65, the default  
+</I>&gt;<i> switch condition is a goto jump that prevents freeaddrinfo() from  
+</I>&gt;<i> being called, although it should be called (getaddrinfo() had  
+</I>&gt;<i> returned 0/success before, so &quot;res&quot; had been allocated). It seems  
+</I>&gt;<i> that calling freeaddrinfo() was not taken all too seriously  
+</I>&gt;<i> throughout fetchmail.
+</I>
+I'll defend myself by calling these plain bugs, rather than not taking
+these calls &quot;not ... too seriously&quot;.
+
+&gt;<i> Well, the force of the laws of logic isn't polite ... ;-)  (This was  
+</I>&gt;<i> not meant to be a social &quot;must&quot; but rather a logical one, as I indeed  
+</I>&gt;<i> see no other programming techniques to deal with that issue.)
+</I>
+Perhaps not in C. In the long run (fetchmail 7 or thereabouts), I might
+switch to something more OOP-like so I can use objects that know how to
+destruct themselves. (C++ is most likely from today's point of view.)
+
+&gt;<i> Well, that's more than OK with me! If you deal with bugs in  
+</I>&gt;<i> connection with Mac OS X, what you are afraid of are months or years  
+</I>&gt;<i> until a fix is applied - days are no problem at all.  :-)
+</I>
+Alright. Below is a fix to the problem you reported for servport.c (it
+was easy to fix), please try and let me know if MacOS X works with the
+IPPROTO_TCP stuff.  The other getaddrinfo() calls require more attention
+and I'll see to them later.
+The &quot;NEWS&quot; hunk below will probably fail to apply, this is harmless.
+
+-- 
+Matthias Andree
+-------------- next part --------------
+Index: NEWS
+===================================================================
+--- NEWS	(Revision 4853)
++++ NEWS	(Arbeitskopie)
+@@ -85,6 +85,10 @@
+ * Fetchmail no longer attempts to stat the &quot;-&quot; file in daemon mode -- this is a
+   special name to read the RC file from stdin, and cannot always be re-read
+   anyways. BerliOS bug #7858.
++* When looking up ports for a service, the lookup succeeds and the returned
++  address family isn't IPv4 or IPv6, properly free the allocated memory from the
++  service lookup. Found by Uli Zappe.
++* When looking up ports for a service, only look up TCP ports.
+ 
+ # CHANGES:
+ * Rename all fetchmail-internal lock_* functions to fm_lock_*. Obsoletes
+Index: servport.c
+===================================================================
+--- servport.c	(Revision 4818)
++++ servport.c	(Arbeitskopie)
+@@ -1,6 +1,6 @@
+ /** \file servport.c Resolve service name to port number.
+  * \author Matthias Andree
+- * \date 2005
++ * \date 2005 - 2006
+  *
+  * Copyright (C) 2005 by Matthias Andree
+  * For license terms, see the file COPYING in this directory.
+@@ -47,6 +47,7 @@
+ 	memset(&amp;hints, 0, sizeof hints);
+ 	hints.ai_family = AF_UNSPEC;
+ 	hints.ai_socktype = SOCK_STREAM;
++	hints.ai_protocol = IPPROTO_TCP;
+ 	e = getaddrinfo(NULL, service, &amp;hints, &amp;res);
+ 	if (e) {
+ 	    report(stderr, GT_(&quot;getaddrinfo(NULL, \&quot;%s\&quot;) error: %s\n&quot;),
+@@ -63,6 +64,7 @@
+ 		break;
+ #endif
+ 		default:
++		    freeaddrinfo(res);
+ 		    goto err;
+ 	    }
+ 	    freeaddrinfo(res);
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000466.html">[fetchmail-users] [BUG] fetchmail daemon does not resume fetching after a network outage
+</A></li>
+	<LI>Next message: <A HREF="000473.html">[fetchmail-users] [BUG] fetchmail daemon does not resume fetching after a network outage
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#468">[ date ]</a>
+              <a href="thread.html#468">[ thread ]</a>
+              <a href="subject.html#468">[ subject ]</a>
+              <a href="author.html#468">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

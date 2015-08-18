@@ -1,0 +1,100 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Re: more clever resource limitations
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2005-December/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Re%3A%20more%20clever%20resource%20limitations&In-Reply-To=%3C20051209090856.GA2688%40session.bombay.retortsoft.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000154.html">
+   <LINK REL="Next"  HREF="000156.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Re: more clever resource limitations</H1>
+    <B>Sunil Shetye</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Re%3A%20more%20clever%20resource%20limitations&In-Reply-To=%3C20051209090856.GA2688%40session.bombay.retortsoft.com%3E"
+       TITLE="[fetchmail-users] Re: more clever resource limitations">shetye at bombay.retortsoft.com
+       </A><BR>
+    <I>Fri Dec  9 10:08:56 CET 2005</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000154.html">[fetchmail-users] more clever resource limitations
+</A></li>
+        <LI>Next message: <A HREF="000156.html">[fetchmail-users] Re: more clever resource limitations
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#155">[ date ]</a>
+              <a href="thread.html#155">[ thread ]</a>
+              <a href="subject.html#155">[ subject ]</a>
+              <a href="author.html#155">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Greg,
+
+Quoting from Greg Lindahl's mail on Thu, Dec 08, 2005:
+&gt;<i> Due to the advent of spamassassin, I am no longer able to accept lots
+</I>&gt;<i> of messages at once via fetchmail -- it causes my laptop to thrash.  I
+</I>&gt;<i> use sendmail -&gt; procmail -&gt; spamassassin, so using sendmail's load
+</I>&gt;<i> average limit didn't really help the situation, since sendmail has no
+</I>&gt;<i> idea it's kicked off a bunch of spamassassin processes that in a few
+</I>&gt;<i> seconds will drive the load way up. (In this analysis I'm assuming that
+</I>&gt;<i> it's only cpu time and not disk I/O which is causing the problem.)
+</I>
+Are you invoking spamassassin directly from procmail? Or, are you
+using spamc+spamd?
+
+1. If you are invoking spamassassin from procmail, please try starting
+spamd and then using spamc from procmail.
+
+2. If you are invoking spamc from procmail, what are the options being
+passed to spamd? If the spamd option -m has a high value (more than
+10), try reducing it to 5.
+
+3. You can also use locking in procmail. If your recipe looks like
+this:
+
+=============================================
+:<i>0
+</I>|<i> spamc
+</I>=============================================
+
+Change it to:
+
+=============================================
+# Invoke only one spamc at a time
+:<i>0 : $HOME/.spamc.lock
+</I>|<i> spamc
+</I>=============================================
+
+-- 
+Sunil Shetye.
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000154.html">[fetchmail-users] more clever resource limitations
+</A></li>
+	<LI>Next message: <A HREF="000156.html">[fetchmail-users] Re: more clever resource limitations
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#155">[ date ]</a>
+              <a href="thread.html#155">[ thread ]</a>
+              <a href="subject.html#155">[ subject ]</a>
+              <a href="author.html#155">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,141 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] The 6.3.23 release of fetchmail is available
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2012-December/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20The%206.3.23%20release%20of%20fetchmail%20is%20available&In-Reply-To=%3C20121210211739.GA13890%40apollo.emma.line.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003286.html">
+   <LINK REL="Next"  HREF="003288.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] The 6.3.23 release of fetchmail is available</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20The%206.3.23%20release%20of%20fetchmail%20is%20available&In-Reply-To=%3C20121210211739.GA13890%40apollo.emma.line.org%3E"
+       TITLE="[fetchmail-users] The 6.3.23 release of fetchmail is available">matthias.andree at gmx.de
+       </A><BR>
+    <I>Mon Dec 10 22:17:39 CET 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003286.html">[fetchmail-users] fetchmail tries to connect to localhost
+</A></li>
+        <LI>Next message: <A HREF="003288.html">[fetchmail-users] Fetchmail 6.3.23 console output
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3287">[ date ]</a>
+              <a href="thread.html#3287">[ thread ]</a>
+              <a href="subject.html#3287">[ subject ]</a>
+              <a href="author.html#3287">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>The 6.3.23 release of fetchmail is now available at the usual locations,
+including &lt;<A HREF="http://developer.berlios.de/projects/fetchmail">http://developer.berlios.de/projects/fetchmail</A>&gt;.
+
+The source archive is available at:
+&lt;<A HREF="http://developer.berlios.de/projects/fetchmail/fetchmail-6.3.23.tar.xz">http://developer.berlios.de/projects/fetchmail/fetchmail-6.3.23.tar.xz</A>&gt;
+
+or, for a slightly bigger download in the older .tar.bz2 form:
+
+&lt;<A HREF="http://developer.berlios.de/projects/fetchmail/fetchmail-6.3.23.tar.bz2">http://developer.berlios.de/projects/fetchmail/fetchmail-6.3.23.tar.bz2</A>&gt;
+
+Here are the release notes:
+
+
+fetchmail-6.3.23 (released 2012-12-10, 26106 LoC):
+
+# NOTE THAT THE RELEASE OF FUTURE FETCHMAIL 6.3.X VERSIONS IS UNCLEAR.
+Should a 7.0 release be made earlier, chances are that the 6.3.X branch
+is abandoned and its changes be folded into the 7.0 release, with changes
+after 6.3.22 not available on their own in a newer 6.3.X release.
+
+# REGRESSION FIXES
+* Fix compilation with OpenSSL implementations before 0.9.8m that lack
+  SSL_CTX_clear_options. Patch by Earl Chew.
+  Note that the use of older OpenSSL versions with fetchmail is unsupported and
+  *not* recommended.
+
+# BUG FIXES
+* Fix combination of --plugin and -f -. Patch by Alexander Zangerl,
+  to fix Debian Bug#671294.
+* Clean up logfile vs. syslog handling, and in case logfile overrides
+  syslog, send a message to the latter stating where logging goes.
+
+# CHANGES
+* The build process can now be made a bit more silent and concise through
+  ./configure --enable-silent-rules, or by adding &quot;V=0&quot; to the make command.
+
+# WORKAROUNDS
+* Make Maillennium POP3 workarounds less specific, to encompass
+  Maillennium POP3/UNIBOX (Maillennium V05.00c++). Reported by Eddie
+  via fetchmail-users mailing list, 2012-10-13.
+
+# TRANSLATION UPDATES
+[cs] Czech, by Petr Pisar
+[da] Danish, by Joe Hansen
+[de] German
+[fr] French, Fr&#233;d&#233;ric Marchal
+[ja] Japanese, Takeshi Hamasaki
+[pl] Polish, by Jakub Bogusz
+[sv] Swedish, by G&#246;ran Uddeborg
+[vi] Vietnamese, Tr&#7847;n Ng&#7885;c Qu&#226;n
+
+# KNOWN BUGS AND WORKAROUNDS
+  (This section floats upwards through the NEWS file so it stays with the
+  current release information)
+* Fetchmail does not handle messages without Message-ID header well
+  (See sourceforge.net bug #780933)
+* BSMTP is mostly untested and errors can cause corrupt output.
+* Sun Workshop 6 (SPARC) is known to miscompile the configuration file lexer in
+  64-bit mode.  Either compile 32-bit code or use GCC to compile 64-bit
+  fetchmail.  Note that fetchmail doesn't take advantage of 64-bit code,
+  so compiling 32-bit SPARC code should not cause any difficulties.
+* Fetchmail does not track pending deletes across crashes.
+* The command line interface is sometimes a bit stubborn, for instance,
+  fetchmail -s doesn't work with a daemon running.
+* Linux systems may return duplicates of an IP address in some circumstances if
+  no or no global IPv6 addresses are configured.
+  (No workaround. Ubuntu Bug#582585, Novell Bug#606980.)
+* Kerberos 5 may be broken, particularly on Heimdal, and provide bogus error
+  messages. This will not be fixed, because the maintainer has no Kerberos 5
+  server to test against. Use GSSAPI.
+
+
+By popular demand, diffs from the previous release have been omitted.
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: signature.asc
+Type: application/pgp-signature
+Size: 198 bytes
+Desc: Digital signature
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/fetchmail-users/attachments/20121210/194d57d4/attachment.pgp">https://lists.berlios.de/pipermail/fetchmail-users/attachments/20121210/194d57d4/attachment.pgp</A>&gt;
+</PRE>
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003286.html">[fetchmail-users] fetchmail tries to connect to localhost
+</A></li>
+	<LI>Next message: <A HREF="003288.html">[fetchmail-users] Fetchmail 6.3.23 console output
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3287">[ date ]</a>
+              <a href="thread.html#3287">[ thread ]</a>
+              <a href="subject.html#3287">[ subject ]</a>
+              <a href="author.html#3287">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,171 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] How not to download mail for non-existing users?
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2007-February/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20How%20not%20to%20download%20mail%20for%20non-existing%0A%20users%3F&In-Reply-To=%3C20070222124106.6568df2c%40informatika.21oktobar.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000828.html">
+   <LINK REL="Next"  HREF="000832.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] How not to download mail for non-existing users?</H1>
+    <B>Ivan Imperl</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20How%20not%20to%20download%20mail%20for%20non-existing%0A%20users%3F&In-Reply-To=%3C20070222124106.6568df2c%40informatika.21oktobar.com%3E"
+       TITLE="[fetchmail-users] How not to download mail for non-existing users?">nospamtome at ml1.net
+       </A><BR>
+    <I>Thu Feb 22 12:41:06 CET 2007</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000828.html">[fetchmail-users] How not to download mail for non-existing	users?
+</A></li>
+        <LI>Next message: <A HREF="000832.html">[fetchmail-users] How not to download mail for non-existing	users?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#831">[ date ]</a>
+              <a href="thread.html#831">[ thread ]</a>
+              <a href="subject.html#831">[ subject ]</a>
+              <a href="author.html#831">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Nedavno Rob MacGregor pise:
+
+|<i> Output of &quot;fetchmail --configdump&quot; (remember to remove passwords)?
+</I>
+# fetchmail --configdump
+TRUE=1; FALSE=0
+
+os_type = 'linux'
+feature_options = ('pop3','imap','gssapi','etrn','odmr','ssl','inet6',)
+# Start of configuration initializer
+fetchmailrc = {
+    'poll_interval':0,
+    &quot;logfile&quot;:&quot;/var/log/fetchMailByIva&quot;,
+    &quot;idfile&quot;:&quot;/root/.fetchids&quot;,
+    &quot;postmaster&quot;:&quot;iva&quot;,
+    'bouncemail':TRUE,
+    'spambounce':FALSE,
+    &quot;properties&quot;:&quot;&quot;,
+    'invisible':FALSE,
+    'showdots':FALSE,
+    'syslog':FALSE,
+    # List of server entries begins here
+    'servers': [
+        # Entry for site `pop3.infosky.net' begins:
+        {
+            &quot;pollname&quot;:&quot;pop3.infosky.net&quot;,
+            'active':TRUE,
+            &quot;via&quot;:None,
+            &quot;protocol&quot;:&quot;POP3&quot;,
+            &quot;port&quot;:None,
+            'timeout':300,
+            'interval':0,
+            &quot;envelope&quot;:&quot;Received&quot;,
+            'envskip':0,
+            &quot;qvirtual&quot;:None,
+            &quot;auth&quot;:&quot;any&quot;,
+            'dns':TRUE,
+            'uidl':FALSE,
+            &quot;aka&quot;:[],
+            &quot;localdomains&quot;:[&quot;ourdomain.net&quot;],
+            &quot;interface&quot;:None,
+            &quot;monitor&quot;:None,
+            &quot;plugin&quot;:None,
+            &quot;plugout&quot;:None,
+            &quot;principal&quot;:None,
+            'tracepolls':FALSE,
+            'users': [
+                {
+                    &quot;remote&quot;:&quot;ouruseratisp&quot;,
+                    &quot;password&quot;:&quot;pass&quot;,
+                    'localnames':[&quot;root&quot;, '*'],
+                    'fetchall':FALSE,
+                    'keep':FALSE,
+                    'flush':FALSE,
+                    'rewrite':TRUE,
+                    'stripcr':FALSE,
+                    'forcecr':FALSE,
+                    'pass8bits':FALSE,
+                    'dropstatus':FALSE,
+                    'dropdelivered':FALSE,
+                    'mimedecode':FALSE,
+                    'idle':FALSE,
+                    &quot;mda&quot;:None,
+                    &quot;bsmtp&quot;:None,
+                    'lmtp':FALSE,
+                    &quot;netsec&quot;:None,
+                    &quot;preconnect&quot;:None,
+                    &quot;postconnect&quot;:None,
+                    'limit':0,
+                    'warnings':3600,
+                    'fetchlimit':0,
+                    'batchlimit':0,
+                    'ssl':FALSE,
+                    &quot;sslkey&quot;:None,
+                    &quot;sslcert&quot;:None,
+                    &quot;sslproto&quot;:None,
+                    'sslcertck':FALSE,
+                    &quot;sslcertpath&quot;:None,
+                    &quot;sslfingerprint&quot;:None,
+                    'expunge':0,
+                    &quot;properties&quot;:None,
+                    &quot;smtphunt&quot;:[&quot;localhost&quot;],
+                    &quot;fetchdomains&quot;:[],
+                    &quot;smtpaddress&quot;:None,
+                    &quot;smtpname&quot;:None,
+                    'antispam':'550',
+                    &quot;mailboxes&quot;:[],
+                }
+                ,           ]
+        }
+    ]
+}
+# End of initializer
+
+
+|<i> Ok, you're running an old, unsupported and vulnerable version of
+</I>|<i> fetchmail (missed that the first time).  Upgrade to (at least) 6.3.6
+</I>|<i> before posting any further diagnostics.
+</I>
+I will, but before I do is it possible to do what I want with pop3 (to
+discard - not to download mail if username does not exist locally) ?
+Sunil Shetye in his mail thinks that it can not be done. Do you agree?
+
+
+
+-- 
+      ___   ____
+     /__/  /    \      ** Registrovani korisnik Linuksa #291606 **
+    /  / \/  /\  \     ** Registered Linux user #291606 **
+   /__/\____/--\__\    ** <A HREF="http://counter.li.org/">http://counter.li.org/</A> **
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000828.html">[fetchmail-users] How not to download mail for non-existing	users?
+</A></li>
+	<LI>Next message: <A HREF="000832.html">[fetchmail-users] How not to download mail for non-existing	users?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#831">[ date ]</a>
+              <a href="thread.html#831">[ thread ]</a>
+              <a href="subject.html#831">[ subject ]</a>
+              <a href="author.html#831">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

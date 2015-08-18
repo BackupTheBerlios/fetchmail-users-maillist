@@ -1,0 +1,110 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Re: Bug in imap_idle() with mail servers not supporting &quot;idle&quot;
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2006-February/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Re%3A%20Bug%20in%20imap_idle%28%29%20with%20mail%20servers%20not%20supporting%20%22idle%22&In-Reply-To=%3C20060228082710.GA1087%40session.bombay.retortsoft.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000280.html">
+   <LINK REL="Next"  HREF="000279.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Re: Bug in imap_idle() with mail servers not supporting &quot;idle&quot;</H1>
+    <B>Sunil Shetye</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Re%3A%20Bug%20in%20imap_idle%28%29%20with%20mail%20servers%20not%20supporting%20%22idle%22&In-Reply-To=%3C20060228082710.GA1087%40session.bombay.retortsoft.com%3E"
+       TITLE="[fetchmail-users] Re: Bug in imap_idle() with mail servers not supporting &quot;idle&quot;">shetye at bombay.retortsoft.com
+       </A><BR>
+    <I>Tue Feb 28 09:27:11 CET 2006</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000280.html">[fetchmail-users] Bug in imap_idle() with mail servers not supporting &quot;idle&quot;
+</A></li>
+        <LI>Next message: <A HREF="000279.html">[fetchmail-users] Re: Fetchmail
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#282">[ date ]</a>
+              <a href="thread.html#282">[ thread ]</a>
+              <a href="subject.html#282">[ subject ]</a>
+              <a href="author.html#282">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Quoting from Matthias Andree's mail on Mon, Feb 27, 2006:
+&gt;<i> Brendan Lynch &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">brendanplynch at aim.com</A>&gt; writes:
+</I>&gt;<i> Can I see a &quot;fetchmail -Nvvv --nosyslog&quot; trace of a failing IMAP session
+</I>&gt;<i> with NOOP emulation?
+</I>&gt;<i> 
+</I>&gt;<i> &gt; A second, more minor problem is that getting a &quot;* RECENT&quot; notification
+</I>&gt;<i> &gt; does not break a caller out of the imap_idle's imap_ok() call.  This
+</I>&gt;<i> &gt; causes an extra 28second wait after being notified about a message
+</I>&gt;<i> &gt; before it is actually received.
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; Diffs for the complete set of changes against 6.3.2 are attached to this
+</I>&gt;<i> &gt; email.
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; I have seen this in fetchmail 6.2.5 and 6.3.2 on linux platforms, but
+</I>&gt;<i> &gt; this problem should be generic to all platforms.
+</I>&gt;<i> &gt; diff -Naur fetchmail-6.3.2/imap.c fetchmail-6.3.2a/imap.c
+</I>&gt;<i> &gt; --- fetchmail-6.3.2/imap.c  2006-01-20 10:38:45.000000000 +0000
+</I>&gt;<i> &gt; +++ fetchmail-6.3.2a/imap.c 2006-02-23 23:54:52.000000000 +0000
+</I>&gt;<i> &gt; @@ -116,6 +116,17 @@
+</I>&gt;<i> &gt;         {
+</I>&gt;<i> &gt;         recentcount_ok = 1;
+</I>&gt;<i> &gt;         recentcount = atoi(buf+2);
+</I>&gt;<i> &gt; +       /*
+</I>&gt;<i> &gt; +        * Kluge to handle IDLE simulation. If we are in STAGE_IDLE and
+</I>&gt;<i> &gt; +        * we are simulating (has_idle unset) we need to alert calling
+</I>&gt;<i> &gt; +        * imap_idle() to the fact that we have received a new &quot;recent&quot;
+</I>&gt;<i> &gt; +        * alert in order to break the imap_idle() out of its wait.
+</I>&gt;<i> &gt; +        */
+</I>&gt;<i> &gt; +       if (!has_idle &amp;&amp; stage == STAGE_IDLE)
+</I>&gt;<i> &gt; +       {
+</I>&gt;<i> &gt; +           mytimeout = saved_timeout;
+</I>&gt;<i> &gt; +           stage = STAGE_FETCH;
+</I>&gt;<i> &gt; +       }
+</I>&gt;<i> &gt;         }
+</I>&gt;<i> &gt;         else if (strstr(buf, &quot; EXPUNGE&quot;))
+</I>&gt;<i> &gt;         {
+</I>&gt;<i> 
+</I>&gt;<i> This looks acceptable.
+</I>&gt;<i> 
+</I>&gt;<i> How can a server mark a new message &quot;RECENT&quot; without also sending an
+</I>&gt;<i> &quot;EXISTS&quot;? I'm inclined to consider such behavior broken. I'm willing to
+</I>&gt;<i> apply this nonetheless as I don't think it would hurt anyone.
+</I>
+I think, it would still be advisable to first get the output of
+&quot;fetchmail -Nvv --nosyslog&quot; before accepting the patch. It is possible
+that the problem lies elsewhere.
+
+-- 
+Sunil Shetye.
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000280.html">[fetchmail-users] Bug in imap_idle() with mail servers not supporting &quot;idle&quot;
+</A></li>
+	<LI>Next message: <A HREF="000279.html">[fetchmail-users] Re: Fetchmail
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#282">[ date ]</a>
+              <a href="thread.html#282">[ thread ]</a>
+              <a href="subject.html#282">[ subject ]</a>
+              <a href="author.html#282">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

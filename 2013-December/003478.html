@@ -1,0 +1,145 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] [fetchmail-devel] Fwd: fetchmail downloading with message number as a parameter
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2013-December/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20%5Bfetchmail-devel%5D%20Fwd%3A%20fetchmail%20downloading%0A%20with%20message%20number%20as%20a%20parameter&In-Reply-To=%3C52A7A714.7020408%40gmx.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   
+   
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] [fetchmail-devel] Fwd: fetchmail downloading with message number as a parameter</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20%5Bfetchmail-devel%5D%20Fwd%3A%20fetchmail%20downloading%0A%20with%20message%20number%20as%20a%20parameter&In-Reply-To=%3C52A7A714.7020408%40gmx.de%3E"
+       TITLE="[fetchmail-users] [fetchmail-devel] Fwd: fetchmail downloading with message number as a parameter">matthias.andree at gmx.de
+       </A><BR>
+    <I>Wed Dec 11 00:43:16 CET 2013</I>
+    <P><UL>
+        
+        
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3478">[ date ]</a>
+              <a href="thread.html#3478">[ thread ]</a>
+              <a href="subject.html#3478">[ subject ]</a>
+              <a href="author.html#3478">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>I am sending a copy to fetchmail-users because this is of general
+interest, and also a recurring issue with Google Mail.
+
+Am 15.11.2013 16:02, schrieb Joe M:
+&gt;<i> Hello Matthias,
+</I>&gt;<i> 
+</I>&gt;<i> I am missing emails. Is there anyway to correlate the id's from
+</I>&gt;<i> .fetchids with the email in the gmail inbox?
+</I>&gt;<i> 
+</I>&gt;<i> I tried both pop and imap and in both instances, a few emails were not
+</I>&gt;<i> downloaded.
+</I>&gt;<i> 
+</I>&gt;<i> I tried with --uidl and no --startnum.
+</I>&gt;<i> 
+</I>&gt;&gt;&gt;<i> As an update, I just polled my pop3.live.com accounts and figured that
+</I>&gt;&gt;&gt;<i> --uidl works for me on that account.  Note that using --keep without
+</I>&gt;&gt;&gt;<i> --uidl is a dangerous endeavor, meaning that if you use LAST or a
+</I>&gt;&gt;&gt;<i> locally recorded message number, this setup is prone to mail loss or
+</I>&gt;&gt;&gt;<i> skipping, should messages before the designated start number disappear
+</I>&gt;&gt;&gt;<i> or should a downloaded message fail to be forwarded.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> This seems to have happened and I did not get your email.
+</I>&gt;<i> 
+</I>&gt;<i> Any thoughts, please?
+</I>
+Sorry for the late response, somehow missed your followup.
+
+Up front: gmail is quirky by design.
+  Google did not model traditional mailboxes for POP3 or IMAP, but
+invented their own stuff around archiving and folders, and to add insult
+to injury, some of their help pages defame POP3 as unreliable when the
+fault lies with implementations, not the protocol.  POP3 + UIDL can be
+made reliable - if you don't abuse it, that is.
+
+Still, I link to Google documentation (apparently the first two links
+now redirect to the same contents):
+&lt;<A HREF="http://www.fetchmail.info/fetchmail-FAQ.html#I9">http://www.fetchmail.info/fetchmail-FAQ.html#I9</A>&gt; has a few links to
+Google documentation - check the &quot;recent:&quot; trick described there and see
+if that helps. &lt;<A HREF="https://support.google.com/mail/answer/47948?hl=en">https://support.google.com/mail/answer/47948?hl=en</A>&gt; in
+particular explains that.
+
+
+The correlation between UIDs and messages is technically possible but
+yields only the POP3 message numbers for the .fetchids stored - and
+message numbers can change with every login (especially as messages are
+removed, or sometimes added, example below), and are therefore not
+really useful in your situation.
+
+If you still want to see them, all it takes is running fetchmail with
+-vv added on the command line. This logs the transcript of the POP3
+exchange, which might look like this (this is from a Dovecot POP3
+server, not from Gmail's POP3 interface):
+
+&gt;<i> fetchmail: POP3&gt; USER joe
+</I>&gt;<i> fetchmail: POP3&lt; +OK
+</I>&gt;<i> fetchmail: POP3&gt; PASS *
+</I>&gt;<i> fetchmail: POP3&lt; +OK Logged in.
+</I>&gt;<i> fetchmail: POP3&gt; STAT
+</I>&gt;<i> fetchmail: POP3&lt; +OK 1314 77621905
+</I>&gt;<i> fetchmail: POP3&gt; UIDL
+</I>&gt;<i> fetchmail: POP3&lt; +OK
+</I>&gt;<i> fetchmail: POP3&lt; 1 000000014eb1c89a
+</I>&gt;<i> fetchmail: POP3&lt; 2 000000034eb1c89a
+</I>&gt;<i> fetchmail: POP3&lt; 3 000000054eb1c89a
+</I>&gt;<i> fetchmail: POP3&lt; 4 000000064eb1c89a
+</I>&gt;<i> fetchmail: POP3&lt; 5 000000074eb1c89a
+</I>...
+
+That's all there is.  You get a temporary message number (which is a
+count that may occasionally skip ahead over deleted messages) and the
+UID that you would also find in .fetchids after successful fetch + shipping.
+
+Deleting message 2 would then remove the 000000034eb1c89a, and on the
+next login you'd see the output below, so for 000000054eb1c89a the
+message number changed from 3 to 2.
+
+&gt;<i> fetchmail: POP3&lt; 1 000000014eb1c89a
+</I>&gt;<i> fetchmail: POP3&lt; 2 000000054eb1c89a
+</I>&gt;<i> fetchmail: POP3&lt; 3 000000064eb1c89a
+</I>&gt;<i> fetchmail: POP3&lt; 4 000000074eb1c89a
+</I>
+As said above, this is not very useful to hunt down missing messages.
+
+The best bet, given Google's documentation, would probably be to try
+reconfiguring your user name for Google's recent: mode, and run
+fetchmail with a --fetchall --keep --uidl once.
+
+That may cause duplicate message retrieval due to --fetchall, but better
+duplicate than none.
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	
+	
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3478">[ date ]</a>
+              <a href="thread.html#3478">[ thread ]</a>
+              <a href="subject.html#3478">[ subject ]</a>
+              <a href="author.html#3478">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

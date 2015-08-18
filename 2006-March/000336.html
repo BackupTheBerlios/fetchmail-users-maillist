@@ -1,0 +1,156 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] fetchmail 6.3.2 stable release fixes several bugs
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2006-March/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%206.3.2%20stable%20release%20fixes%20several%20bugs&In-Reply-To=%3C20060330231709.GA18539%40merlin.emma.line.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000335.html">
+   <LINK REL="Next"  HREF="000337.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] fetchmail 6.3.2 stable release fixes several bugs</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%206.3.2%20stable%20release%20fixes%20several%20bugs&In-Reply-To=%3C20060330231709.GA18539%40merlin.emma.line.org%3E"
+       TITLE="[fetchmail-users] fetchmail 6.3.2 stable release fixes several bugs">matthias.andree at gmx.de
+       </A><BR>
+    <I>Fri Mar 31 01:17:09 CEST 2006</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000335.html">[fetchmail-users] Re: Fetchmail socket error.
+</A></li>
+        <LI>Next message: <A HREF="000337.html">[fetchmail-users] fetchmail 6.3.3 stable release fixes several bugs
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#336">[ date ]</a>
+              <a href="thread.html#336">[ thread ]</a>
+              <a href="subject.html#336">[ subject ]</a>
+              <a href="author.html#336">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA1
+
+Greetings,
+
+I am announcing the release of fetchmail 6.3.3. This new stable version
+of fetchmail fixes several bugs, among them two crashes. For details,
+please see below.
+
+This is a recommended upgrade for all users of any previous fetchmail versions.
+
+The software is available from:
+&lt;<A HREF="https://developer.berlios.de/project/showfiles.php?group_id=1824&amp;release_id=8784">https://developer.berlios.de/project/showfiles.php?group_id=1824&amp;release_id=8784</A>&gt;
+
+The fetchmail home pages is:
+&lt;<A HREF="http://www.fetchmail.info/">http://www.fetchmail.info/</A>&gt;  or  &lt;<A HREF="http://fetchmail.berlios.de/">http://fetchmail.berlios.de/</A>&gt;
+
+These are the relevant changes in 6.3.3 since 6.3.2,
+unless otherwise noted, changes to this release were made by Matthias Andree:
+
+# DEPRECATED FEATURES AND MAJOR INCOMPATIBLE CHANGE ADVANCE WARNINGS
+* The &quot;protocol auto&quot; default inside fetchmail may be removed from a future
+  fetchmail release. Explicit configuration of the protocol is recommended.
+
+# KNOWN BUGS:
+* Sun Workshop 6 (SPARC) is known to miscompile the lexer in 64-bit mode.
+  Either compile 32-bit code or use GCC to compile 64-bit fetchmail.
+  Note that fetchmail doesn't take advantage of 64-bit code anyways,
+  so compiling 32-bit SPARC code should be fine.
+
+# BUG FIXES:
+* SEGFAULT: Do not attempt to overwrite the netrc password if none has been
+  specified.  This fixes a segmentation fault bug introduced into 6.3.2.
+  Fixes BerliOS bug #6234.  BerliOS patch #804 by Craig Leres.
+  The patch, as accepted into fetchmail, was available separately from
+  &lt;<A HREF="http://download.berlios.de/fetchmail/patch-6.3.2.1-fix-netrc-SIGSEGV.diff">http://download.berlios.de/fetchmail/patch-6.3.2.1-fix-netrc-SIGSEGV.diff</A>&gt;
+* SEGFAULT: Work around C libraries that return a NULL in getaddrinfo()'s
+  ai_canonname record, to avoid a segfault. Affects for instance FreeBSD 4.10,
+  4.11 and 5.3 when dotted quads are given as server names.
+  Analysis and fix by Vladimir Olegovich Ravodin (&#1042;&#1083;&#1072;&#1076;&#1080;&#1084;&#1080;&#1088; &#1054;&#1083;&#1077;&#1075;&#1086;&#1074;&#1080;&#1095; &#1056;&#1072;&#1074;&#1086;&#1076;&#1080;&#1085;).
+* IMAP: fix hangs in NOOP-based IDLE emulation. Reported by Casper Gripenberg
+  and Brendan Lynch, fix by Sunil Shetye (his patch was merged) and Brendan Lynch.
+* IMAP: Handle other clients concurrently accessing IMAP mailboxes better.
+  Fetchmail quits the poll if the EXPUNGE count does not match expectations, and
+  servers not updating RECENT counts after EXPUNGE are handled in a better way.
+  (Patch by Sunil Shetye.)
+* IMAP: Stop sending EXPUNGE after NOOP-idling (patch by Sunil Shetye).
+* POP3: fetchmail can now use UIDL in fetchall keep mode, to avoid re-fetching
+  the same messages again when the fetchall keyword is removed. Patch by
+  Sunil Shetye. For details, please see
+  &lt;<A HREF="000308.html">http://lists.berlios.de/pipermail/fetchmail-users/2006-March/000308.html</A>&gt;
+* LMTP: fix bug in LMTP port validation (patch by Miloslav Trmac).
+* SDPS: fetchmail no longer replaces the local user ID for an empty envelope
+  sender when using the proprietary SDPS extension for POP3.
+  Fixes Debian Bug#353575, reported by Roger Lynn.
+* SDPS: Warn and disable SDPS if POP3 is disabled to avoid compilation errors.
+* fetchmail no longer prints empty lines in verbose mode when using syslog.
+* fetchmail no longer prints UID lists in verbose mode when using syslog.
+* ./configure --quiet is now quieter (no SSL and fallback-related output).
+* Miloslav Trmac's patch (with minor changes) to fix char * sign consistency,
+  unused arguments and variables.
+* More signedness, unused argument/variable and other warning fixes.
+
+# CHANGES:
+* --idle can now be specified on the command line, too.
+* --fetchall is now supported on the command-line.
+* POP3: Lower default fastuidl span to 4 (i. e. every 4th run fetches the
+  whole UIDL list), patch by Sunil Shetye.
+
+# DOCUMENTATION:
+* &quot;ssl&quot; is a user option rather than a server option. Patch by Nico Golde.
+  Fixes Debian Bug#354661, reported by Keith Hellman.
+* The manual page now suggests &quot;--&quot; before the addresses in the sendmail MDA
+  example, for safety.
+* The FAQ item X9, Domino IMAP omits Content-Transfer-Encoding header, was
+  added. Information provided by Anthony Kim on the fetchmail-friends list
+  in March 2006.
+* Credit Chris Boyle with the NOOP emulation code for IDLE in fetchmail 6.2.4.
+  Eric forgot to credit Chris, thanks to Sunil Shetye for providing these links:
+  <A HREF="http://lists.ccil.org/pipermail/fetchmail-friends/2003-July/007705.html">http://lists.ccil.org/pipermail/fetchmail-friends/2003-July/007705.html</A>
+  <A HREF="http://lists.ccil.org/pipermail/fetchmail-friends/2003-July/007713.html">http://lists.ccil.org/pipermail/fetchmail-friends/2003-July/007713.html</A>
+* Added a section about RETR vs. TOP to the manual page.
+* Changed section/subsection levels in some areas.
+
+Regards,
+
+- -- 
+Matthias Andree
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1.4.0 (GNU/Linux)
+
+iD8DBQFELGb1vmGDOQUufZURAg0HAKCQREup4O65GbS0yhJTJAFJ8nSNpwCfaFpT
+IQtgYLQEWocf/VW0FjaCIz0=
+=uCKv
+-----END PGP SIGNATURE-----
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000335.html">[fetchmail-users] Re: Fetchmail socket error.
+</A></li>
+	<LI>Next message: <A HREF="000337.html">[fetchmail-users] fetchmail 6.3.3 stable release fixes several bugs
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#336">[ date ]</a>
+              <a href="thread.html#336">[ thread ]</a>
+              <a href="subject.html#336">[ subject ]</a>
+              <a href="author.html#336">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

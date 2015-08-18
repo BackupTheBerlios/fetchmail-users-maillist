@@ -1,0 +1,92 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] fetchmail and headers
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2008-July/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%20and%20headers&In-Reply-To=%3C43ea8d070807011454g5b2821fekbad96c83932820a9%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001592.html">
+   <LINK REL="Next"  HREF="001593.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] fetchmail and headers</H1>
+    <B>Rob MacGregor</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%20and%20headers&In-Reply-To=%3C43ea8d070807011454g5b2821fekbad96c83932820a9%40mail.gmail.com%3E"
+       TITLE="[fetchmail-users] fetchmail and headers">rob.macgregor at gmail.com
+       </A><BR>
+    <I>Tue Jul  1 23:54:51 CEST 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001592.html">[fetchmail-users] fetchmail and headers
+</A></li>
+        <LI>Next message: <A HREF="001593.html">[fetchmail-users] fetchmail drives me crazy... [I do not want output on STDERR]
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1591">[ date ]</a>
+              <a href="thread.html#1591">[ thread ]</a>
+              <a href="subject.html#1591">[ subject ]</a>
+              <a href="author.html#1591">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Tue, Jul 1, 2008 at 22:06, Sylvain Le Torrec
+&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">sylvain-letorrec at adswf.org</A>&gt; wrote:
+&gt;<i> Hello,
+</I>&gt;<i>
+</I>&gt;<i> I know that there are a lot of questions about the headers, but I don't find
+</I>&gt;<i> anything about my problem. I'm using Qmail v1.03 and fetchmail v.6.2.4.
+</I>&gt;<i> I have some troubles with fetchmail with the headers of some mails.
+</I>&gt;<i> Sometimes, it happens that I have two 'To' in the header, so when fetchmail
+</I>&gt;<i> try to fetch it, it stops on the 2nd 'To' because it reads
+</I>&gt;<i> 'Undisclosed-Recipient'.
+</I>&gt;<i> I don't know how to make fetchmail read the first 'To' and to read the only
+</I>&lt;----SNIP----&gt;
+&gt;<i> no envelope
+</I>&gt;<i> envelope &quot;Delivered-To:&quot;
+</I>&gt;<i> qvirtual &quot;Delivered-To:&quot;
+</I>
+You can probably drop the &quot;no envelope&quot; and the &quot;qvirtual&quot; lines.  I
+assume that your mail headers contain the actual recipient(s) in the
+Delivered-To header?
+
+&gt;<i> mda &quot;sed 1,2d | /usr/sbin/sendmail -i -f %F -- %T&quot;
+</I>
+That may be part of your problem - are you sure of what you're doing
+with that MDA entry?
+
+-- 
+ Please keep list traffic on the list.
+
+Rob MacGregor
+ Whoever fights monsters should see to it that in the process he
+ doesn't become a monster. Friedrich Nietzsche
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001592.html">[fetchmail-users] fetchmail and headers
+</A></li>
+	<LI>Next message: <A HREF="001593.html">[fetchmail-users] fetchmail drives me crazy... [I do not want output on STDERR]
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1591">[ date ]</a>
+              <a href="thread.html#1591">[ thread ]</a>
+              <a href="subject.html#1591">[ subject ]</a>
+              <a href="author.html#1591">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

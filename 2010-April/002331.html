@@ -1,0 +1,241 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Query status=2 (SOCKET)
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2010-April/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Query%20status%3D2%20%28SOCKET%29&In-Reply-To=%3C20100405084843.3008f5bf%40scorpio.seibercom.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   
+   <LINK REL="Next"  HREF="002332.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Query status=2 (SOCKET)</H1>
+    <B>Jerry</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Query%20status%3D2%20%28SOCKET%29&In-Reply-To=%3C20100405084843.3008f5bf%40scorpio.seibercom.net%3E"
+       TITLE="[fetchmail-users] Query status=2 (SOCKET)">fetchmail.user at seibercom.net
+       </A><BR>
+    <I>Mon Apr  5 14:48:43 CEST 2010</I>
+    <P><UL>
+        
+        <LI>Next message: <A HREF="002332.html">[fetchmail-users] Query status=2 (SOCKET)
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2331">[ date ]</a>
+              <a href="thread.html#2331">[ thread ]</a>
+              <a href="subject.html#2331">[ subject ]</a>
+              <a href="author.html#2331">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>FreeBSD-7.3 OS
+
+I am continually finding this message in the &quot;fetchmail.log&quot;.
+
+fetchmail: Query status=2 (SOCKET)
+
+The following is a snippet of the output when this message occurs. I
+included connects from both sides of the message since I am not sure
+where it is originating from. The real email address has be obfuscated.
+
+fetchmail: 6.3.15 querying pop.aol.com (protocol POP3) at Mon Apr  5
+08:01:45 2010: poll started fetchmail: Trying to connect to
+205.188.155.221/110...connected. fetchmail: POP3&lt; +OK POP3 ready
+fetchmail: POP3&gt; CAPA
+fetchmail: POP3&lt; +OK Capability list follows
+fetchmail: POP3&lt; TOP
+fetchmail: POP3&lt; USER
+fetchmail: POP3&lt; STLS
+fetchmail: POP3&lt; .
+fetchmail: POP3&gt; STLS
+fetchmail: POP3&lt; +OK
+fetchmail: Issuer Organization: America Online Inc.
+fetchmail: Issuer CommonName: AOL Member CA
+fetchmail: Server CommonName: imap.aol.com
+fetchmail: Subject Alternative Name: imap.aol.com
+fetchmail: Subject Alternative Name: imap.aim.com
+fetchmail: Subject Alternative Name: imap.cs.com
+fetchmail: Subject Alternative Name: client.imap.aol.com
+fetchmail: Subject Alternative Name: imap.au.aol.com
+fetchmail: Subject Alternative Name: imap.ar.aol.com
+fetchmail: Subject Alternative Name: imap.br.aol.com
+fetchmail: Subject Alternative Name: imap.ca.aol.com
+fetchmail: Subject Alternative Name: imap.cl.aol.com
+fetchmail: Subject Alternative Name: imap.de.aol.com
+fetchmail: Subject Alternative Name: imap.fr.aol.com
+fetchmail: Subject Alternative Name: imap.in.aol.com
+fetchmail: Subject Alternative Name: imap.jp.aol.com
+fetchmail: Subject Alternative Name: imap.mx.aol.com
+fetchmail: Subject Alternative Name: imap.uk.aol.com
+fetchmail: Subject Alternative Name: pop.aol.com
+fetchmail: Subject Alternative Name: pop.aim.com
+fetchmail: Subject Alternative Name: pop.mcom.com
+fetchmail: Subject Alternative Name: imap.mcom.com
+fetchmail: Subject Alternative Name: pop.goowy.com
+fetchmail: Subject Alternative Name: imap.goowy.com
+fetchmail: Subject Alternative Name: pop.bebo.com
+fetchmail: Subject Alternative Name: imap.bebo.com
+fetchmail: Subject Alternative Name: imap.tunome.com
+fetchmail: Subject Alternative Name: pop.tunome.com
+fetchmail: Subject Alternative Name: imap.mda.aol.com
+fetchmail: Subject Alternative Name: east.us.imap.aol.com
+fetchmail: Subject Alternative Name: east.us.pop.aol.com
+fetchmail: Subject Alternative Name: alf.imap.aol.com
+fetchmail: Subject Alternative Name: service-imap.com
+fetchmail: Subject Alternative Name: service-pop.com
+fetchmail: Subject Alternative Name: imap.makemailperfect.com
+fetchmail: Subject Alternative Name: pop.makemailperfect.com
+fetchmail: Subject Alternative Name: imap.angeliamail.com
+fetchmail: Subject Alternative Name: pop.angeliamail.com
+fetchmail: Subject Alternative Name: imap.csi.com
+fetchmail: Subject Alternative Name: pop.csi.com
+fetchmail: pop.aol.com key fingerprint:
+14:BD:CB:31:7D:CF:E7:FE:18:79:43:A6:7A:04:0F:CC fetchmail: pop.aol.com
+fingerprints match. fetchmail: POP3&gt; CAPA
+fetchmail: POP3&lt; +OK Capability list follows
+fetchmail: POP3&lt; TOP
+fetchmail: POP3&lt; USER
+fetchmail: POP3&lt; .
+fetchmail: pop.aol.com: upgrade to TLS succeeded.
+fetchmail: POP3&gt; USER USER-1
+fetchmail: POP3&lt; +OK
+fetchmail: POP3&gt; PASS *
+fetchmail: POP3&lt; +OK server ready
+fetchmail: POP3&gt; STAT
+fetchmail: POP3&lt; +OK 0 0
+fetchmail: No mail for USER-1 at pop.aol.com
+fetchmail: POP3&gt; QUIT
+fetchmail: 6.3.15 querying pop.aol.com (protocol POP3) at Mon Apr  5
+08:01:46 2010: poll completed fetchmail: Query status=2 (SOCKET)
+fetchmail: 6.3.15 querying pop.mcom.com (protocol POP3) at Mon Apr  5
+08:01:46 2010: poll started fetchmail: Trying to connect to
+64.12.137.129/110...connected. fetchmail: POP3&lt; +OK POP3 ready
+fetchmail: POP3&gt; CAPA
+fetchmail: POP3&lt; +OK Capability list follows
+fetchmail: POP3&lt; TOP
+fetchmail: POP3&lt; USER
+fetchmail: POP3&lt; STLS
+fetchmail: POP3&lt; .
+fetchmail: POP3&gt; STLS
+fetchmail: POP3&lt; +OK
+fetchmail: Issuer Organization: America Online Inc.
+fetchmail: Issuer CommonName: AOL Member CA
+fetchmail: Server CommonName: imap.aol.com
+fetchmail: Subject Alternative Name: imap.aol.com
+fetchmail: Subject Alternative Name: imap.aim.com
+fetchmail: Subject Alternative Name: imap.cs.com
+fetchmail: Subject Alternative Name: client.imap.aol.com
+fetchmail: Subject Alternative Name: imap.au.aol.com
+fetchmail: Subject Alternative Name: imap.ar.aol.com
+fetchmail: Subject Alternative Name: imap.br.aol.com
+fetchmail: Subject Alternative Name: imap.ca.aol.com
+fetchmail: Subject Alternative Name: imap.cl.aol.com
+fetchmail: Subject Alternative Name: imap.de.aol.com
+fetchmail: Subject Alternative Name: imap.fr.aol.com
+fetchmail: Subject Alternative Name: imap.in.aol.com
+fetchmail: Subject Alternative Name: imap.jp.aol.com
+fetchmail: Subject Alternative Name: imap.mx.aol.com
+fetchmail: Subject Alternative Name: imap.uk.aol.com
+fetchmail: Subject Alternative Name: pop.aol.com
+fetchmail: Subject Alternative Name: pop.aim.com
+fetchmail: Subject Alternative Name: pop.mcom.com
+fetchmail: Subject Alternative Name: imap.mcom.com
+fetchmail: Subject Alternative Name: pop.goowy.com
+fetchmail: Subject Alternative Name: imap.goowy.com
+fetchmail: Subject Alternative Name: pop.bebo.com
+fetchmail: Subject Alternative Name: imap.bebo.com
+fetchmail: Subject Alternative Name: imap.tunome.com
+fetchmail: Subject Alternative Name: pop.tunome.com
+fetchmail: Subject Alternative Name: imap.mda.aol.com
+fetchmail: Subject Alternative Name: east.us.imap.aol.com
+fetchmail: Subject Alternative Name: east.us.pop.aol.com
+fetchmail: Subject Alternative Name: alf.imap.aol.com
+fetchmail: Subject Alternative Name: service-imap.com
+fetchmail: Subject Alternative Name: service-pop.com
+fetchmail: Subject Alternative Name: imap.makemailperfect.com
+fetchmail: Subject Alternative Name: pop.makemailperfect.com
+fetchmail: Subject Alternative Name: imap.angeliamail.com
+fetchmail: Subject Alternative Name: pop.angeliamail.com
+fetchmail: Subject Alternative Name: imap.csi.com
+fetchmail: Subject Alternative Name: pop.csi.com
+fetchmail: pop.mcom.com key fingerprint:
+14:BD:CB:31:7D:CF:E7:FE:18:79:43:A6:7A:04:0F:CC fetchmail: pop.mcom.com
+fingerprints match. fetchmail: POP3&gt; CAPA
+fetchmail: POP3&lt; +OK Capability list follows
+fetchmail: POP3&lt; TOP
+fetchmail: POP3&lt; USER
+fetchmail: POP3&lt; .
+fetchmail: pop.mcom.com: upgrade to TLS succeeded.
+fetchmail: POP3&gt; USER <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">USER at mcom.com</A>
+fetchmail: POP3&lt; +OK
+fetchmail: POP3&gt; PASS *
+fetchmail: POP3&lt; +OK server ready
+fetchmail: POP3&gt; STAT
+fetchmail: POP3&lt; +OK 0 0
+fetchmail: No mail for <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">USER at mcom.com</A> at pop.mcom.com
+fetchmail: POP3&gt; QUIT
+fetchmail: POP3&lt; +OK core-mac001a.r1001.mail.aol.com closing connection
+
+This is the pertinent parts of the .fetchmailrc file:
+
+# Configuration created Sun Sep  6 08:30:40 2009 by fetchmailconf 1.55 $Revision: 5330 $
+set logfile &quot;/var/log/fetchmail.log&quot;
+set syslog
+set idfile &quot;/var/tmp/.fetchids&quot;
+set postmaster &quot;gerard&quot;
+set bouncemail
+set no spambounce
+set no softbounce
+set properties &quot;&quot;
+
+poll pop.aol.com with proto POP3 timeout 30 and options uidl
+  user 'USER-1' there with password 'SECRET' is 'USER-1' here options forcecr dropdelivered smtpaddress 'MY-DOMAIN' sslcertpath '/usr/local/etc/postfix/certs/' sslfingerprint '14:BD:CB:31:7D:CF:E7:FE:18:79:43:A6:7A:04:0F:CC'
+    
+poll pop.mcom.com with proto POP3 timeout 30 and options uidl
+  user '<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">USER at mcom.com</A>' there with password 'blacktop' is 'USER' here options forcecr dropdelivered sslcertpath '/usr/local/etc/postfix/certs/' sslfingerprint '14:BD:CB:31:7D:CF:E7:FE:18:79:43:A6:7A:04:0F:CC' smtpaddress 'MY-DAMAIN.net'
+
+
+The &quot;/var/tmp/.fetchids&quot; file was created by and apparently used by fetchmail.
+
+-rw-------   1 fetchmail  wheel    66B Apr  5 08:38 .fetchids
+
+Is this just a harmless error I can ignore, or is there something I
+should be doing to correct it. I have not found a concrete answer using
+Google.
+
+-- 
+Jerry
+<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">Fetchmail.user at seibercom.net</A>
+
+Disclaimer: off-list followups get on-list replies or get ignored.
+Please do not ignore the Reply-To header.
+__________________________________________________________________
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	
+	<LI>Next message: <A HREF="002332.html">[fetchmail-users] Query status=2 (SOCKET)
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2331">[ date ]</a>
+              <a href="thread.html#2331">[ thread ]</a>
+              <a href="subject.html#2331">[ subject ]</a>
+              <a href="author.html#2331">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

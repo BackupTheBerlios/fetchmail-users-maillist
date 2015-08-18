@@ -1,0 +1,136 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] .fetchids file location
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2009-September/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20.fetchids%20file%20location&In-Reply-To=%3C20090906162739.068f1934%40scorpio.seibercom.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002063.html">
+   <LINK REL="Next"  HREF="002065.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] .fetchids file location</H1>
+    <B>Gerard</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20.fetchids%20file%20location&In-Reply-To=%3C20090906162739.068f1934%40scorpio.seibercom.net%3E"
+       TITLE="[fetchmail-users] .fetchids file location">gerard at seibercom.net
+       </A><BR>
+    <I>Sun Sep  6 22:27:39 CEST 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002063.html">[fetchmail-users] .fetchids file location
+</A></li>
+        <LI>Next message: <A HREF="002065.html">[fetchmail-users] .fetchids file location
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2064">[ date ]</a>
+              <a href="thread.html#2064">[ thread ]</a>
+              <a href="subject.html#2064">[ subject ]</a>
+              <a href="author.html#2064">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Sun, 6 Sep 2009 17:47:20 +0100
+Rob MacGregor &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">rob.macgregor at gmail.com</A>&gt; wrote:
+
+&gt;<i> On Sun, Sep 6, 2009 at 16:24, Gerard&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">gerard at seibercom.net</A>&gt; wrote:
+</I>&gt;<i> &gt; If I do not specify a location for the fetchmail .fetchids file, and
+</I>&gt;<i> &gt; obviously I am using the 'uidl' option, exactly where is the file
+</I>&gt;<i> &gt; created? I tried adding a: set idfile &quot;/usr/home/gerard/.fetchids&quot;
+</I>&gt;<i> &gt; in the fetchmailrc file; however, the file was never created. Am I
+</I>&gt;<i> &gt; missing something here? Even without that 'set' command, I could
+</I>&gt;<i> &gt; never locate the file. Do I have to specifically enter a location
+</I>&gt;<i> &gt; for where the file is to be created or do I have to create the file
+</I>&gt;<i> &gt; before I can use it; i.e., like the 'log' file.
+</I>&gt;<i> 
+</I>&gt;<i> Without knowing the full contents of your .fetchmailrc it's hard to
+</I>&gt;<i> say what's going on.  Are you using POP3 *and* a remote POP3 server
+</I>&gt;<i> that supports UIDL?  Do please read the FAQ about what and how to
+</I>&gt;<i> report problems ;)
+</I>&gt;<i> 
+</I>&gt;<i> &gt; That brings me to a second question. Is there any way that fetchmail
+</I>&gt;<i> &gt; can be configured to create its own log file sans the end user
+</I>&gt;<i> &gt; having to create it, change ownership and permissions, etc, prior
+</I>&gt;<i> &gt; to starting fetchmail?
+</I>&gt;<i> 
+</I>&gt;<i> I've never used the logfile facility, always using syslog, so can't
+</I>&gt;<i> help you there.
+</I>
+This is a snippet of the &quot;/usr/local/etc/fetchmailrc&quot; file. I have
+obviously changed personal information.
+
+# Configuration created Sun Sep  6 08:30:40 2009 by fetchmailconf 1.55 $Revision: 5330 $
+set logfile &quot;/usr/home/user/fetchmail.log&quot;
+set idfile &quot;/usr/home/user/.fetchids&quot;
+set postmaster &quot;user&quot;
+set bouncemail
+set no spambounce
+set softbounce
+set properties &quot;&quot;
+poll plus.pop.mail.yahoo.com with proto POP3 timeout 30 and options uidl
+       user 'user' there with password 'secret' is 'user' here options forcecr ssl sslcertpath '/usr/local/etc/postfix/certs/' sslfingerprint 'F6:0D:A4:CA:91:A9:AC:88:4C:BF:D6:70:02:61:87:86'
+
+This is the output from a connection to that mail server.
+
+fetchmail: 6.3.11 querying plus.pop.mail.yahoo.com (protocol POP3) at Sun Sep  6 16:13:04 2009: poll started
+fetchmail: Trying to connect to 206.190.53.40/995...connected.
+fetchmail: Issuer Organization: Equifax
+fetchmail: Unknown Issuer CommonName
+fetchmail: Server CommonName: *.pop.mail.yahoo.com
+fetchmail: plus.pop.mail.yahoo.com key fingerprint: F6:0D:A4:CA:91:A9:AC:88:4C:BF:D6:70:02:61:87:86
+fetchmail: plus.pop.mail.yahoo.com fingerprints match.
+fetchmail: POP3&lt; +OK hello from popgate 2.43 on pop107.plus.mail.re2.yahoo.com
+fetchmail: POP3&gt; CAPA
+fetchmail: POP3&lt; +OK CAPA list follows
+fetchmail: POP3&lt; EXPIRE NEVER
+fetchmail: POP3&lt; IMPLEMENTATION popgate 2.43
+fetchmail: POP3&lt; PIPELINING
+fetchmail: POP3&lt; RESP-CODES
+fetchmail: POP3&lt; TOP
+fetchmail: POP3&lt; UIDL
+fetchmail: POP3&lt; USER
+fetchmail: POP3&lt; .
+fetchmail: POP3&gt; USER user
+fetchmail: POP3&lt; +OK password required.
+fetchmail: POP3&gt; PASS *
+fetchmail: POP3&lt; +OK maildrop ready, 0 messages (0 octets) (6501)
+fetchmail: POP3&gt; STAT
+fetchmail: POP3&lt; +OK 0 0
+fetchmail: No mail for user at plus.pop.mail.yahoo.com
+fetchmail: POP3&gt; QUIT
+fetchmail: POP3&lt; +OK server signing off.
+fetchmail: 6.3.11 querying plus.pop.mail.yahoo.com (protocol POP3) at Sun Sep  6 16:13:05 2009: poll completed
+fetchmail: normal termination, status 1
+Done.
+
+I would assume that the server supports UIDL; however, I cannot find a
+'.fetchids' file on my system. Shouldn't Fetchmail be creating it?
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002063.html">[fetchmail-users] .fetchids file location
+</A></li>
+	<LI>Next message: <A HREF="002065.html">[fetchmail-users] .fetchids file location
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2064">[ date ]</a>
+              <a href="thread.html#2064">[ thread ]</a>
+              <a href="subject.html#2064">[ subject ]</a>
+              <a href="author.html#2064">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

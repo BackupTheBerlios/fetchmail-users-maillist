@@ -1,0 +1,104 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] fetchmail 6.3.7 regression fixes release
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2007-February/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%206.3.7%20regression%20fixes%20release&In-Reply-To=%3C20070218174538.GB6216%40merlin.emma.line.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000823.html">
+   <LINK REL="Next"  HREF="000825.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] fetchmail 6.3.7 regression fixes release</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%206.3.7%20regression%20fixes%20release&In-Reply-To=%3C20070218174538.GB6216%40merlin.emma.line.org%3E"
+       TITLE="[fetchmail-users] fetchmail 6.3.7 regression fixes release">matthias.andree at gmx.de
+       </A><BR>
+    <I>Sun Feb 18 18:45:38 CET 2007</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000823.html">[fetchmail-users] CommonName mismatch after fetchmail upgrade
+</A></li>
+        <LI>Next message: <A HREF="000825.html">[fetchmail-users] How not to download mail for non-existing users?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#824">[ date ]</a>
+              <a href="thread.html#824">[ thread ]</a>
+              <a href="subject.html#824">[ subject ]</a>
+              <a href="author.html#824">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA1
+
+Greetings,
+
+I am announcing the release of fetchmail 6.3.7.
+
+This new stable version of fetchmail fixes two regressions that were
+recently introduced into the security fix release 6.3.6, see below for
+details.
+
+The software is available from:
+&lt;<A HREF="http://developer.berlios.de/project/showfiles.php?group_id=1824&amp;release_id=12245">http://developer.berlios.de/project/showfiles.php?group_id=1824&amp;release_id=12245</A>&gt;
+
+The fetchmail home page is:
+&lt;<A HREF="http://www.fetchmail.info/">http://www.fetchmail.info/</A>&gt;  or  &lt;<A HREF="http://fetchmail.berlios.de/">http://fetchmail.berlios.de/</A>&gt;
+
+These are the relevant changes in 6.3.7 since 6.3.6;
+unless otherwise noted, changes to this release were made by Matthias Andree:
+
+# FIXES FOR REGRESSIONS IN 6.3.6
+* Fix KPOP. Patch by Miloslav Trmac.
+* Fix repoll when server disconnects after opportunistic TLS failed for POP3.
+  Berlios Bug #10133 = Gentoo Bug #163782 reported by Andrej Kacian.
+
+# TRANSLATION UPDATES
+* Japanese (Takeshi Hamasaki), Polish (Jakub Bogusz)
+
+# CHANGES
+* Consider getaddrinfo() on Darwin 9 (Mac OS X 10.5 &quot;Leopard&quot;) thread-safe.
+  Reported by Uli Zappe.
+
+Best regards
+
+- -- 
+Matthias Andree
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1.4.5 (GNU/Linux)
+
+iD8DBQFF2JDCvmGDOQUufZURAnXhAJ9isKNGpjQX8G6HTB6CvxjQfHIRmQCeLtsR
+WBIHVcRoyddo4tL5fAVZoEY=
+=7x5d
+-----END PGP SIGNATURE-----
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000823.html">[fetchmail-users] CommonName mismatch after fetchmail upgrade
+</A></li>
+	<LI>Next message: <A HREF="000825.html">[fetchmail-users] How not to download mail for non-existing users?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#824">[ date ]</a>
+              <a href="thread.html#824">[ thread ]</a>
+              <a href="subject.html#824">[ subject ]</a>
+              <a href="author.html#824">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

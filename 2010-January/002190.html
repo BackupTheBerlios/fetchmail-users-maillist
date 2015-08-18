@@ -1,0 +1,96 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] fetchmail IMAP bug - causes some mails to not be delivered when using IDLE
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2010-January/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%20IMAP%20bug%20-%20causes%20some%20mails%20to%20not%0A%20be%20delivered%20when%20using%20IDLE&In-Reply-To=%3C20100113085832.GA16869%40session.bombay.retortsoft.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002189.html">
+   <LINK REL="Next"  HREF="002193.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] fetchmail IMAP bug - causes some mails to not be delivered when using IDLE</H1>
+    <B>Sunil Shetye</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%20IMAP%20bug%20-%20causes%20some%20mails%20to%20not%0A%20be%20delivered%20when%20using%20IDLE&In-Reply-To=%3C20100113085832.GA16869%40session.bombay.retortsoft.com%3E"
+       TITLE="[fetchmail-users] fetchmail IMAP bug - causes some mails to not be delivered when using IDLE">shetye at bombay.retortsoft.com
+       </A><BR>
+    <I>Wed Jan 13 09:58:33 CET 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002189.html">[fetchmail-users] fetchmail IMAP bug - causes some mails to not be delivered when using IDLE
+</A></li>
+        <LI>Next message: <A HREF="002193.html">[fetchmail-users] [PATCH] Re: fetchmail IMAP bug - causes some mails to not be delivered when using IDLE
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2190">[ date ]</a>
+              <a href="thread.html#2190">[ thread ]</a>
+              <a href="subject.html#2190">[ subject ]</a>
+              <a href="author.html#2190">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Quoting from Matt Doran's mail on Wed, Jan 13, 2010:
+&gt;<i> Thanks for the analysis.  Did you see the email Timo just sent to the 
+</I>&gt;<i> fetchmail list (see below)?   He says that this assumption is incorrect.
+</I>&gt;<i> 
+</I>&gt;<i> &gt;&gt; &gt;/  		    /* We do expect an EXISTS response immediately
+</I>&gt;<i> &gt;&gt; /&gt;/  		     * after this, so this updation of recentcount is
+</I>&gt;<i> &gt;&gt; /&gt;/  		     * just a precaution! */
+</I>&gt;<i> &gt;&gt; /
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; BTW. This assumption is wrong. Some servers might do that, but it's 
+</I>&gt;<i> &gt; completely unnecessary to send EXISTS after EXPUNGE.
+</I>
+As per RFC 3501, the updated EXISTS count is required.
+
+=========================================================================
+7.3.1.  EXISTS Response
+
+   Contents:   none
+
+      The EXISTS response reports the number of messages in the mailbox.
+      This response occurs as a result of a SELECT or EXAMINE command,
+      and if the size of the mailbox changes (e.g., new messages).
+          ----------------------------------
+
+      The update from the EXISTS response MUST be recorded by the
+      client.
+=========================================================================
+
+I agree that many servers do not send it. Also, fetchmail can and should handle
+the counts better. However, in my opinion, the fix from dovecot side should be
+trivial. Whereas, the fix from fetchmail side will be non-trivial as a major
+rewrite of the imap driver will be required.
+
+-- 
+Sunil Shetye.
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002189.html">[fetchmail-users] fetchmail IMAP bug - causes some mails to not be delivered when using IDLE
+</A></li>
+	<LI>Next message: <A HREF="002193.html">[fetchmail-users] [PATCH] Re: fetchmail IMAP bug - causes some mails to not be delivered when using IDLE
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2190">[ date ]</a>
+              <a href="thread.html#2190">[ thread ]</a>
+              <a href="subject.html#2190">[ subject ]</a>
+              <a href="author.html#2190">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

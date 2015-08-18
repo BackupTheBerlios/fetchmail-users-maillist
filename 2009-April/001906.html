@@ -1,0 +1,217 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Fetchmail error writing message text
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2009-April/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Fetchmail%20error%20writing%20message%20text&In-Reply-To=%3C740C1DE843224A5ABFB91426227ACDE5%40cmc.local%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001905.html">
+   <LINK REL="Next"  HREF="001907.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Fetchmail error writing message text</H1>
+    <B>Diogo Branco</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Fetchmail%20error%20writing%20message%20text&In-Reply-To=%3C740C1DE843224A5ABFB91426227ACDE5%40cmc.local%3E"
+       TITLE="[fetchmail-users] Fetchmail error writing message text">diogobranco at gmail.com
+       </A><BR>
+    <I>Thu Apr 30 12:45:55 CEST 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001905.html">[fetchmail-users] Fetchmail error writing message text
+</A></li>
+        <LI>Next message: <A HREF="001907.html">[fetchmail-users] Fetchmail error writing message text
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1906">[ date ]</a>
+              <a href="thread.html#1906">[ thread ]</a>
+              <a href="subject.html#1906">[ subject ]</a>
+              <a href="author.html#1906">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>More details:
+
+SO - Windows XP SP3
+Version of Fetchmail - 6.3.9.1
+SMTP Listener - Exchange 2007 
+
+Output from command line Fetchmail -V:
+
+Fallback MDA: /usr/bin/procmail -d %T
+CYGWIN_NT-5.1 fetchmail1 1.5.25(0.156/4/2) 2008-06-12 19:34 i686 Cygwin
+Taking options from command line and /home/administrator/.fetchmailrc
+Poll interval is 1 seconds
+Logfile is /var/log/fetchmail.log
+Idfile is /home/administrator/.fetchids
+Fetchmail will forward misaddressed multidrop messages to Administrator.
+Options for retrieving from ****@****.**:
+  True name of server is *************.
+  Protocol is POP3 (forcing UIDL use).
+  All available authentication methods will be tried.
+  Server nonresponse timeout is 30 seconds.
+  Default mailbox selected.
+  All messages will be retrieved (--all on).
+  Fetched messages will not be kept on the server (--keep off).
+  Old messages will not be flushed before message retrieval (--flush off).
+  Oversized messages will not be flushed before message retrieval (--
+limitflush off).
+  Rewrite of server-local addresses is enabled (--norewrite off).
+  Carriage-return stripping is disabled (stripcr off).
+  Carriage-return forcing is disabled (forcecr off).
+  Interpretation of Content-Transfer-Encoding is enabled (pass8bits off).
+  MIME decoding is disabled (mimedecode off).
+  Idle after poll is disabled (idle off).
+  Nonempty Status lines will be kept (dropstatus off)
+  Delivered-To lines will be kept (dropdelivered off)
+  Fetch message size limit is 100 (--fetchsizelimit 100).
+  Do binary search of UIDs during 3 out of 4 polls (--fastuidl 4).
+  Messages will be SMTP-forwarded to: localhost (default)
+  Single-drop mode: 1 local name recognized.
+  No UIDs saved from this host.
+
+Output From command line fetchmail --smtphost exchangeserver/25 -vvv:
+
+fetchmail: 6.3.9 querying ******** (protocol POP3) at Wed Apr 29 22:12:31
+2009: poll started
+fetchmail: Trying to connect to **********/110...connected.
+fetchmail: POP3&lt; +OK X1 NT-POP3 Server ********** (IMail 8.22 440086-3)
+fetchmail: POP3&gt; CAPA
+fetchmail: POP3&lt; +OK Capability list follows
+fetchmail: POP3&lt; TOP
+fetchmail: POP3&lt; USER
+fetchmail: POP3&lt; SASL LOGIN PLAIN CRAM-MD5
+fetchmail: POP3&lt; RESP-CODES
+fetchmail: POP3&lt; LOGIN-DELAY 120
+fetchmail: POP3&lt; PIPELINING
+fetchmail: POP3&lt; EXPIRE 30 USER
+fetchmail: POP3&lt; UIDL
+fetchmail: POP3&lt; IMPLEMENTATION Ipswitch_IMail_8.20
+fetchmail: POP3&lt; .
+fetchmail: ********: opportunistic upgrade to TLS failed, trying to
+continue.
+fetchmail: POP3&gt; AUTH CRAM-MD5
+fetchmail: POP3&lt; + PDIzMjc1Ljc4ODY3Nzc3OEBoYXJwd3JvLTEwPg==
+fetchmail: decoded as &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">23275.788677778 at harpwro-10</A>&gt;
+fetchmail: POP3&gt; Z2FwIDc5YjNjMTJmMzkxNWY0ZTMxMDBhZjQ4YzlmNGE1ZTJj
+fetchmail: POP3&lt; +OK maildrop locked and ready
+fetchmail: selecting or re-polling default folder
+fetchmail: POP3&gt; STAT
+fetchmail: POP3&lt; +OK 1 12327206
+fetchmail: POP3&gt; UIDL
+fetchmail: POP3&lt; +OK 1 messages (12327206 octets)
+fetchmail: POP3&lt; 1 443753124
+fetchmail: 1 is unseen
+fetchmail: POP3&lt; .
+fetchmail: 1 message for *** at *********** (12327206 octets).
+fetchmail: POP3&gt; LIST 1
+fetchmail: POP3&lt; +OK 1 12327206
+fetchmail: POP3&gt; RETR 1
+fetchmail: POP3&lt; +OK 12327206 octets
+fetchmail: reading message ***@********.*****:1 of 1 (12327206 octets)
+fetchmail: About to rewrite From: **** &lt;****************&gt;
+Rewritten version is From: ***** &lt;****************&gt;
+
+fetchmail: About to rewrite To: ****************
+Rewritten version is To: ****************
+
+fetchmail: Trying to connect to *********/25...connected.
+fetchmail: SMTP&lt; 220 ********* Microsoft ESMTP MAIL Service ready at Wed, 29
+Apr 2009 22:09:58 +0100
+fetchmail: SMTP&gt; EHLO ************
+fetchmail: SMTP&lt; 250-*********** Hello [*********]
+fetchmail: SMTP&lt; 250-SIZE
+fetchmail: SMTP&lt; 250-PIPELINING
+fetchmail: SMTP&lt; 250-DSN
+fetchmail: SMTP&lt; 250-ENHANCEDSTATUSCODES
+fetchmail: SMTP&lt; 250-STARTTLS
+fetchmail: SMTP&lt; 250-X-ANONYMOUSTLS
+fetchmail: SMTP&lt; 250-AUTH NTLM LOGIN
+fetchmail: SMTP&lt; 250-X-EXPS GSSAPI NTLM
+fetchmail: SMTP&lt; 250-8BITMIME
+fetchmail: SMTP&lt; 250-BINARYMIME
+fetchmail: SMTP&lt; 250-CHUNKING
+fetchmail: SMTP&lt; 250-XEXCH50
+fetchmail: SMTP&lt; 250 XRDST
+fetchmail: forwarding to **************/25
+fetchmail: SMTP&gt; MAIL FROM:&lt;****************&gt; SIZE=12327206
+fetchmail: SMTP&lt; 250 2.1.0 Sender OK
+fetchmail: SMTP&gt; RCPT TO:&lt;*********&gt;
+fetchmail: SMTP&lt; 250 2.1.5 Recipient OK
+fetchmail: SMTP&gt; DATA
+fetchmail: SMTP&lt; 354 Start mail input; end with &lt;CRLF&gt;.&lt;CRLF&gt;
+fetchmail: error writing message text
+fetchmail: POP3&gt; QUIT
+fetchmail: POP3&lt;
+JyZn/eohDkK0qITGxvH9ZSz1RSNt27sGYc2oKtgTPp4TG9jw9WZdzP1iG2VYKxlbDa4z9wi1ljzb
+fetchmail: MDA error while fetching from *************
+fetchmail: 6.3.9 querying ************ (protocol POP3) at Wed Apr 29
+22:22:46 2009: poll completed
+fetchmail: Merged UID list from ***************: 443753123 = 3 443753124 = 0
+&lt;empty&gt;
+fetchmail: discarding new UID list
+fetchmail: Query status=6 (IOERR)
+
+Regards, Diogo.
+
+
+
+-----Original Message-----
+From: <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">fetchmail-users-bounces at lists.berlios.de</A>
+[mailto:<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">fetchmail-users-bounces at lists.berlios.de</A>] On Behalf Of Matthias
+Andree
+Sent: quarta-feira, 29 de Abril de 2009 20:33
+To: <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">fetchmail-users at lists.berlios.de</A>
+Subject: Re: [fetchmail-users] Fetchmail error writing message text
+
+Am 29.04.2009, 20:03 Uhr, schrieb Diogo Branco &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">diogobranco at gmail.com</A>&gt;:
+
+&gt;<i> More details:
+</I>
+Please read...
+
+this:
+
+&gt;<i> Indeed - <A HREF="http://www.fetchmail.info/fetchmail-FAQ.html#G3">http://www.fetchmail.info/fetchmail-FAQ.html#G3</A> - not only for
+</I>&gt;<i> bugs.
+</I>
+and provide the asked information. Everybody is free to ignore your  
+problem, and I'm certainly not going to ask for a third time, sorry for  
+not wasting more time.
+
+-- 
+Matthias Andree
+_______________________________________________
+fetchmail-users mailing list
+<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">fetchmail-users at lists.berlios.de</A>
+<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">https://lists.berlios.de/mailman/listinfo/fetchmail-users</A>
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001905.html">[fetchmail-users] Fetchmail error writing message text
+</A></li>
+	<LI>Next message: <A HREF="001907.html">[fetchmail-users] Fetchmail error writing message text
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1906">[ date ]</a>
+              <a href="thread.html#1906">[ thread ]</a>
+              <a href="subject.html#1906">[ subject ]</a>
+              <a href="author.html#1906">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

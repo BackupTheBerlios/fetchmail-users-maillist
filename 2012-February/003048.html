@@ -1,0 +1,129 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] How to handle mail with broken headers?
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2012-February/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20How%20to%20handle%20mail%20with%20broken%20headers%3F&In-Reply-To=%3Cshcd97.x5shcd97.aa52.oxf9.gnus%40asuka.myrkraverk.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003047.html">
+   <LINK REL="Next"  HREF="003049.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] How to handle mail with broken headers?</H1>
+    <B>Johann 'Myrkraverk' Oskarsson</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20How%20to%20handle%20mail%20with%20broken%20headers%3F&In-Reply-To=%3Cshcd97.x5shcd97.aa52.oxf9.gnus%40asuka.myrkraverk.com%3E"
+       TITLE="[fetchmail-users] How to handle mail with broken headers?">myrkraverk at aim.com
+       </A><BR>
+    <I>Thu Feb  2 02:07:22 CET 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003047.html">[fetchmail-users] How to handle mail with broken headers?
+</A></li>
+        <LI>Next message: <A HREF="003049.html">[fetchmail-users] attachments
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3048">[ date ]</a>
+              <a href="thread.html#3048">[ thread ]</a>
+              <a href="subject.html#3048">[ subject ]</a>
+              <a href="author.html#3048">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Matthias Andree &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">matthias.andree at gmx.de</A>&gt; writes:
+
+&gt;<i> improving documentation is a constant struggle, so please help me a
+</I>&gt;<i> bit:
+</I>
+&gt;<i>  Where did you look first, so that I can amend to that section, or
+</I>&gt;<i> redirect users to the command line options?
+</I>
+In this particular case, once I had learned of the option, I looked to
+the tables for the run control file.
+
+     bad-header                    How to treat messages with  a  bad
+                                   header. Can be reject (default) or
+                                   accept.
+
+Notice that just above that we have
+
+     uidl             -U           Force  POP3  to  use   client-side
+                                   UIDLs (recommended)
+     no uidl                       Turn off POP3 use  of  client-side
+                                   UIDLs (default)
+
+So it stands to reason one is supposed to use &quot;bad-header&quot; to accept bad
+headers and just leave it out to reject it.
+
+I recommend having the format given for the command line option
+reflected in the table too.
+
+     --bad-header {reject|accept}
+
+Somewhat akin to
+
+     bad-header {reject|accept}    How to treat messages with  a  bad
+                                   header. Can be reject (default) or
+                                   accept.
+
+or have two entries like other options.
+
+     bad-header reject             Reject messages with bad headers (the
+                                   default).
+     bad-header accept             Accept messages with bad headers.
+
+I can not propose any one definite answer, only to have it clear that
+the keywords &quot;accept&quot; and &quot;reject&quot; are also required in the run control
+file without having to scroll all the way back to the command line
+options to see it; in a manner that is consistent with the rest of the
+man page.
+
+&gt;<i> I routinely suggest to add &quot;sslcertck&quot; (without quotes), too, it would
+</I>&gt;<i> go somewhere after the user option somewhere, for instance, &quot;ssl
+</I>&gt;<i> sslcertck keep&quot;.  A future fetchmail release will make that default,
+</I>&gt;<i> but considerations about compatibility with older versions made me not
+</I>&gt;<i> do that in 6.X.Y versions.
+</I>
+Done.  I've simplified my run control file and added it to my defaults:
+
+defaults proto pop3 service 995 uidl fastuidl 6
+	ssl sslcertck keep
+
+&gt;<i> To use that, one may need to install root certificates (if such a
+</I>&gt;<i> package is available and how it's named depends on the respective
+</I>&gt;<i> distribution).
+</I>
+Seems fine at first test.  I know where to find my root certificates if
+I have to tell fetchmail about them.
+
+
+Johann
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003047.html">[fetchmail-users] How to handle mail with broken headers?
+</A></li>
+	<LI>Next message: <A HREF="003049.html">[fetchmail-users] attachments
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3048">[ date ]</a>
+              <a href="thread.html#3048">[ thread ]</a>
+              <a href="subject.html#3048">[ subject ]</a>
+              <a href="author.html#3048">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

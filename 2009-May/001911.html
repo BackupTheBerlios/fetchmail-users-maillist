@@ -1,0 +1,145 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Fetchmail error writing message text
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2009-May/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Fetchmail%20error%20writing%20message%20text&In-Reply-To=%3CFD23E6DC97C948A6B3F459C3161BFC6D%40cmc.local%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   
+   <LINK REL="Next"  HREF="001912.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Fetchmail error writing message text</H1>
+    <B>Diogo Branco</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Fetchmail%20error%20writing%20message%20text&In-Reply-To=%3CFD23E6DC97C948A6B3F459C3161BFC6D%40cmc.local%3E"
+       TITLE="[fetchmail-users] Fetchmail error writing message text">diogobranco at gmail.com
+       </A><BR>
+    <I>Fri May  1 16:51:57 CEST 2009</I>
+    <P><UL>
+        
+        <LI>Next message: <A HREF="001912.html">[fetchmail-users] fetchmailrc overwritten and now errors...
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1911">[ date ]</a>
+              <a href="thread.html#1911">[ thread ]</a>
+              <a href="subject.html#1911">[ subject ]</a>
+              <a href="author.html#1911">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Problem solved, by looking in the Exchange &quot;smtp receive&quot; logs, i noticed
+that in some large size emails messages, Exchange has finish the connection
+because of the connection timeout. So I increase the connection timeout from
+10 minutes to 15 minutes, and error has gone.
+
+Thanks for all the help.
+
+Regards, Diogo.
+
+-----Original Message-----
+From: <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">fetchmail-users-bounces at lists.berlios.de</A>
+[mailto:<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">fetchmail-users-bounces at lists.berlios.de</A>] On Behalf Of Matthias
+Andree
+Sent: quinta-feira, 30 de Abril de 2009 13:06
+To: <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">fetchmail-users at lists.berlios.de</A>
+Subject: Re: [fetchmail-users] Fetchmail error writing message text
+
+Diogo Branco schrieb:
+&gt;<i> More details:
+</I>&gt;<i> 
+</I>&gt;<i> SO - Windows XP SP3
+</I>&gt;<i> Version of Fetchmail - 6.3.9.1
+</I>
+There is no such version. If you are using the Cygwin package, it's
+6.3.9-1, and the fetchmail version is 6.3.9. Ypu can find the fetchmail
+version in the &quot;This is fetchmail release...&quot; line at the top of the
+fetchmail -V output that you stripped.
+
+Are you using the official Cygwin package by Jason Tishler?
+
+&gt;<i> SMTP Listener - Exchange 2007 
+</I>&gt;<i> 
+</I>&gt;<i> Output from command line Fetchmail -V:
+</I>&gt;<i> 
+</I>&gt;<i> Fallback MDA: /usr/bin/procmail -d %T
+</I>&gt;<i> CYGWIN_NT-5.1 fetchmail1 1.5.25(0.156/4/2) 2008-06-12 19:34 i686 Cygwin
+</I>
+&gt;<i> fetchmail: POP3&gt; RETR 1
+</I>&gt;<i> fetchmail: POP3&lt; +OK 12327206 octets
+</I>&gt;<i> fetchmail: reading message ***@********.*****:1 of 1 (12327206 octets)
+</I>...
+&gt;<i> fetchmail: Trying to connect to *********/25...connected.
+</I>&gt;<i> fetchmail: SMTP&lt; 220 ********* Microsoft ESMTP MAIL Service ready at Wed,
+</I>29
+&gt;<i> Apr 2009 22:09:58 +0100
+</I>&gt;<i> fetchmail: SMTP&gt; EHLO ************
+</I>&gt;<i> fetchmail: SMTP&lt; 250-*********** Hello [*********]
+</I>...
+&gt;<i> fetchmail: SMTP&lt; 250 XRDST
+</I>&gt;<i> fetchmail: forwarding to **************/25
+</I>&gt;<i> fetchmail: SMTP&gt; MAIL FROM:&lt;****************&gt; SIZE=12327206
+</I>&gt;<i> fetchmail: SMTP&lt; 250 2.1.0 Sender OK
+</I>&gt;<i> fetchmail: SMTP&gt; RCPT TO:&lt;*********&gt;
+</I>&gt;<i> fetchmail: SMTP&lt; 250 2.1.5 Recipient OK
+</I>&gt;<i> fetchmail: SMTP&gt; DATA
+</I>&gt;<i> fetchmail: SMTP&lt; 354 Start mail input; end with &lt;CRLF&gt;.&lt;CRLF&gt;
+</I>&gt;<i> fetchmail: error writing message text
+</I>...
+&gt;<i> fetchmail: MDA error while fetching from *************
+</I>
+Tracing the source code and taking into account your context,
+we fail in this path:
+
+transact.c -&gt; stuffline -&gt; SockWrite -&gt; fm_write -&gt; write()
+
+write() here pertains to writing onto the network socket to the Exchange
+server.
+
+Thus, either a firewall or other network problem or component is getting in
+the way, or Cygwin has hiccups, or the server is disconnecting during the
+transaction (which Rob already suggested).
+
+Please check and show the server's event log for this transaction and see
+what you can do about that.
+
+BTW, does Microsoft permit running Exchange 2007 on top of Windows XP, or
+is this communication problem just their way of telling you to buy Windows
+Server 2525?
+
+HTH
+Matthias Andree
+_______________________________________________
+fetchmail-users mailing list
+<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">fetchmail-users at lists.berlios.de</A>
+<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">https://lists.berlios.de/mailman/listinfo/fetchmail-users</A>
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	
+	<LI>Next message: <A HREF="001912.html">[fetchmail-users] fetchmailrc overwritten and now errors...
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1911">[ date ]</a>
+              <a href="thread.html#1911">[ thread ]</a>
+              <a href="subject.html#1911">[ subject ]</a>
+              <a href="author.html#1911">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

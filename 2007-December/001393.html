@@ -1,0 +1,95 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] certificate verification error
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2007-December/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20certificate%20verification%20error&In-Reply-To=%3C47582634.9040809%40gmx.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001392.html">
+   <LINK REL="Next"  HREF="001394.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] certificate verification error</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20certificate%20verification%20error&In-Reply-To=%3C47582634.9040809%40gmx.de%3E"
+       TITLE="[fetchmail-users] certificate verification error">matthias.andree at gmx.de
+       </A><BR>
+    <I>Thu Dec  6 17:41:24 CET 2007</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001392.html">[fetchmail-users] certificate verification error
+</A></li>
+        <LI>Next message: <A HREF="001394.html">[fetchmail-users] certificate verification error
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1393">[ date ]</a>
+              <a href="thread.html#1393">[ thread ]</a>
+              <a href="subject.html#1393">[ subject ]</a>
+              <a href="author.html#1393">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Rob MacGregor schrieb:
+&gt;<i> On Dec 6, 2007 12:30 AM, Matthias Andree &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">matthias.andree at gmx.de</A>&gt; wrote:
+</I>&gt;&gt;<i> Careful there!
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> The canonical way still is to install the root certificate and perhaps
+</I>&gt;&gt;<i> (that is, if delegations are present) - the intermediate certificates
+</I>&gt;&gt;<i> either system-wide or into the directory given with --sslcertpath DIR
+</I>&gt;&gt;<i> (don't forget to run c_rehash on the directory).
+</I>&gt;<i> 
+</I>&gt;<i> My mistake.  I'd remembered a discussion where the comment had been
+</I>&gt;<i> that sslfingerprint and downloading the *server* certificate achieved
+</I>&gt;<i> the same thing, overlooking the other discussion about downloading
+</I>&gt;<i> root certificates by preference.
+</I>
+While your assertion is correct (equivalent level of security or rather
+insecurity), it does not protect against man-in-the-middle attacks.
+
+The compelling question at hand is: how do you know you're not being
+subject to a man-in-the-middle attack while downloading the certificate?
+
+The answer is: you *cannot* know - unless you verify the server
+certificate's fingerprint -- which is a rather unusual practice, you'd more
+readily find the *root* certificate of the ISP's or institute's
+certification authority (CA) for download along with fingerprints, and
+verifying *those* by calling the CA is more common.
+
+HTH
+Matthias
+
+-- 
+Matthias Andree
+
+Life is what happens to you while you're busy making other plans.
+  						-- John Lennon, 1980
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001392.html">[fetchmail-users] certificate verification error
+</A></li>
+	<LI>Next message: <A HREF="001394.html">[fetchmail-users] certificate verification error
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1393">[ date ]</a>
+              <a href="thread.html#1393">[ thread ]</a>
+              <a href="subject.html#1393">[ subject ]</a>
+              <a href="author.html#1393">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

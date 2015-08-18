@@ -1,0 +1,235 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Fetchmail's bounce behavior - &quot;can't even send to	postmaster&quot;
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2011-January/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Fetchmail%27s%20bounce%20behavior%20-%20%22can%27t%20even%20send%20to%0A%09postmaster%22&In-Reply-To=%3C4D39C91A.9020203%40public.nv-systems.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002613.html">
+   <LINK REL="Next"  HREF="002615.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Fetchmail's bounce behavior - &quot;can't even send to	postmaster&quot;</H1>
+    <B>Gerald Hopf</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Fetchmail%27s%20bounce%20behavior%20-%20%22can%27t%20even%20send%20to%0A%09postmaster%22&In-Reply-To=%3C4D39C91A.9020203%40public.nv-systems.net%3E"
+       TITLE="[fetchmail-users] Fetchmail's bounce behavior - &quot;can't even send to	postmaster&quot;">fetchmail at public.nv-systems.net
+       </A><BR>
+    <I>Fri Jan 21 18:57:46 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002613.html">[fetchmail-users] Authorization failure against Microsoft Exchange 2010
+</A></li>
+        <LI>Next message: <A HREF="002615.html">[fetchmail-users] Fetchmail's bounce behavior - &quot;can't even	send to postmaster&quot;
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2614">[ date ]</a>
+              <a href="thread.html#2614">[ thread ]</a>
+              <a href="subject.html#2614">[ subject ]</a>
+              <a href="author.html#2614">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+some problems with the destination mailserver I'm forwarding mails to 
+have gotten me to wonder about how exactly fetchmail is trying to bounce 
+these undeliverable mails to the postmaster account (I don't want to 
+bounce them to the sender, because those bounces are always signs of 
+problems that have to get fixed at the exchange-hosting-provider).
+
+I'm using 6.3.19+RPA+NTLM+SDPS+SSL+NLS on 64Bit-Gentoo-Linux, polling 
+mail using POP3 from pop.1und1.de and then delivering it to an SMTP 
+server which accepts the mail for a hosted-MS-exchange provider. 
+(Background for all this, is that the MX for the domain points to the 
+1und1.de servers, and now some users are slowly being migrated to the 
+hosted-exchange system. Fetchmail is supposed to get the mail from the 
+server in the Domain MX record and then hand-delivers it to the smtp 
+server of the new system.)
+
+My fetchmail configuration file contains:
+------------------------------------------------------------------------
+set postmaster &quot;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">postmaster at public.machine-running-fetchmail.net</A>&quot;
+set no bouncemail
+poll &quot;pop.1und1.de&quot; proto pop3 user &quot;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">firstname.lastname at thecompany.de</A>&quot; 
+pass &quot;secret&quot; smtphost &quot;mail.asp.the-exchange-asp-provider.de&quot; smtpname 
+&quot;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">firstname.lastname at thecompany.de</A>&quot;
+------------------------------------------------------------------------
+
+All this is working perfectly fine, unless the destination SMTP server 
+has problems (i.e. it currently is claims 550 User unknown for some 
+users). When that happens, I get the following fetchmail output:
+
+4 messages for <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">firstname.lastname at thecompany.de</A> at pop.1und1.de (9936 
+octets).
+fetchmail: SMTP error: 550 5.1.1 User unknown
+fetchmail: mail from <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">MAILER-DAEMON at envy.machine-running-fetchmail.net</A> 
+bounced to <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">postmaster at public.machine-running-fetchmail.net</A>
+fetchmail: can't even send to 
+<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">postmaster at public.machine-running-fetchmail.net</A>!
+reading message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">firstname.lastname at thecompany.de</A>@pop.1und1.de:1 of 4 
+(2289 octets) not flushed
+[... repeats 4 time for each message on the pop3 server ...]
+
+=&gt; it complains that it cannot send mail to my postmaster account. This 
+account however works and the email in the postmaster account arrives 
+just fine! I've tried making 
+<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">MAILER-DAEMON at envy.machine-running-fetchmail.net</A> a fully working 
+address, but this has not changed anything.
+
+When looking at the verbose output of fetchmail -v -v to see what is 
+happening when fetchmail is trying to send the bounce to the postmaster, 
+the following can be seen:
+
+Trying to connect to 127.0.0.1/25...connected.
+fetchmail: SMTP&lt; 220 mail.machine-running-fetchmail.net ESMTP
+fetchmail: SMTP&gt; HELO envy.machine-running-fetchmail.net
+fetchmail: SMTP&lt; 250 mail.machine-running-fetchmail.net Ok.
+fetchmail: SMTP&gt; MAIL FROM:&lt;&gt;
+fetchmail: SMTP&lt; 250 Ok.
+fetchmail: SMTP&gt; RCPT TO:&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">postmaster at public.machine-running-fetchmail.net</A>&gt;
+fetchmail: SMTP&lt; 250 Ok.
+fetchmail: SMTP&gt; DATA
+fetchmail: SMTP&lt; 354 Ok.
+fetchmail: SMTP: (bounce-message body)
+fetchmail: SMTP&gt;. (EOM)
+fetchmail: SMTP&lt; 250 Ok. 000000004D39BC6D.00007413
+fetchmail: SMTP&gt; QUIT
+fetchmail: SMTP&lt; 221 Bye.
+fetchmail: SMTP&gt; RCPT TO:&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">postmaster at public.machine-running-fetchmail.net</A>&gt;
+fetchmail: SMTP&lt; 550 5.7.1 Unable to relay
+fetchmail: can't even send to 
+<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">postmaster at public.machine-running-fetchmail.net</A>!
+fetchmail: SMTP&gt; RSET
+fetchmail: SMTP&lt; 250 2.0.0 Resetting
+
+And now I'm really starting to wonder: What is going on here? Fetchmail 
+is sending the mail perfectly fine, then telling the SMTP server to 
+&quot;QUIT&quot;, yet in the next step suddenly wants to define a receipient (for 
+a mail that already has been sent) !
+
+I cannot find a rational cause why fetchmail should complain that it was 
+unable to send the postmaster bounce, nor can I see a rational cause why 
+it would even try to define a recipient in an SMTP session after 
+successfully sending the mail and saying &quot;QUIT&quot;. I've thought a lot 
+about what is happening here, discussed it at length with a friend and 
+I've still got no clue why fetchmail is behaving so strangely here.
+
+Perhaps someone here can elaborate? Am I doing something horribly wrong? 
+Is this a bug? Does fetchmail detest my courier mail server (v0.62.2) ?
+
+Thanks in advance,
+Gerald Hopf
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Full LOG from running fetchmail -f cfgfile -v -v:
+---------------------------------------------------------------------
+4 messages for <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">firstname.lastname at thecompany.de</A> at pop.1und1.de (9936 
+octets).
+fetchmail: POP3&gt; LIST 1
+fetchmail: POP3&lt; +OK 1 2289
+fetchmail: POP3&gt; TOP 1 99999999
+fetchmail: POP3&lt; +OK
+reading message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">firstname.lastname at thecompany.de</A>@pop.1und1.de:1 of 4 
+(2289 octets) About to rewrite Return-Path: 
+&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">someone.else at mailtest.thecompany.de</A>&gt;...
+...rewritten version is Return-Path: &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">someone.else at mailtest.thecompany.de</A>&gt;.
+About to rewrite From: SomeOne Else &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">someone.else at mailtest.thecompany.de</A>&gt;...
+...rewritten version is From: SomeOne Else 
+&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">someone.else at mailtest.thecompany.de</A>&gt;.
+About to rewrite To: &quot;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">firstname.lastname at thecompany.de</A>&quot; 
+&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">firstname.lastname at thecompany.de</A>&gt;...
+...rewritten version is To: &quot;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">firstname.lastname at thecompany.de</A>&quot; 
+&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">firstname.lastname at thecompany.de</A>&gt;.
+
+Trying to connect to (IP Address of Exchange Server)/25...connected.
+fetchmail: SMTP&lt; 220 mail.asp.the-exchange-asp-provider.de Microsoft 
+ESMTP MAIL Service ready at Fri, 21 Jan 2011 18:03:31 +0100
+fetchmail: SMTP&gt; EHLO my.machine-running-fetchmail.net
+fetchmail: SMTP&lt; 250-mail.asp.the-exchange-asp-provider.de Hello [(myIP)]
+fetchmail: SMTP&lt; 250-SIZE 26214400
+fetchmail: SMTP&lt; 250-PIPELINING
+fetchmail: SMTP&lt; 250-DSN
+fetchmail: SMTP&lt; 250-ENHANCEDSTATUSCODES
+fetchmail: SMTP&lt; 250-X-ANONYMOUSTLS
+fetchmail: SMTP&lt; 250-AUTH
+fetchmail: SMTP&lt; 250-X-EXPS NTLM
+fetchmail: SMTP&lt; 250-8BITMIME
+fetchmail: SMTP&lt; 250-BINARYMIME
+fetchmail: SMTP&lt; 250-CHUNKING
+fetchmail: SMTP&lt; 250 XEXCH50
+fetchmail: forwarding to mail.asp.the-exchange-asp-provider.de
+fetchmail: SMTP&gt; MAIL FROM:&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">someone.else at mailtest.thecompany.de</A>&gt; SIZE=2289
+fetchmail: SMTP&lt; 250 2.1.0 Sender OK
+fetchmail: SMTP&gt; RCPT TO:&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">firstname.lastname at thecompany.de</A>&gt;
+fetchmail: SMTP&lt; 550 5.1.1 User unknown
+fetchmail: SMTP error: 550 5.1.1 User unknown
+fetchmail: SMTP listener doesn't like recipient address 
+`<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">firstname.lastname at thecompany.de</A>'
+Trying to connect to 127.0.0.1/25...connected.
+fetchmail: SMTP&lt; 220 mail.machine-running-fetchmail.net ESMTP
+fetchmail: SMTP&gt; HELO envy.machine-running-fetchmail.net
+fetchmail: SMTP&lt; 250 mail.machine-running-fetchmail.net Ok.
+fetchmail: SMTP&gt; MAIL FROM:&lt;&gt;
+fetchmail: SMTP&lt; 250 Ok.
+fetchmail: SMTP&gt; RCPT TO:&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">postmaster at public.machine-running-fetchmail.net</A>&gt;
+fetchmail: SMTP&lt; 250 Ok.
+fetchmail: SMTP&gt; DATA
+fetchmail: SMTP&lt; 354 Ok.
+fetchmail: SMTP: (bounce-message body)
+fetchmail: SMTP&gt;. (EOM)
+fetchmail: SMTP&lt; 250 Ok. 000000004D39BC6D.00007413
+fetchmail: SMTP&gt; QUIT
+fetchmail: SMTP&lt; 221 Bye.
+fetchmail: SMTP&gt; RCPT TO:&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">postmaster at public.machine-running-fetchmail.net</A>&gt;
+fetchmail: SMTP&lt; 550 5.7.1 Unable to relay
+fetchmail: can't even send to 
+<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">postmaster at public.machine-running-fetchmail.net</A>!
+fetchmail: SMTP&gt; RSET
+fetchmail: SMTP&lt; 250 2.0.0 Resetting
+.
+  not flushed
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002613.html">[fetchmail-users] Authorization failure against Microsoft Exchange 2010
+</A></li>
+	<LI>Next message: <A HREF="002615.html">[fetchmail-users] Fetchmail's bounce behavior - &quot;can't even	send to postmaster&quot;
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2614">[ date ]</a>
+              <a href="thread.html#2614">[ thread ]</a>
+              <a href="subject.html#2614">[ subject ]</a>
+              <a href="author.html#2614">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

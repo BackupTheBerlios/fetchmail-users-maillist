@@ -1,0 +1,104 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] [Fwd: fetchmail problem]]
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2007-October/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20%5BFwd%3A%20fetchmail%20problem%5D%5D&In-Reply-To=%3C47205DFF.3050403%40gmx.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001345.html">
+   <LINK REL="Next"  HREF="001348.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] [Fwd: fetchmail problem]]</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20%5BFwd%3A%20fetchmail%20problem%5D%5D&In-Reply-To=%3C47205DFF.3050403%40gmx.de%3E"
+       TITLE="[fetchmail-users] [Fwd: fetchmail problem]]">matthias.andree at gmx.de
+       </A><BR>
+    <I>Thu Oct 25 11:12:31 CEST 2007</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001345.html">[fetchmail-users] [Fwd: fetchmail problem]]
+</A></li>
+        <LI>Next message: <A HREF="001348.html">[fetchmail-users] Building 6.3.8
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1347">[ date ]</a>
+              <a href="thread.html#1347">[ thread ]</a>
+              <a href="subject.html#1347">[ subject ]</a>
+              <a href="author.html#1347">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE><A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">avi at phpclub.org</A> schrieb:
+&gt;<i> This is easy for you to say, but considering our customers are somewhat lame and
+</I>&gt;<i> hardly knows what FTP means (and those who use it, use explorer), this is the
+</I>&gt;<i> easiest and simplest method for them to pass on jobs.
+</I>
+It's a bit irritating to find someone who confuses SFTP and FTP calling his
+customers &quot;somewhat lame&quot;, don't you think?
+
+&gt;<i> I don't understand one thing - are you here to help me with a bug or tell me how
+</I>&gt;<i> to run a company?
+</I>
+In a volunteer project, nobody is obliged to help anyone with anything -
+either the volunteer supporters are volunteering to help, or they aren't.
+And I can perfectly understand if they lose interest if being shouted at,
+told down, coerced, whatever.
+
+Given that the claim of a &quot;bug&quot; is not unconvincing considering the meagre
+evidence presented so far, and given that all support is on a voluntary
+basis: do calm down, will you?
+
+Either there are strong hints there is a fetchmail bug (and &quot;socket error&quot;
+usually points in the opposite direction) and we can arrange a systematic
+search, or we'll stop the discussion right now.
+
+&gt;<i> I am asking for help on something that others have occured too and not just me -
+</I>&gt;<i> if you can put your opinions on how things should work (and believe me - i know)
+</I>&gt;<i> and help me with the bug I will very much appreciate it.
+</I>
+I'd like to chime in with the &quot;mail is not for file transfer&quot; choir though.
+
+So compile fetchmail, gcc users should use CFLAGS=&quot;-O -ggdb3&quot;, run it under
+a debugger, put breakpoints on every line that returns PS_SOCKET (sorry, I
+don't have a list, grep -n PS_SOCKET *.c on the fetchmail source should
+help), and if a breakpoint is hit, obtain a stack backtrace, and at the
+same time, log the network connections with tcpdump or wireshark/tshark so
+we can see how fetchmail's behaviour relates to what goes over the wire -
+that might be a constructive approach, but I'm not making promises here, it
+might very well be the problem is still beyond any application's powers.
+
+HTH
+
+-- 
+Matthias Andree
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001345.html">[fetchmail-users] [Fwd: fetchmail problem]]
+</A></li>
+	<LI>Next message: <A HREF="001348.html">[fetchmail-users] Building 6.3.8
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1347">[ date ]</a>
+              <a href="thread.html#1347">[ thread ]</a>
+              <a href="subject.html#1347">[ subject ]</a>
+              <a href="author.html#1347">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,193 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Fetchmail bug? re Message size rejection from	SMTP server
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2010-September/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Fetchmail%20bug%3F%20re%20Message%20size%20rejection%20from%0A%09SMTP%20server&In-Reply-To=%3C348B134535374B02B4A3F80E342DB452%40beehive.mb.ca%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002475.html">
+   <LINK REL="Next"  HREF="002479.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Fetchmail bug? re Message size rejection from	SMTP server</H1>
+    <B>Darren Besler</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Fetchmail%20bug%3F%20re%20Message%20size%20rejection%20from%0A%09SMTP%20server&In-Reply-To=%3C348B134535374B02B4A3F80E342DB452%40beehive.mb.ca%3E"
+       TITLE="[fetchmail-users] Fetchmail bug? re Message size rejection from	SMTP server">dbesler at BeehiveEnterprises.COM
+       </A><BR>
+    <I>Sat Sep 18 16:31:13 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002475.html">[fetchmail-users] Server certificate verification error: self signed certificate
+</A></li>
+        <LI>Next message: <A HREF="002479.html">[fetchmail-users] Fetchmail bug? re Message size rejection from	SMTP server
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2478">[ date ]</a>
+              <a href="thread.html#2478">[ thread ]</a>
+              <a href="subject.html#2478">[ subject ]</a>
+              <a href="author.html#2478">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Bug: fetchmail continues to retrieve a specific message from pop server
+after SMTP server provides error that it cannot accept it (due to size)
+
+&gt;<i>From fetchmail FAQ re reporting bugs:
+</I>
+1. Operating system:   Arch Linux
+2. Compiler version: N/A
+   Fetchmail package:  Arch Linux package &quot;fetchmail 6.3.17-1&quot; 
+3. SMTP server: Arch Linux package &quot;postfix 2.7.1-1&quot;
+4. Command Line options: -v -v -f,
+    options in fetchmail rc file:
+
+	poll XXXXXX
+        proto pop3
+        user AAAAAAAA is BBBBBBBBBBB here
+        password PPPPPPPPPP
+        ssl
+        fetchall
+        smtphost localhost
+        no rewrite
+5. fetchmail -V
+	This is fetchmail release 6.3.17+SSL+NLS.
+
+
+6. Fetchmail output (1):
+
+      This is all the log information I have for the actual issue without
+recreating the situation.
+
+	fetchmail: SMTP&lt; 220 XXXXXXXX.YYYYY.ca ESMTP Postfix
+	fetchmail: SMTP&gt; EHLO XXXXXXXX.YYYYY.ca
+	fetchmail: SMTP&lt; 250-XXXXXXXX.YYYYY.ca
+	fetchmail: SMTP&lt; 250-PIPELINING
+	fetchmail: SMTP&lt; 250-SIZE 2097152
+	fetchmail: SMTP&lt; 250-VRFY
+	fetchmail: SMTP&lt; 250-ETRN
+	fetchmail: SMTP&lt; 250-ENHANCEDSTATUSCODES
+	fetchmail: SMTP&lt; 250-8BITMIME
+	fetchmail: SMTP&lt; 250 DSN
+	fetchmail: forwarding to localhost
+	fetchmail: SMTP&gt; MAIL FROM:&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">XXXXXX at XXXXXXXXXXXX</A>&gt; SIZE=3091253
+	fetchmail: SMTP&lt; 452 4.3.4 Message size exceeds fixed limit
+	fetchmail: SMTP error: 452 4.3.4 Message size exceeds fixed limit
+	fetchmail: SMTP&gt; RSET
+	fetchmail: SMTP&lt; 250 2.0.0 Ok
+	
+............................................................................
+.....
+	... Multiple lines ...
+	
+............................................................................
+.....
+	 not flushed
+	fetchmail: POP3&gt; QUIT
+	fetchmail: POP3&lt; +OK Logging out.
+	fetchmail: SMTP&gt; QUIT
+	fetchmail: SMTP&lt; 221 2.0.0 Bye
+
+  Fetchmail output (2):
+
+	This is a -vvv log for complete interaction details for POP server,
+although not likely relevant for my claim:
+
+	$ LC_ALL=C fetchmail --nodetach -vvv --nosyslog -f .fetchfile
+	Old UID list from mail.XXXXXXXXXX.com: &lt;empty&gt;
+	Scratch list of UIDs: &lt;empty&gt;
+	fetchmail: 6.3.17 querying mail.XXXXXXXXXX.com (protocol POP3) at
+Fri Sep 17 22:47:34 2010: poll started
+	Trying to connect to ---.--.--.128/995...connected.
+	fetchmail: Certificate chain, from root to peer, starting at depth
+1:
+	fetchmail: Issuer Organization: Equifax
+	fetchmail: Unknown Issuer CommonName
+	fetchmail: Server certificate:
+	fetchmail: Issuer Organization: Equifax
+	fetchmail: Unknown Issuer CommonName
+	fetchmail: Subject CommonName: *.XXXXXXXXXX.com
+	fetchmail: mail.XXXXXXXXXX.com key fingerprint:
+B9:DE:3F:47:D5:6E:9D:AA:EA:72:EA:4F:37:EA:1C:B8
+	fetchmail: POP3&lt; +OK POP3 ready
+	fetchmail: POP3&gt; CAPA
+	fetchmail: POP3&lt; +OK Capability list follows
+	fetchmail: POP3&lt; TOP
+	fetchmail: POP3&lt; UIDL
+	fetchmail: POP3&lt; RESP-CODES
+	fetchmail: POP3&lt; PIPELINING
+	fetchmail: POP3&lt; USER
+	fetchmail: POP3&lt; SASL PLAIN LOGIN
+	fetchmail: POP3&lt; SASL LOGIN PLAIN
+	fetchmail: POP3&lt; .
+	fetchmail: POP3&gt; USER <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">HIDDEN-USER at HIDDEN-DOMAIN</A>
+	fetchmail: POP3&lt; +OK
+	fetchmail: POP3&gt; PASS *
+	fetchmail: POP3&lt; +OK Logged in.
+	fetchmail: selecting or re-polling default folder
+	fetchmail: POP3&gt; STAT
+	fetchmail: POP3&lt; +OK 0 0
+	fetchmail: No mail for <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">HIDDEN-USER at HIDDEN-DOMAIN</A> at
+mail.XXXXXXXXXX.com
+	fetchmail: POP3&gt; QUIT
+	fetchmail: POP3&lt; +OK Logging out.
+	fetchmail: 6.3.17 querying mail.XXXXXXXXXX.com (protocol POP3) at
+Fri Sep 17 22:47:35 2010: poll completed
+	New UID list from mail.XXXXXXXXXX.com: &lt;empty&gt;
+	fetchmail: not swapping UID lists, no UIDs seen this query
+	fetchmail: Query status=1 (NOMAIL)
+	fetchmail: normal termination, status 1
+
+
+Referring to fetchmail log (1) above, the issue is &quot;fetchmail continues to
+retrieve a specific message from pop server after SMTP server provides error
+that it cannot accept it (due to size)&quot;
+
+This claim being made from interpreting the log in that it appears:
+
+ A) fetchmail connected to the SMTP server before retrieving message from
+pop server, advising smtp server of the message size.
+ B) smtp server returned error as it's message size limit was 2MB, and the
+message in this case was ~3MB
+ C) fetchmail still retrieved the message item from the pop server, to only
+have it discarded locally
+ D) fetchmail must have figured out something was wrong and it did not flush
+the item from the pop server, leaving it there for the scenario to repeat
+over and over again until it was detected.
+
+I assert that SMTP error 452 4.3.4 should trigger fetchmail to not RETR or
+DELE the message. It has it half right in that it does NOT DELE it. It's
+just wasting time and resources to RETR it as well.
+
+--
+Darren	
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002475.html">[fetchmail-users] Server certificate verification error: self signed certificate
+</A></li>
+	<LI>Next message: <A HREF="002479.html">[fetchmail-users] Fetchmail bug? re Message size rejection from	SMTP server
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2478">[ date ]</a>
+              <a href="thread.html#2478">[ thread ]</a>
+              <a href="subject.html#2478">[ subject ]</a>
+              <a href="author.html#2478">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

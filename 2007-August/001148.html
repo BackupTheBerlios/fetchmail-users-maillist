@@ -1,0 +1,155 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Recipient address rejected: User unknown in local recipient table
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2007-August/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Recipient%20address%20rejected%3A%20User%20unknown%20in%0A%20local%20recipient%20table&In-Reply-To=%3C46C2DE0C.20403%40bobsworld.be%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001147.html">
+   <LINK REL="Next"  HREF="001149.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Recipient address rejected: User unknown in local recipient table</H1>
+    <B>Johan Vandeweerd</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Recipient%20address%20rejected%3A%20User%20unknown%20in%0A%20local%20recipient%20table&In-Reply-To=%3C46C2DE0C.20403%40bobsworld.be%3E"
+       TITLE="[fetchmail-users] Recipient address rejected: User unknown in local recipient table">fetchmail at bobsworld.be
+       </A><BR>
+    <I>Wed Aug 15 13:05:48 CEST 2007</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001147.html">[fetchmail-users] Recipient address rejected: User unknown in	local recipient table
+</A></li>
+        <LI>Next message: <A HREF="001149.html">[fetchmail-users] Recipient address rejected: User unknown in	local recipient table
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1148">[ date ]</a>
+              <a href="thread.html#1148">[ thread ]</a>
+              <a href="subject.html#1148">[ subject ]</a>
+              <a href="author.html#1148">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Rob MacGregor wrote:
+&gt;<i> On 8/15/07, Johan Vandeweerd &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">fetchmail at bobsworld.be</A>&gt; wrote:
+</I>&gt;<i>   
+</I>&gt;&gt;<i> Hello all,
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> At the beginning of this month I changed the username of one of my users
+</I>&gt;&gt;<i> but I forgot to change the corresponding username in the fetchmailrc
+</I>&gt;&gt;<i> config (so the username in the fetchmailrc config didn't exist anymore).
+</I>&gt;&gt;<i> For the last month fetchmail has been fetching my mails but didn't found
+</I>&gt;&gt;<i> a  user on the local system (errormsg see title).
+</I>&gt;&gt;<i> What did fetchmail do with these mails (they are not on the server)? Are
+</I>&gt;&gt;<i> they stored somewhere or did I loose all the mails?
+</I>&gt;&gt;<i>     
+</I>&gt;<i>
+</I>&gt;<i> It depends on a lot of things you haven't told us, not least of which
+</I>&gt;<i> is the configuration of fetchmail and whatever SMTP server you are
+</I>&gt;<i> running.
+</I>&gt;<i>
+</I>&gt;<i> I would expect that, by default, your SMTP server returned a &quot;no such
+</I>&gt;<i> user&quot; type error and fetchmail generated bounce message (as detailed
+</I>&gt;<i> in the FAQ), deleting the message from the remote POP/IMAP server.  If
+</I>&gt;<i> you consult your mail log it should tell you.
+</I>&gt;<i>
+</I>&gt;<i>   
+</I>I use postfix and courier.
+
+My fetchmailrc looks like this:
+
+    set no bouncemail
+    set daemon 600
+    defaults:
+      antispam -1
+      batchlimit 100
+
+    poll pluto.sygmanet.be with protocol pop3 user &quot;myemail&quot; there with
+    password &quot;mypassword&quot; is myusername here
+
+In the logs I find things like this:
+
+    Aug 12 06:12:01 cyclops fetchmail[3067]: awakened at Sun 12 Aug 2007
+    06:12:01 AM CEST
+    Aug 12 06:12:01 cyclops fetchmail[3067]: Server certificate
+    verification error: self signed certificate
+    Aug 12 06:12:01 cyclops fetchmail[3067]: Server certificate
+    verification error: certificate has expired
+    Aug 12 06:12:01 cyclops fetchmail[3067]: 1 message for
+    myemailaddress at remoteserver (20949 octets).
+    Aug 12 06:12:01 cyclops postfix/smtpd[19248]: connect from
+    localhost[127.0.0.1]
+    Aug 12 06:12:01 cyclops postfix/smtpd[19248]: NOQUEUE: reject: RCPT
+    from localhost[127.0.0.1]: 550 5.1.1 &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">oldusername at localhost</A>&gt;:
+    Recipient address rejected: User unknown in local recipient table;
+    from=&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">fredcoxaaxue at ucom.ne.jp</A>&gt; to=&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">oldusername at localhost</A>&gt;
+    proto=ESMTP helo=&lt;localserver&gt;
+    Aug 12 06:12:01 cyclops fetchmail[3067]: reading message
+    <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">remoteusername at remoteserver</A>:1 of 1 (20949 octets) (log message
+    incomplete)
+    Aug 12 06:12:01 cyclops fetchmail[3067]: SMTP error: 550 5.1.1
+    &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">oldusername at localhost</A>&gt;: Recipient address rejected: User unknown in
+    local recipient table
+    Aug 12 06:12:01 cyclops postfix/smtpd[19251]: connect from
+    localhost[127.0.0.1]
+    Aug 12 06:12:01 cyclops postfix/smtpd[19251]: EBAE7214DF2:
+    client=localhost[127.0.0.1]
+    Aug 12 06:12:01 cyclops fetchmail[3067]: mail from
+    <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">MAILER-DAEMON at localserver</A> bounced to fetchmail
+    Aug 12 06:12:02 cyclops postfix/cleanup[19252]: EBAE7214DF2:
+    message-id=&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">20070812041201.EBAE7214DF2 at localserver</A>&gt;
+    Aug 12 06:12:02 cyclops postfix/smtpd[19251]: disconnect from
+    localhost[127.0.0.1]
+    Aug 12 06:12:02 cyclops postfix/qmgr[2967]: EBAE7214DF2: from=&lt;&gt;,
+    size=2340, nrcpt=1 (queue active)
+    Aug 12 06:12:02 cyclops postfix/smtpd[19248]: 0B354214DF4:
+    client=localhost[127.0.0.1]
+    Aug 12 06:12:02 cyclops postfix/cleanup[19252]: 0B354214DF4:
+    message-id=&lt;be1a01c7dca5$f0d405d0$<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">0fff6d29 at fredcoxaaxue</A>&gt;
+    Aug 12 06:12:02 cyclops postfix/local[19253]: EBAE7214DF2:
+    to=&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">fetchmail at localserver</A>&gt;, orig_to=&lt;fetchmail&gt;, relay=local,
+    delay=0.13, delays=0.1/0.01/0/0.02, dsn=2.0.0, status=sent
+    (delivered to maildir)
+    Aug 12 06:12:02 cyclops postfix/qmgr[2967]: EBAE7214DF2: removed
+    Aug 12 06:12:02 cyclops postfix/qmgr[2967]: 0B354214DF4:
+    from=&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">fredcoxaaxue at ucom.ne.jp</A>&gt;, size=21319, nrcpt=1 (queue active)
+    Aug 12 06:12:02 cyclops fetchmail[3067]:  flushed
+    Aug 12 06:12:02 cyclops postfix/local[19253]: 0B354214DF4:
+    to=&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">fetchmail at localhost</A>&gt;, relay=local, delay=0.17,
+    delays=0.17/0/0/0, dsn=2.0.0, status=sent (delivered to maildir)
+    Aug 12 06:12:02 cyclops postfix/qmgr[2967]: 0B354214DF4: removed
+
+Where are those bouncemessage sent to? Or how could I have noticed this 
+earlier? The old mails are lost, I presume?
+
+Thanks
+Johan Vandeweerd
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001147.html">[fetchmail-users] Recipient address rejected: User unknown in	local recipient table
+</A></li>
+	<LI>Next message: <A HREF="001149.html">[fetchmail-users] Recipient address rejected: User unknown in	local recipient table
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1148">[ date ]</a>
+              <a href="thread.html#1148">[ thread ]</a>
+              <a href="subject.html#1148">[ subject ]</a>
+              <a href="author.html#1148">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

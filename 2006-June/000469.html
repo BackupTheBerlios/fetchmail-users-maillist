@@ -1,0 +1,149 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] [BUG] fetchmail daemon does not resume fetching after a network outage
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2006-June/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20%5BBUG%5D%20fetchmail%20daemon%20does%20not%20resume%20fetching%20after%20a%20network%20outage&In-Reply-To=%3CF01A2AE7-0640-406B-A13B-F8714DB0BA79%40ritual.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000472.html">
+   <LINK REL="Next"  HREF="000471.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] [BUG] fetchmail daemon does not resume fetching after a network outage</H1>
+    <B>Uli Zappe</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20%5BBUG%5D%20fetchmail%20daemon%20does%20not%20resume%20fetching%20after%20a%20network%20outage&In-Reply-To=%3CF01A2AE7-0640-406B-A13B-F8714DB0BA79%40ritual.org%3E"
+       TITLE="[fetchmail-users] [BUG] fetchmail daemon does not resume fetching after a network outage">uli at ritual.org
+       </A><BR>
+    <I>Wed Jun 28 15:07:54 CEST 2006</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000472.html">[fetchmail-users] [BUG] fetchmail daemon does not resume fetching after a network outage
+</A></li>
+        <LI>Next message: <A HREF="000471.html">[fetchmail-users] [BUG] fetchmail daemon does not resume fetching after a network outage
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#469">[ date ]</a>
+              <a href="thread.html#469">[ thread ]</a>
+              <a href="subject.html#469">[ subject ]</a>
+              <a href="author.html#469">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Am 28.06.2006 um 02:46 schrieb Matthias Andree:
+
+&gt;<i> Can you check with &quot;lsof&quot; or similar tools (that can
+</I>&gt;<i> list open files and sockets) how many files and sockets fetchmail  
+</I>&gt;<i> holds
+</I>&gt;<i> open at the time when the problems start? It might be that the OS  
+</I>&gt;<i> itself
+</I>&gt;<i> is leaking sockets here which might appear in fetchmail's address  
+</I>&gt;<i> space.
+</I>
+
+Here is lsof output after a freshly restarted fetchmail that has  
+fetched mails just once, and works fine:
+
+# lsof -p 5894
+COMMAND    PID USER   FD     TYPE     DEVICE SIZE/OFF     NODE NAME
+fetchmail 5894 root  cwd     VDIR      14,10     1224        2 /
+fetchmail 5894 root  txt     VREG      14,10   217276  4621091 /usr/ 
+bin/fetchmail
+fetchmail 5894 root  txt     VREG      14,10  1797788  4583305 /usr/ 
+lib/dyld
+fetchmail 5894 root  txt     VREG      14,10  4379472  4583478 /usr/ 
+lib/libSystem.B.dylib
+fetchmail 5894 root  txt     VREG      14,10  1227808  4583480 / 
+System/Library/Frameworks/CoreFoundation.framework/Versions/A/ 
+CoreFoundation
+fetchmail 5894 root  txt     VREG      14,10   801160  4583488 /usr/ 
+lib/libobjc.A.dylib
+fetchmail 5894 root  txt     VREG      14,10  1789252  4583565 / 
+System/Library/Frameworks/Kerberos.framework/Versions/A/Kerberos
+fetchmail 5894 root    0u    VCHR        3,2      0t0 53111684 /dev/null
+fetchmail 5894 root    1u    VCHR        3,2      0t0 53111684 /dev/null
+fetchmail 5894 root    2u    VCHR        3,2      0t0 53111684 /dev/null
+fetchmail 5894 root    3r  PSXSHM 0x0511b424     4096           
+obj=0x03680ee0
+fetchmail 5894 root    4u    unix 0x04af53b0      0t0          - 
+ &gt;0x032f3b60
+
+
+
+Here is the same output after a 2 hour network outage and then the  
+Internet up again since 10 minutes or so, without fetchmail resuming  
+fetching mails:
+
+# lsof -p 5894
+COMMAND    PID USER   FD     TYPE     DEVICE SIZE/OFF     NODE NAME
+fetchmail 5894 root  cwd     VDIR      14,10     1224        2 /
+fetchmail 5894 root  txt     VREG      14,10   217276  4621091 /usr/ 
+bin/fetchmail
+fetchmail 5894 root  txt     VREG      14,10  1797788  4583305 /usr/ 
+lib/dyld
+fetchmail 5894 root  txt     VREG      14,10  4379472  4583478 /usr/ 
+lib/libSystem.B.dylib
+fetchmail 5894 root  txt     VREG      14,10  1227808  4583480 / 
+System/Library/Frameworks/CoreFoundation.framework/Versions/A/ 
+CoreFoundation
+fetchmail 5894 root  txt     VREG      14,10   801160  4583488 /usr/ 
+lib/libobjc.A.dylib
+fetchmail 5894 root  txt     VREG      14,10  1209056  4583589 /usr/ 
+lib/libcrypto.0.9.7.dylib
+fetchmail 5894 root  txt     VREG      14,10  1789252  4583565 / 
+System/Library/Frameworks/Kerberos.framework/Versions/A/Kerberos
+fetchmail 5894 root    0u    VCHR        3,2    0t293 53111684 /dev/null
+fetchmail 5894 root    1u    VCHR        3,2    0t293 53111684 /dev/null
+fetchmail 5894 root    2u    VCHR        3,2    0t293 53111684 /dev/null
+fetchmail 5894 root    3r  PSXSHM 0x0511b424     4096           
+obj=0x03680ee0
+fetchmail 5894 root    4u    unix 0x04af53b0      0t0          - 
+ &gt;0x032f3b60
+
+
+
+The only difference is the OFFSET value of the /dev/null files (these  
+OFFSET values stay the same after the network outage in several lsof  
+calls I've performed). Honestly, though, I have no idea what that  
+means. :-)
+
+
+             Bye
+                     Uli
+________________________________________________________
+
+   Uli Zappe, Solmsstra&#223;e 5, D-65189 Wiesbaden, Germany
+   <A HREF="http://www.ritual.org">http://www.ritual.org</A>
+   Fon: +49-700-ULIZAPPE
+   Fax: +49-700-ZAPPEFAX
+________________________________________________________
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000472.html">[fetchmail-users] [BUG] fetchmail daemon does not resume fetching after a network outage
+</A></li>
+	<LI>Next message: <A HREF="000471.html">[fetchmail-users] [BUG] fetchmail daemon does not resume fetching after a network outage
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#469">[ date ]</a>
+              <a href="thread.html#469">[ thread ]</a>
+              <a href="subject.html#469">[ subject ]</a>
+              <a href="author.html#469">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

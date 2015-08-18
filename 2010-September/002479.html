@@ -1,0 +1,111 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Fetchmail bug? re Message size rejection from	SMTP server
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2010-September/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Fetchmail%20bug%3F%20re%20Message%20size%20rejection%20from%0A%09SMTP%20server&In-Reply-To=%3C20100918151631.GA22726%40session.bombay.retortsoft.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002478.html">
+   <LINK REL="Next"  HREF="002480.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Fetchmail bug? re Message size rejection from	SMTP server</H1>
+    <B>Sunil Shetye</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Fetchmail%20bug%3F%20re%20Message%20size%20rejection%20from%0A%09SMTP%20server&In-Reply-To=%3C20100918151631.GA22726%40session.bombay.retortsoft.com%3E"
+       TITLE="[fetchmail-users] Fetchmail bug? re Message size rejection from	SMTP server">shetye at bombay.retortsoft.com
+       </A><BR>
+    <I>Sat Sep 18 17:16:31 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002478.html">[fetchmail-users] Fetchmail bug? re Message size rejection from	SMTP server
+</A></li>
+        <LI>Next message: <A HREF="002480.html">[fetchmail-users] fetchmail and Exchange 2010
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2479">[ date ]</a>
+              <a href="thread.html#2479">[ thread ]</a>
+              <a href="subject.html#2479">[ subject ]</a>
+              <a href="author.html#2479">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Darren,
+
+Quoting from Darren Besler's mail on Sat, Sep 18, 2010:
+&gt;<i> Bug: fetchmail continues to retrieve a specific message from pop server
+</I>&gt;<i> after SMTP server provides error that it cannot accept it (due to size)
+</I>
+...
+
+&gt;<i> 4. Command Line options: -v -v -f,
+</I>&gt;<i>     options in fetchmail rc file:
+</I>&gt;<i> 
+</I>&gt;<i> 	poll XXXXXX
+</I>&gt;<i>         proto pop3
+</I>&gt;<i>         user AAAAAAAA is BBBBBBBBBBB here
+</I>&gt;<i>         password PPPPPPPPPP
+</I>&gt;<i>         ssl
+</I>&gt;<i>         fetchall
+</I>&gt;<i>         smtphost localhost
+</I>&gt;<i>         no rewrite
+</I>
+...
+
+&gt;<i> 	fetchmail: SMTP&gt; MAIL FROM:&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">XXXXXX at XXXXXXXXXXXX</A>&gt; SIZE=3091253
+</I>&gt;<i> 	fetchmail: SMTP&lt; 452 4.3.4 Message size exceeds fixed limit
+</I>&gt;<i> 	fetchmail: SMTP error: 452 4.3.4 Message size exceeds fixed limit
+</I>
+This means that fetchmail does not know the size limit acceptable to
+your SMTP server. To tell fetchmail the same, please add the 'limit'
+option to your fetchmailrc in this format:
+
+    poll XXXXXX
+      proto pop3
+      ...
+      limit 1234000
+
+&gt;<i> I assert that SMTP error 452 4.3.4 should trigger fetchmail to not RETR or
+</I>&gt;<i> DELE the message. It has it half right in that it does NOT DELE it. It's
+</I>&gt;<i> just wasting time and resources to RETR it as well.
+</I>
+If you want fetchmail to also delete the message, please also add the
+'limitflush' option to your fetchmailrc.
+
+    poll XXXXXX
+      proto pop3
+      ...
+      limit 1234000
+      limitflush
+
+-- 
+Sunil Shetye.
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002478.html">[fetchmail-users] Fetchmail bug? re Message size rejection from	SMTP server
+</A></li>
+	<LI>Next message: <A HREF="002480.html">[fetchmail-users] fetchmail and Exchange 2010
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2479">[ date ]</a>
+              <a href="thread.html#2479">[ thread ]</a>
+              <a href="subject.html#2479">[ subject ]</a>
+              <a href="author.html#2479">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

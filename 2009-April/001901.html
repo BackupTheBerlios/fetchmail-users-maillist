@@ -1,0 +1,117 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Fetchmail error writing message text
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2009-April/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Fetchmail%20error%20writing%20message%20text&In-Reply-To=%3C409E191C64F94B9D95C9D2A66C78E95D%40cmc.local%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001900.html">
+   <LINK REL="Next"  HREF="001902.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Fetchmail error writing message text</H1>
+    <B>Diogo Branco</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Fetchmail%20error%20writing%20message%20text&In-Reply-To=%3C409E191C64F94B9D95C9D2A66C78E95D%40cmc.local%3E"
+       TITLE="[fetchmail-users] Fetchmail error writing message text">diogobranco at gmail.com
+       </A><BR>
+    <I>Tue Apr 28 23:51:12 CEST 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001900.html">[fetchmail-users] Fetchmail error writing message text
+</A></li>
+        <LI>Next message: <A HREF="001902.html">[fetchmail-users] Fetchmail error writing message text
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1901">[ date ]</a>
+              <a href="thread.html#1901">[ thread ]</a>
+              <a href="subject.html#1901">[ subject ]</a>
+              <a href="author.html#1901">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>The Fetchmail configuration file as this:
+
+More details:
+
+
+set daemon 1
+poll emailserver with proto POP3 timeout 30 no dns uidl
+user &quot;*****&quot; there with password &quot;******&quot; is &quot;*****@***.****&quot; here
+user &quot;*****&quot; there with password &quot;******&quot; is &quot;*****@***.****&quot; here
+user &quot;*****&quot; there with password &quot;******&quot; is &quot;*****@***.****&quot; here
+user &quot;*****&quot; there with password &quot;******&quot; is &quot;*****@***.****&quot; here
+user &quot;*****&quot; there with password &quot;******&quot; is &quot;*****@***.****&quot; here
+user &quot;*****&quot; there with password &quot;******&quot; is &quot;*****@***.****&quot; here
+user &quot;*****&quot; there with password &quot;******&quot; is &quot;*****@***.****&quot; here
+user &quot;*****&quot; there with password &quot;******&quot; is &quot;*****@***.****&quot; here
+user &quot;*****&quot; there with password &quot;******&quot; is &quot;*****@***.****&quot; here
+
+The fetchmail is running as a service in Windows XP, the emails are delivery
+to an exchange server 2007 in the local lan.
+
+Regards, Diogo.
+
+-----Original Message-----
+From: <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">fetchmail-users-bounces at lists.berlios.de</A>
+[mailto:<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">fetchmail-users-bounces at lists.berlios.de</A>] On Behalf Of Rob MacGregor
+Sent: ter&#231;a-feira, 28 de Abril de 2009 22:38
+To: <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">fetchmail-users at lists.berlios.de</A>
+Subject: Re: [fetchmail-users] Fetchmail error writing message text
+
+On Tue, Apr 28, 2009 at 21:02, Diogo Branco &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">diogobranco at gmail.com</A>&gt; wrote:
+&gt;<i> Hi, i have a Windows Xp machine with Cygwin + fetchmail, some email
+</I>messages
+&gt;<i> fetch from the server end up with the follwing error message:
+</I>&gt;<i>
+</I>&gt;<i> &quot;fetchmail:error writing message text
+</I>&gt;<i> MDA error while fetching from ******@***.**
+</I>&gt;<i> Query Status=6&quot;
+</I>&gt;<i>
+</I>&gt;<i> Can some one point me to the right direction.
+</I>
+The FAQ tells you what we need to know to help you ;)
+
+Based in the little you've provided suggests that the program you've
+defined as the mda in the .fetchmailrc is the problem.
+
+-- 
+                 Please keep list traffic on the list.
+
+Rob MacGregor
+      Whoever fights monsters should see to it that in the process he
+        doesn't become a monster.                  Friedrich Nietzsche
+_______________________________________________
+fetchmail-users mailing list
+<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">fetchmail-users at lists.berlios.de</A>
+<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">https://lists.berlios.de/mailman/listinfo/fetchmail-users</A>
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001900.html">[fetchmail-users] Fetchmail error writing message text
+</A></li>
+	<LI>Next message: <A HREF="001902.html">[fetchmail-users] Fetchmail error writing message text
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1901">[ date ]</a>
+              <a href="thread.html#1901">[ thread ]</a>
+              <a href="subject.html#1901">[ subject ]</a>
+              <a href="author.html#1901">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

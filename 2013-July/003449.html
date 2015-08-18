@@ -1,0 +1,135 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] fetchmail ssl cipher
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2013-July/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%20ssl%20cipher&In-Reply-To=%3C51F4D905.60907%40gmx.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003448.html">
+   <LINK REL="Next"  HREF="003450.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] fetchmail ssl cipher</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%20ssl%20cipher&In-Reply-To=%3C51F4D905.60907%40gmx.de%3E"
+       TITLE="[fetchmail-users] fetchmail ssl cipher">matthias.andree at gmx.de
+       </A><BR>
+    <I>Sun Jul 28 10:40:37 CEST 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003448.html">[fetchmail-users] fetchmail ssl cipher
+</A></li>
+        <LI>Next message: <A HREF="003450.html">[fetchmail-users] fetchmail ssl cipher
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3449">[ date ]</a>
+              <a href="thread.html#3449">[ thread ]</a>
+              <a href="subject.html#3449">[ subject ]</a>
+              <a href="author.html#3449">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Am 27.07.2013 20:46, schrieb Martin Koeppe:
+&gt;<i> 
+</I>&gt;<i> Hi,
+</I>&gt;<i> 
+</I>&gt;<i> when using fetchmail 6.3.21/cygwin with --sslproto 'SSL3' or --sslproto
+</I>&gt;<i> 'TLS1', is it possible to see which SSL cipher has been chosen for a
+</I>&gt;<i> connection?
+</I>&gt;<i> 
+</I>&gt;<i> Or is it possible to show all supported server ciphers for SSL
+</I>&gt;<i> connections? With -vvv it shows the certificate, but apparently not the
+</I>&gt;<i> cipher.
+</I>&gt;<i> 
+</I>&gt;<i> Would it also be possible to limit the list of client supported ciphers
+</I>&gt;<i> offered to the server?
+</I>
+Hi Martin,
+
+Not currently, sorry.  Fetchmail does not decode/present that
+information, or have options to limit/select the ciphers.  I have added
+that to the 7.X TODO.txt list, available from the Git repos.
+
+Jason and Martin,
+
+If 6.3.21 is the most current version for Cygwin, please see to
+building/uploading a new version for Cygwin, or failing that, Martin,
+you should build a current fetchmail version yourself; 6.3.21 lacks
+several security and critical bug fixes (memory leaks plugged, data loss
+in mimedecode).
+
+The NEWS file from 6.3.26 is here:
+&lt;<A HREF="http://gitorious.org/fetchmail/fetchmail/blobs/raw/6b363d166c9eb8354176b796f2fed68d538b7a4a/NEWS">http://gitorious.org/fetchmail/fetchmail/blobs/raw/6b363d166c9eb8354176b796f2fed68d538b7a4a/NEWS</A>&gt;
+
+I am attaching the .cygport and .patch for 6.3.26 to use with Cygwin's
+cygport package, but I am not sure if they will pass through the list.
+Martin and Jason are Cc'd so they will get the attachments.
+
+Best regards
+Matthias
+
+-------------- next part --------------
+# Cygport file for fetchmail 6.3.X
+# written 2010 by Matthias Andree
+
+# $Id$
+# vim: tabstop=4
+
+DESCRIPTION=&quot;Mail POP3/IMAP/ODMR/ETRN retrieval application&quot;
+HOMEPAGE=&quot;<A HREF="http://www.fetchmail.info/">http://www.fetchmail.info/</A>&quot;
+
+## For official releases:
+SRC_URI=&quot;<A HREF="mirror://berlios/${PN">mirror://berlios/${PN</A>}/${P}.tar.xz&quot;
+
+## For test releases:
+case &quot;${P}&quot; in *pre*|*rc*|*beta*|*test*)
+  SRC_URI=&quot;<A HREF="http://home.pages.de/~mandree/${PN">http://home.pages.de/~mandree/${PN</A>}/${P}.tar.bz2&quot; ;;
+esac
+
+# These are the ./configure options to pass down:
+CYGCONF_ARGS=&quot;--enable-NTLM --with-ssl --enable-fallback=procmail&quot;
+
+# We use the standard src_compile and src_test and src_install.
+# Documentation file list for src_install:
+DOCS=&quot;ABOUT-NLS COPYING FAQ FEATURES INSTALL NEWS NOTES OLDNEWS README \
+	README.NTLM README.SSL TODO fetchmail-FAQ.html design-notes.html \
+	esrs-design-notes.html fetchmail-features.html todo.html&quot;
+
+# End of .cygport file for fetchmail.
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: fetchmail-6.3.26-1.cygwin.patch
+Type: text/x-patch
+Size: 7242 bytes
+Desc: not available
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/fetchmail-users/attachments/20130728/5dfc9c06/attachment.bin">https://lists.berlios.de/pipermail/fetchmail-users/attachments/20130728/5dfc9c06/attachment.bin</A>&gt;
+</PRE>
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003448.html">[fetchmail-users] fetchmail ssl cipher
+</A></li>
+	<LI>Next message: <A HREF="003450.html">[fetchmail-users] fetchmail ssl cipher
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3449">[ date ]</a>
+              <a href="thread.html#3449">[ thread ]</a>
+              <a href="subject.html#3449">[ subject ]</a>
+              <a href="author.html#3449">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

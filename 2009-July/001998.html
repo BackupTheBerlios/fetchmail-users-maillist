@@ -1,0 +1,130 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Connection timed out
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2009-July/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Connection%20timed%20out&In-Reply-To=%3C20090726101833.GA6674%40fancy-poultry.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001997.html">
+   <LINK REL="Next"  HREF="001999.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Connection timed out</H1>
+    <B>Heinz Diehl</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Connection%20timed%20out&In-Reply-To=%3C20090726101833.GA6674%40fancy-poultry.org%3E"
+       TITLE="[fetchmail-users] Connection timed out">htd at fancy-poultry.org
+       </A><BR>
+    <I>Sun Jul 26 12:18:33 CEST 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001997.html">[fetchmail-users] Connection timed out
+</A></li>
+        <LI>Next message: <A HREF="001999.html">[fetchmail-users] Connection timed out
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1998">[ date ]</a>
+              <a href="thread.html#1998">[ thread ]</a>
+              <a href="subject.html#1998">[ subject ]</a>
+              <a href="author.html#1998">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On 26.07.2009, Rob MacGregor wrote: 
+
+&gt;<i> Then you have a name resolution problem, which is nothing to do with fetchmail.
+</I>
+pop.online.no (and all the others) resolve properly.
+
+&gt;<i> Check your hosts file (/etc/hosts)
+</I>
+It's ok.
+
+&gt;<i> and what::
+</I>&gt;<i> nslookup pop.online.no
+</I>&gt;<i> returns.
+</I>
+I did already post this in my mail before,
+
+liesel:/home/htd # nslookup pop.online.no
+Server:         192.168.1.1
+Address:        192.168.1.1#53
+
+Name:   pop.online.no
+Address: 193.213.115.9
+
+&gt;<i> If it returns 1.0.0.0 then the problem is with your DNS
+</I>&gt;<i> server (see /etc/resolv.conf).
+</I>
+resolv.conf contains the proper DNS servers, and they work as they should.
+
+<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">htd at liesel</A>:~&gt; cat /etc/resolv.conf
+search fancy-poultry.org
+nameserver 192.168.1.1
+nameserver 193.213.112.4
+nameserver 130.67.60.68
+<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">htd at liesel</A>:~&gt; 
+
+
+<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">htd at liesel</A>:~&gt; nslookup
+&gt;<i> server 192.168.1.1
+</I>Default server: 192.168.1.1
+Address: 192.168.1.1#53
+&gt;<i> pop.online.no
+</I>Server:         192.168.1.1
+Address:        192.168.1.1#53
+Non-authoritative answer:
+Name:   pop.online.no
+Address: 193.213.115.9
+
+&gt;<i> server 193.213.112.4
+</I>Default server: 193.213.112.4
+Address: 193.213.112.4#53
+&gt;<i> pop.online.no
+</I>Server:         193.213.112.4
+Address:        193.213.112.4#53
+Name:   pop.online.no
+Address: 193.213.115.9
+
+&gt;<i> server 130.67.60.68
+</I>Default server: 130.67.60.68
+Address: 130.67.60.68#53
+&gt;<i> pop.online.no
+</I>Server:         130.67.60.68
+Address:        130.67.60.68#53
+Name:   pop.online.no
+Address: 193.213.115.9
+
+This doesn't look like DNS problems at all.
+
+Thanks,
+Heinz.
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001997.html">[fetchmail-users] Connection timed out
+</A></li>
+	<LI>Next message: <A HREF="001999.html">[fetchmail-users] Connection timed out
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1998">[ date ]</a>
+              <a href="thread.html#1998">[ thread ]</a>
+              <a href="subject.html#1998">[ subject ]</a>
+              <a href="author.html#1998">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

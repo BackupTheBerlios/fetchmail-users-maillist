@@ -1,0 +1,87 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] only one message gets fetched using IMAP idle
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2006-May/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20only%20one%20message%20gets%20fetched%20using%20IMAP%20idle&In-Reply-To=%3C20060515170504.GA19464%40merlin.emma.line.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000405.html">
+   <LINK REL="Next"  HREF="000407.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] only one message gets fetched using IMAP idle</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20only%20one%20message%20gets%20fetched%20using%20IMAP%20idle&In-Reply-To=%3C20060515170504.GA19464%40merlin.emma.line.org%3E"
+       TITLE="[fetchmail-users] only one message gets fetched using IMAP idle">matthias.andree at gmx.de
+       </A><BR>
+    <I>Mon May 15 19:05:04 CEST 2006</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000405.html">[fetchmail-users] only one message gets fetched using IMAP idle
+</A></li>
+        <LI>Next message: <A HREF="000407.html">[fetchmail-users] [PATCH] Re: only one message gets fetched using IMAP idle
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#406">[ date ]</a>
+              <a href="thread.html#406">[ thread ]</a>
+              <a href="subject.html#406">[ subject ]</a>
+              <a href="author.html#406">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Lars Tewes schrieb am 2006-05-15:
+
+&gt;<i> But if I try to not to expunge the messages on the server after the 
+</I>&gt;<i> transfer (using &quot;keep&quot; configuration option), fetchmail immediately 
+</I>&gt;<i> terminates after fetching the first message. Don't know if this is intended 
+</I>&gt;<i> behaviour?
+</I>
+Time to summon Sunil who knows a bit more about the idle code...
+
+Well, --keep and --idle don't appear to be friends, but it doesn't
+appear to be intentional either, at least it's not documented; and the
+interfaces and assumptions in fetchmail aren't documented well, so I
+need to figure out which function expects what input and is expected to
+give what output...
+
+I need to think about this a bit and understand the IMAP message
+counting stuff a bit better -- and decide if I really want to fix this
+in 6.3.X or only in 6.4.X where I plan to add UID support for IMAP.
+
+I have committed this stopgap code to SVN however, but I'm not promising
+I can easily fix --keep --idle with reasonable effort.
+
+HTH,
+
+-- 
+Matthias Andree
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000405.html">[fetchmail-users] only one message gets fetched using IMAP idle
+</A></li>
+	<LI>Next message: <A HREF="000407.html">[fetchmail-users] [PATCH] Re: only one message gets fetched using IMAP idle
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#406">[ date ]</a>
+              <a href="thread.html#406">[ thread ]</a>
+              <a href="subject.html#406">[ subject ]</a>
+              <a href="author.html#406">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

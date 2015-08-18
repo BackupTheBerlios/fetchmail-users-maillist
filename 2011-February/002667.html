@@ -1,0 +1,91 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] clean .fetchmailrc file
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2011-February/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20clean%20.fetchmailrc%20file&In-Reply-To=%3Calpine.BSF.2.00.1102240444200.13858%40freire1.furyyjbeyq.arg%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002666.html">
+   <LINK REL="Next"  HREF="002668.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] clean .fetchmailrc file</H1>
+    <B>Jude DaShiell</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20clean%20.fetchmailrc%20file&In-Reply-To=%3Calpine.BSF.2.00.1102240444200.13858%40freire1.furyyjbeyq.arg%3E"
+       TITLE="[fetchmail-users] clean .fetchmailrc file">jdashiel at shellworld.net
+       </A><BR>
+    <I>Thu Feb 24 10:50:57 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002666.html">[fetchmail-users] syntax error
+</A></li>
+        <LI>Next message: <A HREF="002668.html">[fetchmail-users] clean .fetchmailrc file
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2667">[ date ]</a>
+              <a href="thread.html#2667">[ thread ]</a>
+              <a href="subject.html#2667">[ subject ]</a>
+              <a href="author.html#2667">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>set daemon 300
+set no syslog
+set logfile /home/jude/fetchmail.log
+poll imap.gmail.com
+with proto IMAP
+timeout 120
+username 'jdashiel'
+there is 'jude' here
+mda &quot;/usr/bin/procmail -d %T&quot;
+options
+forcedcr warnings 3600
+no keep ssl
+sslcertck sslcertpath /home/jude/.certs
+poll pop.live.com with proto pop3
+timeout 120
+username 'dashielljt3' there is 'jude' here
+mda &quot;/usr/bin/procmail -d %T&quot;
+options
+forcedcr warnings 3600
+no keep ssl
+sslcertck sslcertpath /home/jude/.certs
+
+I managed to build fetchmail 2.6.3.19 with NTLM and told it explicitly 
+--with-gnu-ld.  I haven't yet tried running this .fetchmailrc file with 
+the Microsoft section yet since I'm not sure I have the certificate in 
+ca-bundle.  I did try pulling down the microsoft certificate using openssl 
+(probably with wrong syntax) and got error 110 and timeout.  So for now I 
+can put a skip directive in if this file will disrupt operations given 
+other conditions.  That skip directive i think is neat.
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002666.html">[fetchmail-users] syntax error
+</A></li>
+	<LI>Next message: <A HREF="002668.html">[fetchmail-users] clean .fetchmailrc file
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2667">[ date ]</a>
+              <a href="thread.html#2667">[ thread ]</a>
+              <a href="subject.html#2667">[ subject ]</a>
+              <a href="author.html#2667">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

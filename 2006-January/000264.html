@@ -1,0 +1,128 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] fetchmail doesn&#180;t fetching
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2006-January/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20%3D%3FISO-8859-1%3FQ%3Ffetchmail_doesn%3DB4t_fetching%3F%3D&In-Reply-To=%3C31b571250601251200h6c799d82j19073330a37b64ca%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000263.html">
+   <LINK REL="Next"  HREF="000265.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] fetchmail doesn&#180;t fetching</H1>
+    <B>Alex Moreno</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20%3D%3FISO-8859-1%3FQ%3Ffetchmail_doesn%3DB4t_fetching%3F%3D&In-Reply-To=%3C31b571250601251200h6c799d82j19073330a37b64ca%40mail.gmail.com%3E"
+       TITLE="[fetchmail-users] fetchmail doesn&#180;t fetching">al3xmor3no at gmail.com
+       </A><BR>
+    <I>Wed Jan 25 21:00:52 CET 2006</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000263.html">[fetchmail-users] fetchmail security announcement 2006-01 (CVE-2006-0321)
+</A></li>
+        <LI>Next message: <A HREF="000265.html">[fetchmail-users] Re: [fetchmail-users] fetchmail doesn&#180;t fetching
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#264">[ date ]</a>
+              <a href="thread.html#264">[ thread ]</a>
+              <a href="subject.html#264">[ subject ]</a>
+              <a href="author.html#264">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi all,
+
+First of all, excuse me if i ask some repetitive question. I&#180;ve been loking
+on internet for the solution or a similar problem with no luck. I&#180;m trying
+to use fetchmail with a pop account. I&#180;ve tried this conf:
+
+
+<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">alex at trantor</A>:~$ cat .fetchmailrc
+#set syslog
+
+poll localhost with proto POP3
+user <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">alexmoreno at morela.biz</A> there to alex here
+
+<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">alex at trantor</A>:~$
+
+
+and it seems that works, it connects and i can see on the shell some
+messages... until i try to read with mutt. fetchmail is not writing the
+mails or at least i don&#180;t know where is it writing them.
+
+I&#180;m running debian stable and fetchmail 6.2.5.4-1. I attach you some more
+information of fetchmail -V
+
+
+------------------------------------------------
+
+<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">alex at trantor</A>:~$ fetchmail -V
+This is fetchmail release 6.2.5.4+NTLM+SDPS+SSL+NLS
+Fallback MDA: (none)
+Linux trantor 2.4.27-2-386 #1 Mon May 16 16:47:51 JST 2005 i686 GNU/Linux
+Taking options from command line and /home/alex/.fetchmailrc
+Idfile is /home/alex/.fetchids
+Fetchmail will show progress dots even in logfiles.
+Fetchmail will forward misaddressed multidrop messages to alex.
+Options for retrieving from <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">alexmoreno at morela.biz</A>@localhost:
+  True name of server is localhost.
+  Password will be prompted for.
+  Protocol is POP3.
+  All available authentication methods will be tried.
+  Server nonresponse timeout is 300 seconds (default).
+  Default mailbox selected.
+  Only new messages will be retrieved (--all off).
+  Fetched messages will not be kept on the server (--keep off).
+  Old messages will not be flushed before message retrieval (--flush off).
+  Rewrite of server-local addresses is enabled (--norewrite off).
+  Carriage-return stripping is disabled (stripcr off).
+  Carriage-return forcing is disabled (forcecr off).
+  Interpretation of Content-Transfer-Encoding is enabled (pass8bits off).
+  MIME decoding is disabled (mimedecode off).
+  Idle after poll is disabled (idle off).
+  Nonempty Status lines will be kept (dropstatus off)
+  Delivered-To lines will be kept (dropdelivered off)
+  Fetch message size limit is 100 (--fetchsizelimit 100).
+  Do binary search of UIDs during 9 out of 10 polls (--fastuidl 10).
+  Messages will be SMTP-forwarded to: localhost (default)
+  Single-drop mode: 1 local name(s) recognized.
+  No UIDs saved from this host.
+<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">alex at trantor</A>:~$
+
+------------------------------------------------
+
+
+Any help or link would be appreciated.
+
+Thanks a lot
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/fetchmail-users/attachments/20060125/84934ee7/attachment.html">https://lists.berlios.de/pipermail/fetchmail-users/attachments/20060125/84934ee7/attachment.html</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000263.html">[fetchmail-users] fetchmail security announcement 2006-01 (CVE-2006-0321)
+</A></li>
+	<LI>Next message: <A HREF="000265.html">[fetchmail-users] Re: [fetchmail-users] fetchmail doesn&#180;t fetching
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#264">[ date ]</a>
+              <a href="thread.html#264">[ thread ]</a>
+              <a href="subject.html#264">[ subject ]</a>
+              <a href="author.html#264">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

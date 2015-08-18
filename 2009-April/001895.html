@@ -1,0 +1,102 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] courier (catchall) and fetchmail errors
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2009-April/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20courier%20%28catchall%29%20and%20fetchmail%20errors&In-Reply-To=%3C20090427105240.GD14588%40tamay-dogan.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001894.html">
+   <LINK REL="Next"  HREF="001896.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] courier (catchall) and fetchmail errors</H1>
+    <B>Michelle Konzack</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20courier%20%28catchall%29%20and%20fetchmail%20errors&In-Reply-To=%3C20090427105240.GD14588%40tamay-dogan.net%3E"
+       TITLE="[fetchmail-users] courier (catchall) and fetchmail errors">linux4michelle at tamay-dogan.net
+       </A><BR>
+    <I>Mon Apr 27 12:52:40 CEST 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001894.html">[fetchmail-users] Silencing &quot;CommonName mismatch&quot; warnings
+</A></li>
+        <LI>Next message: <A HREF="001896.html">[fetchmail-users] courier (catchall) and fetchmail errors
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1895">[ date ]</a>
+              <a href="thread.html#1895">[ thread ]</a>
+              <a href="subject.html#1895">[ subject ]</a>
+              <a href="author.html#1895">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>[Resent, because the message does not appear in the Archive]
+
+Hello,
+
+if my Mailserver is not available, I have a MX  with  a  catchall  on  a
+courier server.  But if I try to fetch the messages I get errors like:
+
+Apr 26 18:26:58 vserver1 courieresmtpd: error,relay=::ffff:127.0.0.1,from=&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">enda at codefoundry.com</A>&gt;,to=&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">fetchmail at localhost</A>&gt;: 513 Syntax error.
+Apr 26 18:42:07 vserver1 courieresmtpd: error,relay=::ffff:127.0.0.1,from=&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">michelle.konzack at tamay-dogan.net</A>&gt;,to=&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">fetchmail at localhost</A>&gt;: 513 Syntax error.
+Apr 26 18:42:15 vserver1 courieresmtpd: error,relay=::ffff:127.0.0.1,from=&lt;&gt;,to=&lt;fetchmail&gt;: 513 Syntax error.
+Apr 26 18:42:31 vserver1 courieresmtpd: error,relay=::ffff:127.0.0.1,from=&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">michelle.konzack at tamay-dogan.net</A>&gt;,to=&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">fetchmail at localhost</A>&gt;: 513 Syntax error.
+Apr 26 18:43:03 vserver1 courieresmtpd: error,relay=::ffff:127.0.0.1,from=&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">michelle.konzack at tamay-dogan.net</A>&gt;,to=&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">fetchmail at localhost</A>&gt;: 513 Syntax error.
+Apr 26 18:43:11 vserver1 courieresmtpd: error,relay=::ffff:127.0.0.1,from=&lt;&gt;,to=&lt;fetchmail&gt;: 513 Syntax error.
+
+OK, it seems, if catchall is used, courier does  not  add  Delivered-To:
+headers.  My MX hoster told me, that his customers  can  fetch  messages
+without any problems so I do not know, whats wrong here.  (I have  never
+used a catchall mailbox)
+
+Can someone post a config for it?
+
+Note:  I must inject it into courier-mta.
+
+Thanks, Greetings and nice Day/Evening
+    Michelle Konzack
+
+-- 
+Linux-User #280138 with the Linux Counter, <A HREF="http://counter.li.org/">http://counter.li.org/</A>
+##################### Debian GNU/Linux Consultant #####################
+&lt;<A HREF="http://www.tamay-dogan.net/">http://www.tamay-dogan.net/</A>&gt;                 Michelle Konzack
+&lt;<A HREF="http://www.can4linux.org/">http://www.can4linux.org/</A>&gt;                   Apt. 917
+&lt;<A HREF="http://www.flexray4linux.org/">http://www.flexray4linux.org/</A>&gt;               50, rue de Soultz
+Jabber <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">linux4michelle at jabber.ccc.de</A>           67100 Strasbourg/France
+IRC #Debian (irc.icq.com)                     Tel. DE: +49 177 9351947
+ICQ #328449886                                Tel. FR: +33  6  61925193
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: signature.pgp
+Type: application/pgp-signature
+Size: 189 bytes
+Desc: Digital signature
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/fetchmail-users/attachments/20090427/1669b313/attachment.pgp">https://lists.berlios.de/pipermail/fetchmail-users/attachments/20090427/1669b313/attachment.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001894.html">[fetchmail-users] Silencing &quot;CommonName mismatch&quot; warnings
+</A></li>
+	<LI>Next message: <A HREF="001896.html">[fetchmail-users] courier (catchall) and fetchmail errors
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1895">[ date ]</a>
+              <a href="thread.html#1895">[ thread ]</a>
+              <a href="subject.html#1895">[ subject ]</a>
+              <a href="author.html#1895">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

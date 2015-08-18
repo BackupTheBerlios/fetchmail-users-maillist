@@ -1,0 +1,206 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] How to avoid these annoying reports
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2007-August/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20How%20to%20avoid%20these%20annoying%20reports&In-Reply-To=%3C200708201323.23696.cannewilson%40googlemail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001182.html">
+   <LINK REL="Next"  HREF="001193.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] How to avoid these annoying reports</H1>
+    <B>Anne Wilson</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20How%20to%20avoid%20these%20annoying%20reports&In-Reply-To=%3C200708201323.23696.cannewilson%40googlemail.com%3E"
+       TITLE="[fetchmail-users] How to avoid these annoying reports">cannewilson at googlemail.com
+       </A><BR>
+    <I>Mon Aug 20 14:23:23 CEST 2007</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001182.html">[fetchmail-users] How to avoid these annoying reports
+</A></li>
+        <LI>Next message: <A HREF="001193.html">[fetchmail-users] How to avoid these annoying reports
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1191">[ date ]</a>
+              <a href="thread.html#1191">[ thread ]</a>
+              <a href="subject.html#1191">[ subject ]</a>
+              <a href="author.html#1191">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Monday 20 Aug 2007, you wrote:
+&gt;<i> Anne Wilson schrieb:
+</I>&gt;<i> &gt; On Monday 20 Aug 2007, Rob MacGregor wrote:
+</I>&gt;<i> &gt;&gt; On 8/20/07, Anne Wilson &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">cannewilson at googlemail.com</A>&gt; wrote:
+</I>&gt;<i> &gt;&gt;&gt; Abbreviated .fetchmailrc - other mailboxes removed for simplicity.
+</I>&gt;<i> &gt;&gt;&gt;
+</I>&gt;<i> &gt;&gt;&gt; set logfile = /home/anne/fetchmail.log
+</I>&gt;<i> &gt;&gt;&gt;
+</I>&gt;<i> &gt;&gt;&gt; poll zencphosting09.zen.co.uk with proto pop3
+</I>&gt;<i> &gt;&gt;&gt;         user &quot;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">suspect at lydgate.org</A>&quot;
+</I>&gt;<i> &gt;&gt;&gt;         pass &quot;xxxxxx&quot;
+</I>&gt;<i> &gt;&gt;&gt;         is anne fetchall
+</I>&gt;<i> &gt;&gt;&gt;
+</I>&gt;<i> &gt;&gt;&gt; zencphosting09 is the server for my domain account.  Maybe the
+</I>&gt;<i> &gt;&gt;&gt; certificate doesn't exist on that server?  The general server for mail
+</I>&gt;<i> &gt;&gt;&gt; not on the domain addresses is mailhost.zen.co.uk.  I used that at
+</I>&gt;<i> &gt;&gt;&gt; first, but then got a message that the certificate didn't match my
+</I>&gt;<i> &gt;&gt;&gt; domain, for every mailbox, every connection.  I did ask zen if I should
+</I>&gt;<i> &gt;&gt;&gt; put a certificate onto my domain space, but they said that it was not
+</I>&gt;<i> &gt;&gt;&gt; necessary.
+</I>&gt;<i> &gt;&gt;
+</I>&gt;<i> &gt;&gt; Ok, next step, please post the output of &quot;fetchmail -v -v -v -c&quot;
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; Nothing.  A pause, then return to prompt:
+</I>&gt;<i> &gt; fetchmail -v -v -v -c
+</I>&gt;<i> &gt; fetchmail: can't check mail while another fetchmail to same host is
+</I>&gt;<i> &gt; running. [<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">anne at david</A> ~]$ fetchmail --quit
+</I>&gt;<i> &gt; fetchmail: background fetchmail at 6056 killed.
+</I>&gt;<i> &gt; [<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">anne at david</A> ~]$ fetchmail -v -v -v -c
+</I>&gt;<i> &gt; [<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">anne at david</A> ~]$
+</I>&gt;<i>
+</I>&gt;<i> Try: fetchmail -v -v -v -c --nodetach --nosyslog
+</I>
+That's better.  Here are the beginning, up to the end of the first mailbox, 
+and the last mailbox.  All the others are like the last one.
+
+[<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">anne at david</A> ~]$ fetchmail -v -v -v -c --nodetach --nosyslog
+fetchmail: 6.3.8 querying mailhost.zen.co.uk (protocol POP3) at Mon 20 Aug 
+2007 12:51:17 BST: poll started
+fetchmail: Trying to connect to 212.23.3.98/110...connected.
+fetchmail: POP3&lt; +OK heisenberg, Zen Internet POP3 Server Ready
+fetchmail: POP3&gt; CAPA
+fetchmail: POP3&lt; -ERR You must login first.
+fetchmail: You must login first.
+fetchmail: Repoll immediately on <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">zen136663 at mailhost.zen.co.uk</A>
+fetchmail: Trying to connect to 212.23.3.98/110...connected.
+fetchmail: POP3&lt; +OK heisenberg, Zen Internet POP3 Server Ready
+fetchmail: POP3&gt; USER zen136663
+fetchmail: POP3&lt; +OK Please enter your pass, with the PASS command.
+fetchmail: POP3&gt; PASS *
+fetchmail: POP3&lt; +OK Logged in.
+fetchmail: selecting or re-polling default folder
+fetchmail: POP3&gt; STAT
+fetchmail: POP3&lt; +OK 0 0
+fetchmail: No mail for zen136663 at mailhost.zen.co.uk
+fetchmail: POP3&gt; QUIT
+fetchmail: POP3&lt; +OK Goodbye. See you again sometime :)
+
+fetchmail: 6.3.8 querying mailhost.zen.co.uk (protocol POP3) at Mon 20 Aug 
+2007 12:51:18 BST: poll completed
+fetchmail: 6.3.8 querying zencphosting09.zen.co.uk (protocol POP3) at Mon 20 
+Aug 2007 12:51:18 BST: poll started
+fetchmail: Trying to connect to 82.71.204.15/110...connected.
+fetchmail: POP3&lt; +OK Hello there.
+fetchmail: POP3&gt; CAPA
+fetchmail: POP3&lt; +OK Here's what I can do:
+fetchmail: POP3&lt; STLS
+fetchmail: POP3&lt; TOP
+fetchmail: POP3&lt; USER
+fetchmail: POP3&lt; LOGIN-DELAY 10
+fetchmail: POP3&lt; PIPELINING
+fetchmail: POP3&lt; UIDL
+fetchmail: POP3&lt; IMPLEMENTATION Courier Mail Server
+fetchmail: POP3&lt; .
+fetchmail: POP3&gt; STLS
+fetchmail: POP3&lt; +OK Begin SSL/TLS negotiation now.
+fetchmail: Issuer Organisation: Unknown
+fetchmail: Issuer CommonName: zencphosting09.zen.co.uk
+fetchmail: Server CommonName: zencphosting09.zen.co.uk
+fetchmail: zencphosting09.zen.co.uk key fingerprint: 
+01:A0:29:54:2F:03:DB:AE:79:8D:B8:B9:BB:9A:1F:9A
+fetchmail: Server certificate verification error: self signed certificate
+fetchmail: POP3&gt; CAPA
+fetchmail: POP3&lt; +OK Here's what I can do:
+fetchmail: POP3&lt; TOP
+fetchmail: POP3&lt; USER
+fetchmail: POP3&lt; LOGIN-DELAY 10
+fetchmail: POP3&lt; PIPELINING
+fetchmail: POP3&lt; UIDL
+fetchmail: POP3&lt; IMPLEMENTATION Courier Mail Server
+fetchmail: POP3&lt; .
+fetchmail: 6.3.8 querying zencphosting09.zen.co.uk (protocol POP3) at Mon 20 
+Aug 2007 12:51:24 BST: poll completed
+fetchmail: 6.3.8 querying zencphosting09.zen.co.uk (protocol POP3) at Mon 20 
+Aug 2007 12:51:24 BST: poll started
+fetchmail: Trying to connect to 82.71.204.15/110...connected.
+fetchmail: POP3&lt; +OK Hello there.
+fetchmail: POP3&gt; CAPA
+fetchmail: POP3&lt; +OK Here's what I can do:
+fetchmail: POP3&lt; STLS
+fetchmail: POP3&lt; TOP
+fetchmail: POP3&lt; USER
+fetchmail: POP3&lt; LOGIN-DELAY 10
+fetchmail: POP3&lt; PIPELINING
+fetchmail: POP3&lt; UIDL
+fetchmail: POP3&lt; IMPLEMENTATION Courier Mail Server
+fetchmail: POP3&lt; .
+fetchmail: POP3&gt; STLS
+fetchmail: POP3&lt; +OK Begin SSL/TLS negotiation now.
+fetchmail: Issuer Organisation: Unknown
+fetchmail: Issuer CommonName: zencphosting09.zen.co.uk
+fetchmail: Server CommonName: zencphosting09.zen.co.uk
+fetchmail: zencphosting09.zen.co.uk key fingerprint: 
+01:A0:29:54:2F:03:DB:AE:79:8D:B8:B9:BB:9A:1F:9A
+fetchmail: Server certificate verification error: self signed certificate
+fetchmail: POP3&gt; CAPA
+fetchmail: POP3&lt; +OK Here's what I can do:
+fetchmail: POP3&lt; TOP
+fetchmail: POP3&lt; USER
+fetchmail: POP3&lt; LOGIN-DELAY 10
+fetchmail: POP3&lt; PIPELINING
+fetchmail: POP3&lt; UIDL
+fetchmail: POP3&lt; IMPLEMENTATION Courier Mail Server
+fetchmail: POP3&lt; .
+fetchmail: zencphosting09.zen.co.uk: upgrade to TLS succeeded.
+fetchmail: POP3&gt; USER <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">suspect at lydgate.org</A>
+fetchmail: POP3&lt; +OK Password required.
+fetchmail: POP3&gt; PASS *
+fetchmail: POP3&lt; +OK logged in.
+fetchmail: selecting or re-polling default folder
+fetchmail: POP3&gt; STAT
+fetchmail: POP3&lt; +OK 0 0
+fetchmail: No mail for <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">suspect at lydgate.org</A> at zencphosting09.zen.co.uk
+fetchmail: POP3&gt; QUIT
+fetchmail: POP3&lt; +OK Bye-bye.
+fetchmail: 6.3.8 querying zencphosting09.zen.co.uk (protocol POP3) at Mon 20 
+Aug 2007 12:51:25 BST: poll completed
+fetchmail: normal termination, status 1
+
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: signature.asc
+Type: application/pgp-signature
+Size: 189 bytes
+Desc: This is a digitally signed message part.
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/fetchmail-users/attachments/20070820/34194928/attachment.pgp">https://lists.berlios.de/pipermail/fetchmail-users/attachments/20070820/34194928/attachment.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001182.html">[fetchmail-users] How to avoid these annoying reports
+</A></li>
+	<LI>Next message: <A HREF="001193.html">[fetchmail-users] How to avoid these annoying reports
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1191">[ date ]</a>
+              <a href="thread.html#1191">[ thread ]</a>
+              <a href="subject.html#1191">[ subject ]</a>
+              <a href="author.html#1191">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

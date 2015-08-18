@@ -1,0 +1,129 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] fetchmail authorization and socket errors
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2006-November/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%20authorization%20and%20socket%20errors&In-Reply-To=%3C43ea8d070611120810j1f28e397j2a565c0254b2847c%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000737.html">
+   <LINK REL="Next"  HREF="000696.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] fetchmail authorization and socket errors</H1>
+    <B>Rob MacGregor</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%20authorization%20and%20socket%20errors&In-Reply-To=%3C43ea8d070611120810j1f28e397j2a565c0254b2847c%40mail.gmail.com%3E"
+       TITLE="[fetchmail-users] fetchmail authorization and socket errors">rob.macgregor at gmail.com
+       </A><BR>
+    <I>Sun Nov 12 17:10:46 CET 2006</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000737.html">[fetchmail-users] Fetchmail vs. Getmail (from a Fetchmail	perspective)
+</A></li>
+        <LI>Next message: <A HREF="000696.html">[fetchmail-users] fetchmail authorization and socket errors
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#695">[ date ]</a>
+              <a href="thread.html#695">[ thread ]</a>
+              <a href="subject.html#695">[ subject ]</a>
+              <a href="author.html#695">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Last warning - keep the traffic on the list.
+
+On 11/12/06, <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">wade at wadesmart.com</A> &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">wade at wadesmart.com</A>&gt; wrote:
+&gt;<i> 11122006 1000 GMT-6
+</I>&gt;<i>
+</I>&gt;<i> That was it. There wasnt anything else. Ill run it again now.
+</I>&gt;<i>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">wadesmart at wadesmart</A>:~$ fetchmail -v -v --nosyslog
+</I>
+You've got something *VERY* strange going on.  You should have lines
+about it communicating with the mail servers.
+
+Do you normally explicitly reference a fetchmailrc file in a
+non-default location or pass other flags on the command line?
+
+You should see something like:
+
+fetchmail: 6.3.5 querying pop.gmail.com (protocol POP3) at Sun Nov 12
+16:05:47 2006: poll started
+Trying to connect to 66.249.93.111/995...connected.
+fetchmail: Issuer Organization: Equifax
+fetchmail: Unknown Issuer CommonName
+fetchmail: Server CommonName: pop.gmail.com
+fetchmail: pop.gmail.com key fingerprint:
+59:51:61:89:CD:DD:B2:35:94:BB:44:97:A0:39:D5:B4
+fetchmail: POP3&lt; +OK Gpop ready for requests from 12.34.56.78 z40pf4206248ugc
+fetchmail: POP3&gt; CAPA
+fetchmail: POP3&lt; +OK Capability list follows
+fetchmail: POP3&lt; USER
+fetchmail: POP3&lt; RESP-CODES
+fetchmail: POP3&lt; EXPIRE 0
+fetchmail: POP3&lt; LOGIN-DELAY 300
+fetchmail: POP3&lt; X-GOOGLE-VERHOEVEN
+fetchmail: POP3&lt; UIDL
+fetchmail: POP3&lt; .
+fetchmail: POP3&gt; USER me
+fetchmail: POP3&lt; +OK send PASS
+fetchmail: POP3&gt; PASS *
+fetchmail: POP3&lt; +OK Welcome.
+fetchmail: selecting or re-polling default folder
+fetchmail: POP3&gt; STAT
+fetchmail: POP3&lt; +OK 925 4193467
+fetchmail: POP3&gt; LAST
+fetchmail: POP3&lt; -ERR Not supported
+fetchmail: Not supported
+fetchmail: POP3&gt; UIDL
+fetchmail: POP3&lt; +OK
+fetchmail: POP3&lt; 1 GmailI0123450123401234
+fetchmail: 1 is unseen
+...
+fetchmail: 925 is unseen
+fetchmail: POP3&lt; .
+925 messages for me at pop.gmail.com (4193467 octets).
+fetchmail: POP3&gt; QUIT
+fetchmail: POP3&lt; +OK Farewell.
+fetchmail: 6.3.5 querying pop.gmail.com (protocol POP3) at Sun Nov 12
+16:05:51 2006: poll completed
+fetchmail: discarding new UID list
+fetchmail: normal termination, status 0
+
+Can you update to fetchmail 6.3.5 and re-try the command
+
+-- 
+                 Please keep list traffic on the list.
+
+Rob MacGregor
+      Whoever fights monsters should see to it that in the process he
+        doesn't become a monster.                  Friedrich Nietzsche
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000737.html">[fetchmail-users] Fetchmail vs. Getmail (from a Fetchmail	perspective)
+</A></li>
+	<LI>Next message: <A HREF="000696.html">[fetchmail-users] fetchmail authorization and socket errors
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#695">[ date ]</a>
+              <a href="thread.html#695">[ thread ]</a>
+              <a href="subject.html#695">[ subject ]</a>
+              <a href="author.html#695">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

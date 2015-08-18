@@ -1,0 +1,87 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Handling permanent errors, softbounce
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2010-November/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Handling%20permanent%20errors%2C%20softbounce&In-Reply-To=%3CAANLkTinm2CUFNsUOvZ%2BNTQAnadoPSatwxSxdkWBprTD9%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002542.html">
+   <LINK REL="Next"  HREF="002544.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Handling permanent errors, softbounce</H1>
+    <B>Rob MacGregor</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Handling%20permanent%20errors%2C%20softbounce&In-Reply-To=%3CAANLkTinm2CUFNsUOvZ%2BNTQAnadoPSatwxSxdkWBprTD9%40mail.gmail.com%3E"
+       TITLE="[fetchmail-users] Handling permanent errors, softbounce">rob.macgregor at gmail.com
+       </A><BR>
+    <I>Sat Nov 13 21:57:52 CET 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002542.html">[fetchmail-users] Handling permanent errors, softbounce
+</A></li>
+        <LI>Next message: <A HREF="002544.html">[fetchmail-users] Handling permanent errors, softbounce
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2543">[ date ]</a>
+              <a href="thread.html#2543">[ thread ]</a>
+              <a href="subject.html#2543">[ subject ]</a>
+              <a href="author.html#2543">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Sat, Nov 13, 2010 at 19:42, Leon Kuchenbecker
+&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">lkuchenb at inf.fu-berlin.de</A>&gt; wrote:
+&gt;<i> Hi,
+</I>&gt;<i>
+</I>&gt;<i> I am fetching mail from a POP server and delivering it to a local MTA
+</I>&gt;<i> with fetchmail (6.3.18). My understanding of the softbounce setting is
+</I>&gt;<i> that fetchmail will not delete the mail on the POP server if a permanent
+</I>&gt;<i> error 5xx is reported by the MTA before the DATA command. However, that
+</I>&gt;<i> is not what i observe. E.g. if the fetchmailrc contains a user to
+</I>&gt;<i> deliver mail to that does not exist the MTA will reject before DATA,
+</I>&gt;<i> fetchmail however bounces and removes the mail from the POP box. Is that
+</I>&gt;<i> the intended behaviour?
+</I>
+The key phrase from the manual may be:
+
+All permanent delivery errors cause messages to be left on the
+upstream server if the protocol supports that.
+
+What happens if you swtich to using IMAP?
+
+-- 
+&#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160;&#160; Please keep list traffic on the list.
+
+Rob MacGregor
+&#160; &#160; &#160; Whoever fights monsters should see to it that in the process he
+&#160; &#160; &#160; &#160; doesn't become a monster.&#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; Friedrich Nietzsche
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002542.html">[fetchmail-users] Handling permanent errors, softbounce
+</A></li>
+	<LI>Next message: <A HREF="002544.html">[fetchmail-users] Handling permanent errors, softbounce
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2543">[ date ]</a>
+              <a href="thread.html#2543">[ thread ]</a>
+              <a href="subject.html#2543">[ subject ]</a>
+              <a href="author.html#2543">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

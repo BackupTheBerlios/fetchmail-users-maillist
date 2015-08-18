@@ -1,0 +1,97 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] fetchmail setup problem
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2011-February/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%20setup%20problem&In-Reply-To=%3C4D5E43BD.70408%40gmx.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002654.html">
+   <LINK REL="Next"  HREF="002656.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] fetchmail setup problem</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%20setup%20problem&In-Reply-To=%3C4D5E43BD.70408%40gmx.de%3E"
+       TITLE="[fetchmail-users] fetchmail setup problem">matthias.andree at gmx.de
+       </A><BR>
+    <I>Fri Feb 18 11:02:37 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002654.html">[fetchmail-users] fetchmail setup problem
+</A></li>
+        <LI>Next message: <A HREF="002656.html">[fetchmail-users] building fetchmail with ntlm
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2655">[ date ]</a>
+              <a href="thread.html#2655">[ thread ]</a>
+              <a href="subject.html#2655">[ subject ]</a>
+              <a href="author.html#2655">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Am 18.02.2011 02:33, schrieb Jude DaShiell:
+&gt;<i> Okay, the stuff in /usr/share/curl/ca-bundle.crt turned out to be what was 
+</I>&gt;<i> needed.  I have gmail downloading with fetchmail but need the syntax to 
+</I>&gt;<i> cause the certificates to have their fingerprints checked to add to my 
+</I>&gt;<i> .fetchmailrc file.  I'm passing all the inbox google mail through nmh in 
+</I>&gt;<i> order to separate messages that way I can use clamscan to save space when 
+</I>&gt;<i> it finds a piece of malware on one of those messages and delete that 
+</I>&gt;<i> message.  I had downloaded about 2 CD's worth of unread email and saved it 
+</I>&gt;<i> in mbox files and when clamscan found a piece of malware in the mbox file, 
+</I>&gt;<i> I couldn't delete just that one message with the malware in it.  So no 
+</I>&gt;<i> more mbox format over here.
+</I>
+Jude,
+
+If you already have
+
+	sslcertck sslcertfile /usr/share/curl/ca-bundle.crt
+
+then adding the fingerprints isn't going to add security, unless there
+is a secure way to retrieve the fingerprints from Google.
+
+I doubt that there is a faxback or similar service for gmail
+fingerprints though...
+
+Instead, since you can specify only one fingerprint (a fetchmail
+limitation in currently released 6.3.X versions), fingerprints may
+actually get in the way of mail retrieval -- if it actually does,
+depends on the way Google implements server certificates and load balancing.
+
+WRT local mail formats, whether you use mbox, nmh, Maildir, Maildir++,
+or whatever, is none of fetchmail's business.
+
+HTH
+
+-- 
+Matthias Andree
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002654.html">[fetchmail-users] fetchmail setup problem
+</A></li>
+	<LI>Next message: <A HREF="002656.html">[fetchmail-users] building fetchmail with ntlm
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2655">[ date ]</a>
+              <a href="thread.html#2655">[ thread ]</a>
+              <a href="subject.html#2655">[ subject ]</a>
+              <a href="author.html#2655">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

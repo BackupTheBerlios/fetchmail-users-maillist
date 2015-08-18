@@ -1,0 +1,140 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Re: RETR with UIDL
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2006-March/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Re%3A%20RETR%20with%20UIDL&In-Reply-To=%3C20060303132133.GB3208%40session.bombay.retortsoft.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000295.html">
+   <LINK REL="Next"  HREF="000298.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Re: RETR with UIDL</H1>
+    <B>Sunil Shetye</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Re%3A%20RETR%20with%20UIDL&In-Reply-To=%3C20060303132133.GB3208%40session.bombay.retortsoft.com%3E"
+       TITLE="[fetchmail-users] Re: RETR with UIDL">shetye at bombay.retortsoft.com
+       </A><BR>
+    <I>Fri Mar  3 14:21:33 CET 2006</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000295.html">[fetchmail-users] Re: RETR with UIDL
+</A></li>
+        <LI>Next message: <A HREF="000298.html">[fetchmail-users] Re: RETR with UIDL
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#297">[ date ]</a>
+              <a href="thread.html#297">[ thread ]</a>
+              <a href="subject.html#297">[ subject ]</a>
+              <a href="author.html#297">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Quoting from Matthias Andree's mail on Fri, Mar 03, 2006:
+&gt;<i> &gt; Please note that the change I am recommending is that fetchmail
+</I>&gt;<i> &gt; *should* use RETR with pop3+uidl servers. Other pop3 servers will not
+</I>&gt;<i> &gt; be affected by this change.
+</I>&gt;<i> 
+</I>&gt;<i> Yes, it's still 6.4.X stuff since it deliberately changes behavior for
+</I>&gt;<i> no good reason.
+</I>
+There is a good reason.
+
+The advice being given to force fetchmail to avoid using &quot;TOP&quot; with
+these buggy servers is to enable the &quot;fetchall&quot; option. The FAQ is
+littered with this advice for various servers with variety of
+problems. The problems with &quot;fetchall&quot; option are:
+
+- &quot;fetchall&quot; cannot be used with &quot;uidl&quot;
+- &quot;fetchall&quot; causes mails to be redownloaded if there is a line-hit
+  while fetchmail is downloading mails. If there are consecutive
+  line-hits, the same set of mails could be downloaded any number of
+  times.
+
+To avoid the redownloading of mails, one has to now probably add the
+&quot;expunge&quot; option also. Finding the best value for &quot;expunge&quot; is a
+problem itself:
+
+- &quot;expunge 1&quot; is expensive. It will reconnect for every mail. Many
+  mailservers may not like this too. However, each mail will be
+  downloaded only once.
+- &quot;expunge 2&quot; is less expensive. Mailservers may still object to this.
+  Very few mails will be redownloaded.
+- &quot;expunge 20&quot; is relatively cheap. Mailservers may not object to
+  this. Some mails will get redownloaded. However, on a bad day, if
+  you do get consecutive line-hits, you will still end up with
+  multiple copies of mails.
+
+In short, the user has to go for some sort of experimentation and use
+a sub-optimal solution to get the mails(*).
+
+The best solution (wherever possible) is to use &quot;uidl&quot; as mails get
+downloaded exactly once. To use &quot;uidl&quot;, one has to use &quot;no fetchall&quot;.
+With &quot;no fetchall&quot;, fetchmail refuses to use &quot;RETR&quot;.
+
+&gt;<i> fetchmail 6.3.2 already introduced the (incompatible) &quot;use RETR with
+</I>&gt;<i> Maillennium server&quot; change because it was considered we'd rather screw
+</I>&gt;<i> some message flags and a LAST pointer rather than truncate messages.
+</I>
+I don't get this part. If the pop3 server is supporting UIDL and
+fetchmail is running with the &quot;uidl&quot; option, why bother about the LAST
+pointer and message flags? After all, even if the user is running
+multiple fetchmails, all those fetchmails would be running with the
+same configuration.
+
+And, as has already been said, most standard interactive clients use
+&quot;uidl&quot; anyway. So, they also will not get affected.
+
+&gt;<i> Sort of. At least the ones that were reported do not delete
+</I>&gt;<i> messages if the connection is hung up without prior &quot;QUIT&quot; command.
+</I>&gt;<i> &lt;<A HREF="../2006-January/000220.html">http://lists.berlios.de/pipermail/fetchmail-users/2006-January/000220.html</A>&gt;
+</I>
+Jakob, please give more details about the Mercury server:
+
+- its signature line
+- its CAPA output
+- whether it supports UIDL
+- whether you are using it with &quot;uidl&quot;
+and finally,
+- your opinion on whether fetchmail should use &quot;RETR&quot; with &quot;uidl&quot;.
+
+-- 
+Sunil Shetye.
+
+(*) This need for experimentation is not documented now. Currently,
+there is no entry in FAQ which says that if you are using &quot;fetchall&quot;,
+you should necessarily use say &quot;expunge 10&quot;. FAQ O9 does talk of
+&quot;fetchall&quot; and &quot;expunge&quot;. But, it seems to be bad-mouthing &quot;uidl&quot; and
+switching to IMAP4 is given as a better option than using &quot;expunge&quot;.
+However, this is a documentation issue and not related to the main
+topic.
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000295.html">[fetchmail-users] Re: RETR with UIDL
+</A></li>
+	<LI>Next message: <A HREF="000298.html">[fetchmail-users] Re: RETR with UIDL
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#297">[ date ]</a>
+              <a href="thread.html#297">[ thread ]</a>
+              <a href="subject.html#297">[ subject ]</a>
+              <a href="author.html#297">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

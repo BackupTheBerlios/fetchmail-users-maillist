@@ -1,0 +1,119 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] failed to download mail from Gmail with IMAP
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2013-August/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20failed%20to%20download%20mail%20from%20Gmail%20with%20IMAP&In-Reply-To=%3C51FC1962.5090000%40gmx.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003451.html">
+   <LINK REL="Next"  HREF="003453.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] failed to download mail from Gmail with IMAP</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20failed%20to%20download%20mail%20from%20Gmail%20with%20IMAP&In-Reply-To=%3C51FC1962.5090000%40gmx.de%3E"
+       TITLE="[fetchmail-users] failed to download mail from Gmail with IMAP">matthias.andree at gmx.de
+       </A><BR>
+    <I>Fri Aug  2 22:41:06 CEST 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003451.html">[fetchmail-users] failed to download mail from Gmail with IMAP
+</A></li>
+        <LI>Next message: <A HREF="003453.html">[fetchmail-users] fetchmail 7.0.0-alpha5 alpha preview release -	SSL cipher setting/info
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3452">[ date ]</a>
+              <a href="thread.html#3452">[ thread ]</a>
+              <a href="subject.html#3452">[ subject ]</a>
+              <a href="author.html#3452">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Am 02.08.2013 18:17, schrieb Alexander Pohl:
+
+&gt;<i> I've recently started to backup a small number of Gmail accounts with
+</I>&gt;<i> fetchmail. On one account, it fails to download the body of the first mail
+</I>&gt;<i> in INBOX with error code 7. I am not able to get more information what
+</I>&gt;<i> happens on the Gmail IMAP server side, but I've collected all information I
+</I>&gt;<i> could get from fetchmail.
+</I>&gt;<i> 
+</I>&gt;<i> The output was gathered with latest fetchmail 6.3.26 in a Debian Wheezy
+</I>&gt;<i> chroot environment. The error also occurred with the older fetchmail 6.3.18
+</I>&gt;<i> version in Debian Squeeze run as normal user. Btw, the same email downloads
+</I>&gt;<i> fine with POP3 :-|. The files attached are in the following order:
+</I>&gt;<i> 
+</I>&gt;<i> 1. the orginal email (sensitive information removed and shortened)
+</I>&gt;<i> 2. env LC_ALL=C fetchmail -vvv  --nodetach --nosyslog -a
+</I>&gt;<i> 3. fetchmail -V
+</I>
+Alexander,
+
+It would appear that imap.gmail.com is malfunctioning. See here:
+
+Obtaining sizes:
+
+&gt;<i> fetchmail: IMAP&gt; A0004 FETCH 1:100 RFC822.SIZE 
+</I>&gt;<i> fetchmail: IMAP&lt; * 1 FETCH (RFC822.SIZE 10146) 
+</I>&gt;<i> fetchmail: IMAP&lt; * 2 FETCH (RFC822.SIZE 3424) 
+</I>&gt;<i> *** some lines omitted *** 
+</I>&gt;<i> fetchmail: IMAP&lt; A0004 OK Success 
+</I>
+succeeded.  Now obtain header of first message in INBOX:
+
+&gt;<i> fetchmail: IMAP&gt; A0005 FETCH 1 RFC822.HEADER 
+</I>&gt;<i> fetchmail: IMAP&lt; * 1 FETCH (RFC822.HEADER {1118} reading message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">a.h.pohl at gmail.com</A>@gmail-imap.l.google.com:1 of 9215 (1118 header octets) 
+</I>...
+&gt;<i> fetchmail: about to deliver with: formail -c &gt;&gt; ~/Mail/.Inbox
+</I>&gt;<i> #
+</I>&gt;<i> fetchmail: IMAP&lt; )
+</I>&gt;<i> fetchmail: IMAP&lt; A0005 OK Success
+</I>
+Succeeded.  Now obtain body of first message, without setting \Seen:
+see &lt;<A HREF="http://tools.ietf.org/html/rfc3501#page-56">http://tools.ietf.org/html/rfc3501#page-56</A>&gt;
+
+&gt;<i> fetchmail: IMAP&gt; A0006 FETCH 1 BODY.PEEK[TEXT]
+</I>&gt;<i> fetchmail: IMAP&lt; A0006 NO Some messages could not be FETCHed (Failure)
+</I>&gt;<i> fetchmail: IMAP&gt; A0007 LOGOUT
+</I>
+Refused by the server.  Arguably, fetchmail might try to handle a &quot;NO&quot;
+better (as opposed to BAD) and skip the offending message, but this is
+still a server malfunction - the message is 10146 bytes overall, with
+1118 of them the header. So there should be some 9026...9028 bytes in
+the body.
+
+You can try some of the Google Mail settings, see
+&lt;<A HREF="http://www.fetchmail.info/fetchmail-FAQ.html#I9">http://www.fetchmail.info/fetchmail-FAQ.html#I9</A>&gt; for the links, perhaps
+that can help.  If not, contact Google Mail support.
+
+HTH
+Matthias
+</PRE>
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003451.html">[fetchmail-users] failed to download mail from Gmail with IMAP
+</A></li>
+	<LI>Next message: <A HREF="003453.html">[fetchmail-users] fetchmail 7.0.0-alpha5 alpha preview release -	SSL cipher setting/info
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3452">[ date ]</a>
+              <a href="thread.html#3452">[ thread ]</a>
+              <a href="subject.html#3452">[ subject ]</a>
+              <a href="author.html#3452">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

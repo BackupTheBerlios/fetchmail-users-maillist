@@ -1,0 +1,108 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Getting Postfix to add header info for	fetchmail
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2006-August/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Getting%20Postfix%20to%20add%20header%20info%20for%0A%09fetchmail&In-Reply-To=%3C44E0AA3F.6090204%40gmx.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000567.html">
+   <LINK REL="Next"  HREF="000564.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Getting Postfix to add header info for	fetchmail</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Getting%20Postfix%20to%20add%20header%20info%20for%0A%09fetchmail&In-Reply-To=%3C44E0AA3F.6090204%40gmx.de%3E"
+       TITLE="[fetchmail-users] Getting Postfix to add header info for	fetchmail">matthias.andree at gmx.de
+       </A><BR>
+    <I>Mon Aug 14 18:52:15 CEST 2006</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000567.html">[fetchmail-users] Has anyone ever seen &quot;Fetchmail saw more than	N timouts while attempting to get mail from ...&quot;
+</A></li>
+        <LI>Next message: <A HREF="000564.html">[fetchmail-users] fetchmail 6.3.5-beta2 snapshot
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#563">[ date ]</a>
+              <a href="thread.html#563">[ thread ]</a>
+              <a href="subject.html#563">[ subject ]</a>
+              <a href="author.html#563">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Dale Pontius schrieb:
+&gt;<i> The problem is that my family receives mail through multidrop, she sends
+</I>&gt;<i> email to multiple family members, and her machine shares a domain name
+</I>&gt;<i> with my LAN. In addition, I have a forwarding domain at DynDNS.org that
+</I>&gt;<i> both she and my family use, and that name corresponds to the LAN names
+</I>&gt;<i> for all of our machines. Therefore here Postfix won't send email to my
+</I>&gt;<i> family, because it thinks the mail is local. I could set up an alias to
+</I>&gt;<i> send email directly to my ISP account, but then it appears that all
+</I>&gt;<i> multidrop information is lost.
+</I>&gt;<i> 
+</I>&gt;<i> So I think the question is: How do I get Postfix to add the right
+</I>&gt;<i> headers so that multidrop can figure out who gets a piece of mail?
+</I>
+The good thing is, if ALL received messages pass through the same Postfix
+box, it's trivial, as any halfway recent Postfix version (2.2.X for sure)
+will add, upon delivery (ok, this isn't 100% accurate), one Delivered-To:
+and one X-Original-To: header. There are subtle differences in semantics WRT
+forwarding and rewriting, but I'm confident one of these headers will suit
+your needs.
+
+See fetchmail's &quot;envelope&quot; configuration keyword to point it towards the
+right header.
+
+&gt;<i> I've done some command line experiments, and on the first &quot;Received:&quot;
+</I>&gt;<i> line, where Postfix gets the mail from the 'mail' command, there is no
+</I>&gt;<i> &quot;for <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">grandson at family.org</A>&quot; so there is no information for fetchmail to do
+</I>&gt;<i> multidrop.
+</I>
+Using Received: headers for multidrop is ill-advised, quite picky about
+formatting (more documentation to show in 6.3.5's manual page), and I
+wouldn't recommend doing that if you can help it.
+
+&gt;<i> Maybe I'm asking the wrong question. Maybe rather than adding header
+</I>&gt;<i> information there's some way to tell Postfix that half of this domain is
+</I>&gt;<i> here, and half is over there. I'll be at her house in the next few
+</I>&gt;<i> weeks, and would like to try and fix this up locally. (While I'm busy
+</I>&gt;<i> bringing her up to date - she gets security updates only from 600+ miles
+</I>&gt;<i> away.)
+</I>
+Well, transport_maps (see: man 5 transport) may help you out, but you may
+need to configure the complete domain with complementary routing information
+(local vs. smtp) on both sides. This goes way beyond the topic of the list,
+so may I suggest that you read up on the pointers I've given and then ask
+the Postfix setup details on the postfix-users list?
+
+Please join the fetchmail-users list at berlios.de, too. see
+www.fetchmail.info for links.
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000567.html">[fetchmail-users] Has anyone ever seen &quot;Fetchmail saw more than	N timouts while attempting to get mail from ...&quot;
+</A></li>
+	<LI>Next message: <A HREF="000564.html">[fetchmail-users] fetchmail 6.3.5-beta2 snapshot
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#563">[ date ]</a>
+              <a href="thread.html#563">[ thread ]</a>
+              <a href="subject.html#563">[ subject ]</a>
+              <a href="author.html#563">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,238 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] [PATCH] Re: only one message gets fetched using IMAP idle
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2006-May/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20%5BPATCH%5D%20Re%3A%20only%20one%20message%20gets%20fetched%20using%20IMAP%20idle&In-Reply-To=%3C20060516072335.GA7682%40session.bombay.retortsoft.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000406.html">
+   <LINK REL="Next"  HREF="000416.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] [PATCH] Re: only one message gets fetched using IMAP idle</H1>
+    <B>Sunil Shetye</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20%5BPATCH%5D%20Re%3A%20only%20one%20message%20gets%20fetched%20using%20IMAP%20idle&In-Reply-To=%3C20060516072335.GA7682%40session.bombay.retortsoft.com%3E"
+       TITLE="[fetchmail-users] [PATCH] Re: only one message gets fetched using IMAP idle">shetye at bombay.retortsoft.com
+       </A><BR>
+    <I>Tue May 16 09:23:35 CEST 2006</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000406.html">[fetchmail-users] only one message gets fetched using IMAP idle
+</A></li>
+        <LI>Next message: <A HREF="000416.html">[fetchmail-users] Re: [PATCH] Re: only one message gets fetched using IMAP idle
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#407">[ date ]</a>
+              <a href="thread.html#407">[ thread ]</a>
+              <a href="subject.html#407">[ subject ]</a>
+              <a href="author.html#407">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Quoting from Matthias Andree's mail on Mon, May 15, 2006:
+&gt;<i> &gt; But if I try to not to expunge the messages on the server after the 
+</I>&gt;<i> &gt; transfer (using &quot;keep&quot; configuration option), fetchmail immediately 
+</I>&gt;<i> &gt; terminates after fetching the first message. Don't know if this is intended 
+</I>&gt;<i> &gt; behaviour?
+</I>&gt;<i> 
+</I>&gt;<i> Time to summon Sunil who knows a bit more about the idle code...
+</I>
+Thanks, Matthias.
+
+&gt;<i> Well, --keep and --idle don't appear to be friends, but it doesn't
+</I>&gt;<i> appear to be intentional either, at least it's not documented; and the
+</I>&gt;<i> interfaces and assumptions in fetchmail aren't documented well, so I
+</I>&gt;<i> need to figure out which function expects what input and is expected to
+</I>&gt;<i> give what output...
+</I>&gt;<i> 
+</I>&gt;<i> I need to think about this a bit and understand the IMAP message
+</I>&gt;<i> counting stuff a bit better -- and decide if I really want to fix this
+</I>&gt;<i> in 6.3.X or only in 6.4.X where I plan to add UID support for IMAP.
+</I>&gt;<i> 
+</I>&gt;<i> I have committed this stopgap code to SVN however, but I'm not promising
+</I>&gt;<i> I can easily fix --keep --idle with reasonable effort.
+</I>
+Here is a patch which calculates recentcount as a difference between
+new and old EXISTS count. fetchmail will now no longer use the RECENT
+flag.
+
+There was a reason why &quot;keep&quot; and &quot;idle&quot; options could not work
+together before. The RECENT flag never gets cleared from a new mail
+unless you logout or you delete and expunge the mail. Thus, when
+&quot;keep&quot; is enabled, a mail which was \Recent remains so forever(*) for
+that session, even if the mail is downloaded and marked as \Seen. Note
+that the \Recent flag cannot be cleared by fetchmail (RFC 3501). This
+would cause fetchmail to loop forever and not go into IDLE mode.
+
+Now, with this patch, since the \Recent flag will not be used, it is
+possible to try supporting &quot;keep&quot; and &quot;idle&quot; together. This patch also
+patches driver.c to support this. Note that fetchmail will still not
+enter the IDLE mode if you do not have any new mail. This table should
+make the picture clearer:
+
+	with &quot;keep&quot; and &quot;idle&quot; options
+Mails   New mails       Enter IDLE mode    Enter IDLE mode
+                        before patch?      after patch?
+---------------------------------------------------------------
+ 0       0               Yes                Yes
+ &gt;= 1    0               No                 No
+ &gt;= 1    &gt;= 1            No                 Yes
+
+Please try this patch and report. Note that this patch has to be
+applied after the patch by Matthias Andree.
+
+-- 
+Sunil Shetye.
+
+(*) Of course, you may find some mailservers who do clear the \Recent
+flag automatically when the \Seen flag is set.
+-------------- next part --------------
+Index: fetchmail-6.3/driver.c
+===================================================================
+--- fetchmail-6.3/driver.c	(revision 4842)
++++ fetchmail-6.3/driver.c	(working copy)
+@@ -1461,7 +1461,7 @@
+ 		   * either allowed deletions and had no errors.
+ 		   * Otherwise it is far too easy to get into infinite loops.
+ 		   */
+-		  (dispatches &amp;&amp; ctl-&gt;server.base_protocol-&gt;retry &amp;&amp; !ctl-&gt;keep &amp;&amp; !ctl-&gt;errcount);
++		  (dispatches &amp;&amp; ctl-&gt;server.base_protocol-&gt;retry &amp;&amp; !ctl-&gt;errcount);
+ 	}
+ 
+ 	/* XXX: From this point onwards, preserve err unless a new error has occurred */
+Index: fetchmail-6.3/imap.c
+===================================================================
+--- fetchmail-6.3/imap.c	(revision 4842)
++++ fetchmail-6.3/imap.c	(working copy)
+@@ -37,7 +37,7 @@
+ static int expunge_period = 1;
+ 
+ /* mailbox variables initialized in imap_getrange() */
+-static int count = 0, recentcount = 0, unseen = 0, deletions = 0;
++static int count = 0, oldcount = 0, recentcount = 0, unseen = 0, deletions = 0;
+ static unsigned int startcount = 1;
+ static int expunged = 0;
+ static unsigned int *unseen_messages;
+@@ -89,6 +89,8 @@
+ 		    report(stderr, GT_(&quot;bogus message count!&quot;));
+ 		    return(PS_PROTOCOL);
+ 		}
++		if ((recentcount = count - oldcount) &lt; 0)
++		    recentcount = 0;
+ 
+ 		/*
+ 		 * Nasty kluge to handle RFC2177 IDLE.  If we know we're idling
+@@ -112,10 +114,14 @@
+ 		    stage = STAGE_FETCH;
+ 		}
+ 	    }
++# if 0
++	    /* we now compute recentcount as a difference between
++	     * new and old EXISTS */
+ 	    else if (strstr(buf, &quot; RECENT&quot;))
+ 	    {
+ 		recentcount = atoi(buf+2);
+ 	    }
++# endif
+ 	    else if (strstr(buf, &quot; EXPUNGE&quot;))
+ 	    {
+ 		/* the response &quot;* 10 EXPUNGE&quot; means that the currently
+@@ -124,11 +130,11 @@
+ 		{
+ 		    if (count &gt; 0)
+ 			count--;
+-		    /* Some servers do not report RECENT after an EXPUNGE.
+-		     * For such servers, assume that the mail being
+-		     * expunged is a recent one. For other servers, we
+-		     * should get an updated RECENT report later and this
+-		     * assumption will have no effect. */
++		    if (oldcount &gt; 0)
++			oldcount--;
++		    /* We do expect an EXISTS response immediately
++		     * after this, so this updation of recentcount is
++		     * just a precaution! */
+ 		    if (recentcount &gt; 0)
+ 			recentcount--;
+ 		    actual_deletions++;
+@@ -679,7 +685,7 @@
+ 			 int *countp, int *newp, int *bytes)
+ /* get range of messages to be fetched */
+ {
+-    int ok, oldcount;
++    int ok;
+     char buf[MSGBUFSIZE+1], *cp;
+ 
+     /* find out how many messages are waiting */
+@@ -691,14 +697,12 @@
+ 	 * end_mailbox_poll().
+ 	 *
+ 	 * recentcount is already set here by the last imap command which
+-	 * returned RECENT on detecting new mail. if recentcount is 0, wait
++	 * returned EXISTS on detecting new mail. if recentcount is 0, wait
+ 	 * for new mail.
+ 	 *
+ 	 * this is a while loop because imap_idle() might return on other
+ 	 * mailbox changes also */
+-	oldcount = count;
+-	while (count &lt;= oldcount &amp;&amp; recentcount == 0 &amp;&amp; do_idle) {
+-	    oldcount = count;
++	while (recentcount == 0 &amp;&amp; do_idle) {
+ 	    smtp_close(ctl, 1);
+ 	    ok = imap_idle(sock);
+ 	    if (ok)
+@@ -708,7 +712,7 @@
+ 	    }
+ 	}
+ 	/* if recentcount is 0, return no mail */
+-	if (recentcount == 0 &amp;&amp; count &lt;= oldcount)
++	if (recentcount == 0)
+ 		count = 0;
+ 	if (outlevel &gt;= O_DEBUG)
+ 	    report(stdout, ngettext(&quot;%d message waiting after re-poll\n&quot;,
+@@ -717,7 +721,7 @@
+     }
+     else
+     {
+-	count = 0;
++	oldcount = count = 0;
+ 	ok = gen_transact(sock, 
+ 			  check_only ? &quot;EXAMINE \&quot;%s\&quot;&quot; : &quot;SELECT \&quot;%s\&quot;&quot;,
+ 			  folder ? folder : &quot;INBOX&quot;);
+@@ -773,7 +777,7 @@
+ 	}
+     }
+ 
+-    *countp = count;
++    *countp = oldcount = count;
+     recentcount = 0;
+     startcount = 1;
+ 
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000406.html">[fetchmail-users] only one message gets fetched using IMAP idle
+</A></li>
+	<LI>Next message: <A HREF="000416.html">[fetchmail-users] Re: [PATCH] Re: only one message gets fetched using IMAP idle
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#407">[ date ]</a>
+              <a href="thread.html#407">[ thread ]</a>
+              <a href="subject.html#407">[ subject ]</a>
+              <a href="author.html#407">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

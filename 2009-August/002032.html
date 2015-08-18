@@ -1,0 +1,98 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] fetchmail 6.3.11 security fix release available (STABLE)
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2009-August/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%206.3.11%20security%20fix%20release%0A%20available%20%28STABLE%29&In-Reply-To=%3Cop.uytht4v41e62zd%40balu.cs.uni-paderborn.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002023.html">
+   <LINK REL="Next"  HREF="002024.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] fetchmail 6.3.11 security fix release available (STABLE)</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%206.3.11%20security%20fix%20release%0A%20available%20%28STABLE%29&In-Reply-To=%3Cop.uytht4v41e62zd%40balu.cs.uni-paderborn.de%3E"
+       TITLE="[fetchmail-users] fetchmail 6.3.11 security fix release available (STABLE)">matthias.andree at gmx.de
+       </A><BR>
+    <I>Mon Aug 17 19:35:54 CEST 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002023.html">[fetchmail-users] fetchmail 6.3.11 security fix release	available (STABLE)
+</A></li>
+        <LI>Next message: <A HREF="002024.html">[fetchmail-users] Multiple sslfingerprint options and digests
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2032">[ date ]</a>
+              <a href="thread.html#2032">[ thread ]</a>
+              <a href="subject.html#2032">[ subject ]</a>
+              <a href="author.html#2032">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Am 08.08.2009, 10:47 Uhr, schrieb Juergen Edner  
+&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">fli4l-eisfair at telejeck.de</A>&gt;:
+
+&gt;<i> Hello Matthias,
+</I>&gt;<i>
+</I>&gt;&gt;<i> I am announcing the release of fetchmail 6.3.11.  This new stable
+</I>&gt;&gt;<i> version of fetchmail fixes a security bug, CVE-2009-2666, and two other
+</I>&gt;&gt;<i> issues, see below for details.
+</I>&gt;<i>
+</I>&gt;<i> due to your security announcement I've translated the new
+</I>&gt;<i> binary for the Eisfair (<A HREF="http://www.eisfair.org">http://www.eisfair.org</A>) community.
+</I>&gt;<i> Right after several people have installed it, they reported
+</I>&gt;<i> the following error when trying to start the deamon:
+</I>&gt;<i>
+</I>&gt;<i> *** glibc detected *** double free or corruption (out): 0xbfffb6c0 ***
+</I>&gt;<i> fetchmail: terminated with signal 6
+</I>&gt;<i>
+</I>&gt;<i> One user reported that his was able to start the deamon right
+</I>&gt;<i> after he has deactivated all account for which SSL encryption
+</I>&gt;<i> is used. Falling back to Fetchmail v6.3.9 solves the problem
+</I>&gt;<i> for the moment. Therefore I assume that this error may be caused
+</I>&gt;<i> by the newly introduced fix.
+</I>
+The relevant fix information has been forwarded by Torsten Veller; I'd  
+suggest to upgrade to 6.3.11 + that patch; and I plan a 6.3.12 release  
+real soon. Do not continue to use 6.3.10 or 6.3.9 or older versions.  
+Please see my separate regression fix message for more information.
+
+Note that the patch from the security announcement didn't introduce this  
+regression, so 6.3.10 + the patch from the security announcement should  
+also be safe for the nonce; but that doesn't address two other bugs that  
+6.3.11 fixed.
+
+Sorry for the inconvenience!
+
+-- 
+Matthias Andree
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002023.html">[fetchmail-users] fetchmail 6.3.11 security fix release	available (STABLE)
+</A></li>
+	<LI>Next message: <A HREF="002024.html">[fetchmail-users] Multiple sslfingerprint options and digests
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2032">[ date ]</a>
+              <a href="thread.html#2032">[ thread ]</a>
+              <a href="subject.html#2032">[ subject ]</a>
+              <a href="author.html#2032">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

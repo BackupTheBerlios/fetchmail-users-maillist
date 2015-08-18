@@ -1,0 +1,81 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] fetchmail gotcha,	one that needs fixed I believe
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2012-August/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%20gotcha%2C%0A%09one%20that%20needs%20fixed%20I%20believe&In-Reply-To=%3C501E47FA.5030702%40gmx.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003202.html">
+   <LINK REL="Next"  HREF="003204.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] fetchmail gotcha,	one that needs fixed I believe</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%20gotcha%2C%0A%09one%20that%20needs%20fixed%20I%20believe&In-Reply-To=%3C501E47FA.5030702%40gmx.de%3E"
+       TITLE="[fetchmail-users] fetchmail gotcha,	one that needs fixed I believe">matthias.andree at gmx.de
+       </A><BR>
+    <I>Sun Aug  5 12:16:26 CEST 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003202.html">[fetchmail-users] fetchmail gotcha,	one that needs fixed I believe
+</A></li>
+        <LI>Next message: <A HREF="003204.html">[fetchmail-users] fetchmail gotcha,	one that needs fixed I believe
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3203">[ date ]</a>
+              <a href="thread.html#3203">[ thread ]</a>
+              <a href="subject.html#3203">[ subject ]</a>
+              <a href="author.html#3203">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Am 05.08.2012 03:01, schrieb Gene Heskett:
+
+&gt;<i> Fact is, that to make it work, for me at least, is to gobble up any error 
+</I>&gt;<i> mailfilter returns &amp; send back a zero no matter what, so fetchmail will 
+</I>&gt;<i> then go ahead and blindly pull the duff msg, which doesn't bother fetchmail 
+</I>&gt;<i> a bit.  My wrapper does that.  As you say, problem solved AFAIK.  If it 
+</I>&gt;<i> does re-appear, I'll come back out of hiding.  Thanks.
+</I>
+Well, suppressing any error message is as simple as adding &quot;|| :&quot; in the
+script, or, more obviously &quot;|| true&quot;, each time without the quotes.
+
+The interface, as it stands, was originally designed so you could launch
+something like
+
+  preconnect &quot;ssh -L12345:127.0.0.1:143 -luser host.example.org sleep 5&quot;
+
+so that you have an ssh tunnel where SSL wasn't available. In that case,
+only &quot;0&quot; was a valid return code any anything else meant that the tunnel
+was not available and should/could not be used.
+
+</PRE>
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003202.html">[fetchmail-users] fetchmail gotcha,	one that needs fixed I believe
+</A></li>
+	<LI>Next message: <A HREF="003204.html">[fetchmail-users] fetchmail gotcha,	one that needs fixed I believe
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3203">[ date ]</a>
+              <a href="thread.html#3203">[ thread ]</a>
+              <a href="subject.html#3203">[ subject ]</a>
+              <a href="author.html#3203">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

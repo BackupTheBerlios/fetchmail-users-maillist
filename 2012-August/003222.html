@@ -1,0 +1,89 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] IMAP errors with Google Apps and delivery error messages
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2012-August/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20IMAP%20errors%20with%20Google%20Apps%20and%20delivery%0A%20error%20messages&In-Reply-To=%3C502C0230.3030004%40gmx.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003221.html">
+   <LINK REL="Next"  HREF="003223.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] IMAP errors with Google Apps and delivery error messages</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20IMAP%20errors%20with%20Google%20Apps%20and%20delivery%0A%20error%20messages&In-Reply-To=%3C502C0230.3030004%40gmx.de%3E"
+       TITLE="[fetchmail-users] IMAP errors with Google Apps and delivery error messages">matthias.andree at gmx.de
+       </A><BR>
+    <I>Wed Aug 15 22:10:24 CEST 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003221.html">[fetchmail-users] IMAP errors with Google Apps and delivery	error messages
+</A></li>
+        <LI>Next message: <A HREF="003223.html">[fetchmail-users] IMAP errors with Google Apps and delivery error messages
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3222">[ date ]</a>
+              <a href="thread.html#3222">[ thread ]</a>
+              <a href="subject.html#3222">[ subject ]</a>
+              <a href="author.html#3222">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Am 15.08.2012 21:26, schrieb Gavin Henry:
+&gt;&gt;<i> For what it's worth, I'm not seeing any auth failures in my own
+</I>&gt;&gt;<i> fetchmail logs (fetching from Google's IMAP servers) so I doubt the
+</I>&gt;&gt;<i> problem is fetchmail related.
+</I>&gt;<i> 
+</I>&gt;<i> Yeah, I'm certain of that too but my question was how do I get
+</I>&gt;<i> fetchmail to *not* create things like below in the IMAP folder it was
+</I>&gt;<i> checking:
+</I>&gt;<i> 
+</I>&gt;<i> ===============
+</I>&gt;<i> Fetchmail could not get mail from <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">blah at gmail-imap.l.google.com.</A>
+</I>...
+&gt;<i> --
+</I>&gt;<i> The Fetchmail Daemon
+</I>&gt;<i> ===================
+</I>
+The solution to this particular question is:
+
+1. disable fetchmail's daemon mode (i. e. set daemon interval to 0)
+   (the messages get sent only when daemon mode is enabled)
+
+2. run fetchmail as cron job instead
+   (to reinstate periodic fetching)
+
+Nonetheless, I'd like to see information per FAQ #G3 so as to figure
+what's going on.  Google Apps might be different from Google Mail.
+
+</PRE>
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003221.html">[fetchmail-users] IMAP errors with Google Apps and delivery	error messages
+</A></li>
+	<LI>Next message: <A HREF="003223.html">[fetchmail-users] IMAP errors with Google Apps and delivery error messages
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3222">[ date ]</a>
+              <a href="thread.html#3222">[ thread ]</a>
+              <a href="subject.html#3222">[ subject ]</a>
+              <a href="author.html#3222">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

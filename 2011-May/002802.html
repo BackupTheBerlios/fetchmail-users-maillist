@@ -1,0 +1,93 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] [PATCH] how to make fetchmail not to check	the mail with seen flag of my gmail?
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2011-May/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20%5BPATCH%5D%20how%20to%20make%20fetchmail%20not%20to%20check%0A%09the%20mail%20with%20seen%20flag%20of%20my%20gmail%3F&In-Reply-To=%3C580888.10955.qm%40web95709.mail.in.yahoo.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002801.html">
+   <LINK REL="Next"  HREF="002803.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] [PATCH] how to make fetchmail not to check	the mail with seen flag of my gmail?</H1>
+    <B>Sunil Shetye</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20%5BPATCH%5D%20how%20to%20make%20fetchmail%20not%20to%20check%0A%09the%20mail%20with%20seen%20flag%20of%20my%20gmail%3F&In-Reply-To=%3C580888.10955.qm%40web95709.mail.in.yahoo.com%3E"
+       TITLE="[fetchmail-users] [PATCH] how to make fetchmail not to check	the mail with seen flag of my gmail?">sunilshetye at rocketmail.com
+       </A><BR>
+    <I>Thu May  5 10:42:41 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002801.html">[fetchmail-users] how to make fetchmail not to check the mail with seen flag of my gmail?
+</A></li>
+        <LI>Next message: <A HREF="002803.html">[fetchmail-users] [PATCH] how to make fetchmail not to check the mail with seen flag of my gmail?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2802">[ date ]</a>
+              <a href="thread.html#2802">[ thread ]</a>
+              <a href="subject.html#2802">[ subject ]</a>
+              <a href="author.html#2802">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Yunfan,
+
+
+
+----- Original Message -----
+&gt;<i> sorry, but i dont see your patch in the previous mail, could you please send
+</I>&gt;<i> me again ?
+</I>&gt;<i> my current fetchmail is use
+</I>&gt;<i> git clone <A HREF="git://gitorious.org/fetchmail/fetchmail.git">git://gitorious.org/fetchmail/fetchmail.git</A>
+</I>&gt;<i> to fetch from the repo hours ago, it seems the newest one
+</I>
+The patch is attached to the mail again now. To apply the patch, change your directory to the fetchmail checkout directory, save it there, and run this command:
+
+git am 0001-Do-not-print-skipping-message-for-old-messages-even-.patch
+
+[You will have to give your saved file name in the above command]
+
+After that, build, install, and run fetchmail again.
+
+&gt;&gt;<i>  It is being used as an AND there. There is no need to avoid it.
+</I>&gt;&gt;<i> 
+</I>&gt;&gt;<i> 
+</I>&gt;<i> if it used as an AND there, why it tell me message like this?
+</I>&gt;<i> 
+</I>&gt;<i> fetchmail: skipping message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">jyf1987 at gmail-imap.l.google.com</A>:1 not flushed
+</I>&gt;<i> 
+</I>&gt;<i> and is is possible that gmail.s imap server thinks UNSEEN and UNDELETED to
+</I>&gt;<i> be used as an OR ?
+</I>
+No. If it was being used as an OR, the mail would have got downloaded again. The problem is not with gmail imap but with the confusing message from fetchmail.
+
+-- 
+Sunil Shetye.
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002801.html">[fetchmail-users] how to make fetchmail not to check the mail with seen flag of my gmail?
+</A></li>
+	<LI>Next message: <A HREF="002803.html">[fetchmail-users] [PATCH] how to make fetchmail not to check the mail with seen flag of my gmail?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2802">[ date ]</a>
+              <a href="thread.html#2802">[ thread ]</a>
+              <a href="subject.html#2802">[ subject ]</a>
+              <a href="author.html#2802">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

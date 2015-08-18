@@ -1,0 +1,102 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Fetchmail suddenly started segfaulting with Exchange
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2012-August/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Fetchmail%20suddenly%20started%20segfaulting%20with%0A%20Exchange&In-Reply-To=%3C20120816003706.GA74760%40MacPorter.local%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003219.html">
+   <LINK REL="Next"  HREF="003211.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Fetchmail suddenly started segfaulting with Exchange</H1>
+    <B>J. Porter Clark</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Fetchmail%20suddenly%20started%20segfaulting%20with%0A%20Exchange&In-Reply-To=%3C20120816003706.GA74760%40MacPorter.local%3E"
+       TITLE="[fetchmail-users] Fetchmail suddenly started segfaulting with Exchange">jpc+fetchmail at porterclark.com
+       </A><BR>
+    <I>Thu Aug 16 02:37:06 CEST 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003219.html">[fetchmail-users] Fetchmail suddenly started segfaulting with Exchange
+</A></li>
+        <LI>Next message: <A HREF="003211.html">[fetchmail-users] Fetchmail suddenly started segfaulting with Exchange
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3224">[ date ]</a>
+              <a href="thread.html#3224">[ thread ]</a>
+              <a href="subject.html#3224">[ subject ]</a>
+              <a href="author.html#3224">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Wed, Aug 15, 2012 at 07:46:56PM +0200, Matthias Andree wrote:
+&gt;<i> 
+</I>&gt;<i> Possibly.  Some things are conceivable as reason, and possibly one is
+</I>&gt;<i> that you need to specify the domain (often called a Windows domain by
+</I>&gt;<i> the responsible IT staff).  You can experiment a bit, by specifying the
+</I>&gt;<i> username for NTLM authentication in &quot;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">user at domain</A>&quot; form, like:
+</I>&gt;<i> 
+</I>&gt;<i> poll imap02.ndc.nasa.gov proto imap
+</I>&gt;<i> ...user &quot;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">joe at AD</A>&quot; ...
+</I>&gt;<i> 
+</I>&gt;<i> on the assumption that the username is joe and the domain AD. The
+</I>&gt;<i> corresponding syntax when mounting network drives/shares would be AD\joe
+</I>&gt;<i> (but that would send the entire string as username).  There's probably
+</I>&gt;<i> some organizational policy as to how the clients (possibly MS Outlook
+</I>&gt;<i> 2010) are supposed to access the Exchange servers.
+</I>
+My userid in my .procmailrc file is
+
+	domain\\userid/userid
+
+This formulation was found to work by trial and error.  It still works now,
+even with &quot;auth password.&quot;  It is possible that I need to do some more trying
+and erroring.
+
+&gt;<i> If there are IT support pages inside NASA stating how to configure
+</I>&gt;<i> &quot;other clients&quot; like Thunderbird, or smartphones, then these might be
+</I>&gt;<i> useful, tool.
+</I>&gt;<i> 
+</I>&gt;<i> Chances are that asking NASA's IT helpdesk might provide insights what
+</I>&gt;<i> to use, hint them to losses along the way of migration; chances are that
+</I>&gt;<i> Kerberos support is in place (the Exchange server advertises it, and
+</I>&gt;<i> Active Directory servers are usually Kerberos-enabled), so you would
+</I>&gt;<i> need to know a few bits of the Kerberos configuration, and fetch a
+</I>&gt;<i> ticket-granting ticket with &quot;kinit serversusername&quot; -- providing that
+</I>&gt;<i> you used ./configure --with-gssapi ... when installing fetchmail and
+</I>&gt;<i> have Kerberos installed on your computer running fetchmail.
+</I>
+Our IT support is reasonably good for standard office automation stuff, but
+with them, once you deviate from Wintel, you find yourself swimming upstream.
+
+-- 
+J. Porter Clark      &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">jpc at porterclark.com</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003219.html">[fetchmail-users] Fetchmail suddenly started segfaulting with Exchange
+</A></li>
+	<LI>Next message: <A HREF="003211.html">[fetchmail-users] Fetchmail suddenly started segfaulting with Exchange
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3224">[ date ]</a>
+              <a href="thread.html#3224">[ thread ]</a>
+              <a href="subject.html#3224">[ subject ]</a>
+              <a href="author.html#3224">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

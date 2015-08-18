@@ -1,0 +1,164 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] the message fetch should be completed before quitting
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2011-November/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20the%20message%20fetch%20should%20be%20completed%20before%0A%20quitting&In-Reply-To=%3C4ED237A4.7000105%40gmx.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003006.html">
+   <LINK REL="Next"  HREF="003007.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] the message fetch should be completed before quitting</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20the%20message%20fetch%20should%20be%20completed%20before%0A%20quitting&In-Reply-To=%3C4ED237A4.7000105%40gmx.de%3E"
+       TITLE="[fetchmail-users] the message fetch should be completed before quitting">matthias.andree at gmx.de
+       </A><BR>
+    <I>Sun Nov 27 14:14:12 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003006.html">[fetchmail-users] the message fetch should be completed before	quitting
+</A></li>
+        <LI>Next message: <A HREF="003007.html">[fetchmail-users] R: Re: the message fetch should be completed before quitting
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3008">[ date ]</a>
+              <a href="thread.html#3008">[ thread ]</a>
+              <a href="subject.html#3008">[ subject ]</a>
+              <a href="author.html#3008">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Am 26.11.2011 02:26, schrieb <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">rossi.f at inwind.it</A>:
+&gt;<i> I'm using fetchmail 6.3.21 with a POP3 server to download all the mail and 
+</I>&gt;<i> deliver it locally by using maildrop 2.5.4 as MDA. Right now I'm using the 
+</I>&gt;<i> &quot;keep&quot; user option for testing purposes. fetchmail is started in daemon mode in 
+</I>&gt;<i> the following way:
+</I>&gt;<i> 
+</I>&gt;<i>    fetchmail -d ${polling_period} -f ${rcfile} --pidfile ${pid_file} -i 
+</I>&gt;<i> ${fidfile}
+</I>&gt;<i> 
+</I>&gt;<i> The killing procedure during shutdown is the following:
+</I>&gt;<i> 
+</I>&gt;<i>    fetchmail --quit --pidfile ${pid_file}
+</I>&gt;<i> 
+</I>&gt;<i> If the killing procedure starts when fetchmail is downloading new messages, a 
+</I>&gt;<i> message might appear incomplete in the user mailbox (I'm using a maildir 
+</I>&gt;<i> format). The issue is reported also in the fetchmail logfile as &quot;log message 
+</I>&gt;<i> incomplete&quot;. There is no mail loss but the mailbox is populated with incomplete 
+</I>&gt;<i> messages. I guess that a better behavior should be implemented, e.g. fetchmail 
+</I>&gt;<i> should complete the message fetching before quitting.
+</I>&gt;<i> 
+</I>&gt;<i> What do you think?
+</I>
+and in a followup, Fabio wrote:
+
+&gt;<i> I have just run fetchmail with --nodetach -vvv --nosyslog to see what happens. 
+</I>&gt;<i> During the fetching of a large message, if I try to send a SIGINT signal (CTRL-
+</I>&gt;<i> C) directly on the shell where I run fetchmail I get
+</I>&gt;<i> 
+</I>&gt;<i> fetchmail: reading message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">email at popservername</A>:1 of 287 (154831 octets) about 
+</I>&gt;<i> to deliver with: maildrop -d fabio
+</I>&gt;<i> #***********************************************.
+</I>&gt;<i> *************************************.*****************************.
+</I>&gt;<i> ******************.**************.*************.*************.*************.
+</I>&gt;<i> *************.*************.*************.*************.**************.
+</I>&gt;<i> *************.*************.*************.*************.*************.
+</I>&gt;<i> *************.*************.**************.*************.*************.
+</I>&gt;<i> *************.*************.*************.*************.*************.
+</I>&gt;<i> **************.*************.*************.*************.*************.
+</I>&gt;<i> *************.*************.******^Cfetchmail: terminated with signal 2
+</I>&gt;<i> maildrop: signal 0x02
+</I>&gt;<i> 
+</I>&gt;<i> The transaction is completed correctly because maildrop is killed too with the 
+</I>&gt;<i> same signal, in this case no message is saved in the mailbox as expected. In 
+</I>&gt;<i> the other case, when I send a SIGINT/SIGTERM via &quot;fetchamail --quit&quot; or by 
+</I>&gt;<i> using the kill program I don't see at the end &quot;maildrop: signal 0x02&quot;: in this 
+</I>&gt;<i> way an incomplete message is written in the mailbox
+</I>&gt;<i> 
+</I>&gt;&gt;<i> &gt;I don't agree that the solution is to complete the
+</I>&gt;&gt;<i> &gt;transaction. The correct solution IMO would be to completely abandon
+</I>&gt;&gt;<i> &gt;the delivery (and mark the original email as unread), to avoid hanging
+</I>&gt;&gt;<i> &gt;the shutdown process for potentially many minutes.
+</I>&gt;<i> From what I have written above It seems that is possible to quit in a clean 
+</I>&gt;<i> way even without completing the transaction, what it's needed is to propagate a 
+</I>&gt;<i> SIGINT signal to maildrop subprocess as soon as fetchmail receives its 
+</I>&gt;<i> terminating signal
+</I>
+Dear Fabio,
+
+That the message body isn't cached was a deliberate decision by the
+previous maintainer, Eric S. Raymond, and one of the design decisions
+I'd support.  Think bulk messages - there is no point in caching them,
+creating unnecessary I/O (which is still the bottleneck in today's
+computers).
+
+Now, what happens when you press ^C in a terminal is that all processes
+connected to the terminal and/or in the same process group receive that
+signal.  Both fetchmail and maildrop have logged the &quot;signal 2&quot; or
+&quot;signal 0x02&quot;, which is SIGINT on many systems.  On my system, maildrop
+does not deliver partial messages in that situation.
+
+Regarding your proposal of having the signal delivered to maildrop, too,
+can you please try this:
+
+unpack the fetchmail source and configure as usual.
+
+Open fetchmail.c in a text editor (which may not show line numbers) and
+find this section:
+
+   446		    if (quitonly) {
+   447			fprintf(stderr,GT_(&quot;fetchmail: no other fetchmail is running\n&quot;));
+   448			exit(PS_EXCLUDE);
+   449		    }
+   450		}
+   451		else if (kill(pid, SIGTERM) &lt; 0)
+   452		{
+   453		    fprintf(stderr,GT_(&quot;fetchmail: error killing %s fetchmail at
+%ld; bailing out.\n&quot;),
+   454			    bkgd ? GT_(&quot;background&quot;) : GT_(&quot;foreground&quot;), (long)pid);
+   455		    exit(PS_EXCLUDE);
+   456		}
+
+
+In the kill line that reads &quot;SIGTERM&quot;, modify the kill(pid, SIGTERM) so
+it reads kill(-pid, SIGTERM), i. e. insert a minus before the pid.  Then
+build, install, and test if fetchmail --quit now shuts down maildrop.
+
+The difference that makes it that the signal is delivered to the process
+group (which should encompass maildrop), not just a single process.
+
+If it helps, it can become part of the next upstream release.
+
+Best regards,
+Matthias
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003006.html">[fetchmail-users] the message fetch should be completed before	quitting
+</A></li>
+	<LI>Next message: <A HREF="003007.html">[fetchmail-users] R: Re: the message fetch should be completed before quitting
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3008">[ date ]</a>
+              <a href="thread.html#3008">[ thread ]</a>
+              <a href="subject.html#3008">[ subject ]</a>
+              <a href="author.html#3008">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,115 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] One machine will connect to server, one won't.
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2010-April/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20One%20machine%20will%20connect%20to%20server%2C%20one%20won%27t.&In-Reply-To=%3Calpine.DEB.2.00.1004171424120.12132%40localhost%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002355.html">
+   <LINK REL="Next"  HREF="002350.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] One machine will connect to server, one won't.</H1>
+    <B>Robert Holtzman</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20One%20machine%20will%20connect%20to%20server%2C%20one%20won%27t.&In-Reply-To=%3Calpine.DEB.2.00.1004171424120.12132%40localhost%3E"
+       TITLE="[fetchmail-users] One machine will connect to server, one won't.">holtzm at cox.net
+       </A><BR>
+    <I>Sat Apr 17 23:43:12 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002355.html">[fetchmail-users] No pop/ssl since fetchmail 6.3.16
+</A></li>
+        <LI>Next message: <A HREF="002350.html">[fetchmail-users] One machine will connect to server, one won't.
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2348">[ date ]</a>
+              <a href="thread.html#2348">[ thread ]</a>
+              <a href="subject.html#2348">[ subject ]</a>
+              <a href="author.html#2348">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>This one has me talking to myself. After solving my original problem  of 
+connecting to two separate servers everything worked for several days. 
+As of yesterday running fetchmail on my laptop gave me this:
+
+7 messages for holtzm at pop.sonic.net (45002 octets).
+reading message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">holtzm at pop.sonic.net</A>:1 of 7 (3610 octets)..fetchmail: 
+connection to localhost:smtp [127.0.0.1/25] failed: Connection refused.
+fetchmail: connection to localhost:smtp [127.0.1.1/25] failed: 
+Connection refused.
+fetchmail: SMTP connect to localhost failed
+fetchmail: SMTP transaction error while fetching from 
+<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">holtzm at pop.sonic.net</A> and delivering to SMTP host localhost
+fetchmail: Query status=10 (SMTP)
+34 messages for holtzm at pop.west.cox.net (195513 octets).
+reading message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">holtzm at pop.west.cox.net</A>:1 of 34 (5734 octets)..... 
+flushed
+reading message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">holtzm at pop.west.cox.net</A>:2 of 34 (4046 octets)... flushed
+reading message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">holtzm at pop.west.cox.net</A>:3 of 34 (12930 
+octets)............ flushed
+
+and went on to d/l all 34 from cox.net. I copied .fetchmailrc onto my 
+desktop and it connected to *both* servers and d/l'd all messages.
+
+As I posted in my previous thread, my .fetchmailrc is:
+
+poll &quot;pop.sonic.net&quot;
+protocol pop3 
+username &quot;xxxxxx&quot; 
+password &quot;xxxxxxxx&quot;
+mimedecode 
+#
+#
+poll &quot;pop.west.cox.net&quot;
+protocol pop3 
+username &quot;xxxxxx&quot; 
+password &quot;xxxxxxxxxx&quot; 
+mimedecode 
+mda &quot;/usr/bin/procmail -f -&quot;
+
+Why does it work on one machine and not the other and on the one that 
+fails, why with one server and not the other?
+
+I ran a search on the error message but came up with nothing useful.
+
+I am at a loss as to how to attack this and would appreciate anyone's 
+input.
+
+Now, where did I put that Scotch bottle?
+
+-- 
+Bob Holtzman
+Key ID: 8D549279
+&quot;If you think you're getting free lunch,
+  check the price of the beer&quot;
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002355.html">[fetchmail-users] No pop/ssl since fetchmail 6.3.16
+</A></li>
+	<LI>Next message: <A HREF="002350.html">[fetchmail-users] One machine will connect to server, one won't.
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2348">[ date ]</a>
+              <a href="thread.html#2348">[ thread ]</a>
+              <a href="subject.html#2348">[ subject ]</a>
+              <a href="author.html#2348">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

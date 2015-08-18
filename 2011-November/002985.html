@@ -1,0 +1,155 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] How to start FM at boot?
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2011-November/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20How%20to%20start%20FM%20at%20boot%3F&In-Reply-To=%3CCOL120-W18EFD715E1E50DBB34A677B3D90%40phx.gbl%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002984.html">
+   <LINK REL="Next"  HREF="002987.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] How to start FM at boot?</H1>
+    <B>Ed Hochman</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20How%20to%20start%20FM%20at%20boot%3F&In-Reply-To=%3CCOL120-W18EFD715E1E50DBB34A677B3D90%40phx.gbl%3E"
+       TITLE="[fetchmail-users] How to start FM at boot?">charleschat at hotmail.com
+       </A><BR>
+    <I>Mon Nov  7 14:09:08 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002984.html">[fetchmail-users] How to start FM at boot?
+</A></li>
+        <LI>Next message: <A HREF="002987.html">[fetchmail-users] Downloading from MailEnable catch-all
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2985">[ date ]</a>
+              <a href="thread.html#2985">[ thread ]</a>
+              <a href="subject.html#2985">[ subject ]</a>
+              <a href="author.html#2985">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>
+Thanks for your help!
+
+I did install from the Ubuntu's package manager (Synaptic).
+
+The version installed is 6.3.18-2ubuntu1 and that is the current version offered by Ubuntu.
+
+And I do have the  FM init script in /etc/init.d.  That file has a line at the top: &quot;Latest change: Mi Apr 11 18:09:23 CEST 2007&quot;.  (That doesn't seem to be very recent.)
+
+That script has the following comment:
+# This script will NOT start or stop fetchmail if the /etc/fetchmailrc file
+# does not exist or if START_DAEMON in /etc/default/fetchmail is set to no.
+and a variable set as follows:
+START_DAEMON=&quot;no&quot;
+
+Should I change it to &quot;yes&quot;?
+
+I checked /etc/default/fetchmail and START_DAEMON was set to &quot;no&quot;.  So I changed it to:
+START_DAEMON=yes  
+there.
+
+I had done this before posting my question.  It still doesn't work.  That's why I put the line in rc.local as mentioned in my first post.
+
+I would prefer not having to install from scratch as I have little/no experience doing so.
+
+I assume the current Ubuntu version works for others b/c I can't find any postings on the Ubuntu forum saying it does not; and have not been able to get guidance from that forum.
+
+Thanks,
+
+
+Ed
+
+
+&gt;<i> Date: Sun, 6 Nov 2011 17:40:03 +0000
+</I>&gt;<i> From: Rob MacGregor &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">rob.macgregor at gmail.com</A>&gt;
+</I>&gt;<i> To: <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">fetchmail-users at lists.berlios.de</A>
+</I>&gt;<i> Subject: Re: [fetchmail-users] How to start FM at boot?
+</I>&gt;<i> Message-ID:
+</I>&gt;<i> 	&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">CAJCMLO-cvynYtPu90CXXWXYmVMaEWS5UHkOKXYp0RfU4YS-8Pg at mail.gmail.com</A>&gt;
+</I>&gt;<i> Content-Type: text/plain; charset=UTF-8
+</I>&gt;<i> 
+</I>&gt;<i> On Sun, Nov 6, 2011 at 17:11, Ed Hochman &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">charleschat at hotmail.com</A>&gt; wrote:
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; Here's a real newbie question; but I can't get FM to start at boot.
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; I've added a line to rc.local:
+</I>&gt;<i> &gt; fetchmail -d 60 -f /etc/fetchmailrc
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; But fetchmail doesn't start at boot?!
+</I>&gt;<i> 
+</I>&gt;<i> Probably because you forgot to provide the full path to fetchmail.
+</I>&gt;<i> 
+</I>&gt;<i> &gt; I've also tried using Webmin to check the box &quot;Start at boot&quot; but it doesn't take. ?The box won't stay checked!?.
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; When I run the same command above from a terminal as root it tells me fetchmailrc must be owned by me. ?It's not. ?It's owned by fetchmail.
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; So I set up a duplicate copy in /root and owned by root. ?Then,
+</I>&gt;<i> &gt; fetchmail -d 60 -f /root/fetchmailrc
+</I>&gt;<i> &gt; works ok. ?But from a console.
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; So how do I get it to start at boot?
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; This is Ubuntu 11.04.
+</I>&gt;<i> 
+</I>&gt;<i> The simplest thing to do is to use Ubuntu's package manager to install
+</I>&gt;<i> Fetchmail. Then you'll get the startup script and can use the built in
+</I>&gt;<i> startup management tools (such as &quot;update-rc.d&quot;). It does mean you'll
+</I>&gt;<i> likely be running an out of date version of Fetchmail, so if you
+</I>&gt;<i> encounter problems you may need to:
+</I>&gt;<i> 
+</I>&gt;<i> 1. Back up the startup script
+</I>&gt;<i> 2. Remove the package
+</I>&gt;<i> 3. Install Fetchmail from source
+</I>&gt;<i> 4. Restore the startup script, changing the path to fetchmail to suit
+</I>&gt;<i> your install
+</I>&gt;<i> 
+</I>&gt;<i> -- 
+</I>&gt;<i> ? ? ? ? ? ? ? ?? Please keep list traffic on the list.
+</I>&gt;<i> 
+</I>&gt;<i> Rob MacGregor
+</I>&gt;<i> ? ? ? Whoever fights monsters should see to it that in the process he
+</I>&gt;<i> ? ? ? ? doesn't become a monster.? ? ? ? ? ? ? ? ? Friedrich Nietzsche
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> ------------------------------
+</I>&gt;<i> 
+</I>&gt;<i> _______________________________________________
+</I>&gt;<i> fetchmail-users mailing list
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">fetchmail-users at lists.berlios.de</A>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">https://lists.berlios.de/mailman/listinfo/fetchmail-users</A>
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> End of fetchmail-users Digest, Vol 64, Issue 2
+</I>&gt;<i> **********************************************
+</I> 		 	   		  
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002984.html">[fetchmail-users] How to start FM at boot?
+</A></li>
+	<LI>Next message: <A HREF="002987.html">[fetchmail-users] Downloading from MailEnable catch-all
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2985">[ date ]</a>
+              <a href="thread.html#2985">[ thread ]</a>
+              <a href="subject.html#2985">[ subject ]</a>
+              <a href="author.html#2985">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

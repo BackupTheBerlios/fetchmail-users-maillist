@@ -1,0 +1,275 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] fetchmail 6.3.14 security fix release and fetchmail-SA-2010-01 security announcement
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2010-February/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%206.3.14%20security%20fix%20release%20and%0A%20fetchmail-SA-2010-01%20security%20announcement&In-Reply-To=%3C20100205014643.GA25506%40merlin.emma.line.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002271.html">
+   <LINK REL="Next"  HREF="002274.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] fetchmail 6.3.14 security fix release and fetchmail-SA-2010-01 security announcement</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%206.3.14%20security%20fix%20release%20and%0A%20fetchmail-SA-2010-01%20security%20announcement&In-Reply-To=%3C20100205014643.GA25506%40merlin.emma.line.org%3E"
+       TITLE="[fetchmail-users] fetchmail 6.3.14 security fix release and fetchmail-SA-2010-01 security announcement">matthias.andree at gmx.de
+       </A><BR>
+    <I>Fri Feb  5 02:46:43 CET 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002271.html">[fetchmail-users] config and password
+</A></li>
+        <LI>Next message: <A HREF="002274.html">[fetchmail-users] incorrect header line found while scanning headers
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2273">[ date ]</a>
+              <a href="thread.html#2273">[ thread ]</a>
+              <a href="subject.html#2273">[ subject ]</a>
+              <a href="author.html#2273">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Greetings,
+
+I am announcing the release of fetchmail 6.3.14.  This new stable
+version of fetchmail fixes a bug introduced into 6.3.11 that could cause
+heap corruption in verbose mode when displaying X.509 SSL/TLS
+certificates that contained characters with high bit set on platforms
+where the &quot;char&quot; type is signed. 6.3.14 also fixes a variety of IMAP
+bugs. See below for details. Unfortunately the CVE id hasn't yet been
+assigned; once it has been, I will update the online version of the
+security announcement.
+
+The software is available from:
+&lt;<A HREF="http://developer.berlios.de/project/showfiles.php?group_id=1824">http://developer.berlios.de/project/showfiles.php?group_id=1824</A>&gt;
+
+The fetchmail home pages are:
+&lt;<A HREF="http://www.fetchmail.info/">http://www.fetchmail.info/</A>&gt;  or  &lt;<A HREF="http://fetchmail.berlios.de/">http://fetchmail.berlios.de/</A>&gt;
+
+These are the relevant changes since the previous release.  Unless
+otherwise noted, changes to this release were made by Matthias Andree
+(in fact, most fixes were by Sunil Shetye this time):
+
+# SECURITY FIXES
+* SSL/TLS certificate information is now also reported properly on computers
+  that consider the &quot;char&quot; type signed. Fixes malloc() buffer overrun.
+  Workaround for older versions: do not use verbose mode.
+  See fetchmail-SA-2010-01.txt for details, including a minimal patch.
+
+# BUG FIXES
+* The IMAP client no longer skips messages from several IMAP servers including
+  Dovecot if fetchmail's &quot;idle&quot; is in use.  Causes were that fetchmail (a)
+  ignored some untagged responses when it should not (b) relied on EXISTS
+  messages in response to EXPUNGE, which aren't mandated by RFC-3501 (the IMAP
+  standard) and aren't sent by Dovecot either.
+    Fix by Sunil Shetye (the fix also consolidates IMAP response handling,
+  improving overall robustness of the IMAP client), bug report and testing by
+  Matt Doran, with further hints from Timo Sirainen.
+* The SMTP client now recovers from errors (such as servers dropping the
+  connection after errors) when sending an RSET command.
+    Fix by Sunil Shetye. Report by James Moe.
+* The IMAP client now uses &quot;SEARCH UNSEEN&quot; rather than &quot;SEARCH UNSEEN NOT
+  DELETED&quot; again on IMAP2, to fix a regression in fetchmail 6.2.5 reported by
+  Will Stringer in June 2004. (Sunil Shetye)
+* The IMAP client now uses &quot;SEARCH UNSEEN UNDELETED&quot; on IMAP4 and IMAP4r1
+  servers (Sunil Shetye).
+* Workaround: The IMAP client now falls back to &quot;FETCH n:m FLAGS&quot; if the server
+  does not support &quot;SEARCH&quot;. (Sunil Shetye)
+* The IMAP client now requests message numbers in batches of 1,000 to avoid
+  problems if there are more than 1860 unseen messages. (Sunil Shetye)
+    Note that this wasn't security relevant because fetchmail would only read up
+  to the maximum buffer size and leave the remainder of the string unread, going
+  out of synch afterwards.
+* Stricter validation of IMAP responses containing byte or message counts.
+
+# CHANGES
+* Only include gssapi.h if we're not including gssapi/gssapi.h, to fix a FreeBSD
+  compiler warning about gssapi.h being obsolete.
+
+# DOCUMENTATION
+* The README.SSL document was revised for grammar, spelling, and clarity.
+  Courtesy of Robert Mullin.
+
+# TRANSLATION UPDATES
+* [it]    Italian, by Vincenzo Campanella
+
+-- 
+Matthias Andree
+-------------- next part --------------
+-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA1
+
+fetchmail-SA-2010-01: Heap overrun in verbose SSL cert' info display.
+
+Topics:		Heap overrun in verbose SSL certificate information display.
+
+Author:		Matthias Andree
+Version:	1.0
+Announced:
+Type:		malloc() Buffer overrun with printable characters
+Impact:		Code injection (difficult).
+Danger:		low
+
+CVE Name:	to be assigned via oss-security@ list
+URL:		<A HREF="http://www.fetchmail.info/fetchmail-SA-2010-01.txt">http://www.fetchmail.info/fetchmail-SA-2010-01.txt</A>
+Project URL:	<A HREF="http://www.fetchmail.info/">http://www.fetchmail.info/</A>
+
+Affects:	fetchmail releases 6.3.11, 6.3.12, and 6.3.13
+
+Not affected:	fetchmail release 6.3.14 and newer
+
+Corrected:	2010-02-04 fetchmail SVN (r5467)
+		2010-02-05 fetchmail release 6.3.14
+
+
+0. Release history
+==================
+
+2010-02-04 0.1	first draft (visible in SVN and through oss-security)
+2010-02-05 1.0	fixed signed/unsigned typo (found by Nico Golde)
+
+
+1. Background
+=============
+
+fetchmail is a software package to retrieve mail from remote POP2, POP3,
+IMAP, ETRN or ODMR servers and forward it to local SMTP, LMTP servers or
+message delivery agents. It supports SSL and TLS security layers through
+the OpenSSL library, if enabled at compile time and if also enabled at
+run time.
+
+
+2. Problem description and Impact
+=================================
+
+In verbose mode, fetchmail prints X.509 certificate subject and issuer
+information to the user, and counts and allocates a malloc() buffer for
+that purpose.
+
+If the material to be displayed contains characters with high bit set
+and the platform treats the &quot;char&quot; type as signed, this can cause a heap
+buffer overrun because non-printing characters are escaped as
+\xFF..FFnn, where nn is 80..FF in hex.
+
+This might be exploitable to inject code if
+- - fetchmail is run in verbose mode
+AND
+- - the host running fetchmail considers char signed
+AND
+- - the server uses malicious certificates with non-printing characters
+  that have the high bit set
+AND
+- - these certificates manage to inject shell-code that consists purely of
+  printable characters.
+
+It is believed to be difficult to achieve all this.
+
+
+3. Solution
+===========
+
+There are two alternatives, either of them by itself is sufficient:
+
+a. Apply the patch found in section B of this announcement to
+   fetchmail 6.3.13, recompile and reinstall it.
+
+b. Install fetchmail 6.3.14 or newer after it will have become available.
+   The fetchmail source code is always available from
+   &lt;<A HREF="http://developer.berlios.de/project/showfiles.php?group_id=1824">http://developer.berlios.de/project/showfiles.php?group_id=1824</A>&gt;.
+
+
+4. Workaround
+=============
+
+Run fetchmail without and verbose options.
+
+
+A. Copyright, License and Warranty
+==================================
+
+(C) Copyright 2010 by Matthias Andree, &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">matthias.andree at gmx.de</A>&gt;.
+Some rights reserved.
+
+This work is licensed under the Creative Commons
+Attribution-Noncommercial-No Derivative Works 3.0 Germany License.
+To view a copy of this license, visit
+<A HREF="http://creativecommons.org/licenses/by-nc-nd/3.0/de/">http://creativecommons.org/licenses/by-nc-nd/3.0/de/</A> or send a letter to
+
+Creative Commons
+171 Second Street
+Suite 300
+SAN FRANCISCO, CALIFORNIA 94105
+USA
+
+
+THIS WORK IS PROVIDED FREE OF CHARGE AND WITHOUT ANY WARRANTIES.
+Use the information herein at your own risk.
+
+
+B. Patch to remedy the problem
+==============================
+
+Note that when taking this from a GnuPG clearsigned file, the lines
+starting with a &quot;-&quot; character are prefixed by another &quot;- &quot; (dash +
+blank) combination. Either feed this file through GnuPG to strip them,
+or strip them manually. You may want to use the &quot;-p1&quot; flag to patch.
+
+Whitespace differences can usually be ignored by invoking &quot;patch -l&quot;,
+so try this if the patch does not apply.
+
+- --- a/sdump.c
++++ b/sdump.c
+@@ -36,7 +36,7 @@ char *sdump(const char *in, size_t len)
+ 	if (isprint((unsigned char)in[i])) {
+ 	    *(oi++) = in[i];
+ 	} else {
+- -	    oi += sprintf(oi, &quot;\\x%02X&quot;, in[i]);
++	    oi += sprintf(oi, &quot;\\x%02X&quot;, (unsigned char)in[i]);
+ 	}
+     }
+     *oi = '\0';
+
+END OF fetchmail-SA-2010-01.txt
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v2.0.12 (GNU/Linux)
+
+iEYEARECAAYFAktrbs0ACgkQvmGDOQUufZWzMQCg49F/WJiOjGwWZKHHzBcfTgx/
+sLIAmQHPO3mezy3Ku0O29b4AXHL2ZQNb
+=kF7s
+-----END PGP SIGNATURE-----
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: not available
+Type: application/pgp-signature
+Size: 198 bytes
+Desc: not available
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/fetchmail-users/attachments/20100205/42a755c3/attachment.pgp">https://lists.berlios.de/pipermail/fetchmail-users/attachments/20100205/42a755c3/attachment.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002271.html">[fetchmail-users] config and password
+</A></li>
+	<LI>Next message: <A HREF="002274.html">[fetchmail-users] incorrect header line found while scanning headers
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2273">[ date ]</a>
+              <a href="thread.html#2273">[ thread ]</a>
+              <a href="subject.html#2273">[ subject ]</a>
+              <a href="author.html#2273">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,210 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Fwd: fetchmail downloading with message	number as a parameter
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2013-November/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Fwd%3A%20fetchmail%20downloading%20with%20message%0A%09number%20as%20a%20parameter&In-Reply-To=%3C20131112055142.GB5265%40master%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003474.html">
+   <LINK REL="Next"  HREF="003476.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Fwd: fetchmail downloading with message	number as a parameter</H1>
+    <B>Joe M</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Fwd%3A%20fetchmail%20downloading%20with%20message%0A%09number%20as%20a%20parameter&In-Reply-To=%3C20131112055142.GB5265%40master%3E"
+       TITLE="[fetchmail-users] Fwd: fetchmail downloading with message	number as a parameter">joe9mail at gmail.com
+       </A><BR>
+    <I>Tue Nov 12 06:51:42 CET 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003474.html">[fetchmail-users] Fwd: fetchmail downloading with message number as	a parameter
+</A></li>
+        <LI>Next message: <A HREF="003476.html">[fetchmail-users] Fwd: fetchmail downloading with message	number as a parameter
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3475">[ date ]</a>
+              <a href="thread.html#3475">[ thread ]</a>
+              <a href="subject.html#3475">[ subject ]</a>
+              <a href="author.html#3475">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Joe M wrote:
+&gt;<i> I am attaching a patch to add a --startnum option to fetchmail.
+</I>
+Attached is an updated patch which adds this option to fetchmail.man
+
+Any comments, please?
+
+Thanks
+Joe
+-------------- next part --------------
+&gt;<i>From a098ec906c15efd3bb45fac194735407f3b85e57 Mon Sep 17 00:00:00 2001
+</I>From: joe9 &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">joe9mail at gmail.com</A>&gt;
+Date: Mon, 11 Nov 2013 23:35:46 -0600
+Subject: [PATCH 2/2] added --startnum option to specifiy the message number to
+ start smtp downloading from
+
+This patch enables fetchmail to start downloading from the specified
+message number instead of from the first message. This helps with
+flaky SMTP connections where the connection is closed after a certain
+number of messages are downloaded.
+
+Below is further explanation of my issue.
+
+&gt;<i> I am using fetchmail to download from my hotmail account.
+</I>
+&gt;<i> It downloads a hundred or so emails and the connection dies. It does
+</I>&gt;<i> this every time. I have the &quot;keep&quot; option set so it keeps downloading
+</I>&gt;<i> the first emails again and again.
+</I>
+&gt;<i> I am trying to figure out if I can tell fetchmail to download a
+</I>&gt;<i> certain message number or range of message numbers.
+</I>---
+ driver.c      | 4 ++--
+ fetchmail.c   | 6 ++++++
+ fetchmail.h   | 1 +
+ fetchmail.man | 6 ++++++
+ options.c     | 6 ++++++
+ 5 files changed, 21 insertions(+), 2 deletions(-)
+
+diff --git a/driver.c b/driver.c
+index c291726..99e28bd 100644
+--- a/driver.c
++++ b/driver.c
+@@ -443,7 +443,7 @@ static int fetch_messages(int mailserver_socket, struct query *ctl,
+ /* fetch messages in lockstep mode */
+ {
+     flag force_retrieval;
+-    int num, firstnum = 1, lastnum = 0, err, len;
++    int num = ctl-&gt;startnum, firstnum = 1, lastnum = 0, err, len;
+     int fetchsizelimit = ctl-&gt;fetchsizelimit;
+     int msgsize;
+     int initialfetches = *fetches;
+@@ -493,7 +493,7 @@ static int fetch_messages(int mailserver_socket, struct query *ctl,
+      */
+     force_retrieval = !peek_capable &amp;&amp; (ctl-&gt;errcount &gt; 0);
+ 
+-    for (num = 1; num &lt;= count; num++)
++    for (num = ctl-&gt;startnum; num &lt;= count; num++)
+     {
+ 	flag suppress_delete = FALSE;
+ 	flag suppress_forward = FALSE;
+diff --git a/fetchmail.c b/fetchmail.c
+index ae30f90..cabee1c 100644
+--- a/fetchmail.c
++++ b/fetchmail.c
+@@ -1005,6 +1005,7 @@ static void optmerge(struct query *h2, struct query *h1, int force)
+     FLAG_MERGE(limit);
+     FLAG_MERGE(warnings);
+     FLAG_MERGE(fetchlimit);
++    FLAG_MERGE(startnum);
+     FLAG_MERGE(fetchsizelimit);
+     FLAG_MERGE(fastuidl);
+     FLAG_MERGE(batchlimit);
+@@ -1785,6 +1786,11 @@ static void dump_params (struct runctl *runp,
+ 		       ctl-&gt;fetchlimit, ctl-&gt;fetchlimit);
+ 	    else if (outlevel &gt;= O_VERBOSE)
+ 		printf(GT_(&quot;  No received-message limit (--fetchlimit 0).\n&quot;));
++	    if (NUM_NONZERO(ctl-&gt;startnum))
++		printf(GT_(&quot;  Received-first message number is %d (--fetchlimit %d).\n&quot;),
++		       ctl-&gt;num, ctl-&gt;startnum);
++	    else if (outlevel &gt;= O_VERBOSE)
++		printf(GT_(&quot;  No received-first message number (--fetchlimit 0).\n&quot;));
+ 	    if (NUM_NONZERO(ctl-&gt;fetchsizelimit))
+ 		printf(GT_(&quot;  Fetch message size limit is %d (--fetchsizelimit %d).\n&quot;),
+ 		       ctl-&gt;fetchsizelimit, ctl-&gt;fetchsizelimit);
+diff --git a/fetchmail.h b/fetchmail.h
+index 466ed86..9558f8d 100644
+--- a/fetchmail.h
++++ b/fetchmail.h
+@@ -363,6 +363,7 @@ struct query
+     int fastuidl;		/* do binary search for new UIDLs? */
+     int fastuidlcount;		/* internal count for frequency of binary search */
+     int	batchlimit;		/* max # msgs to pass in single SMTP session */
++    int	startnum;		/* first msg # to start from in single SMTP session */
+     int	expunge;		/* max # msgs to pass between expunges */
+     flag use_ssl;		/* use SSL encrypted session */
+     char *sslkey;		/* optional SSL private key file */
+diff --git a/fetchmail.man b/fetchmail.man
+index ad412a5..1d3fea1 100644
+--- a/fetchmail.man
++++ b/fetchmail.man
+@@ -800,6 +800,12 @@ poll.  By default there is no limit. An explicit \-\-fetchlimit of 0
+ overrides any limits set in your run control file.
+ This option does not work with ETRN or ODMR.
+ .TP
++.B \-g &lt;number&gt; | \-\-startnum &lt;number&gt;
++(Keyword: startnum)
++.br
++Start downloading from this message number. By default, downloading
++starts from the first message.
++.TP
+ .B \-\-fetchsizelimit &lt;number&gt;
+ (Keyword: fetchsizelimit)
+ .br
+diff --git a/options.c b/options.c
+index d53044f..a1a7a36 100644
+--- a/options.c
++++ b/options.c
+@@ -119,6 +119,7 @@ static const struct option longoptions[] = {
+ 
+   {&quot;batchlimit&quot;,required_argument, (int *) 0, 'b' },
+   {&quot;fetchlimit&quot;,required_argument, (int *) 0, 'B' },
++  {&quot;startnum&quot;,required_argument, (int *) 0, 'g' },
+   {&quot;fetchsizelimit&quot;,required_argument, (int *) 0, LA_FETCHSIZELIMIT },
+   {&quot;fastuidl&quot;,	required_argument, (int *) 0, LA_FASTUIDL },
+   {&quot;expunge&quot;,	required_argument, (int *) 0, 'e' },
+@@ -502,6 +503,10 @@ int parsecmdline (int argc /** argument count */,
+ 	    c = xatoi(optarg, &amp;errflag);
+ 	    ctl-&gt;fetchlimit = NUM_VALUE_IN(c);
+ 	    break;
++	case 'g':
++	    c = xatoi(optarg, &amp;errflag);
++	    ctl-&gt;startnum = NUM_VALUE_IN(c);
++	    break;
+ 	case LA_FETCHSIZELIMIT:
+ 	    c = xatoi(optarg, &amp;errflag);
+ 	    ctl-&gt;fetchsizelimit = NUM_VALUE_IN(c);
+@@ -686,6 +691,7 @@ int parsecmdline (int argc /** argument count */,
+ 	P(GT_(&quot;  -Z, --antispam,   set antispam response values\n&quot;));
+ 	P(GT_(&quot;  -b, --batchlimit  set batch limit for SMTP connections\n&quot;));
+ 	P(GT_(&quot;  -B, --fetchlimit  set fetch limit for server connections\n&quot;));
++	P(GT_(&quot;  -g, --startnum    set first message number for server connections\n&quot;));
+ 	P(GT_(&quot;      --fetchsizelimit set fetch message size limit\n&quot;));
+ 	P(GT_(&quot;      --fastuidl    do a binary search for UIDLs\n&quot;));
+ 	P(GT_(&quot;  -e, --expunge     set max deletions between expunges\n&quot;));
+-- 
+1.8.3.2
+
+</PRE>
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003474.html">[fetchmail-users] Fwd: fetchmail downloading with message number as	a parameter
+</A></li>
+	<LI>Next message: <A HREF="003476.html">[fetchmail-users] Fwd: fetchmail downloading with message	number as a parameter
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3475">[ date ]</a>
+              <a href="thread.html#3475">[ thread ]</a>
+              <a href="subject.html#3475">[ subject ]</a>
+              <a href="author.html#3475">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

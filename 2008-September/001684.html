@@ -1,0 +1,135 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] unable to get local issuer certificate
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2008-September/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20unable%20to%20get%20local%20issuer%20certificate&In-Reply-To=%3CPine.LNX.4.58.0809121053090.11155%40mars.njit.edu%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001683.html">
+   <LINK REL="Next"  HREF="001685.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] unable to get local issuer certificate</H1>
+    <B>Andy Malato</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20unable%20to%20get%20local%20issuer%20certificate&In-Reply-To=%3CPine.LNX.4.58.0809121053090.11155%40mars.njit.edu%3E"
+       TITLE="[fetchmail-users] unable to get local issuer certificate">andym at oak.njit.edu
+       </A><BR>
+    <I>Fri Sep 12 17:04:58 CEST 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001683.html">[fetchmail-users] fetchmail error
+</A></li>
+        <LI>Next message: <A HREF="001685.html">[fetchmail-users] unable to get local issuer certificate
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1684">[ date ]</a>
+              <a href="thread.html#1684">[ thread ]</a>
+              <a href="subject.html#1684">[ subject ]</a>
+              <a href="author.html#1684">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hello All,
+
+
+I'm currently trying to get fetchmail release 6.3.8+SSL+HESIOD+NLS
+working but am running into problems with SSL certificate verification.
+
+The version of OpenSSL I am using is OpenSSL 0.9.8d on RHEL 4.
+
+
+I have specified the following options in my config file :
+
+poll mymailhost proto pop3 uidl no dns
+user mailuser
+sslcertck sslcertpath /usr/share/ssl/certs
+
+When I invoke fetchmail, I get the following :
+
+Enter password for <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">mailuser at mymailhost</A>:
+fetchmail: 6.3.8 querying mymailhost (protocol POP3) at Fri Sep 12
+10:59:10 2008: poll started
+Trying to connect to 10.0.0.17/995...connected.
+fetchmail: Server certificate verification error: unable to get local
+issuer certificate
+29071:error:14090086:SSL
+routines:SSL3_GET_SERVER_CERTIFICATE:certificate verify
+failed:s3_clnt.c:843:
+fetchmail: SSL connection failed.
+fetchmail: socket error while fetching from <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">mailuser at mymailhost</A>
+fetchmail: 6.3.8 querying mymailhost (protocol POP3) at Fri Sep 12
+10:59:10 2008: poll completed
+fetchmail: Query status=2 (SOCKET)
+fetchmail: normal termination, status 2
+
+
+If I remove the sslcertck option, things work fine.
+
+
+If I run :
+
+	openssl s_client -connect mymailhost:993 -CApath /usr/share/ssl/certs
+
+Things appear to be OK, i.e., The SSL Handshake completes ok with Verify
+return code of 0.
+
+
+	---
+No client certificate CA names sent
+---
+SSL handshake has read 3444 bytes and written 324 bytes
+---
+New, TLSv1/SSLv3, Cipher is RC4-MD5
+Server public key is 1024 bit
+SSL-Session:
+    Protocol  : TLSv1
+    Cipher    : RC4-MD5
+    Session-ID:
+00230000FEE53D7423C28619FDCF68290F4EAE2085FB2CEC0EC81A9E329B883D
+    Session-ID-ctx:
+    Master-Key:
+60818B7C1768717DD3E919C45A9B9D847196BBAD212C56C83E8A664931E5AA8A1EFFC537EFB4BDBC502AF87D0AC91185
+    Key-Arg   : None
+    Krb5 Principal: None
+    Start Time: 1221231692
+    Timeout   : 300 (sec)
+    Verify return code: 0 (ok)
+	---
+
+
+Any ideas of input one may provide will be greatly appreciated.
+
+
+Thanks,
+
+	---Andy
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001683.html">[fetchmail-users] fetchmail error
+</A></li>
+	<LI>Next message: <A HREF="001685.html">[fetchmail-users] unable to get local issuer certificate
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1684">[ date ]</a>
+              <a href="thread.html#1684">[ thread ]</a>
+              <a href="subject.html#1684">[ subject ]</a>
+              <a href="author.html#1684">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

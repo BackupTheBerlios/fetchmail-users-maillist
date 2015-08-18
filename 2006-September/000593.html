@@ -1,0 +1,107 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] query state=2 (SOCKET)
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2006-September/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20query%20state%3D2%20%28SOCKET%29&In-Reply-To=%3C43ea8d070609140112p499f72d5v94e61a9e7225be1c%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000592.html">
+   <LINK REL="Next"  HREF="000602.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] query state=2 (SOCKET)</H1>
+    <B>Rob MacGregor</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20query%20state%3D2%20%28SOCKET%29&In-Reply-To=%3C43ea8d070609140112p499f72d5v94e61a9e7225be1c%40mail.gmail.com%3E"
+       TITLE="[fetchmail-users] query state=2 (SOCKET)">rob.macgregor at gmail.com
+       </A><BR>
+    <I>Thu Sep 14 10:12:22 CEST 2006</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000592.html">[fetchmail-users] query state=2 (SOCKET)
+</A></li>
+        <LI>Next message: <A HREF="000602.html">[fetchmail-users] query state=2 (SOCKET)
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#593">[ date ]</a>
+              <a href="thread.html#593">[ thread ]</a>
+              <a href="subject.html#593">[ subject ]</a>
+              <a href="author.html#593">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On 9/13/06, Roberto Meyer &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">roberto.s.meyer at gmail.com</A>&gt; wrote:
+&gt;<i>
+</I>&gt;<i> Finally I got a couple of errors with single connections.
+</I>&gt;<i>
+</I>&gt;<i> I've attached a .tgz file with the logs of fetchmail and tcpdump at
+</I>&gt;<i> the moment of the errors, and both logs for a well done connection
+</I>&gt;<i> too.
+</I>
+A quick scan of the logs show what I'd expect for a networking
+problem.  I'll have a look at the text outputs from tcpdump later,
+though a quick scan doesn't show anything obvious right now.
+
+&gt;<i> &quot;cat /proc/sys/net/ipv4/tcp_ecn&quot; returns &quot;0&quot; (zero)
+</I>
+Ok, so ECN isn't on so can't be the source of the problem (which is a
+confirmation of what I already suspected).
+
+&gt;<i> &quot;ifconfig eth0&quot; returns:
+</I>&gt;<i>
+</I>&gt;<i> eth0    Link encap:Ethernet  HWaddr 11:50:24:64:09:BE
+</I>&gt;<i>           inet addr:201.65.9.43  Bcast:201.65.9.255  Mask:255.255.255.224
+</I>&gt;<i>                                                    ^^^^^^^^^^^^^^^^
+</I>&gt;<i> I noticed here broadcast address is wrong... could this be hurting
+</I>&gt;<i> packets or fetchmail connections? It should be 201.65.9.63 because of
+</I>&gt;<i> the netmask...
+</I>
+Well, that won't matter to fetchmail.  It'll only matter when
+something does a broadcast (like DHCP).
+
+&gt;<i> Thanx a lot for your help.
+</I>
+So far, everything seems to point to intermittent network problems
+somewhere in the path from your host to the remote POP server.  It
+could be that the other software doesn't report these errors, or it
+could be that something about the network topology means they take a
+different route...
+
+Once I've had the time to take a better look at the tcpdump output
+I'll get back to you.
+
+-- 
+                 Please keep list traffic on the list.
+
+Rob MacGregor
+      Whoever fights monsters should see to it that in the process he
+        doesn't become a monster.                  Friedrich Nietzsche
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000592.html">[fetchmail-users] query state=2 (SOCKET)
+</A></li>
+	<LI>Next message: <A HREF="000602.html">[fetchmail-users] query state=2 (SOCKET)
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#593">[ date ]</a>
+              <a href="thread.html#593">[ thread ]</a>
+              <a href="subject.html#593">[ subject ]</a>
+              <a href="author.html#593">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

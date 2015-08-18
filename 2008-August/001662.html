@@ -1,0 +1,102 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] fetchmail, fetchnews can't get thru router
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2008-August/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%2C%20fetchnews%20can%27t%20get%20thru%20router&In-Reply-To=%3C489AAA12.8090206%40gmx.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001653.html">
+   <LINK REL="Next"  HREF="001663.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] fetchmail, fetchnews can't get thru router</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%2C%20fetchnews%20can%27t%20get%20thru%20router&In-Reply-To=%3C489AAA12.8090206%40gmx.de%3E"
+       TITLE="[fetchmail-users] fetchmail, fetchnews can't get thru router">matthias.andree at gmx.de
+       </A><BR>
+    <I>Thu Aug  7 09:53:54 CEST 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001653.html">[fetchmail-users] fetchmail, fetchnews can't get thru router
+</A></li>
+        <LI>Next message: <A HREF="001663.html">[fetchmail-users] fetchmail, fetchnews can't get thru router
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1662">[ date ]</a>
+              <a href="thread.html#1662">[ thread ]</a>
+              <a href="subject.html#1662">[ subject ]</a>
+              <a href="author.html#1662">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Christian Ebert schrieb:
+&gt;<i> * Matthias Andree on Tuesday, August 05, 2008 at 11:23:40 +0200
+</I>&gt;&gt;<i> Christian Ebert &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">blacktrash at gmx.net</A>&gt; writes:
+</I>&gt;&gt;&gt;<i> I changed my internet access at home from dsl to vdsl, and am now
+</I>&gt;&gt;&gt;<i> connected via a router (Speedport W 701v). Everything works fine
+</I>&gt;&gt;&gt;<i> except fetchmail and fetchnews -- they just hang. Even smtp (via
+</I>&gt;&gt;&gt;<i> msmtp) works, also ssh, jabber, irc (both also via ssl) etc.
+</I>&gt;&gt;<i> What do you see in tcpdump or tshark for the respective connection while
+</I>&gt;&gt;<i> it's still live?
+</I>&gt;<i> 
+</I>&gt;<i> This is the first time I ever ran tcpdump, so be kind and propose
+</I>&gt;<i> a better command in case the following is useless:
+</I>&gt;<i> 
+</I>&gt;<i> $ sudo tcpdump -w &lt;file&gt;.pcap -vv -i en1 tcp
+</I>&gt;<i> 
+</I>&gt;<i> I polled a pop3 t-online email account both with fetchmail (tried
+</I>&gt;<i> in vain to poll I mean) and AppleMail:
+</I>&gt;<i> 
+</I>&gt;<i> fetchmail: nothing:
+</I>&gt;<i> ~$ sudo tcpdump -w fetchmail.pcap -vv -i en1 tcp
+</I>&gt;<i> tcpdump: listening on en1, link-type EN10MB (Ethernet), capture
+</I>&gt;<i> size 96 bytes
+</I>&gt;<i> 0 packets captured
+</I>&gt;<i> 59 packets received by filter
+</I>&gt;<i> 0 packets dropped by kernel
+</I>&gt;<i> 
+</I>&gt;<i> AppleMail: [snip]
+</I>
+OK, that one looks reasonable.
+
+Can you show &quot;tcpdump -ttttnnr fetchmail.pcap&quot; too?
+
+Can you try &quot;fetchmail --nodetach --nosyslog -vvvd0&quot; again so that we see
+where it breaks - but I still think it's a server/network problem, not a
+fetchmail problem.
+
+-- 
+Matthias Andree
+
+Life is what happens to you while you're busy making other plans.
+  						-- John Lennon, 1980
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001653.html">[fetchmail-users] fetchmail, fetchnews can't get thru router
+</A></li>
+	<LI>Next message: <A HREF="001663.html">[fetchmail-users] fetchmail, fetchnews can't get thru router
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1662">[ date ]</a>
+              <a href="thread.html#1662">[ thread ]</a>
+              <a href="subject.html#1662">[ subject ]</a>
+              <a href="author.html#1662">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

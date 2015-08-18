@@ -1,0 +1,102 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Re: message was not the expected length errors
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2005-December/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Re%3A%20message%20was%20not%20the%20expected%20length%20errors&In-Reply-To=%3C20051224053257.GA1291%40session.bombay.retortsoft.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000199.html">
+   
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Re: message was not the expected length errors</H1>
+    <B>Sunil Shetye</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Re%3A%20message%20was%20not%20the%20expected%20length%20errors&In-Reply-To=%3C20051224053257.GA1291%40session.bombay.retortsoft.com%3E"
+       TITLE="[fetchmail-users] Re: message was not the expected length errors">shetye at bombay.retortsoft.com
+       </A><BR>
+    <I>Sat Dec 24 06:32:57 CET 2005</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000199.html">[fetchmail-users] message was not the expected length errors
+</A></li>
+        
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#201">[ date ]</a>
+              <a href="thread.html#201">[ thread ]</a>
+              <a href="subject.html#201">[ subject ]</a>
+              <a href="author.html#201">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Quoting from Frederik's mail on Fri, Dec 23, 2005:
+&gt;<i> Since tonight, I'm suffering from &quot;message [...] was not the expected
+</I>&gt;<i> length&quot; errors. I see it on one mailbox on my ISP (the other mailbox is
+</I>&gt;<i> unaffected though), and it makes fetchmail completely fail to retrieve
+</I>&gt;<i> mails from the mailbox concerned.
+</I>&gt;<i> 
+</I>&gt;<i> I tried my ISP's webmail, and could access my mailbox without any
+</I>&gt;<i> problems. I deleted the whole contents of the mailbox, in the hope that it
+</I>&gt;<i> was one particual mail causing the problem. Unfortunately, on the first
+</I>&gt;<i> mail which arrived, the problem was there again.
+</I>&gt;<i> 
+</I>&gt;<i> I have this problem with both fetchmail from sarge (6.2.5-12sarge3), and
+</I>&gt;<i> with self compiled fetchmail 6.3.1.
+</I>&gt;<i> 
+</I>&gt;<i> Here's part of the output of an /etc/init.d/fetchmail debug-run:
+</I>&gt;<i> 
+</I>&gt;<i> fetchmail: 6.2.5 querying pop.pandora.be (protocol POP3) at Fri 23 Dec
+</I>&gt;<i> 2005 07:24:18 PM CET: poll started
+</I>
+...
+
+&gt;<i> fetchmail: forwarding to localhost
+</I>&gt;<i> fetchmail: SMTP&gt; MAIL FROM:&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">cooker-owner at mandrivalinux.org</A>&gt; SIZE=4693
+</I>&gt;<i> fetchmail: SMTP&lt; 250 OK
+</I>&gt;<i> fetchmail: SMTP&gt; RCPT TO:&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">frederik at localhost</A>&gt;
+</I>&gt;<i> fetchmail: SMTP&lt; 250 Accepted
+</I>&gt;<i> fetchmail: SMTP&gt; DATA
+</I>&gt;<i> fetchmail: SMTP&lt; 354 Enter message, ending with &quot;.&quot; on a line by itself
+</I>&gt;<i> #**********************************.****************fetchmail: message
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">username at pop.pandora.be</A>:1 was not the expected length (4803 actual != 4693
+</I>&gt;<i> expected) fetchmail: SMTP&gt;. (EOM)
+</I>&gt;<i> fetchmail: terminated with signal 2
+</I>
+Please try adding the &quot;forcecr&quot; option to your fetchmailrc.
+
+In case it doesn't work, please send the output of &quot;fetchmail -V&quot; and
+the details of your smtp server.
+
+Is the &quot;message ... was not the expected length&quot; error coming on every
+mail or on specific mails only?
+
+-- 
+Sunil Shetye.
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000199.html">[fetchmail-users] message was not the expected length errors
+</A></li>
+	
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#201">[ date ]</a>
+              <a href="thread.html#201">[ thread ]</a>
+              <a href="subject.html#201">[ subject ]</a>
+              <a href="author.html#201">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

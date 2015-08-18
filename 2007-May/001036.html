@@ -1,0 +1,110 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] SMTP connect error with fetchmail under Cygwin
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2007-May/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20SMTP%20connect%20error%20with%20fetchmail%20under%20Cygwin&In-Reply-To=%3C20070514003959.GA2468%40tishler.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001033.html">
+   <LINK REL="Next"  HREF="001037.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] SMTP connect error with fetchmail under Cygwin</H1>
+    <B>Jason Tishler</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20SMTP%20connect%20error%20with%20fetchmail%20under%20Cygwin&In-Reply-To=%3C20070514003959.GA2468%40tishler.net%3E"
+       TITLE="[fetchmail-users] SMTP connect error with fetchmail under Cygwin">jason at tishler.net
+       </A><BR>
+    <I>Mon May 14 02:39:59 CEST 2007</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001033.html">[fetchmail-users] SMTP connect error with fetchmail under Cygwin
+</A></li>
+        <LI>Next message: <A HREF="001037.html">[fetchmail-users] SMTP connect error with fetchmail under Cygwin
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1036">[ date ]</a>
+              <a href="thread.html#1036">[ thread ]</a>
+              <a href="subject.html#1036">[ subject ]</a>
+              <a href="author.html#1036">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Kyle,
+
+On Sat, May 12, 2007 at 11:03:18PM +0100, Rob MacGregor wrote:
+&gt;<i> On 5/12/07, Kyle Contreras-Barbour &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">kylebarbour at gmail.com</A>&gt; wrote:
+</I>&gt;<i> &gt; 6.3.8 and 3.22, respectively, according to setup.exe).
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; I did indeed need to get exim running, it seems (thanks!) - I ran
+</I>&gt;<i> &gt; exim-config to get the daemon going and when I ran fetchmail,
+</I>&gt;<i> &gt; instead of giving &quot;connection to localhost failed&quot; it happily
+</I>&gt;<i> &gt; connected. However, it's still having certificate verification
+</I>&gt;<i> &gt; errors (I don't know if that's a big issue or not) and terminating
+</I>&gt;<i> &gt; with a socket error. This is what it's showing at the end:
+</I>&gt;<i> 
+</I>&gt;<i> Not a big deal.
+</I>
+Agreed, I get the same error messages when I fetch from gmail too.
+
+&gt;<i> &gt; It's been getting stuck at the same message, which appears to be
+</I>&gt;<i> &gt; fairly large (14003782 octets), so I'm starting to wonder if there
+</I>&gt;<i> &gt; isn't some issue there. Before it hits that message, it's giving
+</I>&gt;<i> &gt; this:
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; [snip]
+</I>&gt;<i>
+</I>&gt;<i> It could be a problem related to your exim config (14 MB is pretty
+</I>&gt;<i> large for an email).  The contents of the exim log would be useful to
+</I>&gt;<i> further diagnose, though from the snippet above it doesn't appear to
+</I>&gt;<i> be a fetchmail problem.
+</I>
+You don't need to use exim or another MTA, if you are only interested in
+local mail delivery.  If so, then you may want to model your fetchmail
+configuration after mine which delivers via procmail:
+
+    poll &quot;pop.gmail.com&quot;
+    protocol pop3
+    username &quot;${USER}@gmail.com&quot;
+    password &quot;${PASSWORD}&quot;
+    fetchall
+    ssl
+    nokeep
+    mda &quot;/usr/bin/procmail -d %T&quot;
+
+where ${USER} and ${PASSWORD} are as appropriate.
+
+Jason
+
+-- 
+PGP/GPG Key: <A HREF="http://www.tishler.net/jason/pubkey.asc">http://www.tishler.net/jason/pubkey.asc</A> or key servers
+Fingerprint: 7A73 1405 7F2B E669 C19D  8784 1AFD E4CC ECF4 8EF6
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001033.html">[fetchmail-users] SMTP connect error with fetchmail under Cygwin
+</A></li>
+	<LI>Next message: <A HREF="001037.html">[fetchmail-users] SMTP connect error with fetchmail under Cygwin
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1036">[ date ]</a>
+              <a href="thread.html#1036">[ thread ]</a>
+              <a href="subject.html#1036">[ subject ]</a>
+              <a href="author.html#1036">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

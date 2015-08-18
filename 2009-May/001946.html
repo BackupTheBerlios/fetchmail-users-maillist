@@ -1,0 +1,164 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] fetchmail 6.3.10-beta1 test version
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2009-May/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%206.3.10-beta1%20test%20version&In-Reply-To=%3C20090525223047.GB9681%40merlin.emma.line.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001944.html">
+   <LINK REL="Next"  HREF="001947.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] fetchmail 6.3.10-beta1 test version</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%206.3.10-beta1%20test%20version&In-Reply-To=%3C20090525223047.GB9681%40merlin.emma.line.org%3E"
+       TITLE="[fetchmail-users] fetchmail 6.3.10-beta1 test version">matthias.andree at gmx.de
+       </A><BR>
+    <I>Tue May 26 00:30:47 CEST 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001944.html">[fetchmail-users] Fwd: [SOLVED] Re: Daemon mode and file permissions, fetchmail log
+</A></li>
+        <LI>Next message: <A HREF="001947.html">[fetchmail-users] fetchmail 6.3.10-beta1 test version
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1946">[ date ]</a>
+              <a href="thread.html#1946">[ thread ]</a>
+              <a href="subject.html#1946">[ subject ]</a>
+              <a href="author.html#1946">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA1
+
+Greetings,
+
+I have uploaded a fetchmail 6.3.10 beta version - &quot;beta&quot; means that some
+of the bug fixes have been nontrivial, and testing is required. See the
+log below for bugs supposed to be fixed.
+
+Find the tarball at the usual download location:
+&lt;<A HREF="http://home.pages.de/~mandree/fetchmail/">http://home.pages.de/~mandree/fetchmail/</A>&gt;.
+
+Happy fetching
+Matthias
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Changes in fetchmail 6.3.10-beta1 since 6.3.9:
+
+# ADVANCE WARNING OF FEATURES TO BE REMOVED OR CHANGED IN FUTURE VERSIONS
+* The maintainer may migrate fetchmail to C++ with STL or C#, and impose further
+  requirements (dependencies), such as Boost or other class libraries.
+* The softbounce option default will change to &quot;false&quot; in the next release.
+
+fetchmail 6.3.10 (not yet released, beta1 on 2009-05-25):
+
+# INCOMPATIBLE BUGFIXES AND CHANGES
+* Fetchmail no longer drops permanently undelivered messages by default, to
+  match historic documentation.  It does this by adding a new &quot;softbounce&quot;
+  option, see below.
+  Fixes Debian Bug#471283, demotes Debian Bug#494418 to wishlist.
+* There is a new &quot;softbounce&quot; global option that prevents the deletion of
+  messages that have not been forwarded. It defaults to &quot;true&quot; for fetchmail
+  6.3.X in order to match historic documentation. This may change its default
+  in the next major release.
+
+# BUGFIXES
+* Fix misuse of canonical autoconf target as _TARGET when it should have been
+  _HOST. Report and patch courtesy of Diego E. &quot;Flameeyes&quot; Petten&#242;.
+  Details: <A HREF="http://blog.flameeyes.eu/2009/01/01/the-canonical-target">http://blog.flameeyes.eu/2009/01/01/the-canonical-target</A>
+* Do not lose PS_MAXFETCH (13) exit status when hitting maxpoll. Reported by
+  Michelle Konzack, Debian Bug#508667.
+* Do not overlap source and destination fields in snprintf() in interface.c.
+  Courtesy of Nico Golde, Debian.
+* When a pre- or post-connect command fails, now report the exit status or
+  termination signal properly through sys/wait.h macros.
+* When acquiring a body, understand NIL (&quot;no such data item&quot;), as returned by
+  some MS Exchange versions. Fixes BerliOS Bug #11980 by KB Sriram.
+* Make progress tickers (-v/--showdots) consistent, and update documentation 
+  accordingly (&quot;.&quot; for each 1024 octets read, &quot;#&quot; for a header written, and &quot;*&quot; 
+  for each body line written.)
+  The conditions under which these had been printed were inconsistent,
+  illogical, and documentation hadn't matched real behaviour for long.
+* For NTLM authentication, use dynamically allocated buffers.
+  Fixes Debian Bug#449179, reported by Stepan Golosunov.
+* Non-delivery notice (&quot;bounce mail&quot;) now mentions the original reason again,
+  before the address list. This fixes a regression introduced in 6.3.0.
+* Several compiler warnings were fixed.
+* The minimum recommended SMTP (RFC-5321) timeouts are enforced to leave
+  sufficient time for the listener to respond. Some synchronous listeners,
+  particularly when used with spam filtering and other policy enforcement
+  services, take extended amounts of time to process messages after the sender,
+  recipient, or data block and EOM line. This can cause fetchmail to not wait
+  long enough for the &quot;250 Ok&quot; and make fetchmail believe the message wasn't
+  properly delivered when in fact it was; fetchmail would then retry the
+  download next time and never make progress.
+  Fixes Berlios Bug #10972, reported by Viktor Binzberger.
+* The ESMTP/LMTP client will now apply an application-specific timeout while
+  waiting for the EHLO/LHLO response, rather than wait for the server or TCP
+  connection timeout.
+* Treat 530 errors as temporary, so as not to delete messages on configuration
+  errors. Partially taken from Petr Cerny's patch in Novell Bugzilla #246829.
+  The 501 part of said patch was not added, as the maintainer is not convinced
+  501 is a temporary condition, and softbounce takes care of this anyways.
+
+# CHANGES
+* Make the comparison of the SSL fingerprints case insensitive, to
+  ease its use. Suggested by Daniel Richard G.
+
+# CHANGES TO CONTRIB
+* Fix bashism in contrib/fetchsetup. Fixes Debian Bug#530081.
+
+# DOCUMENTATION
+* Some parts of the the manual page were revised for clarity, accuracy, and
+  updated recommendations (particularly SSL/TLS) and formatting conventions from
+  man-pages(7).
+* The README and README.SSL documents were updated.
+* A document, README.SSL-SERVER, was added to describe server-side requirements
+  for proper SSL and/or TLS service offerings. These are not specific to
+  fetchmail.
+
+# TRANSLATION UPDATES AND ADDITIONS (ordered by language name):
+* [en_GB] English/British
+* [de]    German
+* [it]    Italian (Vincenzo Campanella)
+* [es]    Spanish/Castilian (Francisco Molinero)
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v2.0.9 (GNU/Linux)
+
+iEYEARECAAYFAkobHBYACgkQvmGDOQUufZVlLQCcC3BGECLvxLPFRnFoK3kPhDUL
+aMwAoKnIMkE/WmOevCCPC/G/aR0ROl/z
+=o/Ah
+-----END PGP SIGNATURE-----
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001944.html">[fetchmail-users] Fwd: [SOLVED] Re: Daemon mode and file permissions, fetchmail log
+</A></li>
+	<LI>Next message: <A HREF="001947.html">[fetchmail-users] fetchmail 6.3.10-beta1 test version
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1946">[ date ]</a>
+              <a href="thread.html#1946">[ thread ]</a>
+              <a href="subject.html#1946">[ subject ]</a>
+              <a href="author.html#1946">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

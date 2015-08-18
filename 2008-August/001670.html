@@ -1,0 +1,104 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] compile/rpm database - was moving fetchmail to	new machine
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2008-August/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20compile/rpm%20database%20-%20was%20moving%20fetchmail%20to%0A%09new%20machine&In-Reply-To=%3C48A69410.917D.0085.0%40j4computers.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001672.html">
+   <LINK REL="Next"  HREF="001671.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] compile/rpm database - was moving fetchmail to	new machine</H1>
+    <B>joea at j4computers.com</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20compile/rpm%20database%20-%20was%20moving%20fetchmail%20to%0A%09new%20machine&In-Reply-To=%3C48A69410.917D.0085.0%40j4computers.com%3E"
+       TITLE="[fetchmail-users] compile/rpm database - was moving fetchmail to	new machine">joea at j4computers.com
+       </A><BR>
+    <I>Sat Aug 16 14:47:12 CEST 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001672.html">[fetchmail-users] moving fetchmail to new machine
+</A></li>
+        <LI>Next message: <A HREF="001671.html">[fetchmail-users] compile/rpm database - was moving	fetchmail	tonew machine
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1670">[ date ]</a>
+              <a href="thread.html#1670">[ thread ]</a>
+              <a href="subject.html#1670">[ subject ]</a>
+              <a href="author.html#1670">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Gathering my wits, after posting the last, did a basic RTFM and compiled successfully.
+
+Now being all full of myself, decided to install fetchmailconfig.  But it tells me it needs fetchmail 6.3.8.  Hmm.
+
+At my console, I do this: 
+vmy-oes:/tmp # fetchmail -V
+
+and get this:
+fetchmail: WARNING: Running as root is discouraged.
+This is fetchmail release 6.3.8+NLS.
+ . . .
+
+But doing:
+
+my-oes:/tmp # rpm -qa fetchmail
+
+Tells me:
+fetchmail-6.2.5-49.9
+
+Seems YAST, my friendly installer, thinks the earlier version is installed.  I see that rpm has a --justdb option that may help.  However, I believe I would need to download the base rpm (not the src) and run against this. 
+
+Is that correct?
+
+joe a.
+
+
+&gt;&gt;&gt;<i>
+</I>Have a working fetchmail (6.3.8-1?) on a SUSE (novell OES) box. Want to move this to another box (now in vmware server, with a differnt IP).
+
+I'm supposing the &quot;best&quot; way to do this is to recompile on the new vm and copy over the existing config, editing IP where necessary.
+
+Is this reasonable?
+
+I did compile on this machine, to replace the version supplied with SUSE, with some assistance from this list.  It was pretty simple, but I have no notes. (hint, plea for steps).
+
+
+
+
+
+
+
+
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001672.html">[fetchmail-users] moving fetchmail to new machine
+</A></li>
+	<LI>Next message: <A HREF="001671.html">[fetchmail-users] compile/rpm database - was moving	fetchmail	tonew machine
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1670">[ date ]</a>
+              <a href="thread.html#1670">[ thread ]</a>
+              <a href="subject.html#1670">[ subject ]</a>
+              <a href="author.html#1670">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

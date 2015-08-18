@@ -1,0 +1,101 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] strange polling errors
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2011-February/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20strange%20polling%20errors&In-Reply-To=%3C20110225213303.118280%40gmx.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002683.html">
+   <LINK REL="Next"  HREF="002676.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] strange polling errors</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20strange%20polling%20errors&In-Reply-To=%3C20110225213303.118280%40gmx.net%3E"
+       TITLE="[fetchmail-users] strange polling errors">matthias.andree at gmx.de
+       </A><BR>
+    <I>Fri Feb 25 22:33:03 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002683.html">[fetchmail-users] strange polling errors
+</A></li>
+        <LI>Next message: <A HREF="002676.html">[fetchmail-users] probably outdated msn local certificate
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2674">[ date ]</a>
+              <a href="thread.html#2674">[ thread ]</a>
+              <a href="subject.html#2674">[ subject ]</a>
+              <a href="author.html#2674">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Jonathan Buschmann wrote:
+
+&gt;<i> I've had the following errors in my syslog for some time now - whatever 
+</I>&gt;<i> the problem it doesn't _seem_ to affect mail fetching though.
+</I>&gt;<i> I'm fetching from Exchange (wish I could find out its version).
+</I>&gt;<i> I'm using 6.3.19+NTLM+SSL on a SUN with Solaris 10.
+</I>&gt;<i> My fetchmailrc:
+</I>&gt;<i> set daemon 10
+</I>&gt;<i> set syslog
+</I>&gt;<i> set postmaster &quot;postmaster&quot;
+</I>&gt;<i> set no bouncemail
+</I>&gt;<i> set no spambounce
+</I>&gt;<i> set properties &quot;&quot;
+</I>&gt;<i> poll mail.&lt;snip&gt; with proto IMAP with auth password
+</I>&gt;<i>          user '&lt;snip&gt;' there with password '&lt;snip&gt;' is '&lt;snip&gt;' here
+</I>&gt;<i> options fetchall no mimedecode ssl idle
+</I>&gt;<i> 
+</I>&gt;<i> As you can see there is a very regular pattern, happening every 5:14, 
+</I>&gt;<i> more or less. (the &quot;awakened&quot; is just a cron job that makes sure 
+</I>&gt;<i> fetchmail is running)
+</I>&gt;<i> Feb 25 14:24:43 jnoblade fetchmail[1588]: [ID 676216 mail.error] re-poll 
+</I>&gt;<i> failed
+</I>&gt;<i> Feb 25 14:24:43 jnoblade fetchmail[1588]: [ID 831971 mail.error] socket 
+</I>&gt;<i> error while fetching from &lt;snip&gt;
+</I>&gt;<i> Feb 25 14:24:43 jnoblade fetchmail[1588]: [ID 991256 mail.info] Query 
+</I>&gt;<i> status=2 (SOCKET)
+</I>
+As a workaround, you can remove the idle option, but you should then probably increase the daemon interval to something higher than 10 seconds lest the Exchange admin get mad at you.
+
+The messages are from idle-related program code in imap.c, so chances are that fetchmail tells Exchange that it (fetchmail) is idling, and chances are that Exchange has too short a timeout.  To confirm that, I will wait for your verbose logs, as written in an earlier mail to the list.
+
+Also note that it is advisable to configure the trusted X.509 certificate root signing certificates properly and add the &quot;sslcertck&quot; option.
+
+HTH
+
+Best regards
+Matthias
+-- 
+Matthias Andree
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002683.html">[fetchmail-users] strange polling errors
+</A></li>
+	<LI>Next message: <A HREF="002676.html">[fetchmail-users] probably outdated msn local certificate
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2674">[ date ]</a>
+              <a href="thread.html#2674">[ thread ]</a>
+              <a href="subject.html#2674">[ subject ]</a>
+              <a href="author.html#2674">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

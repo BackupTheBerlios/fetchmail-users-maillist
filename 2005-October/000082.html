@@ -1,0 +1,103 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] fetchmail 6.2.9-rc6 available (yet another candidate...)
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2005-October/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%206.2.9-rc6%20available%20%28yet%20another%20candidate...%29&In-Reply-To=%3C20051021141011.GB3982%40merlin.emma.line.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000081.html">
+   <LINK REL="Next"  HREF="000083.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] fetchmail 6.2.9-rc6 available (yet another candidate...)</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%206.2.9-rc6%20available%20%28yet%20another%20candidate...%29&In-Reply-To=%3C20051021141011.GB3982%40merlin.emma.line.org%3E"
+       TITLE="[fetchmail-users] fetchmail 6.2.9-rc6 available (yet another candidate...)">matthias.andree at gmx.de
+       </A><BR>
+    <I>Fri Oct 21 16:10:11 CEST 2005</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000081.html">[fetchmail-users] fetchmail 6.2.9-rc6 available (yet another candidate...)
+</A></li>
+        <LI>Next message: <A HREF="000083.html">[fetchmail-users] fetchmail gets stuck because of malformed spam
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#82">[ date ]</a>
+              <a href="thread.html#82">[ thread ]</a>
+              <a href="subject.html#82">[ subject ]</a>
+              <a href="author.html#82">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Fri, 21 Oct 2005, Thomas Wolff wrote:
+
+&gt;<i> Hello,
+</I>&gt;<i> 
+</I>&gt;<i> &gt; * fetchmailconf now changes the output file to mode 0600 BEFORE writing to it,
+</I>&gt;<i> &gt;   so there is no window where passwords could be read by the world.
+</I>&gt;<i> &gt;   Matthias Andree.
+</I>&gt;<i> This doesn't sound quite right. The only safe way is to CREATE the 
+</I>&gt;<i> file in 600 mode right away. If you just CHANGE to 600 even before writing 
+</I>&gt;<i> to it, there IS an unsafe window.
+</I>&gt;<i> Try the following:
+</I>&gt;<i> touch x
+</I>&gt;<i> tail -f x
+</I>&gt;<i> 
+</I>&gt;<i> Then in another shell:
+</I>&gt;<i> chmod -r x
+</I>&gt;<i> echo bla &gt;&gt; x
+</I>&gt;<i> 
+</I>&gt;<i> &quot;bla&quot; will show up in the first window, read by &quot;tail&quot;.
+</I>
+Right you are, and thanks for reporting the problem.
+(Thanks also to Miloslav Trmac, who also reported the problem.)
+
+Actually, the new script also sets the umask to 077 before opening the
+file, so we're doing the right thing, only the NEWS file is off track.
+
+I have uploaded a new version of a security announcement, now at
+<A HREF="http://fetchmail.berlios.de/fetchmail-SA-2005-02.txt">http://fetchmail.berlios.de/fetchmail-SA-2005-02.txt</A> and will ship it to
+pertinent lists shortly.
+
+I have also withdrawn fetchmailconf-1.43.1 and the corresponding patch
+from distribution and uploaded fetchmailconf-1.43.2 for users of
+fetchmail-6.2.5.2.
+
+Please, further discussion only on <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">fetchmail-devel at lists.berlios.de.</A>
+
+Warning: reply-to is set - take care should you desire to mail me
+directly - some mailers require you to manually pick &quot;To Sender Only&quot; or
+&quot;Ignore Reply-To.&quot;
+
+-- 
+Matthias Andree
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000081.html">[fetchmail-users] fetchmail 6.2.9-rc6 available (yet another candidate...)
+</A></li>
+	<LI>Next message: <A HREF="000083.html">[fetchmail-users] fetchmail gets stuck because of malformed spam
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#82">[ date ]</a>
+              <a href="thread.html#82">[ thread ]</a>
+              <a href="subject.html#82">[ subject ]</a>
+              <a href="author.html#82">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

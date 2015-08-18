@@ -1,0 +1,103 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] --nosoftbounce option no working in v6.3.14
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2010-March/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20--nosoftbounce%20option%20no%20working%20in%20v6.3.14&In-Reply-To=%3C20100313084017.GA55094%40titania.njm.me.uk%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002299.html">
+   <LINK REL="Next"  HREF="002300.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] --nosoftbounce option no working in v6.3.14</H1>
+    <B>N.J. Mann</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20--nosoftbounce%20option%20no%20working%20in%20v6.3.14&In-Reply-To=%3C20100313084017.GA55094%40titania.njm.me.uk%3E"
+       TITLE="[fetchmail-users] --nosoftbounce option no working in v6.3.14">njm at njm.me.uk
+       </A><BR>
+    <I>Sat Mar 13 09:40:17 CET 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002299.html">[fetchmail-users] --nosoftbounce option no working in v6.3.14
+</A></li>
+        <LI>Next message: <A HREF="002300.html">[fetchmail-users] fetchmail skipping emails at gmail
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2312">[ date ]</a>
+              <a href="thread.html#2312">[ thread ]</a>
+              <a href="subject.html#2312">[ subject ]</a>
+              <a href="author.html#2312">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>In message &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">op.u838v8r21e62zd at balu.cs.uni-paderborn.de</A>&gt;,
+	Matthias Andree (<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">matthias.andree at gmx.de</A>) wrote:
+&gt;<i> N.J. Mann wrote on 2010-03-05:
+</I>&gt;<i> 
+</I>&gt;<i> &gt; I occasionally receive email from domains which fail DNS look ups.  My
+</I>&gt;<i> &gt; local MTA (sendmail) returns a 553 error response to fetchmail, but
+</I>&gt;<i> &gt; fetchmail does _not_ delete the message from my ISP's mail server if I
+</I>&gt;<i> &gt; am using the command line option --nosoftbounce rather than setting said
+</I>&gt;<i> &gt; option in .fetchmailrc.  If I do put the option in the RC file it does
+</I>&gt;<i> &gt; delete the message.
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; I am using the latest fetchmail from the FreeBSD ports system:
+</I>&gt;<i> &gt;   6.3.14+RPA+SDPS+SSL+OPIE+NLS
+</I>&gt;<i> &gt; on
+</I>&gt;<i> &gt;   FreeBSD 7.3-PRERELEASE #5 r204509M
+</I>&gt;<i> &gt; and I run fetchmail from cron.
+</I>&gt;<i> 
+</I>&gt;<i> Dear Nick, list readers,
+</I>&gt;<i> 
+</I>&gt;<i> sorry for the inconvenience.  This was a genuine fetchmail bug, which also  
+</I>&gt;<i> affected &quot;--nobounce&quot; from the command line (it, too, worked from the  
+</I>&gt;<i> rcfile).
+</I>&gt;<i> 
+</I>&gt;<i> When adding the softbounce feature, I was following the pattern ESR had  
+</I>&gt;<i> introduced (and added to his checklist in esrs-design-notes.html) with the  
+</I>&gt;<i> bouncemail option, not noticing that the defaults override for that was  
+</I>&gt;<i> broken (since its introduction in 1999...), and I copied the logical flaw.  
+</I>&gt;<i> Oops.
+</I>&gt;<i> 
+</I>&gt;<i> Sunil Shetye has provided a patch (Nick, Sunil's patch is better than the  
+</I>&gt;<i> one I sent privately for your testing), and I've commited it [1] to the  
+</I>&gt;<i> Git repository [2].  The fix is scheduled to appear in fetchmail 6.3.15  
+</I>&gt;<i> that I hope to release late(r) this month.
+</I>
+I can now confirm that Sunil's patch has fixed the problem for me.  Many
+thanks to both of you for the very quick response.
+
+
+Cheers,
+       Nick.
+-- 
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002299.html">[fetchmail-users] --nosoftbounce option no working in v6.3.14
+</A></li>
+	<LI>Next message: <A HREF="002300.html">[fetchmail-users] fetchmail skipping emails at gmail
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2312">[ date ]</a>
+              <a href="thread.html#2312">[ thread ]</a>
+              <a href="subject.html#2312">[ subject ]</a>
+              <a href="author.html#2312">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

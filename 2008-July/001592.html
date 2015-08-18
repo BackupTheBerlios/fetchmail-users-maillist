@@ -1,0 +1,104 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] fetchmail and headers
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2008-July/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%20and%20headers&In-Reply-To=%3C486B71BF.1000408%40gmx.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001590.html">
+   <LINK REL="Next"  HREF="001591.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] fetchmail and headers</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%20and%20headers&In-Reply-To=%3C486B71BF.1000408%40gmx.de%3E"
+       TITLE="[fetchmail-users] fetchmail and headers">matthias.andree at gmx.de
+       </A><BR>
+    <I>Wed Jul  2 14:17:03 CEST 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001590.html">[fetchmail-users] fetchmail and headers
+</A></li>
+        <LI>Next message: <A HREF="001591.html">[fetchmail-users] fetchmail and headers
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1592">[ date ]</a>
+              <a href="thread.html#1592">[ thread ]</a>
+              <a href="subject.html#1592">[ subject ]</a>
+              <a href="author.html#1592">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Sylvain Le Torrec schrieb:
+
+&gt;<i> I know that there are a lot of questions about the headers, but I don't find
+</I>&gt;<i> anything about my problem. I'm using Qmail v1.03 and fetchmail v.6.2.4.
+</I>&gt;<i> I have some troubles with fetchmail with the headers of some mails.
+</I>&gt;<i> Sometimes, it happens that I have two 'To' in the header, so when fetchmail
+</I>&gt;<i> try to fetch it, it stops on the 2nd 'To' because it reads
+</I>&gt;<i> 'Undisclosed-Recipient'.
+</I>
+Salut Sylvain,
+
+1 - update to 6.3.9-rc2 (or 6.3.8 with the two patches from CVE-2008-2711
+and CVE-2007-4565). fetchmail 6.2.4 has a gazillion of bugs, at least half
+a dozen security relevant.
+
+2 - to your questions: fetchmail should be looking at the Delivered-To:
+header, and as Rob suggests, drop the &quot;no envelope&quot; and &quot;qvirtual&quot; lines.
+In that case, the number of &quot;To:&quot; headers should not matter - they aren't
+relevant for routing anyways - mailing lists as a problem...
+
+The former contradicts the subsequent envelope line, and qvirtual does
+nothing since it's only looking at header contents (not the name) to
+overcome the mangling that qmail virtual domain expansions do... use that
+if the *UPSTREAM* server you're fetching mail from uses qmail.
+
+Other sane choices for envelope are X-Envelope-To, X-Original-To, if
+present in the upstream headers.
+
+&gt;<i> I don't know how to make fetchmail read the first 'To' and to read the only
+</I>&gt;<i> recipients for my domain (it also stops when there are mailing lists..)
+</I>
+You should *NEVER* do To:/Cc: parsing. For &quot;mda&quot; submission to a fixed
+address, no parsing is required, for multidrop configurations, you should
+be parsing the *ENVELOPE* (Delivered-To: or thereabouts, if recorded at all).
+
+See also &lt;<A HREF="http://home.pages.de/~mandree/mail/multidrop">http://home.pages.de/~mandree/mail/multidrop</A>&gt; or the manpage of
+6.3.9-rc2.
+
+-- 
+Matthias Andree
+
+Life is what happens to you while you're busy making other plans.
+  						-- John Lennon, 1980
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001590.html">[fetchmail-users] fetchmail and headers
+</A></li>
+	<LI>Next message: <A HREF="001591.html">[fetchmail-users] fetchmail and headers
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1592">[ date ]</a>
+              <a href="thread.html#1592">[ thread ]</a>
+              <a href="subject.html#1592">[ subject ]</a>
+              <a href="author.html#1592">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

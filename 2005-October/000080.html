@@ -1,0 +1,114 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] fetchmail 6.2.9-rc6 available (yet another candidate...)
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2005-October/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%206.2.9-rc6%20available%20%28yet%20another%20candidate...%29&In-Reply-To=%3C20051021123757.GA27857%40merlin.emma.line.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000079.html">
+   <LINK REL="Next"  HREF="000081.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] fetchmail 6.2.9-rc6 available (yet another candidate...)</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%206.2.9-rc6%20available%20%28yet%20another%20candidate...%29&In-Reply-To=%3C20051021123757.GA27857%40merlin.emma.line.org%3E"
+       TITLE="[fetchmail-users] fetchmail 6.2.9-rc6 available (yet another candidate...)">matthias.andree at gmx.de
+       </A><BR>
+    <I>Fri Oct 21 14:37:57 CEST 2005</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000079.html">[fetchmail-users] Socket error
+</A></li>
+        <LI>Next message: <A HREF="000081.html">[fetchmail-users] fetchmail 6.2.9-rc6 available (yet another candidate...)
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#80">[ date ]</a>
+              <a href="thread.html#80">[ thread ]</a>
+              <a href="subject.html#80">[ subject ]</a>
+              <a href="author.html#80">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA1
+
+Greetings,
+
+I have just released fetchmail 6.2.9-rc6, yet another release candidate
+before 6.3.0, after further fixes to -rc5, became necessary.
+
+- -----------------------------------------------------------------------
+Fetchmail needs your support - please consider a donation via:
+&lt;<A HREF="https://developer.berlios.de/developer/make_donation.php?user_id=2007">https://developer.berlios.de/developer/make_donation.php?user_id=2007</A>&gt;
+- -----------------------------------------------------------------------
+
+Changes since -rc5 are:
+* fetchmailconf now changes the output file to mode 0600 BEFORE writing to it,
+  so there is no window where passwords could be read by the world.
+  Matthias Andree.
+* Missed --port/--service/--ssl cleanups in the manual. Reminder from Thomas
+  Wolff. (MA)
+* Complain in POP3 if NTLM/MSN auth is requested but had not been enabled at
+  compile time. This configuration mismatch now causes an error message and
+  authentication failure. Found by Yves Boisjoly.  Matthias Andree
+* fetchmailconf now allows expert users to choose the authorization type and
+  also offers MSN and NTLM, suggested by Yves Boisjoly. Matthias Andree
+* fetchmailconf now (as of 1.49) writes its version to the comment of the
+  saved run control file. Matthias Andree
+* Properly shut down SSL connections. Berlios Patch #647 by Arkadiusz
+  Mi&#347;kiewicz. (MA)
+* Global variable cleanup, to fix daemon mode reinitialization problems. Patch
+  by Sunil Shetye. (MA)
+
+I seek everyone to test it out, report remaining bugs, update outdated
+translations (send your translated .po files to the translation
+project's robot, it'll forward your translation to the -devel list) or
+send patches for documentation or report inconsistencies (including
+formatting!) in the documentation.
+
+The software is available from:
+&lt;<A HREF="https://developer.berlios.de/project/showfiles.php?group_id=1824&amp;release_id=7672">https://developer.berlios.de/project/showfiles.php?group_id=1824&amp;release_id=7672</A>&gt;
+&lt;<A HREF="http://home.pages.de/~mandree/fetchmail/">http://home.pages.de/~mandree/fetchmail/</A>&gt;
+
+
+Regards,
+
+- -- 
+Matthias Andree
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1.4.0 (GNU/Linux)
+
+iD8DBQFDWOElvmGDOQUufZURAnEHAKCLG0lXreSui5fw1nqfYGRDihCsHgCfTh0Y
+ZGUGQHcBElLVaHfsUNurPOw=
+=PejO
+-----END PGP SIGNATURE-----
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000079.html">[fetchmail-users] Socket error
+</A></li>
+	<LI>Next message: <A HREF="000081.html">[fetchmail-users] fetchmail 6.2.9-rc6 available (yet another candidate...)
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#80">[ date ]</a>
+              <a href="thread.html#80">[ thread ]</a>
+              <a href="subject.html#80">[ subject ]</a>
+              <a href="author.html#80">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

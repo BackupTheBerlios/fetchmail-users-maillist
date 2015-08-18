@@ -1,0 +1,109 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] syntax error
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2011-February/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20syntax%20error&In-Reply-To=%3C20110219145015.GA41722%40titania.njm.me.uk%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002664.html">
+   <LINK REL="Next"  HREF="002666.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] syntax error</H1>
+    <B>N.J. Mann</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20syntax%20error&In-Reply-To=%3C20110219145015.GA41722%40titania.njm.me.uk%3E"
+       TITLE="[fetchmail-users] syntax error">njm at njm.me.uk
+       </A><BR>
+    <I>Sat Feb 19 15:50:15 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002664.html">[fetchmail-users] syntax error
+</A></li>
+        <LI>Next message: <A HREF="002666.html">[fetchmail-users] syntax error
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2665">[ date ]</a>
+              <a href="thread.html#2665">[ thread ]</a>
+              <a href="subject.html#2665">[ subject ]</a>
+              <a href="author.html#2665">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>In message &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">alpine.BSF.2.00.1102190805060.27132 at freire1.furyyjbeyq.arg</A>&gt;,
+	Jude DaShiell (<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">jdashiel at shellworld.net</A>) wrote:
+&gt;<i>
+</I>&gt;<i> Script started on Sat 19 Feb 2011 08:03:36 AM EST
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">jude at md</A>:~$ fetchmail
+</I>&gt;<i> fetchmail:/home/jude/.fetchmailrc:3: syntax error at silent
+</I>
+fetchmail is telling you that the syntax of line 3 of your .fetchmailrc
+is wrong and in particular the 'silent' statement.
+
+&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">jude at md</A>:~$ cat .fetchmailrc
+</I>&gt;<i> set daemon 300
+</I>&gt;<i> set logfile /home/jude/fetchmail.log
+</I>&gt;<i> set silent=1
+</I>
+There is no keyword 'silent', only the command mode option '-s' or
+'--silent'.  Perhaps there should be.
+
+Also, in the .fetchmailrc the syntax to enable an option is
+  'set &lt;keyword&gt;'
+and to disable an option
+  'set no &lt;keyword&gt;'
+
+&gt;<i> set syslog /home/jude/fetchmail.log
+</I>
+This is incorrect because the 'syslog' option is either on or off, it
+does not take a parameter.
+
+If you wish to disable the use of syslog(3) and log everything to a file
+then you need to either use the command line options:
+
+  fetchmail --nosyslog --logfile &lt;path/to/logfile&gt;
+
+or have the following statements in your .fetchmailrc file:
+
+  set no syslog
+  set logfile &lt;path/to/logfile&gt;
+
+Do _not_ forget to create the log file before you run fetchmail after
+adding the above.
+
+I hope the above helps.
+
+
+Cheers,
+       Nick.
+-- 
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002664.html">[fetchmail-users] syntax error
+</A></li>
+	<LI>Next message: <A HREF="002666.html">[fetchmail-users] syntax error
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2665">[ date ]</a>
+              <a href="thread.html#2665">[ thread ]</a>
+              <a href="subject.html#2665">[ subject ]</a>
+              <a href="author.html#2665">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,90 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] no dns option?
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2012-January/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20no%20dns%20option%3F&In-Reply-To=%3CBF67B3EA47D74C948BB02BC1CF717665%40wkst15%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003041.html">
+   <LINK REL="Next"  HREF="003034.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] no dns option?</H1>
+    <B>skull</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20no%20dns%20option%3F&In-Reply-To=%3CBF67B3EA47D74C948BB02BC1CF717665%40wkst15%3E"
+       TITLE="[fetchmail-users] no dns option?">skull17 at gmx.ch
+       </A><BR>
+    <I>Mon Jan 30 18:02:59 CET 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003041.html">[fetchmail-users] How to handle mail with broken headers?
+</A></li>
+        <LI>Next message: <A HREF="003034.html">[fetchmail-users] no dns option?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3033">[ date ]</a>
+              <a href="thread.html#3033">[ thread ]</a>
+              <a href="subject.html#3033">[ subject ]</a>
+              <a href="author.html#3033">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hey everybody
+
+We're using zarafa as a mailserver and fetchmail do deliver the mails.
+.fetchmailrc has the following format:
+
+set postmaster &quot;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">foo at bar.com</A>&quot;
+set bouncemail
+set properties &quot;fetchall&quot;
+poll pop.foobar.com protocol POP3
+        no dns
+        user foo
+        password bar
+        mda &quot;/usr/bin/zarafa-dagent foobar&quot;
+;
+
+it works like a charm. but i saw that on some servers there is the &quot;no dns&quot; option. on some servers its missing. on some its even mixed.
+ i asked my boss about it (he wrote most of the .fetchmailrc on the customer servers). he said he had no idea why &quot;no dns&quot; is in the file.
+what exactly is this option?
+the man page says: no dns - Disable DNS lookup for multidrop 
+
+english isn't my mothertongue so i don't really know what &quot;multidrop&quot; is :)
+
+and skipping the dns lookup when connecting to pop.foobar.com does just not make sense.
+
+anyone care to explain?
+(german explanations preffered ;) )
+
+
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003041.html">[fetchmail-users] How to handle mail with broken headers?
+</A></li>
+	<LI>Next message: <A HREF="003034.html">[fetchmail-users] no dns option?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3033">[ date ]</a>
+              <a href="thread.html#3033">[ thread ]</a>
+              <a href="subject.html#3033">[ subject ]</a>
+              <a href="author.html#3033">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

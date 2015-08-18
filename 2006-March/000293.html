@@ -1,0 +1,104 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] RETR with UIDL
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2006-March/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20RETR%20with%20UIDL&In-Reply-To=%3Cm3psl4jt2t.fsf%40merlin.emma.line.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000290.html">
+   <LINK REL="Next"  HREF="000294.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] RETR with UIDL</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20RETR%20with%20UIDL&In-Reply-To=%3Cm3psl4jt2t.fsf%40merlin.emma.line.org%3E"
+       TITLE="[fetchmail-users] RETR with UIDL">matthias.andree at gmx.de
+       </A><BR>
+    <I>Fri Mar  3 01:00:10 CET 2006</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000290.html">[fetchmail-users] RETR with UIDL [Was: Re: After reading the FAQ, a question about lost/mangled attachments]
+</A></li>
+        <LI>Next message: <A HREF="000294.html">[fetchmail-users] Re: RETR with UIDL
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#293">[ date ]</a>
+              <a href="thread.html#293">[ thread ]</a>
+              <a href="subject.html#293">[ subject ]</a>
+              <a href="author.html#293">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Sunil Shetye &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">shetye at bombay.retortsoft.com</A>&gt; writes:
+
+&gt;<i> Quoting from Jakob Hirsch's mail on Thu, Mar 02, 2006:
+</I>&gt;&gt;<i> The difference is simply that fetchmail (ab)uses TOP by default to
+</I>&gt;&gt;<i> retrieve mail, while usual MUAs use the standard mechanism of RETR.
+</I>&gt;&gt;<i> Nevertheless, Comcast's POP3 server is plain broken if he allows TOP but
+</I>&gt;&gt;<i> truncates messages with it.
+</I>&gt;<i>
+</I>&gt;<i> There is one case where fetchmail could use RETR instead of TOP. That
+</I>&gt;<i> is when &quot;uidl&quot; has been enabled.
+</I>
+Not in 6.3.X, as that would change semantics WRT other clients. The
+assumption fetchmail makes is that &quot;TOP&quot; leaves seen flags (where
+recorded in headers) and the &quot;LAST&quot; pointer (way obsolete) alone. Plus,
+some b0rked servers apparently remove messages right after RETR (see
+below).
+
+Changing UIDL to imply &quot;use RETR&quot; is an option only for later versions,
+although it looks sensible in itself -- compatibility matters here.
+
+I don't like fetchmail's assumptions about undocumented behavior either
+(which got us into this trouble), and it appears the price for not using
+RETR is high, but changes like these are definitely 6.4.X stuff.
+
+&gt;<i> fetchmail currently uses TOP. If the server is supporting &quot;uidl&quot;, then
+</I>&gt;<i> it should not matter if fetchmail uses TOP or RETR as all the email
+</I>&gt;<i> clients
+</I>
+This is the thinko. Not all clients use UIDL.
+Some (including fetchmail) still use LAST...
+
+&gt;<i> Any votes for or against this?
+</I>
+Against.
+
+The TODO in SVN's trunk directory already mentions:
+
+|<i> clean up TOP vs. RETR but leave TOP as an option for the server scum
+</I>|<i> that deletes message right after RETR, voiding client retries (Jakob
+</I>|<i> Hirsch, 2006-01-03).
+</I>
+-- 
+Matthias Andree
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000290.html">[fetchmail-users] RETR with UIDL [Was: Re: After reading the FAQ, a question about lost/mangled attachments]
+</A></li>
+	<LI>Next message: <A HREF="000294.html">[fetchmail-users] Re: RETR with UIDL
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#293">[ date ]</a>
+              <a href="thread.html#293">[ thread ]</a>
+              <a href="subject.html#293">[ subject ]</a>
+              <a href="author.html#293">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

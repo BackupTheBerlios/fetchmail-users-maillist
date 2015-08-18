@@ -1,0 +1,78 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] uidl doesnt work in multiple account
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2011-September/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20uidl%20doesnt%20work%20in%20multiple%20account&In-Reply-To=%3CCAHVik%2Bx73R7gs_dRQebkSE%3D49pSjRTDeANd46HyBxuMkiTNX1Q%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   
+   <LINK REL="Next"  HREF="002938.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] uidl doesnt work in multiple account</H1>
+    <B>Nelson Serafica</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20uidl%20doesnt%20work%20in%20multiple%20account&In-Reply-To=%3CCAHVik%2Bx73R7gs_dRQebkSE%3D49pSjRTDeANd46HyBxuMkiTNX1Q%40mail.gmail.com%3E"
+       TITLE="[fetchmail-users] uidl doesnt work in multiple account">ntserafica at gmail.com
+       </A><BR>
+    <I>Tue Sep  6 04:01:42 CEST 2011</I>
+    <P><UL>
+        
+        <LI>Next message: <A HREF="002938.html">[fetchmail-users] uidl doesnt work in multiple account
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2937">[ date ]</a>
+              <a href="thread.html#2937">[ thread ]</a>
+              <a href="subject.html#2937">[ subject ]</a>
+              <a href="author.html#2937">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>I'm trying to use fetchmail in downloading my hosted email to another 2
+email account on my local machine. I want to copy the hosted emails to my 2
+local account. Here is the content of my .fetchmailrc
+
+poll mail.foo.com protocol pop3 uidl:
+  user &quot;nelson&quot; password &quot;abc123&quot; is &quot;nelsonts2&quot; here options keep;
+  user &quot;nelson&quot; password &quot;abc123&quot; is &quot;nelsonts&quot; here options keep;
+
+Then I run the command fetchmail -v -U -k -S localhost/587.
+
+However, I notice that on the nelsonts account keeps on downloading the old
+emails. It seems that uidl only working on the nelsonts2 account. Would it
+be possible to apply also the uidl to the next account. Is this the real
+behavior of fetchmail?
+
+Thanks,
+
+
+Nelson
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	
+	<LI>Next message: <A HREF="002938.html">[fetchmail-users] uidl doesnt work in multiple account
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2937">[ date ]</a>
+              <a href="thread.html#2937">[ thread ]</a>
+              <a href="subject.html#2937">[ subject ]</a>
+              <a href="author.html#2937">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,118 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Fetchmail with Postfix virtual users
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2009-September/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Fetchmail%20with%20Postfix%20virtual%20users&In-Reply-To=%3C200909240854.46224.joost%40antarean.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002094.html">
+   <LINK REL="Next"  HREF="002093.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Fetchmail with Postfix virtual users</H1>
+    <B>J. Roeleveld</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Fetchmail%20with%20Postfix%20virtual%20users&In-Reply-To=%3C200909240854.46224.joost%40antarean.org%3E"
+       TITLE="[fetchmail-users] Fetchmail with Postfix virtual users">joost at antarean.org
+       </A><BR>
+    <I>Thu Sep 24 08:54:46 CEST 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002094.html">[fetchmail-users] Fetchmail with Postfix virtual users
+</A></li>
+        <LI>Next message: <A HREF="002093.html">[fetchmail-users] fetchmailconf not adding dropdelivered to	.fetchmailrc
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2099">[ date ]</a>
+              <a href="thread.html#2099">[ thread ]</a>
+              <a href="subject.html#2099">[ subject ]</a>
+              <a href="author.html#2099">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Wednesday 23 September 2009 23:00:16 you wrote:
+&gt;<i> Am 23.09.2009, 15:11 Uhr, schrieb J. Roeleveld &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">joost at antarean.org</A>&gt;:
+</I>&gt;<i> &gt; Please note, that I tested this with 6.3.8.
+</I>&gt;<i> &gt; I have only this morning upgraded to 6.3.11.
+</I>&gt;<i>
+</I>&gt;<i> There shouldn't be changes relevant to address rewriting, but the security
+</I>&gt;<i> and other fixes are worthwhile having. Be sure to grab
+</I>&gt;<i> <A HREF="http://lists.berlios.de/pipermail/fetchmail-announce/2009-August/000069.htm">http://lists.berlios.de/pipermail/fetchmail-announce/2009-August/000069.htm</A>
+</I>&gt;<i>l or run in verbose mode when using SSL or TLS.
+</I>
+I am not using SSL or TLS with Fetchmail currently. Thanks for the advice, I 
+will wait with enabling that till the next version comes out.
+Need to also check if Gentoo has the patch included already or not.
+
+&gt;<i> &gt; The bit for you (assuming you maintain the man-page, and your comment
+</I>&gt;<i> &gt; earlier
+</I>&gt;<i> &gt; does indicate that) is that I can see several examples for the
+</I>&gt;<i> &gt; optionsfor a
+</I>&gt;<i> &gt; 'normal' mailbox, but the examples for multi-drop are quite basic.
+</I>&gt;<i>
+</I>&gt;<i> Yours truly is indeed the actual current fetchmail maintainer. :)
+</I>
+And a good product it is. I have been using it quite happily for years now. 
+It's only recently that I've been playing with the more 'advanced' options.
+
+&gt;<i> &gt; Something that could help would be how the different options work
+</I>&gt;<i> &gt; together in the fetchmailrc file and what each options effect has.
+</I>&gt;<i>
+</I>&gt;<i> Yup.
+</I>&gt;<i>
+</I>&gt;<i> &gt; First off, my mail server is now working as I want it to, even though I
+</I>&gt;<i> &gt; still
+</I>&gt;<i> &gt; think it's not the way it should. (all comments are to be taken as &quot;IMO&quot;)
+</I>&gt;<i> &gt; I double-checked the main.cf file.
+</I>&gt;<i> &gt; I set:
+</I>&gt;<i> &gt; virtual_alias_domains = virtual.domain.org
+</I>&gt;<i> &gt; virtual_alias_maps = ldap:/etc/postfix/ldap-virtual.cf
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; I also have:
+</I>&gt;<i> &gt; mydestination = domain.org, localhost
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; While testing a few settings with fetchmail, including the option you
+</I>&gt;<i> &gt; mentioned, I noticed that it also tries to match &quot;@domain.org&quot; against
+</I>&gt;<i> &gt; the virtual_alias_map (different ldap search base, so easy to spot)
+</I>&gt;<i>
+</I>&gt;<i> That would be the catchall address for domain.org.
+</I>
+Yes, I figured that, but as &quot;domain.org&quot; is not listed in the 
+&quot;virtual_alias_domains&quot; I would not expect it to try to match that one as 
+well.
+
+But, as I said, it is now working the way I want it, so I'll leave it like 
+this. I will work on setting it up properly when i can find the time to set up 
+a virtual machine to copy the server into.
+
+--
+Joost
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002094.html">[fetchmail-users] Fetchmail with Postfix virtual users
+</A></li>
+	<LI>Next message: <A HREF="002093.html">[fetchmail-users] fetchmailconf not adding dropdelivered to	.fetchmailrc
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2099">[ date ]</a>
+              <a href="thread.html#2099">[ thread ]</a>
+              <a href="subject.html#2099">[ subject ]</a>
+              <a href="author.html#2099">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

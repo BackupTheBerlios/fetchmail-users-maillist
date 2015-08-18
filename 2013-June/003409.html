@@ -1,0 +1,94 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Unknown recipient ends up being 2 messages for	Postmaster
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2013-June/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Unknown%20recipient%20ends%20up%20being%202%20messages%20for%0A%09Postmaster&In-Reply-To=%3C0EF83F59C3560A4D8E568D8B900E148C218A98A4C4%40TDC08.tristel.local%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003408.html">
+   <LINK REL="Next"  HREF="003410.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Unknown recipient ends up being 2 messages for	Postmaster</H1>
+    <B>Stephan Pieri</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Unknown%20recipient%20ends%20up%20being%202%20messages%20for%0A%09Postmaster&In-Reply-To=%3C0EF83F59C3560A4D8E568D8B900E148C218A98A4C4%40TDC08.tristel.local%3E"
+       TITLE="[fetchmail-users] Unknown recipient ends up being 2 messages for	Postmaster">stephan at tristel.com
+       </A><BR>
+    <I>Fri Jun 14 17:13:14 CEST 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003408.html">[fetchmail-users] AOL authorization error (not a problem)
+</A></li>
+        <LI>Next message: <A HREF="003410.html">[fetchmail-users] Unknown recipient ends up being 2 messages for Postmaster
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3409">[ date ]</a>
+              <a href="thread.html#3409">[ thread ]</a>
+              <a href="subject.html#3409">[ subject ]</a>
+              <a href="author.html#3409">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Good afternoon.
+
+Firstly, apologies if this is not the correct list to request help from.
+
+If it is the correct list, great.
+
+I have Fetchmail 6.3.8 installed and the configuration is
+
+***
+set syslog
+set postmaster &quot;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">undeliverables at domain1.com</A>&quot;
+set nobouncemail
+set no spambounce
+set properties &quot;&quot;
+set daemon 900
+set invisible
+
+poll www.domain1.com with proto POP3 no dns
+localdomains domain1.com, domain2.com, domain3.com
+user 'USER' there with password 'PASSWORD' is * here options
+smtphost xxx.xxx.xxx.xxx
+
+***
+
+The issue we are getting is that when an external email is received with an unknown user, the message along with an NDR goes into the undeliverables mailbox. On further testing using my gmail account and sending to an unknown user, the sender does not get the NDR.
+
+I think this was setup to prevent spam being sent, but maybe it was setup a bit too tough (before my time by a genius by the looks of it)
+
+Any help would be greatly appreciated and, once again, sorry if this is the wrong list.
+
+Thank you,
+Stephan
+
+</PRE>
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003408.html">[fetchmail-users] AOL authorization error (not a problem)
+</A></li>
+	<LI>Next message: <A HREF="003410.html">[fetchmail-users] Unknown recipient ends up being 2 messages for Postmaster
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3409">[ date ]</a>
+              <a href="thread.html#3409">[ thread ]</a>
+              <a href="subject.html#3409">[ subject ]</a>
+              <a href="author.html#3409">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

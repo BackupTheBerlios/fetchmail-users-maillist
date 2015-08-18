@@ -1,0 +1,94 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Re: [fetchmail-announce] fetchmail 6.2.9-rc7 available (fix galore)
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2005-October/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Re%3A%20%5Bfetchmail-announce%5D%20fetchmail%206.2.9-rc7%20available%20%28fix%20galore%29&In-Reply-To=%3C20051031100844.GE1328%40zi025.glhnet.mhn.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000103.html">
+   
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Re: [fetchmail-announce] fetchmail 6.2.9-rc7 available (fix galore)</H1>
+    <B>Simon Barner</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Re%3A%20%5Bfetchmail-announce%5D%20fetchmail%206.2.9-rc7%20available%20%28fix%20galore%29&In-Reply-To=%3C20051031100844.GE1328%40zi025.glhnet.mhn.de%3E"
+       TITLE="[fetchmail-users] Re: [fetchmail-announce] fetchmail 6.2.9-rc7 available (fix galore)">barner at FreeBSD.org
+       </A><BR>
+    <I>Mon Oct 31 11:08:44 CET 2005</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000103.html">[fetchmail-users] fetchmail 6.2.9-rc7 available (fix galore)
+</A></li>
+        
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#104">[ date ]</a>
+              <a href="thread.html#104">[ thread ]</a>
+              <a href="subject.html#104">[ subject ]</a>
+              <a href="author.html#104">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Matthias Andree wrote:
+&gt;<i> * Try to obtain FQDN as our own host by default, rather than using &quot;localhost&quot;.
+</I>&gt;<i>   If hostname cannot be qualified, complain noisily and continue, unless
+</I>&gt;<i>   Kerberos, ODMR or ETRN are used (these require a FQDN).
+</I>&gt;<i>   Partial fix of Debian Bug#150137. Fixes Debian Bug#316454.  Matthias Andree
+</I>
+Das machte bei mir Probleme, ich mu&#223; den fetchmail-Daemon jetzt mit
+-smtphost localhost laufen lassen, da sonst die lokale Mail-Auslieferung
+fehlschl&#228;gt (der smtp-Daemon ist hier nur an localhost gebunden).
+
+Oct 31 10:48:00 zi025 fetchmail[12521]: reading message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">barner at nmail.informatik.tu-muenchen.de</A>:1 of 1 (1804 header octets) 
+Oct 31 10:48:00 zi025 fetchmail[12521]: SMTP connect to zi025.glhnet.mhn.de failed
+Oct 31 10:48:00 zi025 fetchmail[12521]: SMTP transaction error while fetching from mail.in.tum.de
+
+=&gt; Vorschlag: lokale Delivery entweder immer &#252;ber localhost machen, oder
+              zumindest als Fallback probieren.
+
+Mit der o.g. Option gehts, aber jetzt erhalte ich diese Warnungen im Log
+(aber anscheinend nur 1x beim Start des fetchmail Daemons).
+
+Oct 31 10:52:36 zi025 fetchmail[12645]: starting fetchmail 6.2.9-rc7 daemon 
+Oct 31 10:52:36 zi025 fetchmail[12645]: IMAP connection to localhost failed: Connection refused
+Oct 31 10:52:36 zi025 fetchmail[12645]: POP3 connection to localhost failed: Connection refused
+
+Warum will er sich per IMAP bzw. POP3 zu localhost verbinden?
+
+-- 
+Best regards / Viele Gr&#252;&#223;e,                             <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">barner at FreeBSD.org</A>
+ Simon Barner                                                <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">barner at gmx.de</A>
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: not available
+Type: application/pgp-signature
+Size: 187 bytes
+Desc: not available
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/fetchmail-users/attachments/20051031/03d802cb/attachment.pgp">https://lists.berlios.de/pipermail/fetchmail-users/attachments/20051031/03d802cb/attachment.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000103.html">[fetchmail-users] fetchmail 6.2.9-rc7 available (fix galore)
+</A></li>
+	
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#104">[ date ]</a>
+              <a href="thread.html#104">[ thread ]</a>
+              <a href="subject.html#104">[ subject ]</a>
+              <a href="author.html#104">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

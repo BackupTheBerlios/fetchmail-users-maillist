@@ -1,0 +1,101 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] IMAP errors with Google Apps and delivery error	messages
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2012-August/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20IMAP%20errors%20with%20Google%20Apps%20and%20delivery%20error%0A%09messages&In-Reply-To=%3CCAPcb_GKLuG2b5xhfA%3Db6oR3d0ZZbcJZD0Yj4xxUFzws898vVpQ%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003216.html">
+   <LINK REL="Next"  HREF="003220.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] IMAP errors with Google Apps and delivery error	messages</H1>
+    <B>Gavin Henry</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20IMAP%20errors%20with%20Google%20Apps%20and%20delivery%20error%0A%09messages&In-Reply-To=%3CCAPcb_GKLuG2b5xhfA%3Db6oR3d0ZZbcJZD0Yj4xxUFzws898vVpQ%40mail.gmail.com%3E"
+       TITLE="[fetchmail-users] IMAP errors with Google Apps and delivery error	messages">ghenry at suretec.co.uk
+       </A><BR>
+    <I>Wed Aug 15 19:43:16 CEST 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003216.html">[fetchmail-users] Automatically backing up my email
+</A></li>
+        <LI>Next message: <A HREF="003220.html">[fetchmail-users] IMAP errors with Google Apps and delivery	error messages
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3218">[ date ]</a>
+              <a href="thread.html#3218">[ thread ]</a>
+              <a href="subject.html#3218">[ subject ]</a>
+              <a href="author.html#3218">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi all,
+
+I've checked the FAQ and can't see a relevant entry as well as nothing
+in the archives so am asking here.
+
+Since last Wednesday fetchmail has been getting random failed AUTH
+errors connecting to gmail. We have a case open with them for it.
+
+They insist the error has to happen on Outlook Express before they can
+help, of all things. I've offered the full fetchmail logs to them as
+well.
+
+My main question is how do we switch off the auth errors from getting
+delivered to the IMAP folders fetchmail is checking? We're using
+fetchmail to deliver mail to RT4, so it's creating tons of false
+support tickets.
+
+Conf is like:
+
+set daemon 300
+set invisible
+set no bouncemail
+set no syslog
+set logfile /var/log/fetchmail.log
+poll imap.gmail.com
+proto IMAP service 993 user <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">rt at example.com</A> pass PA55W0RD
+folder Inbox ssl
+mda &quot;/opt/rt3/bin/rt-mailgate --url <A HREF="http://rt.example.com/">http://rt.example.com/</A> --queue
+General --action correspond&quot;
+poll imap.gmail.com
+proto IMAP service 993 user <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">rt at example.com</A> pass PA55W0RD
+folder general-comments ssl
+mda &quot;/opt/rt3/bin/rt-mailgate --url <A HREF="http://rt.example.com/">http://rt.example.com/</A> --queue
+General --action comments&quot;
+
+Thanks,
+
+Gavin.
+</PRE>
+
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003216.html">[fetchmail-users] Automatically backing up my email
+</A></li>
+	<LI>Next message: <A HREF="003220.html">[fetchmail-users] IMAP errors with Google Apps and delivery	error messages
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3218">[ date ]</a>
+              <a href="thread.html#3218">[ thread ]</a>
+              <a href="subject.html#3218">[ subject ]</a>
+              <a href="author.html#3218">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

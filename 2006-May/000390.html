@@ -1,0 +1,108 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Fetchamil is very slow
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2006-May/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Fetchamil%20is%20very%20slow&In-Reply-To=%3C445F4DFD.7010304%40wowcompany.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000387.html">
+   <LINK REL="Next"  HREF="000391.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Fetchamil is very slow</H1>
+    <B>Frederic Marchal</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Fetchamil%20is%20very%20slow&In-Reply-To=%3C445F4DFD.7010304%40wowcompany.com%3E"
+       TITLE="[fetchmail-users] Fetchamil is very slow">frederic.marchal at wowcompany.com
+       </A><BR>
+    <I>Mon May  8 15:56:13 CEST 2006</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000387.html">[fetchmail-users] Fetchamil is very slow
+</A></li>
+        <LI>Next message: <A HREF="000391.html">[fetchmail-users] Fetchamil is very slow
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#390">[ date ]</a>
+              <a href="thread.html#390">[ thread ]</a>
+              <a href="subject.html#390">[ subject ]</a>
+              <a href="author.html#390">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Shukla Vipul wrote:
+&gt;<i> HI,
+</I>&gt;<i>
+</I>&gt;<i>     I am using fetchmail for downloading mails from server, but 
+</I>&gt;<i> fetchmail is very slow i got my mail after 12hours i want to get it 
+</I>&gt;<i> fast. as per i have searched ther is two parameter which i have to set 
+</I>&gt;<i> that is fetchlimit and fetchsizelimit. but i dont know where i have to 
+</I>&gt;<i> use these parameter  i have checked  ~/.fetchmailrc file also, i am 
+</I>&gt;<i> not able to undestand how to modify it.
+</I>What do you mean when you say your mails arrived after 12 hours ?
+
+- does it take 12 hours to download the actual data of your mails (i.e 
+the connection is slow);
+- does it try to download the mails for 12 hours until it succeeds (a 
+lot of connection failures);
+- does it sit around and eventually fetch your mails (the poll delay is 
+too long) ?
+
+The first two cases, may not be related to fetchmail or its 
+configuration file but some settings may help. The latter is the poll 
+delay set by parameter &quot;set daemon&quot; in your fetchmailrc file. Mine looks 
+like this (only the relevant lines shown):
+
+# The default for this option is 300, which polls the server every 5
+# minutes.
+#
+set daemon      300
+
+Regarding your second question, the parameters should be defined in your 
+fetchmailrc either in a default section like this:
+
+defaults:
+  uidl
+  batchlimit 100
+  fetchlimit 100
+  flush
+
+or in the poll command in fetchmailrc or on the command line (sorry, I 
+have no example here :-).
+
+Note: you must insert these commands in the fetchmailrc fetchmail is 
+looking at (obvious, but I got caught there) ! It is ~/.fetchmailrc 
+unless the -f option is given on the command line.
+
+Frederic
+
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000387.html">[fetchmail-users] Fetchamil is very slow
+</A></li>
+	<LI>Next message: <A HREF="000391.html">[fetchmail-users] Fetchamil is very slow
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#390">[ date ]</a>
+              <a href="thread.html#390">[ thread ]</a>
+              <a href="subject.html#390">[ subject ]</a>
+              <a href="author.html#390">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

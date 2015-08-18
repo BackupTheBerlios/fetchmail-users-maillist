@@ -1,0 +1,139 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] What is a &quot;local issuer certificate&quot;?
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2006-July/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20What%20is%20a%20%22local%20issuer%20certificate%22%3F&In-Reply-To=%3Cm3slllp2yp.fsf%40merlin.emma.line.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000487.html">
+   <LINK REL="Next"  HREF="000490.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] What is a &quot;local issuer certificate&quot;?</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20What%20is%20a%20%22local%20issuer%20certificate%22%3F&In-Reply-To=%3Cm3slllp2yp.fsf%40merlin.emma.line.org%3E"
+       TITLE="[fetchmail-users] What is a &quot;local issuer certificate&quot;?">matthias.andree at gmx.de
+       </A><BR>
+    <I>Sat Jul  1 20:58:06 CEST 2006</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000487.html">[fetchmail-users] What is a &quot;local issuer certificate&quot;?
+</A></li>
+        <LI>Next message: <A HREF="000490.html">[fetchmail-users] fetchmail: SMTP error: 552 Message size exceeds fixed limit
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#488">[ date ]</a>
+              <a href="thread.html#488">[ thread ]</a>
+              <a href="subject.html#488">[ subject ]</a>
+              <a href="author.html#488">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Paul Elliott &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">pelliott at io.com</A>&gt; writes:
+
+&gt;<i> I am not an expert on ssl so this does not really answer my
+</I>&gt;<i> question.
+</I>
+You need the root certificate that this...
+
+&gt;<i>
+</I>&gt;<i> I got one certificate from the imap server at mail.io.com
+</I>&gt;<i> by doing the following:
+</I>&gt;<i>
+</I>&gt;<i> openssl s_client -connect mail.io.com:993 -showcerts
+</I>
+...certificate was signed with.
+
+(few minutes later)
+
+The necessary root certificate can be downloaded here:
+&lt;<A HREF="http://www.geotrust.com/resources/root_certificates/index.asp">http://www.geotrust.com/resources/root_certificates/index.asp</A>&gt;
+
+Under Root 4, download &quot;Download - Equifax Secure eBusiness CA-1
+(Base-64 encoded X.509)&quot; and save it to a file. Then rename the
+downloaded *.cer file so it has a .pem ending (it's in PEM format, but
+it needs a .pem suffix for c_rehash to recognize it) and
+move it into your .ssl/certs, then run c_rehash ~/.ssl/certs.
+
+You already have &quot;sslcertpath /home/pelliott/.ssl/certs&quot;, so that part
+is covered. After the installation of that certificate, you can remove
+the sslfingerprint option.
+
+&gt;<i> and the io.pem was supposed to be signed by equifax so I should
+</I>&gt;<i> have the certificate for equifax that signed io.pem.
+</I>
+Yet you don't. Equifax issued more than one certificate.
+
+&gt;<i> My .fetchmailrc looks like (with password XXXXed):
+</I>&gt;<i>
+</I>&gt;<i> # Configuration created Mon Jun 19 10:26:45 2006 by fetchmailconf 1.52 $Revision: 4636 $
+</I>&gt;<i> set postmaster &quot;pelliott&quot;
+</I>&gt;<i> set bouncemail
+</I>&gt;<i> set no spambounce
+</I>&gt;<i> set properties &quot;&quot;
+</I>&gt;<i> poll mail.io.com with proto IMAP
+</I>&gt;<i>        user 'pelliott' there with password 'XXXXXXX' is 'pelliott' here sslcertpath /home/pelliott/.ssl/certs sslfingerprint &quot;5D:1F:EF:5B:2C:C6:72:07:D4:18:D1:D3:15:8F:4F:1B&quot;
+</I>&gt;<i> #sslcertck
+</I>&gt;<i>
+</I>&gt;<i> I am still getting the error message.
+</I>
+Which means your fetchmail version is older than 6.3.4.
+Please update.
+
+&gt;<i> My question was does &quot;local issuer certificate&quot; refer to?
+</I>
+The root certificate.
+
+&gt;<i> The certificate I got from the imap server at mail.io.com or does it
+</I>&gt;<i> refer to a self signed certificate describing my fetchmail client?
+</I>
+Neither.
+
+&gt;<i> How do I create/get one in any case?
+</I>
+See above.
+
+&gt;<i> The fetchmail documentation describes the --sslcert and --sslkey
+</I>&gt;<i> parameters and how they should point to certifications and keys.
+</I>
+No.
+
+&gt;<i> But this stuff is going to be used by a lot of ignorant people
+</I>&gt;<i> like me, it does not tell how to get and/or create such keys.
+</I>&gt;<i> I can't seem to figure it out.
+</I>
+Your ISP should have provided the necessary instructions. Please ask
+them to provide instructions and the necessary root certificate.
+
+-- 
+Matthias Andree
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000487.html">[fetchmail-users] What is a &quot;local issuer certificate&quot;?
+</A></li>
+	<LI>Next message: <A HREF="000490.html">[fetchmail-users] fetchmail: SMTP error: 552 Message size exceeds fixed limit
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#488">[ date ]</a>
+              <a href="thread.html#488">[ thread ]</a>
+              <a href="subject.html#488">[ subject ]</a>
+              <a href="author.html#488">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

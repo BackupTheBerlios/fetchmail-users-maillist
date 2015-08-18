@@ -1,0 +1,95 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] the message fetch should be completed before	quitting
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2011-November/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20the%20message%20fetch%20should%20be%20completed%20before%0A%09quitting&In-Reply-To=%3CCAJCMLO-UigjnCro_shqTsCR%2BizkjTtF3uBhQuj%3DrVaW%2BKtGmEw%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003005.html">
+   <LINK REL="Next"  HREF="003008.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] the message fetch should be completed before	quitting</H1>
+    <B>Rob MacGregor</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20the%20message%20fetch%20should%20be%20completed%20before%0A%09quitting&In-Reply-To=%3CCAJCMLO-UigjnCro_shqTsCR%2BizkjTtF3uBhQuj%3DrVaW%2BKtGmEw%40mail.gmail.com%3E"
+       TITLE="[fetchmail-users] the message fetch should be completed before	quitting">rob.macgregor at gmail.com
+       </A><BR>
+    <I>Sat Nov 26 09:55:03 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003005.html">[fetchmail-users] the message fetch should be completed before	quitting
+</A></li>
+        <LI>Next message: <A HREF="003008.html">[fetchmail-users] the message fetch should be completed before quitting
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3006">[ date ]</a>
+              <a href="thread.html#3006">[ thread ]</a>
+              <a href="subject.html#3006">[ subject ]</a>
+              <a href="author.html#3006">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Sat, Nov 26, 2011 at 01:26, <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">rossi.f at inwind.it</A> &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">rossi.f at inwind.it</A>&gt; wrote:
+&gt;<i> I'm using fetchmail 6.3.21 with a POP3 server to download all the mail and
+</I>&gt;<i> deliver it locally by using maildrop 2.5.4 as MDA. Right now I'm using the
+</I>&gt;<i> &quot;keep&quot; user option for testing purposes. fetchmail is started in daemon mode in
+</I>&gt;<i> the following way:
+</I>&gt;<i>
+</I>&gt;<i> &#160; fetchmail -d ${polling_period} -f ${rcfile} --pidfile ${pid_file} -i
+</I>&gt;<i> ${fidfile}
+</I>&gt;<i>
+</I>&gt;<i> The killing procedure during shutdown is the following:
+</I>&gt;<i>
+</I>&gt;<i> &#160; fetchmail --quit --pidfile ${pid_file}
+</I>&gt;<i>
+</I>&gt;<i> If the killing procedure starts when fetchmail is downloading new messages, a
+</I>&gt;<i> message might appear incomplete in the user mailbox (I'm using a maildir
+</I>&gt;<i> format). The issue is reported also in the fetchmail logfile as &quot;log message
+</I>&gt;<i> incomplete&quot;. There is no mail loss but the mailbox is populated with incomplete
+</I>&gt;<i> messages. I guess that a better behavior should be implemented, e.g. fetchmail
+</I>&gt;<i> should complete the message fetching before quitting.
+</I>
+Please see the FAQ, section G3, for how to report problems ;)
+
+I've never seen the partial emails that you refer to, but assuming
+that is the case I don't agree that the solution is to complete the
+transaction. The correct solution IMO would be to completely abandon
+the delivery (and mark the original email as unread), to avoid hanging
+the shutdown process for potentially many minutes.
+
+-- 
+&#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160;&#160; Please keep list traffic on the list.
+
+Rob MacGregor
+&#160; &#160; &#160; Whoever fights monsters should see to it that in the process he
+&#160; &#160; &#160; &#160; doesn't become a monster.&#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; Friedrich Nietzsche
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003005.html">[fetchmail-users] the message fetch should be completed before	quitting
+</A></li>
+	<LI>Next message: <A HREF="003008.html">[fetchmail-users] the message fetch should be completed before quitting
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3006">[ date ]</a>
+              <a href="thread.html#3006">[ thread ]</a>
+              <a href="subject.html#3006">[ subject ]</a>
+              <a href="author.html#3006">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

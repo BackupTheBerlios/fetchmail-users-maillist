@@ -1,0 +1,87 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] fetchmail 6.3.8 suddenly very slow to fetch.
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2008-November/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%206.3.8%20suddenly%20very%20slow%20to%20fetch.&In-Reply-To=%3C492E8CCD.8070400%40gmx.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001764.html">
+   <LINK REL="Next"  HREF="001770.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] fetchmail 6.3.8 suddenly very slow to fetch.</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%206.3.8%20suddenly%20very%20slow%20to%20fetch.&In-Reply-To=%3C492E8CCD.8070400%40gmx.de%3E"
+       TITLE="[fetchmail-users] fetchmail 6.3.8 suddenly very slow to fetch.">matthias.andree at gmx.de
+       </A><BR>
+    <I>Thu Nov 27 13:04:29 CET 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001764.html">[fetchmail-users] fetchmail 6.3.8 suddenly very slow to fetch.
+</A></li>
+        <LI>Next message: <A HREF="001770.html">[fetchmail-users] fetchmail 6.3.8 suddenly very slow to	 fetch.
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1765">[ date ]</a>
+              <a href="thread.html#1765">[ thread ]</a>
+              <a href="subject.html#1765">[ subject ]</a>
+              <a href="author.html#1765">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE><A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">joea at j4computers.com</A> schrieb:
+&gt;<i> Working fine until today.  No apparent changes.   Suddenly fetch became very slow, to the point of appearing frozen.  Running in daemon mode, 120 second cycle.
+</I>&gt;<i> 
+</I>&gt;<i> Suse 9.x (OES1).  Yes, but it works for me.  Well, worked.  
+</I>
+Well, since you aren't using the latest version of fetchmail, and you've
+paid Novell to support for your older fetchmail version, I'm afraid I
+cannot help you.
+
+Problems with &quot;10 messages&quot; however rather hint to networking problems or
+problems on either the upstream POP3/IMAP or the downstream SMTP/LMTP
+servers or MDA, than a problem inside fetchmail.
+
+Running fetchmail -vvv --nosyslog --nodetach may help identify issues.
+
+Now, your OES is still covered by Novell general support until end July
+2009, so please see <A HREF="http://support.novell.com/">http://support.novell.com/</A> and your support agreements
+with Novell for your options.
+
+Bottlenecks inside fetchmail do exist, but shouldn't become visible before
+keeping thousands of messages in the upstream server's (POP3) mailbox.
+
+Sorry.
+
+-- 
+Matthias Andree
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001764.html">[fetchmail-users] fetchmail 6.3.8 suddenly very slow to fetch.
+</A></li>
+	<LI>Next message: <A HREF="001770.html">[fetchmail-users] fetchmail 6.3.8 suddenly very slow to	 fetch.
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1765">[ date ]</a>
+              <a href="thread.html#1765">[ thread ]</a>
+              <a href="subject.html#1765">[ subject ]</a>
+              <a href="author.html#1765">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

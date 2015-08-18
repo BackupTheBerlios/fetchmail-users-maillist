@@ -1,0 +1,177 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] The 6.3.22 release of fetchmail is available
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2012-August/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20The%206.3.22%20release%20of%20fetchmail%20is%20available&In-Reply-To=%3C20120829223607.GA12994%40apollo.emma.line.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003227.html">
+   
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] The 6.3.22 release of fetchmail is available</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20The%206.3.22%20release%20of%20fetchmail%20is%20available&In-Reply-To=%3C20120829223607.GA12994%40apollo.emma.line.org%3E"
+       TITLE="[fetchmail-users] The 6.3.22 release of fetchmail is available">matthias.andree at gmx.de
+       </A><BR>
+    <I>Thu Aug 30 00:36:07 CEST 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003227.html">[fetchmail-users] IMAP errors with Google Apps and delivery error messages
+</A></li>
+        
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3228">[ date ]</a>
+              <a href="thread.html#3228">[ thread ]</a>
+              <a href="subject.html#3228">[ subject ]</a>
+              <a href="author.html#3228">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>The 6.3.22 release of fetchmail is now available at the usual locations,
+including &lt;<A HREF="http://developer.berlios.de/projects/fetchmail">http://developer.berlios.de/projects/fetchmail</A>&gt;.
+
+The source archive is available at:
+&lt;<A HREF="http://developer.berlios.de/projects/fetchmail/fetchmail-6.3.22.tar.bz2">http://developer.berlios.de/projects/fetchmail/fetchmail-6.3.22.tar.bz2</A>&gt;
+
+or if you prefer XZ archives:
+&lt;<A HREF="http://developer.berlios.de/projects/fetchmail/fetchmail-6.3.22.tar.xz">http://developer.berlios.de/projects/fetchmail/fetchmail-6.3.22.tar.xz</A>&gt;
+
+Add .asc to the file names to obtain detached GnuPG signatures.
+
+Here are the release notes:
+
+fetchmail-6.3.22 (released 2012-08-29, 26077 LoC):
+
+# SECURITY FIXES
+* for CVE-2012-3482:
+  NTLM: fetchmail mistook an error message that the server sent in response to
+  an NTLM request for protocol exchange, tried to decode it, and crashed while
+  reading from a bad memory location.
+  Also, with a carefully crafted NTLM challenge packet sent from the server, it
+  would be possible that fetchmail conveyed confidential data not meant for the
+  server through the NTLM response packet.
+  Fix: Detect base64 decoding errors, validate the NTLM challenge, and abort
+  NTLM authentication in case of error.
+  See fetchmail-SA-2012-02.txt for further details.
+  Reported by J. Porter Clark.
+
+* for CVE-2011-3389:
+  SSL/TLS (wrapped and STARTTLS): fetchmail used to disable a countermeasure 
+  against a certain kind of attack against cipher block chaining initialization 
+  vectors (SSL_OP_DONT_INSERT_EMPTY_FRAGMENTS).
+  Whether this creates an exploitable situation, depends on the server and the 
+  negotiated ciphers.
+  As a precaution, fetchmail 6.3.22 enables the countermeasure, by clearing 
+  SSL_OP_DONT_INSERT_EMPTY_FRAGMENTS.
+
+  NOTE that this can cause connections to certain non-conforming servers to 
+  fail, in which case you can set the environment variable 
+  FETCHMAIL_DISABLE_CBC_IV_COUNTERMEASURE to any non-empty value when starting
+  fetchmail to re-instate the compatibility option at the expense of security.
+
+  Reported by Apple Product Security.
+
+  For technical details, refer to &lt;<A HREF="http://www.openssl.org/~bodo/tls-cbc.txt">http://www.openssl.org/~bodo/tls-cbc.txt</A>&gt;.
+  See fetchmail-SA-2012-01.txt for further details.
+
+# BUG FIX
+* The Server certificate: message in verbose mode now appears on stdout like the
+  remainder of the output. Reported by Henry Jensen, to fix Debian Bug #639807.
+
+* The GSSAPI-related autoconf code now matches gssapi.c better, and uses
+  a different check to look for GSS_C_NT_HOSTBASED_SERVICE.
+  This fixes the GSSAPI-enabled build on NetBSD 6 Beta.
+
+# CHANGES
+* On systems where SSLv2_client_method isn't defined in OpenSSL (such as
+  newer Debian, and Ubuntu starting with 11.10 oneiric ocelot), don't
+  reference it (to fix the build) and if configured, print a run-time error 
+  that the OS does not support SSLv2. Fixes Debian Bug #622054, 
+  but note that that bug report has a more thorough patch that does away with
+  SSLv2 altogether.
+
+* The security and errata notices fetchmail-{EN,SA}-20??-??.txt are now
+  under the more relaxed CC BY-ND 3.0 license (the noncommercial clause
+  was dropped). The Creative Commons address was updated.
+
+* The Python-related Makefile.am parts were simplified to avoid an automake
+  1.11.X bug around noinst_PYTHON, Automake Bug #10995.
+
+* Configuring fetchmail without SSL now triggers a configure warning,
+  and asks the user to consider running configure --with-ssl.
+
+# WORKAROUND
+* Some servers, notably Zimbra, return A1234 987 FETCH () in response to
+  a header request, in the face of message corruption.  fetchmail now treats
+  these as temporary errors. Report and Patch by Mikulas Patocka, Red Hat.
+
+* Some servers, notably Microsoft Exchange, return &quot;A0009 OK FETCH completed.&quot;
+  without any header in response to a header request for meeting reminder
+  messages (with a &quot;meeting.ics&quot; attachment). fetchmail now treats these as
+  transient errors.  Report by John Connett, Patch by Sunil Shetye.
+
+# TRANSLATION UPDATES
+* [cs]    Czech, by Petr Pisar
+* [de]    German
+* [fr]    French, by Fr&#233;d&#233;ric Marchal
+* [ja]    Japanese, by Takeshi Hamasaki
+* [pl]    Polish, by Jakub Bogusz
+* [sv]    Swedish, by G&#246;ran Uddeborg --- NEW TRANSLATION - Thank you!
+* [vi]    Vietnamese, by Tr&#7847;n Ng&#7885;c Qu&#226;n
+
+# KNOWN BUGS AND WORKAROUNDS
+  (This section floats upwards through the NEWS file so it stays with the
+  current release information)
+* Fetchmail does not handle messages without Message-ID header well
+  (See sourceforge.net bug #780933)
+* BSMTP is mostly untested and errors can cause corrupt output.
+* Sun Workshop 6 (SPARC) is known to miscompile the configuration file lexer in
+  64-bit mode.  Either compile 32-bit code or use GCC to compile 64-bit
+  fetchmail.  Note that fetchmail doesn't take advantage of 64-bit code,
+  so compiling 32-bit SPARC code should not cause any difficulties.
+* Fetchmail does not track pending deletes across crashes.
+* The command line interface is sometimes a bit stubborn, for instance,
+  fetchmail -s doesn't work with a daemon running.
+* Linux systems may return duplicates of an IP address in some circumstances if
+  no or no global IPv6 addresses are configured.
+  (No workaround. Ubuntu Bug#582585, Novell Bug#606980.)
+* Kerberos 5 may be broken, particularly on Heimdal, and provide bogus error
+  messages. This will not be fixed, because the maintainer has no Kerberos 5
+  server to test against. Use GSSAPI.
+
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: signature.asc
+Type: application/pgp-signature
+Size: 198 bytes
+Desc: Digital signature
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/fetchmail-users/attachments/20120830/c3a70cc9/attachment.pgp">https://lists.berlios.de/pipermail/fetchmail-users/attachments/20120830/c3a70cc9/attachment.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003227.html">[fetchmail-users] IMAP errors with Google Apps and delivery error messages
+</A></li>
+	
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3228">[ date ]</a>
+              <a href="thread.html#3228">[ thread ]</a>
+              <a href="subject.html#3228">[ subject ]</a>
+              <a href="author.html#3228">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

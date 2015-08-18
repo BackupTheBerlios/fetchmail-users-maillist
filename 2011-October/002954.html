@@ -1,0 +1,103 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Pulling Gmail
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2011-October/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Pulling%20Gmail&In-Reply-To=%3CCAP_TYZTsQ6_Z9SP%2BVyUowLCVSBK%3Dnf0wwKxEFz%3D3W0xKw7r7gA%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002958.html">
+   <LINK REL="Next"  HREF="002955.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Pulling Gmail</H1>
+    <B>Bill Christensen</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Pulling%20Gmail&In-Reply-To=%3CCAP_TYZTsQ6_Z9SP%2BVyUowLCVSBK%3Dnf0wwKxEFz%3D3W0xKw7r7gA%40mail.gmail.com%3E"
+       TITLE="[fetchmail-users] Pulling Gmail">billc_lists at greenbuilder.com
+       </A><BR>
+    <I>Mon Oct 10 06:35:44 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002958.html">[fetchmail-users] Query status=3 (AUTHFAIL): known problem I realise, but none of the reasons seem to apply to my set up
+</A></li>
+        <LI>Next message: <A HREF="002955.html">[fetchmail-users] Pulling Gmail
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2954">[ date ]</a>
+              <a href="thread.html#2954">[ thread ]</a>
+              <a href="subject.html#2954">[ subject ]</a>
+              <a href="author.html#2954">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi folks,
+
+I just did a major upgrade of my system including an upgrade to Fetchmail
+6.3.20 and managed to break my Fetchmail setup.
+
+I'm running stuff like below in my fetchmailrc.   It's been working for a
+fair while like this:
+
+poll imap.gmail.com protocol IMAP username &quot;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">NAME at domain.com</A>&quot;
+there with password &quot;xxxxxx&quot;  is &quot;mailman&quot; here nofetchall keep ssl
+sslcertck sslcertpath /opt/local/share/ssl/certs
+mda &quot;/opt/local/libexec/mailman/mail/mailman bounces NAME&quot; set daemon 900
+
+I'm getting this error:
+
+fetchmail:/etc/fetchmailrc:8: SSL is not enabled at ssl
+fetchmail:/etc/fetchmailrc:10: syntax error at --sslcertpath
+
+(line 8 referred to is the second line of that fetchmailrc poll, ending with
+&quot;keep ssl&quot;)
+
+The last time something like this happened I had to run c_rehash (sudo
+/opt/local/bin/c_rehash /opt/local/share/ssl/certs ).  I tried again, and it
+appears to recognize the Equifax cert at that location.  It returns
+&quot;Equifax_Secure_Certificate_Authority.pem =&gt; 578d5c04.0&quot;
+
+Looking in the FAQs lead me to try this config:
+
+poll imap.gmail.com port 993 plugin &quot;openssl s_client -connect %h:%p&quot;
+auth password        protocol imap username &quot;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">NAME at domain.com</A>&quot; password
+xxxxxx
+sslcertck sslcertpath /opt/local/share/ssl/certs
+mda &quot;/opt/local/libexec/mailman/mail/mailman post NAME&quot; set daemon 900
+
+which results in this error:
+
+&quot;unable to get local issuer certificate&quot;
+
+Any ideas as to what I'm doing wrong - besides attempting to pull mail from
+Gmail, which I know you guys don't like.
+
+Thanks in advance.
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002958.html">[fetchmail-users] Query status=3 (AUTHFAIL): known problem I realise, but none of the reasons seem to apply to my set up
+</A></li>
+	<LI>Next message: <A HREF="002955.html">[fetchmail-users] Pulling Gmail
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2954">[ date ]</a>
+              <a href="thread.html#2954">[ thread ]</a>
+              <a href="subject.html#2954">[ subject ]</a>
+              <a href="author.html#2954">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

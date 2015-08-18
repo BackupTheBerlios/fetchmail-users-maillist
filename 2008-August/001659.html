@@ -1,0 +1,114 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] fetchmail, fetchnews can't get thru router
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2008-August/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%2C%20fetchnews%20can%27t%20get%20thru%20router&In-Reply-To=%3C20080806090554.GE435%40krille.blacktrash.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001658.html">
+   <LINK REL="Next"  HREF="001660.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] fetchmail, fetchnews can't get thru router</H1>
+    <B>Christian Ebert</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%2C%20fetchnews%20can%27t%20get%20thru%20router&In-Reply-To=%3C20080806090554.GE435%40krille.blacktrash.org%3E"
+       TITLE="[fetchmail-users] fetchmail, fetchnews can't get thru router">blacktrash at gmx.net
+       </A><BR>
+    <I>Wed Aug  6 11:05:54 CEST 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001658.html">[fetchmail-users] fetchmail, fetchnews can't get thru router
+</A></li>
+        <LI>Next message: <A HREF="001660.html">[fetchmail-users] fetchmail, fetchnews can't get thru router
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1659">[ date ]</a>
+              <a href="thread.html#1659">[ thread ]</a>
+              <a href="subject.html#1659">[ subject ]</a>
+              <a href="author.html#1659">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>* Sunil Shetye on Wednesday, August 06, 2008 at 13:54:11 +0530
+&gt;<i> Quoting from Christian Ebert's mail on Wed, Aug 06, 2008:
+</I>&gt;&gt;<i> machine -&gt; Speedport w701v (router) -&gt; Speedport 300HS (vdsl modem) -&gt; splitter
+</I>&gt;<i> 
+</I>&gt;<i> Try disabling/changing the escape character of the vdsl modem then.
+</I>&gt;<i> Note that this issue can occur if there is a modem anywhere in the
+</I>&gt;<i> link between you and your ISP. Could you also report the existing
+</I>&gt;<i> escape character of that modem?
+</I>
+I'll look into this. However I seriously doubt that I will be
+able to change anything in the vdsl modem.
+
+&gt;&gt;&gt;<i> You might be hitting the issue
+</I>&gt;&gt;&gt;<i> briefly mentioned in FAQ X7. If your router has an escape character of
+</I>&gt;&gt;&gt;<i> &quot;+&quot; and a mail contains &quot;+ + +&quot; (*), the router may intercept the text
+</I>&gt;&gt;&gt;<i> as a modem escape sequence. Your options in that case are:
+</I>&gt;&gt;&gt;<i> 
+</I>&gt;&gt;&gt;<i> a) Disable the modem escape character, or
+</I>&gt;&gt;&gt;<i> b) Change the modem escape character to some non-ascii character which
+</I>&gt;&gt;&gt;<i> does not occur in mails, or
+</I>&gt;&gt;&gt;<i> c) Download using ssl! (**)
+</I>&gt;&gt;<i> 
+</I>&gt;&gt;<i> I poll most of my accounts using ssl, doesn't work either.
+</I>&gt;&gt;<i> 
+</I>&gt;&gt;<i> Seems to be a prob with fetchmail in the end -- see my other mail
+</I>&gt;&gt;<i> wrt mpop -- or fetchmail is stricter in some standards or has a
+</I>&gt;&gt;<i> different way to do the server handshake or ...
+</I>&gt;<i> 
+</I>&gt;<i> Note that modems *normally* interpret the escape sequence only if it
+</I>&gt;<i> is followed by a pause. So, the exact sequence is &quot;+ + + &lt;pause&gt;&quot;. It
+</I>&gt;<i> is quite possible that this sequence is occuring at the same location,
+</I>&gt;<i> possibly at a packet boundary, everytime with imap. And, at a
+</I>&gt;<i> different location with pop3.
+</I>&gt;<i> 
+</I>&gt;<i> Another explanation: If your modem escape character is &quot;*&quot; and if some
+</I>&gt;<i> imap response has &quot;* * *&quot;, you have trouble. pop3 responses will
+</I>&gt;<i> probably be different and not cause the problem.
+</I>
+I polled pop3 with and without ssl too, same prob.
+ 
+&gt;<i> Note that you have mentioned problems with fetchnews also, so it is
+</I>&gt;<i> unlikely that the problem is with fetchmail's implementation.
+</I>
+Both seem just not to negotiate with the remote servers.
+
+Thanks for your input.
+
+c
+-- 
+  Was hei&#223;t hier Dogma, ich bin Underdogma!
+[ What the hell do you mean dogma, I am underdogma. ]
+
+_F R E E_  _V I D E O S_  --&gt;&gt;  <A HREF="http://www.blacktrash.org/underdogma/">http://www.blacktrash.org/underdogma/</A>
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001658.html">[fetchmail-users] fetchmail, fetchnews can't get thru router
+</A></li>
+	<LI>Next message: <A HREF="001660.html">[fetchmail-users] fetchmail, fetchnews can't get thru router
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1659">[ date ]</a>
+              <a href="thread.html#1659">[ thread ]</a>
+              <a href="subject.html#1659">[ subject ]</a>
+              <a href="author.html#1659">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

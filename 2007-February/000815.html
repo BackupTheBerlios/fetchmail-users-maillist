@@ -1,0 +1,313 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] IMAP problem
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2007-February/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20IMAP%20problem&In-Reply-To=%3COF1EC43C47.C1C3FA03-ONC1257281.002E7ECF-C1257281.003C96F1%40them-is.fr%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000814.html">
+   <LINK REL="Next"  HREF="000816.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] IMAP problem</H1>
+    <B>Alain Chofardet</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20IMAP%20problem&In-Reply-To=%3COF1EC43C47.C1C3FA03-ONC1257281.002E7ECF-C1257281.003C96F1%40them-is.fr%3E"
+       TITLE="[fetchmail-users] IMAP problem">Alain.Chofardet at them-is.fr
+       </A><BR>
+    <I>Tue Feb 13 12:01:43 CET 2007</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000814.html">[fetchmail-users] IMAP problem
+</A></li>
+        <LI>Next message: <A HREF="000816.html">[fetchmail-users] IMAP problem
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#815">[ date ]</a>
+              <a href="thread.html#815">[ thread ]</a>
+              <a href="subject.html#815">[ subject ]</a>
+              <a href="author.html#815">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi.
+
+<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">fetchmail-users-bounces at lists.berlios.de</A> wrote on 13/02/2007 08:20:01:
+
+&gt;<i> On 2/12/07, Alain Chofardet &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">Alain.Chofardet at them-is.fr</A>&gt; wrote:
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; Hi.
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; I'm quite a newbie with Fetchmail, and I've read the FAQs before 
+</I>writing to
+&gt;<i> &gt; this list.
+</I>&gt;<i> 
+</I>&gt;<i> But apparently not the one that tells you what to report :)
+</I>&gt;<i> 
+</I>Sorry for that.
+
+&gt;<i> &gt; This is my problem : I need to fetch mails from an IMAP account and 
+</I>direct
+&gt;<i> &gt; them to the local SMTP port. Fetchmail seems the perfect tool for 
+</I>that.
+&gt;<i> &gt; However, the mails I fetch from the IMAP account are mainly composed 
+</I>with an
+&gt;<i> &gt; attached file.
+</I>&gt;<i> 
+</I>&gt;<i> So, how about at least some of the details the FAQ asks for:
+</I>&gt;<i> 
+</I>&gt;<i> 1) Version of fetchmail
+</I>
+The one I currently use is 6.3.2. But I've also tried 6.3.6. Exactly same 
+behavior.
+
+&gt;<i> 
+</I>&gt;<i> 2) Contents of .fetchmailrc
+</I>&gt;<i> 
+</I>Quite simple :
+
+poll 192.168.1.2 protocol IMAP:
+user 100 with password 100 options norewrite
+
+My first attempt had no option at all. I've also tried options around 
+MIME, but with no success.
+
+&gt;<i> 3) Output of &quot;fetchmail -v -v --nosyslog&quot; (and any other command line
+</I>
+OK. This is fetchmail -v -v -nosyslog
+
+fetchmail: 6.3.2 interroge 192.168.1.2 (protocole IMAP) &#195;  mar 13 f&#195;&#169;v 
+2007 11:57:00 CET&#194; : r&#195;&#169;cup&#195;&#169;ration en cours
+fetchmail: IMAP&lt; * OK Talk_It IMAP4rev1 v10.210 server ready
+fetchmail: IMAP&gt; A0001 CAPABILITY
+fetchmail: IMAP&lt; * CAPABILITY IMAP4 IMAP4REV1 NAMESPACE SCAN SORT X-NBX 
+THREAD=ORDEREDSUBJECT
+fetchmail: IMAP&lt; A0001 OK CAPABILITY completed
+fetchmail: Protocole identifi&#195;&#169; comme &#195;&#169;tant IMAP4 rev 
+fetchmail: IMAP&gt; A0002 LOGIN * &quot;100&quot;
+fetchmail: IMAP&lt; A0002 OK LOGIN completed
+fetchmail: s&#195;&#169;lection ou re-r&#195;&#169;ception du dossier par d&#195;&#169;faut
+fetchmail: IMAP&gt; A0003 SELECT &quot;INBOX&quot;
+fetchmail: IMAP&lt; * 20 EXISTS
+fetchmail: IMAP&lt; * OK [UIDVALIDITY 1038355870] UID validity status
+fetchmail: IMAP&lt; * OK [UIDNEXT 26] Predicted next UID
+fetchmail: IMAP&lt; * FLAGS (\Answered \Flagged \Deleted \Draft \Seen)
+fetchmail: IMAP&lt; * OK [PERMANENTFLAGS (\* \Answered \Flagged \Deleted 
+\Draft \Seen)] Permanent flags
+fetchmail: IMAP&lt; * OK [UNSEEN 17] 17 is first unseen message in 
+/htfs0/var/mail/uid202
+fetchmail: IMAP&lt; * 4 RECENT
+fetchmail: IMAP&lt; A0003 OK [READ-WRITE] SELECT completed
+fetchmail: 20 messages en attente apr&#195;&#168;s le premier poll
+fetchmail: IMAP&gt; A0004 EXPUNGE
+fetchmail: IMAP&lt; A0004 OK Mailbox checkpointed, but no messages deleted
+fetchmail: 20 messages en attente apr&#195;&#168;s la purge
+fetchmail: IMAP&gt; A0005 SEARCH UNSEEN NOT DELETED
+fetchmail: IMAP&lt; * SEARCH 17 18 19 20
+fetchmail: 17 n'est pas vu
+fetchmail: 18 n'est pas vu
+fetchmail: 19 n'est pas vu
+fetchmail: 20 n'est pas vu
+fetchmail: IMAP&lt; A0005 OK SEARCH completed
+fetchmail: 17 est le premier a n'avoir pas &#195;&#169;t&#195;&#169; vu
+20 messages (16 d&#195;&#169;j&#195;  vus) pour 100 dans 192.168.1.2.
+message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">100 at 192.168.1.2</A>:1 ignor&#195;&#169; non &#195;&#169;limin&#195;&#169;
+message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">100 at 192.168.1.2</A>:2 ignor&#195;&#169; non &#195;&#169;limin&#195;&#169;
+message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">100 at 192.168.1.2</A>:3 ignor&#195;&#169; non &#195;&#169;limin&#195;&#169;
+message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">100 at 192.168.1.2</A>:4 ignor&#195;&#169; non &#195;&#169;limin&#195;&#169;
+message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">100 at 192.168.1.2</A>:5 ignor&#195;&#169; non &#195;&#169;limin&#195;&#169;
+message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">100 at 192.168.1.2</A>:6 ignor&#195;&#169; non &#195;&#169;limin&#195;&#169;
+message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">100 at 192.168.1.2</A>:7 ignor&#195;&#169; non &#195;&#169;limin&#195;&#169;
+message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">100 at 192.168.1.2</A>:8 ignor&#195;&#169; non &#195;&#169;limin&#195;&#169;
+message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">100 at 192.168.1.2</A>:9 ignor&#195;&#169; non &#195;&#169;limin&#195;&#169;
+message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">100 at 192.168.1.2</A>:10 ignor&#195;&#169; non &#195;&#169;limin&#195;&#169;
+message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">100 at 192.168.1.2</A>:11 ignor&#195;&#169; non &#195;&#169;limin&#195;&#169;
+message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">100 at 192.168.1.2</A>:12 ignor&#195;&#169; non &#195;&#169;limin&#195;&#169;
+message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">100 at 192.168.1.2</A>:13 ignor&#195;&#169; non &#195;&#169;limin&#195;&#169;
+message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">100 at 192.168.1.2</A>:14 ignor&#195;&#169; non &#195;&#169;limin&#195;&#169;
+message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">100 at 192.168.1.2</A>:15 ignor&#195;&#169; non &#195;&#169;limin&#195;&#169;
+message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">100 at 192.168.1.2</A>:16 ignor&#195;&#169; non &#195;&#169;limin&#195;&#169;
+fetchmail: IMAP&gt; A0006 FETCH 17:20 RFC822.SIZE
+fetchmail: IMAP&lt; * 17 FETCH (RFC822.SIZE 1117)
+fetchmail: IMAP&lt; * 18 FETCH (RFC822.SIZE 1116)
+fetchmail: IMAP&lt; * 19 FETCH (RFC822.SIZE 1116)
+fetchmail: IMAP&lt; * 20 FETCH (RFC822.SIZE 1116)
+fetchmail: IMAP&lt; A0006 OK FETCH completed
+fetchmail: IMAP&gt; A0007 FETCH 17 RFC822.HEADER
+fetchmail: IMAP&lt; * 17 FETCH (RFC822.HEADER {432}
+lecture du message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">100 at 192.168.1.2</A>:17 parmi 20 (432 octets dans 
+l'en-t&#195;&#170;te)
+fetchmail: SMTP&lt; 220 domino.talk-it.fr ESMTP Service (Lotus Domino Release 
+7.0.2FP1) ready at Tue, 13 Feb 2007 11:57:01 +0100
+fetchmail: SMTP&gt; EHLO Talk-It.talk-it.fr
+fetchmail: SMTP&lt; 250-domino.talk-it.fr Hello Talk-It.talk-it.fr 
+([127.0.0.1]), pleased to meet you
+fetchmail: SMTP&lt; 250-DSN
+fetchmail: SMTP&lt; 250-SIZE
+fetchmail: SMTP&lt; 250 PIPELINING
+fetchmail: r&#195;&#169;exp&#195;&#169;dition vers localhost
+fetchmail: SMTP&gt; MAIL FROM:&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">101 at 192.168.1.2</A>&gt; SIZE=1117
+fetchmail: SMTP&lt; 250 <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">101 at 192.168.1.2...</A> Sender OK
+fetchmail: SMTP&gt; RCPT TO:&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">notes at localhost</A>&gt;
+fetchmail: SMTP&lt; 250 <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">notes at localhost...</A> Recipient OK
+fetchmail: SMTP&gt; DATA
+fetchmail: SMTP&lt; 354 Enter message, end with &quot;.&quot; on a line by itself
+fetchmail: IMAP&lt; )
+fetchmail: IMAP&lt; A0007 OK FETCH completed
+fetchmail: IMAP&gt; A0008 FETCH 17 BODY.PEEK[TEXT]
+fetchmail: IMAP&lt; * 17 FETCH (BODY[TEXT] {685}
+ (685 octets dans le corps) fetchmail: IMAP&lt; )
+fetchmail: IMAP&lt; A0008 OK FETCH completed
+fetchmail: SMTP&gt;. (EOM)
+fetchmail: SMTP&lt; 250 Message accepted for delivery
+ &#195;&#169;limin&#195;&#169;
+fetchmail: IMAP&gt; A0009 STORE 17 +FLAGS (\Seen \Deleted)
+fetchmail: IMAP&lt; * 17 FETCH (FLAGS (\Recent \Seen \Deleted))
+fetchmail: IMAP&lt; A0009 OK STORE completed
+fetchmail: IMAP&gt; A0010 EXPUNGE
+fetchmail: IMAP&lt; * 17 EXPUNGE
+fetchmail: IMAP&lt; * 19 EXISTS
+fetchmail: IMAP&lt; * 3 RECENT
+fetchmail: IMAP&lt; A0010 OK Expunged 1 messages
+fetchmail: IMAP&gt; A0011 FETCH 17 RFC822.HEADER
+fetchmail: IMAP&lt; * 17 FETCH (RFC822.HEADER {432}
+lecture du message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">100 at 192.168.1.2</A>:18 parmi 20 (432 octets dans 
+l'en-t&#195;&#170;te)
+fetchmail: r&#195;&#169;exp&#195;&#169;dition vers localhost
+fetchmail: SMTP&gt; MAIL FROM:&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">101 at 192.168.1.2</A>&gt; SIZE=1116
+fetchmail: SMTP&lt; 250 <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">101 at 192.168.1.2...</A> Sender OK
+fetchmail: SMTP&gt; RCPT TO:&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">notes at localhost</A>&gt;
+fetchmail: SMTP&lt; 250 <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">notes at localhost...</A> Recipient OK
+fetchmail: SMTP&gt; DATA
+fetchmail: SMTP&lt; 354 Enter message, end with &quot;.&quot; on a line by itself
+fetchmail: IMAP&lt; )
+fetchmail: IMAP&lt; A0011 OK FETCH completed
+fetchmail: IMAP&gt; A0012 FETCH 17 BODY.PEEK[TEXT]
+fetchmail: IMAP&lt; * 17 FETCH (BODY[TEXT] {684}
+ (684 octets dans le corps) fetchmail: IMAP&lt; )
+fetchmail: IMAP&lt; A0012 OK FETCH completed
+fetchmail: SMTP&gt;. (EOM)
+fetchmail: SMTP&lt; 250 Message accepted for delivery
+ &#195;&#169;limin&#195;&#169;
+fetchmail: IMAP&gt; A0013 STORE 17 +FLAGS (\Seen \Deleted)
+fetchmail: IMAP&lt; * 17 FETCH (FLAGS (\Recent \Seen \Deleted))
+fetchmail: IMAP&lt; A0013 OK STORE completed
+fetchmail: IMAP&gt; A0014 EXPUNGE
+fetchmail: IMAP&lt; * 17 EXPUNGE
+fetchmail: IMAP&lt; * 18 EXISTS
+fetchmail: IMAP&lt; * 2 RECENT
+fetchmail: IMAP&lt; A0014 OK Expunged 1 messages
+fetchmail: IMAP&gt; A0015 FETCH 17 RFC822.HEADER
+fetchmail: IMAP&lt; * 17 FETCH (RFC822.HEADER {432}
+lecture du message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">100 at 192.168.1.2</A>:19 parmi 20 (432 octets dans 
+l'en-t&#195;&#170;te)
+fetchmail: r&#195;&#169;exp&#195;&#169;dition vers localhost
+fetchmail: SMTP&gt; MAIL FROM:&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">101 at 192.168.1.2</A>&gt; SIZE=1116
+fetchmail: SMTP&lt; 250 <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">101 at 192.168.1.2...</A> Sender OK
+fetchmail: SMTP&gt; RCPT TO:&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">notes at localhost</A>&gt;
+fetchmail: SMTP&lt; 250 <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">notes at localhost...</A> Recipient OK
+fetchmail: SMTP&gt; DATA
+fetchmail: SMTP&lt; 354 Enter message, end with &quot;.&quot; on a line by itself
+fetchmail: IMAP&lt; )
+fetchmail: IMAP&lt; A0015 OK FETCH completed
+fetchmail: IMAP&gt; A0016 FETCH 17 BODY.PEEK[TEXT]
+fetchmail: IMAP&lt; * 17 FETCH (BODY[TEXT] {684}
+ (684 octets dans le corps) fetchmail: IMAP&lt; )
+fetchmail: IMAP&lt; A0016 OK FETCH completed
+fetchmail: SMTP&gt;. (EOM)
+fetchmail: SMTP&lt; 250 Message accepted for delivery
+ &#195;&#169;limin&#195;&#169;
+fetchmail: IMAP&gt; A0017 STORE 17 +FLAGS (\Seen \Deleted)
+fetchmail: IMAP&lt; * 17 FETCH (FLAGS (\Recent \Seen \Deleted))
+fetchmail: IMAP&lt; A0017 OK STORE completed
+fetchmail: IMAP&gt; A0018 EXPUNGE
+fetchmail: IMAP&lt; * 17 EXPUNGE
+fetchmail: IMAP&lt; * 17 EXISTS
+fetchmail: IMAP&lt; * 1 RECENT
+fetchmail: IMAP&lt; A0018 OK Expunged 1 messages
+fetchmail: IMAP&gt; A0019 FETCH 17 RFC822.HEADER
+fetchmail: IMAP&lt; * 17 FETCH (RFC822.HEADER {432}
+lecture du message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">100 at 192.168.1.2</A>:20 parmi 20 (432 octets dans 
+l'en-t&#195;&#170;te)
+fetchmail: r&#195;&#169;exp&#195;&#169;dition vers localhost
+fetchmail: SMTP&gt; MAIL FROM:&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">101 at 192.168.1.2</A>&gt; SIZE=1116
+fetchmail: SMTP&lt; 250 <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">101 at 192.168.1.2...</A> Sender OK
+fetchmail: SMTP&gt; RCPT TO:&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">notes at localhost</A>&gt;
+fetchmail: SMTP&lt; 250 <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">notes at localhost...</A> Recipient OK
+fetchmail: SMTP&gt; DATA
+fetchmail: SMTP&lt; 354 Enter message, end with &quot;.&quot; on a line by itself
+fetchmail: IMAP&lt; )
+fetchmail: IMAP&lt; A0019 OK FETCH completed
+fetchmail: IMAP&gt; A0020 FETCH 17 BODY.PEEK[TEXT]
+fetchmail: IMAP&lt; * 17 FETCH (BODY[TEXT] {684}
+ (684 octets dans le corps) fetchmail: IMAP&lt; )
+fetchmail: IMAP&lt; A0020 OK FETCH completed
+fetchmail: SMTP&gt;. (EOM)
+fetchmail: SMTP&lt; 250 Message accepted for delivery
+ &#195;&#169;limin&#195;&#169;
+fetchmail: IMAP&gt; A0021 STORE 17 +FLAGS (\Seen \Deleted)
+fetchmail: IMAP&lt; * 17 FETCH (FLAGS (\Recent \Seen \Deleted))
+fetchmail: IMAP&lt; A0021 OK STORE completed
+fetchmail: IMAP&gt; A0022 EXPUNGE
+fetchmail: IMAP&lt; * 17 EXPUNGE
+fetchmail: IMAP&lt; * 16 EXISTS
+fetchmail: IMAP&lt; * 0 RECENT
+fetchmail: IMAP&lt; A0022 OK Expunged 1 messages
+fetchmail: s&#195;&#169;lection ou re-r&#195;&#169;ception du dossier par d&#195;&#169;faut
+fetchmail: 0 message en attente apr&#195;&#168;s le nouveau poll
+fetchmail: IMAP&gt; A0023 LOGOUT
+fetchmail: IMAP&lt; * BYE Talk_It IMAP4rev1 server terminating connection
+fetchmail: IMAP&lt; A0023 OK LOGOUT completed
+fetchmail: SMTP&gt; QUIT
+fetchmail: SMTP&lt; 221 domino.talk-it.fr SMTP Service closing transmission 
+channel
+fetchmail: 6.3.2 interroge 192.168.1.2 (protocole IMAP) &#195;  mar 13 f&#195;&#169;v 
+2007 11:57:05 CET&#194; : interrogation finie
+fetchmail: ne permute pas les listes d'UIDs, aucun UID vu dans cette 
+requ&#195;&#170;te
+fetchmail: Effacement du fichier fetchids.
+fetchmail: terminaison normale, &#195;&#169;tat 0
+fetchmail: Effacement du fichier fetchids.
+
+
+
+
+
+&gt;<i> 4) The OS you're using
+</I>&gt;<i> 
+</I>The OS is Suse Linux Enterprise Server 10.
+
+Regards.
+
+Alain CHOFARDET
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/fetchmail-users/attachments/20070213/24160bb8/attachment.html">https://lists.berlios.de/pipermail/fetchmail-users/attachments/20070213/24160bb8/attachment.html</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000814.html">[fetchmail-users] IMAP problem
+</A></li>
+	<LI>Next message: <A HREF="000816.html">[fetchmail-users] IMAP problem
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#815">[ date ]</a>
+              <a href="thread.html#815">[ thread ]</a>
+              <a href="subject.html#815">[ subject ]</a>
+              <a href="author.html#815">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

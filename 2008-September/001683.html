@@ -1,0 +1,97 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] fetchmail error
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2008-September/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%20error&In-Reply-To=%3C43ea8d070809101002n39b6223el3c41414e9f50bbf8%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001681.html">
+   <LINK REL="Next"  HREF="001684.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] fetchmail error</H1>
+    <B>Rob MacGregor</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%20error&In-Reply-To=%3C43ea8d070809101002n39b6223el3c41414e9f50bbf8%40mail.gmail.com%3E"
+       TITLE="[fetchmail-users] fetchmail error">rob.macgregor at gmail.com
+       </A><BR>
+    <I>Wed Sep 10 19:02:15 CEST 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001681.html">[fetchmail-users] fetchmail error
+</A></li>
+        <LI>Next message: <A HREF="001684.html">[fetchmail-users] unable to get local issuer certificate
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1683">[ date ]</a>
+              <a href="thread.html#1683">[ thread ]</a>
+              <a href="subject.html#1683">[ subject ]</a>
+              <a href="author.html#1683">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Sat, Sep 6, 2008 at 07:16, pascual dsouza &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">pascual at rediffmail.com</A>&gt; wrote:
+&gt;<i>
+</I>&gt;<i> Dear all
+</I>&gt;<i>
+</I>&gt;<i> i am not able to fetchmail mails from isp mail server
+</I>&gt;<i>
+</I>&gt;<i> [<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">ritukant at bom</A> ~]$ fetchmail -vvv
+</I>&gt;<i> fetchmail: 6.3.6 querying 74.50.100.65 (protocol POP3) at Sat 06 Sep 2008 11:32:34 AM IST: poll started
+</I>
+You're using an old version with known security problems - you should upgrade.
+
+&gt;<i> Trying to connect to 74.50.100.65/110...connected.
+</I>&gt;<i> fetchmail: POP3&lt; +OK X1 NT-POP3 Server mail9.indsoft.net (IMail 8.22 10275-21)
+</I>&lt;---SNIP---&gt;
+&gt;<i> fetchmail: POP3&gt; AUTH CRAM-MD5
+</I>&gt;<i> fetchmail: POP3&lt; + PDI5OTQ5LjE0MTA3MjIwM0BpbnRlcm5ldGVtcG93ZXI+
+</I>&gt;<i> fetchmail: decoded as &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">29949.141072203 at internetempower</A>&gt;
+</I>&gt;<i> fetchmail: POP3&gt; cml0dWthbnRAa3JjZ3JvdXAuaW4gYWE5N2ZjOWU1ZjY3YWQ0ZGM4YzEyZTE0OTU1ZDExMzU=
+</I>&gt;<i> fetchmail: POP3&lt; -ERR authentication exchange failed
+</I>&gt;<i> fetchmail: authentication exchange failed
+</I>&gt;<i> fetchmail: POP3&gt; USER <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">ritukant at krcgroup.in</A>
+</I>&gt;<i> fetchmail: POP3&lt; +OK send your password
+</I>&gt;<i> fetchmail: POP3&gt; PASS *
+</I>&gt;<i> fetchmail: POP3&lt; -ERR Invalid userid/password
+</I>&gt;<i> fetchmail: Invalid userid/password
+</I>
+You have an authentication problem.  Can you provide your .fetchmailrc
+file, having checked that you have your username and password correct
+(and mask your passwords).
+
+-- 
+ Please keep list traffic on the list.
+
+Rob MacGregor
+ Whoever fights monsters should see to it that in the process he
+ doesn't become a monster. Friedrich Nietzsche
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001681.html">[fetchmail-users] fetchmail error
+</A></li>
+	<LI>Next message: <A HREF="001684.html">[fetchmail-users] unable to get local issuer certificate
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1683">[ date ]</a>
+              <a href="thread.html#1683">[ thread ]</a>
+              <a href="subject.html#1683">[ subject ]</a>
+              <a href="author.html#1683">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

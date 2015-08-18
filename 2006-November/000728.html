@@ -1,0 +1,109 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Problem with multiple ip on same interface +	etchmaol
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2006-November/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Problem%20with%20multiple%20ip%20on%20same%20interface%20%2B%0A%09etchmaol&In-Reply-To=%3C1164218258.21466.1.camel%40homer.ghb.fh-furtwangen.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000724.html">
+   <LINK REL="Next"  HREF="000729.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Problem with multiple ip on same interface +	etchmaol</H1>
+    <B>Mitko R&#252;rup</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Problem%20with%20multiple%20ip%20on%20same%20interface%20%2B%0A%09etchmaol&In-Reply-To=%3C1164218258.21466.1.camel%40homer.ghb.fh-furtwangen.de%3E"
+       TITLE="[fetchmail-users] Problem with multiple ip on same interface +	etchmaol">ruerup at webds.de
+       </A><BR>
+    <I>Wed Nov 22 18:57:38 CET 2006</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000724.html">[fetchmail-users] fetchmail never dies :-(
+</A></li>
+        <LI>Next message: <A HREF="000729.html">[fetchmail-users] Problem with multiple ip on same interface +	etchmaol
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#728">[ date ]</a>
+              <a href="thread.html#728">[ thread ]</a>
+              <a href="subject.html#728">[ subject ]</a>
+              <a href="author.html#728">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hello,
+
+i changed my network config to have multiple ips on eth0. Since then,
+every time the alias eth0:1 is up fetchmail refuses to work. with just
+one ip on the interface everything works well.
+
+my config looks like the following:
+
+set postmaster &quot;postmaster&quot;
+set bouncemail
+set no spambounce
+set properties &quot;&quot;
+set daemon 300
+poll haftbar.de with proto IMAP
+    interface eth0/141.28.224.224 monitor eth0
+    user '#########' there with password '########' is '#######' here
+options keep ssl
+
+
+i tried with or without interface option, with or without monitor option
+
+there is only one nic installes with the following ips:
+
+eth0 141.28.224.224 hostname homer
+eth0:1 141.28.224.70 hostname dump
+
+fetchmail constantly refuses to use the hostname homer, uses dump
+instead and does nothing after telling me that he is polling the server.
+
+any clues to solve this?
+
+
+regards,
+
+mitko r&#252;rup
+
+
+-- 
+Mitko R&#252;rup
+<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">ruerup at webds.de</A>
+www.ruerup.de
+
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: signature.asc
+Type: application/pgp-signature
+Size: 189 bytes
+Desc: This is a digitally signed message part
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/fetchmail-users/attachments/20061122/cb391694/attachment.pgp">https://lists.berlios.de/pipermail/fetchmail-users/attachments/20061122/cb391694/attachment.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000724.html">[fetchmail-users] fetchmail never dies :-(
+</A></li>
+	<LI>Next message: <A HREF="000729.html">[fetchmail-users] Problem with multiple ip on same interface +	etchmaol
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#728">[ date ]</a>
+              <a href="thread.html#728">[ thread ]</a>
+              <a href="subject.html#728">[ subject ]</a>
+              <a href="author.html#728">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

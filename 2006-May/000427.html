@@ -1,0 +1,126 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Re: fix lost POP3 deletes
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2006-May/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Re%3A%20fix%20lost%20POP3%20deletes&In-Reply-To=%3Cm3odxntrj4.fsf%40merlin.emma.line.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000425.html">
+   <LINK REL="Next"  HREF="000408.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Re: fix lost POP3 deletes</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Re%3A%20fix%20lost%20POP3%20deletes&In-Reply-To=%3Cm3odxntrj4.fsf%40merlin.emma.line.org%3E"
+       TITLE="[fetchmail-users] Re: fix lost POP3 deletes">matthias.andree at gmx.de
+       </A><BR>
+    <I>Wed May 24 16:40:31 CEST 2006</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000425.html">[fetchmail-users] Re: fix lost POP3 deletes
+</A></li>
+        <LI>Next message: <A HREF="000408.html">[fetchmail-users] Mails lost due to --flush option ?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#427">[ date ]</a>
+              <a href="thread.html#427">[ thread ]</a>
+              <a href="subject.html#427">[ subject ]</a>
+              <a href="author.html#427">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Sunil Shetye &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">shetye at bombay.retortsoft.com</A>&gt; writes:
+
+&gt;<i> I think, the current code which is assuming that mails have been
+</I>&gt;<i> expunged only on a successful quit is ok. It is a straighforward code
+</I>&gt;<i> which is not hard to understand. Setting UID_EXPUNGED before sending
+</I>&gt;<i> QUIT is probably going to make the code harder to debug, especially in
+</I>&gt;<i> the edge cases. Another case I can think of is:
+</I>&gt;<i>
+</I>&gt;<i> POP3&gt; QUIT
+</I>&gt;<i> POP3&lt; -ERR Disk full
+</I>&gt;<i>
+</I>&gt;<i> What is probably required is to directly delete the mails which have
+</I>&gt;<i> been deleted (UID_DELETED), but not yet expunged.
+</I>
+That's what we're trying to achieve. OK, we might hold off EXPUNGE and
+look at the return code from the &quot;QUIT&quot; request. I don't have time right
+now, but I'll look into this later, to figure out which errors can
+happen and what to do with them.
+
+&gt;&gt;<i> Can you elaborate how to handle this separately?
+</I>&gt;<i>
+</I>&gt;<i> I mean, your patch is doing three things:
+</I>&gt;<i>
+</I>&gt;<i> - Adding comments to the code, fixing other minor issues
+</I>&gt;<i> - Adding the UID_PENDDELE flag
+</I>&gt;<i> - Saving and restoring the DELETED flag in .fetchids
+</I>&gt;<i>
+</I>&gt;<i> The above issues are equally important. But they are separate issues
+</I>&gt;<i> and should be addressed separately. I am saying this only to keep the
+</I>&gt;<i> size of the patch under discussion small.
+</I>
+Fine. I'll break them out later into a series of patches. I don't think
+they can be independent of each other though, but they will have to be
+applied in order.
+
+&gt;&gt;<i> BTW, we need the &quot;DELETED&quot; flagging in .fetchids to make your
+</I>&gt;&gt;<i> &quot;UID_UNSEEN&quot; patch (re-fetch rather than mark seen) anyways. 
+</I>&gt;&gt;<i> Else everything becomes &quot;SEEN vs. UNSEEN&quot; next time fetchmail is
+</I>&gt;&gt;<i> (re-)started anyways.
+</I>&gt;<i>
+</I>&gt;<i> Handling it in .fetchids requires more thought. Just adding the
+</I>&gt;<i> DELETED word is not enough. Atleast, an expiration time will have to
+</I>&gt;<i> be added to the DELETED flag.
+</I>
+I don't think so, and if the end user's system has a goofed up system
+time, it won't help either.
+
+&gt;<i> What if a person runs fetchmail after a week or more? In this case, it
+</I>&gt;<i> is probably unsafe to assume that it is the same old mail which should
+</I>&gt;<i> be deleted directly.
+</I>
+So we're essentially heading to a flag &quot;assume fetchmail is the only one
+accessing said mailbox? yes/no&quot;. Not only in this context such a flag
+would be useful. I'd rather not contemplate the havoc this flag wreaks
+if set to &quot;true&quot; when that isn't true. That scares me away from putting
+something like this on my agenda^WTODO.
+
+&gt;<i> Another potential problem: what if the user is running the second
+</I>&gt;<i> instance of fetchmail with 'keep'? I think, your patch will still
+</I>&gt;<i> delete the mail directly (not checked).
+</I>
+I think it would.
+
+-- 
+Matthias Andree
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000425.html">[fetchmail-users] Re: fix lost POP3 deletes
+</A></li>
+	<LI>Next message: <A HREF="000408.html">[fetchmail-users] Mails lost due to --flush option ?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#427">[ date ]</a>
+              <a href="thread.html#427">[ thread ]</a>
+              <a href="subject.html#427">[ subject ]</a>
+              <a href="author.html#427">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

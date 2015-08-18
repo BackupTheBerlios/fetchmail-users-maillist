@@ -1,0 +1,120 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] fetchmail 6.2.9-rc10 available (this is it, with minor bug fixes)
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2005-November/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%206.2.9-rc10%20available%20%28this%20is%20it%2C%20with%20minor%20bug%20fixes%29&In-Reply-To=%3C20051128002250.GB12371%40merlin.emma.line.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000142.html">
+   
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] fetchmail 6.2.9-rc10 available (this is it, with minor bug fixes)</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%206.2.9-rc10%20available%20%28this%20is%20it%2C%20with%20minor%20bug%20fixes%29&In-Reply-To=%3C20051128002250.GB12371%40merlin.emma.line.org%3E"
+       TITLE="[fetchmail-users] fetchmail 6.2.9-rc10 available (this is it, with minor bug fixes)">matthias.andree at gmx.de
+       </A><BR>
+    <I>Mon Nov 28 01:22:50 CET 2005</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000142.html">[fetchmail-users] feedback on failed delivery
+</A></li>
+        
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#143">[ date ]</a>
+              <a href="thread.html#143">[ thread ]</a>
+              <a href="subject.html#143">[ subject ]</a>
+              <a href="author.html#143">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA1
+
+Greetings,
+
+This is it - I have just released fetchmail 6.2.9-rc10, the final
+release candidate before 6.3.0, with minor bug fixes.
+
+Unless show stopping bugs are found, this will be released as fetchmail
+6.3.0 on November 30. At that date, I will bump the version, copy
+the SVN /trunk to /branches/BRANCH_6-3, tag RELEASE_6-3-0 and release.
+
+I don't care for reports about cosmetic bugs unless accompanied by a
+fix which is either trivial or otherwise obviously correct.
+
+NOTE: Fetchmail used to have these translations, but unless someone
+submits updated translation (.po) files to the Translation Project's
+Robot (doesn't matter if for -rc9 or -rc10) and has it relayed to
+fetchmail-devel by Wednesday UTC noon, these will be dropped from the
+distribution as they lack too many translations and would result in a
+horrible English/local language mix:
+
+da      Danish
+el      Greek
+gl      Galician
+pt_BR   Brazilian Portuguese
+sk      Slovak
+tr      Turkish
+
+My special thanks go to Jakub Bogusz, Pavel Maryanov and Takeshi
+Hamasaki for their efforts to get the Polish, Russian and Japanese
+translations updated.
+
+For distributors, please upload this to every distribution that you have
+where small changes in behavior are allowed, to expose this to wider
+testing, and put this through your build farms.
+
+Changes since -rc9 are:
+* Fix installation without Python. Sunil Shetye, reported by Peter Church. (MA)
+* Update Japanese translation. Fixes Bug#329342, Takeshi Hamasaki. (MA)
+* Fix imap.c size safeguard that broke on x86_64 architecture. Matthias Andree
+* The FAQ is now available for duplex DIN A4 printing in PDF format.
+  Don't bother to ask for a Letter version, I don't care.  Matthias Andree
+* Man page: Use \- in the manual page where appropriate so that copy &amp; paste
+  works.  I hope we got them all.  H&#233;ctor Garc&#237;a, Matthias Andree.
+
+The software is available from:
+&lt;<A HREF="https://developer.berlios.de/project/showfiles.php?group_id=1824&amp;release_id=8158">https://developer.berlios.de/project/showfiles.php?group_id=1824&amp;release_id=8158</A>&gt;
+&lt;<A HREF="http://home.pages.de/~mandree/fetchmail/">http://home.pages.de/~mandree/fetchmail/</A>&gt;
+
+Regards,
+
+- -- 
+Matthias Andree
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1.4.0 (GNU/Linux)
+
+iD8DBQFDik3avmGDOQUufZURAkcpAKCGUZ9KyG/hMJJtSTkNxq0zg+J3qgCfV76R
+pxHVr2GuKSSEXzhTW42BQPs=
+=cUee
+-----END PGP SIGNATURE-----
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000142.html">[fetchmail-users] feedback on failed delivery
+</A></li>
+	
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#143">[ date ]</a>
+              <a href="thread.html#143">[ thread ]</a>
+              <a href="subject.html#143">[ subject ]</a>
+              <a href="author.html#143">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

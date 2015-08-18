@@ -1,0 +1,177 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] unable to get Gmail emails
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2008-February/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20unable%20to%20get%20Gmail%20emails&In-Reply-To=%3C47A9FFBB.7010504%40wadesmart.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001455.html">
+   <LINK REL="Next"  HREF="001457.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] unable to get Gmail emails</H1>
+    <B>Wade Smart</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20unable%20to%20get%20Gmail%20emails&In-Reply-To=%3C47A9FFBB.7010504%40wadesmart.com%3E"
+       TITLE="[fetchmail-users] unable to get Gmail emails">wade at wadesmart.com
+       </A><BR>
+    <I>Wed Feb  6 19:43:07 CET 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001455.html">[fetchmail-users] unable to get Gmail emails
+</A></li>
+        <LI>Next message: <A HREF="001457.html">[fetchmail-users]  unable to get Gmail emails
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1456">[ date ]</a>
+              <a href="thread.html#1456">[ thread ]</a>
+              <a href="subject.html#1456">[ subject ]</a>
+              <a href="author.html#1456">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>
+
+02062008 1159 GMT-6
+
+Sorry, I shouldn't have posted those other messages. I get that ever so
+often. Im logging in fine today.
+
+No other client accesses my gmail and I only used the web interface
+today to see if there were in fact NO emails to be had. That is why Im
+stumped.
+
+ok. For :fetchmail -Nd0 -vv --nosyslog
+
+<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">wadesmart at wadesmart</A>:~$ fetchmail -Nd0 -vv --nosyslog
+Old UID list from mail.wadesmart.com:
+1196379686.925315.smtp28.prod.mesa1.secure.0002984880
+1196379925.898498.smtp06.prod.mesa1.secure.0002214832 &lt;empty&gt;
+Old UID list from pop.gmail.com:
+GmailId112e5288eed15ea2
+GmailId112e52d70a8b228a
+GmailId112e556801542ba6
+///
+GmailId117ea831f8b3d531 &lt;empty&gt;
+Scratch list of UIDs: &lt;empty&gt;
+
+
+AND for fetchmail -Nd0 --nosyslog -V
+<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">wadesmart at wadesmart</A>:~$ fetchmail -Nd0 --nosyslog -V
+This is fetchmail release 6.3.6+NTLM+SDPS+SSL+NLS.
+
+Copyright (C) 2002, 2003 Eric S. Raymond
+Copyright (C) 2004 Matthias Andree, Eric S. Raymond, Rob F. Funk, Graham
+Wilson
+Copyright (C) 2005-2006 Matthias Andree, Sunil Shetye
+Fetchmail comes with ABSOLUTELY NO WARRANTY. This is free software, and you
+are welcome to redistribute it under certain conditions. For details,
+please see the file COPYING in the source or documentation directory.
+
+Fallback MDA: (none)
+Linux wadesmart 2.6.20-16-generic #2 SMP Fri Feb 1 02:59:08 UTC 2008
+i686 GNU/Linux
+Taking options from command line and /home/wadesmart/.fetchmailrc
+Idfile is /home/wadesmart/.fetchids
+Fetchmail will show progress dots even in logfiles.
+Fetchmail will forward misaddressed multidrop messages to wadesmart.
+Fetchmail will direct error mail to the postmaster.
+Options for retrieving from <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">wade at wadesmart.com</A>@mail.wadesmart.com:
+   True name of server is mail.wadesmart.com.
+   Protocol is POP3 (forcing UIDL use).
+   Password authentication will be forced.
+   Server nonresponse timeout is 300 seconds (default).
+   Default mailbox selected.
+   Only new messages will be retrieved (--all off).
+   Fetched messages will not be kept on the server (--keep off).
+   Old messages will not be flushed before message retrieval (--flush off).
+   Oversized messages will not be flushed before message retrieval
+(--limitflush off).
+   Rewrite of server-local addresses is enabled (--norewrite off).
+   Carriage-return stripping is disabled (stripcr off).
+   Carriage-return forcing is disabled (forcecr off).
+   Interpretation of Content-Transfer-Encoding is enabled (pass8bits off).
+   MIME decoding is disabled (mimedecode off).
+   Idle after poll is disabled (idle off).
+   Nonempty Status lines will be kept (dropstatus off)
+   Delivered-To lines will be kept (dropdelivered off)
+   Fetch message size limit is 100 (--fetchsizelimit 100).
+   Do binary search of UIDs during 3 out of 4 polls (--fastuidl 4).
+   Messages will be SMTP-forwarded to: localhost (default)
+   Single-drop mode: 1 local name recognized.
+   2 UIDs saved.
+
+Options for retrieving from <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">wadesmart at gmail.com</A>@pop.gmail.com:
+   True name of server is pop.gmail.com.
+   Protocol is POP3 (using service 995) (forcing UIDL use).
+   Password authentication will be forced.
+   SSL encrypted sessions enabled.
+   Server nonresponse timeout is 300 seconds (default).
+   Default mailbox selected.
+   Only new messages will be retrieved (--all off).
+   Fetched messages will not be kept on the server (--keep off).
+   Old messages will not be flushed before message retrieval (--flush off).
+   Oversized messages will not be flushed before message retrieval
+(--limitflush off).
+   Rewrite of server-local addresses is enabled (--norewrite off).
+   Carriage-return stripping is disabled (stripcr off).
+   Carriage-return forcing is disabled (forcecr off).
+   Interpretation of Content-Transfer-Encoding is enabled (pass8bits off).
+   MIME decoding is disabled (mimedecode off).
+   Idle after poll is disabled (idle off).
+   Nonempty Status lines will be kept (dropstatus off)
+   Delivered-To lines will be kept (dropdelivered off)
+   Fetch message size limit is 100 (--fetchsizelimit 100).
+   Do binary search of UIDs during 3 out of 4 polls (--fastuidl 4).
+   Messages will be SMTP-forwarded to: localhost (default)
+   Single-drop mode: 1 local name recognized.
+   873 UIDs saved.
+
+
+Apparently there is something wrong with my getting mail from google
+because I now Im getting this message repeatedly:
+
+Fetchmail could not get mail from <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">it at gmail-pop.l.google.com.</A>
+
+The attempt to get authorization failed.
+This probably means your password is invalid, but some servers have
+other failure modes that fetchmail cannot distinguish from this
+because they don't send useful error messages on login failure.
+
+The fetchmail daemon will continue running and attempt to connect
+at each cycle.  No future notifications will be sent until service
+is restored.
+
+
+I checked the password and there is no problem there. Googles end maybe?
+Wade
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001455.html">[fetchmail-users] unable to get Gmail emails
+</A></li>
+	<LI>Next message: <A HREF="001457.html">[fetchmail-users]  unable to get Gmail emails
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1456">[ date ]</a>
+              <a href="thread.html#1456">[ thread ]</a>
+              <a href="subject.html#1456">[ subject ]</a>
+              <a href="author.html#1456">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

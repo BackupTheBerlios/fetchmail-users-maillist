@@ -1,0 +1,135 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] fetchmail 6.3.11 / Slackware 11.0: Segmentation Fault including possible solution
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2009-August/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%206.3.11%20/%20Slackware%2011.0%3A%20Segmentation%0A%20Fault%20including%20possible%20solution&In-Reply-To=%3CPine.LNX.4.64.0908121554480.2726%40wallace.home.teolp%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002035.html">
+   <LINK REL="Next"  HREF="002028.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] fetchmail 6.3.11 / Slackware 11.0: Segmentation Fault including possible solution</H1>
+    <B>Christian Fiedler</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%206.3.11%20/%20Slackware%2011.0%3A%20Segmentation%0A%20Fault%20including%20possible%20solution&In-Reply-To=%3CPine.LNX.4.64.0908121554480.2726%40wallace.home.teolp%3E"
+       TITLE="[fetchmail-users] fetchmail 6.3.11 / Slackware 11.0: Segmentation Fault including possible solution">chf33 at gmx.net
+       </A><BR>
+    <I>Wed Aug 12 15:56:31 CEST 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002035.html">[fetchmail-users] BerliOS/mailing list companion web site X.509 certificates (was: Multiple sslfingerprint options and digests)
+</A></li>
+        <LI>Next message: <A HREF="002028.html">[fetchmail-users] fetchmail 6.3.11 / Slackware 11.0:	Segmentation Fault including possible solution
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2027">[ date ]</a>
+              <a href="thread.html#2027">[ thread ]</a>
+              <a href="subject.html#2027">[ subject ]</a>
+              <a href="author.html#2027">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>(Resent. First sending was before subscribing list.)
+
+Hi,
+
+I've been using fetchmail for several years. Thanks for providing a great piece 
+of software!
+
+After installing Slackware's latest security upgrade I've made some 
+observations regarding fetchmail 6.3.11 and Slackware 11.0:
+
+~$ fetchmail --version
+This is fetchmail release 6.3.11+SSL+NLS
+
+~$ fetchmail
+Segmentation fault
+
+fetchmail -v works ok. Compiled from source (configure --with-ssl). Same 
+behaviour.
+No Segfault with Slackware 12.2
+
+Observations:
+strace fetchmail:
+[...]
+getpid()                                = 2710
+close(4)                                = 0
+munmap(0x40028000, 4096)                = 0
+stat64(&quot;/etc/ssl/certs/c33a80d4.1&quot;, 0xbfffaabc) = -1 ENOENT (No such file or 
+directory)
+time([1250013731])                      = 1250013731
+open(&quot;/etc/localtime&quot;, O_RDONLY)        = 4
+fstat64(4, {st_mode=S_IFREG|0644, st_size=2211, ...}) = 0
+fstat64(4, {st_mode=S_IFREG|0644, st_size=2211, ...}) = 0
+mmap2(NULL, 4096, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 
+0x40028000
+read(4, &quot;TZif2\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\6\0\0\0\6\0\0&quot;..., 4096) = 
+2211
+close(4)                                = 0
+munmap(0x40028000, 4096)                = 0
+time([1250013731])                      = 1250013731
+time([1250013731])                      = 1250013731
+time([1250013731])                      = 1250013731
+--- SIGSEGV (Segmentation fault) @ 0 (0) ---
++++ killed by SIGSEGV +++
+Process 2710 detached
+[...]
+
+valgrind -v shows:
+[...]
+==2740== Invalid free() / delete / delete[]
+==2740==    at 0x401D649: free (vg_replace_malloc.c:323)
+==2740==    by 0x804BC6E: SSL_verify_callback (socket.c:633)
+==2740==    by 0x4191589: (within /usr/lib/libcrypto.so.0.9.8)
+==2740==  Address 0x1 is not stack'd, malloc'd or (recently) free'd
+==2740==
+[...]
+
+socket.c:
+[..]
+                        if (outlevel &gt;= O_VERBOSE)
+                                report(stdout, GT_(&quot;Server CommonName: %s\n&quot;), (
+tt = sdump(buf, i)));
+                      xfree(tt);
+[...]
+
+Commented out xfree(tt), rebuilt fetchmail and the segfault is gone...
+This may be a dirty hack. xfree(tt) could also be included in if-clause.
+
+The previous line seems to explain why fetchmail -v works.
+Maybe different behaviour of Slackware 12.2 is due to a different libc or 
+libssl version.
+
+Feedback welcome!
+
+Christian
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002035.html">[fetchmail-users] BerliOS/mailing list companion web site X.509 certificates (was: Multiple sslfingerprint options and digests)
+</A></li>
+	<LI>Next message: <A HREF="002028.html">[fetchmail-users] fetchmail 6.3.11 / Slackware 11.0:	Segmentation Fault including possible solution
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2027">[ date ]</a>
+              <a href="thread.html#2027">[ thread ]</a>
+              <a href="subject.html#2027">[ subject ]</a>
+              <a href="author.html#2027">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

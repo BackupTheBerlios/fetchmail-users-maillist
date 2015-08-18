@@ -1,0 +1,103 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] getting better error messages out of fetchmail
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2006-November/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20getting%20better%20error%20messages%20out%20of%20fetchmail&In-Reply-To=%3C20061127150644.GC25508%40idallen.ca%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000743.html">
+   <LINK REL="Next"  HREF="000749.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] getting better error messages out of fetchmail</H1>
+    <B>Ian! D. Allen</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20getting%20better%20error%20messages%20out%20of%20fetchmail&In-Reply-To=%3C20061127150644.GC25508%40idallen.ca%3E"
+       TITLE="[fetchmail-users] getting better error messages out of fetchmail">idallen at idallen.ca
+       </A><BR>
+    <I>Mon Nov 27 16:06:45 CET 2006</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000743.html">[fetchmail-users] getting better error messages out of fetchmail
+</A></li>
+        <LI>Next message: <A HREF="000749.html">[fetchmail-users] getting better error messages out of fetchmail
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#747">[ date ]</a>
+              <a href="thread.html#747">[ thread ]</a>
+              <a href="subject.html#747">[ subject ]</a>
+              <a href="author.html#747">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>&gt;<i> &gt; I'm finding it awkward to make fetchmail give me just the right
+</I>&gt;<i> &gt; amount of detail about the messages that are being rejected.
+</I>&gt;<i> I'll make a note and see if this can be addressed for 6.3.7 
+</I>
+Below is another example of not enough detail.  I query two machines:
+
+    fetchmail: No mail for idallen at localhost
+    fetchmail: Query status=2 (SOCKET)
+
+Obviously the first one worked, telling me what userid and what entry in
+my .fetchmailrc was used.  The second query failed; but, no information
+is printed about it.  It gets worse when querying more than one machine:
+
+    fetchmail: No mail for idallen at localhost
+    fetchmail: Query status=2 (SOCKET)
+    fetchmail: Query status=2 (SOCKET)
+    fetchmail: Query status=2 (SOCKET)
+    fetchmail: Query status=2 (SOCKET)
+    fetchmail: Query status=2 (SOCKET)
+
+Which ones failed?  Which userids?  Sometimes I'm at least told the
+.fetchmailrc entry of the error but not the userid being polled:
+
+    fetchmail: timeout after 60 seconds waiting for server localhost.
+    fetchmail: client/server synchronization error while fetching from localhost
+    fetchmail: Query status=7 (ERROR)
+    fetchmail: timeout after 60 seconds waiting for server localhost.
+    fetchmail: client/server synchronization error while fetching from localhost
+    fetchmail: Query status=7 (ERROR)
+
+Please do consider an enhancement to tell us both (1) the .fetchmailrc
+name and (2) the userid for connections that fail.  Editing output to
+remove excess verbosity (e.g. using &quot;sed&quot;) is easy; it's impossible to
+invent output that isn't there.
+
+Thanks for a very useful program.
+
+-- 
+|<i> Ian! D. Allen  -  <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">idallen at idallen.ca</A>  -  Ottawa, Ontario, Canada
+</I>|<i> Home Page: <A HREF="http://www.idallen.com/">http://www.idallen.com/</A> - Contact Improv: <A HREF="http://contactimprov.ca/">http://contactimprov.ca/</A>
+</I>|<i> College professor (Open Source / Linux) via: <A HREF="http://teaching.idallen.com/">http://teaching.idallen.com/</A>
+</I>|<i> Support the public commons and public digital rights:  <A HREF="http://eff.org/">http://eff.org/</A>
+</I>
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000743.html">[fetchmail-users] getting better error messages out of fetchmail
+</A></li>
+	<LI>Next message: <A HREF="000749.html">[fetchmail-users] getting better error messages out of fetchmail
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#747">[ date ]</a>
+              <a href="thread.html#747">[ thread ]</a>
+              <a href="subject.html#747">[ subject ]</a>
+              <a href="author.html#747">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,323 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Dangerous bug: losing messages into nowhere
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2007-April/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Dangerous%20bug%3A%20losing%20messages%20into%20nowhere&In-Reply-To=%3C190012.54370.qm%40web25707.mail.ukl.yahoo.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000998.html">
+   <LINK REL="Next"  HREF="000997.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Dangerous bug: losing messages into nowhere</H1>
+    <B>Antonio Capanna</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Dangerous%20bug%3A%20losing%20messages%20into%20nowhere&In-Reply-To=%3C190012.54370.qm%40web25707.mail.ukl.yahoo.com%3E"
+       TITLE="[fetchmail-users] Dangerous bug: losing messages into nowhere">piribillo at yahoo.it
+       </A><BR>
+    <I>Sun Apr 15 11:27:03 CEST 2007</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000998.html">[fetchmail-users] [fetchmail-devel] Fetchmail Socket error on	asatellite connection
+</A></li>
+        <LI>Next message: <A HREF="000997.html">[fetchmail-users] Dangerous bug: losing messages into nowhere
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#996">[ date ]</a>
+              <a href="thread.html#996">[ thread ]</a>
+              <a href="subject.html#996">[ subject ]</a>
+              <a href="author.html#996">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hello,
+
+I think fetchmail loses messages when a malformed header is present and
+POP3 is used.
+Put it shortly, if a message begins with (i.e., the first line of the
+headers is) a line with only a number (e.g.
+&quot;000000000000000036333551&quot;), the message is retrieved from the server,
+deleted, but not forwarded to the local mail server (nor bounced back).
+I don't know how did this line got there (the mail server which I am
+downloading the mail from is not administered by me), but fetchmail
+shouldn't lose the message anyway.
+
+Here is a more detailed description of the problem, and some additional
+information.
+
+I run a Linux Fedora Core 6, with kernel 2.6.20.4.
+
+I have the latest version of fetchmail (6.3.8). I built it from the
+sources downloaded on Berlios, using the spec file from the fetchmail
+6.3.7 package of Fedora Core.
+The same problem happened with all the other versions I tried:
+- fetchmail 6.3.6-2 (the rpm from the Fedora Core 6 updates)
+- fetchmail 6.3.7-1 (the rpm from Fedora Core 6.92).
+
+The message which gets deleted is a normal message, but, before the
+first line there is a line with only a number (=&gt; malformed header
+line).
+Here is a log from a telnet to port 110 of the POP3 server, followed by
+a log of the subsequent fetchmail call in which I try to download the
+same message.
+Note: in this and the following example, I only masked:
+- password
+- server names and IP addresses
+- email addresses of other people
+- subject of the e-mail
+- unique mail IDs and key fingerprint
+- company name
+
+
+[<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">guido at localhost</A> ~]$ telnet mailserver.doma.in 110
+Trying 12.34.56.78...
+Connected to mailserver.doma.in.
+Escape character is '^]'.
++OK mailserver.doma.in Merak 8.9.1 POP3 Sun, 15 Apr 2007 03:05:09 +0200
+&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">20070415030509 at mailserver.doma.in</A>&gt;
+USER guido
++OK guido
+PASS mypassword
++OK 330 messages (4548411) octets
+TOP 1 1
++OK
+000000000000000036333551
+Received: from server.doma.in ([23.45.67.89])
+        by mailserver.doma.in (Merak 8.2.4) with ESMTP id DWH39514
+        for &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">guido at mailserver.doma.in</A>&gt;; Fri, 19 Jan 2007 06:42:34 +0100
+Received: from localhost (localhost [127.0.0.1])
+        by server.doma.in (Postfix) with ESMTP id 7E431219155;
+        Fri, 19 Jan 2007 06:42:51 +0100 (CET)
+Received: from server.doma.in ([127.0.0.1])
+ by localhost (server.doma.in [127.0.0.1]) (amavisd-new, port 10025)
+ with LMTP id 25102-01-42; Fri, 19 Jan 2007 06:42:48 +0100 (CET)
+Received: from whatever.site (whatever.domain.name [34.56.78.90])
+        by server.doma.in (Postfix) with SMTP id 6731B41793E;
+        Fri, 19 Jan 2007 06:42:39 +0100 (CET)
+Received: from whatelse ([12.45.78.01])
+        by another.site (8.12.0/8.12.0) with SMTP id 4115586132701
+        for &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">guido at doma.in</A>&gt;; Fri, 19 Jan 2007 06:42:56 +0100
+Message-ID: &lt;001801b73b95$1d34a0d3$<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">006a1e14 at whatelse</A>&gt;
+From: Somebody &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">any at internet.addr</A>&gt;
+To: <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">guido at doma.in</A>
+Subject: subject
+Date: Fri, 19 Jan 2007 06:42:56 +0100
+MIME-Version: 1.0
+Content-Type: multipart/related;
+        type=&quot;multipart/alternative&quot;;
+        boundary=&quot;----=_NextPart_000_0013_01C73B95.0D34F9D0&quot;
+X-Priority: 3
+X-MSMail-Priority: Normal
+X-Mailer: Microsoft Outlook Express 6.00.2900.1081
+X-MimeOLE: Produced By Microsoft MimeOLE V6.00.2900.3000
+X-Virus-Scanned: amavisd-new at doma.in
+X-Spam-Status: No, score=2.227 tagged_above=-10 required=4
+tests=[BAYES_60=1,
+ EXTRA_MPART_TYPE=1.091, FORGED_RCVD_HELO=0.135, HTML_MESSAGE=0.001]
+X-Spam-Score: 2.227
+X-Spam-Level: **
+
+This is a multi-part message in MIME format.
+.
+QUIT
++OK mailserver.doma.in closing connection
+Connection closed by foreign host.
+
+
+
+Here is the corresponding line from .fetchmailrc:
+
+poll mailserver.doma.in proto POP3 auth password user guido with pass
+mypassword is guido here fetchall forcecr fetchlimit 1
+
+
+Note: if I change protocol (from POP3 to IMAP) I get a similar result.
+Obviously the fetchmail log is different, but the message is deleted
+from server and neither forwarded nor bounced.
+
+
+Here is what I get when I run fetchmail:
+
+[<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">guido at localhost</A> ~]$ fetchmail -v -v -v mailserver.doma.in
+fetchmail: 6.3.8 querying mailserver.doma.in (protocol POP3) at Sun Apr
+15 03:23:29 2007: poll started
+Trying to connect to 12.34.56.78/110...connected.
+fetchmail: POP3&lt; +OK mailserver.doma.in Merak 8.9.1 POP3 Sun, 15 Apr
+2007 03:22:48 +0200 &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">20070415032248 at mailserver.doma.in</A>&gt;
+fetchmail: POP3&gt; CAPA
+fetchmail: POP3&lt; +OK Capability list follows
+fetchmail: POP3&lt; TOP
+fetchmail: POP3&lt; USER
+fetchmail: POP3&lt; APOP
+fetchmail: POP3&lt; EXPIRE NEVER
+fetchmail: POP3&lt; UIDL
+fetchmail: POP3&lt; SASL CRAM-MD5 PLAIN LOGIN DIGEST-MD5
+fetchmail: POP3&lt; STLS
+fetchmail: POP3&lt; .
+fetchmail: POP3&gt; STLS
+fetchmail: POP3&lt; +OK Ready to start TLS
+fetchmail: Issuer Organization: Foo
+fetchmail: Issuer CommonName: mailserver.doma.in
+fetchmail: Server CommonName: mailserver.doma.in
+fetchmail: mailserver.doma.in key fingerprint:
+AA:83:C0:04:2D:0B:FC:1E:65:1E:09:00:A0:2C:7D:77
+fetchmail: Server certificate verification error: self signed
+certificate
+fetchmail: POP3&gt; CAPA
+fetchmail: POP3&lt; +OK Capability list follows
+fetchmail: POP3&lt; TOP
+fetchmail: POP3&lt; USER
+fetchmail: POP3&lt; APOP
+fetchmail: POP3&lt; EXPIRE NEVER
+fetchmail: POP3&lt; UIDL
+fetchmail: POP3&lt; SASL CRAM-MD5 PLAIN LOGIN DIGEST-MD5
+fetchmail: POP3&lt; .
+fetchmail: mailserver.doma.in: upgrade to TLS succeeded.
+fetchmail: POP3&gt; USER guido
+fetchmail: POP3&lt; +OK guido
+fetchmail: POP3&gt; PASS *
+fetchmail: POP3&lt; +OK 330 messages (4548411) octets
+fetchmail: selecting or re-polling default folder
+fetchmail: POP3&gt; STAT
+fetchmail: POP3&lt; +OK 330 4548411
+330 messages for guido at mailserver.doma.in (4548411 octets).
+fetchmail: POP3&gt; LIST 1
+fetchmail: POP3&lt; +OK 1 14009
+fetchmail: POP3&gt; RETR 1
+fetchmail: POP3&lt; +OK 14009 octets
+reading message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">guido at mailserver.doma.in</A>:1 of 330 (14009 octets)
+fetchmail: incorrect header line found while scanning headers
+fetchmail: line: 000000000000000036333551
+............ flushed
+fetchmail: POP3&gt; DELE 1
+fetchmail: POP3&lt; +OK Message deleted
+fetchmail: fetchlimit 1 reached; 329 messages left on server
+mailserver.doma.in account guido
+fetchmail: POP3&gt; QUIT
+fetchmail: POP3&lt; +OK mailserver.doma.in closing connection
+fetchmail: 6.3.8 querying mailserver.doma.in (protocol POP3) at Sun Apr
+15 03:23:31 2007: poll completed
+fetchmail: not swapping UID lists, no UIDs seen this query
+fetchmail: Query status=13 (MAXFETCH)
+fetchmail: Deleting fetchids file.
+fetchmail: normal termination, status 13
+fetchmail: Deleting fetchids file.
+
+
+Last, this is the output from fetchmail -V:
+
+[<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">guido at localhost</A> ~]$ fetchmail -V -v -v -v mailserver.doma.in
+This is fetchmail release
+6.3.8+GSS+RPA+NTLM+SDPS+SSL+HESIOD+NLS+KRB4+KRB5.
+
+Copyright (C) 2002, 2003 Eric S. Raymond
+Copyright (C) 2004 Matthias Andree, Eric S. Raymond, Robert M. Funk,
+Graham Wilson
+Copyright (C) 2005-2006 Sunil Shetye
+Copyright (C) 2005-2007 Matthias Andree
+Fetchmail comes with ABSOLUTELY NO WARRANTY. This is free software, and
+you
+are welcome to redistribute it under certain conditions. For details,
+please see the file COPYING in the source or documentation directory.
+
+Fallback MDA: (none)
+Linux localhost 2.6.20.4 #1 Mon Mar 26 03:39:10 CEST 2007 i686 i686
+i386 GNU/Linux
+Taking options from command line and /home/guido/.fetchmailrc
+Idfile is /home/guido/.fetchids
+Fetchmail will show progress dots even in logfiles.
+Fetchmail will forward misaddressed multidrop messages to guido.
+Fetchmail will direct error mail to the sender.
+Options for retrieving from <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">guido at mailserver.doma.in</A>:
+  True name of server is mailserver.doma.in.
+  This host will be queried when no host is specified.
+  Password = &quot;mypassword&quot;.
+  Protocol is POP3 (using default port).
+  Password authentication will be forced.
+  Server nonresponse timeout is 300 seconds (default).
+  Default mailbox selected.
+  All messages will be retrieved (--all on).
+  Fetched messages will not be kept on the server (--keep off).
+  Old messages will not be flushed before message retrieval (--flush
+off).
+  Oversized messages will not be flushed before message retrieval
+(--limitflush off).
+  Rewrite of server-local addresses is enabled (--norewrite off).
+  Carriage-return stripping is disabled (stripcr off).
+  Carriage-return forcing is enabled (forcecr on).
+  Interpretation of Content-Transfer-Encoding is enabled (pass8bits
+off).
+  MIME decoding is disabled (mimedecode off).
+  Idle after poll is disabled (idle off).
+  Nonempty Status lines will be kept (dropstatus off)
+  Delivered-To lines will be kept (dropdelivered off)
+  Received-message limit is 1 (--fetchlimit 1).
+  Fetch message size limit is 100 (--fetchsizelimit 100).
+  Do binary search of UIDs during 3 out of 4 polls (--fastuidl 4).
+  No SMTP message batch limit (--batchlimit 0).
+  No forced expunges (--expunge 0).
+  Messages will be SMTP-forwarded to: localhost (default)
+  Spam-blocking disabled
+  No pre-connection command.
+  No post-connection command.
+  Single-drop mode: 1 local name recognized.
+        guido
+  No interface requirement specified.
+  No monitor interface specified.
+  No plugin command specified.
+  No plugout command specified.
+  No UIDs saved from this host.
+  No poll trace information will be added to the Received header.
+.
+
+
+
+On localhost I have a mail server (postfix), and nothing is sent to it.
+If I stop the mail server (so that on localhost:25 there is no
+response), the fetchmail log remains the same, this means that
+fetchmail does not even try to contact the local mail server.
+If I try to download a different message without the numeric line at
+the beginning, postfix is correctly called and the message is forwarded
+to the &quot;guido&quot; local mailbox.
+
+I hope I gave you enough information to correct the error, if you need
+more please do not esitate asking.
+
+Good bye,
+Guido Villa
+
+
+
+
+
+      ___________________________________ 
+L'email della prossima generazione? Puoi averla con la nuova Yahoo! Mail: <A HREF="http://it.docs.yahoo.com/nowyoucan.html">http://it.docs.yahoo.com/nowyoucan.html</A>
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000998.html">[fetchmail-users] [fetchmail-devel] Fetchmail Socket error on	asatellite connection
+</A></li>
+	<LI>Next message: <A HREF="000997.html">[fetchmail-users] Dangerous bug: losing messages into nowhere
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#996">[ date ]</a>
+              <a href="thread.html#996">[ thread ]</a>
+              <a href="subject.html#996">[ subject ]</a>
+              <a href="author.html#996">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

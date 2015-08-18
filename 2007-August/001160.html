@@ -1,0 +1,109 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] fetchmail on server unable to connect to	postfix
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2007-August/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%20on%20server%20unable%20to%20connect%20to%0A%09postfix&In-Reply-To=%3C46C455DC.2060108%40wowcompany.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001157.html">
+   <LINK REL="Next"  HREF="001161.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] fetchmail on server unable to connect to	postfix</H1>
+    <B>Frederic Marchal</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%20on%20server%20unable%20to%20connect%20to%0A%09postfix&In-Reply-To=%3C46C455DC.2060108%40wowcompany.com%3E"
+       TITLE="[fetchmail-users] fetchmail on server unable to connect to	postfix">frederic.marchal at wowcompany.com
+       </A><BR>
+    <I>Thu Aug 16 15:49:16 CEST 2007</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001157.html">[fetchmail-users] fetchmail on server unable to connect to postfix
+</A></li>
+        <LI>Next message: <A HREF="001161.html">[fetchmail-users] fetchmail on server unable to connect to postfix
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1160">[ date ]</a>
+              <a href="thread.html#1160">[ thread ]</a>
+              <a href="subject.html#1160">[ subject ]</a>
+              <a href="author.html#1160">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>M. Fioretti a &#233;crit :
+&gt;&gt;&gt;<i> Helo command rejected: need fully-qualified hostname
+</I>&gt;&gt;&gt;<i>       
+</I>&gt;&gt;<i> So, fix your postfix configuration
+</I>&gt;&gt;<i>     
+</I>&gt;<i>
+</I>&gt;<i> As I mentioned in the original message, I cannot easily change (for
+</I>&gt;<i> reasons which are everything but technical...) the postfix configuration.
+</I>&gt;<i> Unless I *am* sure that it is really the only possible way to fix this, that
+</I>&gt;<i> is. Otherwise I would have posted straight to the postfix list.
+</I>&gt;<i>
+</I>&gt;<i> For the record, here is the complete excerpt of the postfix refusal I get
+</I>&gt;<i> _WITH_:
+</I>&gt;<i>
+</I>&gt;<i>    poll pop3.myprovider.com with proto POP3 tracepolls
+</I>&gt;<i>       user myaccount there with pass &quot;the password&quot; is root here keep
+</I>&gt;<i>       smtpaddress exact_output_of_hostname_command_here
+</I>&gt;<i>
+</I>&gt;<i> Aug 16 14:41:55 machinename postfix/smtpd[5641]: NOQUEUE: reject: RCPT
+</I>&gt;<i> from localhost[127.0.0.1]: 504 5.5.2 &lt;localhost&gt;: Helo command rejected:
+</I>&gt;<i> need fully-qualified hostname; from=&lt;testaddress&gt;
+</I>&gt;<i> to=&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">root at exact_output_of_hostname_command_here</A>&gt; proto=ESMTP
+</I>&gt;<i> helo=&lt;localhost&gt;
+</I>&gt;<i>
+</I>&gt;<i> I take this to mean that setting smtpaddress as above isn't enough to
+</I>&gt;<i> not make fetchmail send an helo different than localhost. Is this correct,
+</I>&gt;<i> and if yes, isn't there any other way to make fetchmail helo something
+</I>&gt;<i> else?
+</I>&gt;<i>   
+</I>According to fetchmail's man page smtpaddress adds the domain to the 
+rcpt to, not to the helo of the envelope.
+
+Have a look at your /etc/hosts. Does the address 127.0.0.1 resolves 
+first to the name of the machine or to localhost as is usually the case 
+by default ?
+
+If localhost is the first name, could you rewrite /etc/hosts to put the 
+machine name (what you want to see in the helo) as the first name 
+matching 127.0.0.1 ? Something like:
+
+127.0.0.1   machinename.domain.dom   machinename  localhost.localdomain  
+localhost
+
+My guess is that localhost may be the first name matching 127.0.0.1 and 
+fetchmail uses it in the helo.
+
+Frederic
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001157.html">[fetchmail-users] fetchmail on server unable to connect to postfix
+</A></li>
+	<LI>Next message: <A HREF="001161.html">[fetchmail-users] fetchmail on server unable to connect to postfix
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1160">[ date ]</a>
+              <a href="thread.html#1160">[ thread ]</a>
+              <a href="subject.html#1160">[ subject ]</a>
+              <a href="author.html#1160">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

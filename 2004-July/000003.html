@@ -1,0 +1,90 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] fetchmail and assp
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2004-July/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%20and%20assp&In-Reply-To=%3C40FEA466.7090008%40sohnen-moe.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000002.html">
+   <LINK REL="Next"  HREF="000008.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] fetchmail and assp</H1>
+    <B>James Moe</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%20and%20assp&In-Reply-To=%3C40FEA466.7090008%40sohnen-moe.com%3E"
+       TITLE="[fetchmail-users] fetchmail and assp">jimoe at sohnen-moe.com
+       </A><BR>
+    <I>Wed Jul 21 19:14:14 CEST 2004</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000002.html">[fetchmail-users] Spam
+</A></li>
+        <LI>Next message: <A HREF="000008.html">[fetchmail-users] fetchmail and assp
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3">[ date ]</a>
+              <a href="thread.html#3">[ thread ]</a>
+              <a href="subject.html#3">[ subject ]</a>
+              <a href="author.html#3">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hello,
+   fetchmail release 6.2.4+SSL+NLS
+   I have fetchmail forward mail to a bayseian mail classifier, assp 
+(anti-spam smtp proxy). One of assp's features is to block messages with 
+executable attachments. If one is found, it rejects the message and 
+returns an status code of 500 to the sender (fetchmail).
+   Apparently assp closes the connection after returning the error message 
+since signal 13 (broken pipe) is raised in fetchmail. At which time 
+fetchmail terminates. It looks like this happens on the *next* connection 
+attempt with assp.
+   What is more worrisome is that just before the abort, fetchmail says 
+the message was flushed, implying a lost message.
+
+   Is there some way to have fetchmail re-connect with assp rather than abort?
+
+
+fetchmail: reading message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">moe.james at localhost.sma.com</A>:2 of 2 (42695 
+octets) fetchmail: SMTP error: 500 Executable attachments are not allowed 
+-- Compress before mailing.
+fetchmail: SMTP listener refused delivery
+fetchmail:  flushed
+fetchmail: 1 message for cherie at localhost (5458 octets).
+fetchmail: reading message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">cherie at localhost.sma.com</A>:1 of 1 (5458 octets) 
+fetchmail:  flushed
+fetchmail: terminated with signal 13
+
+
+-- 
+jimoe at sohnen-moe dot com
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000002.html">[fetchmail-users] Spam
+</A></li>
+	<LI>Next message: <A HREF="000008.html">[fetchmail-users] fetchmail and assp
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3">[ date ]</a>
+              <a href="thread.html#3">[ thread ]</a>
+              <a href="subject.html#3">[ subject ]</a>
+              <a href="author.html#3">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

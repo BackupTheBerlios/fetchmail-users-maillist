@@ -1,0 +1,95 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] MD5 --&gt; SHA1
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2012-June/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20MD5%20--%3E%20SHA1&In-Reply-To=%3CCAD2Ti2-r8Y%3DgnskFuceffYZ%2BQa6ahoKi_mYNuBsXZUdFb_YKgQ%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003179.html">
+   <LINK REL="Next"  HREF="003170.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] MD5 --&gt; SHA1</H1>
+    <B>grarpamp</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20MD5%20--%3E%20SHA1&In-Reply-To=%3CCAD2Ti2-r8Y%3DgnskFuceffYZ%2BQa6ahoKi_mYNuBsXZUdFb_YKgQ%40mail.gmail.com%3E"
+       TITLE="[fetchmail-users] MD5 --&gt; SHA1">grarpamp at gmail.com
+       </A><BR>
+    <I>Mon Jun 25 10:39:29 CEST 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003179.html">[fetchmail-users] MD5 --&gt; SHA1
+</A></li>
+        <LI>Next message: <A HREF="003170.html">[fetchmail-users] Bug in certificate fingerprint matching?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3180">[ date ]</a>
+              <a href="thread.html#3180">[ thread ]</a>
+              <a href="subject.html#3180">[ subject ]</a>
+              <a href="author.html#3180">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>&gt;&gt;<i> (And for that matter, SHA1 is headed that way on paper,
+</I>&gt;&gt;<i> but the replacement, SHA-3, isn't here yet. So it's SHA1
+</I>&gt;&gt;<i> for now.)
+</I>&gt;<i>
+</I>&gt;<i> Depends. &#160;There are other algorithms that are still deemed reasonably
+</I>&gt;<i> secure, too, but I don't currently oversee which of them are deployed
+</I>&gt;<i> widely in TLS, and/or mandatory.
+</I>
+Afaik, the CA compiles the cert and signs (internal hash) over it.
+eg: CA's moving to sha1 for that because internal md5 is broken.
+Afaik, the internal hash is different than the external 'fingerprint'.
+Need to read the x509 stuff again to be sure.
+
+Anyways, on to apps. The fetchmail 'fingerprint', be it md5 or sha1,
+is over the DER encoded form of the cert, openssl x509 -outform der
+
+Yes, other fine hash algos exist. But:
+1) You can't expect to interop with the rest of the world if you're
+using rmd160 or some sha3 finalist, etc as your only external
+hash... because everyone else searches for, lists and speaks sha1.
+And md5 for legacy situations.
+2) SHA-3 will be final by year end. If the industry moves from
+sha1 (whether broken or not) they'll move to SHA-3 (because
+among strong hashes, business likes being able to pass the
+buck to the gov't endorsed one.)
+
+Since sha1 and md5 already need to be in apps, and if the user
+wants more security than those are currently [un]known to provide,
+I'd suggest that the fingerprint check 'AND' both their test results
+together. Or do the same but with sha3 when it comes out.
+
+
+I'll check that tracker and maybe just ticket link to whatever mail
+threads I can find for this.
+</PRE>
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003179.html">[fetchmail-users] MD5 --&gt; SHA1
+</A></li>
+	<LI>Next message: <A HREF="003170.html">[fetchmail-users] Bug in certificate fingerprint matching?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3180">[ date ]</a>
+              <a href="thread.html#3180">[ thread ]</a>
+              <a href="subject.html#3180">[ subject ]</a>
+              <a href="author.html#3180">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,148 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] fetchmail, fetchnews can't get thru router
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2008-August/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%2C%20fetchnews%20can%27t%20get%20thru%20router&In-Reply-To=%3C489C47FA.9010108%40gmx.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001667.html">
+   <LINK REL="Next"  HREF="001656.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] fetchmail, fetchnews can't get thru router</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%2C%20fetchnews%20can%27t%20get%20thru%20router&In-Reply-To=%3C489C47FA.9010108%40gmx.de%3E"
+       TITLE="[fetchmail-users] fetchmail, fetchnews can't get thru router">matthias.andree at gmx.de
+       </A><BR>
+    <I>Fri Aug  8 15:19:54 CEST 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001667.html">[fetchmail-users] fetchmail, fetchnews can't get thru router
+</A></li>
+        <LI>Next message: <A HREF="001656.html">[fetchmail-users] fetchmail, fetchnews can't get thru router
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1668">[ date ]</a>
+              <a href="thread.html#1668">[ thread ]</a>
+              <a href="subject.html#1668">[ subject ]</a>
+              <a href="author.html#1668">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Christian Ebert schrieb:
+&gt;<i> * Matthias Andree on Thursday, August 07, 2008 at 15:20:08 +0200
+</I>&gt;&gt;<i> Christian Ebert schrieb:
+</I>&gt;&gt;&gt;<i> fetchmail.pcap is empty.
+</I>&gt;&gt;<i> Euhm, 59 non-TCP packets - but why no TCP packets? Who is goofing up here?
+</I>&gt;<i> 
+</I>&gt;<i> Me! Well, sort of. Experimenting with fetchnews led me to set a
+</I>&gt;<i> different timeout and:
+</I>&gt;<i> 
+</I>&gt;<i> ~$ time fetchmail -t 600 --nodetach --nosyslog -vvvd0
+</I>&gt;<i> fetchmail: 6.3.9-rc2 querying imap.gmx.net (protocol IMAP) at Thu, 07 Aug 2008 22:57:45 +0200 (CEST): poll started
+</I>&gt;<i> Trying to connect to 213.165.64.23/993...connected.
+</I>&gt;<i> [ *** long hang here ***]
+</I>&gt;<i> fetchmail: Issuer Organization: Thawte Consulting cc
+</I>&gt;<i> fetchmail: Issuer CommonName: Thawte Premium Server CA
+</I>&gt;<i> fetchmail: Server CommonName: imap.gmx.net
+</I>
+There's an SSL connection, negotiation and stuff like that take place where
+it hangs. Possible reasons why it's slow (not exhaustive):
+
+- network is slow and/or loses packets, or has high latency
+
+- your computer has /dev/random and too little entropy in the pool.
+What OS and version, what processor and speed, what kind of computer?
+Desktop? Laptop? Architecture? What else is it used for? Anything that
+might drain entropy quickly? Sorry if I missed this in earlier messages.
+
+Attaching strace, truss, sotruss, ltrace or similar to fetchmail,
+displaying timestamps or better time differencing might hinting where it
+waits. Be sure to look for passwords and blank them before showing logs.
+
+- SSL does some network lookups (DNS, cert revocations, whatever) under the
+hood that take a long time.  tracers as named in the previous paragraph
+might reveal what's going on, or interspersed HTTP/UDP logs might. Not sure
+that it's the case. Let's check logs, for that matter, omit the &quot;tcp&quot;
+filter from the tcpdump command line.
+
+Just bzip2 your resulting tcpdump -w foo file and mail it to me off-list.
+Note it may contain cleartext passwords if not everything contained in the
+dump was encrypted through SSL/TLS - double check whom you're sending it to.
+
+- your computer is slow so that number crunching done as part of SSL takes
+a long time - rather not, given the user/sys figures you quoted. This might
+rather bite older 386 and 486 computers, and perhaps older SPARCs as of 15
+years ago...
+
+&gt;<i> About to rewrite Sender: <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">mercurial-bounces at selenic.com</A>
+</I>&gt;<i> Rewritten version is Sender: <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">mercurial-bounces at selenic.com</A>
+</I>&gt;<i> 
+</I>&gt;<i> fetchmail: forwarding to krille
+</I>&gt;<i> [ *** long hang here, than resumes at usual speed ***]
+</I>&gt;<i> ...
+</I>&gt;<i> fetchmail: normal termination, status 0
+</I>
+Here, fetchmail has just opened the SMTP connection to your local SMTP
+server - what kind of spam filtering and DNS lookups does it do?
+
+This might be a DNS configuration issue or problem with the resolver. Can
+you show host.conf and resolv.conf and annotate IPs you find and check the
+computers mentioned for DNS-related logs?
+
+Do the Speedport's logs show DNS-related entries?
+
+Do you use DHCP on the computer running fetchmail?
+
+&gt;<i> real    2m3.605s
+</I>&gt;<i> user    0m0.080s
+</I>&gt;<i> sys     0m0.165s
+</I>
+
+&gt;<i> How do you want the 156 lines ;) ? Plain text? Compressed?
+</I>&gt;<i> Personal mail?
+</I>
+I'd rather have the raw dump (the file you get from tcpdump -w) if you
+don't mind, otherwise just the tcpdump output.
+
+Send off-list, you can use GnuPG key 0x052e7d95 to encrypt if unsure about
+information contained. I'll treat that confidentially, but note again it
+may contain passwords (particularly the raw dump) if they appear in the
+captured part of the packets -- so if you don't trust me, we'll have to
+find another way of figuring what happens.
+
+HTH
+
+-- 
+Matthias Andree
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001667.html">[fetchmail-users] fetchmail, fetchnews can't get thru router
+</A></li>
+	<LI>Next message: <A HREF="001656.html">[fetchmail-users] fetchmail, fetchnews can't get thru router
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1668">[ date ]</a>
+              <a href="thread.html#1668">[ thread ]</a>
+              <a href="subject.html#1668">[ subject ]</a>
+              <a href="author.html#1668">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

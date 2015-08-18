@@ -1,0 +1,83 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Rotating Fetchmail log
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2009-November/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Rotating%20Fetchmail%20log&In-Reply-To=%3C4B08A16D.5030006%40gmx.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002143.html">
+   <LINK REL="Next"  HREF="002145.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Rotating Fetchmail log</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Rotating%20Fetchmail%20log&In-Reply-To=%3C4B08A16D.5030006%40gmx.de%3E"
+       TITLE="[fetchmail-users] Rotating Fetchmail log">matthias.andree at gmx.de
+       </A><BR>
+    <I>Sun Nov 22 03:26:53 CET 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002143.html">[fetchmail-users] Rotating Fetchmail log
+</A></li>
+        <LI>Next message: <A HREF="002145.html">[fetchmail-users] Rotating Fetchmail log
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2144">[ date ]</a>
+              <a href="thread.html#2144">[ thread ]</a>
+              <a href="subject.html#2144">[ subject ]</a>
+              <a href="author.html#2144">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Jerry schrieb:
+&gt;<i> I thought I asked this question awhile ago; however, I don't remember
+</I>&gt;<i> receiving a response.
+</I>&gt;<i> 
+</I>&gt;<i> I am running FreeBSD-7.2 and have Fetchmail configured to create a log
+</I>&gt;<i> file in the /var/log directory. I have 'newsyslog' configured to rotate
+</I>&gt;<i> the log monthly.
+</I>&gt;<i> 
+</I>&gt;<i> Fetchmail is run as a daemon. Does newsyslog have to send a signal
+</I>&gt;<i> to Fetchmail when it rotates the log? If so, what signal should it send?
+</I>
+Hi Jerry,
+
+Unfortunately, you'll have to stop fetchmail (through fetchmail -q or
+SIGTERM, the latter is undocumented though), cycle the logs, and then
+restart fetchmail, because it doesn't support reopening the log file.
+
+I've taken a note in TODO.txt, but don't expect work on this soon. I'm
+pretty loaded ATM.
+
+Best
+Matthias
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002143.html">[fetchmail-users] Rotating Fetchmail log
+</A></li>
+	<LI>Next message: <A HREF="002145.html">[fetchmail-users] Rotating Fetchmail log
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2144">[ date ]</a>
+              <a href="thread.html#2144">[ thread ]</a>
+              <a href="subject.html#2144">[ subject ]</a>
+              <a href="author.html#2144">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

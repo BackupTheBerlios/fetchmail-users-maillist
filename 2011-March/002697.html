@@ -1,0 +1,100 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] server certificates
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2011-March/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20server%20certificates&In-Reply-To=%3C4D6FFB5C.6030002%40gmx.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002696.html">
+   <LINK REL="Next"  HREF="002698.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] server certificates</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20server%20certificates&In-Reply-To=%3C4D6FFB5C.6030002%40gmx.de%3E"
+       TITLE="[fetchmail-users] server certificates">matthias.andree at gmx.de
+       </A><BR>
+    <I>Thu Mar  3 21:34:36 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002696.html">[fetchmail-users] server certificates (was: fetchmail gmail set up problem)
+</A></li>
+        <LI>Next message: <A HREF="002698.html">[fetchmail-users] server certificates
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2697">[ date ]</a>
+              <a href="thread.html#2697">[ thread ]</a>
+              <a href="subject.html#2697">[ subject ]</a>
+              <a href="author.html#2697">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Am 03.03.2011 05:20, schrieb Perry Hutchison:
+&gt;<i> &lt;snip excellent explanation&gt;
+</I>&gt;<i> 
+</I>&gt;&gt;<i> Is that clear, or does that leave further questions open?  I'm
+</I>&gt;&gt;<i> happy to answer more questions and possibly refine the README.SSL
+</I>&gt;&gt;<i> and/or FAQ that ships with fetchmail.  This is really important.
+</I>&gt;<i> 
+</I>&gt;<i> Let me restate my understanding, to see if I have it right:
+</I>&gt;<i> 
+</I>&gt;<i> ----
+</I>&gt;<i> 
+</I>&gt;<i>   The problem is not with trusting a server's certificate
+</I>&gt;<i>   (vs the root certificate which signed it) as such, but with
+</I>&gt;<i>   authenticating a certificate -- any certificate -- before
+</I>&gt;<i>   trusting it.  The authentication problem needs to be solved:
+</I>&gt;<i> 
+</I>&gt;<i>   * Whenever the trusted certificate changes (e.g. due to
+</I>&gt;<i>     expiration).  This will typically happen more frequently
+</I>&gt;<i>     with server certificates than with root certificates.
+</I>&gt;<i> 
+</I>&gt;<i>   * For each certificate that is to be trusted.  Authenticating
+</I>&gt;<i>     (and subsequently trusting) a single root certificate covers
+</I>&gt;<i>     any number of server certificates signed by that root.
+</I>&gt;<i> 
+</I>&gt;<i>   Therefore there is a lot more authentication work involved, with
+</I>&gt;<i>   attendant opportunities for mistakes and/or use of insecure
+</I>&gt;<i>   shortcuts, when trusting server certificates than when trusting
+</I>&gt;<i>   only root certificates.
+</I>
+More fundamentally, you need to have ways to make sure that any
+certificate that you use for authentication purposes is really the one
+it pretends to be -- to make sure that the credentials only go to a site
+you trust.
+
+And that's typically a much harder problem than it looks in practice, or
+a costly one -- where in an intranet, certificate information can be
+distributed by regular mail rather quickly and at rather low cost, as
+opposed to some big ISP.  Of course they can stuff certificate
+fingerprints onto their paper bills - if they still send them...
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002696.html">[fetchmail-users] server certificates (was: fetchmail gmail set up problem)
+</A></li>
+	<LI>Next message: <A HREF="002698.html">[fetchmail-users] server certificates
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2697">[ date ]</a>
+              <a href="thread.html#2697">[ thread ]</a>
+              <a href="subject.html#2697">[ subject ]</a>
+              <a href="author.html#2697">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

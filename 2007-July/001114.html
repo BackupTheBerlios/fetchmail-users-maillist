@@ -1,0 +1,106 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Invalid SSL certificate
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2007-July/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Invalid%20SSL%20certificate&In-Reply-To=%3C469B8FF8.2000801%40iradimed.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001113.html">
+   <LINK REL="Next"  HREF="001115.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Invalid SSL certificate</H1>
+    <B>Phillip Susi</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Invalid%20SSL%20certificate&In-Reply-To=%3C469B8FF8.2000801%40iradimed.com%3E"
+       TITLE="[fetchmail-users] Invalid SSL certificate">psusi at iradimed.com
+       </A><BR>
+    <I>Mon Jul 16 17:34:16 CEST 2007</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001113.html">[fetchmail-users] Invalid SSL certificate
+</A></li>
+        <LI>Next message: <A HREF="001115.html">[fetchmail-users] Invalid SSL certificate
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1114">[ date ]</a>
+              <a href="thread.html#1114">[ thread ]</a>
+              <a href="subject.html#1114">[ subject ]</a>
+              <a href="author.html#1114">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Matthias Andree wrote:
+&gt;<i> It should complain, but continue - providing the server doesn't crash or
+</I>&gt;<i> abort. The fetchmail -vv --nosyslog -Nd0 output should shed some light on
+</I>&gt;<i> the issue.
+</I>
+Looks to me like the SSL layer is indeed refusing to negotiate the 
+connection due to the name mismatch and self signedness of the server 
+cert.  Then it looks like the server fails or something when fetchmail 
+tries to fall back to non SSL mode.
+
+fetchmail: 6.3.4 querying xxx.com (protocol POP3) at Mon 16 Jul 2007 
+11:24:47 AM EDT: poll started
+fetchmail: POP3&lt; +OK POP3 server ready.
+fetchmail: POP3&gt; CAPA
+fetchmail: POP3&lt; +OK Capability list follows
+fetchmail: POP3&lt; TOP
+fetchmail: POP3&lt; USER
+fetchmail: POP3&lt; RESP_CODES
+fetchmail: POP3&lt; PIPELINING
+fetchmail: POP3&lt; EXPIRE NEVER
+fetchmail: POP3&lt; UIDL
+fetchmail: POP3&lt; STLS
+fetchmail: POP3&lt; .
+fetchmail: POP3&gt; STLS
+fetchmail: POP3&lt; +OK Begin TLS negotiation
+fetchmail: Server certificate verification error: self signed 
+certificate in certificate chain
+fetchmail: Issuer Organization: Openwave Systems, Inc.
+fetchmail: Issuer CommonName: Certificate Authority
+fetchmail: Server CommonName: InterMail Test Certificate
+fetchmail: Server CommonName mismatch: InterMail Test Certificate != xxx.com
+fetchmail: xxx.com key fingerprint: 
+3C:99:E5:5E:97:64:F8:6A:2E:3E:AE:39:9C:4A:08:26
+21087:error:140943E8:SSL 
+routines:SSL3_READ_BYTES:reason(1000):s3_pkt.c:1057:SSL alert number 0
+fetchmail: xxx.com: opportunistic upgrade to TLS failed, trying to continue.
+fetchmail: Unknown login or authentication error on xxx.com
+fetchmail: socket error while fetching from <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">psusi at xxx.com</A>
+fetchmail: 6.3.4 querying xxx.com (protocol POP3) at Mon 16 Jul 2007 
+11:24:47 AM EDT: poll completed
+fetchmail: Query status=2 (SOCKET)
+fetchmail: Deleting fetchids file.
+fetchmail: normal termination, status 2
+fetchmail: Deleting fetchids file.
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001113.html">[fetchmail-users] Invalid SSL certificate
+</A></li>
+	<LI>Next message: <A HREF="001115.html">[fetchmail-users] Invalid SSL certificate
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1114">[ date ]</a>
+              <a href="thread.html#1114">[ thread ]</a>
+              <a href="subject.html#1114">[ subject ]</a>
+              <a href="author.html#1114">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

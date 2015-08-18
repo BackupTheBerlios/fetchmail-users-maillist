@@ -1,0 +1,232 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] fetchmail lets mails disappear
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2010-November/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%20lets%20mails%20disappear&In-Reply-To=%3CPine.LNX.4.62.1011281849570.24987%40vmdebian.local.koeppe-net.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002586.html">
+   <LINK REL="Next"  HREF="002578.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] fetchmail lets mails disappear</H1>
+    <B>Martin Koeppe</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%20lets%20mails%20disappear&In-Reply-To=%3CPine.LNX.4.62.1011281849570.24987%40vmdebian.local.koeppe-net.de%3E"
+       TITLE="[fetchmail-users] fetchmail lets mails disappear">mkoeppe at gmx.de
+       </A><BR>
+    <I>Sun Nov 28 18:55:33 CET 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002586.html">[fetchmail-users] log uestion
+</A></li>
+        <LI>Next message: <A HREF="002578.html">[fetchmail-users] fetchmail lets mails disappear
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2576">[ date ]</a>
+              <a href="thread.html#2576">[ thread ]</a>
+              <a href="subject.html#2576">[ subject ]</a>
+              <a href="author.html#2576">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>
+Hi all,
+
+I'm using fetchmail to fetch mails from ISP and forward them to Exchange 2007 
+and 2010 server.
+
+With that configuration I now saw different cases where fetchmail eats the 
+mails, without further notice.
+
+The problem is when the Exchange server doesn't accept the mail for some 
+reason, e.g. mail too big, or client (fetchmail) ip isn't allowed to send mail 
+to Exchange, or ...
+
+In all these cases I would expect fetchmail to leave the message on the POP3 
+server, but it gets flushed nevertheless. As Exchange (in one of the cases 
+above, ip address) doesn't accept any mail from fetchmail, fetchmail might have 
+tried to send an error mail back, but obviously that can't be delivered. So the 
+mail is lost.
+
+System is Windows 2008 R2, with cygwin.
+fetchmail version is:
+
+$  env LC_ALL=C fetchmail -V
+This is fetchmail release 6.3.9+NTLM+SSL+NLS.
+
+Copyright (C) 2002, 2003 Eric S. Raymond
+Copyright (C) 2004 Matthias Andree, Eric S. Raymond, Robert M. Funk, Graham 
+Wils
+on
+Copyright (C) 2005 - 2006 Sunil Shetye
+Copyright (C) 2005 - 2008 Matthias Andree
+Fetchmail comes with ABSOLUTELY NO WARRANTY. This is free software, and you
+are welcome to redistribute it under certain conditions. For details,
+please see the file COPYING in the source or documentation directory.
+
+Fallback MDA: /usr/bin/procmail -d %T
+CYGWIN_NT-6.1-WOW64 server 1.7.7(0.230/5/3) 2010-08-31 09:58 i686 Cygwin
+Taking options from command line
+No mailservers set up -- perhaps /home/martin/.fetchmailrc is missing?
+
+
+
+I know that 6.3.9 isn't current, but that's the one that cygwin distributes, 
+and I didn't yet set up a build environment on cygwin.
+
+
+This one is with Exchange 2007 SP2:
+
+reading message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">abc at def.de</A>@pop.1und1.de:1 of 13 (32487140 octets).fetchmail: 
+SMTP error: 552 5.3.4 Message size exceeds fixed maximum message size
+................................................................
+&lt;many more dots&gt;
+.... flushed
+
+
+
+This one is with Exchange 2010 SP1:
+(I can test on this system if necessary.)
+
+fetchmailrc:
+----8&lt;----
+defaults:
+ 	proto pop3 timeout 300 sslproto ''
+
+poll pop.1und1.de:
+ 	user &quot;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">test at example.com</A>&quot; there with pass &quot;*&quot; is 
+&quot;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">administrator at test.local</A>&quot; here
+ 	fetchall nokeep
+----8&lt;----
+
+$ fetchmail -vvv -f fetchmailrc
+
+----8&lt;----
+
+fetchmail: 6.3.9 querying pop.1und1.de (protocol POP3) at Sun Nov 28 13:36:09 
+2010: poll started
+Trying to connect to 212.227.15.162/110...connected.
+fetchmail: POP3&lt; +OK POP server ready H mimap4
+fetchmail: POP3&gt; CAPA
+fetchmail: POP3&lt; +OK Capability list follows
+fetchmail: POP3&lt; TOP
+fetchmail: POP3&lt; USER
+fetchmail: POP3&lt; UIDL
+fetchmail: POP3&lt; STLS
+fetchmail: POP3&lt; IMPLEMENTATION trinity
+fetchmail: POP3&lt; .
+fetchmail: POP3&gt; USER <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">test at example.com</A>
+fetchmail: POP3&lt; +OK password required for user &quot;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">test at example.com</A>&quot;
+fetchmail: POP3&gt; PASS *
+fetchmail: POP3&lt; +OK mailbox &quot;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">test at example.com</A>&quot; has 1 messages (1121 octets) H 
+mimap4
+fetchmail: selecting or re-polling default folder
+fetchmail: POP3&gt; STAT
+fetchmail: POP3&lt; +OK 1 1121
+1 message for <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">test at example.com</A> at pop.1und1.de (1121 octets).
+fetchmail: POP3&gt; LIST 1
+fetchmail: POP3&lt; +OK 1 1121
+fetchmail: POP3&gt; RETR 1
+fetchmail: POP3&lt; +OK
+reading message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">test at example.com</A>@pop.1und1.de:1 of 1 (1121 octets)
+About to rewrite Return-Path: &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">mkoeppe at gmx.de</A>&gt;
+Rewritten version is Return-Path: &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">mkoeppe at gmx.de</A>&gt;
+
+About to rewrite From: Martin Koeppe &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">mkoeppe at gmx.de</A>&gt;
+Rewritten version is From: Martin Koeppe &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">mkoeppe at gmx.de</A>&gt;
+
+About to rewrite To: <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">test at example.com</A>
+Rewritten version is To: <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">test at example.com</A>
+
+Trying to connect to 127.0.0.1/25...connected.
+fetchmail: SMTP&lt; 220 server.test.local Microsoft ESMTP MAIL Service ready at 
+Sun, 28 Nov 2010 13:36:09 +0100
+fetchmail: SMTP&gt; EHLO server.test.local
+fetchmail: SMTP&lt; 250-server.test.local Hello [127.0.0.1]
+fetchmail: SMTP&lt; 250-SIZE
+fetchmail: SMTP&lt; 250-PIPELINING
+fetchmail: SMTP&lt; 250-DSN
+fetchmail: SMTP&lt; 250-ENHANCEDSTATUSCODES
+fetchmail: SMTP&lt; 250-STARTTLS
+fetchmail: SMTP&lt; 250-X-ANONYMOUSTLS
+fetchmail: SMTP&lt; 250-AUTH NTLM
+fetchmail: SMTP&lt; 250-X-EXPS GSSAPI NTLM
+fetchmail: SMTP&lt; 250-8BITMIME
+fetchmail: SMTP&lt; 250-BINARYMIME
+fetchmail: SMTP&lt; 250-CHUNKING
+fetchmail: SMTP&lt; 250-XEXCH50
+fetchmail: SMTP&lt; 250-XRDST
+fetchmail: SMTP&lt; 250 XSHADOW
+fetchmail: forwarding to localhost
+fetchmail: SMTP&gt; MAIL FROM:&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">mkoeppe at gmx.de</A>&gt; SIZE=1121
+fetchmail: SMTP&lt; 530 5.7.1 Client was not authenticated
+fetchmail: SMTP error: 530 5.7.1 Client was not authenticated
+Trying to connect to 127.0.0.1/25...connected.
+fetchmail: SMTP&lt; 220 server.test.local Microsoft ESMTP MAIL Service ready at 
+Sun, 28 Nov 2010 13:36:14 +0100
+fetchmail: SMTP&gt; HELO server.test.local
+fetchmail: SMTP&lt; 250 server.test.local Hello [127.0.0.1]
+fetchmail: SMTP&gt; MAIL FROM:&lt;&gt;
+fetchmail: SMTP&lt; 530 5.7.1 Client was not authenticated
+fetchmail: SMTP&gt; QUIT
+fetchmail: smtp listener protocol error
+fetchmail: SMTP&gt; RSET
+fetchmail: smtp listener protocol error
+  flushed
+fetchmail: POP3&gt; DELE 1
+fetchmail: POP3&lt; +OK
+fetchmail: POP3&gt; QUIT
+fetchmail: POP3&lt; +OK POP server signing off
+fetchmail: SMTP&gt; QUIT
+fetchmail: smtp listener protocol error
+fetchmail: 6.3.9 querying pop.1und1.de (protocol POP3) at Sun Nov 28 13:36:19 
+2010: poll completed
+fetchmail: not swapping UID lists, no UIDs seen this query
+fetchmail: Writing fetchids file.
+fetchmail: normal termination, status 0
+fetchmail: Writing fetchids file.
+
+
+----8&lt;----
+
+Minor second topic:
+When using telnet to connect to the exchange server,
+it drops the connection right after this line
+    530 5.7.1 Client was not authenticated
+so QUIT and RSET can't work.
+
+
+
+Thank you very much for your help
+
+Martin
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002586.html">[fetchmail-users] log uestion
+</A></li>
+	<LI>Next message: <A HREF="002578.html">[fetchmail-users] fetchmail lets mails disappear
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2576">[ date ]</a>
+              <a href="thread.html#2576">[ thread ]</a>
+              <a href="subject.html#2576">[ subject ]</a>
+              <a href="author.html#2576">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

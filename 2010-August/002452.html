@@ -1,0 +1,82 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] how to have kept messages on MS Exchange Server as unread
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2010-August/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20how%20to%20have%20kept%20messages%20on%20MS%20Exchange%0A%20Server%20as%20unread&In-Reply-To=%3CAANLkTi%3DRmYf-uFOqXt376mgqZeJon%2BJAA7%3DC8z_mCK3p%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002451.html">
+   <LINK REL="Next"  HREF="002453.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] how to have kept messages on MS Exchange Server as unread</H1>
+    <B>Rob MacGregor</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20how%20to%20have%20kept%20messages%20on%20MS%20Exchange%0A%20Server%20as%20unread&In-Reply-To=%3CAANLkTi%3DRmYf-uFOqXt376mgqZeJon%2BJAA7%3DC8z_mCK3p%40mail.gmail.com%3E"
+       TITLE="[fetchmail-users] how to have kept messages on MS Exchange Server as unread">rob.macgregor at gmail.com
+       </A><BR>
+    <I>Thu Aug 19 09:08:00 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002451.html">[fetchmail-users] how to have kept messages on MS Exchange Server	as unread
+</A></li>
+        <LI>Next message: <A HREF="002453.html">[fetchmail-users] how to have kept messages on MS Exchange Server as unread
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2452">[ date ]</a>
+              <a href="thread.html#2452">[ thread ]</a>
+              <a href="subject.html#2452">[ subject ]</a>
+              <a href="author.html#2452">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Wed, Aug 18, 2010 at 23:59, Globe Trotter &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">itsme_410 at yahoo.com</A>&gt; wrote:
+&gt;<i> Hi,
+</I>&gt;<i>
+</I>&gt;<i> I have been trying to set up fetchmail to fetch e-mail from a MS Exchange 2007 IMAP4 server and then read it locally. So here is my .fetchmailrc file.
+</I>
+If you're not running 6.3.17 please upgrade.
+
+&gt;<i> set daemon 600
+</I>&gt;<i> poll &#160;exchange.uia.edu with proto AUTO ssl
+</I>&gt;<i> mda 'procmail -f-'
+</I>&gt;<i> keep
+</I>
+Try explicitly configuring IMAP and see if that helps.  It sounds as
+if fetchmail is using POP3.
+
+-- 
+&#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160;&#160; Please keep list traffic on the list.
+
+Rob MacGregor
+&#160; &#160; &#160; Whoever fights monsters should see to it that in the process he
+&#160; &#160; &#160; &#160; doesn't become a monster.&#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; Friedrich Nietzsche
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002451.html">[fetchmail-users] how to have kept messages on MS Exchange Server	as unread
+</A></li>
+	<LI>Next message: <A HREF="002453.html">[fetchmail-users] how to have kept messages on MS Exchange Server as unread
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2452">[ date ]</a>
+              <a href="thread.html#2452">[ thread ]</a>
+              <a href="subject.html#2452">[ subject ]</a>
+              <a href="author.html#2452">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

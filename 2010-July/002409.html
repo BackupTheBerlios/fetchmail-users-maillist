@@ -1,0 +1,85 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Yahoo Plus SSL Issue
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2010-July/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Yahoo%20Plus%20SSL%20Issue&In-Reply-To=%3Cop.vfb4yo011e62zd%40merlin.emma.line.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002405.html">
+   <LINK REL="Next"  HREF="002410.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Yahoo Plus SSL Issue</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Yahoo%20Plus%20SSL%20Issue&In-Reply-To=%3Cop.vfb4yo011e62zd%40merlin.emma.line.org%3E"
+       TITLE="[fetchmail-users] Yahoo Plus SSL Issue">matthias.andree at gmx.de
+       </A><BR>
+    <I>Sun Jul  4 22:09:50 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002405.html">[fetchmail-users] Yahoo Plus SSL Issue
+</A></li>
+        <LI>Next message: <A HREF="002410.html">[fetchmail-users] Yahoo Plus SSL Issue
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2409">[ date ]</a>
+              <a href="thread.html#2409">[ thread ]</a>
+              <a href="subject.html#2409">[ subject ]</a>
+              <a href="author.html#2409">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Am 02.07.2010, 15:10 Uhr, schrieb Gerry LaMontagne:
+
+&gt;<i> FWIW- I did have --sslcertck enabled.  Based on my understanding from
+</I>&gt;<i> the man page, I don't think I would have seen this problem without it?
+</I>&gt;<i> I've also added the --sslfingerprint option to my rc file.  I believe  
+</I>&gt;<i> this
+</I>&gt;<i> should alert me to certificate changes in the future and allow me to
+</I>&gt;<i> attempt to verify them on my own at that point.
+</I>
+Hi Gerry,
+
+Fetchmail should complain rather noisily about incorrect certificates and  
+refuse to connect to those servers that present invalid servers, but it  
+does not loop retrying until it gets a good one - it has no idea that (or  
+if so, how) load balancing is done on the other end unless they put  
+multiple IPs into the DNS.  So --sslcertck might make things worse.   
+--sslfingerprint is OK as long as you only get that one fingerprint back  
+ from the certificates.  Is that the case?  I'd be somewhat surprised if it  
+was.
+
+HTH &amp; best regards
+
+-- 
+Matthias Andree
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002405.html">[fetchmail-users] Yahoo Plus SSL Issue
+</A></li>
+	<LI>Next message: <A HREF="002410.html">[fetchmail-users] Yahoo Plus SSL Issue
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2409">[ date ]</a>
+              <a href="thread.html#2409">[ thread ]</a>
+              <a href="subject.html#2409">[ subject ]</a>
+              <a href="author.html#2409">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,232 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] 'keep' and 'uidl'.
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2006-December/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20%27keep%27%20and%20%27uidl%27.&In-Reply-To=%3CGPEJJFFJGMMIHOKCIPPGAEEMNLAA.sjbrowne%40bluebottle.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   
+   <LINK REL="Next"  HREF="000757.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] 'keep' and 'uidl'.</H1>
+    <B>Stuart J. Browne</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20%27keep%27%20and%20%27uidl%27.&In-Reply-To=%3CGPEJJFFJGMMIHOKCIPPGAEEMNLAA.sjbrowne%40bluebottle.com%3E"
+       TITLE="[fetchmail-users] 'keep' and 'uidl'.">sjbrowne at bluebottle.com
+       </A><BR>
+    <I>Fri Dec  1 05:39:47 CET 2006</I>
+    <P><UL>
+        
+        <LI>Next message: <A HREF="000757.html">[fetchmail-users] 'keep' and 'uidl'.
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#756">[ date ]</a>
+              <a href="thread.html#756">[ thread ]</a>
+              <a href="subject.html#756">[ subject ]</a>
+              <a href="author.html#756">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+Running fetchmail 6.3.5 as a single-instance (not in daemon mode) with the
+options below, it continuously gets the first 20 messages, instead of
+ignoring those it's downloaded, and getting the fresh messages.
+
+The 20 messages which are fetched are delivered no problem, it just not
+getting the next 20, or any after that.
+
+Can anybody see anything that I'm doing wrong, or is this an issue that
+needs to be addressed?
+
+Note: I've also tried the Cmdline with '--fastuidl' of 0-4 with no success.
+
+Bkx
+
+-- Config - &quot;poll-file&quot; (0600) --
+poll pop.mail.yahoo.com
+protocol POP3
+port 110
+uidl
+timeout 120
+user 'user-hidden'
+with pass 'pass-hidden'
+is 'local-user-hidden _at_ local-domain-hidden' here
+smtp host d_mx0,d_mx1
+options
+limit 31457280
+fetchlimit 20
+fetchall
+antispam 451,553,550,554
+keep
+-- Config --
+
+-- Cmdline --
+/usr/bin/fetchmail -v -i /root/fetchmail/pop.mail.yahoo.com.fetchid -f
+poll-file
+-- Cmdline --
+
+-- pop.mail.yahoo.com.fetchid (0600) --
+<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">user-hidden at pop.mail.yahoo.com</A> ALNk/NgAAXtuRVCsRQZTnzZYj5Q
+<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">user-hidden at pop.mail.yahoo.com</A> AK9k/NgAAClARVCyoABgRVtCONM
+<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">user-hidden at pop.mail.yahoo.com</A> ALFk/NgAAWDPRVJqpghrVRZ1HNQ
+<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">user-hidden at pop.mail.yahoo.com</A> ALJk/NgAAPkIRVMHZQDU2nNO90M
+<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">user-hidden at pop.mail.yahoo.com</A> ALNk/NgAATMIRVq9AAeEGivA9o0
+<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">user-hidden at pop.mail.yahoo.com</A> ALBk/NgAAH2nRVy2/gc5FC7c0n0
+<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">user-hidden at pop.mail.yahoo.com</A> ALRk/NgAAEQzRV2ZXQdhqAkSW7Y
+<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">user-hidden at pop.mail.yahoo.com</A> ALFk/NgAANYlRV269wuGYTGAFmg
+<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">user-hidden at pop.mail.yahoo.com</A> ALVk/NgAATtFRV4UqgW0Yzie3M0
+<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">user-hidden at pop.mail.yahoo.com</A> AK5k/NgAAD6ARWDsDgIZOjyzDlE
+<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">user-hidden at pop.mail.yahoo.com</A> AKxk/NgAAX4QRWcSKQhWolt8TrM
+<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">user-hidden at pop.mail.yahoo.com</A> AK9k/NgAAWwiRWdOSgfYiCnKXd8
+<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">user-hidden at pop.mail.yahoo.com</A> AKxk/NgAAMw7RWhnDwu+RWUg1XA
+<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">user-hidden at pop.mail.yahoo.com</A> AKtk/NgAARDGRWmCWw0G9EmkZPQ
+<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">user-hidden at pop.mail.yahoo.com</A> AK5k/NgAAJ1SRWmhEgSgxm1kXWk
+<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">user-hidden at pop.mail.yahoo.com</A> ALJk/NgAAP3kRWnPoQpUVlb2e6M
+<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">user-hidden at pop.mail.yahoo.com</A> AK9k/NgAAVtURWqsDw800xb3wsU
+<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">user-hidden at pop.mail.yahoo.com</A> ALJk/NgAAKNgRWtSAAeRgSuaXr4
+<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">user-hidden at pop.mail.yahoo.com</A> AKpk/NgAAKUQRWtfIw8BGRB528A
+<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">user-hidden at pop.mail.yahoo.com</A> ALBk/NgAAXA8RWt1TQFjWj6hoBQ
+-- pop.mail.yahoo.com.fetchid --
+
+-- CMD Output (modified) --
+fetchmail: WARNING: Running as root is discouraged.
+fetchmail: 6.3.5 querying pop.mail.yahoo.com (protocol POP3) at Thu Nov 30
+20:29:03 2006: poll started
+Trying to connect to 68.142.206.14/110...connected.
+fetchmail: POP3&lt; +OK hello from popgate(2.35.8)
+fetchmail: POP3&gt; CAPA
+fetchmail: POP3&lt; +OK CAPA list follows
+fetchmail: POP3&lt; IMPLEMENTATION popgate 2.35.8
+fetchmail: POP3&lt; PIPELINING
+fetchmail: POP3&lt; TOP
+fetchmail: POP3&lt; UIDL
+fetchmail: POP3&lt; USER
+fetchmail: POP3&lt; .
+fetchmail: POP3&gt; USER user-hidden
+fetchmail: POP3&lt; +OK password required.
+fetchmail: POP3&gt; PASS *
+fetchmail: POP3&lt; +OK maildrop ready, 26 messages (1042379 octets) (33339166
+2147483648)
+fetchmail: POP3&gt; STAT
+fetchmail: POP3&lt; +OK 26 1042379
+fetchmail: POP3&gt; UIDL
+fetchmail: POP3&lt; +OK 26 messages (1042379 octets)
+fetchmail: POP3&lt; 1 ALNk/NgAAXtuRVCsRQZTnzZYj5Q
+fetchmail: POP3&lt; 2 AK9k/NgAAClARVCyoABgRVtCONM
+fetchmail: POP3&lt; 3 ALFk/NgAAWDPRVJqpghrVRZ1HNQ
+fetchmail: POP3&lt; 4 ALJk/NgAAPkIRVMHZQDU2nNO90M
+fetchmail: POP3&lt; 5 ALNk/NgAATMIRVq9AAeEGivA9o0
+fetchmail: POP3&lt; 6 ALBk/NgAAH2nRVy2/gc5FC7c0n0
+fetchmail: POP3&lt; 7 ALRk/NgAAEQzRV2ZXQdhqAkSW7Y
+fetchmail: POP3&lt; 8 ALFk/NgAANYlRV269wuGYTGAFmg
+fetchmail: POP3&lt; 9 ALVk/NgAATtFRV4UqgW0Yzie3M0
+fetchmail: POP3&lt; 10 AK5k/NgAAD6ARWDsDgIZOjyzDlE
+fetchmail: POP3&lt; 11 AKxk/NgAAX4QRWcSKQhWolt8TrM
+fetchmail: POP3&lt; 12 AK9k/NgAAWwiRWdOSgfYiCnKXd8
+fetchmail: POP3&lt; 13 AKxk/NgAAMw7RWhnDwu+RWUg1XA
+fetchmail: POP3&lt; 14 AKtk/NgAARDGRWmCWw0G9EmkZPQ
+fetchmail: POP3&lt; 15 AK5k/NgAAJ1SRWmhEgSgxm1kXWk
+fetchmail: POP3&lt; 16 ALJk/NgAAP3kRWnPoQpUVlb2e6M
+fetchmail: POP3&lt; 17 AK9k/NgAAVtURWqsDw800xb3wsU
+fetchmail: POP3&lt; 18 ALJk/NgAAKNgRWtSAAeRgSuaXr4
+fetchmail: POP3&lt; 19 AKpk/NgAAKUQRWtfIw8BGRB528A
+fetchmail: POP3&lt; 20 ALBk/NgAAXA8RWt1TQFjWj6hoBQ
+fetchmail: POP3&lt; 21 ALZk/NgAAWWnRW3DjwcxUl0GTYQ
+fetchmail: POP3&lt; 22 AK5k/NgAAHnoRW3HtQMMxi7+nFU
+fetchmail: POP3&lt; 23 AK9k/NgAAOU+RW3nZgnIvH8jhLU
+fetchmail: POP3&lt; 24 ALBk/NgAAKc7RW9CGgNu2SCRwTg
+fetchmail: POP3&lt; 25 ALNk/NgAABvVRW+KiAV/RDcxBmw
+fetchmail: POP3&lt; 26 ALJk/NgAASjYRW+LZQzE6ED8lXg
+fetchmail: POP3&lt; .
+26 messages (20 seen) for user-hidden at pop.mail.yahoo.com (1042379
+octets).
+fetchmail: POP3&gt; LIST 1
+fetchmail: POP3&lt; +OK 1 647030
+fetchmail: POP3&gt; RETR 1
+fetchmail: POP3&lt; +OK 647030 octets
+reading message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">user-hidden at pop.plus.mail.yahoo4.akadns.net</A>:1 of 26 (647030
+octets)
+fetchmail: getaddrinfo(&quot;host&quot;,&quot;smtp&quot;) error: Name or service not known
+Trying to connect to ip-hidden/25...connected.
+fetchmail: SMTP&lt; 220 d_mx0 ESMTP Sendmail 8.13.1/8.13.1; Thu, 30 Nov 2006
+20:29:05 -0800
+fetchmail: SMTP&gt; EHLO sandbox
+fetchmail: SMTP&lt; 250-d_mx0 Hello sandbox [ip-hidden], pleased to meet you
+fetchmail: SMTP&lt; 250-ENHANCEDSTATUSCODES
+fetchmail: SMTP&lt; 250-PIPELINING
+fetchmail: SMTP&lt; 250-8BITMIME
+fetchmail: SMTP&lt; 250-SIZE 41943040
+fetchmail: SMTP&lt; 250-DSN
+fetchmail: SMTP&lt; 250-ETRN
+fetchmail: SMTP&lt; 250-AUTH DIGEST-MD5 CRAM-MD5
+fetchmail: SMTP&lt; 250-STARTTLS
+fetchmail: SMTP&lt; 250-DELIVERBY
+fetchmail: SMTP&lt; 250 HELP
+fetchmail: SMTP&gt; MAIL FROM:&lt;--hidden--&gt; SIZE=647030
+fetchmail: SMTP&lt; 250 2.1.0 &lt;--hidden--&gt;... Sender ok
+fetchmail: SMTP&gt; RCPT TO:&lt;local-user-hidden _at_ local-domain-hidden&gt;
+fetchmail: SMTP&lt; 250 2.1.5 &lt;local-user-hidden _at_ local-domain-hidden&gt;...
+Recipient ok
+fetchmail: SMTP&gt; DATA
+fetchmail: SMTP&lt; 354 Enter mail, end with &quot;.&quot; on a line by itself
+#*&lt;snip&gt;fetchmail: SMTP&gt;. (EOM)
+fetchmail: SMTP&lt; 250 2.0.0 kB14T5Vd023263 Message accepted for delivery
+ not flushed
+fetchmail: POP3&gt; LIST 2
+fetchmail: POP3&lt; +OK 2 10204
+fetchmail: POP3&gt; RETR 2
+fetchmail: POP3&lt; +OK 10204 octets
+reading message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">user-hidden at pop.plus.mail.yahoo4.akadns.net</A>:2 of 26 (10204
+octets)
+fetchmail: SMTP&gt; MAIL FROM:&lt;--hidden--&gt; SIZE=10204
+fetchmail: SMTP&lt; 250 2.1.0 &lt;--hidden--&gt;... Sender ok
+fetchmail: SMTP&gt; RCPT TO:&lt;local-user-hidden _at_ local-domain-hidden&gt;
+fetchmail: SMTP&lt; 250 2.1.5 &lt;local-user-hidden _at_ local-domain-hidden&gt;...
+Recipient ok
+fetchmail: SMTP&gt; DATA
+fetchmail: SMTP&lt; 354 Enter mail, end with &quot;.&quot; on a line by itself
+#*&lt;snip&gt;fetchmail: SMTP&gt;. (EOM)
+fetchmail: SMTP&lt; 250 2.0.0 kB14T5Ve023263 Message accepted for delivery
+ not flushed
+&lt;snip - repeat for 20 messages&gt;
+fetchmail: POP3&gt; QUIT
+fetchmail: POP3&lt; +OK server signing off.
+fetchmail: SMTP&gt; QUIT
+fetchmail: SMTP&lt; 221 2.0.0 d_mx0 closing connection
+fetchmail: 6.3.5 querying pop.mail.yahoo.com (protocol POP3) at Thu Nov 30
+20:30:05 2006: poll completed
+fetchmail: Query status=13 (MAXFETCH)
+fetchmail: normal termination, status 13
+-- CMD Output (modified)--
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	
+	<LI>Next message: <A HREF="000757.html">[fetchmail-users] 'keep' and 'uidl'.
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#756">[ date ]</a>
+              <a href="thread.html#756">[ thread ]</a>
+              <a href="subject.html#756">[ subject ]</a>
+              <a href="author.html#756">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

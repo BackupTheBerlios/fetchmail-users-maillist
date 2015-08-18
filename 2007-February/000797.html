@@ -1,0 +1,105 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] message...was not the expected length...not flushed
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2007-February/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20message...was%20not%20the%20expected%20length...not%0A%20flushed&In-Reply-To=%3C45C3D4F5.9030800%40applied.com.sg%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000795.html">
+   <LINK REL="Next"  HREF="000801.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] message...was not the expected length...not flushed</H1>
+    <B>Otto Rodusek (AP-SGP)</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20message...was%20not%20the%20expected%20length...not%0A%20flushed&In-Reply-To=%3C45C3D4F5.9030800%40applied.com.sg%3E"
+       TITLE="[fetchmail-users] message...was not the expected length...not flushed">otto at applied.com.sg
+       </A><BR>
+    <I>Sat Feb  3 01:19:01 CET 2007</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000795.html">[fetchmail-users] message...was not the expected length...not	flushed
+</A></li>
+        <LI>Next message: <A HREF="000801.html">[fetchmail-users] message...was not the expected length...not	flushed
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#797">[ date ]</a>
+              <a href="thread.html#797">[ thread ]</a>
+              <a href="subject.html#797">[ subject ]</a>
+              <a href="author.html#797">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Rob,
+
+Thanks for the reply. I agree about the 451 error and other things about 
+fetchmail being conservative. I have been monitoring the situation for 
+quite some time and in EACH case it happens that the faulty emails are 
+spam. So the question again is - is there ANY WAY at all to get 
+fetchmail to FORCE-DELETE these emails. I'm willing to take the risk and 
+have tried various parameters but to no avail (I use the -F to flush but 
+as you can see from the log it doesn't. Any ideas are welcome. Thanks. 
+Rgds. Otto.
+
+Rob MacGregor wrote:
+&gt;<i> On 2/2/07, Otto Rodusek &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">otto at applied.com.sg</A>&gt; wrote:
+</I>&gt;<i>   
+</I>&gt;&gt;<i> Hi,
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> I am using fetchmail 6.3.5-13 under Suse 10.2 (kernel  2.6.18.2-34-default).
+</I>&gt;&gt;<i>     
+</I>&gt;<i>
+</I>&gt;<i> 6.3.6 came out recently, though it won't help here you should upgrade.
+</I>&gt;<i>
+</I>&gt;<i>   
+</I>&gt;&gt;<i> Fetchmail works just fine, however often times it DOES NOT delete the read
+</I>&gt;&gt;<i> message on the ISP's side (in each case it is definitely a JUNK mails) as
+</I>&gt;&gt;<i> per the log file below. I understand the problem and I have read the part
+</I>&gt;&gt;<i> about fetchmail/qmail however -
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> IS ther ANY WAY for have fetchmail FORCE-DELETE these emails of the ISP
+</I>&gt;&gt;<i> server??
+</I>&gt;&gt;<i>     
+</I>&gt;<i> &lt;---SNIP---&gt;
+</I>&gt;<i>   
+</I>&gt;&gt;<i> fetchmail: SMTP&lt; 451 DNS temporary failure (#4.3.0)
+</I>&gt;&gt;<i>     
+</I>&gt;<i>
+</I>&gt;<i> That is the actual problem I suspect - a temporary DNS failure.  You
+</I>&gt;<i> could risk using the 451 code as an anti-spam code to flush the
+</I>&gt;<i> emails, but if you do that you risk also dropping valid email.
+</I>&gt;<i>
+</I>&gt;<i> Fetchmail is always conservative about these things for good reason :)
+</I>&gt;<i>
+</I>&gt;<i>   
+</I>-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/fetchmail-users/attachments/20070203/4f0d1408/attachment.html">https://lists.berlios.de/pipermail/fetchmail-users/attachments/20070203/4f0d1408/attachment.html</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000795.html">[fetchmail-users] message...was not the expected length...not	flushed
+</A></li>
+	<LI>Next message: <A HREF="000801.html">[fetchmail-users] message...was not the expected length...not	flushed
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#797">[ date ]</a>
+              <a href="thread.html#797">[ thread ]</a>
+              <a href="subject.html#797">[ subject ]</a>
+              <a href="author.html#797">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

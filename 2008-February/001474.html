@@ -1,0 +1,98 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Redirecting/forwarding emails to Gmail
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2008-February/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Redirecting/forwarding%20emails%20to%20Gmail&In-Reply-To=%3C20080223153109.GA10272%40merlin.emma.line.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001473.html">
+   <LINK REL="Next"  HREF="001475.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Redirecting/forwarding emails to Gmail</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Redirecting/forwarding%20emails%20to%20Gmail&In-Reply-To=%3C20080223153109.GA10272%40merlin.emma.line.org%3E"
+       TITLE="[fetchmail-users] Redirecting/forwarding emails to Gmail">matthias.andree at gmx.de
+       </A><BR>
+    <I>Sat Feb 23 16:31:09 CET 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001473.html">[fetchmail-users] Redirecting/forwarding emails to Gmail
+</A></li>
+        <LI>Next message: <A HREF="001475.html">[fetchmail-users] gpg encryption
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1474">[ date ]</a>
+              <a href="thread.html#1474">[ thread ]</a>
+              <a href="subject.html#1474">[ subject ]</a>
+              <a href="author.html#1474">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Wed, 20 Feb 2008, Rob MacGregor wrote:
+
+&gt;<i> On Feb 20, 2008 2:18 AM, Seth Ladd &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">sethladd at gmail.com</A>&gt; wrote:
+</I>&gt;<i> &gt; Hello,
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; I'm trying to use fetchmail to redirect or forward email from one mail
+</I>&gt;<i> &gt; server into my gmail account.  I am able to POP email out of my other
+</I>&gt;<i> &gt; email server just fine, but I'm unable to figure out how to configure
+</I>&gt;<i> &gt; fetchmail to send those emails into gmail.
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; Gmail's SMTP server requires STARTTLS, which I cannot figure out how
+</I>&gt;<i> &gt; to configure.  My POP server does not require or use SSL or TLS.
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; Is there a way to tell fetchmail to use STARTTLS when delivering email via SMTP?
+</I>&gt;<i> 
+</I>&gt;<i> I think your bigger concern would be that GMail also requires
+</I>&gt;<i> authentication for the SMTP service, which I don't think fetchmail
+</I>&gt;<i> supports.
+</I>
+Well, it claims to support it (I never tested it, but inherited that
+code; check the subsection ESMTP AUTH in the manual page), albeit not
+with STARTTLS or something, so it's of limited use and should only be
+used in fully-trusted local networks, virtual private networks (VPNs) or
+across otherwise secure tunnels.
+
+&gt;<i> The simplest solution is probably to install a local SMTP server of
+</I>&gt;<i> your choice and configure it to support STARTTLS and AUTH.
+</I>
+Indeed. Be sure to configure proper TLS settings in that case, several
+popular packages do NOT drop the connection if the certificate
+verification fails, making the password vulnerable to man-in-the-middle
+attacks.
+
+HTH
+
+-- 
+Matthias Andree
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001473.html">[fetchmail-users] Redirecting/forwarding emails to Gmail
+</A></li>
+	<LI>Next message: <A HREF="001475.html">[fetchmail-users] gpg encryption
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1474">[ date ]</a>
+              <a href="thread.html#1474">[ thread ]</a>
+              <a href="subject.html#1474">[ subject ]</a>
+              <a href="author.html#1474">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

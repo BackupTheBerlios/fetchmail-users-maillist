@@ -1,0 +1,106 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Fetchmail not collecting HTML messages using	IMAP
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2008-February/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Fetchmail%20not%20collecting%20HTML%20messages%20using%0A%09IMAP&In-Reply-To=%3C43ea8d070802181157w59300c0cx2e07baf09897f389%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001466.html">
+   <LINK REL="Next"  HREF="001468.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Fetchmail not collecting HTML messages using	IMAP</H1>
+    <B>Rob MacGregor</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Fetchmail%20not%20collecting%20HTML%20messages%20using%0A%09IMAP&In-Reply-To=%3C43ea8d070802181157w59300c0cx2e07baf09897f389%40mail.gmail.com%3E"
+       TITLE="[fetchmail-users] Fetchmail not collecting HTML messages using	IMAP">rob.macgregor at gmail.com
+       </A><BR>
+    <I>Mon Feb 18 20:57:47 CET 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001466.html">[fetchmail-users] Fetchmail not collecting HTML messages using IMAP
+</A></li>
+        <LI>Next message: <A HREF="001468.html">[fetchmail-users] Fetchmail not collecting HTML messages using	IMAP
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1467">[ date ]</a>
+              <a href="thread.html#1467">[ thread ]</a>
+              <a href="subject.html#1467">[ subject ]</a>
+              <a href="author.html#1467">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Feb 18, 2008 6:13 PM, Barnaby Garrett &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">barney at telinformix.com</A>&gt; wrote:
+&gt;<i> Hi there,
+</I>&gt;<i>
+</I>&gt;<i> I've just been switching over too google apps for my domain's email
+</I>&gt;<i> and discovered a problem when I use IMAP to collect the mail
+</I>&gt;<i> everything is fine until it hits an HTML message at which point it
+</I>&gt;<i> just stops until the next collection when it gets interrupted and the
+</I>&gt;<i> process starts again.  Obviously any mail after the HTML one is not
+</I>&gt;<i> collected.
+</I>
+Fetchmail doesn't know or care about the content of the emails.  If
+you search the list archive you'll find that Google's IMAP and POP
+implementations aren't exactly standard and it appears to be common to
+have intermittent problems with no apparent cause.
+
+&gt;<i> If I switch to using POP3 everything works fine.  Extract
+</I>&gt;<i> from the log file is :
+</I>&gt;<i>
+</I>&gt;<i> Feb 18 17:49:16 dora fetchmail: PID 5328: message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">LALALALALA at googlemail-imap.l.google.com</A>
+</I>&gt;<i> :7 was not the expected length (1575 actual != 1570 expected)
+</I>&gt;<i> Feb 18 17:49:16 dora fetchmail: PID 5328: SMTP&gt;. (EOM)
+</I>&gt;<i> Feb 18 17:54:16 dora fetchmail: PID 5328: smtp listener protocol error
+</I>
+That says that your local SMTP server had a problem with the message.
+
+&gt;<i> Feb 18 17:54:16 dora fetchmail: PID 5328:  not flushed
+</I>&gt;<i>
+</I>&gt;<i> This is delivering to an Exchange 2003 server an the logs show a MAIL,
+</I>&gt;<i> RCPT and then a QUIT commands  but it gets no DATA command.
+</I>&gt;<i>
+</I>&gt;<i> Any ideas ?
+</I>
+More details would be required.  At a minimum you need to run
+&quot;fetchmail --nosyslog --nodetach -vvv&quot; (plus any other command line
+options you normally use), provide the matching entries from your
+Exchange log, the contents of the .fetchmailrc file and details of the
+platform you're running fetchmail on (fetchmail under Cygwin is also
+known to have problems).
+
+-- 
+                 Please keep list traffic on the list.
+
+Rob MacGregor
+      Whoever fights monsters should see to it that in the process he
+        doesn't become a monster.                  Friedrich Nietzsche
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001466.html">[fetchmail-users] Fetchmail not collecting HTML messages using IMAP
+</A></li>
+	<LI>Next message: <A HREF="001468.html">[fetchmail-users] Fetchmail not collecting HTML messages using	IMAP
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1467">[ date ]</a>
+              <a href="thread.html#1467">[ thread ]</a>
+              <a href="subject.html#1467">[ subject ]</a>
+              <a href="author.html#1467">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,138 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Error messages with fetchmail 6.3.8
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2007-May/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Error%20messages%20with%20fetchmail%206.3.8&In-Reply-To=%3C20070515154904.GA1143%40gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001044.html">
+   <LINK REL="Next"  HREF="001046.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Error messages with fetchmail 6.3.8</H1>
+    <B>Pongthep Kulkrisada</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Error%20messages%20with%20fetchmail%206.3.8&In-Reply-To=%3C20070515154904.GA1143%40gmail.com%3E"
+       TITLE="[fetchmail-users] Error messages with fetchmail 6.3.8">ptkrisada at gmail.com
+       </A><BR>
+    <I>Tue May 15 17:49:04 CEST 2007</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001044.html">[fetchmail-users] Error messages with fetchmail 6.3.8
+</A></li>
+        <LI>Next message: <A HREF="001046.html">[fetchmail-users] Error messages with fetchmail 6.3.8
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1045">[ date ]</a>
+              <a href="thread.html#1045">[ thread ]</a>
+              <a href="subject.html#1045">[ subject ]</a>
+              <a href="author.html#1045">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>&gt;<i> Ok, simply, as root:
+</I>&gt;<i> 
+</I>&gt;<i> 1) pkg_add -r cvsup-without-gui
+</I>There were some error messages.
+# pkg_add -r cvsup_without_gui
+pkg_add: unable to fetch '<A HREF="ftp://ftp.freebsd.org/pub/FreeBSD/ports/i386/packages-5.4-release/Latest/cvsup-without-gui.tbz">ftp://ftp.freebsd.org/pub/FreeBSD/ports/i386/packages-5.4-release/Latest/cvsup-without-gui.tbz</A>' by URL
+Error: FTP Unable to get <A HREF="ftp://ftp.freebsd.org/pub/FreeBSD/ports/i386/packages-5.4-release/Latest/cvsup-without-gui.tbz:">ftp://ftp.freebsd.org/pub/FreeBSD/ports/i386/packages-5.4-release/Latest/cvsup-without-gui.tbz:</A> File unavailable (e.g., file not found, no access)
+
+&gt;<i> 2) cp /usr/share/examples/cvsup/ports-supfile /root
+</I>&gt;<i> 3) vi /root/ports-supfile
+</I>&gt;<i>     (or use your favourite text editor, if you're not comfortable with any do:
+</I>&gt;<i>         sed &quot;s/CHANGE_THIS/cvsup3/&quot; /root/ports-supfile &gt; /root/my-ports-supfile
+</I>&gt;<i>         mv /root/my-ports-supfile /root/ports-supfile
+</I>I used vim and very familiar with it, but I can't do pkg_add, see above.
+
+&gt;<i> 4) cvsup /root/ports-supfile
+</I>&gt;<i> Repeat command (4) when you're expecting to install or update software
+</I>&gt;<i> - at most daily.
+</I>&gt;<i> 
+</I>&gt;<i> I'd recommend portsnap instead personally, but cvsup is easier to get
+</I>&gt;<i> going with initially (pre FreeBSD 6).  Don't overlook help from the
+</I>&gt;<i> various freebsd mailing lists (including freebsd-questions) - people
+</I>&gt;<i> there are generally helpful.
+</I>&gt;<i> 
+</I>&gt;<i> The FreeBSD manual goes into more detail:
+</I>&gt;<i> 
+</I>&gt;<i> <A HREF="http://www.freebsd.org/doc/handbook/ports-using.html">http://www.freebsd.org/doc/handbook/ports-using.html</A>
+</I>&gt;<i> 
+</I>&gt;<i> It is available in more than English, but I not many and I don't know
+</I>&gt;<i> what languages you read.
+</I>Thank you very much, BTW I can read English but not natively.
+But I can't read too long, I currently have the problem with my eyes.
+My doctor told me to reduce reading or using computer.
+
+&gt;<i> &gt; What is root certificate? please give me a bit of more details.
+</I>&gt;<i> 
+</I>&gt;<i> I'd suggest a look at the Wikipedia article for &quot;ssl certificate&quot; as
+</I>&gt;<i> without knowing how much you know there's a risk of making it too
+</I>&gt;<i> simple (and boring you) or assuming too much (and confusing you) :-)
+</I>&gt;<i> 
+</I>&gt;<i>     <A HREF="http://en.wikipedia.org/wiki/Ssl_certificate#Security">http://en.wikipedia.org/wiki/Ssl_certificate#Security</A>
+</I>&gt;<i> 
+</I>&gt;<i> (very) briefly a certificate is a way of being certain that a host is
+</I>&gt;<i> what it claims to be (eg mail.google.com).  There are different types,
+</I>&gt;<i> with a root certificate being able of validating other certificates.
+</I>&gt;<i> 
+</I>&gt;<i> &gt; Can you please give me a brief example of --sslcertck? I did not find it in the provided handbook or man pages.
+</I>&gt;<i> 
+</I>&gt;<i> It *is* detailed in at least the online manual:
+</I>&gt;<i> 
+</I>&gt;<i>  <A HREF="http://www.fetchmail.info/fetchmail-man.html">http://www.fetchmail.info/fetchmail-man.html</A>
+</I>Once I have skimmed thru these documents while I was configuring gmail account.
+so many things to learn.
+Anyway I started to understand. Thank you,
+It should be kinda encryption, my password or messages are encoded and can't be read by any intermediate persons. And only the server has an algorithm to decode it. So nobody can steal my password or messages. If I'm wrong, pls correct me.
+
+&gt;<i> &gt; Shall I just cd /usr/ports/security/ca-roots and make install?
+</I>&gt;<i> 
+</I>&gt;<i> Yes, but update your ports first.
+</I>&gt;<i> 
+</I>&gt;<i> &gt; How to obtain the new version?
+</I>&gt;<i> 
+</I>&gt;<i> See the details on use of cvsup above.
+</I>Can I skip step 1) and carry on with steps 2), 3) and 4)?
+I have the binary of /usr/local/bin/cvsup
+But I only use text mode no GUI.
+That should be the case of cvsup_without_gui. I don't know.
+
+I still question.
+after updating port and make install under /usr/ports/security/ca-roots,
+what shall i do next with my .fetchmailrc?
+
+BTW I shall read fetchmail(1) anyway, but I can say that it is very hard for noobies to understand.
+
+Thanks again,
+Pongthep Kulkrisada
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001044.html">[fetchmail-users] Error messages with fetchmail 6.3.8
+</A></li>
+	<LI>Next message: <A HREF="001046.html">[fetchmail-users] Error messages with fetchmail 6.3.8
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1045">[ date ]</a>
+              <a href="thread.html#1045">[ thread ]</a>
+              <a href="subject.html#1045">[ subject ]</a>
+              <a href="author.html#1045">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

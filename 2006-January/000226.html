@@ -1,0 +1,102 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Re: [fetchmail-announce] fetchmail 6.3.0 contained incompatible idfile change
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2006-January/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Re%3A%20%5Bfetchmail-announce%5D%20fetchmail%206.3.0%20contained%20incompatible%20idfile%20change&In-Reply-To=%3C20060105012017.GA20110%40merlin.emma.line.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000231.html">
+   <LINK REL="Next"  HREF="000234.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Re: [fetchmail-announce] fetchmail 6.3.0 contained incompatible idfile change</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Re%3A%20%5Bfetchmail-announce%5D%20fetchmail%206.3.0%20contained%20incompatible%20idfile%20change&In-Reply-To=%3C20060105012017.GA20110%40merlin.emma.line.org%3E"
+       TITLE="[fetchmail-users] Re: [fetchmail-announce] fetchmail 6.3.0 contained incompatible idfile change">matthias.andree at gmx.de
+       </A><BR>
+    <I>Thu Jan  5 02:20:17 CET 2006</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000231.html">[fetchmail-users] Re: [fetchmail]fetchmail 6.3.0 contained incompatible idfile change
+</A></li>
+        <LI>Next message: <A HREF="000234.html">[fetchmail-users] Re: [fetchmail-announce] fetchmail 6.3.0 contained incompatible idfile change
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#226">[ date ]</a>
+              <a href="thread.html#226">[ thread ]</a>
+              <a href="subject.html#226">[ subject ]</a>
+              <a href="author.html#226">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Simon Barner schrieb am 2006-01-05:
+
+&gt;<i> Matthias Andree wrote:
+</I>&gt;<i> &gt; Beginning with release 6.3.0, fetchmail needs not only need write access
+</I>&gt;<i> &gt; to the idfile ($HOME/.fetchids), but also to the directory holding this
+</I>&gt;<i> &gt; file. fetchmail 6.2.X and older versions got away if just the idfile had
+</I>&gt;<i> &gt; write permission.
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; The reason is that fetchmail 6.3.0 and newer now writes the ids to a
+</I>&gt;<i> &gt; temporary file, to avoid truncation of the idfile if running short of
+</I>&gt;<i> &gt; diskspace; a truncated idfile might lead to many duplicate messages,
+</I>&gt;<i> &gt; which might, in turn, aggravate the &quot;low space&quot; situation.
+</I>&gt;<i> 
+</I>&gt;<i> What about using one of the system-wide temporary directories instead?
+</I>
+The basic idea is: the UIDs are somewhat precious (and we have had
+issues to that extent in the bug trackers). That's why I chose to write
+a temporary file and atomically (i. e. rename(2)) replace the original
+file. This guarantees that we'll always have the old UID file available
+even if writing the new fails at some point. In unlucky situations,
+6.2.5.X and older might end up with an empty ID file, would start
+refetching and flooding /var/mail with dupes.
+
+Rename(2) only works within the same device or perhaps mountpoint (some
+file systems such as AFS and Coda even turn every directory into a
+filesystem of its own). Besides that, I will not use directories with
+public write access (/tmp, /var/tmp), these are minefields, and handling
+subdirectories within them still doesn't guarantee we can rename without
+truncating the output file.
+
+Plus, creating backup files still requires write permission on the
+directory...
+
+Debian for instance uses a fetchmail user for the system wide fetchmail
+daemon, home directory is /var/run/fetchmail, yet they use
+/var/mail/.i-forgot-the-UIDL-name for their idfile. If they used
+/var/run/fetchmail/.i-forgot-the-UIDL-name, everything would be fine. No
+need for ${TMPDIR-/tmp}.
+
+-- 
+Matthias Andree
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000231.html">[fetchmail-users] Re: [fetchmail]fetchmail 6.3.0 contained incompatible idfile change
+</A></li>
+	<LI>Next message: <A HREF="000234.html">[fetchmail-users] Re: [fetchmail-announce] fetchmail 6.3.0 contained incompatible idfile change
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#226">[ date ]</a>
+              <a href="thread.html#226">[ thread ]</a>
+              <a href="subject.html#226">[ subject ]</a>
+              <a href="author.html#226">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

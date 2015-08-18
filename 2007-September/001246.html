@@ -1,0 +1,125 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] fetchmail continuously fetching already	fetched imap email
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2007-September/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%20continuously%20fetching%20already%0A%09fetched%20imap%20email&In-Reply-To=%3C43ea8d070709101303w51f36194ka7d6ca14352e9217%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001245.html">
+   <LINK REL="Next"  HREF="001247.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] fetchmail continuously fetching already	fetched imap email</H1>
+    <B>Rob MacGregor</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%20continuously%20fetching%20already%0A%09fetched%20imap%20email&In-Reply-To=%3C43ea8d070709101303w51f36194ka7d6ca14352e9217%40mail.gmail.com%3E"
+       TITLE="[fetchmail-users] fetchmail continuously fetching already	fetched imap email">rob.macgregor at gmail.com
+       </A><BR>
+    <I>Mon Sep 10 22:03:49 CEST 2007</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001245.html">[fetchmail-users] fetchmail continuously fetching already	fetched imap email
+</A></li>
+        <LI>Next message: <A HREF="001247.html">[fetchmail-users] fetchmail continuously fetching already	fetched imap email
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1246">[ date ]</a>
+              <a href="thread.html#1246">[ thread ]</a>
+              <a href="subject.html#1246">[ subject ]</a>
+              <a href="author.html#1246">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On 9/10/07, Lee Hinman &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">matthew.hinman at gmail.com</A>&gt; wrote:
+&gt;<i>
+</I>&gt;<i> And the output of fetchmail --nosyslog --nodetach -vvv:
+</I>&gt;<i> fetchmail: 6.3.8 querying corpusmx10c.corp.emc.com (protocol IMAP) at
+</I>&gt;<i> Mon, 10 Sep 2007 13:49:50 -0600 (MDT): poll started
+</I>&gt;<i> Trying to connect to 128.221.14.108/143...connected.
+</I>&gt;<i> fetchmail: IMAP&lt; * OK Microsoft Exchange Server 2003 IMAP4rev1 server
+</I>&gt;<i> version 6.5.7638.1 (CORPUSMX10C.corp.emc.com) ready.
+</I>&gt;<i> fetchmail: IMAP&gt; A0001 CAPABILITY
+</I>&gt;<i> fetchmail: IMAP&lt; * CAPABILITY IMAP4 IMAP4rev1 IDLE LOGIN-REFERRALS
+</I>&gt;<i> MAILBOX-REFERRALS NAMESPACE LITERAL+ UIDPLUS CHILDREN AUTH=NTLM
+</I>&gt;<i> fetchmail: IMAP&lt; A0001 OK CAPABILITY completed.
+</I>&gt;<i> fetchmail: Protocol identified as IMAP4 rev 1
+</I>&gt;<i> fetchmail: corpusmx10c.corp.emc.com: opportunistic upgrade to TLS
+</I>&gt;<i> failed, trying to continue
+</I>&gt;<i> fetchmail: IMAP&gt; A0002 NOOP
+</I>&gt;<i> fetchmail: IMAP&lt; A0002 OK NOOP completed.
+</I>&gt;<i> fetchmail: IMAP&gt; A0003 LOGIN &quot;*********&quot; *
+</I>&gt;<i> fetchmail: IMAP&lt; A0003 OK LOGIN completed.
+</I>&gt;<i> fetchmail: selecting or re-polling default folder
+</I>&gt;<i> fetchmail: IMAP&gt; A0004 SELECT &quot;INBOX&quot;
+</I>&gt;<i> fetchmail: IMAP&lt; * 299 EXISTS
+</I>&gt;<i> fetchmail: IMAP&lt; * 0 RECENT
+</I>&gt;<i> fetchmail: IMAP&lt; * FLAGS (\Seen \Answered \Flagged \Deleted \Draft $MDNSent)
+</I>&gt;<i> fetchmail: IMAP&lt; * OK [PERMANENTFLAGS (\Seen \Answered \Flagged
+</I>&gt;<i> \Deleted \Draft $MDNSent)] Permanent flags
+</I>&gt;<i> fetchmail: IMAP&lt; * OK [UIDVALIDITY 3890] UIDVALIDITY value
+</I>&gt;<i> fetchmail: IMAP&lt; A0004 OK [READ-WRITE] SELECT completed.
+</I>&gt;<i> fetchmail: 299 messages waiting after first poll
+</I>&gt;<i> fetchmail: IMAP&gt; A0005 SEARCH UNSEEN NOT DELETED
+</I>&gt;<i> fetchmail: IMAP&lt; * SEARCH
+</I>&gt;<i> fetchmail: IMAP&lt; A0005 OK SEARCH completed.
+</I>&gt;<i> 299 messages (299 seen) for corp\hinmam at corpusmx10c.corp.emc.com.
+</I>&gt;<i> skipping message corp\<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">hinmam at corpusmx10c.corp.emc.com</A>:1 not flushed
+</I>&gt;<i> skipping message corp\<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">hinmam at corpusmx10c.corp.emc.com</A>:2 not flushed
+</I>&gt;<i> ... skipped because there are lots of messages ...
+</I>&gt;<i> skipping message corp\<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">hinmam at corpusmx10c.corp.emc.com</A>:298 not flushed
+</I>&gt;<i> skipping message corp\<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">hinmam at corpusmx10c.corp.emc.com</A>:299 not flushed
+</I>&gt;<i> fetchmail: IMAP&gt; A0006 LOGOUT
+</I>&gt;<i> fetchmail: IMAP&lt; * BYE Microsoft Exchange Server 2003 IMAP4rev1 server
+</I>&gt;<i> version 6.5.7638.1 signing off.
+</I>&gt;<i> fetchmail: IMAP&lt; A0006 OK LOGOUT completed.
+</I>&gt;<i> fetchmail: 6.3.8 querying corpusmx10c.corp.emc.com (protocol IMAP) at
+</I>&gt;<i> Mon, 10 Sep 2007 13:49:52 -0600 (MDT): poll completed
+</I>&gt;<i> fetchmail: not swapping UID lists, no UIDs seen this query
+</I>&gt;<i> fetchmail: Query status=1 (NOMAIL)
+</I>&gt;<i> fetchmail: Deleting fetchids file.
+</I>&gt;<i> fetchmail: normal termination, status 1
+</I>&gt;<i> fetchmail: Deleting fetchids file.
+</I>
+I don't see the behaviour you describe in your initial email.  Can you
+confirm that the problem (of the same message being downloaded at
+every run) is ongoing.
+
+Can you also double check that it really is the same message (that is,
+it has the same Message-ID and all the other headers are also
+identical).
+
+-- 
+                 Please keep list traffic on the list.
+
+Rob MacGregor
+      Whoever fights monsters should see to it that in the process he
+        doesn't become a monster.                  Friedrich Nietzsche
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001245.html">[fetchmail-users] fetchmail continuously fetching already	fetched imap email
+</A></li>
+	<LI>Next message: <A HREF="001247.html">[fetchmail-users] fetchmail continuously fetching already	fetched imap email
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1246">[ date ]</a>
+              <a href="thread.html#1246">[ thread ]</a>
+              <a href="subject.html#1246">[ subject ]</a>
+              <a href="author.html#1246">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

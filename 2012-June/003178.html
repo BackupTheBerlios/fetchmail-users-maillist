@@ -1,0 +1,86 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] MD5 --&gt; SHA1
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2012-June/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20MD5%20--%3E%20SHA1&In-Reply-To=%3CCAD2Ti28KdFPdfwxgbW78HbkomefF_rth05JTG_%3DgesOO%3DEFwpA%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003177.html">
+   <LINK REL="Next"  HREF="003179.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] MD5 --&gt; SHA1</H1>
+    <B>grarpamp</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20MD5%20--%3E%20SHA1&In-Reply-To=%3CCAD2Ti28KdFPdfwxgbW78HbkomefF_rth05JTG_%3DgesOO%3DEFwpA%40mail.gmail.com%3E"
+       TITLE="[fetchmail-users] MD5 --&gt; SHA1">grarpamp at gmail.com
+       </A><BR>
+    <I>Sat Jun 23 19:10:05 CEST 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003177.html">[fetchmail-users] MD5 --&gt; SHA1
+</A></li>
+        <LI>Next message: <A HREF="003179.html">[fetchmail-users] MD5 --&gt; SHA1
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3178">[ date ]</a>
+              <a href="thread.html#3178">[ thread ]</a>
+              <a href="subject.html#3178">[ subject ]</a>
+              <a href="author.html#3178">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>&gt;<i> What exactly would be cool? Blocking certificates with MD5
+</I>&gt;<i> signatures when fetchmail is verifying SSL certificates?
+</I>
+Oh, no not that, of course if the cert is valid, it's valid, no
+matter the type of hash in the cert that was signed.
+
+The world is moving (has moved) to signatures over SHA1
+and for fingerprinting in general, because MD5 is completely,
+real world, in the wild, broken.
+
+(And for that matter, SHA1 is headed that way on paper,
+but the replacement, SHA-3, isn't here yet. So it's SHA1
+for now.)
+
+Fetchmail 'fingerprint' option does not support checking
+fingerprints with SHA1. It really should.
+
+Prior thread[s] on this list within the past year or two
+began to suggest and actually detail how to option,
+parse and integrate SHA1 into fetchmail. Talk/work
+apparently stalled before reaching coding phase.
+
+Is there a ticket system where this could be lodged
+as a todo item?
+</PRE>
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003177.html">[fetchmail-users] MD5 --&gt; SHA1
+</A></li>
+	<LI>Next message: <A HREF="003179.html">[fetchmail-users] MD5 --&gt; SHA1
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3178">[ date ]</a>
+              <a href="thread.html#3178">[ thread ]</a>
+              <a href="subject.html#3178">[ subject ]</a>
+              <a href="author.html#3178">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

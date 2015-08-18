@@ -1,0 +1,180 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] R: Re: the message fetch should be completed before quitting
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2011-November/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20R%3A%20Re%3A%20the%20message%20fetch%20should%20be%20completed%0A%20before%20quitting&In-Reply-To=%3C20549480.4713991322302588137.JavaMail.root%40wmail46%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003008.html">
+   <LINK REL="Next"  HREF="003009.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] R: Re: the message fetch should be completed before quitting</H1>
+    <B>rossi.f at inwind.it</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20R%3A%20Re%3A%20the%20message%20fetch%20should%20be%20completed%0A%20before%20quitting&In-Reply-To=%3C20549480.4713991322302588137.JavaMail.root%40wmail46%3E"
+       TITLE="[fetchmail-users] R: Re: the message fetch should be completed before quitting">rossi.f at inwind.it
+       </A><BR>
+    <I>Sat Nov 26 11:16:28 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003008.html">[fetchmail-users] the message fetch should be completed before quitting
+</A></li>
+        <LI>Next message: <A HREF="003009.html">[fetchmail-users] the message fetch should be completed before quitting
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3007">[ date ]</a>
+              <a href="thread.html#3007">[ thread ]</a>
+              <a href="subject.html#3007">[ subject ]</a>
+              <a href="author.html#3007">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>&gt;<i>On Sat, Nov 26, 2011 at 01:26, <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">rossi.f at inwind.it</A> &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">rossi.f at inwind.it</A>&gt; wrote:
+</I>&gt;&gt;<i> I'm using fetchmail 6.3.21 with a POP3 server to download all the mail and
+</I>&gt;&gt;<i> deliver it locally by using maildrop 2.5.4 as MDA. Right now I'm using the
+</I>&gt;&gt;<i> &quot;keep&quot; user option for testing purposes. fetchmail is started in daemon 
+</I>mode in
+&gt;&gt;<i> the following way:
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> &#160; fetchmail -d ${polling_period} -f ${rcfile} --pidfile ${pid_file} -i
+</I>&gt;&gt;<i> ${fidfile}
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> The killing procedure during shutdown is the following:
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> &#160; fetchmail --quit --pidfile ${pid_file}
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> If the killing procedure starts when fetchmail is downloading new messages, 
+</I>a
+&gt;&gt;<i> message might appear incomplete in the user mailbox (I'm using a maildir
+</I>&gt;&gt;<i> format). The issue is reported also in the fetchmail logfile as &quot;log 
+</I>message
+&gt;&gt;<i> incomplete&quot;. There is no mail loss but the mailbox is populated with 
+</I>incomplete
+&gt;&gt;<i> messages. I guess that a better behavior should be implemented, e.g. 
+</I>fetchmail
+&gt;&gt;<i> should complete the message fetching before quitting.
+</I>&gt;<i>
+</I>&gt;<i>Please see the FAQ, section G3, for how to report problems ;)
+</I>
+Oops... To complete the information:
+
+1 I'm using Gentoo so fetchmail is compiled from source
+2 The compiler is &quot;gcc version 4.5.3 (Gentoo 4.5.3-r1 p1.0, pie-0.4.5) &quot;
+3 maildrop 2.5.4, I'm calling it using  &quot;mda 'maildrop -d fabio&quot; in 
+fetchmailrc
+4 already written above
+5 output of  &quot;env LC_ALL=C fetchmail -V &quot;:
+
+This is fetchmail release 6.3.21+RPA+NTLM+SDPS+SSL+NLS.
+
+Copyright (C) 2002, 2003 Eric S. Raymond
+Copyright (C) 2004 Matthias Andree, Eric S. Raymond,
+                   Robert M. Funk, Graham Wilson
+Copyright (C) 2005 - 2006, 2010 - 2011 Sunil Shetye
+Copyright (C) 2005 - 2011 Matthias Andree
+Fetchmail comes with ABSOLUTELY NO WARRANTY. This is free software, and you
+are welcome to redistribute it under certain conditions. For details,
+please see the file COPYING in the source or documentation directory.
+This product includes software developed by the OpenSSL Project
+for use in the OpenSSL Toolkit. (<A HREF="http://www.openssl.org/">http://www.openssl.org/</A>)
+
+Fallback MDA: (none)
+Linux hostname 3.2.0-rc2-wl #2 SMP Wed Nov 16 21:02:48 CET 2011 x86_64 Intel
+(R) Core(TM) i7 CPU 920 @ 2.67GHz GenuineIntel GNU/Linux
+Taking options from command line and /etc/fetchmailrc
+Poll interval is 60 seconds
+Logfile is /var/log/fetchmail.log
+Idfile is /var/lib/fetchmail/.fetchids
+Fetchmail will forward misaddressed multidrop messages to fetchmail.
+Options for retrieving from <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">email at popservername</A>
+  True name of server is popservername.
+  Protocol is POP3 (forcing UIDL use).
+  All available authentication methods will be tried.
+  Server nonresponse timeout is 300 seconds (default).
+  Default mailbox selected.
+  Only new messages will be retrieved (--all off).
+  Fetched messages will be kept on the server (--keep on).
+  Old messages will not be flushed before message retrieval (--flush off).
+  Oversized messages will not be flushed before message retrieval (--
+limitflush off).
+  Rewrite of server-local addresses is disabled (--norewrite on).
+  Carriage-return stripping is enabled (stripcr on).
+  Carriage-return forcing is disabled (forcecr off).
+  Interpretation of Content-Transfer-Encoding is enabled (pass8bits off).
+  MIME decoding is disabled (mimedecode off).
+  Idle after poll is disabled (idle off).
+  Nonempty Status lines will be kept (dropstatus off)
+  Delivered-To lines will be kept (dropdelivered off)
+  Fetch message size limit is 100 (--fetchsizelimit 100).
+  Do binary search of UIDs during 3 out of 4 polls (--fastuidl 4).
+  Messages will be delivered with &quot;maildrop -d fabio&quot;.
+  Single-drop mode: 1 local name recognized.
+  96 UIDs saved.
+
+&gt;<i>I've never seen the partial emails that you refer to, but assuming
+</I>&gt;<i>that is the case 
+</I>
+I have just run fetchmail with --nodetach -vvv --nosyslog to see what happens. 
+During the fetching of a large message, if I try to send a SIGINT signal (CTRL-
+C) directly on the shell where I run fetchmail I get
+
+fetchmail: reading message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">email at popservername</A>:1 of 287 (154831 octets) about 
+to deliver with: maildrop -d fabio
+#***********************************************.
+*************************************.*****************************.
+******************.**************.*************.*************.*************.
+*************.*************.*************.*************.**************.
+*************.*************.*************.*************.*************.
+*************.*************.**************.*************.*************.
+*************.*************.*************.*************.*************.
+**************.*************.*************.*************.*************.
+*************.*************.******^Cfetchmail: terminated with signal 2
+maildrop: signal 0x02
+
+The transaction is completed correctly because maildrop is killed too with the 
+same signal, in this case no message is saved in the mailbox as expected. In 
+the other case, when I send a SIGINT/SIGTERM via &quot;fetchamail --quit&quot; or by 
+using the kill program I don't see at the end &quot;maildrop: signal 0x02&quot;: in this 
+way an incomplete message is written in the mailbox
+
+&gt;<i>I don't agree that the solution is to complete the
+</I>&gt;<i>transaction. The correct solution IMO would be to completely abandon
+</I>&gt;<i>the delivery (and mark the original email as unread), to avoid hanging
+</I>&gt;<i>the shutdown process for potentially many minutes.
+</I>
+&gt;<i>From what I have written above It seems that is possible to quit in a clean 
+</I>way even without completing the transaction, what it's needed is to propagate a 
+SIGINT signal to maildrop subprocess as soon as fetchmail receives its 
+terminating signal
+
+Fabio
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003008.html">[fetchmail-users] the message fetch should be completed before quitting
+</A></li>
+	<LI>Next message: <A HREF="003009.html">[fetchmail-users] the message fetch should be completed before quitting
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3007">[ date ]</a>
+              <a href="thread.html#3007">[ thread ]</a>
+              <a href="subject.html#3007">[ subject ]</a>
+              <a href="author.html#3007">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

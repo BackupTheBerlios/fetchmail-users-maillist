@@ -1,0 +1,86 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Invalid SSL certificate
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2007-July/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Invalid%20SSL%20certificate&In-Reply-To=%3C469BBB6E.8080603%40iradimed.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001115.html">
+   <LINK REL="Next"  HREF="001117.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Invalid SSL certificate</H1>
+    <B>Phillip Susi</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Invalid%20SSL%20certificate&In-Reply-To=%3C469BBB6E.8080603%40iradimed.com%3E"
+       TITLE="[fetchmail-users] Invalid SSL certificate">psusi at iradimed.com
+       </A><BR>
+    <I>Mon Jul 16 20:39:42 CEST 2007</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001115.html">[fetchmail-users] Invalid SSL certificate
+</A></li>
+        <LI>Next message: <A HREF="001117.html">[fetchmail-users] Invalid SSL certificate
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1116">[ date ]</a>
+              <a href="thread.html#1116">[ thread ]</a>
+              <a href="subject.html#1116">[ subject ]</a>
+              <a href="author.html#1116">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Matthias Andree wrote:
+&gt;<i> See the socket error? Apparently the server drops the connection.
+</I>&gt;<i> 
+</I>&gt;<i> Try 6.3.8 - the non-SSL fallback is fixed there (at the expense of not
+</I>&gt;<i> encrypting the connection though, so don't do that over WLAN with just WEP
+</I>&gt;<i> or via public access networks).
+</I>
+I can force fetchmail to not use ssl at all and it works, but I'd like 
+it to use ssl.  I have managed to successfully connect to the server 
+from my windows machine running thunderbird, and I have packet captures 
+of the conversation and compared them to the packet capture from 
+fetchmail.  It appears that for fetchmail, the server closes the 
+connection after sending the certificate, but I notice that it 
+negotiates a different cipher than thunderbird, which works. 
+Thunderbird negotiates the TLS_RSA_WITH_RC4_128_MD5 ( 0x0004 ) cipher, 
+but fetchmail does not list this as a cipher it supports in its client 
+HELLO frame, so the server answers with 
+TLS_DHE_RSA_WITH_3DES_EDE_CBC_SHA ( 0x0016 ) as the negotiated cipher, 
+then the next frame it sends its certificate and a two alerts, one 
+fatal, one a warning, both saying Close Notify.
+
+This leads me to believe that the server does not like any of the 
+ciphers that fetchmail supports.  Does this make sense, and how can I 
+get fetchmail to use the TLS_RSA_WITH_RC4_128_MD5 cipher?
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001115.html">[fetchmail-users] Invalid SSL certificate
+</A></li>
+	<LI>Next message: <A HREF="001117.html">[fetchmail-users] Invalid SSL certificate
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1116">[ date ]</a>
+              <a href="thread.html#1116">[ thread ]</a>
+              <a href="subject.html#1116">[ subject ]</a>
+              <a href="author.html#1116">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

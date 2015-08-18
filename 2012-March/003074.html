@@ -1,0 +1,113 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] anti - SPAM
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2012-March/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20anti%20-%20SPAM&In-Reply-To=%3CCAA2qdGVjc76Qcw5L3--AcnCOXVDuJdPXoBdipQ3QiuFix%2Bmr%3DA%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003073.html">
+   <LINK REL="Next"  HREF="003077.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] anti - SPAM</H1>
+    <B>Pandu Poluan</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20anti%20-%20SPAM&In-Reply-To=%3CCAA2qdGVjc76Qcw5L3--AcnCOXVDuJdPXoBdipQ3QiuFix%2Bmr%3DA%40mail.gmail.com%3E"
+       TITLE="[fetchmail-users] anti - SPAM">pandu at poluan.info
+       </A><BR>
+    <I>Thu Mar 22 19:43:04 CET 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003073.html">[fetchmail-users] anti - SPAM
+</A></li>
+        <LI>Next message: <A HREF="003077.html">[fetchmail-users] inactivity timeout when fetching mail from yahoo
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3074">[ date ]</a>
+              <a href="thread.html#3074">[ thread ]</a>
+              <a href="subject.html#3074">[ subject ]</a>
+              <a href="author.html#3074">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Mar 23, 2012 1:31 AM, &quot;Pandu Poluan&quot; &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">pandu at poluan.info</A>&gt; wrote:
+&gt;<i>
+</I>&gt;<i> On Mar 23, 2012 1:10 AM, &quot;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">joea at j4computers.com</A>&quot; &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">joea at j4computers.com</A>&gt;
+</I>wrote:
+&gt;&gt;<i>
+</I>&gt;&gt;<i> &gt;&gt;&gt; Pandu Poluan &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">pandu at poluan.info</A>&gt; 03/22/12 10:25 AM &gt;&gt;&gt;
+</I>&gt;&gt;<i> On Mar 21, 2012 5:26 PM, &quot;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">joea at j4computers.com</A>&quot; &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">joea at j4computers.com</A>&gt;
+</I>&gt;&gt;<i> wrote:
+</I>&gt;&gt;<i> &gt;
+</I>&gt;&gt;<i> &gt; Any anti-SPAM s/w that can work with fetchmail?   Seems like
+</I>everything I
+&gt;&gt;<i> find seems to require I set up  an MTA and point incoming mail to it (vs
+</I>&gt;&gt;<i> using fetchmail to get my stuff where it currently goes), or, buy a
+</I>&gt;&gt;<i> service, or, like that . . .
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> You can always set up a local-only MTA listening at 127.0.0.1, and have
+</I>&gt;&gt;<i> fetchmail deliver email to 127.0.0.1:25.
+</I>&gt;&gt;<i>
+</I>
+&gt;&gt;<i>
+</I>&gt;&gt;<i> Are you suggesting I have fetchmail get mail as usual, but deliver to a
+</I>local MTA, for further processing, and have that MTA interact with my end
+point MTA?
+&gt;&gt;<i>
+</I>&gt;&gt;<i> Hmm . . . tasty.  Or, sigh, just getting dim.
+</I>&gt;&gt;<i>
+</I>
+&gt;<i> Yes.
+</I>&gt;<i>
+</I>&gt;<i> Alternatively, *if* your email volume is low, you can have fetchmail
+</I>deliver the emails directly to a SpamAssassin front-end (e.g., amavisd-new)
+which will then deliver the (filtered) email to your MTA.
+&gt;<i>
+</I>&gt;<i> The keyword, of course, is volume. You need to test how long amavisd-new
+</I>processes an email. You don't want to cause a bottleneck.
+&gt;<i>
+</I>
+Forgot to add :
+
+Whatever strategy you use, make sure that the destination of fetchmail --
+be it an MTA or amavisd-new -- is configured to *never* reject email from
+fetchmail; it may be configured to shunt spam to a certain mailbox, or drop
+the message to the floor silently, but *never* reject them outright.
+
+Failure to do so will result in fetchmail looping again and again trying to
+deliver the rejected email.
+
+(CMIIW)
+
+Rgds,
+</PRE>
+
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003073.html">[fetchmail-users] anti - SPAM
+</A></li>
+	<LI>Next message: <A HREF="003077.html">[fetchmail-users] inactivity timeout when fetching mail from yahoo
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3074">[ date ]</a>
+              <a href="thread.html#3074">[ thread ]</a>
+              <a href="subject.html#3074">[ subject ]</a>
+              <a href="author.html#3074">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

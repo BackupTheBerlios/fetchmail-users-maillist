@@ -1,0 +1,98 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] How to show the progress percent	when	downloading email?
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2009-May/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20How%20to%20show%20the%20progress%20percent%0A%09when%09downloading%20email%3F&In-Reply-To=%3C20090507082514.GD2103%40lilem.mirepesht%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001924.html">
+   <LINK REL="Next"  HREF="001926.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] How to show the progress percent	when	downloading email?</H1>
+    <B>Ali Gholami Rudi</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20How%20to%20show%20the%20progress%20percent%0A%09when%09downloading%20email%3F&In-Reply-To=%3C20090507082514.GD2103%40lilem.mirepesht%3E"
+       TITLE="[fetchmail-users] How to show the progress percent	when	downloading email?">aliqrudi at gmail.com
+       </A><BR>
+    <I>Thu May  7 10:25:14 CEST 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001924.html">[fetchmail-users] How to show the progress percent when downloading email?
+</A></li>
+        <LI>Next message: <A HREF="001926.html">[fetchmail-users] FAQ updated (O17): Linux logs &quot;TCP(fetchmail:...): Application bug, race in MSG_PEEK.&quot;
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1925">[ date ]</a>
+              <a href="thread.html#1925">[ thread ]</a>
+              <a href="subject.html#1925">[ subject ]</a>
+              <a href="author.html#1925">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Matthias Andree &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">matthias.andree at gmx.de</A>&gt; wrote:
+&gt;<i> However I also have the fetchmail code in mind, and I've recently cleaned 
+</I>&gt;<i> up logging a bit (not completely, there's still a bit of ad-hoc code, but 
+</I>&gt;<i> at least it's easily identified by the want_progress() macro now) for 
+</I>&gt;<i> more consistency and less screen clutter (these are two separate 
+</I>&gt;<i> achievements actually).
+</I>&gt;<i> We'd have to make major modifications to logging again, particularly to  
+</I>&gt;<i> either save the beginning of such a whole line and reprint it; or we 
+</I>&gt;<i> would have to fix the progress reporting to re-generate a whole line all 
+</I>&gt;<i> the time. Either is nontrivial (i. e. not a central place where you make 
+</I>&gt;<i> one change, but scattered through the code), and I'm not eager to do 
+</I>&gt;<i> that.
+</I>&gt;<i>
+</I>&gt;<i> I would review patches though -- actual &quot;reset 7 characters&quot; would be 
+</I>&gt;<i> more useful.
+</I>
+Anyway, IMO the current behaviour is not that bad.
+
+&gt;<i> The problem with any such changes to fetchmail is that modules such as  
+</I>&gt;<i> report.c are lightly documented and often used in arcane undocumented  
+</I>&gt;<i> ways, interspersed with ad-hoc code all over the place, and sometimes 
+</I>&gt;<i> code was not moved into a function, but copied and pasted. I attribute 
+</I>&gt;<i> this to the bazaar-style coding that was en vogue when Eric S. Raymond 
+</I>&gt;<i> hacked fetchmail and wrote his Cathedral and Bazaar essay (it would be 
+</I>&gt;<i> sensible to follow up why a bazaar gives you a lump of features, but not 
+</I>&gt;<i> a consistent piece in one cast).
+</I>&gt;<i>
+</I>&gt;<i> It often made the code harder to maintain, and before such features can 
+</I>&gt;<i> be implemented, you need to read major parts of the code to see where 
+</I>&gt;<i> else you'll find something that influences your current task, and that's 
+</I>&gt;<i> also why fetchmail progresses rather slowly WRT bugfixing and 
+</I>&gt;<i> particularly feature additions.
+</I>
+Valid points.  Thanks for the explanation.
+
+Regards,
+Ali
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001924.html">[fetchmail-users] How to show the progress percent when downloading email?
+</A></li>
+	<LI>Next message: <A HREF="001926.html">[fetchmail-users] FAQ updated (O17): Linux logs &quot;TCP(fetchmail:...): Application bug, race in MSG_PEEK.&quot;
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1925">[ date ]</a>
+              <a href="thread.html#1925">[ thread ]</a>
+              <a href="subject.html#1925">[ subject ]</a>
+              <a href="author.html#1925">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

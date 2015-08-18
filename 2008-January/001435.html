@@ -1,0 +1,110 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] validating Yahoo SSL certificate
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2008-January/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20validating%20Yahoo%20SSL%20certificate&In-Reply-To=%3C43ea8d070801222253k56dff237yea263ed254e6d16b%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001434.html">
+   <LINK REL="Next"  HREF="001439.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] validating Yahoo SSL certificate</H1>
+    <B>Rob MacGregor</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20validating%20Yahoo%20SSL%20certificate&In-Reply-To=%3C43ea8d070801222253k56dff237yea263ed254e6d16b%40mail.gmail.com%3E"
+       TITLE="[fetchmail-users] validating Yahoo SSL certificate">rob.macgregor at gmail.com
+       </A><BR>
+    <I>Wed Jan 23 07:53:49 CET 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001434.html">[fetchmail-users] validating Yahoo SSL certificate
+</A></li>
+        <LI>Next message: <A HREF="001439.html">[fetchmail-users] validating Yahoo SSL certificate
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1435">[ date ]</a>
+              <a href="thread.html#1435">[ thread ]</a>
+              <a href="subject.html#1435">[ subject ]</a>
+              <a href="author.html#1435">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Jan 23, 2008 1:18 AM, Bruce &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">fetchmail at mailinator.com</A>&gt; wrote:
+&gt;<i> I am running Debian sarge. I have installed fetchmail and some openssl
+</I>&gt;<i> and certifcates packages.
+</I>&gt;<i>
+</I>&gt;<i> I am attempting to use fetchmail to fetch mail from mail server
+</I>&gt;<i> pop.mail.yahoo.co.uk using SSL. Fetchmail does not like the mail
+</I>&gt;<i> server's SSL
+</I>&gt;<i> certificate. The output from any of the commands
+</I>&gt;<i>      fetchmail -c -v pop.mail.yahoo.co.uk
+</I>&gt;<i>      fetchmail -c -v --sslcertpath /etc/ssl pop.mail.yahoo.co.uk
+</I>&gt;<i>      fetchmail -c -v --sslcertpath /etc/ssl/certs pop.mail.yahoo.co.uk
+</I>&gt;<i> includes
+</I>&gt;<i>
+</I>&gt;<i> fetchmail: 6.2.5 querying pop.mail.yahoo.co.uk (protocol POP3) at Tue 22
+</I>&gt;<i> Jan 2008 18:39:51 GMT: poll started
+</I>
+Please note that you're using an unsupported version (as stated on the
+fetchmail home page).
+
+&gt;<i> I do have some certificates from Equifax because when I run (as root)
+</I>&gt;<i> c_rehash
+</I>&gt;<i> its output includes
+</I>&gt;<i> Equifax_Secure_CA.pem =&gt; 594f1775.0
+</I>&gt;<i> Equifax_Secure_eBusiness_CA_1.pem =&gt; e7b8d656.0
+</I>&gt;<i> Equifax_Secure_eBusiness_CA_2.pem =&gt; 8f7b96c4.0
+</I>&gt;<i> Equifax_Secure_Global_eBusiness_CA.pem =&gt; 74c26bd0.0
+</I>
+Have you tried adding/updating the ca-certificates package (apt-get
+install ca-certificates)?
+
+&gt;<i> I have tried the command
+</I>&gt;<i>      openssl s_client -connect pop.mail.yahoo.co.uk:995 test.fil
+</I>&gt;<i> This printed
+</I>
+Try instead the following 2 commands:
+
+openssl s_client -connect pop.mail.yahoo.co.uk:995 &lt; /dev/null | sed
+-ne '/-BEGIN CERTIFICATE-/,/-END CERTIFICATE-/p' &gt;
+/etc/ssl/certs/pop.mail.yahoo.co.uk.pem
+c_rehash
+
+Though you're better installing/updating ca-certificates (if that works).
+
+-- 
+                 Please keep list traffic on the list.
+
+Rob MacGregor
+      Whoever fights monsters should see to it that in the process he
+        doesn't become a monster.                  Friedrich Nietzsche
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001434.html">[fetchmail-users] validating Yahoo SSL certificate
+</A></li>
+	<LI>Next message: <A HREF="001439.html">[fetchmail-users] validating Yahoo SSL certificate
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1435">[ date ]</a>
+              <a href="thread.html#1435">[ thread ]</a>
+              <a href="subject.html#1435">[ subject ]</a>
+              <a href="author.html#1435">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

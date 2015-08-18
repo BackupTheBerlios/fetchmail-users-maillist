@@ -1,0 +1,75 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] fetchmail: SMTP error: 552 Message size exceeds fixed limit
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2006-July/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%3A%20SMTP%20error%3A%20552%20Message%20size%20exceeds%20fixed%20limit&In-Reply-To=%3C20060706034258.GA6025%40jdc%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000490.html">
+   <LINK REL="Next"  HREF="000489.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] fetchmail: SMTP error: 552 Message size exceeds fixed limit</H1>
+    <B>Jason White</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%3A%20SMTP%20error%3A%20552%20Message%20size%20exceeds%20fixed%20limit&In-Reply-To=%3C20060706034258.GA6025%40jdc%3E"
+       TITLE="[fetchmail-users] fetchmail: SMTP error: 552 Message size exceeds fixed limit">jasonjgw at internode.on.net
+       </A><BR>
+    <I>Thu Jul  6 05:42:58 CEST 2006</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000490.html">[fetchmail-users] fetchmail: SMTP error: 552 Message size exceeds fixed limit
+</A></li>
+        <LI>Next message: <A HREF="000489.html">[fetchmail-users] fetchmail: SMTP error: 552 Message size exceeds fixed limit
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#491">[ date ]</a>
+              <a href="thread.html#491">[ thread ]</a>
+              <a href="subject.html#491">[ subject ]</a>
+              <a href="author.html#491">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Thu, Jul 06, 2006 at 02:14:57AM +0100, Stephen Allen wrote:
+&gt;<i> message_size_limit = 10240000
+</I>&gt;<i> 
+</I>&gt;<i> Would I be right in thinking it's the &quot;message_size_limit&quot; that is responsible 
+</I>&gt;<i> for refusing the message?  If so, how big is the message that fetchmail 
+</I>&gt;<i> reported (16681007 octets)?  How does that compare with bytes?
+</I>&quot;Octet&quot; is another word for &quot;byte&quot;. You have a message limit of 10 million
+bytes, but Fetchmail is trying to deliver a message with more than 16 million
+bytes.
+
+If you want this mail to be delivered you'll have to increase the Postfix
+message size limit by adjusting the value of the message_size_limit variable
+in main.cf.
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000490.html">[fetchmail-users] fetchmail: SMTP error: 552 Message size exceeds fixed limit
+</A></li>
+	<LI>Next message: <A HREF="000489.html">[fetchmail-users] fetchmail: SMTP error: 552 Message size exceeds fixed limit
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#491">[ date ]</a>
+              <a href="thread.html#491">[ thread ]</a>
+              <a href="subject.html#491">[ subject ]</a>
+              <a href="author.html#491">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

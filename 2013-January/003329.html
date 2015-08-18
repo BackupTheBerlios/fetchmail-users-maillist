@@ -1,0 +1,136 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] fetchmail basic integration question
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2013-January/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%20basic%20integration%20question&In-Reply-To=%3C20130127150148.GA17583%40stryder.lamafam.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003328.html">
+   <LINK REL="Next"  HREF="003330.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] fetchmail basic integration question</H1>
+    <B>Gerald LaMontagne</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%20basic%20integration%20question&In-Reply-To=%3C20130127150148.GA17583%40stryder.lamafam.org%3E"
+       TITLE="[fetchmail-users] fetchmail basic integration question">gjlama94 at gmail.com
+       </A><BR>
+    <I>Sun Jan 27 16:01:48 CET 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003328.html">[fetchmail-users] fetchmail basic integration question
+</A></li>
+        <LI>Next message: <A HREF="003330.html">[fetchmail-users] fetchmail basic integration question
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3329">[ date ]</a>
+              <a href="thread.html#3329">[ thread ]</a>
+              <a href="subject.html#3329">[ subject ]</a>
+              <a href="author.html#3329">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Generally speaking, fetchmail retrieves mail from a mail server (gmail,
+yahoo, your ISP) and then passes it off to whoever is listening locally
+on port 25- which is (supposed to be!) an MTA such as postfix, exim,
+sendmail.  These then route the mail to local users on the network and,
+in turn, pass the mail off to and MDA (mail delivery agent) dovecot or
+Courier or simply deposit it into a folder (sometime the spool dir,
+sometimes a home dir).  From there, you read it with something like mutt
+or Thunderbird, a mail reader basically.
+
+To confuse matters a bit, the MTA's (exim, postfix, etc) can also send
+mail directly to procmail or maildrop type programs, which are also
+classified as MDA's.  Thus, one of the more confusing aspects of mail
+delivery in 'nix systems is created- which MDA gets its hands on the
+mail first, the mail filter or the &quot;true&quot; MDA, dovecot?
+
+It sounds like your problem is the mail isn't being run through maildrop
+as you expect.  I'm not familiar with the particulars of maildrop, but
+as far as a place to look for solutions, you might want to see if you
+can get postfix to deliver all mails to maildrop, which then hands off
+everything to dovecot using dovecot's &quot;deliver&quot; command.  I have been
+using this basic flow for years without issue, only I'm using exim
+instead of postfix and procmail instead of maildrop.
+
+As such, if you are at least receiving your mail, then your problem
+isn't related to fetchmail.
+
+Hope that helps.
+
+Regards-
+Gerry LaMontagne
+
+On Mon, Jan 28, 2013 at 12:39:43AM +1100, Dr Michael Daly wrote:
+&gt;<i> Hi
+</I>&gt;<i> I am seeking advice on the overall process with *postfix* and *dovecot*
+</I>&gt;<i> when fetchmail is configured to download mail, and then hand it over to
+</I>&gt;<i> maildrop for delivery via the ../bin/mda command. I know that if postfix
+</I>&gt;<i> is stopped, fetchmail complains that it can't deliver to the localhost. So
+</I>&gt;<i> does this mean that postfix and dovecot are serving as middlemen here? I
+</I>&gt;<i> am trying to better understand whats happening here.
+</I>&gt;<i> 
+</I>&gt;<i> If theres a simpler alternative, I am all ears. Roundcube is being used to
+</I>&gt;<i> view the emails.
+</I>&gt;<i> 
+</I>&gt;<i> I'm not seeking a specific explanation at this stage as I am not certain
+</I>&gt;<i> my problem is fetchmail related. I just what to better understand the
+</I>&gt;<i> process and the order of processing. The problem is that my maildrop
+</I>&gt;<i> filtering rules are not being followed when mail is downloaded, though
+</I>&gt;<i> subsequently manually running the mis-delivered emails through the
+</I>&gt;<i> maildrop program on command line sees the same emails delivered
+</I>&gt;<i> *correctly* ie a regex MATCH is produced, as configured in the maildrop
+</I>&gt;<i> mailfilter file. Perhaps a reason for this, as I noticed from the
+</I>&gt;<i> fetchmail logs, is that headers on the emails are 're-written' on
+</I>&gt;<i> delivery?
+</I>&gt;<i> 
+</I>&gt;<i> Am using maildir settings and as far as I can see, the ~/maildir
+</I>&gt;<i> configuration is consistent across postfix, dovecot and maildrop.
+</I>&gt;<i> 
+</I>&gt;<i> Whats even more anomalous is the mail from one server *is* delivered as
+</I>&gt;<i> expect, but not mail from a different server.
+</I>&gt;<i> 
+</I>&gt;<i> Thanks
+</I>&gt;<i> Michael
+</I>&gt;<i> 
+</I>&gt;<i> _______________________________________________
+</I>&gt;<i> fetchmail-users mailing list
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">fetchmail-users at lists.berlios.de</A>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">https://lists.berlios.de/mailman/listinfo/fetchmail-users</A>
+</I>&gt;<i> 
+</I>-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: signature.asc
+Type: application/pgp-signature
+Size: 230 bytes
+Desc: Digital signature
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/fetchmail-users/attachments/20130127/ea8f696d/attachment.pgp">https://lists.berlios.de/pipermail/fetchmail-users/attachments/20130127/ea8f696d/attachment.pgp</A>&gt;
+</PRE>
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003328.html">[fetchmail-users] fetchmail basic integration question
+</A></li>
+	<LI>Next message: <A HREF="003330.html">[fetchmail-users] fetchmail basic integration question
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3329">[ date ]</a>
+              <a href="thread.html#3329">[ thread ]</a>
+              <a href="subject.html#3329">[ subject ]</a>
+              <a href="author.html#3329">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

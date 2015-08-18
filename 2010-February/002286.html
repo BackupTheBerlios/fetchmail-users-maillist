@@ -1,0 +1,87 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] fetchmail runs MDA as root
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2010-February/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%20runs%20MDA%20as%20root&In-Reply-To=%3Cop.u7xunhps1e62zd%40merlin.emma.line.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002285.html">
+   <LINK REL="Next"  HREF="002287.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] fetchmail runs MDA as root</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%20runs%20MDA%20as%20root&In-Reply-To=%3Cop.u7xunhps1e62zd%40merlin.emma.line.org%3E"
+       TITLE="[fetchmail-users] fetchmail runs MDA as root">matthias.andree at gmx.de
+       </A><BR>
+    <I>Thu Feb 11 02:05:31 CET 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002285.html">[fetchmail-users] fetchmail runs MDA as root
+</A></li>
+        <LI>Next message: <A HREF="002287.html">[fetchmail-users] To poll 2 IMAP accounts in the same time?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2286">[ date ]</a>
+              <a href="thread.html#2286">[ thread ]</a>
+              <a href="subject.html#2286">[ subject ]</a>
+              <a href="author.html#2286">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Am 10.02.2010, 23:45 Uhr, schrieb Uli Zappe &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">uli at ritual.org</A>&gt;:
+
+&gt;&gt;<i> The easiest solution would be to override FETCHMAILUSER to the desired  
+</I>&gt;&gt;<i> user
+</I>&gt;<i>
+</I>&gt;<i> But I can't do this individually for each entry in fetchmailrc, can I?
+</I>
+No, that would be a global setting.
+
+&gt;<i> There's no need for maildrop in my usage scenario; fetchmail either  
+</I>&gt;<i> forwards mails to my local postfix server, or it launches procmail.
+</I>&gt;<i>
+</I>&gt;<i> For now, I've ended up by prefixing the action lines in procmailrc  
+</I>&gt;<i> (which call my scripts) with &quot;su &lt;user&gt; -c &quot;, which achieves what it  
+</I>&gt;<i> should and is actually a straightforward solution for me, since in my  
+</I>&gt;<i> case, there's no procmail recipe that could apply to two different  
+</I>&gt;<i> users. (Interestingly, using &quot;su &lt;user&gt; -c &quot; to prefix the mda in  
+</I>&gt;<i> fetchmailrc produced some strange side effects, so I did not pursue this  
+</I>&gt;<i> variant further.)
+</I>
+Probably issues with quoting or perhaps session setup (or lack thereof).  
+Some su(1) commands have a &quot;simulate full login&quot; option (-l or - are  
+common), this may help.
+
+-- 
+Matthias Andree
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002285.html">[fetchmail-users] fetchmail runs MDA as root
+</A></li>
+	<LI>Next message: <A HREF="002287.html">[fetchmail-users] To poll 2 IMAP accounts in the same time?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2286">[ date ]</a>
+              <a href="thread.html#2286">[ thread ]</a>
+              <a href="subject.html#2286">[ subject ]</a>
+              <a href="author.html#2286">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

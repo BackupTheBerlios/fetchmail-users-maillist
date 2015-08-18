@@ -1,0 +1,101 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] &quot;sslcert&quot; not found
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2008-July/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20%22sslcert%22%20not%20found&In-Reply-To=%3C48736FF5.6040906%40gmx.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001608.html">
+   <LINK REL="Next"  HREF="001611.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] &quot;sslcert&quot; not found</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20%22sslcert%22%20not%20found&In-Reply-To=%3C48736FF5.6040906%40gmx.de%3E"
+       TITLE="[fetchmail-users] &quot;sslcert&quot; not found">matthias.andree at gmx.de
+       </A><BR>
+    <I>Tue Jul  8 15:47:33 CEST 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001608.html">[fetchmail-users] moving fetchmail
+</A></li>
+        <LI>Next message: <A HREF="001611.html">[fetchmail-users] &quot;sslcert&quot; not found
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1607">[ date ]</a>
+              <a href="thread.html#1607">[ thread ]</a>
+              <a href="subject.html#1607">[ subject ]</a>
+              <a href="author.html#1607">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Michelle Konzack schrieb:
+&gt;<i> Hello,
+</I>&gt;<i> 
+</I>&gt;<i> I am running a program which need its own fetchmail process, fetchmailrc
+</I>&gt;<i> and procmailrc.
+</I>&gt;<i> 
+</I>&gt;<i> OK, normaly I have used
+</I>&gt;<i> 
+</I>&gt;<i> sslcertpath	/home/michelle.konzack/.certs/
+</I>&gt;<i> 
+</I>&gt;<i> in my fetchmailrc but in the new case I do not want  to  have  the  cert
+</I>&gt;<i> there but in the config directory of my program.  So I  have  downloaded
+</I>&gt;<i> the certificat with mutt and saved it there.  Then I have setup
+</I>&gt;<i> 
+</I>&gt;<i> ----[ '~/.XXXXXXXX/fetchmailrc' ]---------------------------------------
+</I>&gt;<i> &lt;snip&gt;
+</I>&gt;<i> sslcert		/home/michelle.konzack/.XXXXXXXX/fetchmailcert
+</I>&gt;<i> ssl
+</I>&gt;<i> sslproto	tls1
+</I>&gt;<i> sslfingerprint	&quot;B6:12:DD:96:5B:76:4A:B1:5C:14:41:9A:00:05:4D:92&quot;
+</I>&gt;<i> &lt;snip&gt;
+</I>&gt;<i> ------------------------------------------------------------------------
+</I>&gt;<i> 
+</I>&gt;<i> but fetchmail tell me, that it can not find the certificat:
+</I>&gt;<i> 
+</I>&gt;<i> ----[ '~/.XXXXXXXX/fetchmailcert' ]-------------------------------------
+</I>&gt;<i> -----BEGIN CERTIFICATE-----
+</I>[base 64 snipped]
+&gt;<i> -----END CERTIFICATE-----
+</I>&gt;<i> ------------------------------------------------------------------------
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> What I am missing?
+</I>
+Please show the exact unabbreviated and unedited error message, make sure
+you're using 6.3.8 + CVE patches (or newer) and make sure that all
+directories leading to the containing one have execute permission.
+
+-- 
+Matthias Andree
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001608.html">[fetchmail-users] moving fetchmail
+</A></li>
+	<LI>Next message: <A HREF="001611.html">[fetchmail-users] &quot;sslcert&quot; not found
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1607">[ date ]</a>
+              <a href="thread.html#1607">[ thread ]</a>
+              <a href="subject.html#1607">[ subject ]</a>
+              <a href="author.html#1607">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

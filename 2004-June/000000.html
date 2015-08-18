@@ -1,0 +1,112 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] fetchmail doesn't delete mail on 501 response - mail piles up
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2004-June/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%20doesn%27t%20delete%20mail%20on%20501%20response%20-%20mail%20piles%20up&In-Reply-To=%3C000f01c457ad%24464ac340%242001a8c0%40michaweb.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   
+   
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] fetchmail doesn't delete mail on 501 response - mail piles up</H1>
+    <B>John Fawcett</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%20doesn%27t%20delete%20mail%20on%20501%20response%20-%20mail%20piles%20up&In-Reply-To=%3C000f01c457ad%24464ac340%242001a8c0%40michaweb.net%3E"
+       TITLE="[fetchmail-users] fetchmail doesn't delete mail on 501 response - mail piles up">johnml at michaweb.net
+       </A><BR>
+    <I>Mon Jun 21 18:31:56 CEST 2004</I>
+    <P><UL>
+        
+        
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#0">[ date ]</a>
+              <a href="thread.html#0">[ thread ]</a>
+              <a href="subject.html#0">[ subject ]</a>
+              <a href="author.html#0">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>I use fetchmail 6.2.3 passing mail onto postfix via smtp.
+Occasionally, I get a malformed email in my isp
+mailbox with an envelope from address like this
+<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">peter at 61.172.247.54.</A>  That is unacceptable to
+postfix which gives a 501 response straight after
+MAIL FROM
+
+This is part of the SMTP session:
+
+ In:  MAIL FROM:&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">peter at 61.172.247.54</A>&gt; SIZE=240722
+ Out: 501 Bad address syntax
+ In:  RSET
+ Out: 250 Ok
+
+However the mail stays on the pop server and mail just
+piles up there until I enter and cancel it manually. Once
+I cancel that mail, everything proceeds ok. I'm not interested
+in the contents of the message (it originates from a worm)
+but I don't like the need for manual intervention to get
+things unblocked.
+
+This is what fetchmail logs
+Jun 21 18:18:47 turate fetchmail[1145]: 1 message for
+<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">isp-username-munged at ngi.it</A> at pop.ngi.it (240722 octets).
+Jun 21 18:18:47 turate fetchmail[1145]: reading message
+<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">isp-username-munged at ngi.it</A>@pop.ngi.it:1 of 1 (240722 octets)
+Jun 21 18:18:48 turate fetchmail[1145]:  flushed
+Jun 21 18:18:48 turate fetchmail[1145]: client/server protocol error while
+fetching from pop.ngi.it
+Jun 21 18:18:48 turate fetchmail[1145]: Query status=4 (PROTOCOL)
+Jun 21 18:18:56 turate fetchmail[1145]: sleeping at Mon Jun 21 18:18:56 2004
+
+
+Here's fetchmailrc
+
+set daemon 300
+set postmaster <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">fetchmail-bounce-munged at michaweb.net</A>
+set no bouncemail
+set no spambounce
+set syslog
+
+poll &quot;pop.ngi.it&quot;
+protocol pop3 interval 1 no envelope
+username &quot;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">isp-username-munged at munged-ngi.it</A>&quot;
+password &quot;xxxxxxx&quot;
+is <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">local-username-munged at michaweb.net</A> here fetchall
+smtphost mail.michaweb.net
+antispam 501
+
+Any ideas while fetchmail cannot delete the message?
+
+Thanks,
+John
+
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	
+	
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#0">[ date ]</a>
+              <a href="thread.html#0">[ thread ]</a>
+              <a href="subject.html#0">[ subject ]</a>
+              <a href="author.html#0">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

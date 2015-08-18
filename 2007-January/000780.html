@@ -1,0 +1,97 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Fetchmail to Postfix
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2007-January/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Fetchmail%20to%20Postfix&In-Reply-To=%3C43ea8d070701061135s6074fe19mf6f0e8aa07b05eaf%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000779.html">
+   <LINK REL="Next"  HREF="000787.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Fetchmail to Postfix</H1>
+    <B>Rob MacGregor</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Fetchmail%20to%20Postfix&In-Reply-To=%3C43ea8d070701061135s6074fe19mf6f0e8aa07b05eaf%40mail.gmail.com%3E"
+       TITLE="[fetchmail-users] Fetchmail to Postfix">rob.macgregor at gmail.com
+       </A><BR>
+    <I>Sat Jan  6 20:35:53 CET 2007</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000779.html">[fetchmail-users] Fetchmail to Postfix
+</A></li>
+        <LI>Next message: <A HREF="000787.html">[fetchmail-users] Fetchmail to Postfix
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#780">[ date ]</a>
+              <a href="thread.html#780">[ thread ]</a>
+              <a href="subject.html#780">[ subject ]</a>
+              <a href="author.html#780">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On 1/6/07, Support @ Smart Networking &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">support at mailforyou.co.uk</A>&gt; wrote:
+&gt;<i> Im finding it hard to decide which is the best solution to use.
+</I>&gt;<i> It looks like copies of emails could potentially either disapear into the
+</I>&gt;<i> etha
+</I>
+Only if you've managed to completely break your postfix setup.
+Fetchmail doesn't lose emails (though see the section on Spam
+Filtering - fetchmail *will* drop emails with the same message ID if
+it's already seen them).
+
+&gt;<i> or even worse be delivered to a user which should not even receive them
+</I>&gt;<i> eg. Bcc
+</I>
+Depends on whether your ISP provides the required headers.  If the
+email contains no details as to the user it was intended for then
+you're out of luck.  This is documented in the man page under
+&quot;multi-drop&quot;.
+
+&gt;<i> What is the best solution ?
+</I>
+Depends on the message headers you have to work with.
+
+&gt;<i> Could you show me the location of a .fetchmailrc script that I could look
+</I>&gt;<i> at?
+</I>
+They're in the man page :)
+
+If you could provide a sample header from an email (ideally one BCCd)
+then I'm sure somebody can provide something a little more.
+
+-- 
+                 Please keep list traffic on the list.
+
+Rob MacGregor
+      Whoever fights monsters should see to it that in the process he
+        doesn't become a monster.                  Friedrich Nietzsche
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000779.html">[fetchmail-users] Fetchmail to Postfix
+</A></li>
+	<LI>Next message: <A HREF="000787.html">[fetchmail-users] Fetchmail to Postfix
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#780">[ date ]</a>
+              <a href="thread.html#780">[ thread ]</a>
+              <a href="subject.html#780">[ subject ]</a>
+              <a href="author.html#780">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

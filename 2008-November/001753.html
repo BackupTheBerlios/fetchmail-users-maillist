@@ -1,0 +1,203 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Add headers in notification for oversized	messages deletet by limitflush
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2008-November/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Add%20headers%20in%20notification%20for%20oversized%0A%09messages%20deletet%20by%20limitflush&In-Reply-To=%3C3cca1a64b15dc941811c0d59ba032a01%40lora%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001751.html">
+   <LINK REL="Next"  HREF="001754.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Add headers in notification for oversized	messages deletet by limitflush</H1>
+    <B>Boxhorn-EDV | Bernhard Boxhorn</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Add%20headers%20in%20notification%20for%20oversized%0A%09messages%20deletet%20by%20limitflush&In-Reply-To=%3C3cca1a64b15dc941811c0d59ba032a01%40lora%3E"
+       TITLE="[fetchmail-users] Add headers in notification for oversized	messages deletet by limitflush">bernhard at boxhorn-edv.com
+       </A><BR>
+    <I>Tue Nov 25 17:17:04 CET 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001751.html">[fetchmail-users] Add headers in notification for oversized	messages deletet by limitflush
+</A></li>
+        <LI>Next message: <A HREF="001754.html">[fetchmail-users] Add headers in notification for oversized	messages deletet by limitflush
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1753">[ date ]</a>
+              <a href="thread.html#1753">[ thread ]</a>
+              <a href="subject.html#1753">[ subject ]</a>
+              <a href="author.html#1753">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE> 
+&gt;<i>&quot;Rob MacGregor&quot; &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">rob.macgregor at gmail.com</A>&gt; writes:
+</I>
+&gt;&gt;<i> On Fri, Nov 21, 2008 at 08:17, Boxhorn-EDV | Bernhard Boxhorn 
+</I>&gt;&gt;<i> &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">bernhard at boxhorn-edv.com</A>&gt; wrote:
+</I>&gt;&gt;<i> Hi fetchmail list,
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> we&#180;re using fetchmail for smaller servers to pull mails from the pop 
+</I>&gt;&gt;<i> servers to their mailboxes, mostly when we don&#180;t have control over 
+</I>&gt;&gt;<i> the MX settings.
+</I>&gt;&gt;<i> To keep their mailboxes small and prevent the users for missusing 
+</I>&gt;&gt;<i> e-mail for data transfers with large files we limit the local MTA to 
+</I>&gt;&gt;<i> e.g. 10 MB.
+</I>&gt;&gt;<i> Often the MX allows bigger messages. So if there are bigger messages 
+</I>&gt;&gt;<i> we delete them with the --limitflush option, user gets a notification
+</I>
+&gt;&gt;<i> that a oversized message has been deleted.
+</I>&gt;&gt;<i> Everything fine until now.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> The Problem is: The user has no clue who was the original sender and 
+</I>&gt;&gt;<i> the sender does not get any error message.
+</I>&gt;&gt;<i> So user knows there was a big message and it has been deleted and 
+</I>&gt;&gt;<i> sender thinks user received the message, there is a lack of
+</I>information.
+
+
+&gt;<i> The best approach for you is probably to configure the local MTA with 
+</I>&gt;<i> the size limit, but not configure fetchmail with limits.  That way 
+</I>&gt;<i> fetchmail will attempt the delivery and a bounce message will be 
+</I>&gt;<i> generated to the original sender.
+</I>
+&gt;<i>I'm not sure how this can actually work.
+</I>&gt;<i>
+</I>&gt;<i>Fetchmail uses the ESMTP SIZE extension if advertised by the SMTP sink,
+</I>so it might see the rejection before the DATA phaset already -- and
+waiving the &quot;attempt the delivery&quot; part of your assumption.
+
+&gt;<i>WRT Bernhard's ideas, I sympathize with NOT abusing mail for bulk
+</I>transfers, OTOH &quot;to keep their mailboxes small&quot; isn't a motivation to
+justify that -- technical problems around large messages &gt;can be solved
+with efficient indexing Maildir-based IMAP servers such as Dovecot 1.1.
+
+Hi Matthias,
+
+Sorry for my formal errors, trying to improve.
+
+youre remark with the IMAP server is not exactly helping us, we're using
+fetchmail for various mail storage systems like Exchange, Communigate,
+Cyrus IMAP... The Problem with the users is that they missuse mails for
+big attachements and leave them stored in their mailbox, we set quotas
+but they always cry for bigger mailboxes... At the end it doesn't matter
+what mail storage system they use, it's getting messed up. Anyway, I
+don't think it's neccessary to discuss about that topic, everybody knows
+user behaviour, we definitly want to limit the mailsize and we hope to
+find a solution that there is no lack in information at the end. We want
+either the user be informed that Mail YXZ from <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">abc at efg.com</A> was deleted
+because it was to big, or the sender be informed that the mail delivery
+has failed because the mail was too big. At the moment we have the
+situation that there was a mail, it was oversized and got deletet, but
+nobody knows from whom it was send, on the other side the sender doesn't
+get any information and he thinks the user received the mail - a lack of
+information.
+
+Here you find a log for a oversized mail (BTW, we're using different
+versions of fetchmail, the problem is the same with all versions):
+
+idefix ~ # fetchmail -d0 --limit 100 --limitflush -f /etc/fetchmailrc
+-vvv
+fetchmail: WARNING: Running as root is discouraged.
+fetchmail: 6.3.8 querying post.strato.de (protocol POP3) at Tue 25 Nov
+2008 03:43:42 PM CET: poll started
+Trying to connect to 81.169.145.136/110...connected.
+fetchmail: POP3&lt; +OK POP3 server ready
+&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">4125144.13279.1227624224 at post.webmailer.de</A>&gt;
+fetchmail: POP3&gt; CAPA
+fetchmail: POP3&lt; +OK Capability list follows:
+fetchmail: POP3&lt; EXPIRE 7
+fetchmail: POP3&lt; PIPELINING
+fetchmail: POP3&lt; RESP-CODES
+fetchmail: POP3&lt; TOP
+fetchmail: POP3&lt; USER
+fetchmail: POP3&lt; UIDL
+fetchmail: POP3&lt; SASL CRAM-MD5
+fetchmail: POP3&lt; .
+fetchmail: post.strato.de: opportunistic upgrade to TLS failed, trying
+to continue.
+fetchmail: POP3&gt; AUTH CRAM-MD5
+fetchmail: POP3&lt; +
+PDQxMjUxNDQuMTMyNzkuMTIyNzYyNDIyNEBwb3N0LndlYm1haWxlci5kZT4=
+fetchmail: decoded as &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">4125144.13279.1227624224 at post.webmailer.de</A>&gt;
+fetchmail: POP3&gt;
+bm8taXBAYm94aG9ybi1lZHYuY29tIDdlYjI0YjIyNzUwMDMyZWI5NTQyN2Q2MDg4MzY5MmIz
+fetchmail: POP3&lt; +OK User logged in, proceed.
+fetchmail: selecting or re-polling default folder
+fetchmail: POP3&gt; STAT
+fetchmail: POP3&lt; +OK 1 111713
+fetchmail: POP3&gt; LAST
+fetchmail: POP3&lt; -ERR Syntax error, command unrecognized
+fetchmail: Syntax error, command unrecognized
+fetchmail: POP3&gt; UIDL
+fetchmail: POP3&lt; +OK 1 messages, listing follows
+fetchmail: POP3&lt; 1 ebe0d0d202ee76b2f42ce7ea8c488bf7
+fetchmail: 1 is unseen
+fetchmail: POP3&lt; .
+1 message for <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">no-ip at boxhorn-edv.com</A> at post.strato.de (111713 octets).
+fetchmail: POP3&gt; LIST 1
+fetchmail: POP3&lt; +OK 1 111713
+skipping message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">no-ip at boxhorn-edv.com</A>@post.strato.de:1 (111713 octets)
+(oversized) flushed
+fetchmail: POP3&gt; DELE 1
+fetchmail: POP3&lt; +OK Message 1 deleted
+fetchmail: POP3&gt; QUIT
+fetchmail: POP3&lt; +OK Closing connection
+fetchmail: 6.3.8 querying post.strato.de (protocol POP3) at Tue 25 Nov
+2008 03:43:43 PM CET: poll completed
+fetchmail: swapping UID lists
+fetchmail: Query status=1 (NOMAIL)
+fetchmail: Deleting fetchids file.
+fetchmail: normal termination, status 1
+fetchmail: Deleting fetchids file.
+
+
+
+And here is the information the user gets:
+
+The following oversized messages were deleted on server post.strato.de
+account <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">no-ip at boxhorn-edv.com</A>:
+
+  1 msg 24968586 octets long deleted by fetchmail.
+
+-- 
+The Fetchmail Daemon
+
+
+So, thanks to everybody taking his time and I hope we find a solution.
+It would give us, even if we don't have control over the MX MTA, the
+possibility to prevent users using too big messages.
+Bye Bernhard
+
+
+
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001751.html">[fetchmail-users] Add headers in notification for oversized	messages deletet by limitflush
+</A></li>
+	<LI>Next message: <A HREF="001754.html">[fetchmail-users] Add headers in notification for oversized	messages deletet by limitflush
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1753">[ date ]</a>
+              <a href="thread.html#1753">[ thread ]</a>
+              <a href="subject.html#1753">[ subject ]</a>
+              <a href="author.html#1753">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

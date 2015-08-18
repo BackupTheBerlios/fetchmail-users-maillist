@@ -1,0 +1,104 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] fetchmail from outside firewall without ssh on	mail server
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2011-August/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%20from%20outside%20firewall%20without%20ssh%0A%20on%09mail%20server&In-Reply-To=%3C4E372698.4060505%40realloc.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002873.html">
+   <LINK REL="Next"  HREF="002875.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] fetchmail from outside firewall without ssh on	mail server</H1>
+    <B>Derek Simkowiak</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%20from%20outside%20firewall%20without%20ssh%0A%20on%09mail%20server&In-Reply-To=%3C4E372698.4060505%40realloc.net%3E"
+       TITLE="[fetchmail-users] fetchmail from outside firewall without ssh on	mail server">dereks at realloc.net
+       </A><BR>
+    <I>Tue Aug  2 00:20:08 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002873.html">[fetchmail-users] fetchmail from outside firewall without ssh on mail server
+</A></li>
+        <LI>Next message: <A HREF="002875.html">[fetchmail-users] fetchmail bad header problem
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2874">[ date ]</a>
+              <a href="thread.html#2874">[ thread ]</a>
+              <a href="subject.html#2874">[ subject ]</a>
+              <a href="author.html#2874">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>&gt;<i>  Is there a way to use fetchmail from a machine outside of the department network, thru this &quot;host.dept.fr&quot; e.g.?
+</I>
+     Yes.  Use OpenVPN or SSH.
+
+     If you have root and an available (non-firewalled) port, you can 
+set up an OpenVPN server on host.dept.fr and then connect to it from 
+outside the network.  This will give you true &quot;remote&quot; access.  You 
+should check with your I.T. department first, though, as they probably 
+already have a VPN server you can use (or they might have a policy 
+against setting up VPNs on your own).
+
+     Since you already have SSH access on host.dept.fr, it would be 
+easier to set up an SSH tunnel.  That does not require root.  But, it 
+requires that you tell fetchmail to connect to &quot;localhost&quot; when 
+accessing it over the SSH tunnel.  Google &quot;ssh tunnel imap&quot; and read any 
+of the first four results.
+
+     Since this is networking issue, and not directly related to 
+fetchmail or IMAP, please direct any follow-up questions to the 
+appropriate OpenVPN or SSH mailing list.
+
+Thanks,
+Derek Simkowiak
+
+On 08/01/2011 02:05 PM, Jocelyn Etienne wrote:
+&gt;<i>
+</I>&gt;<i> Hello
+</I>&gt;<i>
+</I>&gt;<i> I usually use fetchmail from within my department using IMAP.
+</I>&gt;<i> When I'm trying from outside, I get:
+</I>&gt;<i> IMAP connection to mailserver.dept.fr failed: No route to host
+</I>&gt;<i>
+</I>&gt;<i> I have read about using the command preconnect and ssh, however I cannot ssh to the mailserver itself (neither from outside or within my department network), I can only ssh to some other host behing the firewall, say host.dept.fr. All the tutorials I've found require an ssh account on the mailserver.
+</I>&gt;<i>
+</I>&gt;<i> Is there a way to use fetchmail from a machine outside of the department network, thru this &quot;host.dept.fr&quot; e.g.?
+</I>&gt;<i>
+</I>&gt;<i> Regards,
+</I>&gt;<i> Jocelyn
+</I>&gt;<i> _______________________________________________
+</I>&gt;<i> fetchmail-users mailing list
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">fetchmail-users at lists.berlios.de</A>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">https://lists.berlios.de/mailman/listinfo/fetchmail-users</A>
+</I>
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002873.html">[fetchmail-users] fetchmail from outside firewall without ssh on mail server
+</A></li>
+	<LI>Next message: <A HREF="002875.html">[fetchmail-users] fetchmail bad header problem
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2874">[ date ]</a>
+              <a href="thread.html#2874">[ thread ]</a>
+              <a href="subject.html#2874">[ subject ]</a>
+              <a href="author.html#2874">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

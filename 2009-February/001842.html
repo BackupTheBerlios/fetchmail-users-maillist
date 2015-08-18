@@ -1,0 +1,129 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Overall setup advice request
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2009-February/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Overall%20setup%20advice%20request&In-Reply-To=%3CB39C9E06-55E7-4A89-8849-25DC2063C56B%40ukgb.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001841.html">
+   <LINK REL="Next"  HREF="001844.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Overall setup advice request</H1>
+    <B>Ken Gillett</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Overall%20setup%20advice%20request&In-Reply-To=%3CB39C9E06-55E7-4A89-8849-25DC2063C56B%40ukgb.net%3E"
+       TITLE="[fetchmail-users] Overall setup advice request">ken at ukgb.net
+       </A><BR>
+    <I>Tue Feb 10 14:30:13 CET 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001841.html">[fetchmail-users] fetchmail @ HPUX destroies mails fetched from	Exchange
+</A></li>
+        <LI>Next message: <A HREF="001844.html">[fetchmail-users] Overall setup advice request
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1842">[ date ]</a>
+              <a href="thread.html#1842">[ thread ]</a>
+              <a href="subject.html#1842">[ subject ]</a>
+              <a href="author.html#1842">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>I have been using Fetchmail for some years and it is currently  
+functioning correctly and doing what is required, but I'm thinking it  
+might be possible to optimize its operation and I hoped some experts  
+would be able to make a few suggestions.
+
+Currently I have a MacOSX (mail &amp; other) server and several Mac and  
+Windows clients, all accessing their mail on the server via IMAP, so  
+one user who might be using several different machines (i.e. me) can  
+always access up to date mail. Fetchmail runs on the server in daemon  
+mode and as directed by a single configuration file, collects mail for  
+all accounts at 10 min. intervals and it all works. But I have 2  
+issues I'd like to improve on, although in fact it might be considered  
+the same issue - I want to improve the scheduling.
+
+My first thought was to use IMAP IDLE so the mail would be 'fetched'  
+according to when it arrived at the ISP, but I could do with some help  
+regarding how this functions in fetchmail since the manual states it  
+currently only works on one folder at a time and I really can't figure  
+what this means. My config file describes one server and several  
+users, does that mean it could only be triggered by mail arriving at  
+one of those users? Or only a single folder for each user? If the  
+latter, then not a problem since there is only the INBOX that would  
+contain relevant mail, but if it's the former, would running a  
+separate instance of fetchmail for each user with its own config file  
+solve that?
+
+The next problem is that my ISP doesn't support IDLE. Can anyone  
+suggest how to get around this? Does anyone know of a service that  
+could offer say half a dozen mailboxes and that could 'push' email to  
+fetchmail, yet also provide webmail for when my system is not  
+running ? I could arrange a static IP address if required, but in any  
+case I can only see IMAP and IDLE as being able to offer all that.
+
+My other approach was to try and control the poll interval according  
+to usage. Perhaps only run fetchmail for a user when actually logged  
+in? Trouble is the users do not log in to the server so it would be  
+tricky to ascertain whether that mail client was up and running or  
+maybe the whole machine was asleep. What about running fetchmail on  
+the client machines? Apart from the fact that it would have to fetch  
+the mail then pass it to the local server to then be able to download  
+it back from that server with the mail client (Apple's Mail.app) which  
+all seems to involve a lot of tooing and froing, if one user (me  
+again) needs to be able to be logged in on more than one machine, how  
+could I make those all interact correctly and avoid multiple instances  
+of fetchmail (i.e. one on each machine on which I have an active  
+login) all trying to do the same thing?
+
+Finally, I want to run fetchmail from launchd, so I guess I  use the - 
+N option to not detach, but how can I change the polling frequency of  
+the running daemon? I could set it up with a large interval as the  
+default and then just call fetchmail on a more frequent basis and wake  
+it up when required, but how could I change the rate with a single  
+command? Could I just run the original command again, but with a  
+different -dnnn? Would I need to quit it first?
+
+So, no great technical problems here, but I'd appreciate comments on  
+how I might improve my setup and maybe solve some of these issues.
+
+Thanks.
+
+
+
+Ken G i l l e t t
+
+_/_/_/_/_/_/_/_/
+
+
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001841.html">[fetchmail-users] fetchmail @ HPUX destroies mails fetched from	Exchange
+</A></li>
+	<LI>Next message: <A HREF="001844.html">[fetchmail-users] Overall setup advice request
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1842">[ date ]</a>
+              <a href="thread.html#1842">[ thread ]</a>
+              <a href="subject.html#1842">[ subject ]</a>
+              <a href="author.html#1842">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

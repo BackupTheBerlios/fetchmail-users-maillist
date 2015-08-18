@@ -1,0 +1,92 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] fetchmail doesn&#180;t fetching
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2006-January/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20%3D%3Fiso-8859-1%3FQ%3Ffetch%3F%3D%0A%09%3D%3Fiso-8859-1%3FQ%3Fmail_doesn%3DB4t%3F%3D%20fetching&In-Reply-To=%3C20060126083538.GD13125%40merlin.emma.line.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000267.html">
+   <LINK REL="Next"  HREF="000269.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] fetchmail doesn&#180;t fetching</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20%3D%3Fiso-8859-1%3FQ%3Ffetch%3F%3D%0A%09%3D%3Fiso-8859-1%3FQ%3Fmail_doesn%3DB4t%3F%3D%20fetching&In-Reply-To=%3C20060126083538.GD13125%40merlin.emma.line.org%3E"
+       TITLE="[fetchmail-users] fetchmail doesn&#180;t fetching">matthias.andree at gmx.de
+       </A><BR>
+    <I>Thu Jan 26 09:35:38 CET 2006</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000267.html">[fetchmail-users] Re: [fetchmail-users] fetchmail doesn&#180;t fetching
+</A></li>
+        <LI>Next message: <A HREF="000269.html">[fetchmail-users] Re: [fetchmail-users] Re: [fetchmail-users] fetchmail doesn&#180;t fetching
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#268">[ date ]</a>
+              <a href="thread.html#268">[ thread ]</a>
+              <a href="subject.html#268">[ subject ]</a>
+              <a href="author.html#268">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Thu, 26 Jan 2006, Alex Moreno wrote:
+
+&gt;<i> smtp works ok. I&#180;m using qmail some time ago and now, after installing mutt
+</I>&gt;<i> i can send mails without problems... The problem appears trying to read the
+</I>&gt;<i> incoming mails by pop3... fetchmail is not writing my mails on ~/Mail or any
+</I>&gt;<i> other known directory...
+</I>
+Please do not top-post.  <A HREF="http://www.netmeister.org/news/learn2quote.html">http://www.netmeister.org/news/learn2quote.html</A>
+applies to mailing lists, too.
+
+Fetchmail DOES NOT (as of 6.3.X and older versions) deliver to mailboxes
+or maildirs.  Fetchmail hands mail off to your SMTP server (qmail in
+your case), which is responsible for delivery.
+
+Check your qmail configuration (its mail log, qmail-showctl
+output, qmail-qread and similar) to find out where your mail is stuck or
+going to. Double-check if qmail knows what your computer is called
+(/var/qmail/control/me, .../locals).
+
+
+Side note: qmail turned out over the years to be a defective and
+unmaintained software package, and rather complicated to set up. My
+/personal/ favorite alternatives at this time are Postfix + Dovecot.
+Others may be happy with Courier-IMAP, popa3d, Exim, Courier as a whole,
+or other systems. (&lt;<A HREF="http://www.postfix.org/">http://www.postfix.org/</A>&gt;, &lt;<A HREF="http://dovecot.org/">http://dovecot.org/</A>&gt;)
+
+Details on qmail flaws are given in
+&lt;<A HREF="http://home.pages.de/~mandree/qmail-bugs.html">http://home.pages.de/~mandree/qmail-bugs.html</A>&gt;.
+
+-- 
+Matthias Andree
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000267.html">[fetchmail-users] Re: [fetchmail-users] fetchmail doesn&#180;t fetching
+</A></li>
+	<LI>Next message: <A HREF="000269.html">[fetchmail-users] Re: [fetchmail-users] Re: [fetchmail-users] fetchmail doesn&#180;t fetching
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#268">[ date ]</a>
+              <a href="thread.html#268">[ thread ]</a>
+              <a href="subject.html#268">[ subject ]</a>
+              <a href="author.html#268">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

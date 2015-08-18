@@ -1,0 +1,98 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] [PATCH] Re: Problem with Demon's new Microsoft	Exchange Server 2010 service
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2012-May/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20%5BPATCH%5D%20Re%3A%20Problem%20with%20Demon%27s%20new%20Microsoft%0A%09Exchange%20Server%202010%20service&In-Reply-To=%3C1336552512.47202.YahooMailNeo%40web192606.mail.sg3.yahoo.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003114.html">
+   <LINK REL="Next"  HREF="003116.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] [PATCH] Re: Problem with Demon's new Microsoft	Exchange Server 2010 service</H1>
+    <B>Sunil Shetye</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20%5BPATCH%5D%20Re%3A%20Problem%20with%20Demon%27s%20new%20Microsoft%0A%09Exchange%20Server%202010%20service&In-Reply-To=%3C1336552512.47202.YahooMailNeo%40web192606.mail.sg3.yahoo.com%3E"
+       TITLE="[fetchmail-users] [PATCH] Re: Problem with Demon's new Microsoft	Exchange Server 2010 service">sunilshetye at rocketmail.com
+       </A><BR>
+    <I>Wed May  9 10:35:12 CEST 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003114.html">[fetchmail-users] Problem with Demon's new Microsoft Exchange Server 2010 service
+</A></li>
+        <LI>Next message: <A HREF="003116.html">[fetchmail-users] [PATCH] Re: Problem with Demon's new Microsoft Exchange Server 2010 service
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3115">[ date ]</a>
+              <a href="thread.html#3115">[ thread ]</a>
+              <a href="subject.html#3115">[ subject ]</a>
+              <a href="author.html#3115">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+&gt;<i> &gt; Problem:
+</I>
+&gt;<i> &gt; I have recently been migrated to Demon's new service which appears to be
+</I>&gt;<i> &gt; based on Microsoft Exchange Server 2010.&#160; The migration appeared to have
+</I>&gt;<i> &gt; been successful with messages being fetched.&#160; Then fetching of messages
+</I>&gt;<i> &gt; ceased.&#160; I added &quot;-vvv&quot; to /etc/init.d/fetchmail and restarted
+</I>&gt;<i> &gt; fetchmail.&#160; Here are edited highlights from /var/log/fetchmail:
+</I>
+...
+
+&gt;<i> &gt; fetchmail: IMAP&gt; A0009 FETCH 1 RFC822.HEADER
+</I>&gt;<i> &gt; fetchmail: IMAP&lt; A0009 OK FETCH completed.
+</I>&gt;<i> &gt; fetchmail: Incorrect FETCH response: OK FETCH COMPLETED..
+</I>
+Attached is a patch to fix this problem. Please note that this patch will not change the behaviour for mails with such responses. It will ensure that mails after the current mail will be fetched as is expected.
+
+&gt;<i> Sunil, for resilience towards massive faults on the server side, we'll
+</I>&gt;<i> probably have to add an error counter so that fetchmail won't attempt to
+</I>&gt;<i> fetch hundreds of messages' headers and skip over all of them when the
+</I>&gt;<i> server exhibits systematic faults (and not just some individual
+</I>&gt;<i> messages, as your report suggests).
+</I>
+I have added a counter to this patch to log the number of transient errors. I am tempted to add a open_warning_by_mail() instead of just logging it for too many transient errors. However, if such mails are accumulating, there will be a warning mail per poll leading to excessive warning mails.
+
+Also note that the bug is that fetchmail currently stops fetching the remaining mails from the folder the moment it gets an unexpected response. As this problematic mail is not removed, fetchmail stops fetching mails from the folder completely across polls. This patch ensures that fetching of the remaining mails continues.
+
+-- 
+Sunil Shetye.
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: 0001-fetchmail-workaround-for-a-bug-in-Microsoft-Exchange.patch
+Type: text/x-patch
+Size: 4487 bytes
+Desc: not available
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/fetchmail-users/attachments/20120509/1cd130fd/attachment.bin">https://lists.berlios.de/pipermail/fetchmail-users/attachments/20120509/1cd130fd/attachment.bin</A>&gt;
+</PRE>
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003114.html">[fetchmail-users] Problem with Demon's new Microsoft Exchange Server 2010 service
+</A></li>
+	<LI>Next message: <A HREF="003116.html">[fetchmail-users] [PATCH] Re: Problem with Demon's new Microsoft Exchange Server 2010 service
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3115">[ date ]</a>
+              <a href="thread.html#3115">[ thread ]</a>
+              <a href="subject.html#3115">[ subject ]</a>
+              <a href="author.html#3115">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

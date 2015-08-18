@@ -1,0 +1,100 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] poblems with pop3 and expunge
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2010-June/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20poblems%20with%20pop3%20and%20expunge&In-Reply-To=%3Cop.vetx0yow1e62zd%40merlin.emma.line.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002393.html">
+   <LINK REL="Next"  HREF="002395.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] poblems with pop3 and expunge</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20poblems%20with%20pop3%20and%20expunge&In-Reply-To=%3Cop.vetx0yow1e62zd%40merlin.emma.line.org%3E"
+       TITLE="[fetchmail-users] poblems with pop3 and expunge">matthias.andree at gmx.de
+       </A><BR>
+    <I>Fri Jun 25 02:23:12 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002393.html">[fetchmail-users] poblems with pop3 and expunge
+</A></li>
+        <LI>Next message: <A HREF="002395.html">[fetchmail-users] poblems with pop3 and expunge
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2394">[ date ]</a>
+              <a href="thread.html#2394">[ thread ]</a>
+              <a href="subject.html#2394">[ subject ]</a>
+              <a href="author.html#2394">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Am 25.06.2010, 00:06 Uhr, schrieb Lorenzo Milesi:
+
+&gt;<i> Hi.
+</I>&gt;<i>
+</I>&gt;<i> I configured a system fetchmail to use expunge, in order to be sure I  
+</I>&gt;<i> could delete mails.
+</I>&gt;<i> Sadly, this doesn't seem to work...
+</I>&gt;<i> My /etc/fetchmailrc looks as follows:
+</I>&gt;<i>
+</I>&gt;<i> set daemon 300
+</I>&gt;<i> set syslog
+</I>&gt;<i> defaults proto pop3 timeout 18000 uidl expunge 500
+</I>&gt;<i> poll my.mail.server proto pop3
+</I>&gt;<i>     user &quot;my_account&quot; password &quot;my_pass&quot; is &quot;user&quot;  keep expunge 50
+</I>&gt;<i>
+</I>&gt;<i> but I see no command after the 50th deleted mail. It goes straight to  
+</I>&gt;<i> the end, when the pop3 server takes ages to respond to QUIT (I have a  
+</I>&gt;<i> lot of messages on this mbox), so wasting time.
+</I>&gt;<i> I tried several times but no way.
+</I>&gt;<i>
+</I>&gt;<i> What's wrong?
+</I>
+The configuration is contradictory. &quot;keep&quot; prevents deletions altogether -  
+and then there will be nothing to expunge.
+
+&gt;<i> using fm 6.3.6-1etch2 on debian etch.
+</I>
+This is an ancient fetchmail version, three and a half years old, there  
+have been 11 bugfix releases since to date. 6.3.6 is unsupported.  You  
+were lucky this time because it appears to be a configuration issue.
+
+If a reconfiguration does not solve it, please build 6.3.17 from source  
+and run it according to &lt;<A HREF="http://www.fetchmail.info/fetchmail-FAQ.html#G3">http://www.fetchmail.info/fetchmail-FAQ.html#G3</A>&gt;.
+
+Debian/Etch also has been out of support support since February 2010.
+Please upgrade to Debian/Lenny.
+
+-- 
+Matthias Andree
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002393.html">[fetchmail-users] poblems with pop3 and expunge
+</A></li>
+	<LI>Next message: <A HREF="002395.html">[fetchmail-users] poblems with pop3 and expunge
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2394">[ date ]</a>
+              <a href="thread.html#2394">[ thread ]</a>
+              <a href="subject.html#2394">[ subject ]</a>
+              <a href="author.html#2394">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

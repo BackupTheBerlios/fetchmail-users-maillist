@@ -1,0 +1,111 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] download mail and stere it
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2011-August/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20download%20mail%20and%20stere%20it&In-Reply-To=%3C4E50DDF2.6090605%40gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002918.html">
+   <LINK REL="Next"  HREF="002920.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] download mail and stere it</H1>
+    <B>Xavier</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20download%20mail%20and%20stere%20it&In-Reply-To=%3C4E50DDF2.6090605%40gmail.com%3E"
+       TITLE="[fetchmail-users] download mail and stere it">fetchmailquestions at gmail.com
+       </A><BR>
+    <I>Sun Aug 21 12:29:06 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002918.html">[fetchmail-users] download mail and stere it
+</A></li>
+        <LI>Next message: <A HREF="002920.html">[fetchmail-users] download mail and stere it
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2919">[ date ]</a>
+              <a href="thread.html#2919">[ thread ]</a>
+              <a href="subject.html#2919">[ subject ]</a>
+              <a href="author.html#2919">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Al 21/08/2011 12:15, En/na Matthias Andree ha escrit:
+&gt;&gt;<i> &gt;  Hi Matthias,
+</I>&gt;&gt;<i> &gt;  
+</I>&gt;&gt;<i> &gt;  Ok,
+</I>&gt;&gt;<i> &gt;  
+</I>&gt;&gt;<i> &gt;  Then, Fetchmail, do what it exactly ?
+</I>&gt;&gt;<i> &gt;  
+</I>&gt;&gt;<i> &gt;  Fetchmail don't download anywhere of local machine ( my computer in my
+</I>&gt;&gt;<i> &gt;  example ) the mail without pass a MDA in command line arguments or in
+</I>&gt;&gt;<i> &gt;  your configuration file ?
+</I>&gt;&gt;<i> &gt;  
+</I>&gt;&gt;<i> &gt;  Fetchmail, without a MDA, only &quot;look&quot; the mail server ? And report
+</I>&gt;&gt;<i> &gt;  information about the mail store in the mail server ( gmail.com in my
+</I>&gt;&gt;<i> &gt;  example ).
+</I>&gt;<i> Xavier, I don't quite understand your questions, I'll try anyways.  If
+</I>&gt;<i> you can write French better than English, I'll try to understand that.
+</I>&gt;<i>
+</I>&gt;<i> - fetchmail downloads the mail, but does not store or deliver it by
+</I>&gt;<i>    itself.  Fetchmail normally sends mail to the SMTP server at
+</I>&gt;<i>    localhost (127.0.0.1 or ::1) and sends the downloaded messages there.
+</I>&gt;<i>
+</I>&gt;<i>    If it does not have success, the messages are kept on the upstream
+</I>&gt;<i>    server.
+</I>&gt;<i>
+</I>&gt;<i>    You can configure other ways, but in no case will fetchmail deliver
+</I>&gt;<i>    to /var[/spool]/mail/xavier or similar. You need additional programs
+</I>&gt;<i>    for that.
+</I>&gt;<i>
+</I>&gt;<i> - Note that &quot;mail server&quot; is too unclear. It can be a local POP3, SMTP,
+</I>&gt;<i>    LMTP, or IMAP server, or an upstream POP3 or IMAP server (or more).
+</I>
+Hi Matthias,
+
+Ok.
+
+Sorry for my bad English language.
+
+I don't know French language, only Catalan, Spanish and a little bit 
+English.
+
+For your answer, if Fetchmail download the mail, where store it ?
+
+In conclusion, the correct way to use Fetchmail is:
+
+REMOTE OR LOCAL POP.SERVER.COM &lt;-&gt; FETCHMAIL -&gt; MDA ( MAILDROP ) -&gt; 
+STORE MAIL ( /var[/spool]/mail/xavier ) &lt;-&gt; MUA ( MUTT ).
+
+Is correct this representation of how Fetchmail work in correct way ?
+
+See you.
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002918.html">[fetchmail-users] download mail and stere it
+</A></li>
+	<LI>Next message: <A HREF="002920.html">[fetchmail-users] download mail and stere it
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2919">[ date ]</a>
+              <a href="thread.html#2919">[ thread ]</a>
+              <a href="subject.html#2919">[ subject ]</a>
+              <a href="author.html#2919">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

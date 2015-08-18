@@ -1,0 +1,94 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] missing local microsoft certificate
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2011-February/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20missing%20local%20microsoft%20certificate&In-Reply-To=%3C4D679C3E.40709%40gmx.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002670.html">
+   <LINK REL="Next"  HREF="002672.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] missing local microsoft certificate</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20missing%20local%20microsoft%20certificate&In-Reply-To=%3C4D679C3E.40709%40gmx.de%3E"
+       TITLE="[fetchmail-users] missing local microsoft certificate">matthias.andree at gmx.de
+       </A><BR>
+    <I>Fri Feb 25 13:10:38 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002670.html">[fetchmail-users] missing local microsoft certificate
+</A></li>
+        <LI>Next message: <A HREF="002672.html">[fetchmail-users] strange polling errors
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2671">[ date ]</a>
+              <a href="thread.html#2671">[ thread ]</a>
+              <a href="subject.html#2671">[ subject ]</a>
+              <a href="author.html#2671">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Am 25.02.2011 09:39, schrieb Jude DaShiell:
+
+&gt;<i> Probably Microsoft root signing certificate isn't in my local cache.  
+</I>&gt;<i> Relevant lines from my fetchmail.log file follow:
+</I>&gt;<i> fetchmail: starting fetchmail 6.3.19 daemon
+</I>&gt;<i> fetchmail: Server certificate verification error: unable to get local issuer certificate
+</I>&gt;<i> fetchmail: This means that the root signing certificate (issued for /CN=Microsoft Internet Authority) is not in the trusted CA certificate locations, or that c_rehash needs to be run on the certificate directory. For details, please see the documentation of --sslcertpath and --sslcertfile in the manual page.
+</I>&gt;<i> 3126:error:14090086:SSL routines:SSL3_GET_SERVER_CERTIFICATE:certificate verify failed:s3_clnt.c:984:
+</I>&gt;<i> fetchmail: SSL connection failed.
+</I>&gt;<i> fetchmail: socket error while fetching from <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">dashielljt3 at msn.com</A>@pop3.live.com
+</I>&gt;<i> fetchmail: Query status=2 (SOCKET)
+</I>&gt;<i> 
+</I>&gt;<i> This problem may be a bit more difficult than gmail since gmail 
+</I>&gt;<i> certificates were already in /usr/share/perl/ca-bundle.
+</I>
+Ubuntu ships with
+/usr/share/ca-certificates/mozilla/GTE_CyberTrust_Global_Root.crt
+which is what I need to authenticate the pop3.live.com certificate.
+
+(it might also be called .pem)
+
+If you're using a bundled file, just append it to the end, it's a text
+file with blocks like these (and possibly interspersed documentation on
+the following certificates, but OpenSSL and thus fetchmail only care for
+what's between these blocks):
+
+-----BEGIN CERTIFICATE-----
+MIICWjCCAcMCAgGlMA0GCSqGSIb3DQEBBAUAMHUxCzAJBgNVBAYTAlVTMRgwFgYD
+VQQKEw9HVEUgQ29ycG9yYXRpb24xJzAlBgNVBAsTHkdURSBDeWJlclRydXN0IFNv
+...
+3PR2VX2bY1QY6fDq81yx2YtCHrnAlU66+tXifPVoYb+O7AWXX1uw16OFNMQkpw0P
+lZPvy5TYnh+dXIVtx6quTx8itc2VrbqnzPmrC3p/
+-----END CERTIFICATE-----
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002670.html">[fetchmail-users] missing local microsoft certificate
+</A></li>
+	<LI>Next message: <A HREF="002672.html">[fetchmail-users] strange polling errors
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2671">[ date ]</a>
+              <a href="thread.html#2671">[ thread ]</a>
+              <a href="subject.html#2671">[ subject ]</a>
+              <a href="author.html#2671">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

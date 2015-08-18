@@ -1,0 +1,93 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] fetchmail 6.3.21 critical fix release
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2011-August/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%206.3.21%20critical%20fix%20release&In-Reply-To=%3C20110821135211.GA22543%40merlin.emma.line.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002909.html">
+   <LINK REL="Next"  HREF="002927.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] fetchmail 6.3.21 critical fix release</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%206.3.21%20critical%20fix%20release&In-Reply-To=%3C20110821135211.GA22543%40merlin.emma.line.org%3E"
+       TITLE="[fetchmail-users] fetchmail 6.3.21 critical fix release">matthias.andree at gmx.de
+       </A><BR>
+    <I>Sun Aug 21 15:52:11 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002909.html">[fetchmail-users] set up Fetchmail
+</A></li>
+        <LI>Next message: <A HREF="002927.html">[fetchmail-users] Error exchanging credentials (pop)
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2925">[ date ]</a>
+              <a href="thread.html#2925">[ thread ]</a>
+              <a href="subject.html#2925">[ subject ]</a>
+              <a href="author.html#2925">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>The 6.3.21 release of fetchmail is now available at the usual locations,
+including &lt;<A HREF="http://developer.berlios.de/projects/fetchmail">http://developer.berlios.de/projects/fetchmail</A>&gt;.
+
+The source archive is available at:
+&lt;<A HREF="http://developer.berlios.de/project/showfiles.php?group_id=1824&amp;release_id=18743">http://developer.berlios.de/project/showfiles.php?group_id=1824&amp;release_id=18743</A>&gt;
+
+Here are the release notes:
+
+fetchmail-6.3.21 (released 2011-08-21, 26011 LoC):
+
+# CRITICAL BUG FIX
+* The IMAP client no longer inserts NUL bytes into the last line of a message
+  when it is not closed with a LF or CRLF sequence. Reported by Antoine Levitt.
+  As a side effect of the fix, and in order to avoid a full rewrite, fetchmail
+  will now CRLF-terminate the last line fetched through IMAP, even if it is
+  originally not terminated by LF or CRLF. This bears no relevance if your
+  messages end up in mbox, but adds line termination for storages (like Maildir)
+  that do not require that the last line be LF- or CRLF-terminated.
+
+# CONTRIB/ addition
+* There is a patch against fetchnews's source, contrib/rawlog.patch, that can
+  log (and hexdump non-printing characters) raw socket data to a file. It proved
+  useful to debug Antoine's bug described above.
+
+
+By popular demand, diffs from the previous release have been omitted.
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: not available
+Type: application/pgp-signature
+Size: 198 bytes
+Desc: not available
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/fetchmail-users/attachments/20110821/2560c7c0/attachment.pgp">https://lists.berlios.de/pipermail/fetchmail-users/attachments/20110821/2560c7c0/attachment.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002909.html">[fetchmail-users] set up Fetchmail
+</A></li>
+	<LI>Next message: <A HREF="002927.html">[fetchmail-users] Error exchanging credentials (pop)
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2925">[ date ]</a>
+              <a href="thread.html#2925">[ thread ]</a>
+              <a href="subject.html#2925">[ subject ]</a>
+              <a href="author.html#2925">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

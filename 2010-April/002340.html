@@ -1,0 +1,183 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] No pop/ssl since fetchmail 6.3.16
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2010-April/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20No%20pop/ssl%20since%20fetchmail%206.3.16&In-Reply-To=%3C20100413115108.GA5070%40aurora.oekb.co.at%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002345.html">
+   <LINK REL="Next"  HREF="002341.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] No pop/ssl since fetchmail 6.3.16</H1>
+    <B>Ewald Jenisch</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20No%20pop/ssl%20since%20fetchmail%206.3.16&In-Reply-To=%3C20100413115108.GA5070%40aurora.oekb.co.at%3E"
+       TITLE="[fetchmail-users] No pop/ssl since fetchmail 6.3.16">a at jenisch.at
+       </A><BR>
+    <I>Tue Apr 13 13:51:08 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002345.html">[fetchmail-users] sperate servers
+</A></li>
+        <LI>Next message: <A HREF="002341.html">[fetchmail-users] No pop/ssl since fetchmail 6.3.16
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2340">[ date ]</a>
+              <a href="thread.html#2340">[ thread ]</a>
+              <a href="subject.html#2340">[ subject ]</a>
+              <a href="author.html#2340">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+I've set up fetchmail with ssl as per
+<A HREF="http://bronski.net/data/fetchmail-deu.php">http://bronski.net/data/fetchmail-deu.php</A> and this has worked ever
+since.
+
+
+However following a recent upgrade of my FreeBSD system (7.3)
+including fetchmail (-&gt; 6.3.16) and openssl (-&gt; 1.0.0) I've got
+problems fetching mail from my pop server via ssl:
+
+
+Here's what I get when I try to pull mail off my pop server:
+
+------------------------------ &lt; Cut here &gt; ------------------------------
+
+Enter password for <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">eje at area51.myco.co.at</A>: 
+fetchmail: Server certificate verification error: self signed certificate
+34381474120:error:14090086:SSL routines:SSL3_GET_SERVER_CERTIFICATE:certificate verify failed:s3_clnt.c:1056:
+fetchmail: SSL connection failed.
+fetchmail: socket error while fetching from <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">eje at area51.myco.co.at</A>
+fetchmail: Query status=2 (SOCKET)
+Error while opening POP-socket
+
+
+------------------------------ &lt; Cut here &gt; ------------------------------
+
+BTW, on the pop server there have been no changes over the past few
+months (I'm sure, because I also administer this server), so I'm
+pretty sure that this has something to do with fetchmail. Fetchmail
+does *not* run in daemon mode.
+
+I've tried re-installing the server cert on my client several times -
+always the same result.
+
+
+Here's what I got in my .fetchmailrc:
+
+------------------------------ &lt; Cut here &gt; ------------------------------
+poll area51.myco.co.at protocol POP3:
+        user eje, fetchall, ssl ,
+        sslcertck , sslcertpath /home/eje/.Certs, 
+        sslfingerprint &quot;C1:FA:98:1C:7E:34:BF:11:11:C4:6F:26:D5:BE:42:A4&quot;;
+------------------------------ &lt; Cut here &gt; ------------------------------
+
+
+Any ideas what's wrong here?
+
+Any suggestions to cure this problem?
+
+Thanks much in advance for your help,
+-ewald
+
+
+PS: I'm including the relevant logs below.
+
+------------------------------ &lt; Cut here &gt; ------------------------------
+
+$ env LC_ALL=C fetchmail -V
+This is fetchmail release 6.3.16+RPA+SDPS+SSL+OPIE+NLS.
+
+Copyright (C) 2002, 2003 Eric S. Raymond
+Copyright (C) 2004 Matthias Andree, Eric S. Raymond,
+                   Robert M. Funk, Graham Wilson
+Copyright (C) 2005 - 2006, 2010 Sunil Shetye
+Copyright (C) 2005 - 2010 Matthias Andree
+Fetchmail comes with ABSOLUTELY NO WARRANTY. This is free software, and you
+are welcome to redistribute it under certain conditions. For details,
+please see the file COPYING in the source or documentation directory.
+
+Fallback MDA: (none)
+FreeBSD aurora.myco.co.at 7.3-STABLE FreeBSD 7.3-STABLE #11: Fri Apr  9 10:52:41 CEST 2010     <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">root at aurora.myco.co.at</A>:/usr/obj/usr/src/sys/GENERIC  amd64
+Taking options from command line and /home/eje/.fetchmailrc
+Idfile is /home/eje/.fetchids
+Fetchmail will forward misaddressed multidrop messages to eje.
+Options for retrieving from <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">eje at area51.myco.co.at</A>:
+  True name of server is area51.myco.co.at.
+  Password will be prompted for.
+  Protocol is POP3.
+  All available authentication methods will be tried.
+  SSL encrypted sessions enabled.
+  SSL server certificate checking enabled.
+  SSL trusted certificate directory: /home/eje/.Certs
+  SSL key fingerprint (checked against the server key): C1:FA:98:1C:7E:34:BF:11:11:C4:6F:26:D5:BE:42:A4
+  Server nonresponse timeout is 300 seconds (default).
+  Default mailbox selected.
+  All messages will be retrieved (--all on).
+  Fetched messages will not be kept on the server (--keep off).
+  Old messages will not be flushed before message retrieval (--flush off).
+  Oversized messages will not be flushed before message retrieval (--limitflush off).
+  Rewrite of server-local addresses is enabled (--norewrite off).
+  Carriage-return stripping is disabled (stripcr off).
+  Carriage-return forcing is disabled (forcecr off).
+  Interpretation of Content-Transfer-Encoding is enabled (pass8bits off).
+  MIME decoding is disabled (mimedecode off).
+  Idle after poll is disabled (idle off).
+  Nonempty Status lines will be kept (dropstatus off)
+  Delivered-To lines will be kept (dropdelivered off)
+  Fetch message size limit is 100 (--fetchsizelimit 100).
+  Do binary search of UIDs during 3 out of 4 polls (--fastuidl 4).
+  Messages will be SMTP-forwarded to: localhost (default)
+  Single-drop mode: 1 local name recognized.
+  No UIDs saved from this host.
+$
+
+$ env LC_ALL=C fetchmail --nodetach -vvv --nosyslog
+Enter password for <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">eje at area51.myco.co.at</A>: 
+fetchmail: 6.3.16 querying area51.myco.co.at (protocol POP3) at Tue Apr 13 13:30:19 2010: poll started
+Trying to connect to 192.168.6.200/995...connected.
+fetchmail: Issuer Organization: Myco
+fetchmail: Issuer CommonName: area51.myco.co.at
+fetchmail: Server CommonName: area51.myco.co.at
+fetchmail: area51.myco.co.at key fingerprint: C1:FA:98:1C:7E:34:BF:11:11:C4:6F:26:D5:BE:42:A4
+fetchmail: area51.myco.co.at fingerprints match.
+fetchmail: Server certificate verification error: self signed certificate
+34381474120:error:14090086:SSL routines:SSL3_GET_SERVER_CERTIFICATE:certificate verify failed:s3_clnt.c:1056:
+fetchmail: SSL connection failed.
+fetchmail: socket error while fetching from <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">eje at area51.myco.co.at</A>
+fetchmail: 6.3.16 querying area51.myco.co.at (protocol POP3) at Tue Apr 13 13:30:19 2010: poll completed
+fetchmail: Query status=2 (SOCKET)
+fetchmail: normal termination, status 2
+$
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002345.html">[fetchmail-users] sperate servers
+</A></li>
+	<LI>Next message: <A HREF="002341.html">[fetchmail-users] No pop/ssl since fetchmail 6.3.16
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2340">[ date ]</a>
+              <a href="thread.html#2340">[ thread ]</a>
+              <a href="subject.html#2340">[ subject ]</a>
+              <a href="author.html#2340">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

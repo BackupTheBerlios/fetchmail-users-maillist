@@ -1,0 +1,198 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Setting up e-mail capability
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2009-September/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Setting%20up%20e-mail%20capability&In-Reply-To=%3C%21%26%21AAAAAAAAAAAYAAAAAAAAAD2KPrlP8kpHkcTJiYtJQy9CzAQAEAAAAECjlVM0OPNAn0k%2BKyXZAvkBAAAAAA%3D%3D%40rogers.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   
+   <LINK REL="Next"  HREF="002058.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Setting up e-mail capability</H1>
+    <B>Dave Beach</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Setting%20up%20e-mail%20capability&In-Reply-To=%3C%21%26%21AAAAAAAAAAAYAAAAAAAAAD2KPrlP8kpHkcTJiYtJQy9CzAQAEAAAAECjlVM0OPNAn0k%2BKyXZAvkBAAAAAA%3D%3D%40rogers.com%3E"
+       TITLE="[fetchmail-users] Setting up e-mail capability">drbeach at rogers.com
+       </A><BR>
+    <I>Tue Sep  1 02:48:09 CEST 2009</I>
+    <P><UL>
+        
+        <LI>Next message: <A HREF="002058.html">[fetchmail-users] Setting up e-mail capability
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2057">[ date ]</a>
+              <a href="thread.html#2057">[ thread ]</a>
+              <a href="subject.html#2057">[ subject ]</a>
+              <a href="author.html#2057">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Rob - thanks for your patience. I also appreciate that of the list
+moderator(s).
+
+&gt;<i> Then I'd definitely recommend an all-in-one package.
+</I>
+I haven't been able to find one yet that describes itself as incorporating
+the ability to pop my mail from my ISP, in a manner similar to how Fetchmail
+describes itself. Am I missing something? Is there a package you would
+recommend by name?
+
+&gt;&gt;&gt;<i> 1) What SMTP software you want to use (Sendmail, Postfix, Exim, or
+</I>others)
+&gt;<i>
+</I>&gt;&gt;<i> So, here's a good example. Do I need to use SMTP software in the first
+</I>&gt;&gt;<i> place?
+</I>
+&gt;<i> Yes.  That is what fetchmail will hand the mail over to, that's how
+</I>&gt;<i> you will send outbound email.
+</I>
+Er, okay. This confuses me. I thought fetchmail would, uh, fetch my mail
+from my ISP and hand it off to whatever mail server software I ran, which
+would somehow &quot;pop-to-smtp&quot; it and take care of storing it in an appropriate
+manner. I figured that &quot;sending&quot; mail would be handled by the mail server
+software (a term I'm using interchangeably with &quot;MTA&quot;, probably in error).
+How does Fetchmail send mail - unless I can interpret that to mean that
+Fetchmail would hand mail over to an MTA, which would send it if the user
+was not local to the server the MTA is running on. Is that generally
+correct, or am I missing something?
+
+&gt;&gt;<i> It is my
+</I>&gt;&gt;<i> understanding that Fetchmail will take care of the pop angle; do I need
+</I>an
+&gt;&gt;<i> SMTP server with which Fetchmail will interact, in order to &quot;store&quot; the
+</I>&gt;&gt;<i> mail, and as well in order to take care of &quot;storing&quot; outbound SMTP mail
+</I>from
+&gt;&gt;<i> the mail clients (and, for that matter, sending the outbound SMTP mail to
+</I>my
+&gt;&gt;<i> ISP)?
+</I>
+&gt;<i> Note that SMTP is a message *transfer* protocol.  It doesn't store
+</I>&gt;<i> anything, it just enables you to send (and receive) email.
+</I>
+Okay, but mail has to be stored somewhere, right, by something? While I
+generally understand that mail could be stored in a database, LDAP
+directory, etc, it is my understanding that a common way of mail being
+stored is actually in files in directories (is this a &quot;maildir&quot;
+configuration?) Something has to put the mail in the right directories, so
+that when mail client software interacts with mail server software the
+client knows which directories and files to refer to for that user's mail.
+
+If this is starting to sound like I really need to go away and read a decent
+book/website that will run me through some basic Internet e-mail concepts,
+architectures, and terminology, by the way, I'm happy to be pointed off to
+something appropriate.
+
+Maybe it might help (me, anyway) if I hypothesize two different scenarios:
+(A), where I want to pop my mail from my ISP and store it on my server, and
+I will use a mail client on that same server to read and respond to the
+mail; and (B) where I will use a mail client on a different workstation to
+read and respond to mail stored on the server.
+
+Under scenario (A), I would perhaps need three different software packages:
+something like Fetchmail which will pop my mail for me, and hand it off to a
+mail server of some sort (postfix, courier, etc). Lastly, a mail client
+(mutt, etc), which will interact with the mail server to allow me to read
+and respond to messages. Generally correct so far?
+
+Under scenario (B), I need the same three types of software as in (A), plus
+something that will allow me to connect from my client workstation to the
+mail server (perhaps something like courier-imap). Generally correct so far?
+If so, then I'm confused by this:
+
+
+&gt;&gt;<i> 2) The SMTP server takes care of properly storing the mail, and of
+</I>sending
+&gt;&gt;<i> SMTP mail back to my ISP; and
+</I>
+&gt;<i> No - the IMAP software stores the email.  The SMTP software simply
+</I>&gt;<i> hands incoming email to it.
+</I>
+Okay, then perhaps I really have a terminology problem here. As above, I've
+been using &quot;mail server&quot; as synonymous with &quot;SMTP server&quot; or &quot;MTA&quot;. It
+sounds like I need to think of the IMAP software (courier-imap, etc) as the
+&quot;mail server&quot;. Am I more correct now?  If so, thinking back to my scenario
+(A) from above (mail client local to the server), what software would take
+care of storing the e-mail? Would I still need to run IMAP software (or POP3
+software, or some other kind of software) because my mail client will not,
+on purpose, interface directly with the SMTP software? I really hope I'm
+starting to get warmer now on this.
+
+
+&gt;&gt;<i> If that's generally correct, then I think I'll take advantage of your
+</I>&gt;&gt;<i> helpfulness and veer perhaps wildly off-topic to ask about calendaring,
+</I>&gt;&gt;<i> contacts, and all the other related stuff one normally associates with an
+</I>&gt;&gt;<i> Outlook/Exchange environment. Does any of the software we're discussing
+</I>&gt;&gt;<i> handle these as well, or in my scenario would I still have a PST local to
+</I>&gt;&gt;<i> each client workstation that would store these items, leaving only the
+</I>mail
+&gt;&gt;<i> on the central server?
+</I>
+&gt;<i> Take a look at Zimbra, OpenGroupware and others.  Those are the ones
+</I>&gt;<i> that do calendaring and contacts (well, you can do it yourself with
+</I>&gt;<i> other software, but it's a lot more work).
+</I>
+I don't need any kind of shared calendaring at all; independent calendars
+for each user are just fine. Right now, we're using full Outlook clients but
+not in an Exchange environment. Given the way I want to re-engineer our
+e-mail (still using Outlook clients), I want to make sure I'm able to retain
+the other associated functionality the Outlook clients provide, such as
+calendar, contacts, notes, etc. This probably veers wildly off-topic for the
+list, but if I can somehow keep that extra, non-email functionality (perhaps
+Outlook will be smart enough to keep a small PST local for it?) then I'm a
+happy camper.
+
+
+&gt;&gt;<i> I'm also interested in the capability to access e-mail via a web
+</I>&gt;&gt;<i> interface,
+</I>
+&gt;<i> The 2 mail choices, if your package doesn't include it, are
+</I>&gt;<i> SquirrelMail and Horde.  SquirrelMail is much simpler and more basic,
+</I>&gt;<i> if you just want a webmail interface then I'd recommend it.
+</I>
+Yes, I think that's the impression I'm getting from general web searching
+and browsing. It's a bit later on my to-do list, though, after I solve the
+more pressing issues.
+
+&gt;<i> I'll also suggest something bordering on the heritical - Google Apps
+</I>&gt;<i> ;)  You get all the features you've discussed, but don't have to
+</I>&gt;<i> invest the time and effort into learning how to do it if you don't
+</I>&gt;<i> want to.  Their standard edition is free and is for up to 50 users.
+</I>
+That has certain attractions. I'd prefer to puzzle it out more before
+resigning myself to going down that road, though. While time and effort
+aren't limitless resources, it's fun learning new stuff.
+
+My thanks again for your patience and help.
+
+
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	
+	<LI>Next message: <A HREF="002058.html">[fetchmail-users] Setting up e-mail capability
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2057">[ date ]</a>
+              <a href="thread.html#2057">[ thread ]</a>
+              <a href="subject.html#2057">[ subject ]</a>
+              <a href="author.html#2057">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

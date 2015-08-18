@@ -1,0 +1,88 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Fetchmail &amp; Zimbra
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2006-December/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Fetchmail%20%26%20Zimbra&In-Reply-To=%3C43ea8d070612042308m70f4cf3en1d559be48431a934%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000759.html">
+   <LINK REL="Next"  HREF="000761.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Fetchmail &amp; Zimbra</H1>
+    <B>Rob MacGregor</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Fetchmail%20%26%20Zimbra&In-Reply-To=%3C43ea8d070612042308m70f4cf3en1d559be48431a934%40mail.gmail.com%3E"
+       TITLE="[fetchmail-users] Fetchmail &amp; Zimbra">rob.macgregor at gmail.com
+       </A><BR>
+    <I>Tue Dec  5 08:08:36 CET 2006</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000759.html">[fetchmail-users] Fetchmail &amp; Zimbra
+</A></li>
+        <LI>Next message: <A HREF="000761.html">[fetchmail-users] Fetchmail &amp; Zimbra
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#760">[ date ]</a>
+              <a href="thread.html#760">[ thread ]</a>
+              <a href="subject.html#760">[ subject ]</a>
+              <a href="author.html#760">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On 12/5/06, Richardus Alim &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">alim at galva.co.id</A>&gt; wrote:
+&gt;<i>
+</I>&gt;<i> The problem is when I disabled DNS lookup in Zimbra conf the fetchmail
+</I>&gt;<i> worked good
+</I>&gt;<i> (fetchmail can retrieve mail in remote MTA and send them to my local MTA)
+</I>&gt;<i> but if I enabled DNS lookup It didn't work.
+</I>&gt;<i> Dec  5 01:45:53 mail postfix/lmtp[11957]: DAA00ACB66: to=&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">alim at xyz.com</A>&gt;,
+</I>&gt;<i> relay=none, delay=1, status=bounced (Host or domain name not found. Name
+</I>&gt;<i> service error for name=mail.xyz.com type=A: Host not found)
+</I>
+That's an error from postfix.
+
+&gt;<i> Do I have setup a DNS Server in my local MTA ??
+</I>
+Well, that's generally a good idea (or at leasts the host needs to
+have DNS resolution working).  I can't see why you'd want to disable
+DNS lookups, but you obviously have your reasons.
+
+Possibly alternatively, ensure that postfix/Zimbra know to accept the
+mail for xyz.com.
+
+-- 
+                 Please keep list traffic on the list.
+
+Rob MacGregor
+      Whoever fights monsters should see to it that in the process he
+        doesn't become a monster.                  Friedrich Nietzsche
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000759.html">[fetchmail-users] Fetchmail &amp; Zimbra
+</A></li>
+	<LI>Next message: <A HREF="000761.html">[fetchmail-users] Fetchmail &amp; Zimbra
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#760">[ date ]</a>
+              <a href="thread.html#760">[ thread ]</a>
+              <a href="subject.html#760">[ subject ]</a>
+              <a href="author.html#760">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

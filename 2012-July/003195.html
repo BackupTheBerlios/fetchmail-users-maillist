@@ -1,0 +1,173 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] ssl troubles
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2012-July/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20ssl%20troubles&In-Reply-To=%3C500F2ED0.5090906%40gmx.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003194.html">
+   <LINK REL="Next"  HREF="003196.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] ssl troubles</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20ssl%20troubles&In-Reply-To=%3C500F2ED0.5090906%40gmx.de%3E"
+       TITLE="[fetchmail-users] ssl troubles">matthias.andree at gmx.de
+       </A><BR>
+    <I>Wed Jul 25 01:25:04 CEST 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003194.html">[fetchmail-users] ssl troubles
+</A></li>
+        <LI>Next message: <A HREF="003196.html">[fetchmail-users] ssl troubles
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3195">[ date ]</a>
+              <a href="thread.html#3195">[ thread ]</a>
+              <a href="subject.html#3195">[ subject ]</a>
+              <a href="author.html#3195">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Am 25.07.2012 00:50, schrieb Anton Shterenlikht:
+&gt;&gt;<i> Can you check if you have the ca_root_nss port installed, and if so, adding
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i>   --sslcertfile /usr/local/share/certs/ca-root-nss.crt
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> should do the trick in quenching the &quot;unable to get local issuer
+</I>&gt;&gt;<i> certificate&quot; and &quot;certificate not trusted&quot; warnings.
+</I>&gt;<i> 
+</I>&gt;<i> yes, this does help with the university IMAP server, thank you
+</I>&gt;<i> But not with gmail.com, please see below.
+</I>
+Well, it does help with SSL - you no longer see fetchmail complaining
+about untrusted certificates.  This is closing the gap in the SSL security.
+
+About the persisting authentication issue, the IT staff should be able
+to help you - and shouldn't normally ask questions about software used
+because all you need to know is the server and possibly port (if not the
+default 993) to log into, user name and password.
+
+&gt;<i> The issue arose for me because
+</I>&gt;<i> the university are subcontracting all mail
+</I>&gt;<i> services to google. So at some point soon
+</I>&gt;<i> the university IMAP and SMTP servers will
+</I>&gt;<i> be switched off, and instead we'll have to use
+</I>&gt;<i> imap.gmail.com and smtp.gmail.com.
+</I>
+Subcontracting mail to Google is legal in the UK?
+How about data protection?  Seems interesting at least.
+
+&gt;<i> The SMTP side works fine. I just replaced
+</I>&gt;<i> the university SMTP server in /etc/mail/freebsd.mc
+</I>&gt;<i> to smtp.gmail.com and it works as before.
+</I>&gt;<i> 
+</I>&gt;<i> The IMAP doesn't work, and when I started looking
+</I>&gt;<i> at the error, I thought there something wrong with SSL.
+</I>&gt;<i> I now understand that SSL is entirely optional, right?
+</I>
+There is insufficient information for me to tell if it's optional.
+You're still using it.
+
+&gt;<i> In fact I see that I always got the same error
+</I>&gt;<i> with the university IMAP server. I just never
+</I>&gt;<i> paid any attention because I got my mail
+</I>&gt;<i> delivered fine.
+</I>
+Yes. At the risk of someone eavesdropping and/or wiretapping and
+stealing the password.  Fetchmail has been recommending --sslcertck and
+warning about insecurity of the connection for a reason.  It wouldn't
+have been able to detect such attacks.
+
+&gt;<i> So I suspect that the google IMAP server
+</I>&gt;<i> is not configured yet with the university
+</I>&gt;<i> logins and passwords, because:
+</I>&gt;<i> 
+</I>&gt;&gt;<i> Regarding the login, see Rob's posting.
+</I>&gt;<i> 
+</I>&gt;<i> I still get the same error no matter
+</I>&gt;<i> which user I use:
+</I>&gt;<i> mexas
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">mexas at bris.ac.uk</A>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">mexas at bristol.ac.uk</A>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">mexas at my.bristol.ac.uk</A>
+</I>
+Chances are that, due to the subcontracting, there will be separate
+servers to fetch from, distinct from imap.google.com.  Possibly even
+under University's DNS names.  But that should be on the IT web pages,
+or available from their support.
+
+&gt;<i> 
+</I>&gt;<i> For example:
+</I>&gt;<i> 
+</I>&gt;<i> $ cat .fetchmailrc
+</I>&gt;<i> poll imap.gmail.com protocol imap user &quot;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">mexas at bristol.ac.uk</A>&quot; password &quot;xxxxx&quot; sslcertfile /usr/local/share/certs/ca-root-nss.crt fetchall
+</I>&gt;<i> 
+</I>&gt;<i> $ fetchmail -v
+</I>&gt;<i> fetchmail: 6.3.21 querying imap.gmail.com (protocol IMAP) at Tue Jul 24 23:47:35
+</I>&gt;<i>  2012: poll started
+</I>&gt;<i> Trying to connect to 173.194.66.108/993...connected.
+</I>
+standards say there's SSL-wrapped IMAP service on port 993.
+
+&gt;<i> fetchmail: Server certificate:
+</I>
+And this all reveals fetchmail negotiated SSL and is verifying the SSL
+certificate...
+
+&gt;<i> fetchmail: Issuer Organization: Google Inc
+</I>&gt;<i> fetchmail: Issuer CommonName: Google Internet Authority
+</I>&gt;<i> fetchmail: Subject CommonName: imap.gmail.com
+</I>&gt;<i> fetchmail: imap.gmail.com key fingerprint: 93:2E:0F:BA:58:EA:CD:CB:04:33:97:9D:2
+</I>&gt;<i> 3:2A:0A:77
+</I>
+...and the lack of complaints tells you fetchmail has accepted the
+certificate.  It should be safe to add --sslcertck to this server's
+configuration, to make sure you know when someone's eavesdropping.
+
+&gt;<i> fetchmail: IMAP&gt; A0002 LOGIN &quot;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">mexas at bristol.ac.uk</A>&quot; *
+</I>&gt;<i> fetchmail: IMAP&lt; A0002 NO Invalid credentials c4if10832046wiw.48
+</I>&gt;<i> fetchmail: Authorization failure on <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">mexas at bristol.ac.uk</A>@gmail-imap.l.google.com
+</I>&gt;<i> fetchmail: For help, see <A HREF="http://www.fetchmail.info/fetchmail-FAQ.html#R15">http://www.fetchmail.info/fetchmail-FAQ.html#R15</A>
+</I>
+Which speaks for itself.
+
+&gt;<i> So I'll check with IT whether imap.gmail.com
+</I>&gt;<i> has been confitured for us already.
+</I>
+Right. Or what the proper server is.
+
+Good speed.
+
+Best regards
+Matthias
+</PRE>
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003194.html">[fetchmail-users] ssl troubles
+</A></li>
+	<LI>Next message: <A HREF="003196.html">[fetchmail-users] ssl troubles
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3195">[ date ]</a>
+              <a href="thread.html#3195">[ thread ]</a>
+              <a href="subject.html#3195">[ subject ]</a>
+              <a href="author.html#3195">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

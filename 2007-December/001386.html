@@ -1,0 +1,96 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] fetchmail IMAP
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2007-December/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%20IMAP&In-Reply-To=%3C47558012.4010206%40gmx.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001385.html">
+   <LINK REL="Next"  HREF="001387.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] fetchmail IMAP</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%20IMAP&In-Reply-To=%3C47558012.4010206%40gmx.de%3E"
+       TITLE="[fetchmail-users] fetchmail IMAP">matthias.andree at gmx.de
+       </A><BR>
+    <I>Tue Dec  4 17:28:02 CET 2007</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001385.html">[fetchmail-users] fetchmail IMAP
+</A></li>
+        <LI>Next message: <A HREF="001387.html">[fetchmail-users] fetchmail props
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1386">[ date ]</a>
+              <a href="thread.html#1386">[ thread ]</a>
+              <a href="subject.html#1386">[ subject ]</a>
+              <a href="author.html#1386">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Cherry, Steven schrieb:
+&gt;<i> I'm using fetchmail against an AD and it worked fine until yesterday.  I assume the server guys made some change and now I cannot get my mail.  Also fails when I use NTLS
+</I>&gt;<i> 
+</I>&gt;<i> my rc file:
+</I>&gt;<i> -----
+</I>&gt;<i> set logfile    /tmp/fetchmail.log
+</I>&gt;<i> defaults
+</I>&gt;<i>          timeout 30
+</I>&gt;<i>          keep
+</I>&gt;<i>          fetchall 
+</I>&gt;<i> poll DNP-server.us.ad.gannett.com protocol IMAP auth password
+</I>&gt;<i>         username 'us\/scherry'
+</I>&gt;<i>         password secret
+</I>&gt;<i> -----
+</I>&gt;<i> 
+</I>&gt;<i> my -vv output
+</I>&gt;<i> -----
+</I>&gt;<i> fetchmail: 6.3.6 querying DNP-LCLCI02.us.ad.gannett.com (protocol IMAP) at Tue 04 Dec 2007 10:14:48 AM EST: poll started
+</I>
+Try 6.3.8 and see if that makes any difference.
+
+Given you're working in an intranet, you could try to suppress the
+automatic TLS negotiation by adding &quot;sslproto ssl3&quot; to your configuration
+and see if that helps.
+
+If it doesn't, please ask the server guys what they changed recently,
+perhaps we can then figure what to do.
+
+HTH
+
+-- 
+Matthias Andree
+
+Life is what happens to you while you're busy making other plans.
+  						-- John Lennon, 1980
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001385.html">[fetchmail-users] fetchmail IMAP
+</A></li>
+	<LI>Next message: <A HREF="001387.html">[fetchmail-users] fetchmail props
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1386">[ date ]</a>
+              <a href="thread.html#1386">[ thread ]</a>
+              <a href="subject.html#1386">[ subject ]</a>
+              <a href="author.html#1386">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

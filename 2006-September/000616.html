@@ -1,0 +1,93 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] fetchmail can't talk to dovecot
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2006-September/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%20can%27t%20talk%20to%20dovecot&In-Reply-To=%3C43ea8d070609270904l179a4bd0u3c21c8c8c6fc63b1%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000615.html">
+   <LINK REL="Next"  HREF="000617.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] fetchmail can't talk to dovecot</H1>
+    <B>Rob MacGregor</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%20can%27t%20talk%20to%20dovecot&In-Reply-To=%3C43ea8d070609270904l179a4bd0u3c21c8c8c6fc63b1%40mail.gmail.com%3E"
+       TITLE="[fetchmail-users] fetchmail can't talk to dovecot">rob.macgregor at gmail.com
+       </A><BR>
+    <I>Wed Sep 27 18:04:05 CEST 2006</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000615.html">[fetchmail-users] fetchmail can't talk to dovecot
+</A></li>
+        <LI>Next message: <A HREF="000617.html">[fetchmail-users] fetchmail can't talk to dovecot
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#616">[ date ]</a>
+              <a href="thread.html#616">[ thread ]</a>
+              <a href="subject.html#616">[ subject ]</a>
+              <a href="author.html#616">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On 9/27/06, Marco Fioretti &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">mfioretti at mclink.it</A>&gt; wrote:
+&gt;<i>
+</I>&gt;<i> In which way? My understanding is that, with those settings, secure
+</I>&gt;<i> connection should be tried but, if failing, unsecure one would be used
+</I>&gt;<i> without problems. That's why I wrote what I wrote? Where am I wrong here?
+</I>
+I have exactly zero experience of dovecot, so couldn't tell you.  Some
+POP/IMAP servers however default to requiring SSL for unsecure auth
+methods.
+
+&gt;<i> No, sorry. The remote server runs postfix + dovecot + squirrelmail just fine.
+</I>&gt;<i> Fetchmail runs on my _home_ linux PC: it works fine with other accounts on _other_
+</I>&gt;<i> servers (all pop3) which I do not administer. Only on this box which I'm setting
+</I>&gt;<i> up myself there is this problem between the home fetchmail and the remote dovecot.
+</I>&gt;<i>
+</I>&gt;<i> I'll try the test and settings you suggested tonight at home and report. In the
+</I>&gt;<i> meantime any feedback (especially to my answers in this message) is greatly appreciated.
+</I>
+Well, one quick test would be to use any other IMAP/POP client (from
+the home linux PC) against the remote server to confirm that the
+username/password are correct.
+
+(Note that using squirrelmail doesn't necessarily test the same
+connection methods, squirrelmail may be configured to use the loopback
+interface, which may have different, eg lower, security settings).
+
+-- 
+                 Please keep list traffic on the list.
+
+Rob MacGregor
+      Whoever fights monsters should see to it that in the process he
+        doesn't become a monster.                  Friedrich Nietzsche
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000615.html">[fetchmail-users] fetchmail can't talk to dovecot
+</A></li>
+	<LI>Next message: <A HREF="000617.html">[fetchmail-users] fetchmail can't talk to dovecot
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#616">[ date ]</a>
+              <a href="thread.html#616">[ thread ]</a>
+              <a href="subject.html#616">[ subject ]</a>
+              <a href="author.html#616">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

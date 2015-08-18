@@ -1,0 +1,99 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Fetchmail socket error.
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2006-March/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Fetchmail%20socket%20error.&In-Reply-To=%3C442416DF.1010708%40viddel.nl%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000326.html">
+   <LINK REL="Next"  HREF="000328.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Fetchmail socket error.</H1>
+    <B>Ernst Verhaar</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Fetchmail%20socket%20error.&In-Reply-To=%3C442416DF.1010708%40viddel.nl%3E"
+       TITLE="[fetchmail-users] Fetchmail socket error.">e.verhaar at viddel.nl
+       </A><BR>
+    <I>Fri Mar 24 16:57:19 CET 2006</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000326.html">[fetchmail-users] Fetchmail crash (SIGSERV)
+</A></li>
+        <LI>Next message: <A HREF="000328.html">[fetchmail-users] Fetchmail socket error.
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#327">[ date ]</a>
+              <a href="thread.html#327">[ thread ]</a>
+              <a href="subject.html#327">[ subject ]</a>
+              <a href="author.html#327">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi All,
+
+I have some troubles with fetchmail. Fetchmail dies every time with a 
+socket error:
+
+fetchmail: IMAP&lt; * 1 FETCH (BODY[TEXT] {375012}
+ (375012 body octets) 
+******************.***************.*********************.**********
+**********.***************.***************fetchmail: socket error while 
+fetching from <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">vid_dbmanta at 212.204.236.251</A>
+fetchmail: 6.3.2 querying 212.204.236.251 (protocol IMAP) at Fri Mar 24 
+16:30:12 2006: poll completed
+fetchmail: Query status=2 (SOCKET)
+
+According to the FAQ, I should set the MTU to 552. This doesn't help.
+I tried fetchmail versions 6.2.5.2 (included in Suse 10) and fetchmail 
+6.3.2 (builded on Suse 10) On the same machine. I also tried fetching 
+the same emailbox on a different machine Fedora Core 4 (fetchmail 
+6.2.5.5). And on a Fedora Core 4 machine at a different 
+Internetprovider. I get the same error everytime...
+
+Fetchmail 6.2.5 on an very old Slackware distro runs perfectly. 
+(different machine, same and different internet provider).
+
+The host with is being contacted is a FreeBSD running both dovecot and 
+imap-uv (different port).
+
+----- Question ----
+Could this be a fetchmail error? Or is it a combination between a 
+specific Distribution and a specific fetchmail version?
+--------------------
+
+I am happy to provide additional information and access to the 
+host-machine running dovecot and imap-uv, if this is needed.
+
+Kind regards,
+
+Ernst
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000326.html">[fetchmail-users] Fetchmail crash (SIGSERV)
+</A></li>
+	<LI>Next message: <A HREF="000328.html">[fetchmail-users] Fetchmail socket error.
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#327">[ date ]</a>
+              <a href="thread.html#327">[ thread ]</a>
+              <a href="subject.html#327">[ subject ]</a>
+              <a href="author.html#327">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

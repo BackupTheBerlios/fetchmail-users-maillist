@@ -1,0 +1,106 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] upgrading to 6.3.8
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2007-October/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20upgrading%20to%206.3.8&In-Reply-To=%3C1192928102.17364.6.camel%40rho.emma.line.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001337.html">
+   <LINK REL="Next"  HREF="001311.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] upgrading to 6.3.8</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20upgrading%20to%206.3.8&In-Reply-To=%3C1192928102.17364.6.camel%40rho.emma.line.org%3E"
+       TITLE="[fetchmail-users] upgrading to 6.3.8">matthias.andree at gmx.de
+       </A><BR>
+    <I>Sun Oct 21 02:55:02 CEST 2007</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001337.html">[fetchmail-users] upgrading to 6.3.8
+</A></li>
+        <LI>Next message: <A HREF="001311.html">[fetchmail-users] fetchyahoo
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1314">[ date ]</a>
+              <a href="thread.html#1314">[ thread ]</a>
+              <a href="subject.html#1314">[ subject ]</a>
+              <a href="author.html#1314">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>
+Am Samstag, den 20.10.2007, 14:49 -0400 schrieb Joe Acquisto:
+&gt;<i> &gt;&gt;&gt; On 10/20/2007 at 2:03 PM, &quot;Rob MacGregor&quot; &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">rob.macgregor at gmail.com</A>&gt; wrote:
+</I>&gt;<i> &gt; On 10/20/07, Joe Acquisto &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">joea at j4computers.com</A>&gt; wrote:
+</I>&gt;<i> &gt;&gt; Upgrade to 6.3.8, from 6.2.5 failed.  When trying to start fetchmail, after 
+</I>&gt;<i> &gt; an apparent OK install,
+</I>&gt;<i> &gt;&gt;
+</I>&gt;<i> &gt;&gt; &quot;fetchmail: error while loading shared libararies: librsaref.so: cannot open 
+</I>&gt;<i> &gt; shared object file: no such file or directory.&quot;
+</I>&gt;<i> &gt;&gt;
+</I>&gt;<i> &gt;&gt; I have back rev'd to 6.2.5, apparently successfully, while searching out 
+</I>&gt;<i> &gt; what to do.
+</I>&gt;<i> &gt;&gt;
+</I>&gt;<i> &gt;&gt; Runing OES/ (Suse (9.2 I believe)).  Anyone know where to find this 
+</I>&gt;<i> &gt; file/package?
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; I assume you upgraded by using a binary package - it would have helped
+</I>&gt;<i> &gt; to have details.
+</I>&gt;<i> 
+</I>&gt;<i> Yes.  It was the package I downloaded from the fetchmail site.
+</I>
+&gt;<i> I did find and install this.  Now my problem is that I need libcrypto.so.0.9.8 and libssl.so.0.9.8, while I have only the lilbxxx.so.0.9.7 versions available.  
+</I>&gt;<i> 
+</I>&gt;<i> I've only found versions that claim to be for SuSE 10.1 or 10.2.  I am hesitant to use these and break some internal SSL related processes.  This is OES, after all and quite, umm, strict, about what it will play nice with.
+</I>
+SUSE 9.2 is ancient history for fetchmail, and I cannot really claim to
+be supporting enterprise distributions - these are usually only
+available under support contract or otherwise in exchange for lots of
+money (I know CentOS and Ubuntu Server LTS editions are exceptions), so
+I don't usually have access, and frankly, at least for the paid
+enterprise distros: it's the vendor's responsibility to support these.
+
+My suggestion is to install all needed development packages (sorry, I
+can't say which are needed, not even for distributions I know because
+I'm not only compiling fetchmail on those machines) and try to build
+fetchmail 6.3.8 from source, as Rob suggests. It's probably hard at
+first since you need to figure what packages to install for compiling
+fetchmail (compiler/gcc, linux-headers, libc development stuff, openssl
++ development stuff, GNU make), but will likely end up with a working
+and shiny new copy of fetchmail after the process and compiling updates
+should then be quite easy since all the development RPMs are installed.
+
+HTH &amp; Best regards
+Matthias
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001337.html">[fetchmail-users] upgrading to 6.3.8
+</A></li>
+	<LI>Next message: <A HREF="001311.html">[fetchmail-users] fetchyahoo
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1314">[ date ]</a>
+              <a href="thread.html#1314">[ thread ]</a>
+              <a href="subject.html#1314">[ subject ]</a>
+              <a href="author.html#1314">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

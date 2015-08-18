@@ -1,0 +1,135 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Store emails from different accounts	in	different files
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2008-December/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Store%20emails%20from%20different%20accounts%0A%09in%09different%20files&In-Reply-To=%3C20081219085100.GA79044%40merlin.emma.line.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001815.html">
+   <LINK REL="Next"  HREF="001817.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Store emails from different accounts	in	different files</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Store%20emails%20from%20different%20accounts%0A%09in%09different%20files&In-Reply-To=%3C20081219085100.GA79044%40merlin.emma.line.org%3E"
+       TITLE="[fetchmail-users] Store emails from different accounts	in	different files">matthias.andree at gmx.de
+       </A><BR>
+    <I>Fri Dec 19 09:51:00 CET 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001815.html">[fetchmail-users] Store emails from different accounts in	different files
+</A></li>
+        <LI>Next message: <A HREF="001817.html">[fetchmail-users] Store emails from different accounts in	different files
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1816">[ date ]</a>
+              <a href="thread.html#1816">[ thread ]</a>
+              <a href="subject.html#1816">[ subject ]</a>
+              <a href="author.html#1816">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Rafa Mu&#241;oz C&#225;rdenas schrieb am 2008-2m-2d:
+
+&gt;<i> It doesn't work.
+</I>&gt;<i> I have to emphasize that I don't have account1 and account2 as users in my
+</I>&gt;<i> system. Maybe that's the problem.
+</I>&gt;<i> 
+</I>&gt;<i> I don't want to add new users to the system because I have to handle a lot
+</I>&gt;<i> of different email accounts and because it doesn't make sense creating so
+</I>&gt;<i> many users just to have one email account associated to that user.
+</I>&gt;<i> 
+</I>&gt;<i> There should be a way to do what I want...
+</I>
+Yes, there is.  It will however depend on the capabilities of your MTA,
+and you may (depends on your MTA) need to install an MDA such as
+maildrop (procmail is another option, but I'd like to discourage that -
+it's got nasty intransparent fall-through-rules error &quot;handling&quot;, so go
+for maildrop if you're into a new install).
+
+The idea is to use for instance address extensions that you can use in
+at least postfix, exim, sendmail, qmail.
+For Postfix, see the recipient_delimiter documentation in local(8).
+For Exim, check around the local_part_suffix* options in the
+configuration and specification.
+For sendmail and qmail, I forgot (and no longer care for) the
+configuration details.  ISTR that sendmail's default configuration
+enables address extensions with &quot;+&quot; and qmail the same with &quot;-&quot; as
+delimiter.
+
+Anyways, you should be able to arrange for a set of .forward+foo and
+.forward+bar files that specify where you want mail to
+&quot;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">rafa+foo at your.example.org</A>&quot; and &quot;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">rafa+bar at your.example.org</A>&quot; delivered.
+(Assuming your login were &quot;rafa&quot;).
+The fetchmail configuration would be quite similar to the one I
+suggested, but you'd write &quot;... is rafa+foo here&quot; or &quot;...is rafa+bar
+here&quot; as part of your configuration.
+
+
+If and only if your MTA doesn't support address extensions AND you do
+not want to switch MTA, consider installing an MDA (maildrop or
+procmail, see above for comments) and use fetchmail's --mda option. I'd
+say I clearly prefer the MTA approach as that would be valid
+system-wide. Most MDAs support positional arguments on their command
+line that will then be made available to the filter script in local
+variables such as $1, $2, ..., so you can pass them in the &quot;mda&quot; option
+for the account's user option.
+
+&gt;<i> 2008/12/18 Matthias Andree &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">matthias.andree at gmx.de</A>&gt;
+</I>&gt;<i> 
+</I>&gt;<i> &gt; Rafa Mu&#241;oz C&#225;rdenas schrieb:
+</I>&gt;<i> &gt; &gt; Hmmmm.. I don't know if I my question was wrong or I didn't explained it
+</I>&gt;<i> &gt; &gt; correctly.
+</I>&gt;<i> &gt; &gt;
+</I>&gt;<i> &gt; &gt; I receive emails correctly. Everything seems to be good.
+</I>&gt;<i> &gt; &gt; The fact is that I don't want to see all my emails in the same file,
+</I>&gt;<i> &gt; which
+</I>
+Note that your mailer is broken, when quoting, it gets indentation
+wrong and introduces additional line breaks. Please use a better mailer.
+If you were using some online web form, please file a bug report with
+the tech support and ask them to make sure that quoted material in
+messages IS NOT REFLOWED OR REFORMATTED (i. e. NO ADDITIONAL LINE
+BREAKS) except for the inserted &quot;&gt; &quot;.
+
+&gt;<i> &gt; &gt; is &quot;/var/spool/mail/username&quot;.
+</I>&gt;<i> &gt; &gt; I would like to see the emails I receive from &quot;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">account1 at gmail.com</A>&quot; in
+</I>&gt;<i> &gt; the
+</I>&gt;<i> &gt; &gt; file &quot;/var/spool/mail/account1&quot; for example,
+</I>&gt;<i> &gt; &gt; and emails from &quot;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">account2 at gmail.com</A>&quot; in the file
+</I>&gt;<i> &gt; &quot;/var/spool/mail/account2&quot;.
+</I>&gt;<i> &gt; &gt; I don't want to have all emails mixed in the same file like it's
+</I>&gt;<i> &gt; happening
+</I>&gt;<i> &gt; &gt; right now.
+</I>
+HTH
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001815.html">[fetchmail-users] Store emails from different accounts in	different files
+</A></li>
+	<LI>Next message: <A HREF="001817.html">[fetchmail-users] Store emails from different accounts in	different files
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1816">[ date ]</a>
+              <a href="thread.html#1816">[ thread ]</a>
+              <a href="subject.html#1816">[ subject ]</a>
+              <a href="author.html#1816">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

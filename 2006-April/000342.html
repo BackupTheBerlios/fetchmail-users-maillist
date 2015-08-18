@@ -1,0 +1,148 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] fetchmail 6.3.4 stable release
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2006-April/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%206.3.4%20stable%20release&In-Reply-To=%3C20060414165244.GA21063%40merlin.emma.line.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000341.html">
+   <LINK REL="Next"  HREF="000346.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] fetchmail 6.3.4 stable release</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%206.3.4%20stable%20release&In-Reply-To=%3C20060414165244.GA21063%40merlin.emma.line.org%3E"
+       TITLE="[fetchmail-users] fetchmail 6.3.4 stable release">matthias.andree at gmx.de
+       </A><BR>
+    <I>Fri Apr 14 18:52:44 CEST 2006</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000341.html">[fetchmail-users] fetchmail 6.3.4-rc2 release candidate
+</A></li>
+        <LI>Next message: <A HREF="000346.html">[fetchmail-users] Re: [fetchmail]fetchmail 6.3.4 stable release
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#342">[ date ]</a>
+              <a href="thread.html#342">[ thread ]</a>
+              <a href="subject.html#342">[ subject ]</a>
+              <a href="author.html#342">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA1
+
+Greetings,
+
+I am announcing the release of fetchmail 6.3.4. This new stable version
+of fetchmail fixes several minor bugs, adds a --pidfile option, a
+Vietnamese translation and updates other translations.
+For details, please see below.
+
+The software is available from:
+&lt;<A HREF="http://developer.berlios.de/project/showfiles.php?group_id=1824&amp;release_id=9751">http://developer.berlios.de/project/showfiles.php?group_id=1824&amp;release_id=9751</A>&gt;
+
+The fetchmail home pages is:
+&lt;<A HREF="http://www.fetchmail.info/">http://www.fetchmail.info/</A>&gt;  or  &lt;<A HREF="http://fetchmail.berlios.de/">http://fetchmail.berlios.de/</A>&gt;
+
+These are the relevant changes in 6.3.4 since 6.3.3;
+unless otherwise noted, changes to this release were made by Matthias Andree:
+
+# DEPRECATED FEATURES AND MAJOR INCOMPATIBLE CHANGE ADVANCE WARNINGS
+* The MX and host alias DNS lookups that fetchmail performs in multidrop mode
+  are obsolete, deprecated and may be removed from a future fetchmail version.
+  They have never supported IPv6 (including IPv6-mapped IPv4) anyhow.
+* The monitor and interface options may be removed from a future fetchmail
+  version as they are not sufficiently portable.
+* POP2 is obsolete.
+  Support for POP2 may be removed from a future fetchmail version.
+* RPOP is obsolete, support may be removed from a future fetchmail release.
+* --sslcertck may become a default setting in a future fetchmail version.
+* The multidrop To/Cc guessing code along with the fragile duplicate suppressor
+  is deprecated and may be removed from a future release.
+* The --enable-fallback (fall back to MDA if MTA unavailable) may be removed
+  from a future fetchmail release.
+* The &quot;protocol auto&quot; default inside fetchmail may be removed from a future
+  fetchmail release. Explicit configuration of the protocol is recommended.
+
+# KNOWN BUGS AND WORKAROUNDS:
+  (this section floats upwards through the NEWS to be on top of the list)
+* fetchmail does not handle messages without Message-ID header well
+  (See sourceforge.net bug #780933)
+* Sun Workshop 6 (SPARC) is known to miscompile the lexer in 64-bit mode.
+  Either compile 32-bit code or use GCC to compile 64-bit fetchmail.
+  Note that fetchmail doesn't take advantage of 64-bit code anyways,
+  so compiling 32-bit SPARC code should be fine.
+* The code still isn't 100% ISO-C compliant, some configurations attempt to
+  compile files that are empty after preprocessing, which can cause compiler
+  diagnostics and perhaps jam the compilation on strict compilers.
+
+# BUG FIXES:
+* configure: detect res_* functions properly with newer glibc ABIs.
+  Patch by Miloslav Trmac.
+* tracepolls: add folder information if available. Reported by Terry Brown.
+* lexer: add %option noyywrap to avoid link errors about missing yywrap().
+* a few more type fixes for report/snprintf, patch by Miloslav Trmac.
+* bouncing: fetchmail would still send &quot;General SMTP/ESMTP error.&quot; bounces
+  in spite of &quot;no bouncemail&quot; configuration.
+* SSL/TLS: if, for a certain server, an sslfingerprint is specified and
+  sslcertck is NOT set, suppress printing SSL certificate mismatch errors.
+  (Reported by Hannes Erven.)
+* SSL/TLS: always print if the sslfingerprint mismatches, even in silent
+  mode.  (This is for consistency with certificate verification errors.)
+
+# TRANSLATION UPDATES:
+* German/de (Matthias Andree), French/fr (Matthias Andree), Spanish/es (H&#233;ctor
+  Garc&#237;a), Polish/pl (Jakub Bogusz), Japanese/ja (Takeshi Hamasaki)
+* New Vietnamese/vi translation (Clytie Siddall).
+* Updated French descriptions for the .spec file (St&#233;phane Schildknecht,
+  Luc Pionchon, Matthias Andree).
+
+# CHANGES:
+* pidfile: there is a new command-line (--pidfile PATH) and global option for
+  the rcfile (set pidfile [=] &quot;/path/to/pidfile&quot;) option to allow overriding
+  the default location of the PID file.
+  Requested by H&#233;ctor Garc&#237;a, Debian maintainer.
+* specgen.sh: Converted to UTF-8 to support translated texts better.
+
+Regards,
+
+- -- 
+Matthias Andree
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1.4.0 (GNU/Linux)
+
+iD8DBQFEP9NcvmGDOQUufZURArqIAKC6oo1DQLVwV9Luct07Q1AiCY7SvACg0VPL
+fErfpBSuF828FlAI8payL+A=
+=uWqI
+-----END PGP SIGNATURE-----
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000341.html">[fetchmail-users] fetchmail 6.3.4-rc2 release candidate
+</A></li>
+	<LI>Next message: <A HREF="000346.html">[fetchmail-users] Re: [fetchmail]fetchmail 6.3.4 stable release
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#342">[ date ]</a>
+              <a href="thread.html#342">[ thread ]</a>
+              <a href="subject.html#342">[ subject ]</a>
+              <a href="author.html#342">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

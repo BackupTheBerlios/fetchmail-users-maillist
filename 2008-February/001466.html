@@ -1,0 +1,85 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Fetchmail not collecting HTML messages using IMAP
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2008-February/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Fetchmail%20not%20collecting%20HTML%20messages%20using%20IMAP&In-Reply-To=%3C954CC3F1-3734-444B-A78A-27D6EB08DF66%40telinformix.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001465.html">
+   <LINK REL="Next"  HREF="001467.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Fetchmail not collecting HTML messages using IMAP</H1>
+    <B>Barnaby Garrett</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Fetchmail%20not%20collecting%20HTML%20messages%20using%20IMAP&In-Reply-To=%3C954CC3F1-3734-444B-A78A-27D6EB08DF66%40telinformix.com%3E"
+       TITLE="[fetchmail-users] Fetchmail not collecting HTML messages using IMAP">barney at telinformix.com
+       </A><BR>
+    <I>Mon Feb 18 19:13:04 CET 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001465.html">[fetchmail-users] unable to get Gmail emails
+</A></li>
+        <LI>Next message: <A HREF="001467.html">[fetchmail-users] Fetchmail not collecting HTML messages using	IMAP
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1466">[ date ]</a>
+              <a href="thread.html#1466">[ thread ]</a>
+              <a href="subject.html#1466">[ subject ]</a>
+              <a href="author.html#1466">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi there,
+
+I've just been switching over too google apps for my domain's email  
+and discovered a problem when I use IMAP to collect the mail  
+everything is fine until it hits an HTML message at which point it  
+just stops until the next collection when it gets interrupted and the  
+process starts again.  Obviously any mail after the HTML one is not  
+collected.  If I switch to using POP3 everything works fine.  Extract  
+from the log file is :
+
+Feb 18 17:49:16 dora fetchmail: PID 5328: message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">LALALALALA at googlemail-imap.l.google.com</A> 
+:<i>7 was not the expected length (1575 actual != 1570 expected)
+</I>Feb 18 17:49:16 dora fetchmail: PID 5328: SMTP&gt;. (EOM)
+Feb 18 17:54:16 dora fetchmail: PID 5328: smtp listener protocol error
+Feb 18 17:54:16 dora fetchmail: PID 5328:  not flushed
+
+This is delivering to an Exchange 2003 server an the logs show a MAIL,  
+RCPT and then a QUIT commands  but it gets no DATA command.
+
+Any ideas ?
+It's not life threatening since I can collect using POP but it is  
+annoying since I'd prefer IMAP.
+
+Barney
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001465.html">[fetchmail-users] unable to get Gmail emails
+</A></li>
+	<LI>Next message: <A HREF="001467.html">[fetchmail-users] Fetchmail not collecting HTML messages using	IMAP
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1466">[ date ]</a>
+              <a href="thread.html#1466">[ thread ]</a>
+              <a href="subject.html#1466">[ subject ]</a>
+              <a href="author.html#1466">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

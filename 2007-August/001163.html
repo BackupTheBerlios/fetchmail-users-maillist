@@ -1,0 +1,109 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] fetchmail on server unable to connect to	postfix
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2007-August/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%20on%20server%20unable%20to%20connect%20to%0A%09postfix&In-Reply-To=%3C43ea8d070708160825n193c42f8gb2dc131c1fd975ee%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001162.html">
+   <LINK REL="Next"  HREF="001165.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] fetchmail on server unable to connect to	postfix</H1>
+    <B>Rob MacGregor</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%20on%20server%20unable%20to%20connect%20to%0A%09postfix&In-Reply-To=%3C43ea8d070708160825n193c42f8gb2dc131c1fd975ee%40mail.gmail.com%3E"
+       TITLE="[fetchmail-users] fetchmail on server unable to connect to	postfix">rob.macgregor at gmail.com
+       </A><BR>
+    <I>Thu Aug 16 17:25:42 CEST 2007</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001162.html">[fetchmail-users] fetchmail on server unable to connect to	postfix
+</A></li>
+        <LI>Next message: <A HREF="001165.html">[fetchmail-users] fetchmail on server unable to connect to	postfix
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1163">[ date ]</a>
+              <a href="thread.html#1163">[ thread ]</a>
+              <a href="subject.html#1163">[ subject ]</a>
+              <a href="author.html#1163">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On 8/16/07, M. Fioretti &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">mfioretti at nexaima.net</A>&gt; wrote:
+&gt;<i>
+</I>&gt;<i> Unfortunately this doesn't seem enough. Doing a
+</I>&gt;<i>
+</I>&gt;<i> poll pop3.myisp.com with proto POP3 tracepolls
+</I>&gt;<i>    user myaccount there with pass &quot;thepassword&quot; is <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">mfioretti at nexaima.net</A>
+</I>&gt;<i> here keep smtphost the.full.machine.name
+</I>&gt;<i>
+</I>&gt;<i> still yelds (may this depend on the fetchmail version???):
+</I>
+I only have the source for 6.3.8 to hand.  It's possible this feature
+is relatively recent.  It may also be that there's something else
+happening to the value of the hostname beforehand - certainly lots of
+software relies on resolver libraries, which can be tripped up by
+having your hostname against the loopback address.
+
+I'd advise that, if you can, you create a second line with JUST the
+hostname in it, and the real IP of the host.
+
+Checking the source it looks like the hostname passed is based off of
+the value of id_me in sink.c.  The value of that depends on whether
+&quot;set invisible&quot; is on (which I use).
+
+That may be set to the value of fetchmailhost, which defaults to
+localhost, but is later over-ridden by the DNS name of the host using
+gethostname.
+
+It may also default to value of server.truename, and I'm not enough of
+a C programmer to work out where that comes from :)
+
+However, an upgrade to 6.3.8 should at least confirm whether or not
+this is actually no longer a problem.
+
+&gt;<i>
+</I>&gt;<i> Thanks for any further help! As a side note, I hope this thread continues
+</I>&gt;<i> until the problem is solved via fetchmail also because... I'm learning
+</I>&gt;<i> more about fetchmail this afternoon, thanks to this thread, than by
+</I>&gt;<i> reading the docs again and again...
+</I>
+As long as you're willing to put up my direct approach, I'm sure we'll
+get there :)
+
+-- 
+                 Please keep list traffic on the list.
+
+Rob MacGregor
+      Whoever fights monsters should see to it that in the process he
+        doesn't become a monster.                  Friedrich Nietzsche
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001162.html">[fetchmail-users] fetchmail on server unable to connect to	postfix
+</A></li>
+	<LI>Next message: <A HREF="001165.html">[fetchmail-users] fetchmail on server unable to connect to	postfix
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1163">[ date ]</a>
+              <a href="thread.html#1163">[ thread ]</a>
+              <a href="subject.html#1163">[ subject ]</a>
+              <a href="author.html#1163">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

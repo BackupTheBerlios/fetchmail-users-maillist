@@ -1,0 +1,112 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Fetchmail Stops Functioning - Suddenly
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2008-September/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Fetchmail%20Stops%20Functioning%20-%20Suddenly&In-Reply-To=%3C48BE7C13.1040307%40gmx.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001677.html">
+   <LINK REL="Next"  HREF="001679.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Fetchmail Stops Functioning - Suddenly</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Fetchmail%20Stops%20Functioning%20-%20Suddenly&In-Reply-To=%3C48BE7C13.1040307%40gmx.de%3E"
+       TITLE="[fetchmail-users] Fetchmail Stops Functioning - Suddenly">matthias.andree at gmx.de
+       </A><BR>
+    <I>Wed Sep  3 13:59:15 CEST 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001677.html">[fetchmail-users] Fetchmail Stops Functioning - Suddenly
+</A></li>
+        <LI>Next message: <A HREF="001679.html">[fetchmail-users] fetchmail at startup
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1678">[ date ]</a>
+              <a href="thread.html#1678">[ thread ]</a>
+              <a href="subject.html#1678">[ subject ]</a>
+              <a href="author.html#1678">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Richard Ibbotson schrieb:
+
+&gt;<i> Does anyone know what this might be about ?  Tried the Google search 
+</I>&gt;<i> and nothing useful came back.
+</I>
+It's about what the error message says.
+fetchmail doesn't break all of a sudden without further ado, something must
+have changed in the environment.
+
+&gt;<i> Ubuntu 8.04.  Fetchmail 6.3.8.  Worked fine for months on end 
+</I>&gt;<i> downloading mail for Kmail to read.  If I do 'fetchmail -v' then 
+</I>&gt;<i> everything works fine.  If I do something like 'fetchmail -d650' 
+</I>&gt;<i> or 'fetchmail -d0' I get the following error message....
+</I>&gt;<i> 
+</I>&gt;<i> &quot; gethostbyname failed for localhost
+</I>&gt;<i> Name or service not knownCannot find my own host in hosts database to 
+</I>&gt;<i> qualify it!  Trying to continue with unqualified hostname.
+</I>&gt;<i> DO NOT report broken Received: headers, HELO/EHLO lines or similar 
+</I>&gt;<i> problems!  DO repair your /etc/hosts, DNS, NIS or LDAP instead.  &quot;
+</I>&gt;<i> 
+</I>&gt;<i> Which means that no mail is downloaded.
+</I>
+No, it does _not_ mean that. &quot;Trying to continue&quot; is what it says - since
+you're not using Kerberos IV, 5, ODMR or ETRN, it might work so it's worth
+a go.
+
+It means fetchmail cannot resolve your own hostname, and that's it - fix
+the cause for that. Check /etc/nsswitch.conf, /etc/host.conf,
+/etc/resolv.conf, /etc/hosts and whatever else may be relevant for resolving.
+
+To find the actual non-delivery issue, try fetchmail --nodetach --nosyslog
+-vv (or even -vvv) and see what you get, with or without -d.
+
+&gt;<i> I've tried to flush DNS 
+</I>&gt;<i> with '/etc/init.d/nscd restart '  but that doesn't make any 
+</I>&gt;<i> difference.  Any ideas what to try next ?   Nothing was changed on 
+</I>&gt;<i> this machine before Fetchmail stopped working.
+</I>
+I don't believe the latter statement. Perhaps YOU did not change something,
+or &quot;nothing obvious changed&quot;, but something has changed (mind the wording).
+
+Ditch (= dpkg --purge) nscd on Linux if it's a desktop.
+It's no good on systems with just a few users and the glibc guys don't get
+nsswitch and thereabouts right (for years) and just wastes memory and more
+importantly human resources since it gets in the way.
+I have yet to see a system besides Solaris that gets nsswitch right.
+
+HTH
+
+-- 
+Matthias Andree
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001677.html">[fetchmail-users] Fetchmail Stops Functioning - Suddenly
+</A></li>
+	<LI>Next message: <A HREF="001679.html">[fetchmail-users] fetchmail at startup
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1678">[ date ]</a>
+              <a href="thread.html#1678">[ thread ]</a>
+              <a href="subject.html#1678">[ subject ]</a>
+              <a href="author.html#1678">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

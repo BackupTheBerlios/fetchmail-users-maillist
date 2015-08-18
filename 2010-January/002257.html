@@ -1,0 +1,88 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] fetchmail is not retrieving all messages?
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2010-January/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%20is%20not%20retrieving%20all%20messages%3F&In-Reply-To=%3C20100127103958.GA28854%40session.bombay.retortsoft.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002255.html">
+   
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] fetchmail is not retrieving all messages?</H1>
+    <B>Sunil Shetye</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%20is%20not%20retrieving%20all%20messages%3F&In-Reply-To=%3C20100127103958.GA28854%40session.bombay.retortsoft.com%3E"
+       TITLE="[fetchmail-users] fetchmail is not retrieving all messages?">shetye at bombay.retortsoft.com
+       </A><BR>
+    <I>Wed Jan 27 11:39:58 CET 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002255.html">[fetchmail-users] fetchmail is not retrieving all messages?
+</A></li>
+        
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2257">[ date ]</a>
+              <a href="thread.html#2257">[ thread ]</a>
+              <a href="subject.html#2257">[ subject ]</a>
+              <a href="author.html#2257">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Quoting from James Moe's mail on Wed, Jan 27, 2010:
+&gt;<i> &gt; poll sohnen-moe.com
+</I>&gt;<i> &gt;   [your other options]
+</I>&gt;<i> &gt;   batchlimit 1
+</I>&gt;<i> &gt;
+</I>&gt;<i>   Would the &quot;--antispam NNN&quot; option work as well? I did try &quot;--antispam
+</I>&gt;<i> 554&quot; on the command line but the log showed no activity whatsoever.
+</I>
+antispam option only affects whether fetchmail will send a bounce or
+not.
+
+&gt;<i>   Is there any way to have fetchmail add a timestamp to the log during
+</I>&gt;<i> normal (non-verbose) operation? Earlier versions would indicate when time
+</I>&gt;<i> it woke and slept; v6.3.13 gives no such indication.
+</I>
+Currently, you will have to log to syslog for that. In your
+fetchmailrc file, you will have to add:
+
+set syslog
+
+and check your mail logs for details with timestamps.
+
+&gt;<i>   What does the entry &quot;(log message incomplete)&quot; imply?
+</I>
+That looks like a fetchmail internal message. You may safely ignore
+that.
+
+-- 
+Sunil Shetye.
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002255.html">[fetchmail-users] fetchmail is not retrieving all messages?
+</A></li>
+	
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2257">[ date ]</a>
+              <a href="thread.html#2257">[ thread ]</a>
+              <a href="subject.html#2257">[ subject ]</a>
+              <a href="author.html#2257">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

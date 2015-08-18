@@ -1,0 +1,111 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] fetchmail header (undisclosed recipients)
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2007-March/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%20header%20%28undisclosed%20recipients%29&In-Reply-To=%3C45F9DBED.8020905%40gmx.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000874.html">
+   <LINK REL="Next"  HREF="000880.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] fetchmail header (undisclosed recipients)</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%20header%20%28undisclosed%20recipients%29&In-Reply-To=%3C45F9DBED.8020905%40gmx.de%3E"
+       TITLE="[fetchmail-users] fetchmail header (undisclosed recipients)">matthias.andree at gmx.de
+       </A><BR>
+    <I>Fri Mar 16 00:51:09 CET 2007</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000874.html">[fetchmail-users] fetchmail header (undisclosed recipients)
+</A></li>
+        <LI>Next message: <A HREF="000880.html">[fetchmail-users] fetchmail header (undisclosed recipients)
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#879">[ date ]</a>
+              <a href="thread.html#879">[ thread ]</a>
+              <a href="subject.html#879">[ subject ]</a>
+              <a href="author.html#879">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Sylvain Le Torrec schrieb:
+&gt;<i> First, thank you for your quick answer
+</I>
+Please trim your quotes. Only quote necessary material and delete the
+rest. (Outlook makes people misbehave, that's just incredible.)
+
+&gt;<i> I'm using fetchmail 6.2.4 (I know I have to upgrade it) with qmail
+</I>
+Newer versions have better documentation, too...
+
+&gt;<i> -----------------------------------------
+</I>&gt;<i> See my fetchmailrc
+</I>&gt;<i> -----------------------------------------
+</I>&gt;<i> defaults
+</I>&gt;<i> set no bouncemail
+</I>&gt;<i> poll domain.mydomain.org protocol POP3
+</I>&gt;<i> localdomains mylocaldomain
+</I>&gt;<i> tracepolls
+</I>&gt;<i> envelope &quot;Delivered-To:&quot;
+</I>&gt;<i> qvirtual &quot;Delivered-To:&quot;
+</I>
+This is bogus, you need to specify the prefix that the UPSTREAM qmail
+adds to Delivered-To headers (what they have in their virtualdomains
+table on their right hand side), if for instance all headers looked like:
+
+Delivered-To: <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">letorrec-foo at bar.baz</A>
+
+You could use qvirtual &quot;letorrec-&quot;.
+
+&gt;<i> username myusername
+</I>&gt;<i> password mypasswd
+</I>&gt;<i> is *
+</I>&gt;<i> fetchall
+</I>&gt;<i> mda &quot;sed 1,2d | /var/qmail/bin/qmail-inject&quot;
+</I>
+Make that
+
+mda &quot;sed 1,2d | /usr/sbin/sendmail -i -f %F -- %T&quot;
+
+That should work with qmail (you MAY have to use /usr/lib/sendmail
+instead) and prevent forwarding loops (by making recipients explicit -
+the %T is it).
+
+Also, will people *please* stop using this ghastly qmail-inject? It
+offers no advantage, only the disadvantage of a nonstandard command line
+interface. (qmail's sendmail compatibility wrapper even understands
+qmail-inject's environment variables.)
+
+HTH,
+MA
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000874.html">[fetchmail-users] fetchmail header (undisclosed recipients)
+</A></li>
+	<LI>Next message: <A HREF="000880.html">[fetchmail-users] fetchmail header (undisclosed recipients)
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#879">[ date ]</a>
+              <a href="thread.html#879">[ thread ]</a>
+              <a href="subject.html#879">[ subject ]</a>
+              <a href="author.html#879">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

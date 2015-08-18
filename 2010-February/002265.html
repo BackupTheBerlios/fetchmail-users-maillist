@@ -1,0 +1,111 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] /var/mail/fetchmail not mbox compliant? howto migrate to maildir?
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2010-February/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20/var/mail/fetchmail%20not%20mbox%20compliant%3F%20howto%0A%20migrate%20to%20maildir%3F&In-Reply-To=%3C20100202140433.GA1334%40straylight.m.ringlet.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002261.html">
+   <LINK REL="Next"  HREF="002266.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] /var/mail/fetchmail not mbox compliant? howto migrate to maildir?</H1>
+    <B>Peter Pentchev</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20/var/mail/fetchmail%20not%20mbox%20compliant%3F%20howto%0A%20migrate%20to%20maildir%3F&In-Reply-To=%3C20100202140433.GA1334%40straylight.m.ringlet.net%3E"
+       TITLE="[fetchmail-users] /var/mail/fetchmail not mbox compliant? howto migrate to maildir?">roam at ringlet.net
+       </A><BR>
+    <I>Tue Feb  2 15:04:33 CET 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002261.html">[fetchmail-users] /var/mail/fetchmail not mbox compliant? howto migrate to maildir?
+</A></li>
+        <LI>Next message: <A HREF="002266.html">[fetchmail-users] [solved] Re: /var/mail/fetchmail not mbox compliant? howto migrate to maildir?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2265">[ date ]</a>
+              <a href="thread.html#2265">[ thread ]</a>
+              <a href="subject.html#2265">[ subject ]</a>
+              <a href="author.html#2265">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Mon, Feb 01, 2010 at 08:42:13PM +0100, Matthias Andree wrote:
+&gt;<i> Am 01.02.2010 20:27, schrieb Stefan Bauer:
+</I>&gt;<i> &gt; Hi folks,
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; i'm facing a problem to migrate a mailbox file to maildir. source is
+</I>&gt;<i> &gt; one huge 15GB mailbox file called /var/mail/fetchmail -
+</I>&gt;<i> &gt; unfortuantely it does not look mailbox compliant and i see no way to
+</I>&gt;<i> &gt; easily migrate it - any tools known to deal with that kind of
+</I>&gt;<i> &gt; mailbox-file structure? Due to a configuration problem, the mails
+</I>&gt;<i> &gt; ended up in that mailbox-file because a procmail call which should
+</I>&gt;<i> &gt; have delivered the mails caused a temporary error.
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; <A HREF="http://nopaste.info/10c0c74b76.html">http://nopaste.info/10c0c74b76.html</A>
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; any help is greatly appreciated
+</I>&gt;<i> 
+</I>&gt;<i> This isn't a fetchmail problem, and from the looks of your paste
+</I>&gt;<i> information, I have no idea what tool might be able to recover.
+</I>&gt;<i> 
+</I>&gt;<i> You may need to write one yourself, one that looks for Return-Path: and
+</I>&gt;<i> inserts the necessary &quot;From &quot; lines before those.
+</I>
+You could try the one I wrote a couple of years ago for the exact
+same purpose:
+
+  <A HREF="http://devel.ringlet.net/textproc/trivsplitmail/">http://devel.ringlet.net/textproc/trivsplitmail/</A>
+
+Of course, use it at your own risk :)  As it says in the README, just
+run &quot;trivsplitmail /path/to/mail.spool&quot; (in your case, the path to
+the &quot;mailbox&quot; file named &quot;fetchmail&quot;), and it will output a bunch of
+files in your current working directory that you can either run
+&quot;procmail&quot; on, or just move into a Maildir's new/ directory.
+
+In a future version (whoah, that sounds grand for such a simple tool...)
+I might add an output directory and Maildir-style file naming :)
+
+G'luck,
+Peter
+
+-- 
+Peter Pentchev	<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">roam at ringlet.net</A>    <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">roam at space.bg</A>    <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">roam at FreeBSD.org</A>
+PGP key:	<A HREF="http://people.FreeBSD.org/~roam/roam.key.asc">http://people.FreeBSD.org/~roam/roam.key.asc</A>
+Key fingerprint	2EE7 A7A5 17FC 124C F115  C354 651E EFB0 2527 DF13
+Do you think anybody has ever had *precisely this thought* before?
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: not available
+Type: application/pgp-signature
+Size: 834 bytes
+Desc: not available
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/fetchmail-users/attachments/20100202/ad46e07b/attachment.pgp">https://lists.berlios.de/pipermail/fetchmail-users/attachments/20100202/ad46e07b/attachment.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002261.html">[fetchmail-users] /var/mail/fetchmail not mbox compliant? howto migrate to maildir?
+</A></li>
+	<LI>Next message: <A HREF="002266.html">[fetchmail-users] [solved] Re: /var/mail/fetchmail not mbox compliant? howto migrate to maildir?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2265">[ date ]</a>
+              <a href="thread.html#2265">[ thread ]</a>
+              <a href="subject.html#2265">[ subject ]</a>
+              <a href="author.html#2265">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

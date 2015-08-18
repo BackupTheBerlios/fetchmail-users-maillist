@@ -1,0 +1,130 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Connection timed out
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2009-July/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Connection%20timed%20out&In-Reply-To=%3C20090726073905.GA14684%40fancy-poultry.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001995.html">
+   <LINK REL="Next"  HREF="001997.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Connection timed out</H1>
+    <B>Heinz Diehl</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Connection%20timed%20out&In-Reply-To=%3C20090726073905.GA14684%40fancy-poultry.org%3E"
+       TITLE="[fetchmail-users] Connection timed out">htd at fancy-poultry.org
+       </A><BR>
+    <I>Sun Jul 26 09:39:05 CEST 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001995.html">[fetchmail-users] Problem with large emails
+</A></li>
+        <LI>Next message: <A HREF="001997.html">[fetchmail-users] Connection timed out
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1996">[ date ]</a>
+              <a href="thread.html#1996">[ thread ]</a>
+              <a href="subject.html#1996">[ subject ]</a>
+              <a href="author.html#1996">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+I'm using fetchmail 6.3.9 on Linux since many years.
+Today, I encountered the problem no longer to be able to get mail from my
+providers pop3 server. It worked a long time before, and I didn't change
+anything.
+
+The problem is that fetchmail tries to connect to the ip
+&quot;1.0.0.0&quot; which it claims should be &quot;pop.online.no&quot;, and fails, of course.
+
+There are no network problems here, and DNS is working properly as far as
+I can see:
+
+liesel:/home/htd # tcptraceroute pop.online.no 995
+Selected device wlan0, address 192.169.1.101, port 58559 for outgoing packets
+Tracing the path to pop.online.no (193.213.115.9) on TCP port 995 (pop3s), 30 hops max
+1  192.169.1.1  4.941 ms  2.813 ms  1.109 ms
+ 2  192.168.1.1  3.234 ms  2.608 ms  2.640 ms
+ 3  ti400720a080-l1.ti.telenor.net (83.108.192.0)  20.990 ms  21.000 ms 20.242 ms
+ 4  ti0004d321-ge0-1-9-10.ti.telenor.net (146.172.80.17)  30.488 ms 31.004 ms  31.115 ms
+ 5  ti0004c301-so2-1-0.ti.telenor.net (146.172.98.161)  54.990 ms  29.882 ms  30.615 ms
+ 6  ti0002c310-as1-0.ti.telenor.net (146.172.99.146)  30.361 ms  30.756 ms 30.865 ms
+ 7  ti0001b300-ae0-0.ti.telenor.net (146.172.105.58)  41.737 ms  30.757 ms 30.241 ms
+ 8  sf-ulven-1.ti.telenor.net (148.122.8.94)  31.238 ms  30.004 ms  30.117 ms
+ 9  nxe95a85-vlan405.nx.telenor.net (148.122.84.10)  29.740 ms  29.630 ms 30.863 ms
+10  pop.online.no (193.213.115.9) [open]  30.238 ms  32.322 ms  33.093 ms
+
+liesel:/home/htd # nslookup pop.online.no
+Server:         192.168.1.1
+Address:        192.168.1.1#53
+
+Name:   pop.online.no
+Address: 193.213.115.9
+
+
+Here's the fetchmail log (with the -vvv option):
+
+fetchmail: 6.3.9 querying pop.online.no (protocol POP3) at Sun 26 Jul 2009 09:18:38 AM CEST: poll started
+fetchmail: Trying to connect to 1.0.0.0/995...connection failed.
+fetchmail: connection to pop.online.no:pop3s [1.0.0.0/995] failed: Connection timed out.
+fetchmail: POP3 connection to pop.online.no failed: Connection timed out
+fetchmail: 6.3.9 querying pop.online.no (protocol POP3) at Sun 26 Jul 2009 09:21:47 AM CEST: poll completed
+fetchmail: Query status=2 (SOCKET)
+fetchmail: normal termination, status 0
+
+And here's my fetchmailrc:
+
+poll &quot;pop.online.no&quot;
+protocol pop3
+user &quot;censored&quot;
+password &quot;censored&quot;
+ssl
+sslproto &quot;TLS1&quot;
+sslcertck
+sslcertpath /etc/ssl/certs
+sslfingerprint &quot;68:B1:BB:9C:32:41:2F:BD:AC:C6:8F:89:4E:0D:6F:23&quot;
+
+fetchall
+nokeep
+set logfile /home/htd/Mail/fetchmail.log
+
+
+I'm somewhat clueless where to look at to solve the problem. As said,
+nothing changed from yesterday on, absolutely nothing on the whole system.
+A harddisk check is done, without negative results. In the meantime, I
+changed to fetchmail 6.3.10 without fixing it.
+
+Regards,
+Heinz.
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001995.html">[fetchmail-users] Problem with large emails
+</A></li>
+	<LI>Next message: <A HREF="001997.html">[fetchmail-users] Connection timed out
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1996">[ date ]</a>
+              <a href="thread.html#1996">[ thread ]</a>
+              <a href="subject.html#1996">[ subject ]</a>
+              <a href="author.html#1996">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

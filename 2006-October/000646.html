@@ -1,0 +1,108 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] fetchmail deletes imap messages
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2006-October/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%20deletes%20imap%20messages&In-Reply-To=%3C452F3FDE.2030009%40gmx.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000645.html">
+   <LINK REL="Next"  HREF="000647.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] fetchmail deletes imap messages</H1>
+    <B>longbow</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%20deletes%20imap%20messages&In-Reply-To=%3C452F3FDE.2030009%40gmx.de%3E"
+       TITLE="[fetchmail-users] fetchmail deletes imap messages">longbow at gmx.de
+       </A><BR>
+    <I>Fri Oct 13 09:27:26 CEST 2006</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000645.html">[fetchmail-users] fetchmail deletes imap messages
+</A></li>
+        <LI>Next message: <A HREF="000647.html">[fetchmail-users] fetchmail deletes imap messages
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#646">[ date ]</a>
+              <a href="thread.html#646">[ thread ]</a>
+              <a href="subject.html#646">[ subject ]</a>
+              <a href="author.html#646">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Rob MacGregor wrote:
+&gt;<i> On 10/12/06, longbow &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">longbow at gmx.de</A>&gt; wrote:
+</I>&gt;<i> 
+</I>&gt;&gt;<i> here it is:
+</I>&gt;&gt;<i> poll MAILSERVER1 protocol IMAP   user &quot;MAILBOXUSER1&quot; password &quot;PWD1&quot;
+</I>&gt;&gt;<i>    is LOCALUSER keep
+</I>&gt;&gt;<i> poll MAILSERVER2 protocol POP3   user &quot;MAILBOXUSER2&quot; password &quot;PWD2&quot; ssl
+</I>&gt;&gt;<i>   is LOCALUSER
+</I>&gt;<i> 
+</I>&gt;<i> Looks fine.
+</I>&gt;<i> 
+</I>&gt;&gt;<i>  fetchmail --nosyslog -v -v
+</I>&gt;<i> 
+</I>&gt;<i> Should have been more explicit - can you provide that for a run
+</I>&gt;<i> showing a mail being downloaded.  That way we can confirm fetchmail's
+</I>&gt;<i> actions.
+</I>&gt;<i> 
+</I>&gt;&gt;<i> fetchmail --configdump
+</I>&gt;<i> 
+</I>&gt;<i> Thanks, that shows your config is basically ok.
+</I>&gt;<i> 
+</I>&gt;&gt;<i> hope you can help me with this.
+</I>&gt;<i> 
+</I>&gt;<i> Should be able to - the log showing a mail being downloaded from the
+</I>&gt;<i> IMAP server will tell me.
+</I>&gt;<i> 
+</I>hi!
+
+i think i solved the problem on my own: i used the '-a' option in my
+local fetchmail command:
+/bin/su wolfgang -c '/usr/bin/fetchmail -a -f
+/home/wolfgang/.fetchmailrc -d 300 -L /home/wolfgang/fetchmail.log 2&gt;&amp;1'
+
+and i think this confused the &quot;keep&quot; option in my .fetchmailrc. i tested
+a few mailsendings and everything seems to run fine. i also do not get
+the message
+fetchmail: restarting fetchmail (/home/USER/.fetchmailrc changed)
+Both fetchall and keep on in daemon mode is a mistake!
+fetchmail: starting fetchmail 6.3.4 daemon
+
+the messages remain on the server and only unseen messages are beeing
+fetched!!
+
+thx a lot for the help!
+
+greets
+snIP3r
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000645.html">[fetchmail-users] fetchmail deletes imap messages
+</A></li>
+	<LI>Next message: <A HREF="000647.html">[fetchmail-users] fetchmail deletes imap messages
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#646">[ date ]</a>
+              <a href="thread.html#646">[ thread ]</a>
+              <a href="subject.html#646">[ subject ]</a>
+              <a href="author.html#646">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

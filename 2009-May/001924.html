@@ -1,0 +1,120 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] How to show the progress percent when downloading email?
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2009-May/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20How%20to%20show%20the%20progress%20percent%20when%0A%20downloading%20email%3F&In-Reply-To=%3Cop.utjvd22p1e62zd%40merlin.emma.line.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001923.html">
+   <LINK REL="Next"  HREF="001925.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] How to show the progress percent when downloading email?</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20How%20to%20show%20the%20progress%20percent%20when%0A%20downloading%20email%3F&In-Reply-To=%3Cop.utjvd22p1e62zd%40merlin.emma.line.org%3E"
+       TITLE="[fetchmail-users] How to show the progress percent when downloading email?">matthias.andree at gmx.de
+       </A><BR>
+    <I>Thu May  7 10:04:40 CEST 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001923.html">[fetchmail-users] How to show the progress percent	when	downloading email?
+</A></li>
+        <LI>Next message: <A HREF="001925.html">[fetchmail-users] How to show the progress percent	when	downloading email?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1924">[ date ]</a>
+              <a href="thread.html#1924">[ thread ]</a>
+              <a href="subject.html#1924">[ subject ]</a>
+              <a href="author.html#1924">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Am 07.05.2009, 09:41 Uhr, schrieb Ali Gholami Rudi &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">aliqrudi at gmail.com</A>&gt;:
+
+&gt;<i> Hi Matthias,
+</I>&gt;<i>
+</I>&gt;<i> Matthias Andree &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">matthias.andree at gmx.de</A>&gt; wrote:
+</I>&gt;&gt;<i> this appears a feature request - and it would require some fiddling with
+</I>&gt;&gt;<i> terminal settings to reset the cursor to the beginning of the &quot;20%&quot;  
+</I>&gt;&gt;<i> part.
+</I>&gt;&gt;<i> This works for many, but not all, terminals and hence causes additional
+</I>&gt;&gt;<i> dependencies on some kind of console rendering library, such as  
+</I>&gt;&gt;<i> (n)curses
+</I>&gt;&gt;<i> or slang. Just for the sake of prettier output, I'd rather not make such
+</I>&gt;&gt;<i> changes - this seems a major imbalance of effort and gain.
+</I>&gt;<i>
+</I>&gt;<i> I don't have any idea on this feature but AFAIK the last line of the
+</I>&gt;<i> output can be updated using '\r' (no need to use curses).  I think this
+</I>&gt;<i> is what git does to show clone progress, too.
+</I>
+Hi Ali,
+
+True enough about \r, and thanks for this valuable suggestion. Erasing the  
+last three characters is probably also doable with backspaces, but I don't  
+know that for sure. Backspaces and overprint are sometimes used to emulate  
+bold printing. I lack the time to research the portability of this,  
+there's too much more important stuff on the todo lists.
+
+However I also have the fetchmail code in mind, and I've recently cleaned  
+up logging a bit (not completely, there's still a bit of ad-hoc code, but  
+at least it's easily identified by the want_progress() macro now) for more  
+consistency and less screen clutter (these are two separate achievements  
+actually).
+We'd have to make major modifications to logging again, particularly to  
+either save the beginning of such a whole line and reprint it; or we would  
+have to fix the progress reporting to re-generate a whole line all the  
+time. Either is nontrivial (i. e. not a central place where you make one  
+change, but scattered through the code), and I'm not eager to do that.
+
+I would review patches though -- actual &quot;reset 7 characters&quot; would be more  
+useful. So, bottom line: something that
+
+The problem with any such changes to fetchmail is that modules such as  
+report.c are lightly documented and often used in arcane undocumented  
+ways, interspersed with ad-hoc code all over the place, and sometimes code  
+was not moved into a function, but copied and pasted. I attribute this to  
+the bazaar-style coding that was en vogue when Eric S. Raymond hacked  
+fetchmail and wrote his Cathedral and Bazaar essay (it would be sensible  
+to follow up why a bazaar gives you a lump of features, but not a  
+consistent piece in one cast).
+
+It often made the code harder to maintain, and before such features can be  
+implemented, you need to read major parts of the code to see where else  
+you'll find something that influences your current task, and that's also  
+why fetchmail progresses rather slowly WRT bugfixing and particularly  
+feature additions.
+
+HTH
+
+-- 
+Matthias Andree
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001923.html">[fetchmail-users] How to show the progress percent	when	downloading email?
+</A></li>
+	<LI>Next message: <A HREF="001925.html">[fetchmail-users] How to show the progress percent	when	downloading email?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1924">[ date ]</a>
+              <a href="thread.html#1924">[ thread ]</a>
+              <a href="subject.html#1924">[ subject ]</a>
+              <a href="author.html#1924">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

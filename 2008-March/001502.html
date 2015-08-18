@@ -1,0 +1,191 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Startup item for OSX 10.3.9
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2008-March/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Startup%20item%20for%20OSX%2010.3.9&In-Reply-To=%3Ca062309cbc416e9d9f3ff%40%5B192.168.33.3%5D%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001501.html">
+   <LINK REL="Next"  HREF="001504.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Startup item for OSX 10.3.9</H1>
+    <B>billc</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Startup%20item%20for%20OSX%2010.3.9&In-Reply-To=%3Ca062309cbc416e9d9f3ff%40%5B192.168.33.3%5D%3E"
+       TITLE="[fetchmail-users] Startup item for OSX 10.3.9">billc_lists at greenbuilder.com
+       </A><BR>
+    <I>Mon Mar 31 21:19:57 CEST 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001501.html">[fetchmail-users] mysterious server errors
+</A></li>
+        <LI>Next message: <A HREF="001504.html">[fetchmail-users] Startup item for OSX 10.3.9
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1502">[ date ]</a>
+              <a href="thread.html#1502">[ thread ]</a>
+              <a href="subject.html#1502">[ subject ]</a>
+              <a href="author.html#1502">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>At 8:48 PM +0000 3/29/08, Rob MacGregor wrote:
+&gt;<i>On Sat, Mar 29, 2008 at 12:37 AM, billc &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">billc_lists at greenbuilder.com</A>&gt; wrote:
+</I>&gt;&gt;<i>  Hi folks,
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i>   New Fetchmail user here, looking to get a working startup item for
+</I>&gt;&gt;<i>   Mac OSX 10.3.9.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i>   I'm using Fetchmail to pump listmail messages from Gmail to Mailman.
+</I>&gt;&gt;<i>   It's working great, but i'd like it to launch on startup should the
+</I>&gt;&gt;<i>   server ever need restarting.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i>   I found some instructions on Stepwise.com, and it works from terminal
+</I>&gt;&gt;<i>   but I seem to be getting a permissions problem on startup.
+</I>&gt;<i>
+</I>&gt;<i>Are there any error messages you can provide?  While I may not know
+</I>&gt;<i>MacOS X, I may be able to help you diagnose the problem and identify
+</I>&gt;<i>the solution.
+</I>
+Thanks for the help.
+
+I'm not getting much in the way of error messages.  The system log says only:
+
+
+Mar 30 02:54:59 localhost SystemStarter:	/Library/StartupItems/FetchMail
+Mar 30 02:54:59 localhost SystemStarter:  - execution of Startup script failed
+
+My understanding of creating startup items in OSX is somewhat dicey. 
+I've never been able to get them to work, though I follow all the 
+instructions to the letter (including permissions and the execute 
+bit).  But if I get a working startup item from someone else's setup 
+and tweak path names to fit mine, they almost always work.  Go figure.
+
+I can start it manually just fine with
+
+	fetchmail --fetchmailrc /etc/fetchmailrc -v
+
+or
+
+	fetchmail -d 60 --fetchmailrc /etc/fetchmailrc
+
+
+In /Library/Startupitems/Fetchmail I have:
+
+----------------
+file name: Fetchmail
+----------------
+
+#!/bin/sh
+
+. /etc/rc.common
+
+# The start subroutine
+
+StartService() {
+
+##
+# Start Fetchmail server
+##
+
+if [ &quot;${MAILSERVER:=-NO-}&quot; = &quot;-YES-&quot; ]; then
+#    ConsoleMessage &quot;Starting fetchmail services&quot;
+     fetchmail -d 60 --fetchmailrc /etc/fetchmailrc --logfile 
+/var/log/mail.log #--silent
+  fi
+
+}
+
+# The stop subroutine - I've tried it with and without the following 
+subroutines, no difference.
+
+StopService() {
+
+     # Insert your stop command(s) below.  For example:
+
+     killall -TERM fetchmail
+
+    # sleep 10
+
+     killall -9 fetchmail
+
+     # End example.
+
+}
+
+
+# The restart subroutine
+
+RestartService() {
+
+     # Insert your start command below.  For example:
+
+    fetchmail -quit
+
+     # End example.
+
+}
+
+
+RunService &quot;$1&quot;
+
+
+
+
+
+---------------------------
+file name: startupparameters.plist
+---------------------------
+{
+   Description   = &quot;Fetchmail mail server&quot;;
+   Provides      = (&quot;POP3&quot;);
+   Requires      = (&quot;Resolver&quot;);
+   Uses          = (&quot;Network Time&quot;, &quot;NFS&quot;);
+   Preference    = &quot;None&quot;;
+   Messages =
+   {
+     start = &quot;Starting Fetchmail&quot;;
+     stop  = &quot;Stopping Fetchmail&quot;;
+   };
+}
+
+
+-- 
+Bill Christensen
+&lt;<A HREF="http://greenbuilder.com/contact/">http://greenbuilder.com/contact/</A>&gt;
+
+Green Building Professionals Directory: &lt;<A HREF="http://directory.greenbuilder.com">http://directory.greenbuilder.com</A>&gt;
+Sustainable Building Calendar: &lt;<A HREF="http://www.greenbuilder.com/calendar/">http://www.greenbuilder.com/calendar/</A>&gt;
+Green Real Estate: &lt;<A HREF="http://www.greenbuilder.com/realestate/">http://www.greenbuilder.com/realestate/</A>&gt;
+Straw Bale Registry: &lt;<A HREF="http://sbregistry.greenbuilder.com/">http://sbregistry.greenbuilder.com/</A>&gt;
+Books/videos/software: &lt;<A HREF="http://bookstore.greenbuilder.com/">http://bookstore.greenbuilder.com/</A>&gt;
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001501.html">[fetchmail-users] mysterious server errors
+</A></li>
+	<LI>Next message: <A HREF="001504.html">[fetchmail-users] Startup item for OSX 10.3.9
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1502">[ date ]</a>
+              <a href="thread.html#1502">[ thread ]</a>
+              <a href="subject.html#1502">[ subject ]</a>
+              <a href="author.html#1502">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

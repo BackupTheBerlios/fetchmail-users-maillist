@@ -1,0 +1,110 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] fetchmail - maildrop: non delivery
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2013-January/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%20-%20maildrop%3A%20non%20delivery&In-Reply-To=%3C201301221940.59773.gheskett%40wdtv.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003326.html">
+   <LINK REL="Next"  HREF="003328.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] fetchmail - maildrop: non delivery</H1>
+    <B>Gene Heskett</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%20-%20maildrop%3A%20non%20delivery&In-Reply-To=%3C201301221940.59773.gheskett%40wdtv.com%3E"
+       TITLE="[fetchmail-users] fetchmail - maildrop: non delivery">gheskett at wdtv.com
+       </A><BR>
+    <I>Wed Jan 23 01:40:59 CET 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003326.html">[fetchmail-users] fetchmail - maildrop: non delivery
+</A></li>
+        <LI>Next message: <A HREF="003328.html">[fetchmail-users] fetchmail basic integration question
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3327">[ date ]</a>
+              <a href="thread.html#3327">[ thread ]</a>
+              <a href="subject.html#3327">[ subject ]</a>
+              <a href="author.html#3327">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Tuesday 22 January 2013 19:25:30 grarpamp did opine:
+Message additions Copyright Tuesday 22 January 2013 by Gene Heskett
+
+&gt;<i> &gt; DENY = &quot;^X-Originating-IP:.*199\.71\.233\.&quot;
+</I>&gt;<i> &gt; DENY = &quot;^Received:.*173\.242\.119\.&quot;
+</I>&gt;<i> &gt; DENY = &quot;^X-Originating-IP:.*69\.175\.70\.&quot;
+</I>&gt;<i> &gt; DENY = &quot;^Received:.*69\.25\.193\.&quot;
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; Note that in each of the above cases I am nuking that whole class D.
+</I>&gt;<i> 
+</I>&gt;<i> 1) The notation would match a 'class C', not a D which was multicast.
+</I>
+Semantics, in this case a never mind to me.  Yes, I'm matching a class C, 
+because I don't have a quarter to call somebody that might care.  Point 
+being if a class D address that came from that class C is spam, then its 
+likely that any other class D in that class C is also.
+
+&gt;<i> 2) Would and was, because classful was replaced with CIDR in 1993.
+</I>
+Reference link that explains it in english please?
+
+&gt;<i> 3) Blocking on class boundaries won't work as expected because,
+</I>&gt;<i> again, CIDR assignments/BGP are how things are done and must
+</I>&gt;<i> be looked up to meet expectation.
+</I>&gt;<i> 4) Forget about classful addressing, please.
+</I>
+When it quits working.  That will be when I see FP's, which I haven't yet.  
+Its worked well for quite a while now.  Within its limitations of course 
+and it has at least one that upset me at the time.
+
+I have conversed with the author, who apparently has no intentions of ever 
+revisiting the code again.  Its written in C++, the spawn of the devil IMO, 
+so I haven't spent more than an hour or so trying to understand it.
+
+So I've wrapped it up in another bash script that handles the one big, 
+sticks out like a bandaged hammered thumb problem it was giving me 2 years 
+ago over a bug or non-rfc compliance in the QMail server.
+
+Cheers, Gene
+-- 
+&quot;There are four boxes to be used in defense of liberty:
+ soap, ballot, jury, and ammo. Please use in that order.&quot;
+-Ed Howdershelt (Author)
+My web page: &lt;<A HREF="http://coyoteden.dyndns-free.com:85/gene">http://coyoteden.dyndns-free.com:85/gene</A>&gt; is up!
+My views 
+&lt;<A HREF="http://www.armchairpatriot.com/What%20Has%20America%20Become.shtml">http://www.armchairpatriot.com/What%20Has%20America%20Become.shtml</A>&gt;
+I know it all.  I just can't remember it all at once.
+I was taught to respect my elders, but its getting 
+harder and harder to find any...
+</PRE>
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003326.html">[fetchmail-users] fetchmail - maildrop: non delivery
+</A></li>
+	<LI>Next message: <A HREF="003328.html">[fetchmail-users] fetchmail basic integration question
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3327">[ date ]</a>
+              <a href="thread.html#3327">[ thread ]</a>
+              <a href="subject.html#3327">[ subject ]</a>
+              <a href="author.html#3327">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

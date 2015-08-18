@@ -1,0 +1,94 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Splitting catch-all into local recipients.
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2007-May/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Splitting%20catch-all%20into%20local%20recipients.&In-Reply-To=%3C4644BA2D.2040002%40gmx.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001021.html">
+   <LINK REL="Next"  HREF="001023.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Splitting catch-all into local recipients.</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Splitting%20catch-all%20into%20local%20recipients.&In-Reply-To=%3C4644BA2D.2040002%40gmx.de%3E"
+       TITLE="[fetchmail-users] Splitting catch-all into local recipients.">matthias.andree at gmx.de
+       </A><BR>
+    <I>Fri May 11 20:47:09 CEST 2007</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001021.html">[fetchmail-users] Splitting catch-all into local recipients.
+</A></li>
+        <LI>Next message: <A HREF="001023.html">[fetchmail-users] Splitting catch-all into local recipients.
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1022">[ date ]</a>
+              <a href="thread.html#1022">[ thread ]</a>
+              <a href="subject.html#1022">[ subject ]</a>
+              <a href="author.html#1022">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Dave Coventry schrieb:
+&gt;<i> I'll try again(Sorry, the cut-and-paste didn't work out)
+</I>&gt;<i> 
+</I>&gt;<i> Matthias, thank you very much for the reply.
+</I>
+You're welcome.
+
+&gt;<i> Okay, I've read and reread the manual page and I think I have the
+</I>&gt;<i> answer; namely that
+</I>&gt;<i> ~~~~~~~~~~~~ snip ~~~~~~~~~~~~~~~~~~~~~
+</I>&gt;<i> 
+</I>&gt;<i> poll pop.example.com with proto POP3
+</I>&gt;<i> user &quot;general at example.com&quot; there with
+</I>&gt;<i> password &quot;my_password&quot; to davec=dave johnj=john shirleyw=shirley
+</I>&gt;<i> barryw=barry here
+</I>&gt;<i> ~~~~~~~~~~~~ snip ~~~~~~~~~~~~~~~~~~~~~
+</I>&gt;<i> should work.
+</I>
+Yes, it should - however, as I've stated in
+&lt;<A HREF="http://home.pages.de/~mandree/mail/multidrop">http://home.pages.de/~mandree/mail/multidrop</A>&gt;, it requires some
+cooperation from the ISP to write envelope headers, else you'll have
+troubles with duplicate or missing or misdirected messages (answering your
+question why multidrop isn't the best idea).
+
+Configuring the envelope header properly (Rob MacGregor offered to help
+with that part in his list mail) is essential (the option is also called
+envelope), some details are in the FAQ and manual page and in the document
+linked to above. Usually, ODMR or UUCP are better ideas than POP3
+multidrop, since they are more reliable, these protocols do transport the
+envelope.
+
+HTH,
+Matthias
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001021.html">[fetchmail-users] Splitting catch-all into local recipients.
+</A></li>
+	<LI>Next message: <A HREF="001023.html">[fetchmail-users] Splitting catch-all into local recipients.
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1022">[ date ]</a>
+              <a href="thread.html#1022">[ thread ]</a>
+              <a href="subject.html#1022">[ subject ]</a>
+              <a href="author.html#1022">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

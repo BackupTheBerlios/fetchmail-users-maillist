@@ -1,0 +1,100 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] How to avoid these annoying reports
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2007-August/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20How%20to%20avoid%20these%20annoying%20reports&In-Reply-To=%3C200708200908.54448.cannewilson%40googlemail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001176.html">
+   <LINK REL="Next"  HREF="001178.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] How to avoid these annoying reports</H1>
+    <B>Anne Wilson</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20How%20to%20avoid%20these%20annoying%20reports&In-Reply-To=%3C200708200908.54448.cannewilson%40googlemail.com%3E"
+       TITLE="[fetchmail-users] How to avoid these annoying reports">cannewilson at googlemail.com
+       </A><BR>
+    <I>Mon Aug 20 10:08:54 CEST 2007</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001176.html">[fetchmail-users] How to avoid these annoying reports
+</A></li>
+        <LI>Next message: <A HREF="001178.html">[fetchmail-users] How to avoid these annoying reports
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1177">[ date ]</a>
+              <a href="thread.html#1177">[ thread ]</a>
+              <a href="subject.html#1177">[ subject ]</a>
+              <a href="author.html#1177">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Sunday 19 Aug 2007, Rob MacGregor wrote:
+&gt;<i> On 8/19/07, Anne Wilson &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">cannewilson at googlemail.com</A>&gt; wrote:
+</I>&gt;<i> &gt; Hi, Rob.  I've upgraded now, but I've not been able to run as a daemon. 
+</I>&gt;<i> &gt; I seem to have a path problem.
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; fetchmail --daemon 300
+</I>&gt;<i> &gt; fetchmail: cannot open /home/anne/~/fetchmail.log: No such file or
+</I>&gt;<i> &gt; directory fetchmail: fetchmail: Cannot detach into background. Aborting.
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; This when commanding as user.  I did wonder if root needed to start it,
+</I>&gt;<i> &gt; but I guess if that's so I'll have to feed it the user path somehow.
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; Can you help, please?
+</I>&gt;<i>
+</I>&gt;<i> Looks like a typo somewhere in your config file.  What does your
+</I>&gt;<i> .fetchmailrc file contain?
+</I>&gt;<i>
+</I>&gt;<i> I'm guessing a line like:
+</I>&gt;<i>
+</I>&gt;<i>  logfile ~/fetchmail.log
+</I>&gt;<i>
+</I>&gt;<i> Try &quot;logfile /home/anne/fetchmail.log&quot; instead.
+</I>
+That corrected it, and the daemon is now running.  However, I'm still having 
+no luck in getting the certificate.  This is the command I'm using:
+
+[<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">root at david</A> ~]# openssl s_client -connect zencphosting09.zen.co.uk:993 
+&lt;/dev/null | sed -ne '/-BEGIN CERTIFICATE-/,/-END 
+CERTIFICATE-/p'&gt;/etc/pki/tls/rootcerts/zencphosting09.zen.co.uk.pem
+
+It just sits there, nothing happening.
+
+Anne
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: signature.asc
+Type: application/pgp-signature
+Size: 189 bytes
+Desc: This is a digitally signed message part.
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/fetchmail-users/attachments/20070820/185220ab/attachment.pgp">https://lists.berlios.de/pipermail/fetchmail-users/attachments/20070820/185220ab/attachment.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001176.html">[fetchmail-users] How to avoid these annoying reports
+</A></li>
+	<LI>Next message: <A HREF="001178.html">[fetchmail-users] How to avoid these annoying reports
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1177">[ date ]</a>
+              <a href="thread.html#1177">[ thread ]</a>
+              <a href="subject.html#1177">[ subject ]</a>
+              <a href="author.html#1177">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

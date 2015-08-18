@@ -1,0 +1,89 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Infinite loop!
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2007-November/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Infinite%20loop%21&In-Reply-To=%3C200711201145.01822.ndbecker2%40gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001382.html">
+   
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Infinite loop!</H1>
+    <B>Neal Becker</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Infinite%20loop%21&In-Reply-To=%3C200711201145.01822.ndbecker2%40gmail.com%3E"
+       TITLE="[fetchmail-users] Infinite loop!">ndbecker2 at gmail.com
+       </A><BR>
+    <I>Tue Nov 20 17:45:01 CET 2007</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001382.html">[fetchmail-users] Infinite loop!
+</A></li>
+        
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1383">[ date ]</a>
+              <a href="thread.html#1383">[ thread ]</a>
+              <a href="subject.html#1383">[ subject ]</a>
+              <a href="author.html#1383">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Tuesday 20 November 2007, Rob MacGregor wrote:
+&gt;<i> On Nov 20, 2007 4:16 PM, Neal Becker &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">ndbecker2 at gmail.com</A>&gt; wrote:
+</I>&gt;<i> &gt; I think I solved it.  I didn't know that I didn't need a local mda to
+</I>&gt;<i> &gt; relay on to my server.  Now it looks like:
+</I>&gt;<i>
+</I>&gt;<i> &lt;---SNIP---&gt;
+</I>&gt;<i>
+</I>&gt;<i> &gt; Perhaps add this to a FAQ?
+</I>&gt;<i>
+</I>&gt;<i> Quoting the man page:
+</I>&gt;<i>
+</I>&gt;<i> &quot;As each message is retrieved, fetchmail normally delivers it via SMTP
+</I>&gt;<i> to port 25 on the machine it is running on (localhost)...&quot;
+</I>&gt;<i>
+</I>&gt;<i> If that is unclear please suggest how it could be better worded (on a
+</I>&gt;<i> side note I am aware that the man page needs a re-write and providing
+</I>&gt;<i> some clearer/shorter documentation to the project is something I
+</I>&gt;<i> intend to do, when I have enough time).
+</I>
+Not sure if you understood me, I'm not delivering to the local machine.
+
+How about:
+
+As each message is retrieved, fetchmail normally delivers it via SMTP to port 
+25 on the machine it is running on (localhost), just as though it were being 
+passed in over a normal TCP/IP link.
++ Fetchmail can also forward directly to a remote server via smtp, by  
+specifying the 'smtphost' option.  You may also want to use the 'smtpname' 
+option to cause the 'rcpt' to be set to a particular user on the remote 
+smtphost.
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001382.html">[fetchmail-users] Infinite loop!
+</A></li>
+	
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1383">[ date ]</a>
+              <a href="thread.html#1383">[ thread ]</a>
+              <a href="subject.html#1383">[ subject ]</a>
+              <a href="author.html#1383">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,111 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] [PATCH] Re: fix lost POP3 deletes
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2006-May/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20%5BPATCH%5D%20Re%3A%20fix%20lost%20POP3%20deletes&In-Reply-To=%3Cm3ejynmgyb.fsf%40merlin.emma.line.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000420.html">
+   <LINK REL="Next"  HREF="000423.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] [PATCH] Re: fix lost POP3 deletes</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20%5BPATCH%5D%20Re%3A%20fix%20lost%20POP3%20deletes&In-Reply-To=%3Cm3ejynmgyb.fsf%40merlin.emma.line.org%3E"
+       TITLE="[fetchmail-users] [PATCH] Re: fix lost POP3 deletes">matthias.andree at gmx.de
+       </A><BR>
+    <I>Sun May 21 19:21:48 CEST 2006</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000420.html">[fetchmail-users] Re: fix lost POP3 deletes
+</A></li>
+        <LI>Next message: <A HREF="000423.html">[fetchmail-users] [OFFTOPIC PATCH] Re: fix lost POP3 deletes
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#421">[ date ]</a>
+              <a href="thread.html#421">[ thread ]</a>
+              <a href="subject.html#421">[ subject ]</a>
+              <a href="author.html#421">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Sunil Shetye &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">shetye at bombay.retortsoft.com</A>&gt; writes:
+
+&gt;&gt;<i> Opinions? Let it go in now or wait until 6.4.0?
+</I>&gt;<i>
+</I>&gt;<i> A far safer option is to just redownload the mail. I think, there are
+</I>&gt;<i> issues regarding POP servers recycling UIDs, thereby assigning the
+</I>&gt;<i> same UID of a mail which was deleted to a new mail.
+</I>
+&gt;<i> For such servers, there could also be a race condition on a socket
+</I>&gt;<i> error. For example, if fetchmail sends a &quot;QUIT&quot; which the POP3 server
+</I>&gt;<i> receives and if the POP3 server sends an &quot;+OK&quot; which fetchmail does
+</I>&gt;<i> not receive due to socket error. In this situation, the server has
+</I>&gt;<i> already expunged the mails but fetchmail does not know that. Now, if
+</I>&gt;<i> the server assigns the same UID to a new mail, fetchmail may end up
+</I>&gt;<i> deleting that mail.
+</I>
+Well - that problem hurts the existing UIDL code, too, independent of
+--flush. When fetchmail gets an error response to QUIT, it will not
+forget existing UIDLs, thus it may skip messages with recycled UIDs when
+the server has in fact seen the QUIT message.
+
+&gt;<i> This patch should now download the mail when used without 'flush'.
+</I>&gt;<i> This will lead to duplicate mails on socket errors.
+</I>
+Well - fetchmail does not currently save the deleted status to its
+.fetchids file, so there will be a difference between daemon mode and
+&quot;fetchmail without daemon option from cron&quot; that I would like to avoid -
+and my patch is supposed to address this.
+
+I am attaching a revised patch (against UIDL) that drops the UIDs (marks
+them UID_EXPUNGED) before sending the QUIT command.
+
+My patch saves the &quot;DELETED&quot; flag, and this should help when the
+connection goes away, for instance, when downloading a message, when
+there is not the slightest chance the server might have seen a &quot;QUIT&quot;
+request, so there is no chance of recycled UIDs.
+
+In that case, fetchmail would then safely retry the deletion.
+
+The problem of another client deleting a message and the server
+recycling the UID isn't fixed, we cannot fix this in fetchmail.
+
+-- 
+Matthias Andree
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: 6.3.4+svn-pending-deletes.patch
+Type: text/x-patch
+Size: 14781 bytes
+Desc: not available
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/fetchmail-users/attachments/20060521/e5e22a25/attachment.bin">https://lists.berlios.de/pipermail/fetchmail-users/attachments/20060521/e5e22a25/attachment.bin</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000420.html">[fetchmail-users] Re: fix lost POP3 deletes
+</A></li>
+	<LI>Next message: <A HREF="000423.html">[fetchmail-users] [OFFTOPIC PATCH] Re: fix lost POP3 deletes
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#421">[ date ]</a>
+              <a href="thread.html#421">[ thread ]</a>
+              <a href="subject.html#421">[ subject ]</a>
+              <a href="author.html#421">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

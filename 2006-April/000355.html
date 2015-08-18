@@ -1,0 +1,147 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Re: &quot;Seen&quot; status disappears everytime
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2006-April/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Re%3A%20%22Seen%22%20status%20disappears%20everytime&In-Reply-To=%3C20060421204749.13925.qmail%40web33402.mail.mud.yahoo.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000354.html">
+   <LINK REL="Next"  HREF="000356.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Re: &quot;Seen&quot; status disappears everytime</H1>
+    <B>Ratan Nalumasu</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Re%3A%20%22Seen%22%20status%20disappears%20everytime&In-Reply-To=%3C20060421204749.13925.qmail%40web33402.mail.mud.yahoo.com%3E"
+       TITLE="[fetchmail-users] Re: &quot;Seen&quot; status disappears everytime">nalumasu at yahoo.com
+       </A><BR>
+    <I>Fri Apr 21 22:47:49 CEST 2006</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000354.html">[fetchmail-users] &quot;Seen&quot; status disappears everytime [Resending]
+</A></li>
+        <LI>Next message: <A HREF="000356.html">[fetchmail-users] Re: &quot;Seen&quot; status disappears everytime
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#355">[ date ]</a>
+              <a href="thread.html#355">[ thread ]</a>
+              <a href="subject.html#355">[ subject ]</a>
+              <a href="author.html#355">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi all:
+
+I am still struggling a bit with the configuration. As
+suggested, I am going to describe what I am trying to achieve
+and then explain what I have done so far.
+
+- I want to download mail from the mailserver to my laptop,
+  leaving an empty mailbox on the server.
+
+- The mailserver currently has IMAP and POP3 ports open,
+  though POP3 may be closed in the future. There is no server
+  on the POP3S port as we speak though.
+
+- Ideally, I don't want to enter the password to fetchmail,
+  but have it use my ssh-agent if available and fail if not.
+
+- I sometimes read the mail directly on the mail server
+  using squirrelmail and elm. In these cases, the messages
+  are being marked as Read on the server (&quot;Status: RO&quot;).
+However,
+  when I get them using fetchmail on IMAP protocol, the Status
+  line disappears in the fetched e-mail.
+
+- When I fetch the same mail using fetchmail on POP3 protocol,
+  the &quot;Status&quot; fields are retained but it leads to a different
+  problem: insufficient integration with ssh/ssh-agent.
+
+I tried the following configuration with IMAP protocol with the
+result that all fetched mails were appearing as brand new:
+
+
+=== IMAP config ===
+set postmaster &quot;ratan&quot;
+set bouncemail
+set no spambounce
+set properties &quot;&quot;
+defaults mda &quot;/usr/bin/procmail -d %T&quot;
+
+poll bitter
+    plugin &quot;env -u DISPLAY /home/ratan/bin/%h exec
+/usr/local/bin/imapd&quot; auth ssh;
+    user 'ratan' there is 'ratan' here
+    expunge 10
+    options fetchall
+    mda &quot;cat &gt;&gt; /home/ratan/TEST&quot;
+
+=================
+
+I tried the following configuration with POP3 at the suggestion
+of Matthias. This almost worked except that it is not using SSH.
+
+=== pop3, attempt#1 ===
+poll bitter with pop3
+   uidl
+   options fetchall
+
+=========
+
+After some research, I tried the following to force it to use
+ssh; but the results were still not good: this configuration
+still asks for password; if I enter a bad password, the
+authentication fails: i.e., apparently, unlike imap server, the
+pop3 server has no preauthorized state.
+
+==== pop3, attempt#2 ===
+poll bitter with pop3 via localhost port 8005
+   uidl
+   preconnect &quot;ssh -n -2 -a -C -f <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">ratan at bitter</A> -L
+8005:bitter:110 sleep 5&quot;
+
+======
+
+Any suggestions on how I can get the mail while retaining the
+&quot;Seen&quot; flags exclusively using the ssh-agent for connection
+would be great.
+
+BTW, I tried fetchmail version 6.3.4 and 6.2.5.2 both with the
+same results.
+
+Thanks!
+Ratan
+
+__________________________________________________
+Do You Yahoo!?
+Tired of spam?  Yahoo! Mail has the best spam protection around 
+<A HREF="http://mail.yahoo.com">http://mail.yahoo.com</A> 
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000354.html">[fetchmail-users] &quot;Seen&quot; status disappears everytime [Resending]
+</A></li>
+	<LI>Next message: <A HREF="000356.html">[fetchmail-users] Re: &quot;Seen&quot; status disappears everytime
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#355">[ date ]</a>
+              <a href="thread.html#355">[ thread ]</a>
+              <a href="subject.html#355">[ subject ]</a>
+              <a href="author.html#355">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

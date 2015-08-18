@@ -1,0 +1,118 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Fetchmail, gmail, and a new computer
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2012-May/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Fetchmail%2C%20gmail%2C%20and%20a%20new%20computer&In-Reply-To=%3CCAARWLqsqmVu%2B4FO54sFnWwPo_4Zvu7bs-j7uVUjr8fv_4dDXHQ%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003128.html">
+   <LINK REL="Next"  HREF="003130.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Fetchmail, gmail, and a new computer</H1>
+    <B>Jim J</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Fetchmail%2C%20gmail%2C%20and%20a%20new%20computer&In-Reply-To=%3CCAARWLqsqmVu%2B4FO54sFnWwPo_4Zvu7bs-j7uVUjr8fv_4dDXHQ%40mail.gmail.com%3E"
+       TITLE="[fetchmail-users] Fetchmail, gmail, and a new computer">jahosefet at gmail.com
+       </A><BR>
+    <I>Tue May 22 05:08:56 CEST 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003128.html">[fetchmail-users] Fetchmail, gmail, and a new computer
+</A></li>
+        <LI>Next message: <A HREF="003130.html">[fetchmail-users] Fetchmail, gmail, and a new computer
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3129">[ date ]</a>
+              <a href="thread.html#3129">[ thread ]</a>
+              <a href="subject.html#3129">[ subject ]</a>
+              <a href="author.html#3129">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Monday, May 21, 2012, Carlos E. R. wrote:
+
+&gt;<i> -----BEGIN PGP SIGNED MESSAGE-----
+</I>&gt;<i> Hash: SHA1
+</I>&gt;<i>
+</I>&gt;<i> On 2012-05-22 00:00, Jim J wrote:
+</I>&gt;<i>
+</I>&gt;<i> &gt; Yes, all of this was on the old box. I agree with you on the UIDL.
+</I>&gt;<i> &gt; Does this mean that fetchmail doesn't generate anything that I can use
+</I>&gt;<i> &gt; to maintain state across machines? It's some gmail magic then?
+</I>&gt;<i>
+</I>&gt;<i> I use gmail on two computers, and both are happy; and one of them using
+</I>&gt;<i> both thunderbird and fetchmail. But I access using _imap_, using pop3
+</I>&gt;<i> would be a nightmare.
+</I>&gt;<i>
+</I>&gt;<i> I do not keep a .fetchids file.
+</I>&gt;<i>
+</I>&gt;<i> Gmail does not delete emails, it keeps track of what you downloaded
+</I>&gt;<i> somehow, and this index can be reset. There is a configuration place in
+</I>&gt;<i> the gmail webmail where you can say from what date you want to download
+</I>&gt;<i> messages.
+</I>&gt;<i>
+</I>&gt;<i> And it breaks with pop3, do not use it.
+</I>&gt;<i>
+</I>&gt;<i> - --
+</I>&gt;<i> Cheers / Saludos,
+</I>&gt;<i>
+</I>&gt;<i>                Carlos E. R.
+</I>&gt;<i>                (from 11.4 x86_64 &quot;Celadon&quot; at Telcontar)
+</I>&gt;<i> -----BEGIN PGP SIGNATURE-----
+</I>&gt;<i> Version: GnuPG v2.0.16 (GNU/Linux)
+</I>&gt;<i> Comment: Using GnuPG with Mozilla - <A HREF="http://enigmail.mozdev.org/">http://enigmail.mozdev.org/</A>
+</I>&gt;<i>
+</I>&gt;<i> iEYEARECAAYFAk+62ycACgkQIvFNjefEBxqbJgCfcMlTsl/+vym7aNav5ECZ6bcn
+</I>&gt;<i> X/EAoLZiZjArUTKkGGGf0cG+A061j0U0
+</I>&gt;<i> =qJYa
+</I>&gt;<i> -----END PGP SIGNATURE-----
+</I>&gt;<i> _______________________________________________
+</I>&gt;<i> fetchmail-users mailing list
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">fetchmail-users at lists.berlios.de</A> &lt;javascript:;&gt;
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">https://lists.berlios.de/mailman/listinfo/fetchmail-users</A>
+</I>&gt;<i>
+</I>
+Well, this is all terribly disappointing. I wish I'd known about the UIDL
+flag to begin with. I think I'm going to try to generate a fetchids file
+from my maildir, but I'm not entirely sure what it looks like. From the
+source it looks like it might be a text file with lines something like:
+
+&lt;remote username&gt;@pop.gmail.com &lt;UID&gt;
+
+Can somebody verify this and/or post an example for me? It looks like the
+UID comes from the Message-ID header field, though some of my emails don't
+have one so I'm not yet sure what to do in that case.
+
+Thanks,
+
+Jim
+</PRE>
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003128.html">[fetchmail-users] Fetchmail, gmail, and a new computer
+</A></li>
+	<LI>Next message: <A HREF="003130.html">[fetchmail-users] Fetchmail, gmail, and a new computer
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3129">[ date ]</a>
+              <a href="thread.html#3129">[ thread ]</a>
+              <a href="subject.html#3129">[ subject ]</a>
+              <a href="author.html#3129">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

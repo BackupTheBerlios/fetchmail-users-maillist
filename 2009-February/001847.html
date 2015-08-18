@@ -1,0 +1,95 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Overall setup advice request
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2009-February/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Overall%20setup%20advice%20request&In-Reply-To=%3C2C6093EE-60DE-48CA-BD83-4A3B18FE5A0E%40ukgb.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001844.html">
+   <LINK REL="Next"  HREF="001848.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Overall setup advice request</H1>
+    <B>Ken Gillett</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Overall%20setup%20advice%20request&In-Reply-To=%3C2C6093EE-60DE-48CA-BD83-4A3B18FE5A0E%40ukgb.net%3E"
+       TITLE="[fetchmail-users] Overall setup advice request">ken at ukgb.net
+       </A><BR>
+    <I>Tue Feb 10 16:09:29 CET 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001844.html">[fetchmail-users] Overall setup advice request
+</A></li>
+        <LI>Next message: <A HREF="001848.html">[fetchmail-users] Overall setup advice request
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1847">[ date ]</a>
+              <a href="thread.html#1847">[ thread ]</a>
+              <a href="subject.html#1847">[ subject ]</a>
+              <a href="author.html#1847">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>So if I start it with:
+	fetchmail -N -d 3600
+
+and then sometime later just run:
+	fetchmail -N -d 60
+
+Would that simply change the polling frequency of that first instance  
+of fetchmail?
+
+
+On 10 Feb 2009, at 14:10, Matthias Andree wrote:
+
+&gt;&gt;<i> Finally, I want to run fetchmail from launchd, so I guess I  use  
+</I>&gt;&gt;<i> the -
+</I>&gt;&gt;<i> N option to not detach, but how can I change the polling frequency of
+</I>&gt;&gt;<i> the running daemon? I could set it up with a large interval as the
+</I>&gt;&gt;<i> default and then just call fetchmail on a more frequent basis and  
+</I>&gt;&gt;<i> wake
+</I>&gt;&gt;<i> it up when required, but how could I change the rate with a single
+</I>&gt;&gt;<i> command? Could I just run the original command again, but with a
+</I>&gt;&gt;<i> different -dnnn? Would I need to quit it first?
+</I>&gt;<i>
+</I>&gt;<i> Assuming launchd respawns fetchmail if it quits for whatever reason:
+</I>&gt;<i> Just use -N -d 600 (adjust as you see fit) as you would do otherwise  
+</I>&gt;<i> - you can safely combine these two options.
+</I>
+
+
+Ken G i l l e t t
+
+_/_/_/_/_/_/_/_/
+
+
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001844.html">[fetchmail-users] Overall setup advice request
+</A></li>
+	<LI>Next message: <A HREF="001848.html">[fetchmail-users] Overall setup advice request
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1847">[ date ]</a>
+              <a href="thread.html#1847">[ thread ]</a>
+              <a href="subject.html#1847">[ subject ]</a>
+              <a href="author.html#1847">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

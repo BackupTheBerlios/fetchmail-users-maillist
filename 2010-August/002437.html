@@ -1,0 +1,100 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Plain passwords in file?
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2010-August/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Plain%20passwords%20in%20file%3F&In-Reply-To=%3C4C55FFEC.6010607%40gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002436.html">
+   <LINK REL="Next"  HREF="002438.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Plain passwords in file?</H1>
+    <B>Depo Catcher</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Plain%20passwords%20in%20file%3F&In-Reply-To=%3C4C55FFEC.6010607%40gmail.com%3E"
+       TITLE="[fetchmail-users] Plain passwords in file?">depocatcher at gmail.com
+       </A><BR>
+    <I>Mon Aug  2 01:14:52 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002436.html">[fetchmail-users] Plain passwords in file?
+</A></li>
+        <LI>Next message: <A HREF="002438.html">[fetchmail-users] Plain passwords in file?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2437">[ date ]</a>
+              <a href="thread.html#2437">[ thread ]</a>
+              <a href="subject.html#2437">[ subject ]</a>
+              <a href="author.html#2437">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>
+ok.  What are some alternatives then?  How do other mail applications 
+(like Thunderbird or Outlook) store their saved passwords?
+
+Secondly, I don't see why having a key (to decrypted passwords) isn't 
+more secure.  They would need physical access to my USB drive.
+Plug it in, download mail, unplug it.  The opportunity of attack is much 
+smaller; were as passwords sitting in plain text are much easier to find.
+
+On 8/1/2010 4:11 PM, Rob MacGregor wrote:
+&gt;<i> On Sun, Aug 1, 2010 at 20:47, Depo Catcher&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">depocatcher at gmail.com</A>&gt;  wrote:
+</I>&gt;<i>    
+</I>&gt;&gt;<i> I have fetchmail working for a dozen or so sites (it's really nice btw;
+</I>&gt;&gt;<i> works great).  The only problem is now my .fetchmailrc file has a dozen or
+</I>&gt;&gt;<i> so passwords in plain text.
+</I>&gt;&gt;<i>      
+</I>&gt;<i> If this isn't in the FAQ it'll be covered many, many, many times in
+</I>&gt;<i> the list archive.
+</I>&gt;<i>
+</I>&gt;<i>    
+</I>&gt;&gt;<i> What's the best way to tighten this up a bit?
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> At work we have a in house application that stores passwords in an encrypted
+</I>&gt;&gt;<i> database.  The way you put passwords in scripts is you use a key file to
+</I>&gt;&gt;<i> &quot;PasswordVault -username test -getpassword -key /mykey.txt&quot; which returns
+</I>&gt;&gt;<i> plain text password.
+</I>&gt;&gt;<i> Not much more secure; but would help from a `cat ~/.fetchmailrc` &quot;attack&quot;.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Anything like that in fetchmail or third party?
+</I>&gt;&gt;<i>      
+</I>&gt;<i> No, because it buys you no meaningful security.  Anybody who could
+</I>&gt;<i> have otherwise got access to your password by reading the file can run
+</I>&gt;<i> the tool and get the password.  You've bought yourself nothing.
+</I>&gt;<i>
+</I>&gt;<i> To stop the &quot;attack&quot; you mention, ensure only the owner can read the
+</I>&gt;<i> file (fetchmail will refuse to run if this isn't the case).  If you
+</I>&gt;<i> don't trust the root user then you have bigger issues.
+</I>&gt;<i>
+</I>&gt;<i>    
+</I>
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002436.html">[fetchmail-users] Plain passwords in file?
+</A></li>
+	<LI>Next message: <A HREF="002438.html">[fetchmail-users] Plain passwords in file?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2437">[ date ]</a>
+              <a href="thread.html#2437">[ thread ]</a>
+              <a href="subject.html#2437">[ subject ]</a>
+              <a href="author.html#2437">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

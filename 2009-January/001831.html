@@ -1,0 +1,151 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] domainpop/ multidrop config probs
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2009-January/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20domainpop/%20multidrop%20config%20probs&In-Reply-To=%3C20090108184841.GA40806%40merlin.emma.line.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   
+   <LINK REL="Next"  HREF="001832.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] domainpop/ multidrop config probs</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20domainpop/%20multidrop%20config%20probs&In-Reply-To=%3C20090108184841.GA40806%40merlin.emma.line.org%3E"
+       TITLE="[fetchmail-users] domainpop/ multidrop config probs">matthias.andree at gmx.de
+       </A><BR>
+    <I>Thu Jan  8 19:48:41 CET 2009</I>
+    <P><UL>
+        
+        <LI>Next message: <A HREF="001832.html">[fetchmail-users] per user compared to system config question
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1831">[ date ]</a>
+              <a href="thread.html#1831">[ thread ]</a>
+              <a href="subject.html#1831">[ subject ]</a>
+              <a href="author.html#1831">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Dan,
+
+I allow myself a public reply since your information seems non-sensitive
+and you seem to mean asking this in public.
+
+&gt;<i> Hope 2009 has been good thus far!
+</I>
+If you consider &quot;chicken pox&quot; at adult age &quot;good&quot; ;-)
+
+&gt;<i> Am I correct in thinking you are the current maintainer of fetchmail?
+</I>
+You are.
+
+&gt;<i> There never seems to be anyone in #fetchmail on freenode and I've
+</I>
+I never bother to lurk IRC channels for lack of time.
+
+&gt;<i> tried posting the following question to the freenode-user mailing list
+</I>&gt;<i> but it either didn't get approved or my mails weren't received. If you
+</I>&gt;<i> can't help or don't have time to help I'd appreciate if you could
+</I>&gt;<i> forward this to the list please- thanks!
+</I>
+The fetchmail-users@ list, if you had that in mind, requires you to be
+subscribed if you want to post.
+
+&gt;<i> I'm trying to configure fetchmail under opensuse 11.0 to act as MRA
+</I>&gt;<i> for citadel, with Citadel being used to admin mail accounts and also
+</I>&gt;<i> most likely as the web GUI for people not using outlook/thunderbird.
+</I>
+I know next to nothing of Citadel. openSUSE sounds more familiar.
+
+&gt;<i> to is a domainpop/ multidrop server. Reading the fetchmail man page I
+</I>&gt;<i> notice that we wouldn't be able to get this working properly without
+</I>&gt;<i> our mail server including an X-Envelope header but it would seem to me
+</I>&gt;<i> that ours does from looking at the mail archives stored on our current
+</I>&gt;<i> (ancient NT4 mdaemon) mail server. However, the default fetchmailrc
+</I>
+Sorry this phrase is unintelligible. You do indeed need a way to let
+fetchmail snatch the original envelope recipient header from the
+messages it downloads. If your IMAP or POP3 server writes
+&quot;X-Envelope-To: <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">foo at bar</A>&quot;, then the configuration seems correct.
+
+&gt;<i> With my current fetchmailrc config file (see below), all the mail is
+</I>&gt;<i> being sent to the one citadel account, despite having set up another
+</I>&gt;<i> user who I have tried sending mail to. That user receives nothing atm.
+</I>
+Try running fetchmail --nosyslog --nodetach -v -v (perhaps a third -v if
+needed) and see if it matches the domain. If not, some &quot;aka
+other.doma.in&quot; may help. In your situation, fetchmail will only
+recognize
+
+X-Envelope-To: <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">SOMELOCALUSER at mailhost.zen.co.uk</A>
+
+(with varying SOMELOCALUSER parts, the rest is matched verbatim).
+
+&gt;<i> I can be pretty sure that the 'smtphost
+</I>&gt;<i> /usr/local/citadel/lmtp.socket' line is correct as I was told to
+</I>&gt;<i> insert that by the main Citadel developer. Citadel uses lmtp but
+</I>&gt;<i> neither he, nor anyone else in #citadel, knew much about setting up
+</I>&gt;<i> citadel for multidrop use. He did say that if fetchmail supports it
+</I>&gt;<i> then I should be OK. I tried fetchmail with the default 'envelope
+</I>&gt;<i> &quot;X-Original-To&quot;' but that also sent all mail to the one user too.
+</I>
+I think Citadel should be using a regular multi-user multi-account
+setup.
+
+&gt;<i> Somebody else on #citadel irc recommended I start the fetchmail daemon
+</I>&gt;<i> in debug mode but this is missing under the SuSE build and so maybe I
+</I>
+No, it's not. You just shove two or three -v options down to fetchmail
+via the command line.
+
+&gt;<i> should re-compile fetchmail with debug mode enabled as I've had no
+</I>&gt;<i> luck starting fetchmail from the cli?
+</I>
+You'll not be getting more information that way.
+
+If you can send yourself a test mail to the account you're fetching from
+and show such a message as fetchmail would download (or has delivered)
+it, that'll help debugging.
+
+If I may, I'd suggest that you subscribe yourself to the fetchmail-users
+list (it's verified opt-in aka. double opt-in) and reply there. 
+See &lt;<A HREF="http://lists.berlios.de/mailman/listinfo/fetchmail-users">http://lists.berlios.de/mailman/listinfo/fetchmail-users</A>&gt;.
+
+If it went unnoticed on said list, sorry. Perhaps &quot;Citadel&quot; triggered
+some &quot;if stressed, ignore&quot; mode.
+
+HTH
+
+-- 
+Matthias Andree
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	
+	<LI>Next message: <A HREF="001832.html">[fetchmail-users] per user compared to system config question
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1831">[ date ]</a>
+              <a href="thread.html#1831">[ thread ]</a>
+              <a href="subject.html#1831">[ subject ]</a>
+              <a href="author.html#1831">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

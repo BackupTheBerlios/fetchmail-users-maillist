@@ -1,0 +1,247 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Problem with Demon's new Microsoft Exchange	Server 2010 service
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2012-May/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Problem%20with%20Demon%27s%20new%20Microsoft%20Exchange%0A%09Server%202010%20service&In-Reply-To=%3Cop.wdynmgauoztyis%40master.home%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003112.html">
+   <LINK REL="Next"  HREF="003114.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Problem with Demon's new Microsoft Exchange	Server 2010 service</H1>
+    <B>John Connett</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Problem%20with%20Demon%27s%20new%20Microsoft%20Exchange%0A%09Server%202010%20service&In-Reply-To=%3Cop.wdynmgauoztyis%40master.home%3E"
+       TITLE="[fetchmail-users] Problem with Demon's new Microsoft Exchange	Server 2010 service">jrc at skylon.demon.co.uk
+       </A><BR>
+    <I>Tue May  8 01:02:30 CEST 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003112.html">[fetchmail-users] Problem with Demon's new Microsoft Exchange Server 2010 service
+</A></li>
+        <LI>Next message: <A HREF="003114.html">[fetchmail-users] Problem with Demon's new Microsoft Exchange Server 2010 service
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3113">[ date ]</a>
+              <a href="thread.html#3113">[ thread ]</a>
+              <a href="subject.html#3113">[ subject ]</a>
+              <a href="author.html#3113">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Mon, 07 May 2012 19:26:27 +0100, Matthias Andree  
+&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">matthias.andree at gmx.de</A>&gt; wrote:
+&gt;<i> Am 07.05.2012 12:10, schrieb John Connett:
+</I>&gt;&gt;<i> Operating system:
+</I>&gt;&gt;<i>     $ cat /etc/SuSE-release
+</I>&gt;&gt;<i>     openSUSE 12.1 (x86_64)
+</I>&gt;&gt;<i>     VERSION = 12.1
+</I>&gt;&gt;<i>     CODENAME = Asparagus
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Name and origin of the RPM:
+</I>&gt;&gt;<i>     $ rpm -q fetchmail
+</I>&gt;&gt;<i>     fetchmail-6.3.21-4.1.3.x86_64
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> The name and version of the SMTP listener:
+</I>&gt;&gt;<i>     $ rpm -q exim
+</I>&gt;&gt;<i>     exim-4.75-5.1.3.x86_64
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Command-line options you used:
+</I>&gt;&gt;<i>     openSUSE 12.1 distributed /etc/inid.d/fetchmail with added &quot;-vvv&quot;.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> /etc/fetchmailrc (with names changed to protect the innocent):
+</I>&gt;&gt;<i>     $ cat /etc/fetchmailrc
+</I>&gt;&gt;<i>     # Configuration created Thu Apr 26 22:58:13 2012
+</I>&gt;&gt;<i>     set bouncemail
+</I>&gt;&gt;<i>     set properties &quot;&quot;
+</I>&gt;&gt;<i>     set daemon 300
+</I>&gt;&gt;<i>     poll mail.demon.co.uk proto IMAP
+</I>&gt;&gt;<i>            localdomains yyy.demon.co.uk
+</I>&gt;&gt;<i>            user '<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">administrator at yyy.demon.co.uk</A>' there password 'secret'
+</I>&gt;&gt;<i> is xxx here
+</I>&gt;&gt;<i>            sslproto TLS1
+</I>&gt;&gt;<i>            sslcertck
+</I>&gt;&gt;<i>     poll mail.demon.co.uk proto IMAP
+</I>&gt;&gt;<i>            localdomains yyy.demon.co.uk
+</I>&gt;&gt;<i>            user '<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">xxx at yyy.demon.co.uk</A>' there password 'secret' is xxx  
+</I>&gt;&gt;<i> here
+</I>&gt;&gt;<i>            sslproto TLS1
+</I>&gt;&gt;<i>            sslcertck
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Problem:
+</I>&gt;&gt;<i> I have recently been migrated to Demon's new service which appears to be
+</I>&gt;&gt;<i> based on Microsoft Exchange Server 2010.  The migration appeared to have
+</I>&gt;&gt;<i> been successful with messages being fetched.  Then fetching of messages
+</I>&gt;&gt;<i> ceased.  I added &quot;-vvv&quot; to /etc/init.d/fetchmail and restarted
+</I>&gt;&gt;<i> fetchmail.  Here are edited highlights from /var/log/fetchmail:
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> fetchmail: IMAP&lt; A0004 NO AUTHENTICATE failed.
+</I>&gt;&gt;<i> fetchmail: IMAP&gt; A0005 LOGIN &quot;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">xxx at yyy.demon.co.uk</A>&quot; *
+</I>&gt;&gt;<i> fetchmail: IMAP&lt; A0005 OK LOGIN completed.
+</I>&gt;&gt;<i> fetchmail: selecting or re-polling default folder
+</I>&gt;&gt;<i> fetchmail: IMAP&gt; A0006 SELECT &quot;INBOX&quot;
+</I>&gt;&gt;<i> fetchmail: IMAP&lt; * 264 EXISTS
+</I>&gt;&gt;<i> fetchmail: IMAP&lt; * 1 RECENT
+</I>&gt;&gt;<i> fetchmail: IMAP&lt; * FLAGS (\Seen \Answered \Flagged \Deleted \Draft
+</I>&gt;&gt;<i> $MDNSent)
+</I>&gt;&gt;<i> fetchmail: IMAP&lt; * OK [PERMANENTFLAGS (\Seen \Answered \Flagged \Deleted
+</I>&gt;&gt;<i> \Draft $MDNSent)] Permanent flags
+</I>&gt;&gt;<i> fetchmail: IMAP&lt; * OK [UNSEEN 1] Is the first unseen message
+</I>&gt;&gt;<i> fetchmail: IMAP&lt; * OK [UIDVALIDITY 3203] UIDVALIDITY value
+</I>&gt;&gt;<i> fetchmail: IMAP&lt; * OK [UIDNEXT 2124] The next unique identifier value
+</I>&gt;&gt;<i> fetchmail: IMAP&lt; A0006 OK [READ-WRITE] SELECT completed.
+</I>&gt;&gt;<i> fetchmail: 264 messages waiting after first poll
+</I>&gt;&gt;<i> fetchmail: IMAP&gt; A0007 EXPUNGE
+</I>&gt;&gt;<i> fetchmail: IMAP&lt; * 264 EXISTS
+</I>&gt;&gt;<i> fetchmail: IMAP&lt; A0007 OK EXPUNGE completed.
+</I>&gt;&gt;<i> fetchmail: 264 messages waiting after expunge
+</I>&gt;&gt;<i> fetchmail: 264 messages for <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">xxx at yyy.demon.co.uk</A> at mail.demon.co.uk.
+</I>&gt;&gt;<i> fetchmail: IMAP&gt; A0008 FETCH 1:100 RFC822.SIZE
+</I>&gt;&gt;<i> fetchmail: IMAP&lt; * 1 FETCH (RFC822.SIZE 8512)
+</I>&gt;&gt;<i> fetchmail: IMAP&lt; * 2 FETCH (RFC822.SIZE 6404)
+</I>&gt;&gt;<i> [...]
+</I>&gt;&gt;<i> fetchmail: IMAP&lt; * 99 FETCH (RFC822.SIZE 2942)
+</I>&gt;&gt;<i> fetchmail: IMAP&lt; * 100 FETCH (RFC822.SIZE 3914)
+</I>&gt;&gt;<i> fetchmail: IMAP&lt; A0008 OK FETCH completed.
+</I>&gt;&gt;<i> fetchmail: IMAP&gt; A0009 FETCH 1 RFC822.HEADER
+</I>&gt;&gt;<i> fetchmail: IMAP&lt; A0009 OK FETCH completed.
+</I>&gt;&gt;<i> fetchmail: Incorrect FETCH response: OK FETCH COMPLETED..
+</I>&gt;&gt;<i> fetchmail: IMAP&gt; A0010 LOGOUT
+</I>&gt;&gt;<i> fetchmail: IMAP&lt; * BYE Microsoft Exchange Server 2010 IMAP4 server
+</I>&gt;&gt;<i> signing off.
+</I>&gt;&gt;<i> fetchmail: IMAP&lt; A0010 OK LOGOUT completed.
+</I>&gt;&gt;<i> fetchmail: client/server synchronization error while fetching from
+</I>&gt;&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">xxx at yyy.demon.co.uk</A>@mail.demon.co.uk
+</I>&gt;&gt;<i> fetchmail: 6.3.21 querying mail.demon.co.uk (protocol IMAP) at Mon May
+</I>&gt;&gt;<i> 7 10:07:45 2012: poll completed
+</I>&gt;&gt;<i> fetchmail: Merged UID list from mail.demon.co.uk: &lt;empty&gt;
+</I>&gt;&gt;<i> fetchmail: Query status=7 (ERROR)
+</I>&gt;&gt;<i> fetchmail: sleeping at Mon May  7 10:07:45 2012 for 600 seconds
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> The problem seems to be the &quot;A0009 OK FETCH completed.&quot; response to
+</I>&gt;&gt;<i> &quot;A0009 FETCH 1 RFC822.HEADER&quot;.  There are no patches touching &quot;imap.c&quot;
+</I>&gt;&gt;<i> in the openSUSE source RPM and I have confirmed that it is identical to
+</I>&gt;&gt;<i> the 6.3.21 original.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> The &quot;Incorrect FETCH response: OK FETCH COMPLETED..&quot; appears to be
+</I>&gt;&gt;<i> generated from within imap_fetch_headers() by &quot;an unexpected tagged
+</I>&gt;&gt;<i> response&quot;.  Is this an exciting new innovation in Microsoft Exchange
+</I>&gt;&gt;<i> Server 2010?
+</I>&gt;<i>
+</I>&gt;<i> John,
+</I>&gt;<i>
+</I>&gt;<i> at least it's the first report of its kind that I've become aware of.
+</I>&gt;<i>
+</I>&gt;<i> I sat down with RFC-3501, the IMAP 4rev1 standard, and my current
+</I>&gt;<i> understanding is that the server sent an invalid response.
+</I>
+I came to a similar conclusion but probably from a shallower depth of  
+understanding.
+
+&gt;<i> The &quot;unexpected tagged response&quot; means that the server reply lacked
+</I>&gt;<i> mandatory untagged data.  A valid response to the A0009 FETCH 1
+</I>&gt;<i> RFC822.HEADER would have been either:
+</I>&gt;<i>
+</I>&gt;<i> * FETCH (RFC822.HEADER NIL)
+</I>&gt;<i> A0009 OK FETCH completed.
+</I>&gt;<i>
+</I>&gt;<i> Or:
+</I>&gt;<i>
+</I>&gt;<i> * FETCH (RFC822.HEADER &quot;&quot;)
+</I>&gt;<i> A0009 OK FETCH completed.
+</I>&gt;<i>
+</I>&gt;<i> Or:
+</I>&gt;<i>
+</I>&gt;<i> * FETCH (RFC822.HEADER {0}
+</I>&gt;<i> )
+</I>&gt;<i> A0009 OK FETCH completed.
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> Having said that, I'll recommend that you report the problem to Demon;
+</I>&gt;<i> chances are that the message is corrupted on the server and can be
+</I>&gt;<i> repaired, or that the Exchange 2010 behaviour can be tweaked by their
+</I>&gt;<i> admins; otherwise and/or on top of that, it would be Demon's task to
+</I>&gt;<i> talk to Microsoft and have the Redmond guys make Exchange 2010 compliant
+</I>&gt;<i> to the IMAP protocol, even in the face of incomplete and/or corrupted
+</I>&gt;<i> messages.
+</I>
+The message appears to be well-formed when viewed via the Outlook WebApp.   
+The message is from the <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">austin-group-l at opengroup.org</A> list, probably has  
+the Subject &quot;Event [Reminder: Austin Group teleconference] updated&quot; and is  
+generated by The Open Group's web service.  I have successfully received a  
+number of similar messages via the older Demon mail service.
+
+It may be that calendar events are subject to extra processing within  
+Exchange 2010 and it doesn't feel the need to satisfy a fetch headers  
+request.  Maybe the behaviour can be tweaked to treat calendar events in  
+the same way as other messages?  Unfortunately, I am pressed for time this  
+week and can't really chase this.  I've copied this message to  
+<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">helpdesk at demon.net</A> and hope they can investigate.
+
+&gt;<i> It is likely that the message has no formal Internet header; earlier
+</I>&gt;<i> Exchange versions used to reassemble messages on-the-fly; and chances
+</I>&gt;<i> are that configuration options might avoid the server bug.
+</I>&gt;<i>
+</I>&gt;<i> Note that per RFC-5322, the From: (sender) and Date: (originator's date)
+</I>&gt;<i> headers are mandatory, so the message couldn't reliably be shipped
+</I>&gt;<i> forward anyways if it doesn't have these headers, and
+</I>&gt;<i> garbage-in-garbage-out attempts often fail these days on modern SMTP
+</I>&gt;<i> servers.
+</I>
+My best guess is that it is a server problem rather than a corrupt  
+message.  The Outlook WebApp view of the message suggests that it probably  
+has both From: (sender) and Date: (originator's date) headers available.
+
+&gt;<i> Chances are also that later fetchmail releases may be able to skip over
+</I>&gt;<i> these messages and leave them on the server unfetched, or delete them
+</I>&gt;<i> should the user opt to delete corrupted messages.  Given that fetchmail
+</I>&gt;<i> received the only pending tagged reply, it shouldn't assume it has gone
+</I>&gt;<i> out of synch though.
+</I>
+I also looked at the code in fetchmail-7.0.0-alpha2+MAPI.  The imap.c code  
+behaves in a similar manner to fetchmail-6.3.21 when handling headers.   
+Not keen on any mail software silently deleting what it interprets as a  
+corrupt message!
+
+&gt;<i> Sunil, for resilience towards massive faults on the server side, we'll
+</I>&gt;<i> probably have to add an error counter so that fetchmail won't attempt to
+</I>&gt;<i> fetch hundreds of messages' headers and skip over all of them when the
+</I>&gt;<i> server exhibits systematic faults (and not just some individual
+</I>&gt;<i> messages, as your report suggests).
+</I>&gt;<i>
+</I>&gt;<i> Hope that helps for now,
+</I>
+Many thanks.  I have a work around and if the flow of e-mail stops I  
+should be able to apply it again.
+
+&gt;<i> Matthias
+</I></PRE>
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003112.html">[fetchmail-users] Problem with Demon's new Microsoft Exchange Server 2010 service
+</A></li>
+	<LI>Next message: <A HREF="003114.html">[fetchmail-users] Problem with Demon's new Microsoft Exchange Server 2010 service
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3113">[ date ]</a>
+              <a href="thread.html#3113">[ thread ]</a>
+              <a href="subject.html#3113">[ subject ]</a>
+              <a href="author.html#3113">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

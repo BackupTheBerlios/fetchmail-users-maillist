@@ -1,0 +1,159 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] [fetchmail-devel] fetchmail 7.0.0-alpha5 alpha preview release - SSL cipher setting/info
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2013-August/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20%5Bfetchmail-devel%5D%20fetchmail%207.0.0-alpha5%0A%20alpha%20preview%20release%20-%20SSL%20cipher%20setting/info&In-Reply-To=%3CCAD2Ti2-x6dkR9T%3De5ekZgcOSAXiaDNEZA1KbUcfkHmNL2%3DZ-6Q%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003453.html">
+   <LINK REL="Next"  HREF="003455.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] [fetchmail-devel] fetchmail 7.0.0-alpha5 alpha preview release - SSL cipher setting/info</H1>
+    <B>grarpamp</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20%5Bfetchmail-devel%5D%20fetchmail%207.0.0-alpha5%0A%20alpha%20preview%20release%20-%20SSL%20cipher%20setting/info&In-Reply-To=%3CCAD2Ti2-x6dkR9T%3De5ekZgcOSAXiaDNEZA1KbUcfkHmNL2%3DZ-6Q%40mail.gmail.com%3E"
+       TITLE="[fetchmail-users] [fetchmail-devel] fetchmail 7.0.0-alpha5 alpha preview release - SSL cipher setting/info">grarpamp at gmail.com
+       </A><BR>
+    <I>Wed Aug 14 12:27:57 CEST 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003453.html">[fetchmail-users] fetchmail 7.0.0-alpha5 alpha preview release -	SSL cipher setting/info
+</A></li>
+        <LI>Next message: <A HREF="003455.html">[fetchmail-users] fetchmail gotcha,	one that needs fixed I believe
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3454">[ date ]</a>
+              <a href="thread.html#3454">[ thread ]</a>
+              <a href="subject.html#3454">[ subject ]</a>
+              <a href="author.html#3454">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>It compiles against openssl 1.0.1e fine, will test when I can.
+
+autoreconf -fiv adds a missing ./test-driver to the distribution.
+
+&gt;<i>From a quick read of NEWS and man diff...
+</I>
+
+- sslprotocolversion
+Counter to fm manpage, openssl supports through TLSv1.2 since 1.0.1.
+So perhaps AUTO should have/doc a version order/pref/default in
+there now. And have 1.x options. I don't know much on that to say
+(other than noting the apparrent tls.bigger_num -&gt; ssl3 history in
+reverse).
+
+Ssl/tls version was separate from the socket(wrapped)/starttls init
+point anyway afaik so this breakout is nicer.
+
+If fm is doing auto negotiations of things, its debug mode should
+print whatever was finally agreed upon as confirmation and for later
+use in fixed mode.
+
+Maybe shorten to 'sslprotover'.
+
+
+- sslmode
+Man page: this is a subparameter, not the entire option, so...
+change from
+ starttls=may: this option is implicity upgraded to starttls=must.
+to
+ starttls=may: if starttls=may is specified, it is implicitly
+ upgraded to starttls=must.
+
+At the top in this man, starttls=may is *not* the default if below
+at that subparameter sslcertck is also default thus forcing
+starttls=must.
+
+
+- sslcertck -&gt; starttls default, wrapped legacy
+I agree starttls is the 'new way' but the installed server base
+merits retaining wrapped as the default on the standalone ports.
+ie: how often does one see starttls on (25/110/143) advertised.
+Wrapped was interim crypto till starttls could be implemented, but
+now it seems used to guarantee buggy/partial/cleartext implementations
+are never used.
+
+
+- I presume this sort of custom ability still exists as needed:
+service 465 + protocol imap + sslmode none
+
+
+- sslcertck / sslfingerprint
+These two sections mention failing regardless of the other. That
+is good for high combined security [1], but I think there may be a
+conflict... there may be a case, perhaps in a corporate thing, where
+the signing cert isn't available but the print is documented. You'd
+want the print to pass it and the certcheck (in the presence of a
+print) to have a tri-option like...
+sslcertck = abort | warn | off
+
+[1] With 6.3.26 I still use both sslcertck (with an add upon need
+from empty systemwide subject hashed certs dir) and sslfingerprint.
+People can go further with only a certfile/certpath per server.
+
+
+- Some people might want to use OCSP. Perhaps even when using cert
+prints, checkfiles, etc... to alert them to some management or risk
+issue for which the apparent server cert hasn't been changed out
+yet. Firefox has an example OCSP preferences panel. CRL/OCSP is
+maybe only mentioned as an aside in the man page, without saying
+what CRL/OCSP and other verification/validation process/parameters
+are checked with certs. That is maybe in the SSL README's, didn't
+look.
+
+sslremotecheck ocsp = abort | warn | off
+sslremotecheck crl = abort | warn | off
+
+A similar model may be thought of regarding any certificate
+observatories / transparencies that may be coming online.
+
+sslremotecheck observ = abort | warn | off
+
+
+- sslcertfile
+Man says 'in addition to sslcertpath' twice.
+
+My 2013/07/28 note about PFS had some examples for people
+to see what their server works with. Some more links:
+<A HREF="https://en.wikipedia.org/wiki/Transport_Layer_Security">https://en.wikipedia.org/wiki/Transport_Layer_Security</A>
+<A HREF="https://en.wikipedia.org/wiki/Comparison_of_TLS_Implementations">https://en.wikipedia.org/wiki/Comparison_of_TLS_Implementations</A>
+
+
+- pidfile /dev/null
+
+Sometime back there was early talk on parallel. I run some things
+in parallel. A simple disable key would be nice. Right now it's in
+form of: --pidfile $(mktemp ...), which is actually further wrapped
+in shell to check mktemp before fm exec. /dev/null doesn't work there
+but would suffice as key to avoid open/write/unlink and allow para.
+</PRE>
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003453.html">[fetchmail-users] fetchmail 7.0.0-alpha5 alpha preview release -	SSL cipher setting/info
+</A></li>
+	<LI>Next message: <A HREF="003455.html">[fetchmail-users] fetchmail gotcha,	one that needs fixed I believe
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3454">[ date ]</a>
+              <a href="thread.html#3454">[ thread ]</a>
+              <a href="subject.html#3454">[ subject ]</a>
+              <a href="author.html#3454">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

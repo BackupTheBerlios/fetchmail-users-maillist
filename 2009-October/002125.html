@@ -1,0 +1,110 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] the error
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2009-October/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20the%20error&In-Reply-To=%3Cop.u2j0gyux1e62zd%40merlin.emma.line.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002123.html">
+   <LINK REL="Next"  HREF="002126.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] the error</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20the%20error&In-Reply-To=%3Cop.u2j0gyux1e62zd%40merlin.emma.line.org%3E"
+       TITLE="[fetchmail-users] the error">matthias.andree at gmx.de
+       </A><BR>
+    <I>Thu Oct 29 09:56:48 CET 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002123.html">[fetchmail-users] the error
+</A></li>
+        <LI>Next message: <A HREF="002126.html">[fetchmail-users] fetchmail 6.3.13 regression/bug fix release	available (STABLE)
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2125">[ date ]</a>
+              <a href="thread.html#2125">[ thread ]</a>
+              <a href="subject.html#2125">[ subject ]</a>
+              <a href="author.html#2125">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Am 28.10.2009, 20:08 Uhr, schrieb Pedro Angel &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">pmorales at fcbc.cult.cu</A>&gt;:
+
+&gt;<i> fetchmail: AVISO: No se recomienda ejecutar esta aplicaci&#195;&#179;n como root.
+</I>&gt;<i>
+</I>&gt;<i> 2 mensajes para a en a.com (1940 octetos).
+</I>&gt;<i>
+</I>&gt;<i> fetchmail: El MDA devolvi&#195;&#179; un estado distinto a cero 75
+</I>&gt;<i>
+</I>&gt;<i> leyendo el mensaje <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">a at a.com</A>:1 de 2 (971 octetos) no eliminado
+</I>&gt;<i>
+</I>&gt;<i> fetchmail: El MDA devolvi&#195;&#179; un estado distinto a cero 75
+</I>&gt;<i>
+</I>&gt;<i> leyendo el mensaje <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">a at a.com</A>:2 de 2 (969 octetos) no eliminado
+</I>
+Please run
+
+env LC_ALL=C fetchmail -vvv --nosyslog --nodetach     # (add other options  
+if needed)
+
+to produce English-language error messages. This is documented in
+
+<A HREF="http://www.fetchmail.info/fetchmail-FAQ.html#G3">http://www.fetchmail.info/fetchmail-FAQ.html#G3</A>
+
+which please follow for all further problem reports.
+
+
+Please also check your mailer configuration. You have pasted Unicode  
+(UTF-8) characters but your mailer declared ISO-8859-1 character set,  
+destroying accented characters.
+
+
+With the little Spanish I know I understand the following:
+
+1. fetchmail complains about being run as root - please check if your MDA  
+is designed in a way that it's safe and secure to be set-uid root, and if  
+so, run fetchmail as unprivileged user (best to create a new group and  
+user) and make your MDA set-uid root.
+       I'm not using Dovecot's deliver and never bothered to check. I know  
+maildrop works this way. Procmail is also specified to work that way, but  
+I don't trust it, and procmail is unmaintained.
+
+2. the MDA exits with code 75, i. e. temporary failure. That is not a  
+fetchmail problem, but a problem of your MDA (deliver I presume after  
+reading your other mail) - please check what your MDA logs and if it's  
+Dovecot deliver, please ask on the Dovecot mailing list. fetchmail  
+consequently leaves messages on the server.
+
+-- 
+Matthias Andree
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002123.html">[fetchmail-users] the error
+</A></li>
+	<LI>Next message: <A HREF="002126.html">[fetchmail-users] fetchmail 6.3.13 regression/bug fix release	available (STABLE)
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2125">[ date ]</a>
+              <a href="thread.html#2125">[ thread ]</a>
+              <a href="subject.html#2125">[ subject ]</a>
+              <a href="author.html#2125">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

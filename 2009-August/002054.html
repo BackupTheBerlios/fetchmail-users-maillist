@@ -1,0 +1,176 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Setting up e-mail capability
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2009-August/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Setting%20up%20e-mail%20capability&In-Reply-To=%3C%21%26%21AAAAAAAAAAAYAAAAAAAAAD2KPrlP8kpHkcTJiYtJQy9CzAQAEAAAANxRqzc9TMpHqo5BERgsPs4BAAAAAA%3D%3D%40rogers.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002053.html">
+   <LINK REL="Next"  HREF="002055.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Setting up e-mail capability</H1>
+    <B>Dave Beach</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Setting%20up%20e-mail%20capability&In-Reply-To=%3C%21%26%21AAAAAAAAAAAYAAAAAAAAAD2KPrlP8kpHkcTJiYtJQy9CzAQAEAAAANxRqzc9TMpHqo5BERgsPs4BAAAAAA%3D%3D%40rogers.com%3E"
+       TITLE="[fetchmail-users] Setting up e-mail capability">drbeach at rogers.com
+       </A><BR>
+    <I>Mon Aug 31 12:48:33 CEST 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002053.html">[fetchmail-users] Setting up e-mail capability
+</A></li>
+        <LI>Next message: <A HREF="002055.html">[fetchmail-users] Setting up e-mail capability
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2054">[ date ]</a>
+              <a href="thread.html#2054">[ thread ]</a>
+              <a href="subject.html#2054">[ subject ]</a>
+              <a href="author.html#2054">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Rob - thanks for your reply.
+
+&gt;&gt;<i> If I understand fetchmail correctly, it will allow me to regularly poll
+</I>my
+&gt;&gt;<i> ISP and pop mail for all of my e-mail accounts, and interact with mail
+</I>&gt;&gt;<i> server software on my server to place mail in the appropriate
+</I>directories. I
+&gt;&gt;<i> presumably can then run other software to allow the client Outlook
+</I>&gt;&gt;<i> installations to access the server-based e-mail using IMAP. I presume I
+</I>can
+&gt;&gt;<i> rely on some sort of MTA functionality on my server to continue to send
+</I>.&gt; outbound SMTP mail to my ISP.
+
+&gt;<i> Sort of.  Fetchmail allows you to retrieve email from your ISP (and
+</I>&gt;<i> any other POP/IMAP servers) and pass it to your local SMTP server.  It
+</I>&gt;<i> is up to your SMTP server what happens next.
+</I>
+&gt;&gt;<i> With that as a summary of what I'd like to do, I would be very grateful
+</I>if
+&gt;&gt;<i> someone would conceptually walk me through how this might work, and what
+</I>&gt;&gt;<i> software would be applicable at what stages. I'm not after a detailed
+</I>&gt;&gt;<i> explanation of how to configure the software, but rather a general
+</I>overview
+&gt;&gt;<i> of how it would all work together and what role each software would play.
+</I>I
+&gt;&gt;<i> am a complete newbie when it comes to implementing and using mail server
+</I>&gt;&gt;<i> software.
+</I>
+&gt;<i> There is no shortage of information out there on this subject.  Throw
+</I>&gt;<i> appropriate words into any search engine and you'll get a host of
+</I>&gt;<i> pages taking you through the process.  You'll need to make 2
+</I>&gt;<i> decisions:
+</I>
+Well, at the risk of sounding extremely unknowledgeable about the subject
+(but that's only because I am), I can attest that I've thrown lots of
+appropriate words into search engines and retrieved lots of pages on the
+subject. The challenge I've encountered is that every page I've come across
+presumes I already have a basic understanding of how e-mail works,
+technically and mechanically, at every stage of the process and how the
+various software pieces fit together. As my post explained, that's not
+necessarily an accurate assumption. I'm fairly technically adept, but I want
+to make sure I'm starting with a correct conceptual overview so as to
+minimize my own confusion as I walk through the process.
+
+&gt;<i> 1) What SMTP software you want to use (Sendmail, Postfix, Exim, or others)
+</I>
+So, here's a good example. Do I need to use SMTP software in the first
+place? I will not be using SMTP to retrieve mail from my ISP, but rather
+want to continue (at least in the near term) to continue to pop it. The
+reasons are simple: I believe my ISP blocks inbound port 25 (yes, I'm aware
+I can probably substitute another port), and there are anecdotal stories of
+my ISP terminating accounts for residential users who run servers
+(particularly mail servers). Until I can ascertain the truth of that (and if
+it turns out to be untrue, I will want to go the rest of the way and set up
+an MX record for my mail server and proceed with receiving SMTP mail), my
+plans are to stick to the process that works now and pop mail from them.
+Rather than have each mail client be responsible for doing that, though,
+through my existing proxy, I want something to take care of it on behalf of
+all my mail clients and store the mail centrally on my server. It is my
+understanding that Fetchmail will take care of the pop angle; do I need an
+SMTP server with which Fetchmail will interact, in order to &quot;store&quot; the
+mail, and as well in order to take care of &quot;storing&quot; outbound SMTP mail from
+the mail clients (and, for that matter, sending the outbound SMTP mail to my
+ISP)?
+
+&gt;<i> 2) What IMAP/POP software you want to use (UWash, Courier, Cyrus or
+</I>others)
+
+So, because I want to store mail centrally on my server, I presume I will
+need to set up IMAP capability on the server, with which my Outlook mail
+clients will interact to view the mail. I've briefly looked at Courier,
+which also seems to be a fully-fledged SMTP server as well. That led me to
+wonder if I can simply use it in conjunction with Fetchmail to do everything
+I want at this point, eliminating the need for something like Postfix (which
+I've also looked at).
+
+Again, I apologize for what may seem to be extremely basic questions. Would
+I generally be correct in conceptualizing as per the following:
+
+1) Fetchmail will pop my mail from my ISP (on behalf of all my accounts) and
+interact with an SMTP server to store it centrally on my server;
+2) The SMTP server takes care of properly storing the mail, and of sending
+SMTP mail back to my ISP; and
+3) The IMAP software I choose will allow my Outlook clients to view and
+manipulate the mail stored on my server.
+
+If that's generally correct, then I think I'll take advantage of your
+helpfulness and veer perhaps wildly off-topic to ask about calendaring,
+contacts, and all the other related stuff one normally associates with an
+Outlook/Exchange environment. Does any of the software we're discussing
+handle these as well, or in my scenario would I still have a PST local to
+each client workstation that would store these items, leaving only the mail
+on the central server?
+
+&gt;<i> There's no single right answer here.  It all depends on what size of
+</I>&gt;<i> installation you've got and what features you want.  You'll find
+</I>&gt;<i> people who'll argue strongly for/against particular software because
+</I>&gt;<i> of the author, or some historical event relating to the software.  I'd
+</I>&gt;<i> recommend you make your own decisions ;)  You may also want to look at
+</I>&gt;<i> one of the all-in-one packages that are available to make your life
+</I>&gt;<i> easier.
+</I>
+The installation size is very small - three client workstations with three
+e-mail accounts. Not to say it won't get bigger, but only by an account or
+two. I'm also interested in the capability to access e-mail via a web
+interface, as setting up an OpenVPN installation is somewhere on my to-do
+list so that we can get our mail from outside on the Internet if we happen
+to be travelling, etc. I had a look at the Wikipedia page on MTAs, which had
+a useful MTA comparison; my preference is for an open-source product where
+possible but I'm willing to compromise if I need to. What I didn't see was
+any package that looked like it included the functionality Fetchmail would
+provide based on my understanding of the product.
+
+
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002053.html">[fetchmail-users] Setting up e-mail capability
+</A></li>
+	<LI>Next message: <A HREF="002055.html">[fetchmail-users] Setting up e-mail capability
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2054">[ date ]</a>
+              <a href="thread.html#2054">[ thread ]</a>
+              <a href="subject.html#2054">[ subject ]</a>
+              <a href="author.html#2054">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,111 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Fetchmail in Singledrop-mode trying to send	mail
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2007-January/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Fetchmail%20in%20Singledrop-mode%20trying%20to%20send%0A%09mail&In-Reply-To=%3C200701251254.37727.stunnel%40attglobal.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000789.html">
+   <LINK REL="Next"  HREF="000791.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Fetchmail in Singledrop-mode trying to send	mail</H1>
+    <B>Eddie</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Fetchmail%20in%20Singledrop-mode%20trying%20to%20send%0A%09mail&In-Reply-To=%3C200701251254.37727.stunnel%40attglobal.net%3E"
+       TITLE="[fetchmail-users] Fetchmail in Singledrop-mode trying to send	mail">stunnel at attglobal.net
+       </A><BR>
+    <I>Thu Jan 25 21:54:37 CET 2007</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000789.html">[fetchmail-users] Fetchmail in Singledrop-mode trying to send	mail
+</A></li>
+        <LI>Next message: <A HREF="000791.html">[fetchmail-users] Fetchmail in Singledrop-mode trying to send	mail
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#790">[ date ]</a>
+              <a href="thread.html#790">[ thread ]</a>
+              <a href="subject.html#790">[ subject ]</a>
+              <a href="author.html#790">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Thursday 25 January 2007 12:28, Rob MacGregor wrote:
+&gt;<i> On 1/25/07, Eddie &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">stunnel at attglobal.net</A>&gt; wrote:
+</I>&gt;<i> &gt; I've been running some tests, for about 3 days now, using fetchmail, in
+</I>&gt;<i> &gt; daemon mode, to pull my mail down from a POP server every 10 minutes, and
+</I>&gt;<i> &gt; then pass it off to procmail.  As far as I can make out, reading the man
+</I>&gt;<i> &gt; pages, I am running in singledrop-mode.  This appears to work fine,
+</I>&gt;<i> &gt; except on one or two e-mails, I got the following error:
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; Jan 24 11:51:23 The-Tardis sm-mta[22324]: l0OJpNXo022324:
+</I>&gt;<i> &gt; ruleset=check_mail, arg1=&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">ken at langelands.com</A>&quot;&quot;chantelfisher&quot;
+</I>&gt;<i> &gt; <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">americajae at shuf.com</A>&quot;&gt;,
+</I>&gt;<i> &gt; relay=localhost [127.0.0.1], reject=553 5.1.8
+</I>&gt;<i> &gt; &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">ken at langelands.com</A>&quot;&quot;chantelfisher&quot; <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">americajae at shuf.com</A>&quot;&gt;... Domain of
+</I>&gt;<i> &gt; sender address <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">ken at langelands.comchantelfisher</A> <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">americajae at shuf.com</A> does
+</I>&gt;<i> &gt; not exist
+</I>&gt;<i>
+</I>&gt;<i> Sendmail generates a permanent failure as the sender's address doesn't
+</I>&gt;<i> resolve.
+</I>&gt;<i>
+</I>&gt;<i> &gt; Jan 24 11:51:23 The-Tardis fetchmail[22142]: SMTP error: 553 5.1.8
+</I>&gt;<i> &gt; &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">ken at langelands.com</A>&quot;&quot;chantelfisher&quot; <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">americajae at shuf.com</A>&quot;&gt;... Domain of
+</I>&gt;<i> &gt; sender address <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">ken at langelands.comchantelfisher</A> <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">americajae at shuf.com</A> does
+</I>&gt;<i> &gt; not exist Jan 24 11:51:23 The-Tardis sm-mta[22324]: l0OJpNXo022324:
+</I>&gt;<i> &gt; from=&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">ken at langelands.com</A>&quot;&quot;chantelfisher&quot; <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">americajae at shuf.com</A>&quot;&gt;,
+</I>&gt;<i> &gt; size=2187, class=0, nrcpts=0, proto=ESMTP, daemon=MTA, relay=localhost
+</I>&gt;<i> &gt; [127.0.0.1] Jan 24 11:51:23 The-Tardis fetchmail[22142]:  flushed
+</I>&gt;<i>
+</I>&gt;<i> Fetchmail drops it on the floor, as per the man page (see SMTP/ESMTP
+</I>&gt;<i> ERROR HANDLING).
+</I>&gt;<i>
+</I>&gt;<i> &gt; In this snippet, 2 messages were retrieved from the server.  For the
+</I>&gt;<i> &gt; first one, it looks like sendmail tried to deliver the mail, and failed,
+</I>&gt;<i> &gt; instead of putting it into the mailbox for eddie.
+</I>&gt;<i>
+</I>&gt;<i> I fail to see the problem.  Sendmail is doing what you've told it to -
+</I>&gt;<i> rejecting emails with a sender domain that doesn't resolve.  Fetchmail
+</I>&gt;<i> is doing what it's supposed to - dropping emails that the SMTP server
+</I>&gt;<i> rejects with an error code of 553.
+</I>
+OK, I guess it was my misunderstanding of exactly how sendmail works.  :-(
+
+I'd assumed that fetchmail would direct all mail, regardless, to my inbox, 
+which I now realise it is.  What I didn't know, was that even though sendmail 
+*is* trying to deliver it locally, it still validates the sender domain.  So, 
+it was a validation that failed, not an attempt at sending that failed.
+
+Thanks for the explanation.
+
+--
+Cheers
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000789.html">[fetchmail-users] Fetchmail in Singledrop-mode trying to send	mail
+</A></li>
+	<LI>Next message: <A HREF="000791.html">[fetchmail-users] Fetchmail in Singledrop-mode trying to send	mail
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#790">[ date ]</a>
+              <a href="thread.html#790">[ thread ]</a>
+              <a href="subject.html#790">[ subject ]</a>
+              <a href="author.html#790">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

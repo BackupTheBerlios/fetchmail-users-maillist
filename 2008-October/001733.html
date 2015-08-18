@@ -1,0 +1,97 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] R: imap and subfolder download
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2008-October/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20R%3A%20imap%20and%20subfolder%20download&In-Reply-To=%3C8d0992250810181834u3c5dcfbdq18b9cbeafb7a30fb%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001732.html">
+   <LINK REL="Next"  HREF="001734.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] R: imap and subfolder download</H1>
+    <B>Evan C.</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20R%3A%20imap%20and%20subfolder%20download&In-Reply-To=%3C8d0992250810181834u3c5dcfbdq18b9cbeafb7a30fb%40mail.gmail.com%3E"
+       TITLE="[fetchmail-users] R: imap and subfolder download">evan9021 at gmail.com
+       </A><BR>
+    <I>Sun Oct 19 03:34:02 CEST 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001732.html">[fetchmail-users] R:  imap and subfolder download
+</A></li>
+        <LI>Next message: <A HREF="001734.html">[fetchmail-users] R: imap and subfolder download
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1733">[ date ]</a>
+              <a href="thread.html#1733">[ thread ]</a>
+              <a href="subject.html#1733">[ subject ]</a>
+              <a href="author.html#1733">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hello,
+The situation is; I need to have fetchmail read the POP3 server *before* the
+system default MTA reads this server.
+The suggested command &quot;fetchmail -v -f .fetchmailrc&quot;, is not finding any
+mail even though I have sent mail to
+the server.  Should this command be started somehow from cron (short
+interval)?
+ep.
+---------------------------------------------------------------------------------------------------------------------------------------------------------------
+fetchmail -v -f .fetchmailrc
+fetchmail: 6.3.9-rc2 querying mailroom.***.***.edu (protocol POP3) at Sat 18
+Oct 2008 08:56:54 PM EDT: poll started
+Trying to connect to ***.***.***.**/110...connected.
+fetchmail: POP3&lt; +OK POP3 ***.***.edu v2003.83 server ready
+fetchmail: POP3&gt; CAPA
+fetchmail: POP3&lt; +OK Capability list follows:
+fetchmail: POP3&lt; TOP
+fetchmail: POP3&lt; LOGIN-DELAY 180
+fetchmail: POP3&lt; UIDL
+fetchmail: POP3&lt; USER
+fetchmail: POP3&lt; SASL LOGIN
+fetchmail: POP3&lt; .
+fetchmail: mailroom.***.***.edu: opportunistic upgrade to TLS failed, trying
+to continue.
+fetchmail: POP3&gt; USER evan
+fetchmail: POP3&lt; +OK User name accepted, password please
+fetchmail: POP3&gt; PASS *
+fetchmail: POP3&lt; +OK Mailbox open, 0 messages
+fetchmail: POP3&gt; STAT
+fetchmail: POP3&lt; +OK 0 0
+fetchmail: No mail for evan at mailroom.***.***.edu
+fetchmail: POP3&gt; QUIT
+fetchmail: POP3&lt; +OK Sayonara
+fetchmail: 6.3.9-rc2 querying mailroom.***.***.edu (protocol POP3) at Sat 18
+Oct 2008 08:56:54 PM EDT: poll completed
+fetchmail: normal termination, status 1
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001732.html">[fetchmail-users] R:  imap and subfolder download
+</A></li>
+	<LI>Next message: <A HREF="001734.html">[fetchmail-users] R: imap and subfolder download
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1733">[ date ]</a>
+              <a href="thread.html#1733">[ thread ]</a>
+              <a href="subject.html#1733">[ subject ]</a>
+              <a href="author.html#1733">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

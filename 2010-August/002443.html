@@ -1,0 +1,124 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Plain text passwords?
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2010-August/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Plain%20text%20passwords%3F&In-Reply-To=%3C4C58B830.1010906%40gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002442.html">
+   <LINK REL="Next"  HREF="002445.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Plain text passwords?</H1>
+    <B>Depo Catcher</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Plain%20text%20passwords%3F&In-Reply-To=%3C4C58B830.1010906%40gmail.com%3E"
+       TITLE="[fetchmail-users] Plain text passwords?">depocatcher at gmail.com
+       </A><BR>
+    <I>Wed Aug  4 02:45:36 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002442.html">[fetchmail-users] Plain text passwords?
+</A></li>
+        <LI>Next message: <A HREF="002445.html">[fetchmail-users] Problem fetching: &quot;AUTHFAIL&quot;
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2443">[ date ]</a>
+              <a href="thread.html#2443">[ thread ]</a>
+              <a href="subject.html#2443">[ subject ]</a>
+              <a href="author.html#2443">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>
+
+On 8/3/2010 6:34 PM, Matthias Andree wrote:
+&gt;<i> Am 02.08.2010, 19:33 Uhr, schrieb Depo Catcher:
+</I>&gt;<i>
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> It's not an untrusted server. Just because its trusted doesn't mean 
+</I>&gt;&gt;<i> that it'll never be compromised.
+</I>&gt;&gt;<i> Why doesn't /etc/passwd or .htaccess just store passwords in plain 
+</I>&gt;&gt;<i> text if it's so secure?
+</I>&gt;<i>
+</I>&gt;<i> I'm glad you're getting the same answers here than you got on the 
+</I>&gt;<i> fetchmail list.
+</I>&gt;<i>
+</I>&gt;<i> Given proper server-side support, fetchmail can help with TLS 
+</I>&gt;<i> certificates, and helps a bit in that you don't need to store your 
+</I>&gt;<i> password for the TLS private key, but still root or rogue processes 
+</I>&gt;<i> with your credentials can steal the TLS password as you enter it, 
+</I>&gt;<i> steal the private key, decrypt it, and you get the same level of local 
+</I>&gt;<i> password security again...
+</I>&gt;<i>
+</I>&gt;<i> I'm spamming either list with this mail just to copy for completeness, 
+</I>&gt;<i> but I'm setting Reply-To: to the getmail list. I understand that both 
+</I>&gt;<i> lists allow posting only by subscribers.
+</I>&gt;<i>
+</I>&gt;<i> Can we now please stop feeding the troll until he can utter what the 
+</I>&gt;<i> actual problem is that he is trying to solve? Thanks.
+</I>&gt;<i>
+</I>
+I feel like I'm in an alternative universe.  Not sure why people are so 
+passionate about defending plain text passwords.
+
+Ok, let's go over this and tell me were I'm misinformed:
+
+If someone compromises my user account; the effort to read my passwords 
+from a .fetchmailrc/.getmailrc file is very small.  Takes no effort at all.
+I think we agree there.  The probability of them compromising my account 
+in it's self I think is very low.  But let's assume they do and don't 
+have root access yet.
+
+If my passwords are in a pwsafe safe on a encrypted volume that is only 
+physically present in the system for ~30 seconds then they'll have to 
+obtain my passwords for both the encrypted volume and pwsafe.  Ok, they 
+can install a keylogger - hardware or software, which take more effort 
+then reading a plain text file.  They'll then have to get a copy of my 
+pwsafe off an encrypted volume and then grab my key from another usb 
+drive.  Ok, that is plausible; but think it takes a bit more effort and 
+some planning.
+
+Or, they could dump the memory from fetch mail and sort though it and 
+find it that way.  Ok, wait, well, it runs as a different user, so 
+they'll have to comprise that account too or gain elevated privileges.
+But I mean sure, that's also possible.  Seems to me though, that 
+requires a bit more difficult than just reading a plain text file that 
+they already have permission to access.
+
+I'm not saying this is 100% bullet proof.  I'm saying it'll take them 
+more effort and slow them down compared to just reading it.
+
+Maybe I'm wrong.  What part of the above setup is as weak as or weaker 
+as storing it in plain text?
+
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002442.html">[fetchmail-users] Plain text passwords?
+</A></li>
+	<LI>Next message: <A HREF="002445.html">[fetchmail-users] Problem fetching: &quot;AUTHFAIL&quot;
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2443">[ date ]</a>
+              <a href="thread.html#2443">[ thread ]</a>
+              <a href="subject.html#2443">[ subject ]</a>
+              <a href="author.html#2443">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

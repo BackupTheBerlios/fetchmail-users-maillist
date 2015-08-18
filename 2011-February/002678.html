@@ -1,0 +1,96 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] probably outdated msn local certificate
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2011-February/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20probably%20outdated%20msn%20local%20certificate&In-Reply-To=%3C20110227103154.257930%40gmx.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002676.html">
+   <LINK REL="Next"  HREF="002677.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] probably outdated msn local certificate</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20probably%20outdated%20msn%20local%20certificate&In-Reply-To=%3C20110227103154.257930%40gmx.net%3E"
+       TITLE="[fetchmail-users] probably outdated msn local certificate">matthias.andree at gmx.de
+       </A><BR>
+    <I>Sun Feb 27 11:31:54 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002676.html">[fetchmail-users] probably outdated msn local certificate
+</A></li>
+        <LI>Next message: <A HREF="002677.html">[fetchmail-users] [ANN] Adding &quot;delete after X days&quot; to Fetchmail
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2678">[ date ]</a>
+              <a href="thread.html#2678">[ thread ]</a>
+              <a href="subject.html#2678">[ subject ]</a>
+              <a href="author.html#2678">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Jude DaShiell wrote:
+
+&gt;<i> I probably have an outdated local msn certificate found in 
+</I>&gt;<i> /usr/share/curl/ca-bundle.crt.  There's probably a password connected 
+</I>&gt;<i> syntax problem in .fetchmailrc too since my passwords are in my .netrc 
+</I>&gt;<i> file but fetchmail asks for the pop3.live.com password when I try to
+</I>&gt;<i> use it.
+</I>
+Jude,
+
+no offense intended, but can I ask you to _read_ the given documentation, particularly these items:
+
+- screen or log file output
+
+- manual page
+
+- FAQ, particularly section G3.
+
+Reason I'm asking is that there is sufficient documentation in place to help you solve half of your problems yourself.
+
+Also note that none of the other list readers is capable of clairvoyance, meaning that without seeing your .netrc file nobody can do anything to help. Remember to mask the passwords when posting configuration files.
+
+I checked the certificate, and it verifies the pop3.live.com certificate fine. I suppose you either haven't run &quot;c_rehash /home/jude/.certs&quot;, or the version of c_rehash doesn't match the library that fetchmail has been linked against.
+
+An example .netrc file could look like:
+
+machine pop3.example.org
+user joe
+password secretcredentialshere
+
+
+HTH
+-- 
+Matthias Andree
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002676.html">[fetchmail-users] probably outdated msn local certificate
+</A></li>
+	<LI>Next message: <A HREF="002677.html">[fetchmail-users] [ANN] Adding &quot;delete after X days&quot; to Fetchmail
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2678">[ date ]</a>
+              <a href="thread.html#2678">[ thread ]</a>
+              <a href="subject.html#2678">[ subject ]</a>
+              <a href="author.html#2678">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

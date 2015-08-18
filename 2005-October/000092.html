@@ -1,0 +1,79 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] fetchmail gets stuck because of malformed            spam
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2005-October/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%20gets%20stuck%20because%20of%20malformed%20%20%20%20%0A%20%20%20%20%20%20%20%20spam&In-Reply-To=%3C32307.193.99.214.135.1130417938.squirrel%40ymmv.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000091.html">
+   <LINK REL="Next"  HREF="000093.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] fetchmail gets stuck because of malformed            spam</H1>
+    <B>Jakob Hirsch</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%20gets%20stuck%20because%20of%20malformed%20%20%20%20%0A%20%20%20%20%20%20%20%20spam&In-Reply-To=%3C32307.193.99.214.135.1130417938.squirrel%40ymmv.de%3E"
+       TITLE="[fetchmail-users] fetchmail gets stuck because of malformed            spam">jh at plonk.de
+       </A><BR>
+    <I>Thu Oct 27 14:58:58 CEST 2005</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000091.html">[fetchmail-users] fetchmail gets stuck because of malformed       spam
+</A></li>
+        <LI>Next message: <A HREF="000093.html">[fetchmail-users] fetchmail gets stuck because of malformed      spam
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#92">[ date ]</a>
+              <a href="thread.html#92">[ thread ]</a>
+              <a href="subject.html#92">[ subject ]</a>
+              <a href="author.html#92">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Thomas Wolff wrote:
+&gt;&gt;<i> &gt; or like this:
+</I>&gt;&gt;<i> &gt;   mda &quot;formail -s procmail -p&quot;
+</I>&gt;&gt;<i> formail is unnecessary here, I think, as fetchmail calls the mda for
+</I>&gt;&gt;<i> every single message seperately.
+</I>&gt;<i> But fetchmail doesn't generate a &quot;From &quot; line which is needed as a
+</I>&gt;<i> message separator in the mailbox. That's why formail is necessary.
+</I>
+Shouldn't that be done by procmail itself? Programs running an MDA
+shouldn't care about the local mailbox format. I may be wrong about this,
+it's long ago that I used procmail and mbox.
+
+&gt;<i> Whatever the issue, error handling should be reviewed and revised to
+</I>&gt;<i> never produce this kind of DoS situation, independent of actual error
+</I>&gt;<i> analysis.
+</I>
+If it's a server issue, there's not much fetchmail can do about it. If
+it's a fetchmail flaw, you are right of course.
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000091.html">[fetchmail-users] fetchmail gets stuck because of malformed       spam
+</A></li>
+	<LI>Next message: <A HREF="000093.html">[fetchmail-users] fetchmail gets stuck because of malformed      spam
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#92">[ date ]</a>
+              <a href="thread.html#92">[ thread ]</a>
+              <a href="subject.html#92">[ subject ]</a>
+              <a href="author.html#92">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,103 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] polling gmail with fetchmail
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2009-February/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20polling%20gmail%20with%20fetchmail&In-Reply-To=%3C1235519300.12206.86.camel%40localhost.localdomain%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001871.html">
+   <LINK REL="Next"  HREF="001873.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] polling gmail with fetchmail</H1>
+    <B>Chris</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20polling%20gmail%20with%20fetchmail&In-Reply-To=%3C1235519300.12206.86.camel%40localhost.localdomain%3E"
+       TITLE="[fetchmail-users] polling gmail with fetchmail">cpollock at embarqmail.com
+       </A><BR>
+    <I>Wed Feb 25 00:48:20 CET 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001871.html">[fetchmail-users] polling intervals
+</A></li>
+        <LI>Next message: <A HREF="001873.html">[fetchmail-users] polling gmail with fetchmail
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1872">[ date ]</a>
+              <a href="thread.html#1872">[ thread ]</a>
+              <a href="subject.html#1872">[ subject ]</a>
+              <a href="author.html#1872">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>I'm trying to poll my gmail box using fetchmail. I've compiled fetchmail
+6.3.9 with ./configure --with-ssl and saw no errors either in the
+compile, make or install. Here is my .fetchmailrc lines for gmail:
+
+poll pop.gmail.com with proto POP3 timeout 180 port 995
+user &quot;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">chris.pollock1948 at gmail.com</A>&quot; with pass &quot;xxxxxx&quot; is cpollock here
+options sslcertck  sslcertpath &quot;/home/chris/certs/.certs&quot; 
+
+Here is what my fetchmaillog shows:
+
+fetchmail: 6.3.9 querying pop.gmail.com (protocol POP3) at Tue 24 Feb
+2009 05:38:05 PM CST: poll started
+fetchmail: Trying to connect to 72.14.247.109/995...connected.
+fetchmail: socket error while fetching from
+<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">chris.pollock1948 at gmail.com</A>@pop.gmail.com
+fetchmail: 6.3.9 querying pop.gmail.com (protocol POP3) at Tue 24 Feb
+2009 05:39:05 PM CST: poll completed
+
+Here is what I have in my ~/certs/.certs folder:
+
+lrwxrwxrwx 1 chris chris   11 2009-02-23 21:31 594f1775.0 -&gt; equifax.pem
+lrwxrwxrwx 1 chris chris   13 2009-02-23 21:31 7f549ca4.0 -&gt;
+googlepop.pem
+-rw-rw-r-- 1 chris chris 1143 2009-02-23 21:26 equifax.pem
+-rw-rw-r-- 1 chris chris 1054 2009-02-23 21:26 googlepop.pem
+
+Any suggestions on where I've screwed up with gmail or is it not
+possible to poll gmail with fetchmail?  All my other accounts work great
+after I implemented the 'interval' command.
+
+Thanks
+Chris
+
+-- 
+KeyID 0xE372A7DA98E6705C
+
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: signature.asc
+Type: application/pgp-signature
+Size: 197 bytes
+Desc: This is a digitally signed message part
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/fetchmail-users/attachments/20090224/455d2319/attachment.pgp">https://lists.berlios.de/pipermail/fetchmail-users/attachments/20090224/455d2319/attachment.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001871.html">[fetchmail-users] polling intervals
+</A></li>
+	<LI>Next message: <A HREF="001873.html">[fetchmail-users] polling gmail with fetchmail
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1872">[ date ]</a>
+              <a href="thread.html#1872">[ thread ]</a>
+              <a href="subject.html#1872">[ subject ]</a>
+              <a href="author.html#1872">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

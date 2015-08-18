@@ -1,0 +1,85 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] logging
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2010-April/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20logging&In-Reply-To=%3Calpine.DEB.2.00.1004241607150.7284%40localhost%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002364.html">
+   <LINK REL="Next"  HREF="002368.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] logging</H1>
+    <B>Robert Holtzman</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20logging&In-Reply-To=%3Calpine.DEB.2.00.1004241607150.7284%40localhost%3E"
+       TITLE="[fetchmail-users] logging">holtzm at cox.net
+       </A><BR>
+    <I>Sun Apr 25 02:23:14 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002364.html">[fetchmail-users] Possible improvements in future Fetchmail versions.
+</A></li>
+        <LI>Next message: <A HREF="002368.html">[fetchmail-users] logging
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2367">[ date ]</a>
+              <a href="thread.html#2367">[ thread ]</a>
+              <a href="subject.html#2367">[ subject ]</a>
+              <a href="author.html#2367">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>I added &quot;set syslog&quot; to my .fetchmailrc files. The first thing that I 
+noted was that the download messages that used to be written to the 
+terminal were instead written to the log files. The second thing was 
+that it is a bad idea to write to /var/log/syslog because the the output 
+gets mixed up with all the other log entries. In addiion, the log 
+messages are written to /var/log/mail.log. That makes sense but I cannot 
+find a way to 1) write to /var/log/mail.log *only* and 2) have the 
+download messages appear on the terminal also.
+
+I tried using mail.log and /var/log/mail.log but got:
+
+syntax error at mail.log and syntax error at /var/log/mail.log
+
+/var/log/mail.log exists.
+
+Running searches turned up nothing.
+
+Anyone?
+
+-- 
+Bob Holtzman
+Key ID: 8D549279
+&quot;If you think you're getting free lunch,
+  check the price of the beer&quot;
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002364.html">[fetchmail-users] Possible improvements in future Fetchmail versions.
+</A></li>
+	<LI>Next message: <A HREF="002368.html">[fetchmail-users] logging
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2367">[ date ]</a>
+              <a href="thread.html#2367">[ thread ]</a>
+              <a href="subject.html#2367">[ subject ]</a>
+              <a href="author.html#2367">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,124 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] more clever resource limitations
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2005-December/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20more%20clever%20resource%20limitations&In-Reply-To=%3Cm3hd9iljy7.fsf%40merlin.emma.line.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000153.html">
+   <LINK REL="Next"  HREF="000155.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] more clever resource limitations</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20more%20clever%20resource%20limitations&In-Reply-To=%3Cm3hd9iljy7.fsf%40merlin.emma.line.org%3E"
+       TITLE="[fetchmail-users] more clever resource limitations">matthias.andree at gmx.de
+       </A><BR>
+    <I>Fri Dec  9 10:05:04 CET 2005</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000153.html">[fetchmail-users] more clever resource limitations
+</A></li>
+        <LI>Next message: <A HREF="000155.html">[fetchmail-users] Re: more clever resource limitations
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#154">[ date ]</a>
+              <a href="thread.html#154">[ thread ]</a>
+              <a href="subject.html#154">[ subject ]</a>
+              <a href="author.html#154">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Greg Lindahl &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">lindahl at pbm.com</A>&gt; writes:
+
+&gt;<i> I was pleased to see on LWN that you guys are working on fetchmail,
+</I>&gt;<i> I had no idea it had active maintainers.
+</I>
+Good to see that the word is spreading. :-)
+
+&gt;<i> Due to the advent of spamassassin, I am no longer able to accept lots
+</I>&gt;<i>of messages at once via fetchmail -- it causes my laptop to thrash.  I
+</I>
+My personal experience is that SpamAssassin's biggest hog is its Bayes
+database, disabling it speeds up SA quite a bit. External filters such
+as bogofilter, spamprobe or qsf are much faster than SpamAssassin, and
+as you are already using procmail, integration is quite easy.
+
+It takes a bit of manual work training the filter, though. Also, if you
+use &quot;spamassassin&quot; in your procmail script, consider running a &quot;spamd&quot;
+daemon and then use &quot;spamc&quot; in your script instead, this also gives you
+some resource control given proper spamd settings.
+
+You can also use a procmail &quot;local lock file&quot; to make sure only one
+spamassassin process is running at a time, and you can also precede the
+spamassassin line with &quot;nice&quot;. (You'd change your &quot;:0fw&quot; rule to
+&quot;:0fw:.spamassassin.lock&quot; or similar, depending on how _exactly_ you use
+spamassassin.)
+
+&gt;<i>use sendmail -&gt; procmail -&gt; spamassassin, so using sendmail's load
+</I>&gt;<i>average limit didn't really help the situation, since sendmail has no
+</I>&gt;<i>idea it's kicked off a bunch of spamassassin processes that in a few
+</I>&gt;<i>seconds will drive the load way up. (In this analysis I'm assuming that
+</I>&gt;<i>it's only cpu time and not disk I/O which is causing the problem.)
+</I>
+The actual problem is that sendmail is somewhat limited in terms of
+resource control. With Postfix for instance you'd set the
+local_concurrency_limit to some low value and that's it, but as shown
+above there are ways around your problem.
+
+&gt;<i>  --fetchlimitsize n (kilobytes, default to 100 kilobytes? 1 meg?)
+</I>&gt;<i>  --expungesize n (kilobytes, same default as fetchlimitsize)
+</I>&gt;<i>
+</I>&gt;<i> In addition, we could use a rate limiter sending messages to sendmail
+</I>&gt;<i> to dodge the spamassassin problem. My laptop takes 2 cpu seconds to
+</I>&gt;<i> spamassassin a small email message (20 seconds elapsed) and so perhaps
+</I>&gt;<i> a time-based measure with an optional addition for the message size
+</I>&gt;<i> would do it. If you wanted to be clever you could compute this
+</I>&gt;<i> dynamically by watching what happens when you throw a bunch of email
+</I>&gt;<i> messages at sendmail, but to start:
+</I>&gt;<i>
+</I>&gt;<i>  --mtacpu n (seconds, default to 0)
+</I>&gt;<i>  --mtacpupermeg n (seconds per megabyte, default to 0)
+</I>&gt;<i>
+</I>&gt;<i> so fetchmail would wait &quot;mtacpu + size / 1meg * mtacpupermeg&quot; seconds
+</I>&gt;<i> before sending another message to the MTA. I'd set this to 2. Hm,
+</I>&gt;<i> given that this value is small a floating-point value would be a
+</I>&gt;<i> good idea instead of an integer.
+</I>
+As you talked about varying network connection quality, a time limit is
+probably one easy way to go and it makes good sense for --expunge* like
+options, too -- fetchmail might then checkpoint the mailbox every two
+minutes or so (or whichever the user set).
+
+-- 
+Matthias Andree
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000153.html">[fetchmail-users] more clever resource limitations
+</A></li>
+	<LI>Next message: <A HREF="000155.html">[fetchmail-users] Re: more clever resource limitations
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#154">[ date ]</a>
+              <a href="thread.html#154">[ thread ]</a>
+              <a href="subject.html#154">[ subject ]</a>
+              <a href="author.html#154">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

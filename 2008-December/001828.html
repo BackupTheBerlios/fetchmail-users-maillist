@@ -1,0 +1,119 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Headers Problem.
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2008-December/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Headers%20Problem.&In-Reply-To=%3C252311.92172.qm%40web53301.mail.re2.yahoo.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001825.html">
+   <LINK REL="Next"  HREF="001829.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Headers Problem.</H1>
+    <B>rahul</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Headers%20Problem.&In-Reply-To=%3C252311.92172.qm%40web53301.mail.re2.yahoo.com%3E"
+       TITLE="[fetchmail-users] Headers Problem.">rahul_zoro2000 at yahoo.com
+       </A><BR>
+    <I>Wed Dec 31 07:48:08 CET 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001825.html">[fetchmail-users] Difference in headers - Was Re: Error showing in fetchmail log
+</A></li>
+        <LI>Next message: <A HREF="001829.html">[fetchmail-users] Headers Problem.
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1828">[ date ]</a>
+              <a href="thread.html#1828">[ thread ]</a>
+              <a href="subject.html#1828">[ subject ]</a>
+              <a href="author.html#1828">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>I am facing problem in headers.
+
+
+I have one catchall a/c(<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">catchall at xyz.com</A>) and Alias is <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">test at xyz.com.</A>
+
+One pop a/c <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">postmaster at xyz.com.</A> 
+
+
+When i send mail to <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">test at xyz.com</A> and mark a CC: to <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">postmaster at xyz.com.</A>&#160; One mail received to <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">catchall at xyz.com</A> and one mail received to <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">postmaster at xyz.com</A>, everything is fine here.
+
+
+Now the problem is, I am using Qmail when i download <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">catchall at xyz.com</A> mails through fetchmail, Qmail server send one mail to <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">test at xyz.com</A> its fine here but again send one mail to <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">postmaster at xyz.com.</A> Postmater a/c received the same mail two times.
+
+
+My fetchmail configuration is:-
+
+poll 209.21.x.x with proto pop3
+localdomains xyz.com
+user &quot;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">catchall at xyz.com</A>&quot; there with password &quot;password&quot; is * here
+fetchall
+
+
+
+My full headers is mentioned below:-
+
+
+Cc:&#160; <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">postmaster at xyz.com</A> 
+Content-Type:&#160; multipart/alternative; boundary=&quot;----=_NextPart_000_0061_01C96B3F.A71D0B60&quot; 
+Date:&#160; Wed, 31 Dec 2008 12:02:25 +0530 [10:32:25 PM PST] 
+From:&#160; Nitin &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">nitin at xyz.com</A>&gt; 
+MIME-Version:&#160; 1.0 
+Received:&#160; (qmail 13322 invoked from network); 30 Dec 2008 22:32:22 -0800 
+from 124-247.x.xdel.tulipconnect.com (HELO int202056) (124.247.x.x) by 209.21.x.x with SMTP; 30 Dec 2008 22:32:22 -0800
+&#160;
+Subject:&#160; TEST MAIL 
+Thread-Index:&#160; AclrEYtM2nHi8hU6QqOsdKGoSRzeSA== 
+To:&#160; <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">test at xyz.com</A> 
+X-Mailer:&#160; Microsoft Office Outlook, Build 11.0.5510 
+X-MimeOLE:&#160; Produced By Microsoft MimeOLE V6.00.2900.3350 &#160;
+X-Spam-Checker-Version:&#160; SpamAssassin 3.1.9 (2007-02-13) on admin2.technologies.com 
+X-Spam-Level:&#160; &#160;
+X-Spam-Status:&#160; No, score=-2.1 required=1.0 tests=AWL,BAYES_00,HTML_90_100, HTML_MESSAGE autolearn=ham version=3.1.9 
+Part(s):&#160; Download All Attachments (in .zip file) &#160;
+Headers:&#160; Show Limited Headers &#160;
+
+
+
+
+SpamAssassin Version is:-&#160;&#160; &#160;SpamAssassin 3.1.9
+
+
+Please help me to resolve this issue
+
+Regards,
+Rahul.
+
+
+
+      
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001825.html">[fetchmail-users] Difference in headers - Was Re: Error showing in fetchmail log
+</A></li>
+	<LI>Next message: <A HREF="001829.html">[fetchmail-users] Headers Problem.
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1828">[ date ]</a>
+              <a href="thread.html#1828">[ thread ]</a>
+              <a href="subject.html#1828">[ subject ]</a>
+              <a href="author.html#1828">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

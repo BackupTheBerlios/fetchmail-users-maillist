@@ -1,0 +1,108 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] fetchmail does not more give ExitStatus 13 if	--fetchlimit is used
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2008-December/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%20does%20not%20more%20give%20ExitStatus%2013%20if%0A%09--fetchlimit%20is%20used&In-Reply-To=%3C20081213214120.GT2178%40tamay-dogan.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001798.html">
+   <LINK REL="Next"  HREF="001799.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] fetchmail does not more give ExitStatus 13 if	--fetchlimit is used</H1>
+    <B>Michelle Konzack</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%20does%20not%20more%20give%20ExitStatus%2013%20if%0A%09--fetchlimit%20is%20used&In-Reply-To=%3C20081213214120.GT2178%40tamay-dogan.net%3E"
+       TITLE="[fetchmail-users] fetchmail does not more give ExitStatus 13 if	--fetchlimit is used">linux4michelle at tamay-dogan.net
+       </A><BR>
+    <I>Sat Dec 13 22:41:20 CET 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001798.html">[fetchmail-users] Problems with unusual UIDL scheme
+</A></li>
+        <LI>Next message: <A HREF="001799.html">[fetchmail-users] fetchmail does not more give ExitStatus 13 if	--fetchlimit is used
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1797">[ date ]</a>
+              <a href="thread.html#1797">[ thread ]</a>
+              <a href="subject.html#1797">[ subject ]</a>
+              <a href="author.html#1797">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Package: fetchmail
+Version: 6.3.6-1etch1
+Severity: normal
+
+ATTENTION:  I am CC'ing the fetchmail list...
+
+Hello Maintainer,
+
+I had a fetchmail error on my  intranet  server  where  a  crash  of  my
+cellphone (Nokia 6120 classic) has interrupted the  Internet  connection
+and pppd has not detected it.
+
+While checking  the  logfiles  I  have  seen  fetchmail  had  stoped  at
+2008-12-13 02:01:13 and it hangs forever without timing out...
+
+Now checking the wraper logfiles I have encountered if I start fetchmail
+with the option --fetchlimit, it does not more exit with status  13,  if
+the fetchlimit is reached...
+
+Unfortunately this ExitStatus is essencial for my  Intranet  server  and
+its user Webinterface.
+
+It seems, this error happen since 6.3.6-1etch1 because versions prior to
+it do not show this behaviour.
+
+Please can you chek it?
+
+Thanks, Greetings and nice Day/Evening
+    Michelle Konzack
+    Systemadministrator
+    24V Electronic Engineer
+    Tamay Dogan Network
+    Debian GNU/Linux Consultant
+
+
+-- 
+Linux-User #280138 with the Linux Counter, <A HREF="http://counter.li.org/">http://counter.li.org/</A>
+##################### Debian GNU/Linux Consultant #####################
+Michelle Konzack   Apt. 917                  ICQ #328449886
++49/177/9351947    50, rue de Soultz         MSN LinuxMichi
++33/6/61925193     67100 Strasbourg/France   IRC #Debian (irc.icq.com)
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: signature.pgp
+Type: application/pgp-signature
+Size: 189 bytes
+Desc: Digital signature
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/fetchmail-users/attachments/20081213/6faca7f6/attachment.pgp">https://lists.berlios.de/pipermail/fetchmail-users/attachments/20081213/6faca7f6/attachment.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001798.html">[fetchmail-users] Problems with unusual UIDL scheme
+</A></li>
+	<LI>Next message: <A HREF="001799.html">[fetchmail-users] fetchmail does not more give ExitStatus 13 if	--fetchlimit is used
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1797">[ date ]</a>
+              <a href="thread.html#1797">[ thread ]</a>
+              <a href="subject.html#1797">[ subject ]</a>
+              <a href="author.html#1797">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

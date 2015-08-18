@@ -1,0 +1,100 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Exchange server and attachment
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2006-May/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Exchange%20server%20and%20attachment&In-Reply-To=%3C44573A79.3000301%40baravalle.it%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   
+   <LINK REL="Next"  HREF="000366.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Exchange server and attachment</H1>
+    <B>Andres Baravalle</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Exchange%20server%20and%20attachment&In-Reply-To=%3C44573A79.3000301%40baravalle.it%3E"
+       TITLE="[fetchmail-users] Exchange server and attachment">andres at baravalle.it
+       </A><BR>
+    <I>Tue May  2 12:54:49 CEST 2006</I>
+    <P><UL>
+        
+        <LI>Next message: <A HREF="000366.html">[fetchmail-users] Exchange server and attachment
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#365">[ date ]</a>
+              <a href="thread.html#365">[ thread ]</a>
+              <a href="subject.html#365">[ subject ]</a>
+              <a href="author.html#365">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Rob MacGregor wrote:
+&gt;<i> On 4/28/06, Andres Baravalle &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">andres at baravalle.it</A>&gt; wrote:
+</I>&gt;&gt;<i> could you explain a bit more what you mean? If I run the command I do
+</I>&gt;&gt;<i> not see any output, nor there is any tput in /var/log/messages.
+</I>&gt;<i> 
+</I>&gt;<i> Please post your .fetchmailrc.
+</I>
+Hi,
+here is my configuration file:
+
+set postmaster &quot;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">andres at baravalle.it</A>&quot;
+set bouncemail
+set daemon 60
+set syslog
+
+poll *******
+     protocol imap
+     port 993
+     user '****'
+     pass '****'
+     is <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">andres-open at baravalle.it</A>
+     ssl
+     keep
+
+&gt;<i> For the first, try &quot;fetchmail --nosyslog -v -v&quot;.  It's likely you're
+</I>&gt;<i> logging to syslog if there is not output on stdout.
+</I>
+no output again...
+
+&gt;&gt;<i> Yes, I can confirm you that I can read the email from Thunderbird.
+</I>&gt;<i> 
+</I>&gt;<i> On the host you're running fetchmail on?
+</I>
+I have limits in the amount of space I can use in my work address. So I
+run fetchmail to get my mail from my work address to my personal server.
+And then I connect from other hosts to read the email.
+
+Connecting to my work server works with thunderbird, both on windows and
+on Linux.
+
+Hope
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	
+	<LI>Next message: <A HREF="000366.html">[fetchmail-users] Exchange server and attachment
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#365">[ date ]</a>
+              <a href="thread.html#365">[ thread ]</a>
+              <a href="subject.html#365">[ subject ]</a>
+              <a href="author.html#365">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

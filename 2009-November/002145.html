@@ -1,0 +1,115 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Rotating Fetchmail log
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2009-November/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Rotating%20Fetchmail%20log&In-Reply-To=%3C20091122061620.5da62843%40scorpio.seibercom.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002144.html">
+   <LINK REL="Next"  HREF="002146.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Rotating Fetchmail log</H1>
+    <B>Jerry</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Rotating%20Fetchmail%20log&In-Reply-To=%3C20091122061620.5da62843%40scorpio.seibercom.net%3E"
+       TITLE="[fetchmail-users] Rotating Fetchmail log">gesbbb at yahoo.com
+       </A><BR>
+    <I>Sun Nov 22 12:16:20 CET 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002144.html">[fetchmail-users] Rotating Fetchmail log
+</A></li>
+        <LI>Next message: <A HREF="002146.html">[fetchmail-users] Rotating Fetchmail log
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2145">[ date ]</a>
+              <a href="thread.html#2145">[ thread ]</a>
+              <a href="subject.html#2145">[ subject ]</a>
+              <a href="author.html#2145">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Sun, 22 Nov 2009 03:26:53 +0100
+Matthias Andree &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">matthias.andree at gmx.de</A>&gt; replied:
+
+&gt;<i> Jerry schrieb:
+</I>&gt;<i> &gt; I thought I asked this question awhile ago; however, I don't
+</I>&gt;<i> &gt; remember receiving a response.
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; I am running FreeBSD-7.2 and have Fetchmail configured to create a
+</I>&gt;<i> &gt; log file in the /var/log directory. I have 'newsyslog' configured
+</I>&gt;<i> &gt; to rotate the log monthly.
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; Fetchmail is run as a daemon. Does newsyslog have to send a signal
+</I>&gt;<i> &gt; to Fetchmail when it rotates the log? If so, what signal should it
+</I>&gt;<i> &gt; send?
+</I>&gt;<i> 
+</I>&gt;<i> Hi Jerry,
+</I>&gt;<i> 
+</I>&gt;<i> Unfortunately, you'll have to stop fetchmail (through fetchmail -q or
+</I>&gt;<i> SIGTERM, the latter is undocumented though), cycle the logs, and then
+</I>&gt;<i> restart fetchmail, because it doesn't support reopening the log file.
+</I>&gt;<i> 
+</I>&gt;<i> I've taken a note in TODO.txt, but don't expect work on this soon. I'm
+</I>&gt;<i> pretty loaded ATM.
+</I>
+Unfortunately, that means that I will have to manually rotate the files
+myself. I was hoping that I could have newsyslog use one of the
+following signals:
+
+1     SIGHUP
+2     SIGINT
+30    SIGUSR1
+
+Signal &quot;30&quot; aka &quot;SIGUSR1&quot; is a commonly used one.
+
+Out of morbid curiosity, what happens if the log is rotated and
+Fetchmail is 'NOT&quot; restarted or is in the process of writing to the
+log?
+
+BTW, thanks for your quick response.
+
+-- 
+Jerry
+<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">gesbbb at yahoo.com</A>
+
+|::::<i>=======
+</I>|::::<i>=======
+</I>|<i>===========
+</I>|<i>===========
+</I>|<i>
+</I>
+Anyone can hold the helm when the sea is calm.
+
+	Publilius Syrus
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002144.html">[fetchmail-users] Rotating Fetchmail log
+</A></li>
+	<LI>Next message: <A HREF="002146.html">[fetchmail-users] Rotating Fetchmail log
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2145">[ date ]</a>
+              <a href="thread.html#2145">[ thread ]</a>
+              <a href="subject.html#2145">[ subject ]</a>
+              <a href="author.html#2145">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

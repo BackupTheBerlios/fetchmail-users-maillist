@@ -1,0 +1,182 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Problem fetching: &quot;AUTHFAIL&quot;
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2010-August/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Problem%20fetching%3A%20%22AUTHFAIL%22&In-Reply-To=%3C4C6BE286.6060305%40gmx.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002446.html">
+   <LINK REL="Next"  HREF="002448.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Problem fetching: &quot;AUTHFAIL&quot;</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Problem%20fetching%3A%20%22AUTHFAIL%22&In-Reply-To=%3C4C6BE286.6060305%40gmx.de%3E"
+       TITLE="[fetchmail-users] Problem fetching: &quot;AUTHFAIL&quot;">matthias.andree at gmx.de
+       </A><BR>
+    <I>Wed Aug 18 15:39:18 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002446.html">[fetchmail-users] Problem fetching: &quot;AUTHFAIL&quot;
+</A></li>
+        <LI>Next message: <A HREF="002448.html">[fetchmail-users] Problem fetching: &quot;AUTHFAIL&quot;
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2447">[ date ]</a>
+              <a href="thread.html#2447">[ thread ]</a>
+              <a href="subject.html#2447">[ subject ]</a>
+              <a href="author.html#2447">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Am 18.08.2010 08:14, schrieb Alan Murrell:
+&gt;<i> Hello.
+</I>&gt;<i> 
+</I>&gt;<i> We have been running fetchmail for a couple of years now to download emails from our Exchange 2007 system for Request Tracker.  Yesterday, fetchamil just would not run for some reason (no error output), and the version of Debian was deprecated (etch), so today I have performed a full upgrade to Debian 5.0 (&quot;Lenny&quot;).  This also upgraded the fetchmail version 3.6.9.
+</I>&gt;<i> 
+</I>&gt;<i> Now, fetchamil will run, but it fails to authenticate for any of the support accounts it has to log in to to grab the emails and put into the system  Here is my '/etc/fetchmailrc' file (with just one of the accounts; username, password, and hostname changed):
+</I>&gt;<i> 
+</I>&gt;<i> --- START ---
+</I>&gt;<i> set daemon 5
+</I>&gt;<i> set invisible
+</I>&gt;<i> set no bouncemail
+</I>&gt;<i> 
+</I>&gt;<i> poll mail.myserver.com
+</I>&gt;<i> protocol pop3
+</I>&gt;<i> username &quot;support&quot; password &quot;PASSWORD&quot;
+</I>&gt;<i> mda &quot;/usr/bin/rt-mailgate-3.6 --queue InternalSupport --action correspond --url <A HREF="http://rt.myserver.com/rt/">http://rt.myserver.com/rt/</A>&quot;
+</I>&gt;<i> no keep
+</I>&gt;<i> ---- END ----
+</I>&gt;<i> 
+</I>&gt;<i> From the server fetchamil is on, I have been able to successfully telnet to the mail server on port 110 and authenticate with the very same credentials that are in the fetchmailrc file.  I have su'd to the user &quot;fetchmail&quot; and run 'fetchmail -cvf /etc/fetchmailrc' with the following results:
+</I>&gt;<i> 
+</I>&gt;<i> (server names, IPs, and passwords changed)
+</I>&gt;<i> 
+</I>&gt;<i> --- START ---
+</I>&gt;<i> fetchmail: --check mode enabled, not fetching mail
+</I>&gt;<i> fetchmail: 6.3.9-rc2 querying mail.myserver.com (protocol POP3) at Tue 17 Aug 2010 04:29:11 PM PDT: poll started Trying to connect to 111.222.333.444/110...connected.
+</I>&gt;<i> fetchmail: POP3&lt; +OK The Microsoft Exchange POP3 service is ready.
+</I>&gt;<i> fetchmail: POP3&gt; CAPA
+</I>&gt;<i> fetchmail: POP3&lt; +OK
+</I>&gt;<i> fetchmail: POP3&lt; TOP
+</I>&gt;<i> fetchmail: POP3&lt; UIDL
+</I>&gt;<i> fetchmail: POP3&lt; SASL NTLM GSSAPI PLAIN
+</I>&gt;<i> fetchmail: POP3&lt; USER
+</I>&gt;<i> fetchmail: POP3&lt; STLS
+</I>&gt;<i> fetchmail: POP3&lt; .
+</I>&gt;<i> fetchmail: POP3&gt; STLS
+</I>&gt;<i> fetchmail: POP3&lt; +OK Begin TLS negotiation.
+</I>&gt;<i> fetchmail: Server certificate verification error: unable to get local issuer certificate
+</I>&gt;<i> fetchmail: Server certificate verification error: certificate not trusted
+</I>&gt;<i> fetchmail: Issuer Organization: GoDaddy.com, Inc.
+</I>&gt;<i> fetchmail: Issuer CommonName: Go Daddy Secure Certification Authority
+</I>&gt;<i> fetchmail: Server CommonName: mail.myserver.com
+</I>&gt;<i> fetchmail: Subject Alternative Name: mail.myserver.com
+</I>&gt;<i> fetchmail: mail.myserver.com key fingerprint: 8F:32:03:1C:86:6F:4D:FA:DF:81:53:64:3C:81:A8:DC
+</I>&gt;<i> fetchmail: POP3&gt; CAPA
+</I>&gt;<i> fetchmail: POP3&lt; +OK
+</I>&gt;<i> fetchmail: POP3&lt; TOP
+</I>&gt;<i> fetchmail: POP3&lt; UIDL
+</I>&gt;<i> fetchmail: POP3&lt; SASL NTLM GSSAPI PLAIN
+</I>&gt;<i> fetchmail: POP3&lt; USER
+</I>&gt;<i> fetchmail: POP3&lt; .
+</I>&gt;<i> fetchmail: mail.myserver.com: upgrade to TLS succeeded.
+</I>&gt;<i> fetchmail: POP3&gt; AUTH GSSAPI
+</I>&gt;<i> fetchmail: POP3&lt; +
+</I>&gt;<i> fetchmail: Sending credentials
+</I>&gt;<i> fetchmail: Error exchanging credentials
+</I>&gt;<i> fetchmail: POP3&lt; + YGoGBisGAQUFAqBgMF6gMDAuBgkqhkiC9xIBAgIGCSqGSIb3EgECAgYKKoZIhvcSAQICAwYKKwYBBAGCNwICCqMqMCigJhskbm90X2RlZmluZWRfaW5fUkZDNDE3OEBwbGVhc2VfaWdub3Jl
+</I>&gt;<i> fetchmail: POP3&gt; USER support
+</I>&gt;<i> fetchmail: POP3&lt; -ERR Logon failure: unknown user name or bad password.
+</I>&gt;<i> fetchmail: Logon failure: unknown user name or bad password.
+</I>&gt;<i> fetchmail: Authorization failure on <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">support at mail.myserver.com</A>
+</I>&gt;<i> fetchmail: POP3&gt; QUIT
+</I>&gt;<i> fetchmail: POP3&lt; +OK Microsoft Exchange Server 2007 POP3 server signing off.
+</I>&gt;<i> fetchmail: 6.3.9-rc2 querying mail.myserver.com (protocol POP3) at Tue 17 Aug 2010 04:29:12 PM PDT: poll completed
+</I>&gt;<i> fetchmail: normal termination, status 3
+</I>&gt;<i> ---- END ---
+</I>&gt;<i> 
+</I>&gt;<i> I have tried adding &quot;sslproto ssl23&quot; to prevent the &quot;upgrade to TLS&quot;, but it still fails with the above
+</I>error.  I am not sure if where it says &quot;Authorization failure on
+<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">support at mail.myserver.com</A>&quot; if that means it is really trying to authenticate
+with the username &quot;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">support at mail.myserver.com</A>&quot; rather than just &quot;support&quot; (which
+is what it should be).  If that is the case, how can I stop fetchmail from doing
+that?  That is the only thing I can see that might explain the authentication
+failure.
+
+Because it's not an SSL error, but a GSSAPI/Kerberos-V error.  Why the &quot;USER
+support&quot; fails after the AUTH GSSAPI exchange, I don't know, might be a server
+or fetchmail bug.  I'm not going to investigate this for a pre-6.3.9 version though.
+
+I can try to help nonetheless with two issues:
+
+
+1. SSL/TLS issue (not reported by you explicitly but still visible from the logs):
+
+You haven't got the root signing certificate installed in a place where
+fetchmail/openSSL can find it.  In doubt, try sslcertpath.  Older fetchmail
+versions such as yours weren't as consistent with SSL paths as 6.3.17 is.
+
+
+2. AUTHFAIL issue:
+
+What happens now is: the server got upgraded and now offers Kerberos. Fetchmail
+tries that (here through the &quot;GSSAPI&quot;, the generic security services application
+programming interface), which is offered by the server, and compiled into your
+fetchmail version, but you haven't run &quot;kinit USERNAME&quot;, possibly not even
+configured Kerberos V (5) through /etc/krb5.conf.
+
+As a solution, you can either (note that the location of options is peculiar in
+rcfilesm so for initial tests you may want to add those to the command line,
+where you'd prefix all non-quoted parts, before figuring what part goes where)
+
+(a) configure Kerberos according to the POP server's instructions, run kinit
+USERNAME-ON-SERVER, then fetchmail
+
+or
+
+(a) sidestep Kerberos, and add
+
+	sslproto 'TLS1' sslcertck auth 'password'
+
+or perhaps
+
+	ssl sslproto 'SSL3' sslcertck auth 'password'
+
+to your rcfile and retry.
+
+If you need further help, please provide fetchmail logging and rcfile output for
+all the attempts.
+
+-- 
+Matthias Andree
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002446.html">[fetchmail-users] Problem fetching: &quot;AUTHFAIL&quot;
+</A></li>
+	<LI>Next message: <A HREF="002448.html">[fetchmail-users] Problem fetching: &quot;AUTHFAIL&quot;
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2447">[ date ]</a>
+              <a href="thread.html#2447">[ thread ]</a>
+              <a href="subject.html#2447">[ subject ]</a>
+              <a href="author.html#2447">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

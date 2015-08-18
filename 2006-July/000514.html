@@ -1,0 +1,115 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] fetchmail does not mark messages &quot;seen&quot; on remote	server running	qmail
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2006-July/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%20does%20not%20mark%20messages%20%22seen%22%20on%20remote%0A%09server%20running%09qmail&In-Reply-To=%3C1152955577.12315.17.camel%40mariTUX.pro-jects.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000509.html">
+   <LINK REL="Next"  HREF="000515.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] fetchmail does not mark messages &quot;seen&quot; on remote	server running	qmail</H1>
+    <B>mario kammerer</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%20does%20not%20mark%20messages%20%22seen%22%20on%20remote%0A%09server%20running%09qmail&In-Reply-To=%3C1152955577.12315.17.camel%40mariTUX.pro-jects.com%3E"
+       TITLE="[fetchmail-users] fetchmail does not mark messages &quot;seen&quot; on remote	server running	qmail">mario at ottakring.com
+       </A><BR>
+    <I>Sat Jul 15 11:26:17 CEST 2006</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000509.html">[fetchmail-users] [BUG] fetchmail daemon does not resume fetching after a network outage
+</A></li>
+        <LI>Next message: <A HREF="000515.html">[fetchmail-users] fetchmail does not mark messages &quot;seen&quot; on	remote server running qmail
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#514">[ date ]</a>
+              <a href="thread.html#514">[ thread ]</a>
+              <a href="subject.html#514">[ subject ]</a>
+              <a href="author.html#514">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>hello dear member!
+
+i'm running on my server (DMZ) qmail. the mails are received by ISP
+(qmail too) from where i fetch them with fetchmail
+into local qmail. the mails should stay on remote ISPs and only NEW
+mails should be fetched.
+
+everything works perfekt - even to input them into qmail-scanner-queue.
+
+what DOES NOT WORK is to mark the fetched messages &quot;seen&quot;
+
+every run fetchmail fetches EVERY mail from remote ISP....
+
+my config:
+
+.fetchmailrc: 
+poll mail.foo.at proto pop3 nodns user &quot;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">foo at foo.at</A>&quot; pass &quot;secret&quot; is *
+forcecr keep to <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">foo at foo.at</A>
+
+and the fetchprocess is made with
+
+# fetchmail -v
+
+
+an example output of fetchmail -v is
+.
+.
+.
+fetchmail: SMTP&lt; 250 ok 1152955079 qp 20977
+ not flushed
+fetchmail: POP3&gt; LIST 33
+fetchmail: POP3&lt; +OK 33 7722
+fetchmail: POP3&gt; RETR 33
+fetchmail: POP3&lt; +OK 7722 octets
+reading message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">foo at foo.at</A>@mail.foo.at:33 of 306 (7722 octets)
+fetchmail: SMTP&gt; MAIL FROM:&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">George at example.be</A>&gt; SIZE=7722
+fetchmail: SMTP&lt; 250 ok
+fetchmail: SMTP&gt; RCPT TO:&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">foo at foo.at</A>&gt;
+fetchmail: SMTP&lt; 250 ok
+fetchmail: SMTP&gt; DATA
+fetchmail: SMTP&lt; 354 go ahead
+#**************************.****************.**********.*****.*****.****.*********.***fetchmail: SMTP&gt;. (EOM)
+.
+.
+.
+
+thank you very much for help.
+mario
+
+
+
+
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/fetchmail-users/attachments/20060715/a7050407/attachment.html">https://lists.berlios.de/pipermail/fetchmail-users/attachments/20060715/a7050407/attachment.html</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000509.html">[fetchmail-users] [BUG] fetchmail daemon does not resume fetching after a network outage
+</A></li>
+	<LI>Next message: <A HREF="000515.html">[fetchmail-users] fetchmail does not mark messages &quot;seen&quot; on	remote server running qmail
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#514">[ date ]</a>
+              <a href="thread.html#514">[ thread ]</a>
+              <a href="subject.html#514">[ subject ]</a>
+              <a href="author.html#514">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

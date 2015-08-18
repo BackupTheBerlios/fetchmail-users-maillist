@@ -1,0 +1,107 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Can't fetch old messages from gmail
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2010-July/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Can%27t%20fetch%20old%20messages%20from%20gmail&In-Reply-To=%3Cop.vgkqqhpc1e62zd%40merlin.emma.line.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002423.html">
+   <LINK REL="Next"  HREF="002425.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Can't fetch old messages from gmail</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Can%27t%20fetch%20old%20messages%20from%20gmail&In-Reply-To=%3Cop.vgkqqhpc1e62zd%40merlin.emma.line.org%3E"
+       TITLE="[fetchmail-users] Can't fetch old messages from gmail">matthias.andree at gmx.de
+       </A><BR>
+    <I>Thu Jul 29 00:14:31 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002423.html">[fetchmail-users] Can't fetch old messages from gmail
+</A></li>
+        <LI>Next message: <A HREF="002425.html">[fetchmail-users] Can't fetch old messages from gmail
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2424">[ date ]</a>
+              <a href="thread.html#2424">[ thread ]</a>
+              <a href="subject.html#2424">[ subject ]</a>
+              <a href="author.html#2424">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Am 28.07.2010, 23:52 Uhr, schrieb Bart&#322;omiej Wo&#322;k:
+
+&gt;<i> I have messages on my gmail account that I cannot fetch.
+</I>&gt;<i> ($ fetchmail -k) gives my (fetchmail: No mail for <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">USER at gmail.com</A> at  
+</I>&gt;<i> pop.gmail.com).
+</I>
+Sorry to hear that.
+
+&gt;<i> When I use mutt to send email to <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">USER at gmail.com</A> from my other account  
+</I>&gt;<i> then fetchmail will download only this one message as if the others  
+</I>&gt;<i> doesn't exist (web-based client shows them though).
+</I>
+You are not using &quot;--all&quot;, so fetchmail is *supposed* to only fetch newly  
+arrived mail. The other mail is old/seen already. Seems like this is the  
+right thing to do for fetchmail. For lack of trace information, I cannot  
+tell if Google supports LAST. If it does, fetchmail will be using it in  
+your case.
+
+&gt;<i> My ~/.fetchmailrc file:
+</I>&gt;<i> (there are also other accounts but not listed here)
+</I>&gt;<i> ----------------------------------
+</I>&gt;<i> poll pop.gmail.com with proto POP3 user '<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">USER at gmail.com</A>' there with
+</I>&gt;<i> password 'PASSWORD' is 'SYSUSER' here options stripcr ssl sslcertck
+</I>&gt;<i> sslcertpath '/home/SYSUSER/Mail/.certs/' keep mda '/usr/bin/procmail -d  
+</I>&gt;<i> %T'
+</I>&gt;<i> ---------------------------------
+</I>
+Try adding uidl before user. This will redownload all messages at least  
+once if Google adhere to standards.
+
+If that doesn't help, see  
+&lt;<A HREF="http://www.fetchmail.info/fetchmail-FAQ.html#G3">http://www.fetchmail.info/fetchmail-FAQ.html#G3</A>&gt; for required trace  
+information.
+
+As an advance warning, please also note that Google Mail has been known to  
+violate standards in the past. Where that is still the case, you'll need  
+to report that to Google rather than the fetchmail list, and request that  
+the comply with the applicable IETF standards.
+
+&gt;<i> My ~/.procmailrc file:
+</I>...
+
+procmail is obsolete. Use maildrop.
+
+-- 
+Matthias Andree
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002423.html">[fetchmail-users] Can't fetch old messages from gmail
+</A></li>
+	<LI>Next message: <A HREF="002425.html">[fetchmail-users] Can't fetch old messages from gmail
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2424">[ date ]</a>
+              <a href="thread.html#2424">[ thread ]</a>
+              <a href="subject.html#2424">[ subject ]</a>
+              <a href="author.html#2424">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

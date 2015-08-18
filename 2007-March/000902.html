@@ -1,0 +1,123 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] SSL Ceritficate errors in sendmail log
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2007-March/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20SSL%20Ceritficate%20errors%20in%20sendmail%20log&In-Reply-To=%3C08b101c76a1a%2441f8d930%244000a8c0%40richard%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000900.html">
+   <LINK REL="Next"  HREF="000904.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] SSL Ceritficate errors in sendmail log</H1>
+    <B>Richard</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20SSL%20Ceritficate%20errors%20in%20sendmail%20log&In-Reply-To=%3C08b101c76a1a%2441f8d930%244000a8c0%40richard%3E"
+       TITLE="[fetchmail-users] SSL Ceritficate errors in sendmail log">rchapman at aardvark.com.au
+       </A><BR>
+    <I>Mon Mar 19 12:32:20 CET 2007</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000900.html">[fetchmail-users] SSL Ceritficate errors in sendmail log
+</A></li>
+        <LI>Next message: <A HREF="000904.html">[fetchmail-users] SSL Ceritficate errors in sendmail log
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#902">[ date ]</a>
+              <a href="thread.html#902">[ thread ]</a>
+              <a href="subject.html#902">[ subject ]</a>
+              <a href="author.html#902">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>
+Thanks Hannes
+
+I am pretty confused about how the certificate stores work in Linux. The
+attached screenshot shows that firefox knows all about several Equifax
+certificates on the linux machine.
+1) Does firefox have a separate store?
+2) Could these three certificates all be the wrong ones?
+3) How do the firefox certificates get there? I didn't manually load them.
+Do they come as part of the firefox pacjage?
+4) If I need to manually load the Equifax certificate into openssl - do you
+know where I get the Public Equifax certificate from?
+5) I don't seem to have /etc/ssl. Any other guesses? How do I find out where
+the store is? I'm pretty sure openssl is installed.
+
+
+Thanks Hannes
+
+Richard.
+
+
+
+
+-----Original Message-----
+From: <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">fetchmail-users-bounces at lists.berlios.de</A>
+[mailto:<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">fetchmail-users-bounces at lists.berlios.de</A>] On Behalf Of Hannes Erven
+Sent: Monday, 19 March 2007 5:59 PM
+To: <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">fetchmail-users at lists.berlios.de</A>
+Subject: Re: [fetchmail-users] SSL Ceritficate errors in sendmail log
+
+Hi Richard,
+
+
+&gt;<i> fetchmail: Issuer Organization: Equifax
+</I>&gt;<i> fetchmail: Unknown Issuer CommonName
+</I>&gt;<i> fetchmail: Server CommonName: pop.gmail.com
+</I>&gt;<i> fetchmail: pop.gmail.com key fingerprint:
+</I>&gt;<i> 59:51:61:89:CD:DD:B2:35:94:BB:44:97:A0:39:D5:B4
+</I>&gt;<i> fetchmail: Warning: server certificate verification: unable to get local
+</I>&gt;<i> issuer certificate
+</I>
+
+This means fetchmail cannot find Equifax's public certificate on your 
+computer.
+
+
+You need to either:
+
+1. disable the certificate chain check by specifying the certificate's 
+(pop.gmail.com's) fingerprint on the account using sslfingerprint, or
+
+2. place the (equinox root) certificate in your system's certificate 
+store, usually /etc/ssl, and run c_rehash (an openssl tool) there.
+It is also possible to specify another directory using sslcertpath if 
+you do not want to make the root equinox certificate available to all 
+your users.
+
+HTH,
+-hannes
+_______________________________________________
+fetchmail-users mailing list
+<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">fetchmail-users at lists.berlios.de</A>
+<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">https://lists.berlios.de/mailman/listinfo/fetchmail-users</A>
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000900.html">[fetchmail-users] SSL Ceritficate errors in sendmail log
+</A></li>
+	<LI>Next message: <A HREF="000904.html">[fetchmail-users] SSL Ceritficate errors in sendmail log
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#902">[ date ]</a>
+              <a href="thread.html#902">[ thread ]</a>
+              <a href="subject.html#902">[ subject ]</a>
+              <a href="author.html#902">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

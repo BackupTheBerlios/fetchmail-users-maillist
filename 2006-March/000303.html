@@ -1,0 +1,92 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Re: RETR with UIDL
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2006-March/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Re%3A%20RETR%20with%20UIDL&In-Reply-To=%3C20060304125640.GA3792%40session.bombay.retortsoft.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000301.html">
+   <LINK REL="Next"  HREF="000305.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Re: RETR with UIDL</H1>
+    <B>Sunil Shetye</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Re%3A%20RETR%20with%20UIDL&In-Reply-To=%3C20060304125640.GA3792%40session.bombay.retortsoft.com%3E"
+       TITLE="[fetchmail-users] Re: RETR with UIDL">shetye at bombay.retortsoft.com
+       </A><BR>
+    <I>Sat Mar  4 13:56:40 CET 2006</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000301.html">[fetchmail-users] [PATCH] Re: RETR with UIDL
+</A></li>
+        <LI>Next message: <A HREF="000305.html">[fetchmail-users] Re: RETR with UIDL
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#303">[ date ]</a>
+              <a href="thread.html#303">[ thread ]</a>
+              <a href="subject.html#303">[ subject ]</a>
+              <a href="author.html#303">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Quoting from Matthias Andree's mail on Sat, Mar 04, 2006:
+&gt;<i> Hm - how will this avoid redownloads of messages when the line is faulty
+</I>&gt;<i> and the connection is torn down?
+</I>&gt;<i> 
+</I>&gt;<i> It will recognize it's downloading seen messages, but download them all
+</I>&gt;<i> the same.
+</I>
+The only practical use of this patch is if a user with this
+configuration:
+
+    set daemon 300
+    poll server
+	uidl
+	no fetchall
+	keep
+
+runs:
+
+    fetchmail -a -d 0 ; fetchmail
+
+to download all mails once and then start normal polling. New mails
+which have been downloaded by the first instance of fetchmail will not
+be downloaded again by the second instance due to this patch.
+
+Of course, an equivalent effect may be achieved by removing all the
+relevant entries from the fetchids file or deleting the fetchids file.
+
+This patch has no relevance to our basic topic under discussion.
+
+-- 
+Sunil Shetye.
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000301.html">[fetchmail-users] [PATCH] Re: RETR with UIDL
+</A></li>
+	<LI>Next message: <A HREF="000305.html">[fetchmail-users] Re: RETR with UIDL
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#303">[ date ]</a>
+              <a href="thread.html#303">[ thread ]</a>
+              <a href="subject.html#303">[ subject ]</a>
+              <a href="author.html#303">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

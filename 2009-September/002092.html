@@ -1,0 +1,170 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Fetchmail with Postfix virtual users
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2009-September/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Fetchmail%20with%20Postfix%20virtual%20users&In-Reply-To=%3C200909231511.21723.joost%40antarean.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002091.html">
+   <LINK REL="Next"  HREF="002094.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Fetchmail with Postfix virtual users</H1>
+    <B>J. Roeleveld</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Fetchmail%20with%20Postfix%20virtual%20users&In-Reply-To=%3C200909231511.21723.joost%40antarean.org%3E"
+       TITLE="[fetchmail-users] Fetchmail with Postfix virtual users">joost at antarean.org
+       </A><BR>
+    <I>Wed Sep 23 15:11:21 CEST 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002091.html">[fetchmail-users] Fetchmail with Postfix virtual users
+</A></li>
+        <LI>Next message: <A HREF="002094.html">[fetchmail-users] Fetchmail with Postfix virtual users
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2092">[ date ]</a>
+              <a href="thread.html#2092">[ thread ]</a>
+              <a href="subject.html#2092">[ subject ]</a>
+              <a href="author.html#2092">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Wednesday 23 September 2009 14:34:18 Matthias Andree wrote:
+&gt;<i> Am 23.09.2009, 14:11 Uhr, schrieb J. Roeleveld &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">joost at antarean.org</A>&gt;:
+</I>&gt;<i> &gt;&gt; &gt; If someone could point me in the right direction to change the address
+</I>&gt;<i> &gt;&gt; &gt; passed
+</I>&gt;<i> &gt;&gt; &gt; to Postfix using a regular expression, I can take it from there.
+</I>&gt;<i> &gt;&gt; &gt; Or maybe an additional configuration and/or flag to pass to fetchmail?
+</I>&gt;<i> &gt;&gt;
+</I>&gt;<i> &gt;&gt; Try --smtpaddress. (--smtpname won't work, because it's static and hence
+</I>&gt;<i> &gt;&gt; only works for singledrop).
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; I tried this and it didn't end up rewriting the domain.
+</I>&gt;<i>
+</I>&gt;<i> Dear Joost,
+</I>&gt;<i>
+</I>&gt;<i> I'll take the liberty of copying my response to the list for the benefit
+</I>&gt;<i> of all readers, I hope you don't mind.
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> Thanks for trying that out and sharing your findings; I'll note this down
+</I>&gt;<i> as a bug and see if I have time to fix it before the 6.3.12 release.
+</I>
+I don't mind, a mailing list is, in my opinion, meant for everyone who reads 
+it. If someone finds a problem and/or a solution, it can only benefit others as 
+well.
+
+Please note, that I tested this with 6.3.8.
+I have only this morning upgraded to 6.3.11.
+I will test this again this week and let you know. (It might have been fixed in 
+the meantime)
+
+&gt;<i> &gt; I actually can follow most items in the different manpages.
+</I>&gt;<i> &gt; Something that is missing is a bit more description on how to use
+</I>&gt;<i> &gt; multi-drop mailboxes as creating different mailboxes with ISPs can be a
+</I>&gt;<i> &gt; costly business as I want to give different companies different emails
+</I>&gt;<i> &gt; to send mail to me with.
+</I>&gt;<i> &gt; That way I know who is leaking my email address to spammers and I can
+</I>&gt;<i> &gt; take action accordingly.
+</I>&gt;<i>
+</I>&gt;<i> I'm not sure I understand your need yet. Could you reword this as a (set
+</I>&gt;<i> of) question(s) that you need answered by me?
+</I>
+My requirement for using multi-drop mailboxes is so that when a company (lets 
+assume it's called &quot;example&quot;) asks me for an email address so they can contact 
+me for legitimate reasons. I will then give them &quot;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">example at domain.com</A>&quot; as email 
+address.
+I then set up the virtual-table to redirect this to who-ever wants to see 
+these emails. (sieve doesn't work for shared mail-boxes, different story)
+If I then get spam sent to this address, I can then complain directly to them.
+
+I know this is a bit of a round-a-bout way, but it works. And as my ISP 
+charges for additional mailboxes, I decided to use a multi-drop one. Also as I 
+don't always want to configure one with my ISP in advance.
+
+The bit for you (assuming you maintain the man-page, and your comment earlier 
+does indicate that) is that I can see several examples for the options for a 
+'normal' mailbox, but the examples for multi-drop are quite basic.
+
+Something that could help would be how the different options work together in 
+the fetchmailrc file and what each options effect has.
+
+&gt;<i> &gt; I did manage to get it working, by altering the virtual table. For some
+</I>&gt;<i> &gt; reason, postfix is trying to match every domain that it should accept
+</I>&gt;<i> &gt; mail for to the virtual table. Eg. not just what is configured as
+</I>&gt;<i> &gt; virtual_host.
+</I>&gt;<i>
+</I>&gt;<i> What exactly does it do wrong in your perception?
+</I>&gt;<i>
+</I>&gt;<i> Note there is no virtual_host parameter in Postfix, if this is from
+</I>&gt;<i> main.cf, it's in error.
+</I>
+First off, my mail server is now working as I want it to, even though I still 
+think it's not the way it should. (all comments are to be taken as &quot;IMO&quot;)
+I double-checked the main.cf file.
+I set: 
+virtual_alias_domains = virtual.domain.org
+virtual_alias_maps = ldap:/etc/postfix/ldap-virtual.cf
+
+I also have:
+mydestination = domain.org, localhost
+
+While testing a few settings with fetchmail, including the option you 
+mentioned, I noticed that it also tries to match &quot;@domain.org&quot; against the 
+virtual_alias_map (different ldap search base, so easy to spot)
+
+&lt;snipped&gt;
+
+&gt;<i> Remember there is &quot;soft_bounce=yes&quot; for testing, I'd advise setting it
+</I>&gt;<i> before stuffing domains into the virtual_*_* parameters and/or before
+</I>&gt;<i> removing domains from mydestination until convinced that everything works
+</I>&gt;<i> properly.
+</I>
+I disable the fetchmail email collection while testing and then use fetchmail 
+only against the catch-all mailbox. This isn't in use yet so emails sent there 
+are only from me. (use gmail to fill that box)
+Then if, after testing, it still doesn't work, I undo the changes before 
+reenabling fetchmail.
+My ISP sometimes blocks incoming port 25, so can't expose my mail server to 
+collect directly.
+
+&gt;<i> HTH
+</I>
+Your (and others) comments are always helpfull and much appreciated.
+
+I am planning on duplicating my mail server on a virtual machine on my desktop 
+for further testing with this, rather then risking the real mail-server.
+
+Thanks,
+
+Joost
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002091.html">[fetchmail-users] Fetchmail with Postfix virtual users
+</A></li>
+	<LI>Next message: <A HREF="002094.html">[fetchmail-users] Fetchmail with Postfix virtual users
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2092">[ date ]</a>
+              <a href="thread.html#2092">[ thread ]</a>
+              <a href="subject.html#2092">[ subject ]</a>
+              <a href="author.html#2092">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

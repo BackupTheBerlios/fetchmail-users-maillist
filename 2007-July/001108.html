@@ -1,0 +1,154 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Messages not being deleted
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2007-July/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Messages%20not%20being%20deleted&In-Reply-To=%3C200707121759.24216.cpollock%40embarqmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001107.html">
+   <LINK REL="Next"  HREF="001109.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Messages not being deleted</H1>
+    <B>Chris</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Messages%20not%20being%20deleted&In-Reply-To=%3C200707121759.24216.cpollock%40embarqmail.com%3E"
+       TITLE="[fetchmail-users] Messages not being deleted">cpollock at embarqmail.com
+       </A><BR>
+    <I>Fri Jul 13 00:59:24 CEST 2007</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001107.html">[fetchmail-users] Comments on Fetchmail section of web page
+</A></li>
+        <LI>Next message: <A HREF="001109.html">[fetchmail-users] Messages not being deleted
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1108">[ date ]</a>
+              <a href="thread.html#1108">[ thread ]</a>
+              <a href="subject.html#1108">[ subject ]</a>
+              <a href="author.html#1108">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>I've had this problem before and thought it was possibly a corrupt message but 
+I'm not sure. I'm running fetchmail 6.3.8, I call fetchmail with these 
+commands:
+
+fetchmail -v -v -v -v --nosyslog --logfile /home/chris/fetchmaillog --uidl -m 
+procmail
+
+My fetchids file looks like this:
+
+fetchmail: New UID list from pop.embarqmail.com: 
+28912.ANCRq25xx852ftus33c+14jUelY= = 1 28913.IZ0Mg2+7zIDr+B403IWfLDF2FqM= = 1 
+28914.fme8mUFWMHvTv,6P9BVh6BrTFsQ= = 1 28915.klQ5Q234wR2jigD3YWXejRiZ0fQ= = 1 
+28916.UFTTY57FGdfIxPKZOQAO9yIph34= = 1 28917.lWc6VIdyYjK3qtLisJ6SfHrMcfY= = 1 
+28918.+E9JBoCNMQCqkkCoNgFm3RMBhPQ= = 1 28919.9IxaGA,xMrBhzlFfLMJFI9zQPlU= = 1 
+28920.d19TgmPeJwvTRTRcl,pR93PmDRE= = 1 28921.l9xdQycNQx1dnvw6KIccqiEZA6U= = 1 
+28922.SeGSgEAufi4adeF7mo1GD8xCHuQ= = 1 28923.aRU,gTwgDmmq,llivjuuj7JzJEU= = 1 
+28924.XN1JINyCBYiyDnGys5pVQNioRAQ= = 1 28925.DfTJ9Sm+E20wqjq4+JovlC4,OIc= = 1 
+28926.w3Hhy4h47Dg7W4MGz7uY8UqDPxs= = 1 28927.uUYcofwMEcCYPdIhAHGTWTlhmbs= = 1 
+28928.YBFnEeUdNXU72pr0KW6LcqtVaBQ= = 1 28929.wVbtoqiRfVYLMFZvdQkhvIrZK7Q= = 1 
+28930.wdNd2UI5Jl3uCkp0SCbF4FPlYYQ= = 1 28931.y,DkBAMBRJ2E3fa2F35hkCcMiMA= = 1 
+28932.79zakNH7enpjYzQGo8F4BIPy10w= = 1 28933.kvz5GjSvNxx2rgX5C2LFDpSBIkI= = 1 
+28934.4xDPI0ezswh3prO+ZvKlIUWwMJ0= = 1 28935.tf7QpcrP9LYhjuPHBeUL,2C6G0w= = 1 
+28936.vU6pyw+xMr0qwm,Aidu8SKxjFYw= = 1 28937.2Sqq3MAWbqJYeSZDtr7smnvtiSs= = 1 
+28938.JQrnADJcN367Cc99FMDTAv7iTVc= = 1 28939.ZapJbiTy2F0Oh49ymlXqRFXRULs= = 1 
+28940.q5jZ441LgrPKKYMgiKwsgaqpy5g= = 1 28941.4airPGF0,uaSOtT6m1NXcMPH6PE= = 1 
+28942.,yBJ+lKm+36begI7tvKaj6a7wDs= = 1 28943.psCU5I0GmyYN8X0snV60JG4gJPM= = 1 
+28944.5mxCrxZRMUqYOmUUM4LaoGU9CtU= = 1 28945.zCiVyN5l+5nodtiVMDAqHew9V,g= = 1 
+28946.Fsw7,Pa21Fi0FdKXxUoG43lYayg= = 1 28947.i5vYXQAWnk0cvJaEZiRQa5MP2IE= = 1 
+28948.7q+9kXj4B,wTlB2r,hGPgqF5XX0= = 1 28949.+wrjNSjBf49K804bE5rV8+Tk2rI= = 1 
+28950.p1iZ64H7l,YHewmet4WnjAnfmDw= = 1 28951.Y5XM,y6bVVmNOuddCoKqx0SRQgA= = 1 
+28952.wQi3iwa+gA+MyICy2g1ainGy0V0= = 1 28953.0qW7OM+dEXouM,o4gL6bV7DaZzE= = 1 
+28954.kvym8ur6Ng7vVTWrrGK0nGRuGMs= = 1 28955.UZ706dE61cgAmBUid3Qzs0C4ggE= = 1 
+29848.vbegyWoQ0ARlqzL8ok0mWL6x5Cc= = 3 29849.739J2cDoWinHHZgOGdgOJSxPPZs= = 3 
+29850.ZaMu9iwIMZOek4mU7b7B42eVMO0= = 3 &lt;empty&gt;
+fetchmail: swapping UID lists
+fetchmail: Writing fetchids file.
+
+My .fetchmailrc file is:
+
+defaults 
+set postmaster cpollock
+set no bouncemail
+set no spambounce
+set daemon 120
+set syslog
+poll pop.embarqmail.com proto pop3 timeout 180
+username &quot;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">cpollock at embarqmail.com</A>&quot; password &quot;xxxxxxx&quot; is cpollock here
+
+Is it possibly just a corrupt message, since the latest log entry looks like 
+this:
+
+fetchmail: about to deliver with: procmail
+fetchmail:  flushed
+fetchmail: POP3&gt; DELE 47
+fetchmail: POP3&lt; +OK message 47 marked for deletion
+fetchmail: POP3&gt; QUIT
+fetchmail: POP3&lt; +OK deleted 3 message(s)
+fetchmail: 6.3.8 querying pop.embarqmail.com (protocol POP3) at Thu 12 Jul 
+2007 05:46:58 PM CDT: poll completed
+fetchmail: New UID list from pop.embarqmail.com: 
+28912.ANCRq25xx852ftus33c+14jUelY= = 1 28913.IZ0Mg2+7zIDr+B403IWfLDF2FqM= = 1 
+28914.fme8mUFWMHvTv,6P9BVh6BrTFsQ= = 1 28915.klQ5Q234wR2jigD3YWXejRiZ0fQ= = 1 
+28916.UFTTY57FGdfIxPKZOQAO9yIph34= = 1 28917.lWc6VIdyYjK3qtLisJ6SfHrMcfY= = 1 
+28918.+E9JBoCNMQCqkkCoNgFm3RMBhPQ= = 1 28919.9IxaGA,xMrBhzlFfLMJFI9zQPlU= = 1 
+28920.d19TgmPeJwvTRTRcl,pR93PmDRE= = 1 28921.l9xdQycNQx1dnvw6KIccqiEZA6U= = 1 
+28922.SeGSgEAufi4adeF7mo1GD8xCHuQ= = 1 28923.aRU,gTwgDmmq,llivjuuj7JzJEU= = 1 
+28924.XN1JINyCBYiyDnGys5pVQNioRAQ= = 1 28925.DfTJ9Sm+E20wqjq4+JovlC4,OIc= = 1 
+28926.w3Hhy4h47Dg7W4MGz7uY8UqDPxs= = 1 28927.uUYcofwMEcCYPdIhAHGTWTlhmbs= = 1 
+28928.YBFnEeUdNXU72pr0KW6LcqtVaBQ= = 1 28929.wVbtoqiRfVYLMFZvdQkhvIrZK7Q= = 1 
+28930.wdNd2UI5Jl3uCkp0SCbF4FPlYYQ= = 1 28931.y,DkBAMBRJ2E3fa2F35hkCcMiMA= = 1 
+28932.79zakNH7enpjYzQGo8F4BIPy10w= = 1 28933.kvz5GjSvNxx2rgX5C2LFDpSBIkI= = 1 
+28934.4xDPI0ezswh3prO+ZvKlIUWwMJ0= = 1 28935.tf7QpcrP9LYhjuPHBeUL,2C6G0w= = 1 
+28936.vU6pyw+xMr0qwm,Aidu8SKxjFYw= = 1 28937.2Sqq3MAWbqJYeSZDtr7smnvtiSs= = 1 
+28938.JQrnADJcN367Cc99FMDTAv7iTVc= = 1 28939.ZapJbiTy2F0Oh49ymlXqRFXRULs= = 1 
+28940.q5jZ441LgrPKKYMgiKwsgaqpy5g= = 1 28941.4airPGF0,uaSOtT6m1NXcMPH6PE= = 1 
+28942.,yBJ+lKm+36begI7tvKaj6a7wDs= = 1 28943.psCU5I0GmyYN8X0snV60JG4gJPM= = 1 
+28944.5mxCrxZRMUqYOmUUM4LaoGU9CtU= = 1 28945.zCiVyN5l+5nodtiVMDAqHew9V,g= = 1 
+28946.Fsw7,Pa21Fi0FdKXxUoG43lYayg= = 1 28947.i5vYXQAWnk0cvJaEZiRQa5MP2IE= = 1 
+28948.7q+9kXj4B,wTlB2r,hGPgqF5XX0= = 1 28949.+wrjNSjBf49K804bE5rV8+Tk2rI= = 1 
+28950.p1iZ64H7l,YHewmet4WnjAnfmDw= = 1 28951.Y5XM,y6bVVmNOuddCoKqx0SRQgA= = 1 
+28952.wQi3iwa+gA+MyICy2g1ainGy0V0= = 1 28953.0qW7OM+dEXouM,o4gL6bV7DaZzE= = 1 
+28954.kvym8ur6Ng7vVTWrrGK0nGRuGMs= = 1 28955.UZ706dE61cgAmBUid3Qzs0C4ggE= = 1 
+29848.vbegyWoQ0ARlqzL8ok0mWL6x5Cc= = 3 29849.739J2cDoWinHHZgOGdgOJSxPPZs= = 3 
+29850.ZaMu9iwIMZOek4mU7b7B42eVMO0= = 3 &lt;empty&gt;
+fetchmail: swapping UID lists
+fetchmail: Writing fetchids file.
+fetchmail: sleeping at Thu 12 Jul 2007 05:46:58 PM CDT for 120 seconds
+
+Seems like some are being picked up and deleted from the server, just not all.
+
+-- 
+Chris
+KeyID 0xE372A7DA98E6705C
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001107.html">[fetchmail-users] Comments on Fetchmail section of web page
+</A></li>
+	<LI>Next message: <A HREF="001109.html">[fetchmail-users] Messages not being deleted
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1108">[ date ]</a>
+              <a href="thread.html#1108">[ thread ]</a>
+              <a href="subject.html#1108">[ subject ]</a>
+              <a href="author.html#1108">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

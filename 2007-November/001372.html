@@ -1,0 +1,91 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] First time lost emails
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2007-November/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20First%20time%20lost%20emails&In-Reply-To=%3C43ea8d070711041356l5fe5a9d2lb91b8cc0599089a4%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001371.html">
+   <LINK REL="Next"  HREF="001373.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] First time lost emails</H1>
+    <B>Rob MacGregor</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20First%20time%20lost%20emails&In-Reply-To=%3C43ea8d070711041356l5fe5a9d2lb91b8cc0599089a4%40mail.gmail.com%3E"
+       TITLE="[fetchmail-users] First time lost emails">rob.macgregor at gmail.com
+       </A><BR>
+    <I>Sun Nov  4 22:56:24 CET 2007</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001371.html">[fetchmail-users] First time lost emails
+</A></li>
+        <LI>Next message: <A HREF="001373.html">[fetchmail-users] Infinite loop!
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1372">[ date ]</a>
+              <a href="thread.html#1372">[ thread ]</a>
+              <a href="subject.html#1372">[ subject ]</a>
+              <a href="author.html#1372">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On 11/4/07, James Nunnerley &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">james at webit.co.uk</A>&gt; wrote:
+&gt;<i> I've started using fetchmail for the first time.  The intention is to use it
+</I>&gt;<i> to retrieve emails so that they then get checked by exim (which includes
+</I>&gt;<i> spam and anti-virus checking) and it then forwards onto an Exchange server.
+</I>&gt;<i> I have now got it working, but stupidly first time I ran it, selected the
+</I>&gt;<i> fetchall option.  That first time it wasn't setup correctly.  Can anyone
+</I>&gt;<i> advise me where the emails will have gone based on the following config
+</I>&gt;<i> file:
+</I>&gt;<i>
+</I>&gt;<i> poll 'mail.server.com'
+</I>&gt;<i>      user 'username'
+</I>&gt;<i>      pass 'password'
+</I>&gt;<i>      is lucy
+</I>&gt;<i>
+</I>&gt;<i> I presumed it would go to user lucy - but on checking /var/spool/mail/lucy,
+</I>&gt;<i> there are none there... can anyone help?
+</I>
+As Peter said, fetchmail will have handed the emails over to your
+local SMTP server - check the mail logs to see what it did with them.
+
+Note that the default location for local emails has more to do with
+your choice of POP/IMAP server (and associated LDA) than your SMTP
+server.
+
+-- 
+                 Please keep list traffic on the list.
+
+Rob MacGregor
+      Whoever fights monsters should see to it that in the process he
+        doesn't become a monster.                  Friedrich Nietzsche
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001371.html">[fetchmail-users] First time lost emails
+</A></li>
+	<LI>Next message: <A HREF="001373.html">[fetchmail-users] Infinite loop!
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1372">[ date ]</a>
+              <a href="thread.html#1372">[ thread ]</a>
+              <a href="subject.html#1372">[ subject ]</a>
+              <a href="author.html#1372">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

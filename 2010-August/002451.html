@@ -1,0 +1,86 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] how to have kept messages on MS Exchange Server	as unread
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2010-August/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20how%20to%20have%20kept%20messages%20on%20MS%20Exchange%20Server%0A%09as%20unread&In-Reply-To=%3C832192.64497.qm%40web50901.mail.re2.yahoo.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002461.html">
+   <LINK REL="Next"  HREF="002452.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] how to have kept messages on MS Exchange Server	as unread</H1>
+    <B>Globe Trotter</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20how%20to%20have%20kept%20messages%20on%20MS%20Exchange%20Server%0A%09as%20unread&In-Reply-To=%3C832192.64497.qm%40web50901.mail.re2.yahoo.com%3E"
+       TITLE="[fetchmail-users] how to have kept messages on MS Exchange Server	as unread">itsme_410 at yahoo.com
+       </A><BR>
+    <I>Thu Aug 19 00:59:26 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002461.html">[fetchmail-users] Problem fetching: &quot;AUTHFAIL&quot;
+</A></li>
+        <LI>Next message: <A HREF="002452.html">[fetchmail-users] how to have kept messages on MS Exchange Server as unread
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2451">[ date ]</a>
+              <a href="thread.html#2451">[ thread ]</a>
+              <a href="subject.html#2451">[ subject ]</a>
+              <a href="author.html#2451">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+I have been trying to set up fetchmail to fetch e-mail from a MS Exchange 2007 IMAP4 server and then read it locally. So here is my .fetchmailrc file.
+
+set daemon 600
+poll  exchange.uia.edu with proto AUTO ssl 
+mda 'procmail -f-'
+keep
+
+I invoke fetchmail using the command:
+
+%fetchmail
+
+This &quot;works&quot; (after supplying password) except that if I try this from another machine, I get that I have no messages that are not seen. Specifically, I get that all the kept messages have been seen. How do I fix this? 
+
+Sorry if the questions are not clear. I am not very well-versed with all this and am happy to explain my problems/questions further. 
+
+Any and all help would be greatly appreciated!!
+
+Best wishes,
+Trotter
+
+
+
+      
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002461.html">[fetchmail-users] Problem fetching: &quot;AUTHFAIL&quot;
+</A></li>
+	<LI>Next message: <A HREF="002452.html">[fetchmail-users] how to have kept messages on MS Exchange Server as unread
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2451">[ date ]</a>
+              <a href="thread.html#2451">[ thread ]</a>
+              <a href="subject.html#2451">[ subject ]</a>
+              <a href="author.html#2451">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

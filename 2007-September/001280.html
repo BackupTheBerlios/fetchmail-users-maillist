@@ -1,0 +1,108 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Init Script
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2007-September/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Init%20Script&In-Reply-To=%3C20070924080737.GA485%40merlin.emma.line.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001279.html">
+   <LINK REL="Next"  HREF="001281.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Init Script</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Init%20Script&In-Reply-To=%3C20070924080737.GA485%40merlin.emma.line.org%3E"
+       TITLE="[fetchmail-users] Init Script">matthias.andree at gmx.de
+       </A><BR>
+    <I>Mon Sep 24 10:07:37 CEST 2007</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001279.html">[fetchmail-users] Init Script
+</A></li>
+        <LI>Next message: <A HREF="001281.html">[fetchmail-users] Init Script
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1280">[ date ]</a>
+              <a href="thread.html#1280">[ thread ]</a>
+              <a href="subject.html#1280">[ subject ]</a>
+              <a href="author.html#1280">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Alex May schrieb am 2007-09-23:
+
+&gt;<i> I understand that Fetchmail is intended to be run as a daemon.
+</I>
+It is designed to support that, yes.
+
+&gt;<i> Is that right?
+</I>&gt;<i> If so, can you please tell me the correct method for starting it up after a server restart?
+</I>
+There are too many options to call one of them canonical. ;-)
+
+&gt;<i> I understand from everything that I have seen, that the SuSe standard init script is bad,
+</I>&gt;<i> but I don't know what I am supposed to use.
+</I>
+First check if you use the mda option with an MDA (usually procmail with
+SUSE) that was *not* installed setuid-root. Either use SMTP in that case
+or set the setuid flag if the MDA is designed to support that.
+
+Ideas, untested, but should work:
+
+- modify the init script to run fetchmail like
+  &quot;su nobody -c fetchmail --options&quot;
+
+- @reboot lines in users' crontabs (if your cron daemon is new enough)
+
+- write your own init script that drops privileges
+
+- write an inittab line that drops privileges (has the additional
+  advantage of restarting fetchmail) - for instance &quot;su nobody -c
+  fetchmail --nodetach&quot;
+
+- use &quot;runit&quot; &lt;<A HREF="http://smarden.org/runit/">http://smarden.org/runit/</A>&gt; to start fetchmail with su and
+  nodetach (see above)
+
+- switch to FreeBSD where the fetchmail port from a current ports tree
+  has a decent rc script and a clueful package maintainer (that's not to
+  say Stanislav was clueless or Petr Cerny (the new maintainer for
+  openSUSE's fetchmail package) were, not at all; they just had internal
+  regression test failures that prevented them from quickly changing the
+  script for SUSE &lt;= 10.2. I haven't yet seen 10.3.)
+
+BTW, your Message-ID doesn't contain a fully-qualified domain name.
+Please fix that ASAP to avoid collisions that could cause your messages
+to fall prey to my duplicate elimination.
+
+-- 
+Matthias Andree
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001279.html">[fetchmail-users] Init Script
+</A></li>
+	<LI>Next message: <A HREF="001281.html">[fetchmail-users] Init Script
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1280">[ date ]</a>
+              <a href="thread.html#1280">[ thread ]</a>
+              <a href="subject.html#1280">[ subject ]</a>
+              <a href="author.html#1280">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,218 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Re: fix lost POP3 deletes
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2006-May/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Re%3A%20fix%20lost%20POP3%20deletes&In-Reply-To=%3Cm3hd3n5nko.fsf%40merlin.emma.line.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000414.html">
+   <LINK REL="Next"  HREF="000417.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Re: fix lost POP3 deletes</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Re%3A%20fix%20lost%20POP3%20deletes&In-Reply-To=%3Cm3hd3n5nko.fsf%40merlin.emma.line.org%3E"
+       TITLE="[fetchmail-users] Re: fix lost POP3 deletes">matthias.andree at gmx.de
+       </A><BR>
+    <I>Thu May 18 18:01:43 CEST 2006</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000414.html">[fetchmail-users] Re: fix lost POP3 deletes
+</A></li>
+        <LI>Next message: <A HREF="000417.html">[fetchmail-users] Re: fix lost POP3 deletes
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#415">[ date ]</a>
+              <a href="thread.html#415">[ thread ]</a>
+              <a href="subject.html#415">[ subject ]</a>
+              <a href="author.html#415">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>(collecting replies to two postings)
+
+Sunil Shetye &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">shetye at bombay.retortsoft.com</A>&gt; writes in response to
+Frederic Marchal's text (not cited):
+
+
+[Frederic suggested to save the (UID,size) pair to detect message
+recycling.]
+&gt;<i> There are a few objections to this:
+</I>&gt;<i>
+</I>&gt;<i> - fetchmail currently does not store the size in the fetchids file, so
+</I>&gt;<i>   doing this will require a modification of the fetchids file format.
+</I>
+fetchmail's uid.c code (just revised a bit so as to be more readable)
+does the equivalent of (Perl RE syntax):
+
+      __user__|domain_        ___id____
+[ \t]*([^@]\*)@([^ ]+)[ \t]* +([^ \t]*).*
+
+A typical line that can be parsed looks like this:
+
+some <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">user at realm</A>@pop.example.org d3b07384.d113edec
+
+And the parser since 6.3.0 is robust, so that we can add a blank or TAB
+and anything after a blank after the ID:
+
+some <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">user at realm</A>@pop.example.org d3b07384.d113edec foo=bar baz=23|joe=mary
+
+Saving any information such as deleted flags, size, retrieval date is
+thus backwards compatible in the sense that older fetchmail versions
+would just ignore the extra information and strip it when rewriting the
+ID. Exception: scratch lists are saved verbatim, i. e. for unqueried
+hosts, the extra information would be kept.
+
+&gt;<i> - fetchmail does not get the size of all mails right now (in the
+</I>&gt;<i>   default setup), only of the mails it is going to download. Your
+</I>&gt;<i>   suggestion would imply that fetchmail will have to get UIDs as well
+</I>&gt;<i>   as sizes of all mails for comparison. This would imply a lot of
+</I>&gt;<i>   delay in getting mails, especially when 'keep' is on.
+</I>
+1. POP3 &quot;LIST&quot; is fast, has affordable traffic requirements and part of
+   regular fetchmail operation.
+
+2. The size is, as suggested, only needed for messages that are supposed
+   to be deleted after retrieval. Discounting --flush, fetchmail marks
+   the message for deletion after retrieving it, and at that time, the
+   POP3 server's notion of the message size is known. If the size is
+   cached in the .fetchids file, that part is covered. For new messages,
+   the size will have to be retrieved anyways sooner or later to support
+   ESMTP SIZE.
+
+&gt;<i> - Some mailservers keep the flags of a mail in the mail itself by
+</I>&gt;<i>   adding a header like Status:. So, the size of a mail may actually
+</I>&gt;<i>   change when it turns from 'new' to 'old'. Due to size mismatch,
+</I>&gt;<i>   mails from such mailservers will get downloaded again.
+</I>
+That is a rather important concern.
+
+The refinement of the suggestion would be to hash all but a few
+non-constant headers with some decent hash function. MD5 would be
+simple, but we shouldn't hardcode anything here.
+
+&gt;<i> - Some mailservers misreport sizes! I remember one such server being
+</I>&gt;<i>   reported:
+</I>&gt;<i>
+</I>&gt;<i> &lt;<A HREF="http://lists.ccil.org/pipermail/fetchmail-friends/2002-January/005572.html">http://lists.ccil.org/pipermail/fetchmail-friends/2002-January/005572.html</A>&gt;
+</I>
+Can we assume that the size is stable even if inaccurate?
+
+
+
+Frederic Marchal &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">frederic.marchal at wowcompany.com</A>&gt; replied:
+
+&gt;<i> For which a change was proposed if I remember correctly... It was even
+</I>&gt;<i> suggested to use a database such as sqlite. I admit I haven't followed
+</I>&gt;<i> the status of that proposition. Beside, there is no hurry. It doesn't
+</I>&gt;<i> have to be a patch within two days. It may be part of a major version
+</I>&gt;<i> change just to make fetchmail even better :-)
+</I>
+sqlite won't happen for fetchmail 6.3.X.
+
+Extending .fetchids as suggested above might.
+
+&gt;<i> processing would remain the same. The fetchids file may even be purged
+</I>&gt;<i> of the old UID when the next poll confirms the mails are really gone.
+</I>
+That happens automatically the next time that POP3 chat with the server
+completes successfully.
+
+&gt;&gt;<i> - Some mailservers keep the flags of a mail in the mail itself by
+</I>&gt;&gt;<i>   adding a header like Status:. So, the size of a mail may actually
+</I>&gt;&gt;<i>   change when it turns from 'new' to 'old'. Due to size mismatch,
+</I>&gt;&gt;<i>   mails from such mailservers will get downloaded again.
+</I>
+&gt;<i> You got me there :-) In that case, the mail would be downloaded a second
+</I>&gt;<i> time and deleted.
+</I>
+The &quot;message of same size&quot; (say, automated messages in a fixed format,
+stock reports, particular logs) problem isn't solved though - and they
+might even get the same UID if the server used just the MD5 or a file
+name with a recycled inode number...
+
+The question is (1) if it's worth the added effort to track sizes, or
+(2) if we should rather go Sunil's simple &quot;play it safe and redownload
+if in doubt&quot; route; or (3) refine my patch to assume QUIT succeeded the
+moment it is handed off to the write() call. That also has the effect of
+redownloading messages if the QUIT fails, but will retry the DELEte if
+fetchmail doesn't reach the point where it would send QUIT.
+
+&gt;<i> If the deletion fails again, the mail may be downloaded once more if
+</I>&gt;<i> its size keeps changing or it may eventually be deleted without any
+</I>&gt;<i> further download if the size is not changed any more. If the download
+</I>&gt;<i> is the action that causes the connection drop (such as a proxy with a
+</I>&gt;<i> virus scanner taking too much time and exceeding the timeout of the
+</I>&gt;<i> server), it will be downloaded twice and deleted the third time.
+</I>
+A fetchmail-internal queue might fix this much later on if someone could
+document the need for such.
+
+&gt;<i> And this, only if the connection is dropped after the delete command
+</I>&gt;<i> is sent AND the size of the mail is changed by the server on the next
+</I>&gt;<i> poll.
+</I>&gt;<i>
+</I>&gt;<i> The worst case occurs if the size of the mail keeps changing at every
+</I>&gt;<i> poll. I have no solution here. It's not funny at all to have to deal
+</I>&gt;<i> with broken servers :-(
+</I>
+I think I might just charge users for adding more workarounds. Then they
+have the cheap route of complaining to the server's operator, or the
+expensive one of having the fix. :-P
+
+I think size isn't necessarily the best complement here to detect
+changes. I like the hash approach better, but this seems quite intrusive
+as well.
+
+A hash that precludes some dynamic headers such as [X-]Status and
+similar may be needed anyways to emulate UIDL for --keep setups on
+servers that don't support UIDL -- but if they lack all UIDL and TOP,
+the network impact of --keep will be rather painful.
+(Perhaps fetchmail should just refuse --keep on such servers.)
+
+&gt;<i> Now, you may argue that it is a lot of programming for the sole benefit
+</I>&gt;<i> of not deleting unread mails when the connection drop... I have nothing
+</I>&gt;<i> to say against that. I'm not likely to be the one to program it although
+</I>&gt;<i> I really wish I could.
+</I>&gt;<i>
+</I>&gt;<i> Note that this is only a solution I propose to solve the problem of the
+</I>&gt;<i> mails being either duplicated, deleted without delivery or left forever
+</I>&gt;<i> on the server when a connection drop. I'm happy with my current
+</I>&gt;<i> configuration which work fine with pop3 + uidl and a server that doesn't
+</I>&gt;<i> recycle the UID too quickly and a connection quite reliable enough.
+</I>
+If your server uses a timestamp into the UID and has a strictly
+monotonically increasing system lock, the risk is pretty low.
+
+-- 
+Matthias Andree
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000414.html">[fetchmail-users] Re: fix lost POP3 deletes
+</A></li>
+	<LI>Next message: <A HREF="000417.html">[fetchmail-users] Re: fix lost POP3 deletes
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#415">[ date ]</a>
+              <a href="thread.html#415">[ thread ]</a>
+              <a href="subject.html#415">[ subject ]</a>
+              <a href="author.html#415">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,99 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Plus (+) Addressing Problem
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2011-April/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Plus%20%28%2B%29%20Addressing%20Problem&In-Reply-To=%3CBANLkTi%3DNkDrW3bwRv6REyYaxHzXCCMeV8g%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002751.html">
+   <LINK REL="Next"  HREF="002753.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Plus (+) Addressing Problem</H1>
+    <B>Rob MacGregor</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Plus%20%28%2B%29%20Addressing%20Problem&In-Reply-To=%3CBANLkTi%3DNkDrW3bwRv6REyYaxHzXCCMeV8g%40mail.gmail.com%3E"
+       TITLE="[fetchmail-users] Plus (+) Addressing Problem">rob.macgregor at gmail.com
+       </A><BR>
+    <I>Sat Apr 23 18:38:36 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002751.html">[fetchmail-users] Plus (+)  Addressing Problem
+</A></li>
+        <LI>Next message: <A HREF="002753.html">[fetchmail-users] Plus (+) Addressing Problem
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2752">[ date ]</a>
+              <a href="thread.html#2752">[ thread ]</a>
+              <a href="subject.html#2752">[ subject ]</a>
+              <a href="author.html#2752">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Sat, Apr 23, 2011 at 11:38, Jerry &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">fetchmail.user at seibercom.net</A>&gt; wrote:
+&gt;<i> I am not even sure if this is possible; however, since I was asked to
+</I>&gt;<i> look into the feasibility of it I thought I might as well try.
+</I>&gt;<i>
+</I>&gt;<i> The system is a FreeBSD 8.2-STABLE amd64 running Postfix
+</I>&gt;<i> (2.9-20110323), Dovecot-1.2.16 and the latest version of Fetchmail.
+</I>&gt;<i>
+</I>&gt;<i> Scenario:
+</I>&gt;<i>
+</I>&gt;<i> All of the users are hosted on a Google App's account. The user wants
+</I>&gt;<i> to use one account in particular with &quot;plus addressing&quot;; ie,
+</I>&gt;<i> &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">joe+sales at domain.com</A>&gt; for example. Actually, there would be several
+</I>&gt;<i> &quot;plus&quot; combinations, although most would involve only the one e-mail
+</I>&gt;<i> account. The idea is to fetch mail from the Google App account, forward
+</I>&gt;<i> it to Postfix and onto Dovecot where dovecot would invoke sieve to
+</I>&gt;<i> filter the mail.
+</I>&gt;<i>
+</I>&gt;<i> We have tried all of the common examples shown in various web examples;
+</I>&gt;<i> however, we have not found a way to make this work. Presently, we have
+</I>&gt;<i> not found a way to get the envelope address and forward it Postfix
+</I>&gt;<i> which in turn is configured to send it onto Dovecot. Mail sent directly
+</I>&gt;<i> to this server with &quot;plus&quot; addressing works correctly so I am confident
+</I>&gt;<i> that we have that portion configured correctly.
+</I>&gt;<i>
+</I>&gt;<i> If someone could supply us with a working solution it would be most
+</I>&gt;<i> appreciated. I have just not been able to come up with anything that
+</I>&gt;<i> works consistently.
+</I>
+A simple multidrop configuration should handle that. Configure
+fetchmail to use the &quot;Delivered-To:&quot; header for the Envelope and it
+should just work - certainly it has for me.
+
+-- 
+&#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160;&#160; Please keep list traffic on the list.
+
+Rob MacGregor
+&#160; &#160; &#160; Whoever fights monsters should see to it that in the process he
+&#160; &#160; &#160; &#160; doesn't become a monster.&#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; Friedrich Nietzsche
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002751.html">[fetchmail-users] Plus (+)  Addressing Problem
+</A></li>
+	<LI>Next message: <A HREF="002753.html">[fetchmail-users] Plus (+) Addressing Problem
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2752">[ date ]</a>
+              <a href="thread.html#2752">[ thread ]</a>
+              <a href="subject.html#2752">[ subject ]</a>
+              <a href="author.html#2752">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,88 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Mails not being flushed due to	incorrect	length
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2007-November/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Mails%20not%20being%20flushed%20due%20to%0A%09incorrect%09length&In-Reply-To=%3C20071101022021.GA4019%40merlin.emma.line.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   
+   <LINK REL="Next"  HREF="001357.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Mails not being flushed due to	incorrect	length</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Mails%20not%20being%20flushed%20due%20to%0A%09incorrect%09length&In-Reply-To=%3C20071101022021.GA4019%40merlin.emma.line.org%3E"
+       TITLE="[fetchmail-users] Mails not being flushed due to	incorrect	length">matthias.andree at gmx.de
+       </A><BR>
+    <I>Thu Nov  1 03:20:21 CET 2007</I>
+    <P><UL>
+        
+        <LI>Next message: <A HREF="001357.html">[fetchmail-users] Mails not being flushed due to incorrect	length
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1356">[ date ]</a>
+              <a href="thread.html#1356">[ thread ]</a>
+              <a href="subject.html#1356">[ subject ]</a>
+              <a href="author.html#1356">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>David Woodfall schrieb am 2007-10-31:
+
+&gt;<i> Hi,
+</I>&gt;<i> 
+</I>&gt;<i> I've been having problems with mail not being flushed. Also I don't think
+</I>&gt;<i> they are being downloaded either:
+</I>&gt;<i> 
+</I>&gt;<i> fetchmail: message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">xconsole at unrealize.co.uk</A>@mail.unrealize.co.uk:2 was not
+</I>&gt;<i> the expected length (991 actual != 2114 expected)
+</I>&gt;<i> fetchmail:  not flushed
+</I>&gt;<i> 
+</I>&gt;<i> I have googled around looking for a solution but didn't really find
+</I>&gt;<i> anything helpful. Any ideas on how to fix this?
+</I>
+David,
+
+the message is misleading - sorry for that.
+
+Fetchmail has fetched the message, thereby had the chance of finding out
+there was a length mismatch (between what the server claimed beforehand
+and what fetchmail actually got trying), delivered it, and not flushed it.
+
+Why fetchmail hasn't flushed the message I don't know, but it's likely a
+matter of your setup, and not caused by the size mismatch.
+
+HTH,
+
+-- 
+Matthias Andree
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	
+	<LI>Next message: <A HREF="001357.html">[fetchmail-users] Mails not being flushed due to incorrect	length
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1356">[ date ]</a>
+              <a href="thread.html#1356">[ thread ]</a>
+              <a href="subject.html#1356">[ subject ]</a>
+              <a href="author.html#1356">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

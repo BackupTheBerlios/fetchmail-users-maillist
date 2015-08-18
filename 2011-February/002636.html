@@ -1,0 +1,132 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] fetchmail gmail set up problem
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2011-February/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%20gmail%20set%20up%20problem&In-Reply-To=%3Calpine.BSF.2.00.1102070354590.26092%40freire1.furyyjbeyq.arg%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002641.html">
+   <LINK REL="Next"  HREF="002637.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] fetchmail gmail set up problem</H1>
+    <B>Jude DaShiell</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%20gmail%20set%20up%20problem&In-Reply-To=%3Calpine.BSF.2.00.1102070354590.26092%40freire1.furyyjbeyq.arg%3E"
+       TITLE="[fetchmail-users] fetchmail gmail set up problem">jdashiel at shellworld.net
+       </A><BR>
+    <I>Mon Feb  7 09:56:33 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002641.html">[fetchmail-users] fetchmail gmail status
+</A></li>
+        <LI>Next message: <A HREF="002637.html">[fetchmail-users] fetchmail gmail set up problem
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2636">[ date ]</a>
+              <a href="thread.html#2636">[ thread ]</a>
+              <a href="subject.html#2636">[ subject ]</a>
+              <a href="author.html#2636">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Could slackware have shipped a version of fetchmail too old to do this?
+Script started on Mon 07 Feb 2011 03:47:51 AM EST
+<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">jude at md</A>:~$ fetchmail --version
+This is fetchmail release 6.3.17+SSL+NLS.
+
+Copyright (C) 2002, 2003 Eric S. Raymond
+Copyright (C) 2004 Matthias Andree, Eric S. Raymond,
+                   Robert M. Funk, Graham Wilson
+Copyright (C) 2005 - 2006, 2010 Sunil Shetye
+Copyright (C) 2005 - 2010 Matthias Andree
+Fetchmail comes with ABSOLUTELY NO WARRANTY. This is free software, and you
+are welcome to redistribute it under certain conditions. For details,
+please see the file COPYING in the source or documentation directory.
+
+Fallback MDA: (none)
+Linux md 2.6.29.6 #5 Mon Aug 17 02:05:51 CDT 2009 i686 AMD Athlon(tm) 64 Processor 3400+ AuthenticAMD GNU/Linux
+Taking options from command line and /home/jude/.fetchmailrc
+Idfile is /home/jude/.fetchids
+Fetchmail will forward misaddressed multidrop messages to jude.
+Options for retrieving from <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">jdashiel at imap.gmail.com</A>:
+  True name of server is imap.gmail.com.
+  Protocol is IMAP.
+  All available authentication methods will be tried.
+  SSL encrypted sessions enabled.
+  SSL server certificate checking enabled.
+  SSL trusted certificate directory: /etc/ssl/certs/
+  Server nonresponse timeout is 300 seconds (default).
+  Default mailbox selected.
+  Only new messages will be retrieved (--all off).
+  Fetched messages will not be kept on the server (--keep off).
+  Old messages will not be flushed before message retrieval (--flush off).
+  Oversized messages will not be flushed before message retrieval (--limitflush off).
+  Rewrite of server-local addresses is enabled (--norewrite off).
+  Carriage-return stripping is enabled (stripcr on).
+  Carriage-return forcing is disabled (forcecr off).
+  Interpretation of Content-Transfer-Encoding is enabled (pass8bits off).
+  MIME decoding is disabled (mimedecode off).
+  Idle after poll is disabled (idle off).
+  Nonempty Status lines will be kept (dropstatus off)
+  Delivered-To lines will be kept (dropdelivered off)
+  Fetch message size limit is 100 (--fetchsizelimit 100).
+  Do binary search of UIDs during 3 out of 4 polls (--fastuidl 4).
+  Messages will be delivered with &quot;/usr/bin/procmail -d %T&quot;.
+  Single-drop mode: 1 local name recognized.
+  No UIDs saved from this host.
+<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">jude at md</A>:~$ cat fetchmail.txt
+poll imap.gmail.com
+with proto imap
+user 'jdashiel'
+there with password 'mypass'
+is 'jude' here
+mda &quot;/usr/bin/procmail -d %T&quot;
+options
+no keep
+ssl
+sslcertck
+sslcertpath /etc/ssl/certs/
+<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">jude at md</A>:~$ lsc/etc/ssl/certs/
+gmail.crt  google.crt
+<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">jude at md</A>:~$ fetchmail
+fetchmail: Server certificate verification error: unable to get local issuer certificate
+fetchmail: This means that the root signing certificate (issued for /C=US/O=Google Inc/CN=Google Internet Authority) is not in the trusted CA certificate locations, or that c_rehash needs to be run on the certificate directory. For details, please see the documentation of --sslcertpath and --sslcertfile in the manual page.
+4064:error:14090086:SSL routines:SSL3_GET_SERVER_CERTIFICATE:certificate verify failed:s3_clnt.c:984:
+fetchmail: SSL connection failed.
+fetchmail: socket error while fetching from <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">jdashiel at imap.gmail.com</A>
+fetchmail: Query status=2 (SOCKET)
+<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">jude at md</A>:~$ exit
+exit
+
+Script done on Mon 07 Feb 2011 03:50:07 AM EST
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002641.html">[fetchmail-users] fetchmail gmail status
+</A></li>
+	<LI>Next message: <A HREF="002637.html">[fetchmail-users] fetchmail gmail set up problem
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2636">[ date ]</a>
+              <a href="thread.html#2636">[ thread ]</a>
+              <a href="subject.html#2636">[ subject ]</a>
+              <a href="author.html#2636">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

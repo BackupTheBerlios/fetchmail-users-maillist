@@ -1,0 +1,188 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] fetchmail security announcement 2006-02	(CVE-2006-5867)
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2007-January/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%20security%20announcement%202006-02%0A%09%28CVE-2006-5867%29&In-Reply-To=%3C20070105230247.GE23436%40merlin.emma.line.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000774.html">
+   <LINK REL="Next"  HREF="000776.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] fetchmail security announcement 2006-02	(CVE-2006-5867)</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%20security%20announcement%202006-02%0A%09%28CVE-2006-5867%29&In-Reply-To=%3C20070105230247.GE23436%40merlin.emma.line.org%3E"
+       TITLE="[fetchmail-users] fetchmail security announcement 2006-02	(CVE-2006-5867)">matthias.andree at gmx.de
+       </A><BR>
+    <I>Sat Jan  6 00:02:47 CET 2007</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000774.html">[fetchmail-users] fetchmail security announcement 2006-03	(CVE-2006-5974)
+</A></li>
+        <LI>Next message: <A HREF="000776.html">[fetchmail-users] Fetchmail to Postfix
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#775">[ date ]</a>
+              <a href="thread.html#775">[ thread ]</a>
+              <a href="subject.html#775">[ subject ]</a>
+              <a href="author.html#775">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA1
+
+fetchmail-SA-2006-02: TLS enforcement problem/MITM attack/password exposure
+
+Topics:		fetchmail cannot enforce TLS
+
+Author:		Matthias Andree
+Version:	1.0
+Announced:	2007-01-04
+Type:		secret information disclosure
+Impact:		fetchmail can expose cleartext password over unsecure link
+		fetchmail may not detect man in the middle attacks
+Danger:		medium
+Credits:	Isaac Wilcox (bug report, testing, collaboration on fix)
+CVE Name:	CVE-2006-5867
+URL:		<A HREF="http://fetchmail.berlios.de/fetchmail-SA-2006-02.txt">http://fetchmail.berlios.de/fetchmail-SA-2006-02.txt</A>
+Project URL:	<A HREF="http://fetchmail.berlios.de/">http://fetchmail.berlios.de/</A>
+
+Affects:	fetchmail releases &lt;= 6.3.5
+		fetchmail release candidates 6.3.6-rc1, -rc2, -rc3
+
+Not affected:	fetchmail release candidates 6.3.6-rc4, -rc5
+		fetchmail release 6.3.6
+
+Corrected:	2006-11-26 fetchmail 6.3.6-rc4
+
+
+0. Release history
+==================
+
+2006-11-16	v0.01 internal review draft
+2006-11-26	v0.02 revise failure cases, workaround, add acknowledgments
+2006-11-27	v0.03 add more vulnerabilities
+2006-01-04	v1.0  ready for release
+
+
+1. Background
+=============
+
+fetchmail is a software package to retrieve mail from remote POP2, POP3,
+IMAP, ETRN or ODMR servers and forward it to local SMTP, LMTP servers or
+message delivery agents.
+
+fetchmail ships with a graphical, Python/Tkinter based configuration
+utility named &quot;fetchmailconf&quot; to help the user create configuration (run
+control) files for fetchmail.
+
+
+2. Problem description and Impact
+=================================
+
+Fetchmail has had several nasty password disclosure vulnerabilities for
+a long time. It was only recently that these have been found.
+
+V1. sslcertck/sslfingerprint options should have implied &quot;sslproto tls1&quot;
+    in order to enforce TLS negotiation, but did not.
+
+V2. Even with &quot;sslproto tls1&quot; in the config, fetches would go ahead
+    in plain text if STLS/STARTTLS wasn't available (not advertised,
+    or advertised but rejected).
+
+V3. POP3 fetches could completely ignore all TLS options whether
+    available or not because it didn't reliably issue CAPA before
+    checking for STLS support - but CAPA is a requisite for STLS.
+    Whether or not CAPAbilities were probed, depended on the &quot;auth&quot;
+    option. (Fetchmail only tried CAPA if the auth option was not set at
+    all, was set to gssapi, kerberos, kerberos_v4, otp, or cram-md5.)
+
+V4. POP3 could fall back to using plain text passwords, even if strong
+    authentication had been configured.
+
+V5. POP2 would not complain if strong authentication or TLS had been
+    requested.
+
+This can cause eavesdroppers to obtain the password, depending on the
+authentication scheme that is configured or auto-selected, and
+subsequently impersonate somebody else when logging into the upstream
+server.
+
+
+3. Workaround
+=============
+
+If your upstream offers SSLv3-wrapped service on a dedicated port,
+use   fetchmail --ssl --sslcertck --sslproto ssl3   on the command line,
+or equivalent in the run control file.  This encrypts the whole session.
+
+
+4. Solution
+===========
+
+Download and install fetchmail 6.3.6 or a newer stable release from
+fetchmail's project site at
+&lt;<A HREF="http://developer.berlios.de/project/showfiles.php?group_id=1824">http://developer.berlios.de/project/showfiles.php?group_id=1824</A>&gt;.
+
+
+5. Acknowledgments
+==================
+
+Isaac Wilcox has been a great help with testing the fixes and getting
+them right.
+
+
+A. Copyright, License and Warranty
+==================================
+
+(C) Copyright 2007 by Matthias Andree, &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">matthias.andree at gmx.de</A>&gt;.
+Some rights reserved.
+
+This work is licensed under the Creative Commons
+Attribution-NonCommercial-NoDerivs German License. To view a copy of
+this license, visit <A HREF="http://creativecommons.org/licenses/by-nc-nd/2.0/de/">http://creativecommons.org/licenses/by-nc-nd/2.0/de/</A>
+or send a letter to Creative Commons; 559 Nathan Abbott Way;
+Stanford, California 94305; USA.
+
+THIS WORK IS PROVIDED FREE OF CHARGE AND WITHOUT ANY WARRANTIES.
+Use the information herein at your own risk.
+
+END OF fetchmail-SA-2006-02.txt
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1.4.5 (GNU/Linux)
+
+iD8DBQFFntkXvmGDOQUufZURAqVdAKC+UZHUWIZPyp1ZaJdKF4/QUGf/ewCeN8uN
+objiIGL0OdrSIPZf1smU2vA=
+=faeY
+-----END PGP SIGNATURE-----
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000774.html">[fetchmail-users] fetchmail security announcement 2006-03	(CVE-2006-5974)
+</A></li>
+	<LI>Next message: <A HREF="000776.html">[fetchmail-users] Fetchmail to Postfix
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#775">[ date ]</a>
+              <a href="thread.html#775">[ thread ]</a>
+              <a href="subject.html#775">[ subject ]</a>
+              <a href="author.html#775">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,88 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Fetchmail going out of date?
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2013-July/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Fetchmail%20going%20out%20of%20date%3F&In-Reply-To=%3C5A7942BF-BCCF-4030-8EF9-76D3918D79E8%40gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003425.html">
+   <LINK REL="Next"  HREF="003427.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Fetchmail going out of date?</H1>
+    <B>Yoann Gini</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Fetchmail%20going%20out%20of%20date%3F&In-Reply-To=%3C5A7942BF-BCCF-4030-8EF9-76D3918D79E8%40gmail.com%3E"
+       TITLE="[fetchmail-users] Fetchmail going out of date?">yoann.gini at gmail.com
+       </A><BR>
+    <I>Thu Jul 11 12:22:25 CEST 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003425.html">[fetchmail-users] Fetchmail going out of date?
+</A></li>
+        <LI>Next message: <A HREF="003427.html">[fetchmail-users] Fetchmail going out of date?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3426">[ date ]</a>
+              <a href="thread.html#3426">[ thread ]</a>
+              <a href="subject.html#3426">[ subject ]</a>
+              <a href="author.html#3426">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>
+Le 11 juil. 2013 &#224; 11:05, Pandu Poluan &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">pandu at poluan.info</A>&gt; a &#233;crit :
+
+&gt;<i> Yoann, as Matthias has stated, he can't help you if you don't give him the configuration and the log file.
+</I>&gt;<i> 
+</I>And what am I supposed to send since it&#8217;s work with the requested verbose mode and don&#8217;t work without the verbose log&#8201;? I&#8217;ve already send the log in non verbose mode.
+
+For the config, you already have the most important part, the server address. Here is an example of one of the config file.
+
+set daemon 180
+poll mail.gandi.net with protocol POP3 user &#8217;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">alice at example.com</A>' there with password &#8217;abcd1234'
+ is &#8217;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">alice at example.com</A>' here sslproto ssl23
+
+
+I&#8217;ve the problem on multiple OS X Server, from different network provider, different country and continent, different fetchmail and bind release. Bind is hosted on the same server than the fetchmail one.
+
+Again, those lines :
+
+fetchmail: Query status=11 (DNS)
+fetchmail: couldn't find canonical DNS name of mail.gandi.net (mail.gandi.net): nodename nor servname provided, or not known
+
+
+Just repeat endless until I restart the service. And before this problem occur, they have no specific log message before, only the nominal messages.
+
+If I add the -vvv, I never get any DNS related issue&#8230;
+
+BTW, you should check &quot;couldn't find canonical DNS name&quot; on Google to see how many people have problems with this cryptic message. No documentation about what could lead to this problem and of course every body have a working DNS setup and can fully resolve the e-mail server hostname using  system command line&#8230;
+</PRE>
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003425.html">[fetchmail-users] Fetchmail going out of date?
+</A></li>
+	<LI>Next message: <A HREF="003427.html">[fetchmail-users] Fetchmail going out of date?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3426">[ date ]</a>
+              <a href="thread.html#3426">[ thread ]</a>
+              <a href="subject.html#3426">[ subject ]</a>
+              <a href="author.html#3426">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

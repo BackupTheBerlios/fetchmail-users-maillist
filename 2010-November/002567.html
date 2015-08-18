@@ -1,0 +1,94 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Fetchmail is not marking mail as read.
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2010-November/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Fetchmail%20is%20not%20marking%20mail%20as%20read.&In-Reply-To=%3Cop.vmp929fr1e62zd%40balu.cs.uni-paderborn.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002566.html">
+   <LINK REL="Next"  HREF="002569.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Fetchmail is not marking mail as read.</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Fetchmail%20is%20not%20marking%20mail%20as%20read.&In-Reply-To=%3Cop.vmp929fr1e62zd%40balu.cs.uni-paderborn.de%3E"
+       TITLE="[fetchmail-users] Fetchmail is not marking mail as read.">matthias.andree at gmx.de
+       </A><BR>
+    <I>Thu Nov 25 14:22:11 CET 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002566.html">[fetchmail-users] Fetchmail is not marking mail as read.
+</A></li>
+        <LI>Next message: <A HREF="002569.html">[fetchmail-users] Fetchmail is not marking mail as read.
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2567">[ date ]</a>
+              <a href="thread.html#2567">[ thread ]</a>
+              <a href="subject.html#2567">[ subject ]</a>
+              <a href="author.html#2567">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Jegor Pogrebniak wrote on 2010-11-25:
+
+&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> Hi,
+</I>&gt;<i>
+</I>&gt;<i> I have a problem, the fetchmail not marking mail as read after fetching.
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> I'm using 6.3.18 version
+</I>&gt;<i>
+</I>...
+&gt;<i> mda &quot;/usr/bin/procmail -m /root/.procmailrc&quot;
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> fetchmail: MDA returned nonzero status 73
+</I>
+Note /usr/include/sysexits.h.
+
+#define EX_CANTCREAT    73      /* can't create (user) output file */
+
+
+
+Fix that. Best by ditching procmail and using something that works such as  
+maildrop, and configuring it properly. Note that this list is not for  
+procmail support.
+
+Note that you should not run mail stuff (anything) as root unless you  
+must, and be sure to double-check the documentation for implications of  
+running the software as root.
+
+-- 
+Matthias Andree
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002566.html">[fetchmail-users] Fetchmail is not marking mail as read.
+</A></li>
+	<LI>Next message: <A HREF="002569.html">[fetchmail-users] Fetchmail is not marking mail as read.
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2567">[ date ]</a>
+              <a href="thread.html#2567">[ thread ]</a>
+              <a href="subject.html#2567">[ subject ]</a>
+              <a href="author.html#2567">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,176 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] [PATCH] how to make fetchmail not to check the mail with seen flag of my gmail?
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2011-May/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20%5BPATCH%5D%20how%20to%20make%20fetchmail%20not%20to%20check%0A%20the%20mail%20with%20seen%20flag%20of%20my%20gmail%3F&In-Reply-To=%3CBANLkTikWv7-7R7mqJBew5OiGArV45yf6OQ%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002798.html">
+   <LINK REL="Next"  HREF="002800.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] [PATCH] how to make fetchmail not to check the mail with seen flag of my gmail?</H1>
+    <B>Yunfan Jiang</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20%5BPATCH%5D%20how%20to%20make%20fetchmail%20not%20to%20check%0A%20the%20mail%20with%20seen%20flag%20of%20my%20gmail%3F&In-Reply-To=%3CBANLkTikWv7-7R7mqJBew5OiGArV45yf6OQ%40mail.gmail.com%3E"
+       TITLE="[fetchmail-users] [PATCH] how to make fetchmail not to check the mail with seen flag of my gmail?">jyf1987 at gmail.com
+       </A><BR>
+    <I>Thu May  5 09:57:56 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002798.html">[fetchmail-users] [PATCH] how to make fetchmail not to check	the mail with seen flag of my gmail?
+</A></li>
+        <LI>Next message: <A HREF="002800.html">[fetchmail-users] how to make fetchmail not to check the mail	with seen flag of my gmail?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2799">[ date ]</a>
+              <a href="thread.html#2799">[ thread ]</a>
+              <a href="subject.html#2799">[ subject ]</a>
+              <a href="author.html#2799">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE><A HREF="http://commondatastorage.googleapis.com/yunfan/mix/myfetchmail.log">http://commondatastorage.googleapis.com/yunfan/mix/myfetchmail.log</A>
+
+here is my log, you can check the size, 5.3MB
+
+and i am not say that the log is too long, but i am saying the acting most
+of times is waste of time
+if there is only 1 new mail
+why not just fetch 1 mail header for check rather than first got lots of the
+mail header
+and then check which is need to fetch to local(it seems the current work
+act)
+
+from the log file, i think i got the reason
+check line 34,
+
+    fetchmail: IMAP&gt; A0004 SEARCH UNSEEN UNDELETED
+
+it add a extra UNDELETED flags to SEARCH
+and i think UNSEEN and UNDELETED's relation is OR
+so it will return mail that UNSEEN OR UNDELETED
+
+that's why it returns so many mail headers
+
+how to avoid it to add the extra flag UNDELETED?
+
+On Thu, May 5, 2011 at 12:06 PM, Sunil Shetye &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">sunilshetye at rocketmail.com</A>&gt;wrote:
+
+&gt;<i> Hi Matthias,
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> ----- Original Message -----
+</I>&gt;<i> &gt;&gt;  hi, tried fetchmail after i decide to use mutt
+</I>&gt;<i> &gt;&gt;  and found its very quick than web interface with my gmail
+</I>&gt;<i> &gt;&gt;  but there's a problem(the only one) bored me
+</I>&gt;<i> &gt;&gt;
+</I>&gt;<i> &gt;&gt;  i use imap protocol to fetch my gmail
+</I>&gt;<i> &gt;&gt;  and i use cmd  fetchmail -v to check by manual
+</I>&gt;<i> &gt;&gt;
+</I>&gt;<i> &gt;&gt;  each time it will check lots of mail with flag 'Seen', as
+</I>&gt;<i> &gt; gmail's huge
+</I>&gt;<i> &gt;&gt;  storage usage, i stored so many mails
+</I>&gt;<i> &gt;&gt;  in it,so each time its a long time to wait fetchmail told me skip
+</I>&gt;<i> thousands
+</I>&gt;<i> &gt;&gt;  of mails like this:
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; You can suppress the messages with -s.
+</I>&gt;<i>
+</I>&gt;<i> I think the real issue is not related to IMAP at all. What Yunfan Jiang may
+</I>&gt;<i> be trying to say is that when fetchmail -v runs without syslog, there are
+</I>&gt;<i> too many skipping messages without any real protocol level activity. Note
+</I>&gt;<i> that this is true for both IMAP and POP3. This is also true for fetchmail -v
+</I>&gt;<i> -v.
+</I>&gt;<i>
+</I>&gt;<i> Say, there are 20,000 mails with just one new mail. When a user runs
+</I>&gt;<i> &quot;fetchmail -v --nosyslog&quot; or &quot;fetchmail -v -v&quot;, the user sees some protocol
+</I>&gt;<i> level activity at the start. This could be &quot;SEARCH UNSEEN&quot; for IMAP or
+</I>&gt;<i> &quot;UIDL&quot; for POP3. From that activity, it becomes clear that there is just one
+</I>&gt;<i> new mail.
+</I>&gt;<i>
+</I>&gt;<i> What follows this activity is a series of &quot;skipping message n&quot; lines from 1
+</I>&gt;<i> to 19,999. These lines do not make any sense if all the user is trying to do
+</I>&gt;<i> is to look at the protocol level logs for the 20,000th mail. In fact, if the
+</I>&gt;<i> output is to the terminal, these 19,999 lines without any real IMAP/POP3
+</I>&gt;<i> activity can lead to a slow scrolling. There is also the risk of hitting the
+</I>&gt;<i> timeout at the mailserver since no real activity has occurred on the
+</I>&gt;<i> mailserver end while those 19,999 lines are getting printed.
+</I>&gt;<i>
+</I>&gt;<i> For IMAP, the logs could look like:
+</I>&gt;<i>
+</I>&gt;<i> IMAP&gt; A0010 SEARCH UNSEEN
+</I>&gt;<i> IMAP&lt; * SEARCH 20000
+</I>&gt;<i> IMAP&lt; A0010 OK SEARCH completed
+</I>&gt;<i> skipping message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">... at ...</A>:1 (not flushed)
+</I>&gt;<i> skipping message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">... at ...</A>:2 (not flushed)
+</I>&gt;<i> skipping message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">... at ...</A>:3 (not flushed)
+</I>&gt;<i> ...
+</I>&gt;<i> skipping message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">... at ...</A>:19997 (not flushed)
+</I>&gt;<i> skipping message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">... at ...</A>:19998 (not flushed)
+</I>&gt;<i> skipping message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">... at ...</A>:19999 (not flushed)
+</I>&gt;<i> IMAP&gt; A0011 FETCH 20000 RFC822.SIZE
+</I>&gt;<i>
+</I>&gt;<i> The real solution would be to remove all the &quot;skipping message n (not
+</I>&gt;<i> flushed)&quot; messages if they are not related to any protocol activity as they
+</I>&gt;<i> do not add any real value. The patch attached should do the trick. Please
+</I>&gt;<i> check and evaluate. Note that I have not tested for POP3 with UIDL as yet.
+</I>&gt;<i>
+</I>&gt;<i> --
+</I>&gt;<i> Sunil Shetye.
+</I>&gt;<i>
+</I>&gt;<i> _______________________________________________
+</I>&gt;<i> fetchmail-users mailing list
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">fetchmail-users at lists.berlios.de</A>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">https://lists.berlios.de/mailman/listinfo/fetchmail-users</A>
+</I>&gt;<i>
+</I>&gt;<i>
+</I>
+
+-- 
+ME = {
+   &quot;name&quot;: [ &quot;jyf&quot;, &quot;yunfan&quot;, &quot;wuxian&quot; ],
+   &quot;im&quot;: {
+        &quot;gtalk&quot;: &quot;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">jyf1987 at gmail.com</A>&quot;,
+        &quot;msn&quot;: &quot;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">geek42 at live.cn</A>&quot;
+          },
+   &quot;job&quot;: &quot;python engineer&quot;,
+   &quot;site&quot;: &quot;<A HREF="http://hi.baidu.com/jyf1987">http://hi.baidu.com/jyf1987</A>&quot;,
+   &quot;interested&quot;:  {
+       &quot;tech&quot;: [ &quot;linux&quot;, &quot;python&quot;, &quot;lua&quot;, &quot;php&quot;, &quot;html5&quot;, &quot;c&quot;, &quot;nosql&quot;],
+       &quot;history&quot;: [&quot;chinese history&quot;, &quot;global history&quot;],
+       &quot;SF&quot;: [ &quot;hard SF&quot;, &quot;Thought experiment&quot; ],
+       &quot;music&quot;: [ &quot;New Age&quot;, &quot;Chinese old theme&quot;, &quot;Electronic music&quot;,
+&quot;Strange Music :}&quot;]
+     }
+ }
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002798.html">[fetchmail-users] [PATCH] how to make fetchmail not to check	the mail with seen flag of my gmail?
+</A></li>
+	<LI>Next message: <A HREF="002800.html">[fetchmail-users] how to make fetchmail not to check the mail	with seen flag of my gmail?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2799">[ date ]</a>
+              <a href="thread.html#2799">[ thread ]</a>
+              <a href="subject.html#2799">[ subject ]</a>
+              <a href="author.html#2799">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

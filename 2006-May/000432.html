@@ -1,0 +1,95 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] duplicating single remote account into multiple local account
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2006-May/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20duplicating%20single%20remote%20account%20into%20multiple%20local%20account&In-Reply-To=%3Cm3vernqcg4.fsf%40merlin.emma.line.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000431.html">
+   <LINK REL="Next"  HREF="000433.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] duplicating single remote account into multiple local account</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20duplicating%20single%20remote%20account%20into%20multiple%20local%20account&In-Reply-To=%3Cm3vernqcg4.fsf%40merlin.emma.line.org%3E"
+       TITLE="[fetchmail-users] duplicating single remote account into multiple local account">matthias.andree at gmx.de
+       </A><BR>
+    <I>Wed May 31 02:12:43 CEST 2006</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000431.html">[fetchmail-users] duplicating single remote account into multiple local account
+</A></li>
+        <LI>Next message: <A HREF="000433.html">[fetchmail-users] duplicating single remote account into multiple local account
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#432">[ date ]</a>
+              <a href="thread.html#432">[ thread ]</a>
+              <a href="subject.html#432">[ subject ]</a>
+              <a href="author.html#432">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Filippo Santovito &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">filippo.santovito at email.it</A>&gt; writes:
+
+&gt;<i> Hi all,
+</I>&gt;<i> I have a remote pop account (<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">remote at popserver</A>) that I need to duplicate into 
+</I>&gt;<i> two local mail spool (<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">account1 at local</A>, <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">account2 at local</A>);
+</I>&gt;<i> I tried with:
+</I>&gt;<i>
+</I>&gt;<i> #############################################
+</I>&gt;<i> poll popserver with proto POP3
+</I>&gt;<i> user '<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">remote at popserver</A>' there with password 'xxxx' is 'account1' here options 
+</I>&gt;<i> fetchall ssl
+</I>&gt;<i>
+</I>&gt;<i> poll popserver with proto POP3
+</I>&gt;<i> user '<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">remote at popserver</A>' there with password 'xxxx' is 'account2' here options 
+</I>&gt;<i> fetchall ssl nokeep
+</I>&gt;<i> #############################################
+</I>&gt;<i>
+</I>&gt;<i> but only account1 spool is created and filled with emails.
+</I>&gt;<i> How can I duplicate the remote account?
+</I>
+If the local machine has a sendmail-compatible sendmail command
+(Postfix, Exim also count here), try:
+
+poll popserver with proto POP3
+user '<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">remote at popserver</A>' there with password 'xxxx' 
+options fetchall ssl
+mda '/usr/sbin/sendmail -i -f %F -- account1 account2'
+
+Just be sure none of account1 and account2 forward back onto
+<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">remote at popserver.</A> Note that mda has some other implications -- see the
+man page.
+
+-- 
+Matthias Andree
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000431.html">[fetchmail-users] duplicating single remote account into multiple local account
+</A></li>
+	<LI>Next message: <A HREF="000433.html">[fetchmail-users] duplicating single remote account into multiple local account
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#432">[ date ]</a>
+              <a href="thread.html#432">[ thread ]</a>
+              <a href="subject.html#432">[ subject ]</a>
+              <a href="author.html#432">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,244 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] 4 multidrop but one destination server
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2009-May/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%204%20multidrop%20but%20one%20destination%20server&In-Reply-To=%3C20090504144854.GG3886%40freenet.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001918.html">
+   <LINK REL="Next"  HREF="001920.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] 4 multidrop but one destination server</H1>
+    <B>Michelle Konzack</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%204%20multidrop%20but%20one%20destination%20server&In-Reply-To=%3C20090504144854.GG3886%40freenet.de%3E"
+       TITLE="[fetchmail-users] 4 multidrop but one destination server">linux4michelle at tamay-dogan.net
+       </A><BR>
+    <I>Mon May  4 16:48:55 CEST 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001918.html">[fetchmail-users] 4 multidrop but one destination server
+</A></li>
+        <LI>Next message: <A HREF="001920.html">[fetchmail-users] 4 multidrop but one destination server
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1919">[ date ]</a>
+              <a href="thread.html#1919">[ thread ]</a>
+              <a href="subject.html#1919">[ subject ]</a>
+              <a href="author.html#1919">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Salut Andr&#233;e,
+
+Am 2009-05-04 15:13:30, schrieb Matthias Andree:
+&gt;<i> Can you show example messages, once how they are on the upstream's POP3  
+</I>&gt;<i> server (for instance, log in with mutt and show all headers), and then  
+</I>&gt;<i> what your fetchmail -vvv and your SMTP server log?
+</I>
+The MX simply pushed all messages in one box.
+
+&gt;<i> What's the issue here? Loop detection or not being able to tell the  
+</I>&gt;<i> domains apart?
+</I>
+domain parts
+
+&gt;<i> If you mean there are four multidrop boxes per domain, how come these all  
+</I>&gt;<i> have &quot;Delivered-TO: <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">foobar at friendsdomain.com</A>&quot;? I should think that there  
+</I>&gt;<i> is rather <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">... at friendsdomain1.com</A>, <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">... at friendsotherdomain.com</A>,  
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">... at friendsthirddomain.com</A> and <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">... at friends4.example.org.</A>
+</I>
+---[ '~/.courier' ]-----------------------------------------------------
+|<i>/usr/bin/preline /usr/bin/maildrop
+</I>------------------------------------------------------------------------
+
+&gt;<i> If I understand your description correctly - as above -, this needs  
+</I>&gt;<i> changes to the mail server's configuration so that the upstream server  
+</I>&gt;<i> does NOT fold all four domains into the same  
+</I>&gt;<i> &quot;tamay-dogan.net-some-weird-catchall-&quot;, but to a different one for each  
+</I>&gt;<i> domain.
+</I>
+Thats right, we have already done this  yesterday  morning  and  now  it
+works as expected...
+
+&gt;<i> I find this is undocumented,
+</I>
+You are not alone, Enda and me too.
+
+&gt;<i> but I'm willing to make this official for the  
+</I>&gt;<i> sake of whoever has a use for such configurations, so here goes:
+</I>
+Maybe put it on the Website?
+
+&gt;<i> 1. (assumption) qmail-style virtual addresses (as supported by qmail [1]  
+</I>&gt;<i> and courier [2]) work this way: a domain is mapped to a user, and a prefix  
+</I>&gt;<i> is prepended. Say, we are mapping one.example and two.example to alice. We  
+</I>&gt;<i> can write (this is Courier aliases syntax; for qmail, omit the @ and the  
+</I>&gt;<i> blanks and use it in virtuals rather than aliases - I stopped using qmail  
+</I>&gt;<i> ages ago, see the link below for details.)
+</I>&gt;<i> 
+</I>&gt;<i> # GOOD EXAMPLE:
+</I>&gt;<i> @one.example: alice-one
+</I>&gt;<i> @two.example: alice-two
+</I>&gt;<i> 
+</I>&gt;<i> This maps <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">LOCAL at one.example</A> to <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">alice-one-LOCAL at serversdomain</A> and  
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">OTHER at two.example</A> to <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">alice-two-OTHER at serversdomain.</A> serversdomain is the  
+</I>&gt;<i> &quot;me&quot; domain of the MX server for one.example and two.example, thus,  
+</I>&gt;<i> usually the ISP server's name.
+</I>
+Right, this is now what we are using.
+
+&gt;<i> In your particular case, make sure that the right-hand side is distinct  
+</I>&gt;<i> for any two of the four domains. Don't just put identical right-hand sides  
+</I>&gt;<i> like in this bad example:
+</I>&gt;<i> 
+</I>&gt;<i> # vvv BAD EXAMPLE vvv
+</I>&gt;<i> @one.example: friend
+</I>&gt;<i> @two.example: friend
+</I>&gt;<i> # ^^^ BAD EXAMPLE ^^^
+</I>
+Very right.  IT IS CRAP!
+
+&gt;<i> 2. qvirtual mapping in fetchmail is applied very early, before  
+</I>&gt;<i> localdomains checks, and before user mappings. So you can go like:
+</I>&gt;<i> 
+</I>&gt;<i> qvirtual &quot;alice-&quot;
+</I>&gt;<i> user login pass foo is one-info=bla1 two-info=bla2 ...
+</I>&gt;<i> 
+</I>&gt;<i> You cannot use a &quot;*&quot; here.
+</I>
+Right.  This is why we tried to use
+
+----[ '/etc/fetchmailrc' ]----------------------------------------------
+###########################  GLOBAL OPTIONS  ###########################
+set     no bouncemail
+set     postmaster      <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">michelle.konzack at tamay-dogan.net</A>
+set     invisible
+set     syslog
+
+##############################  DEFAULTS  ##############################
+defaults:
+  antispam      550
+  batchlimit    100
+  fetchall
+  expunge 10
+  dropstatus
+  nokeep
+  mda           &quot;/usr/bin/procmail -d %T&quot;
+
+###########################  SERVER OPTIONS  ###########################
+poll            webmail.example.com
+proto           imap
+timeout         30
+#qvirtual        &quot;tdwave.net-unknown-catchall-&quot;
+#envelope        0 &quot;Delivered-To:&quot;
+
+############################  USER OPTIONS  ############################
+user            tdwave.net-unknown-catchall
+pass            hahaha
+is              catchall.secret
+
+user            tamay-dogan.net-unknown-catchall
+pass            hihihi
+is              catchall.secret
+
+user            can4linux.org-unknown-catchall
+pass            hohoho
+is              catchall.secret
+
+user            flexray4linux.org-unknown-catchall
+pass            huhuhu
+is              catchall.secret
+------------------------------------------------------------------------
+
+and
+
+----[ '/home/catchall.secret/.procmailrc' ]-------------------------
+MAILDIR=${HOME}/Maildir
+DEFAULT=${MAILDIR}/
+
+TEMP=`formail -czx Delivered-To: | \
+      grep 'unknown' | \
+      head -n1 | \
+      sed 's|@.*||'`
+
+DOMAIN=`echo ${TEMP} | \
+        sed 's|-unknown-catchall.*||'`
+
+LOCALPART=`echo ${TEMP} | \
+           sed 's|.*unknown-catchall-||'`
+
+:<i>0
+</I>* $ ^Delivered-To:.*${DOMAIN}-unknown-catchall-${LOCALPART}@
+{
+  :0fw
+  |formail -i &quot;Delivered-To: ${LOCALPART}@${DOMAIN}&quot;
+  :0c
+  .BACKUPS_`echo ${DOMAIN} |tr '.' '_'`/
+  :0
+  |sendmail -t
+}
+------------------------------------------------------------------------
+
+and this works currently because the server is catching the messages  as
+local and does not bounce (would be not a good idea).
+
+&gt;<i> This would make fetchmail deliver messages for <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">info at one.example</A> to bla1,  
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">info at two.example</A> to bla2 and anything. Since wildmats, globs and regexps  
+</I>&gt;<i> are not supported here, this isn't practical if either of the virtual  
+</I>&gt;<i> domains has catchall addresses by itself (I think that's a bad idea  
+</I>&gt;<i> anyways), but it works for a reasonably small set of users in each virtual  
+</I>&gt;<i> domain.
+</I>
+Unfortunately I have to many users...
+
+Thanks, Greetings and nice Day/Evening
+    Michelle Konzack
+    Systemadministrator
+    24V Electronic Engineer
+    Tamay Dogan Network
+    Debian GNU/Linux Consultant
+
+
+-- 
+Linux-User #280138 with the Linux Counter, <A HREF="http://counter.li.org/">http://counter.li.org/</A>
+##################### Debian GNU/Linux Consultant #####################
+Michelle Konzack   Apt. 917                  ICQ #328449886
++49/177/9351947    50, rue de Soultz         MSN LinuxMichi
++33/6/61925193     67100 Strasbourg/France   IRC #Debian (irc.icq.com)
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: signature.pgp
+Type: application/pgp-signature
+Size: 189 bytes
+Desc: Digital signature
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/fetchmail-users/attachments/20090504/8c942136/attachment.pgp">https://lists.berlios.de/pipermail/fetchmail-users/attachments/20090504/8c942136/attachment.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001918.html">[fetchmail-users] 4 multidrop but one destination server
+</A></li>
+	<LI>Next message: <A HREF="001920.html">[fetchmail-users] 4 multidrop but one destination server
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1919">[ date ]</a>
+              <a href="thread.html#1919">[ thread ]</a>
+              <a href="subject.html#1919">[ subject ]</a>
+              <a href="author.html#1919">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

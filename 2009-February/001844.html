@@ -1,0 +1,155 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Overall setup advice request
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2009-February/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Overall%20setup%20advice%20request&In-Reply-To=%3Cop.uo42yzq91e62zd%40balu.cs.uni-paderborn.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001842.html">
+   <LINK REL="Next"  HREF="001847.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Overall setup advice request</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Overall%20setup%20advice%20request&In-Reply-To=%3Cop.uo42yzq91e62zd%40balu.cs.uni-paderborn.de%3E"
+       TITLE="[fetchmail-users] Overall setup advice request">matthias.andree at gmx.de
+       </A><BR>
+    <I>Tue Feb 10 15:10:01 CET 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001842.html">[fetchmail-users] Overall setup advice request
+</A></li>
+        <LI>Next message: <A HREF="001847.html">[fetchmail-users] Overall setup advice request
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1844">[ date ]</a>
+              <a href="thread.html#1844">[ thread ]</a>
+              <a href="subject.html#1844">[ subject ]</a>
+              <a href="author.html#1844">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Am 10.02.2009, 14:30 Uhr, schrieb Ken Gillett &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">ken at ukgb.net</A>&gt;:
+
+&gt;<i> I have been using Fetchmail for some years and it is currently
+</I>&gt;<i> functioning correctly and doing what is required, but I'm thinking it
+</I>&gt;<i> might be possible to optimize its operation and I hoped some experts
+</I>&gt;<i> would be able to make a few suggestions.
+</I>&gt;<i>
+</I>&gt;<i> Currently I have a MacOSX (mail &amp; other) server and several Mac and
+</I>&gt;<i> Windows clients, all accessing their mail on the server via IMAP, so
+</I>&gt;<i> one user who might be using several different machines (i.e. me) can
+</I>&gt;<i> always access up to date mail. Fetchmail runs on the server in daemon
+</I>&gt;<i> mode and as directed by a single configuration file, collects mail for
+</I>&gt;<i> all accounts at 10 min. intervals and it all works. But I have 2
+</I>&gt;<i> issues I'd like to improve on, although in fact it might be considered
+</I>&gt;<i> the same issue - I want to improve the scheduling.
+</I>&gt;<i>
+</I>&gt;<i> My first thought was to use IMAP IDLE so the mail would be 'fetched'
+</I>&gt;<i> according to when it arrived at the ISP, but I could do with some help
+</I>&gt;<i> regarding how this functions in fetchmail since the manual states it
+</I>&gt;<i> currently only works on one folder at a time and I really can't figure
+</I>&gt;<i> what this means. My config file describes one server and several
+</I>&gt;<i> users, does that mean it could only be triggered by mail arriving at
+</I>&gt;<i> one of those users? Or only a single folder for each user? If the
+</I>&gt;<i> latter, then not a problem since there is only the INBOX that would
+</I>&gt;<i> contain relevant mail, but if it's the former, would running a
+</I>&gt;<i> separate instance of fetchmail for each user with its own config file
+</I>&gt;<i> solve that?
+</I>
+Hi Ken,
+
+the feature's current support is &quot;for IDLE, one folder per running  
+fetchmail instance, no matter how many accounts and folders there are&quot;.
+That would be the first folder in the first user's account (in the  
+first/only server). In your setup, you cannot use fetchmail's idle  
+support. Major parts of fetchmail have to be rewritten to support that.
+
+If all users had only their INBOX polled, you could get away by fixing one  
+fetchmailrc per user, in a subdirectory, and run an fetchmail instance for  
+each, with the environmental variable FETCHMAILHOME set. Less convenient  
+to set up, but then per-user restrictions were circumvented.
+
+However:
+
+&gt;<i> The next problem is that my ISP doesn't support IDLE. Can anyone
+</I>&gt;<i> suggest how to get around this? Does anyone know of a service that
+</I>&gt;<i> could offer say half a dozen mailboxes and that could 'push' email to
+</I>&gt;<i> fetchmail, yet also provide webmail for when my system is not
+</I>&gt;<i> running ? I could arrange a static IP address if required, but in any
+</I>&gt;<i> case I can only see IMAP and IDLE as being able to offer all that.
+</I>
+...that's a major obstacle. Without IMAP IDLE support, any --idle efforts  
+are... um, idle.
+
+The alternatives are
+- lowering the poll interval to as low as the ISP permits (you'd thought  
+about that, see below)
+- use your own SMTP server on a static IP.
+
+&gt;<i> My other approach was to try and control the poll interval according
+</I>&gt;<i> to usage. Perhaps only run fetchmail for a user when actually logged
+</I>&gt;<i> in? Trouble is the users do not log in to the server so it would be
+</I>&gt;<i> tricky to ascertain whether that mail client was up and running or
+</I>&gt;<i> maybe the whole machine was asleep. What about running fetchmail on
+</I>&gt;<i> the client machines? Apart from the fact that it would have to fetch
+</I>&gt;<i> the mail then pass it to the local server to then be able to download
+</I>&gt;<i> it back from that server with the mail client (Apple's Mail.app) which
+</I>&gt;<i> all seems to involve a lot of tooing and froing, if one user (me
+</I>&gt;<i> again) needs to be able to be logged in on more than one machine, how
+</I>&gt;<i> could I make those all interact correctly and avoid multiple instances
+</I>&gt;<i> of fetchmail (i.e. one on each machine on which I have an active
+</I>&gt;<i> login) all trying to do the same thing?
+</I>
+I'd avoid that. It requires proper mail setup on all of the machines, and  
+miniscule differences can throw the whole mail system over for a certain  
+client, or user, or both.
+
+&gt;<i> Finally, I want to run fetchmail from launchd, so I guess I  use the -
+</I>&gt;<i> N option to not detach, but how can I change the polling frequency of
+</I>&gt;<i> the running daemon? I could set it up with a large interval as the
+</I>&gt;<i> default and then just call fetchmail on a more frequent basis and wake
+</I>&gt;<i> it up when required, but how could I change the rate with a single
+</I>&gt;<i> command? Could I just run the original command again, but with a
+</I>&gt;<i> different -dnnn? Would I need to quit it first?
+</I>
+Assuming launchd respawns fetchmail if it quits for whatever reason:
+Just use -N -d 600 (adjust as you see fit) as you would do otherwise - you  
+can safely combine these two options.
+
+That's also workable in SysV-style inittab, Upstart (on Ubuntu for  
+instance), with daemontools, with runit, or with Solaris's Service  
+Management Framework SMF.
+
+-- 
+Matthias Andree
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001842.html">[fetchmail-users] Overall setup advice request
+</A></li>
+	<LI>Next message: <A HREF="001847.html">[fetchmail-users] Overall setup advice request
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1844">[ date ]</a>
+              <a href="thread.html#1844">[ thread ]</a>
+              <a href="subject.html#1844">[ subject ]</a>
+              <a href="author.html#1844">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

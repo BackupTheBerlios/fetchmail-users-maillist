@@ -1,0 +1,129 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Fetchmail suddenly started segfaulting with Exchange
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2012-August/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Fetchmail%20suddenly%20started%20segfaulting%20with%0A%20Exchange&In-Reply-To=%3C20120815005411.GA49033%40MacPorter.local%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003214.html">
+   <LINK REL="Next"  HREF="003219.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Fetchmail suddenly started segfaulting with Exchange</H1>
+    <B>J. Porter Clark</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Fetchmail%20suddenly%20started%20segfaulting%20with%0A%20Exchange&In-Reply-To=%3C20120815005411.GA49033%40MacPorter.local%3E"
+       TITLE="[fetchmail-users] Fetchmail suddenly started segfaulting with Exchange">jpc+fetchmail at porterclark.com
+       </A><BR>
+    <I>Wed Aug 15 02:54:11 CEST 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003214.html">[fetchmail-users] Fetchmail suddenly started segfaulting with Exchange
+</A></li>
+        <LI>Next message: <A HREF="003219.html">[fetchmail-users] Fetchmail suddenly started segfaulting with Exchange
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3217">[ date ]</a>
+              <a href="thread.html#3217">[ thread ]</a>
+              <a href="subject.html#3217">[ subject ]</a>
+              <a href="author.html#3217">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Mon, Aug 13, 2012 at 10:27:30PM +0200, Matthias Andree wrote:
+&gt;<i> 
+</I>&gt;<i> The attached patch should fix the problem for older releases, but is
+</I>&gt;<i> entirely unsupported.  Distributors are advised to await the 6.3.22
+</I>&gt;<i> release and then upgrade to it, rather than patch.
+</I>
+I tried your patch (thanks!) and now have this result:
+
+$ fetchmail -vvv --nodetach
+Old UID list from imap02.ndc.nasa.gov: &lt;empty&gt;
+Scratch list of UIDs: &lt;empty&gt;
+fetchmail: 6.3.21 querying imap02.ndc.nasa.gov (protocol IMAP) at Tue Aug 14 08:27:15 2012: poll started
+Trying to connect to 198.117.0.48/993...connected.
+fetchmail: Certificate chain, from root to peer, starting at depth 2:
+fetchmail: Issuer Organization: Entrust.net
+fetchmail: Issuer CommonName: Entrust.net Certification Authority (2048)
+fetchmail: Subject CommonName: Entrust.net Certification Authority (2048)
+fetchmail: Certificate at depth 1:
+fetchmail: Issuer Organization: Entrust.net
+fetchmail: Issuer CommonName: Entrust.net Certification Authority (2048)
+fetchmail: Subject CommonName: Entrust Certification Authority - L1C
+fetchmail: Server certificate:
+fetchmail: Issuer Organization: Entrust, Inc.
+fetchmail: Issuer CommonName: Entrust Certification Authority - L1C
+fetchmail: Subject CommonName: Autodiscover.nasa.gov
+fetchmail: Subject Alternative Name: Autodiscover.nasa.gov
+fetchmail: Subject Alternative Name: Webmail.nasa.gov
+fetchmail: Subject Alternative Name: imap02.ndc.nasa.gov
+fetchmail: Subject Alternative Name: mail02.ndc.nasa.gov
+fetchmail: Subject Alternative Name: imap01.ndc.nasa.gov
+fetchmail: Subject Alternative Name: mail01.ndc.nasa.gov
+fetchmail: imap02.ndc.nasa.gov key fingerprint: [REDACTED BUT WHO CARES]
+fetchmail: IMAP&lt; * OK The Microsoft Exchange IMAP4 service is ready.
+fetchmail: IMAP&gt; A0001 CAPABILITY
+fetchmail: IMAP&lt; * CAPABILITY IMAP4 IMAP4rev1 AUTH=NTLM AUTH=GSSAPI AUTH=PLAIN IDLE NAMESPACE LITERAL+
+fetchmail: IMAP&lt; A0001 OK CAPABILITY completed.
+fetchmail: Protocol identified as IMAP4 rev 1
+fetchmail: IMAP&gt; A0002 AUTHENTICATE NTLM
+fetchmail: IMAP&lt; +
+NTLM Request:
+      Ident = NTLMSSP
+      mType = 1
+      Flags = 0000b207
+       User = [USERNAME - REDACTED]
+     Domain = 
+fetchmail: IMAP&gt; TlRMTVNTUAABAAAAB7IAABUAFQAgAAAAAAAAABUAAABuZGNcanBjbGFyazEvanBjbGFyazE=
+fetchmail: IMAP&lt; A0002 NO AUTHENTICATE failed.
+fetchmail: could not decode BASE64 challenge
+fetchmail: Authorization failure on [USERNAME - REDACTED]@imap02.ndc.nasa.gov
+fetchmail: IMAP&gt; A0003 LOGOUT
+fetchmail: IMAP&lt; * BYE Microsoft Exchange Server 2007 IMAP4 server signing off.
+fetchmail: IMAP&lt; A0003 OK LOGOUT completed.
+fetchmail: 6.3.21 querying imap02.ndc.nasa.gov (protocol IMAP) at Tue Aug 14 08:27:15 2012: poll completed
+Merged UID list from imap02.ndc.nasa.gov: &lt;empty&gt;
+fetchmail: Query status=3 (AUTHFAIL)
+fetchmail: normal termination, status 3
+
+So, it doesn't segfault, but on the other hand, it fails to authenticate.  I
+thought that the NTLM authentication was working prior to the server upgrade.
+(Otherwise, how was I able to get mail?)  But perhaps, as a result of the
+server upgrade, NTLM authentication doesn't work anymore.  If so, then the
+behavior above is correct.
+
+Therefore, I'll continue to use &quot;auth password,&quot; now that I see that SSL hides
+the password.
+
+-- 
+J. Porter Clark      &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">jpc at porterclark.com</A>&gt;
+</PRE>
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003214.html">[fetchmail-users] Fetchmail suddenly started segfaulting with Exchange
+</A></li>
+	<LI>Next message: <A HREF="003219.html">[fetchmail-users] Fetchmail suddenly started segfaulting with Exchange
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3217">[ date ]</a>
+              <a href="thread.html#3217">[ thread ]</a>
+              <a href="subject.html#3217">[ subject ]</a>
+              <a href="author.html#3217">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

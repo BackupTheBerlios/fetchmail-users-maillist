@@ -1,0 +1,121 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] fetchmail runs MDA as root
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2010-February/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%20runs%20MDA%20as%20root&In-Reply-To=%3C92E3B800-D996-42BD-9702-0ECEA06F685B%40ritual.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002284.html">
+   <LINK REL="Next"  HREF="002286.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] fetchmail runs MDA as root</H1>
+    <B>Uli Zappe</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%20runs%20MDA%20as%20root&In-Reply-To=%3C92E3B800-D996-42BD-9702-0ECEA06F685B%40ritual.org%3E"
+       TITLE="[fetchmail-users] fetchmail runs MDA as root">uli at ritual.org
+       </A><BR>
+    <I>Wed Feb 10 23:45:42 CET 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002284.html">[fetchmail-users] fetchmail runs MDA as root
+</A></li>
+        <LI>Next message: <A HREF="002286.html">[fetchmail-users] fetchmail runs MDA as root
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2285">[ date ]</a>
+              <a href="thread.html#2285">[ thread ]</a>
+              <a href="subject.html#2285">[ subject ]</a>
+              <a href="author.html#2285">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Matthias,
+
+thanks a lot for your reply! :-)
+
+&gt;<i> that is a misunderstanding. [...] &quot;target user&quot; here means, in the order of priority (earlier wins over those listed later), the associated user id of:
+</I>&gt;<i> 
+</I>&gt;<i> - the contents of the FETCHMAILUSER environment variable
+</I>&gt;<i> - the contents of the LOGNAME environment variable (supposed to be set upon login)
+</I>&gt;<i> - the contents of the USER variable
+</I>&gt;<i> - whatever user is associated with what the getuid() call returns.
+</I>
+Ah, I see.
+
+&gt;<i> Now, if you run fetchmail as root, you may have root as LOGNAME or USER, or getuid() will return 0, and thus the MDA will run as root (check: env | egrep -w 'LOGNAME|USER|FETCHMAILUSER' ; id -urn)
+</I>&gt;<i> 
+</I>&gt;<i> Implicit behaviour thus depends a bit on how exactly you obtain root privileges
+</I>
+Well, since I'm running fetchmail in daemon mode (launched at boot time), neither LOGNAME nor USER are set at all. I also didn't specify FETCHMAILUSER, so of course fetchmail ends up running the MDA as root.
+
+&gt;<i> The easiest solution would be to override FETCHMAILUSER to the desired user
+</I>
+But I can't do this individually for each entry in fetchmailrc, can I?
+
+My fetchmail delivers mail from different mailboxes to different users, and in each case, the MDA must be executed as the respective user, which differs from one entry to the next.
+
+&gt;<i> to use an mda that can switch UID by itself if run as root. Maildrop and procmail can do that in &quot;delivery mode&quot; (if -d %T are in fetchmail's mda option).
+</I>
+Yep, but the whole point I'm using an MDA at all is that I do *not* want to deliver the mails; instead, their content is processed by scripts (which must be run as the user the original mail was sent to). Unfortunately, procmail only allows to switch its UID in delivery mode, not when it pipes the mail content into scripts.
+
+&gt;<i> There's a reason why I let fetchmail whine about being run as root user.
+</I>
+Yep, I know you dislike that  ;-) , but if fetchmail wouldn't run as root, it could never launch procmail with different UIDs at all. 8-)
+
+&gt;<i> It's probably better to configure maildrop properly
+</I>
+There's no need for maildrop in my usage scenario; fetchmail either forwards mails to my local postfix server, or it launches procmail.
+
+For now, I've ended up by prefixing the action lines in procmailrc (which call my scripts) with &quot;su &lt;user&gt; -c &quot;, which achieves what it should and is actually a straightforward solution for me, since in my case, there's no procmail recipe that could apply to two different users. (Interestingly, using &quot;su &lt;user&gt; -c &quot; to prefix the mda in fetchmailrc produced some strange side effects, so I did not pursue this variant further.)
+
+&gt;<i> The current Git version of the manual page now reads, for --mda:
+</I>&gt;<i> [...]
+</I>&gt;<i> I hope that is much clearer now.
+</I>
+Yes, it is!
+
+&gt;<i> Life is what happens to you while you're busy making other plans.
+</I>&gt;<i>  						-- John Lennon, 1980
+</I>
+One of my all-time favorite quotes. :-)
+
+            Bye
+                    Uli
+________________________________________________________
+
+  Uli Zappe, Solmsstra&#223;e 5, D-65189 Wiesbaden, Germany
+  <A HREF="http://www.ritual.org">http://www.ritual.org</A>
+  Fon: +49-700-ULIZAPPE
+  Fax: +49-700-ZAPPEFAX
+________________________________________________________
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002284.html">[fetchmail-users] fetchmail runs MDA as root
+</A></li>
+	<LI>Next message: <A HREF="002286.html">[fetchmail-users] fetchmail runs MDA as root
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2285">[ date ]</a>
+              <a href="thread.html#2285">[ thread ]</a>
+              <a href="subject.html#2285">[ subject ]</a>
+              <a href="author.html#2285">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

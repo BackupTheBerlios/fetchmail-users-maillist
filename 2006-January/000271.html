@@ -1,0 +1,128 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] patch 6.3.2.1 for fetchmail 6.3.2 fixes SEGFAULT with .netrc files
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2006-January/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20patch%206.3.2.1%20for%20fetchmail%206.3.2%20fixes%20SEGFAULT%20with%20.netrc%20files&In-Reply-To=%3C20060130091724.GA7354%40merlin.emma.line.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000270.html">
+   
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] patch 6.3.2.1 for fetchmail 6.3.2 fixes SEGFAULT with .netrc files</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20patch%206.3.2.1%20for%20fetchmail%206.3.2%20fixes%20SEGFAULT%20with%20.netrc%20files&In-Reply-To=%3C20060130091724.GA7354%40merlin.emma.line.org%3E"
+       TITLE="[fetchmail-users] patch 6.3.2.1 for fetchmail 6.3.2 fixes SEGFAULT with .netrc files">matthias.andree at gmx.de
+       </A><BR>
+    <I>Mon Jan 30 10:17:24 CET 2006</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000270.html">[fetchmail-users] Re: [fetchmail-users] Re: [fetchmail-users] Re: [fetchmail-users] fetchmail doesn&#180;t fetching
+</A></li>
+        
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#271">[ date ]</a>
+              <a href="thread.html#271">[ thread ]</a>
+              <a href="subject.html#271">[ subject ]</a>
+              <a href="author.html#271">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA1
+
+Greetings,
+
+Craig Leres identified a new bug in fetchmail 6.3.2 (that now tries to
+erase the .netrc passwords before freeing its memory) that causes
+fetchmail to crash right after reading the .netrc file.
+
+Craig also provided a patch that I have accepted into the SVN
+repository that will appear in fetchmail 6.3.3. I am including the patch
+here (if your mailer is not GnuPG enabled, you need to manually edit all
+lines that start with &quot;- -&quot; so that they start with &quot;-&quot; - i. e.  remove
+the first minus and blank character on those lines).
+
+I recommend to add this patch as an interim fix to all distribution
+packages and on all sites that wish to use .netrc files.
+
+The patch can also be downloaded:
+
+<A HREF="http://download.berlios.de/fetchmail/patch-6.3.2.1-fix-netrc-SIGSEGV.diff">http://download.berlios.de/fetchmail/patch-6.3.2.1-fix-netrc-SIGSEGV.diff</A>
+
+My GnuPG signature for the patch is available at:
+
+<A HREF="http://download.berlios.de/fetchmail/patch-6.3.2.1-fix-netrc-SIGSEGV.diff.asc">http://download.berlios.de/fetchmail/patch-6.3.2.1-fix-netrc-SIGSEGV.diff.asc</A>
+
+Here is the patch:
+
+.......................................................................
+Craig Leres identified a problem that makes fetchmail 6.3.2 (only this
+version) crash if the .netrc file does not contain a password for a
+particular account.
+
+This patch is mostly Craig Leres' work has been committed to the
+SVN repository and should be applied to fetchmail 6.3.2 on all sites
+that plan to use netrc files:
+
+Index: netrc.c
+===================================================================
+- --- netrc.c	(Revision 4683)
++++ netrc.c	(Revision 4684)
+@@ -314,8 +314,10 @@
+ free_netrc(netrc_entry *a) {
+     while(a) {
+ 	netrc_entry *n = a-&gt;next;
+- -	memset(a-&gt;password, 0x55, strlen(a-&gt;password));
+- -	xfree(a-&gt;password);
++	if (a-&gt;password != NULL) {
++		memset(a-&gt;password, 0x55, strlen(a-&gt;password));
++		free(a-&gt;password);
++	}
+ 	xfree(a-&gt;login);
+ 	xfree(a-&gt;host);
+ 	xfree(a);
+
+Sorry for the inconvenience.  -- Matthias Andree, 2006-01-30
+.......................................................................
+
+Regards,
+
+- -- 
+Matthias Andree
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1.4.0 (GNU/Linux)
+
+iD8DBQFD3dmkvmGDOQUufZURAv1+AKDYf5zB++Dyj6buzKS0Fz6W9B70bQCglnYI
+F7gplc9LV+Ixh88mq0DSFNI=
+=4UM8
+-----END PGP SIGNATURE-----
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000270.html">[fetchmail-users] Re: [fetchmail-users] Re: [fetchmail-users] Re: [fetchmail-users] fetchmail doesn&#180;t fetching
+</A></li>
+	
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#271">[ date ]</a>
+              <a href="thread.html#271">[ thread ]</a>
+              <a href="subject.html#271">[ subject ]</a>
+              <a href="author.html#271">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

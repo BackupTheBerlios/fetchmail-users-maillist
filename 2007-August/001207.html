@@ -1,0 +1,163 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Fetchmail incorrect header yahoo
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2007-August/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Fetchmail%20incorrect%20header%20yahoo&In-Reply-To=%3C46D04DA8.8060807%40corridor9.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001205.html">
+   <LINK REL="Next"  HREF="001208.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Fetchmail incorrect header yahoo</H1>
+    <B>Andrew Buskov</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Fetchmail%20incorrect%20header%20yahoo&In-Reply-To=%3C46D04DA8.8060807%40corridor9.net%3E"
+       TITLE="[fetchmail-users] Fetchmail incorrect header yahoo">rescue at corridor9.net
+       </A><BR>
+    <I>Sat Aug 25 17:41:28 CEST 2007</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001205.html">[fetchmail-users] Fetchmail error &quot;requires envelope option&quot;
+</A></li>
+        <LI>Next message: <A HREF="001208.html">[fetchmail-users] Fetchmail incorrect header yahoo
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1207">[ date ]</a>
+              <a href="thread.html#1207">[ thread ]</a>
+              <a href="subject.html#1207">[ subject ]</a>
+              <a href="author.html#1207">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>I'm have lots of problems and I can't diagnose. Every now and then yahoo 
+screws with things on their end, so I'm not even sure it's my problem. 
+Everything was working fine about a week ago till I got a leaderless 
+email message. I deleted it thinking everything was cool, but after that 
+fetchmail wouldn't get anything from yahoo. The worst part was that it 
+would delete the mail from the yahoo server, so I'm not even sure how 
+many emails I lost.
+
+I'm using FreePOPs 0.0.99, and fetchmail-6.3.8 (using the source to 
+test, but was using the ubuntu package for feisty).
+
+Here's the fetchmail log from yahoo down:
+Code:
+
+fetchmail: 6.3.8 querying localhost (protocol POP3) at Sat 25 Aug 2007 
+08:08:50 AM CDT: poll started
+Trying to connect to 127.0.0.1/2000...connected.
+fetchmail: POP3&lt; +OK FreePOPs/0.0.99 pop3 server ready
+fetchmail: POP3&gt; CAPA
+fetchmail: POP3&lt; +OK ANSWER FOLLOW
+fetchmail: POP3&lt; TOP
+fetchmail: POP3&lt; USER
+fetchmail: POP3&lt; UIDL
+fetchmail: POP3&lt; .
+fetchmail: localhost: opportunistic upgrade to TLS failed, trying to 
+continue.
+fetchmail: POP3&gt; USER <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">rescue9 at yahoo.com</A>
+fetchmail: POP3&lt; +OK PLEASE ENTER PASSWORD
+fetchmail: POP3&gt; PASS *
+fetchmail: POP3&lt; +OK ACCESS ALLOWED
+fetchmail: selecting or re-polling default folder
+fetchmail: POP3&gt; STAT
+fetchmail: POP3&lt; +OK 1 1024
+1 message for <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">rescue9 at yahoo.com</A> at localhost (1024 octets).
+fetchmail: POP3&gt; LIST 1
+fetchmail: POP3&lt; +OK 1 1024
+fetchmail: POP3&gt; RETR 1
+fetchmail: POP3&lt; +OK ANSWER FOLLOW
+reading message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">rescue9 at yahoo.com</A>@localhost.localdomain:1 of 1 (1024 octets)
+fetchmail: incorrect header line found while scanning headers
+fetchmail: line: &lt;!--web36610--&gt;
+.................................................................................................fetchmail: 
+message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">rescue9 at yahoo.com</A>@localhost.localdomain:1 was not the
+expected length (99730 actual != 1024 expected)
+  flushed
+fetchmail: POP3&gt; DELE 1
+fetchmail: POP3&lt; +OK MESSAGE MARKED FOR DELETION
+fetchmail: POP3&gt; QUIT
+fetchmail: POP3&lt; +OK BYE BYE, UPDATING
+fetchmail: 6.3.8 querying localhost (protocol POP3) at Sat 25 Aug 2007 
+08:08:53 AM CDT: poll completed
+fetchmail: not swapping UID lists, no UIDs seen this query
+fetchmail: Deleting fetchids file.
+fetchmail: normal termination, status 0
+fetchmail: Deleting fetchids file.
+
+My /etc/fetchmailrc file reads as such:
+Code:
+
+###################### BEGIN <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">rescue at corridor9.net</A>########################
+
+poll pop.gmail.com port 995 proto pop3
+user &quot;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">mademt at gmail.com</A>&quot; password &quot;YouDon'tNeedThis&quot; ssl is &quot;c9rescue&quot; here
+
+poll pop.gmail.com port 995 proto pop3
+user &quot;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">madfireman at gmail.com</A>&quot; password &quot;YouDon'tNeedThis&quot; ssl is 
+&quot;c9rescue&quot; here
+
+poll localhost port 2000 proto pop3
+user &quot;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">rescue9 at yahoo.com</A>&quot; password &quot;YouDon'tNeedThis&quot; is &quot;c9rescue&quot; here
+
+###################### END <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">rescue at corridor9.net</A>##########################
+
+A bit redundant, but /var/log/mail.info shows (NOTE: This was with 6.3.6 
+ubuntu package, not the source as listed above):
+Code:
+
+Aug 25 07:42:06 sulaco fetchmail[28834]: starting fetchmail 6.3.6 daemon
+Aug 25 07:42:08 sulaco fetchmail[28834]: 1 message for <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">rescue9 at yahoo.com</A> 
+at localhost (1024 octets).
+Aug 25 07:42:09 sulaco fetchmail[28834]: reading message 
+<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">rescue9 at yahoo.com</A>@localhost.localdomain:1 of 1 (1024 octets) (log 
+message incomplete)
+Aug 25 07:42:09 sulaco fetchmail[28834]: incorrect header line found 
+while scanning headers
+Aug 25 07:42:09 sulaco fetchmail[28834]:  flushed
+Aug 25 07:42:10 sulaco fetchmail[28834]: sleeping at Sat 25 Aug 2007 
+07:42:10 AM CDT for 300 seconds
+
+Freepops is NOT setup for chroot jail.
+
+I also tried setting sslproto ssl123 in the fetchmailrc file so it 
+wouldn't try to upgrade to TLS, but this didn't help.
+
+Any help would be greatly appreciated as a majority of my mail goes 
+through the yahoo server. BTW, fetching gmail servers work fine.
+-- 
+_____
+Visit Corridor9
+Blogging about BackpackGearTest.org, Firefighting, Linux, Hiking and more!
+<A HREF="http://www.corridor9.net">http://www.corridor9.net</A>
+__________________________________
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001205.html">[fetchmail-users] Fetchmail error &quot;requires envelope option&quot;
+</A></li>
+	<LI>Next message: <A HREF="001208.html">[fetchmail-users] Fetchmail incorrect header yahoo
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1207">[ date ]</a>
+              <a href="thread.html#1207">[ thread ]</a>
+              <a href="subject.html#1207">[ subject ]</a>
+              <a href="author.html#1207">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

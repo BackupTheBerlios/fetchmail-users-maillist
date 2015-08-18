@@ -1,0 +1,99 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] fetchmail doesn't fetch a specific message:	nameserver failure
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2013-February/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%20doesn%27t%20fetch%20a%20specific%20message%3A%0A%09nameserver%20failure&In-Reply-To=%3C510C1722.3080406%40quorumverita.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   
+   <LINK REL="Next"  HREF="003338.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] fetchmail doesn't fetch a specific message:	nameserver failure</H1>
+    <B>goncalopp</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%20doesn%27t%20fetch%20a%20specific%20message%3A%0A%09nameserver%20failure&In-Reply-To=%3C510C1722.3080406%40quorumverita.com%3E"
+       TITLE="[fetchmail-users] fetchmail doesn't fetch a specific message:	nameserver failure">goncalopp+berlios at quorumverita.com
+       </A><BR>
+    <I>Fri Feb  1 20:27:30 CET 2013</I>
+    <P><UL>
+        
+        <LI>Next message: <A HREF="003338.html">[fetchmail-users] fetchmail doesn't fetch a specific message: nameserver failure
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3337">[ date ]</a>
+              <a href="thread.html#3337">[ thread ]</a>
+              <a href="subject.html#3337">[ subject ]</a>
+              <a href="author.html#3337">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hello everyone,
+
+My fetchmail is having some trouble dealing with a specific message, 
+which it never downloads. It complains (rightly so) of a nameserver failure
+
+Here's the relevant output:
+
+&gt;<i> fetchmail: 6.3.18 querying imap.googlemail.com (protocol IMAP) at Fri Feb  1 19:05:35 2013: poll started
+</I>&gt;<i> reading message [MY_EMAIL]@googlemail-imap.l.google.com:1 of 1 (2113 header octets)
+</I>&gt;<i> fetchmail: nameserver failure while looking for 'noreply.github.com' during poll of imap.googlemail.com: No address associated with hostname
+</I>&gt;<i> [TRIMMED]
+</I>&gt;<i> fetchmail: 6.3.18 querying imap.googlemail.com (protocol IMAP) at Fri Feb  1 19:05:37 2013: poll completed
+</I>&gt;<i> fetchmail: normal termination, status 0
+</I>
+It seems to stumble on the message's &quot;To&quot; header:
+
+&gt;<i> To: myusername/myrepository &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">myrepository at noreply.github.com</A>&gt;
+</I>
+This address is faked by github (my real email is on a CC).
+
+&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">myusername at mymachine</A>:/root$ dig noreply.github.com
+</I>&gt;<i>
+</I>&gt;<i> ; &lt;&lt;&gt;&gt; DiG 9.7.3 &lt;&lt;&gt;&gt; noreply.github.com
+</I>&gt;<i> ;; global options: +cmd
+</I>&gt;<i> ;; Got answer:
+</I>&gt;<i> ;; -&gt;&gt;HEADER&lt;&lt;- opcode: QUERY, status: NOERROR, id: 56167
+</I>&gt;<i> ;; flags: qr rd ra; QUERY: 1, ANSWER: 0, AUTHORITY: 1, ADDITIONAL: 0
+</I>&gt;<i>
+</I>&gt;<i> ;; QUESTION SECTION:
+</I>&gt;<i> ;noreply.github.com.		IN	A
+</I>&gt;<i>
+</I>&gt;<i> ;; AUTHORITY SECTION:
+</I>&gt;<i> github.com.		60	IN	SOA	ns1.p16.dynect.net. hostmaster.github.com. 1359672930 3600 600 604800 60
+</I>&gt;<i>
+</I>&gt;<i> ;; Query time: 73 msec
+</I>&gt;<i> ;; SERVER: [TRIMMED]
+</I>&gt;<i> ;; WHEN: Fri Feb  1 19:18:54 2013
+</I>&gt;<i> ;; MSG SIZE  rcvd: 101
+</I>
+Is this a known problem? I haven't been able to find anything similar
+</PRE>
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	
+	<LI>Next message: <A HREF="003338.html">[fetchmail-users] fetchmail doesn't fetch a specific message: nameserver failure
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3337">[ date ]</a>
+              <a href="thread.html#3337">[ thread ]</a>
+              <a href="subject.html#3337">[ subject ]</a>
+              <a href="author.html#3337">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

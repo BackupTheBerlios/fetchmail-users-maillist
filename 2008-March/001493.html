@@ -1,0 +1,127 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] How to bind fetchmail to use a	specificaddress?
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2008-March/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20How%20to%20bind%20fetchmail%20to%20use%20a%0A%09specificaddress%3F&In-Reply-To=%3C20080326115803.8E7DB1CD34%40mail.wablet.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001492.html">
+   <LINK REL="Next"  HREF="001494.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] How to bind fetchmail to use a	specificaddress?</H1>
+    <B>isabel at fbmsoftware.com</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20How%20to%20bind%20fetchmail%20to%20use%20a%0A%09specificaddress%3F&In-Reply-To=%3C20080326115803.8E7DB1CD34%40mail.wablet.com%3E"
+       TITLE="[fetchmail-users] How to bind fetchmail to use a	specificaddress?">isabel at fbmsoftware.com
+       </A><BR>
+    <I>Wed Mar 26 12:58:41 CET 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001492.html">[fetchmail-users] How to bind fetchmail to use a specific	address?
+</A></li>
+        <LI>Next message: <A HREF="001494.html">[fetchmail-users] Startup item for OSX 10.3.9
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1493">[ date ]</a>
+              <a href="thread.html#1493">[ thread ]</a>
+              <a href="subject.html#1493">[ subject ]</a>
+              <a href="author.html#1493">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>I just want to say thank you because your suggestion really helped me. I
+just run the &quot;route add&quot; command and it indeed solved my problem.
+
+Thank you very much. =)
+
+- Isabel
+
+-----Original Message-----
+From: <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">fetchmail-users-bounces at lists.berlios.de</A>
+[mailto:<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">fetchmail-users-bounces at lists.berlios.de</A>] On Behalf Of Rob MacGregor
+Sent: Tuesday, March 18, 2008 7:28 PM
+To: <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">fetchmail-users at lists.berlios.de</A>
+Subject: Re: [fetchmail-users] How to bind fetchmail to use a
+specificaddress?
+
+On Tue, Mar 18, 2008 at 11:06 AM,  &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">isabel at fbmsoftware.com</A>&gt; wrote:
+&gt;<i> Hi everyone!
+</I>&gt;<i>
+</I>&gt;<i>  I hope you could help me guys.
+</I>&gt;<i>
+</I>&gt;<i>  This is my setup:
+</I>&gt;<i>
+</I>&gt;<i>  *       I'm running fetchmail in a Debian machine.
+</I>&gt;<i>  *       The Debian machine has 2 different IP addresses (IP1 and IP2).
+</I>&gt;<i>  *       Fetchmail is using IP1 to connect to the server
+</I>(mail.something.com)
+&gt;<i>  where we get our emails. I use the &quot;netstat -tupan | grep fetchmail&quot;
+</I>command
+&gt;<i>  to confirm this.
+</I>&gt;<i>
+</I>&gt;<i>  My problem now is, the server we are accessing (mail.something.com) only
+</I>&gt;<i>  allow IP2 to pass through their server but fetchmail is using IP1. Is
+</I>there
+&gt;<i>  anyway to force fetchmail to bind or use IP2 instead and not IP1? I want
+</I>to
+&gt;<i>  try first if this is possible. If I have no choice, I would ask the
+</I>server
+&gt;<i>  (mail.something.com) we are accessing to allow our other IP.
+</I>
+This is really just a network routing issue - simply add a static route:
+
+ route add -host mail.something.com ethX
+
+Replace &quot;ethX&quot; with the name of the interface that IP2 is bound to.
+Add this to the appropriate config file (sorry, I don't know enough
+about Debian to say for certain how to do that).
+
+-- 
+ Please keep list traffic on the list.
+
+Rob MacGregor
+ Whoever fights monsters should see to it that in the process he
+ doesn't become a monster. Friedrich Nietzsche
+_______________________________________________
+fetchmail-users mailing list
+<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">fetchmail-users at lists.berlios.de</A>
+<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">https://lists.berlios.de/mailman/listinfo/fetchmail-users</A>
+
+
+-- 
+No virus found in this incoming message.
+Checked by AVG. 
+Version: 7.5.519 / Virus Database: 269.21.7/1332 - Release Date: 3/17/2008
+10:48 AM
+
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001492.html">[fetchmail-users] How to bind fetchmail to use a specific	address?
+</A></li>
+	<LI>Next message: <A HREF="001494.html">[fetchmail-users] Startup item for OSX 10.3.9
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1493">[ date ]</a>
+              <a href="thread.html#1493">[ thread ]</a>
+              <a href="subject.html#1493">[ subject ]</a>
+              <a href="author.html#1493">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

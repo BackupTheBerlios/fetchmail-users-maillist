@@ -1,0 +1,102 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] fetchmail 6.3.7-rc1 release candidate
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2007-February/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%206.3.7-rc1%20release%20candidate&In-Reply-To=%3C20070203003150.GB15040%40merlin.emma.line.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000800.html">
+   <LINK REL="Next"  HREF="000802.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] fetchmail 6.3.7-rc1 release candidate</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%206.3.7-rc1%20release%20candidate&In-Reply-To=%3C20070203003150.GB15040%40merlin.emma.line.org%3E"
+       TITLE="[fetchmail-users] fetchmail 6.3.7-rc1 release candidate">matthias.andree at gmx.de
+       </A><BR>
+    <I>Sat Feb  3 01:31:50 CET 2007</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000800.html">[fetchmail-users] message...was not the expected	length...not	flushed
+</A></li>
+        <LI>Next message: <A HREF="000802.html">[fetchmail-users] fetchmail: incorrect header ?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#799">[ date ]</a>
+              <a href="thread.html#799">[ thread ]</a>
+              <a href="subject.html#799">[ subject ]</a>
+              <a href="author.html#799">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA1
+
+Greetings,
+
+The security fixes in 6.3.6 also had side effects, and broke these two
+features:
+- - KPOP authentication
+- - repolling without TLS if opportunistic upgrade to TLS failed for POP3
+
+I have uploaded the fetchmail 6.3.7 release candidate to the usual download location:
+&lt;<A HREF="http://home.pages.de/~mandree/fetchmail/">http://home.pages.de/~mandree/fetchmail/</A>&gt; - this should become the
+final 6.3.7 release quite soon - unless further regressions or critical
+bugs are reported.
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+fetchmail 6.3.7 changes since 6.3.6:
+
+# FIXES FOR REGRESSIONS IN 6.3.6
+* Fix KPOP. Patch by Miloslav Trmac.
+* Fix repoll when server disconnects after opportunistic TLS failed for POP3.
+  Berlios Bug #10133, reported by Andrej Kacian.
+
+# TRANSLATION UPDATES
+* Japanese (Takeshi Hamasaki), Polish (Jakub Bogusz)
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+WARNING: This message sets the Reply-To: header.
+When replying to me personally, you need to edit the To: header!
+
+Thank you.
+
+Happy fetching,
+Matthias Andree
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1.4.5 (GNU/Linux)
+
+iD8DBQFFw9f2vmGDOQUufZURAvhJAKCNcHhCUFf2aZ+yj3zDjomHgyGK1ACeO9DN
+y4oyx3Dl4EHy/3vvSKE4prs=
+=QH4/
+-----END PGP SIGNATURE-----
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000800.html">[fetchmail-users] message...was not the expected	length...not	flushed
+</A></li>
+	<LI>Next message: <A HREF="000802.html">[fetchmail-users] fetchmail: incorrect header ?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#799">[ date ]</a>
+              <a href="thread.html#799">[ thread ]</a>
+              <a href="subject.html#799">[ subject ]</a>
+              <a href="author.html#799">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

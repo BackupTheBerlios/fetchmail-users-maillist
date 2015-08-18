@@ -1,0 +1,131 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] fetchmail and socks5
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2007-March/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%20and%20socks5&In-Reply-To=%3C46007089.90903%40gmx.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000911.html">
+   <LINK REL="Next"  HREF="000924.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] fetchmail and socks5</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%20and%20socks5&In-Reply-To=%3C46007089.90903%40gmx.de%3E"
+       TITLE="[fetchmail-users] fetchmail and socks5">matthias.andree at gmx.de
+       </A><BR>
+    <I>Wed Mar 21 00:38:49 CET 2007</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000911.html">[fetchmail-users] fetchmail and socks5
+</A></li>
+        <LI>Next message: <A HREF="000924.html">[fetchmail-users] fetchmail and socks5
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#913">[ date ]</a>
+              <a href="thread.html#913">[ thread ]</a>
+              <a href="subject.html#913">[ subject ]</a>
+              <a href="author.html#913">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Jochen Hayek schrieb:
+
+&gt;&gt;<i> On 3/18/07, Matthias Andree &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">matthias.andree at gmx.de</A>&gt; wrote:
+</I>&gt;<i> 
+</I>&gt;<i>     MA&gt; That's the distributor's business, 
+</I>&gt;<i>     MA&gt; not that of the fetchmail maintainers.
+</I>&gt;<i> 
+</I>&gt;<i> Well I think, at the end of the day it's &quot;the user's&quot; problem,
+</I>&gt;<i> and I guess 99% of the fetchmail users employ a ready-made installation,
+</I>&gt;<i> and fetchmail is giving them grief, if it assumes uncomfortable defaults.
+</I>
+Sorry to those who are bored by this discussion, but as this is still
+boiling, I must conclude the participants are unhappy with the state of
+the discussion. Let's try to break this down to objective criteria and
+understand the actual cause of these emotions.
+
+Up front, maintainers are loathe to change system behavior, because that
+causes users pain, causes complaints, support work and all else we don't
+want. Trying to satisfy contradictory requirements leads either to a
+majority vote, a maintainer vote, or a configuration option.
+
+We know the configuration option at run-time isn't feasible beyond
+SOCKS_CONF -- which itself invalidates the need for a
+command-line/rcfile option in fetchmail.
+
+The questions I'm having:
+
+1. What good is SOCKS, anyways?
+   Why use SOCKS if I can have IPFW, IPFW2, PF, netfilter?
+
+2. What was the original problem or surprise?
+   You configured socks, which implies assigning socks proxies to
+   certain destination addresses/networks.
+   Your proxy went down, so you could not connect. So what?
+   In SOCKS scenarios, the SOCKS proxy is the interface to the outside
+   world, and indispensable in such configurations.
+   Not a surprise to me.
+
+   If there is a relevant standard (IETF, LSB, IEEE...) that states how
+   socks-enabled applications should behave, I'll reconsider.
+
+3. What is the scenario in production where each application had its own
+   socks configuration? In what way is the SOCKS_CONF
+   configuration mechanism insufficient?
+
+   Why do you think fetchmail should try to be smarter than the user and
+   stomp over his environment variables or configuration files?
+
+4. Would not it be more fruitful if the end user talked to the
+   distributor who packaged fetchmail with the *nondefault*
+   --with-socks[5] option rather than offering socksify or similar?
+
+   The upstream default - at compile time - already is &quot;no socks&quot;.
+
+&gt;<i> Obviously everybody may have his/her own position on what is (un)comfortable in this respect.
+</I>&gt;<i> But maybe &quot;relevance of positions&quot; should somehow relate to &quot;competence and experience in *the* area and *not* *just* in IT&quot;.
+</I>
+I understand your double frustration, first the socks irritations as
+such, and then that the upstream maintainers we don't see reasons to
+change existing code soon in spite of your desperate attempts to
+convince them.
+
+Note that invoking experience in a certain area isn't a valid reason to
+support your suggestions. I'll rather look at objective arguments.
+
+I hope to ground the unhealthy emotions from this discussion and get to
+the core arguments.
+
+Best,
+Matthias
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000911.html">[fetchmail-users] fetchmail and socks5
+</A></li>
+	<LI>Next message: <A HREF="000924.html">[fetchmail-users] fetchmail and socks5
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#913">[ date ]</a>
+              <a href="thread.html#913">[ thread ]</a>
+              <a href="subject.html#913">[ subject ]</a>
+              <a href="author.html#913">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,144 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Server CommonName: *.sslcert35.com
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2009-August/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Server%20CommonName%3A%20%2A.sslcert35.com&In-Reply-To=%3Cop.uy6k0nxu1e62zd%40merlin.emma.line.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002040.html">
+   <LINK REL="Next"  HREF="002042.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Server CommonName: *.sslcert35.com</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Server%20CommonName%3A%20%2A.sslcert35.com&In-Reply-To=%3Cop.uy6k0nxu1e62zd%40merlin.emma.line.org%3E"
+       TITLE="[fetchmail-users] Server CommonName: *.sslcert35.com">matthias.andree at gmx.de
+       </A><BR>
+    <I>Mon Aug 24 21:13:25 CEST 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002040.html">[fetchmail-users] Server CommonName: *.sslcert35.com
+</A></li>
+        <LI>Next message: <A HREF="002042.html">[fetchmail-users] Server CommonName: *.sslcert35.com
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2041">[ date ]</a>
+              <a href="thread.html#2041">[ thread ]</a>
+              <a href="subject.html#2041">[ subject ]</a>
+              <a href="author.html#2041">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi James,
+
+you wrote:
+
+&gt;<i> I have a problem in which I can't tell if there is a Fetchmail problem  
+</I>&gt;<i> or some issue with ssl.
+</I>&gt;<i>
+</I>&gt;<i> It results in a bunch of email messages I don't want that include the  
+</I>&gt;<i> same message:
+</I>&gt;<i>
+</I>&gt;<i> &quot;Server CommonName: *.sslcert35.com.&quot;
+</I>&gt;<i>
+</I>&gt;<i> Is there a way I can stop getting an email every time Fetchmail starts?
+</I>
+Maybe - that depends on how exactly your cron line looks like - can you  
+show that?
+I suspect there are some verbose options - and cron will dutifully mail  
+the verbose output. So if you request it, you'll get it.
+
+You can also filter particular lines out by piping fetchmail output  
+through grep -v or sed (perhaps you also need a 2&gt;&amp;1 before the pipe  
+symbol so that stderr gets filtered, too), or you can redirect fetchmail's  
+output to a file, either by regular shell means (even in crontab), or  
+through the logfile option (if you're using fetchmail's daemon mode on the  
+crontab line).
+
+&gt;<i> At least with what I am capable of doing - and I'm a relatively  
+</I>&gt;<i> experienced Linux user - over 5 years and this additional step, beyond  
+</I>&gt;<i> all of the other things is, its becoming too much.
+</I>&gt;<i>
+</I>&gt;<i> ***Your users really should be allowed to disable this***
+</I>
+Euh, disable what? The message? I'm not getting anything like it for my  
+SSL servers unless I request verbose output.
+
+&gt;<i> ...because it is very difficult to deal with unless you are well versed  
+</I>&gt;<i> in ssl - or maybe not I don't know -
+</I>&gt;<i>
+</I>&gt;<i> It seems like a problem with Fetchmail.
+</I>&gt;<i>
+</I>&gt;<i> Most users aren't well versed with SSL. I'm barely grasping this - and  
+</I>&gt;<i> amongst the other responsibilities I have and other complex things I had  
+</I>&gt;<i> to learn to set up other programs on the server that this appears on -  
+</I>&gt;<i> unbelievable.
+</I>
+fetchmail's packaged README.SSL document (plain text) could help  
+understanding things, but perhaps not your current issue (I'm not sure if  
+it's SSL, fetchmail, or your crontab line that causes this).
+
+&gt;<i> I've no idea if, because I have some files in /etc/ssl/certs the problem  
+</I>&gt;<i> occurs or what. That's the only way I can imagine Fetchmail isn't the  
+</I>&gt;<i> problem.
+</I>
+Unfortunately, you appear to have massively made up information (such as  
+server names and IPs), so it is impossible to check what's really up.
+
+&gt;<i> I have in my ~/.fetchmailrc file:
+</I>&gt;<i>
+</I>&gt;<i> ...
+</I>&gt;<i> poll frustration.com with proto pop3
+</I>&gt;<i> ...
+</I>
+&gt;<i> I get:
+</I>&gt;<i>
+</I>&gt;<i> fetchmail -v
+</I>&gt;<i> fetchmail: 6.3.11 querying frustrated.com (protocol POP3) at Sun Aug 23  
+</I>&gt;<i> 21:33:56 2009: poll started
+</I>&gt;<i> Trying to connect to 123.456.78.91/995...connected.
+</I>
+As we can see, there is a mismatch between your poll line and what you  
+claim fetchmail reports, and the IPv4 address is invalid.
+
+&gt;<i> This is so complicated that its hard to figure out if there is a bug -  
+</I>&gt;<i> you are lucky if someone reports it!
+</I>
+You've made it hard to figure out.
+
+If you want any serious advice, do not make up hostnames and IP addresses.
+
+Thank you.
+
+-- 
+Matthias Andree
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002040.html">[fetchmail-users] Server CommonName: *.sslcert35.com
+</A></li>
+	<LI>Next message: <A HREF="002042.html">[fetchmail-users] Server CommonName: *.sslcert35.com
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2041">[ date ]</a>
+              <a href="thread.html#2041">[ thread ]</a>
+              <a href="subject.html#2041">[ subject ]</a>
+              <a href="author.html#2041">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

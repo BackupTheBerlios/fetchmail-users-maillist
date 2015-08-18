@@ -1,0 +1,96 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] TwoAccounts
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2006-September/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20TwoAccounts&In-Reply-To=%3Cm34pv0eumu.fsf%40merlin.emma.line.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000603.html">
+   <LINK REL="Next"  HREF="000605.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] TwoAccounts</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20TwoAccounts&In-Reply-To=%3Cm34pv0eumu.fsf%40merlin.emma.line.org%3E"
+       TITLE="[fetchmail-users] TwoAccounts">matthias.andree at gmx.de
+       </A><BR>
+    <I>Fri Sep 22 00:12:57 CEST 2006</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000603.html">[fetchmail-users] TwoAccounts
+</A></li>
+        <LI>Next message: <A HREF="000605.html">[fetchmail-users] TwoAccounts
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#604">[ date ]</a>
+              <a href="thread.html#604">[ thread ]</a>
+              <a href="subject.html#604">[ subject ]</a>
+              <a href="author.html#604">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>&quot;Andrea Bencini&quot; &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">andrea.bencini at tin.it</A>&gt; writes:
+
+&gt;&gt;<i> what exactly was unclear about &quot;Multiple servers may be listed:&quot; in said
+</I>&gt;&gt;<i> section?
+</I>&gt;<i>
+</I>&gt;<i> The section that I read was &quot;Configuration examples&quot;.
+</I>&gt;<i> The examples are clear, but I did'nt find the answer to my question.
+</I>
+If your original question was &quot;how to duplicate messages for two
+accounts&quot;, fetchmail doesn't directly support that, since it's built
+around the idea of a local fully-fledged mail server that can do alias
+expansion.
+
+For anything that is remotely sendmail compatible (i. e. most mailers
+except qmail), writing something like this line into /etc/aliases or
+/etc/mail/aliases (check your manuals, details differ!) would work after
+running &quot;sendmail -bi&quot; or whatever else your system requires to rebuild
+the alias database:
+
+locallist: localuser1 localuser2
+
+Alternatively, but not recommended, you can trick it into doing that by
+using an program that can deliver to multiple recipients at the same
+time, for instance:
+
+mda &quot;/usr/sbin/sendmail -i -f %F -- localuser1 localuser2&quot;
+
+Syntax is crucial for the MDA option, do NOT add single quotes here, and
+don't forget the -i.
+
+Note that most filtering MDAs do not support multiple recipients on the
+command line, so you'd need to spell this out in the configuration file.
+
+-- 
+Matthias Andree
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000603.html">[fetchmail-users] TwoAccounts
+</A></li>
+	<LI>Next message: <A HREF="000605.html">[fetchmail-users] TwoAccounts
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#604">[ date ]</a>
+              <a href="thread.html#604">[ thread ]</a>
+              <a href="subject.html#604">[ subject ]</a>
+              <a href="author.html#604">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,282 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Init Script
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2007-September/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Init%20Script&In-Reply-To=%3C000001c7fdca%246afaa220%240201a8c0%40userydq01op4u1%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001273.html">
+   <LINK REL="Next"  HREF="001275.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Init Script</H1>
+    <B>Alex May</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Init%20Script&In-Reply-To=%3C000001c7fdca%246afaa220%240201a8c0%40userydq01op4u1%3E"
+       TITLE="[fetchmail-users] Init Script">alex at maymay.de
+       </A><BR>
+    <I>Sun Sep 23 12:13:41 CEST 2007</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001273.html">[fetchmail-users] daemon not cycling as intended
+</A></li>
+        <LI>Next message: <A HREF="001275.html">[fetchmail-users] Init Script
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1274">[ date ]</a>
+              <a href="thread.html#1274">[ thread ]</a>
+              <a href="subject.html#1274">[ subject ]</a>
+              <a href="author.html#1274">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>There must be something wrong with my init script.
+(I am running SuSe Linux Ver. 10.0)
+I can start fetchmail without any problem manually, but not automatically.
+When I try to start it via Yast2, I sometimes get an error message saying that boot.clock
+has to be started first or that the start failed, but sometimes I get a success message.
+I always get a message saying that running as root is discouraged.
+In any case, the daemon is not started.
+I have checked all the file locations (or at least tried to) and all seems to be right.
+Here are the file details and my init script, but I would be perfectly happy if someone could just tell me
+where to get an up to date script.
+I have searched and found nothing.
+Please help, this is driving me nuts.
+Thanks,
+Alex May
+
+linux:/etc # dir fetchmailrc
+-rw-------  1 root root 1186 2007-09-18 19:21 fetchmailrc
+
+linux:/etc/init.d # dir fetchmail
+-rwxr-xr-x  1 root root 6258 2006-06-07 16:07 fetchmail
+
+linux:~ # dir .fetchmailrc
+-rw-------  1 root root 1186 2007-09-18 19:21 .fetchmailrc
+
+#! /bin/sh
+# Copyright (c) 1995-2002 SuSE Linux AG, Nuernberg, Germany.
+# All rights reserved.
+#
+# Author: Stanislav Brabec &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">sbrabec at suse.cz</A>&gt;
+#
+# /etc/init.d/fetchmail
+#
+### BEGIN INIT INFO
+# Provides:          fetchmail
+# Required-Start:    $syslog $network sendmail
+# X-UnitedLinux-Should-Start:
+# Required-Stop:     $syslog $network sendmail
+# X-UnitedLinux-Should-Stop:
+# Default-Start:     3 5
+# Default-Stop:      0 1 2 6
+# Short-Description: Fetch mails for configured users
+# Description:       Start fetchmail as root and fetch mails for configured users.
+#	You must create configuration file /etc/fetchmailrc first.
+### END INIT INFO
+# 
+
+
+# Check for missing binaries (stale symlinks should not happen)
+# Note: Special treatment of stop for LSB conformance
+FETCHMAIL_BIN=/usr/bin/fetchmail
+test -x $FETCHMAIL_BIN || { echo &quot;$FETCHMAIL_BIN not installed&quot;; 
+	if [ &quot;$1&quot; = &quot;stop&quot; ]; then exit 0;
+	else exit 5; fi; }
+
+# Check for existence of needed config file and read it
+FETCHMAIL_CONFIG=/etc/sysconfig/fetchmail
+FETCHMAIL_RC=/etc/fetchmailrc
+test -r $FETCHMAIL_CONFIG || { echo &quot;$FETCHMAIL_CONFIG not existing&quot;;
+	if [ &quot;$1&quot; = &quot;stop&quot; ]; then exit 0;
+	else exit 6; fi; }
+test -r $FETCHMAIL_RC || { echo &quot;$FETCHMAIL_RC not existing&quot;;
+	if [ &quot;$1&quot; = &quot;stop&quot; ]; then exit 0;
+	else exit 6; fi; }
+
+# Read config
+FETCHMAIL_POLLING_INTERVAL=300
+FETCHMAIL_FETCHALL=yes
+FETCHMAIL_FETCHALL_OPTION=
+FETCHMAIL_SILENT=no
+FETCHMAIL_SILENT_OPTION=
+FETCHMAIL_EXPERT_OPTIONS=
+. $FETCHMAIL_CONFIG
+if [ $FETCHMAIL_FETCHALL = &quot;yes&quot; ] ; then
+    FETCHMAIL_FETCHALL_OPTION=&quot; -a&quot;
+fi
+if [ $FETCHMAIL_SILENT = &quot;yes&quot; ] ; then
+    FETCHMAIL_SILENT_OPTION=&quot; -s&quot;
+fi
+
+# Shell functions sourced from /etc/rc.status:
+#      rc_check         check and set local and overall rc status
+#      rc_status        check and set local and overall rc status
+#      rc_status -v     be verbose in local rc status and clear it afterwards
+#      rc_status -v -r  ditto and clear both the local and overall rc status
+#      rc_status -s     display &quot;skipped&quot; and exit with status 3
+#      rc_status -u     display &quot;unused&quot; and exit with status 3
+#      rc_failed        set local and overall rc status to failed
+#      rc_failed &lt;num&gt;  set local and overall rc status to &lt;num&gt;
+#      rc_reset         clear both the local and overall rc status
+#      rc_exit          exit appropriate to overall rc status
+#      rc_active        checks whether a service is activated by symlinks
+#      rc_splash arg    sets the boot splash screen to arg (if active)
+. /etc/rc.status
+
+# Reset status of this service
+rc_reset
+
+# Return values acc. to LSB for all commands but status:
+# 0	  - success
+# 1       - generic or unspecified error
+# 2       - invalid or excess argument(s)
+# 3       - unimplemented feature (e.g. &quot;reload&quot;)
+# 4       - user had insufficient privileges
+# 5       - program is not installed
+# 6       - program is not configured
+# 7       - program is not running
+# 8--199  - reserved (8--99 LSB, 100--149 distrib, 150--199 appl)
+# 
+# Note that starting an already running service, stopping
+# or restarting a not-running service as well as the restart
+# with force-reload (in case signaling is not supported) are
+# considered a success.
+
+case &quot;$1&quot; in
+    start)
+	echo -n &quot;Starting fetchmail&quot;
+	## Start daemon with startproc(8). If this fails
+	## the return value is set appropriately by startproc.
+	startproc $FETCHMAIL_BIN -d $FETCHMAIL_POLLING_INTERVAL$FETCHMAIL_FETCHALL_OPTION$FETCHMAIL_SILENT_OPTION
+$FETCHMAIL_EXPERT_OPTIONS -f $FETCHMAIL_RC -L /var/log/fetchmail 2&gt;&amp;1
+
+	# Remember status and be verbose
+	rc_status -v
+	;;
+    stop)
+	echo -n &quot;Shutting down fetchmail&quot;
+	## Stop daemon with killproc(8) and if this fails
+	## killproc sets the return value according to LSB.
+
+	killproc -TERM $FETCHMAIL_BIN
+
+	# Remember status and be verbose
+	rc_status -v
+	;;
+    try-restart|condrestart)
+	## Do a restart only if the service was active before.
+	## Note: try-restart is now part of LSB (as of 1.9).
+	## RH has a similar command named condrestart.
+	if test &quot;$1&quot; = &quot;condrestart&quot;; then
+		echo &quot;${attn} Use try-restart ${done}(LSB)${attn} rather than condrestart ${warn}(RH)${norm}&quot;
+	fi
+	$0 status
+	if test $? = 0; then
+		$0 restart
+	else
+		rc_reset	# Not running is not a failure.
+	fi
+	# Remember status and be quiet
+	rc_status
+	;;
+    restart)
+	## Stop the service and regardless of whether it was
+	## running or not, start it again.
+	$0 stop
+	$0 start
+
+	# Remember status and be quiet
+	rc_status
+	;;
+    force-reload)
+	## Signal the daemon to reload its config. Most daemons
+	## do this on signal 1 (SIGHUP).
+	## If it does not support it, restart.
+
+	echo -n &quot;Reload service fetchmail&quot;
+	## if it supports it:
+	killproc -HUP $FETCHMAIL_BIN
+	#touch /var/run/fetchmail.pid
+	rc_status -v
+
+	## Otherwise:
+	#$0 stop  &amp;&amp;  $0 start
+	#rc_status
+	;;
+    reload)
+	## Like force-reload, but if daemon does not support
+	## signaling, do nothing (!)
+
+	# If it supports signaling:
+	echo -n &quot;Reload service fetchmail&quot;
+	killproc -HUP $FETCHMAIL_BIN
+	#touch /var/run/fetchmail.pid
+	rc_status -v
+	
+	## Otherwise if it does not support reload:
+	#rc_failed 3
+	#rc_status -v
+	;;
+    status)
+	echo -n &quot;Checking for service fetchmail&quot;
+	## Check status with checkproc(8), if process is running
+	## checkproc will return with exit status 0.
+
+	# Return value is slightly different for the status command:
+	# 0 - service up and running
+	# 1 - service dead, but /var/run/  pid  file exists
+	# 2 - service dead, but /var/lock/ lock file exists
+	# 3 - service not running (unused)
+	# 4 - service status unknown :-(
+	# 5--199 reserved (5--99 LSB, 100--149 distro, 150--199 appl.)
+	
+	# NOTE: checkproc returns LSB compliant status values.
+	checkproc $FETCHMAIL_BIN
+	# NOTE: rc_status knows that we called this init script with
+	# &quot;status&quot; option and adapts its messages accordingly.
+	rc_status -v
+	;;
+    probe)
+	## Optional: Probe for the necessity of a reload, print out the
+	## argument to this init script which is required for a reload.
+	## Note: probe is not (yet) part of LSB (as of 1.9)
+
+	test $FETCHMAIL_CONFIG -nt /var/run/fetchmail.pid || test $FETCHMAIL_RC -nt /var/run/fetchmail.pid &amp;&amp; echo reload
+	;;
+    *)
+	echo &quot;Usage: $0 {start|stop|status|try-restart|restart|force-reload|reload}&quot;
+	exit 1
+	;;
+esac
+rc_exit
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001273.html">[fetchmail-users] daemon not cycling as intended
+</A></li>
+	<LI>Next message: <A HREF="001275.html">[fetchmail-users] Init Script
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1274">[ date ]</a>
+              <a href="thread.html#1274">[ thread ]</a>
+              <a href="subject.html#1274">[ subject ]</a>
+              <a href="author.html#1274">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

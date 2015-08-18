@@ -1,0 +1,155 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Network time-outs when handling IMAP IDLE
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2010-January/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Network%20time-outs%20when%20handling%20IMAP%20IDLE&In-Reply-To=%3C4B47B778.4010806%40papercut.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002183.html">
+   <LINK REL="Next"  HREF="002195.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Network time-outs when handling IMAP IDLE</H1>
+    <B>Matt Doran</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Network%20time-outs%20when%20handling%20IMAP%20IDLE&In-Reply-To=%3C4B47B778.4010806%40papercut.com%3E"
+       TITLE="[fetchmail-users] Network time-outs when handling IMAP IDLE">matt.doran at papercut.com
+       </A><BR>
+    <I>Fri Jan  8 23:53:44 CET 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002183.html">[fetchmail-users] Network time-outs when handling IMAP IDLE
+</A></li>
+        <LI>Next message: <A HREF="002195.html">[fetchmail-users] Network time-outs when handling IMAP IDLE
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2184">[ date ]</a>
+              <a href="thread.html#2184">[ thread ]</a>
+              <a href="subject.html#2184">[ subject ]</a>
+              <a href="author.html#2184">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On 9/01/2010 2:36 AM, Matthias Andree wrote:
+&gt;<i> Am 08.01.2010, 07:10 Uhr, schrieb Matt Doran &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">matt.doran at papercut.com</A>&gt;:
+</I>&gt;<i>
+</I>&gt;&gt;<i> Looking at the code (which I don't fully understand) it seems to have a
+</I>&gt;&gt;<i> 28 minute time-out to reissue the IDLE periodically.   Could this be the
+</I>&gt;&gt;<i> reason we see the 30+ minute time to time-out?    Would it make sense to
+</I>&gt;&gt;<i> have an option to shorten this period which would allow us to detect
+</I>&gt;&gt;<i> outtages faster?  Any other ideas?    I'm happy to try develop a patch
+</I>&gt;&gt;<i> if you have a suggestion.
+</I>&gt;<i>
+</I>&gt;<i> What operating system and version and what fetchmail version are you 
+</I>&gt;<i> using? Does the same happen with fetchmail 6.3.13?
+</I>
+Debian stable, with fetchmail 2.6.9.  I compiled a new version from the 
+latest 6.3 branch and the same occurred.
+
+&gt;<i>
+</I>&gt;<i> Can you compile and run a fetchmail version with debugging symbols and 
+</I>&gt;<i> obtain a stack backtrace from the running/hung fetchmail? That might 
+</I>&gt;<i> give us a clue where it's stuck.
+</I>
+Here's the stack trace where it gets stuck
+
+    #0  0x00007f60f537f970 in read () from /lib/libc.so.6
+    #1  0x00007f60f56e03f2 in ?? () from /usr/lib/libcrypto.so.0.9.8
+    #2  0x00007f60f56de60f in BIO_read () from /usr/lib/libcrypto.so.0.9.8
+    #3  0x00007f60f59d1b7a in ssl3_read_n () from /usr/lib/libssl.so.0.9.8
+    #4  0x00007f60f59d1f8c in ssl3_read_bytes () from
+    /usr/lib/libssl.so.0.9.8
+    #5  0x00007f60f59ce9cb in ssl3_peek () from /usr/lib/libssl.so.0.9.8
+    #6  0x00000000004052af in SockRead (sock=3, buf=0x7ffffe258500 &quot;+
+    IDLING&quot;, len=8192) at socket.c:457
+    #7  0x0000000000410319 in gen_recv (sock=3, buf=0x7ffffe258500 &quot;+
+    IDLING&quot;, size=8193) at transact.c:1528
+    #8  0x0000000000420c60 in imap_ok (sock=3, argbuf=0x7ffffe25a550
+    &quot;A0006 IDLE&quot;) at imap.c:61
+    #9  0x0000000000410020 in gen_transact (sock=3, fmt=&lt;value optimized
+    out&gt;) at transact.c:1599
+    #10 0x0000000000421200 in imap_idle (sock=3) at imap.c:707
+    #11 0x00000000004214aa in imap_getrange (sock=3, ctl=0x254dbc0,
+    folder=&lt;value optimized out&gt;, countp=0x7ffffe262874,
+    newp=0x7ffffe262870,
+         bytes=&lt;value optimized out&gt;) at imap.c:838
+    #12 0x000000000040dee7 in do_session (ctl=0x254dbc0, proto=0x433b00,
+    maxfetch=0) at driver.c:1322
+    #13 0x0000000000407b5d in query_host (ctl=0x254dbc0) at fetchmail.c:1483
+    #14 0x000000000040855a in main (argc=&lt;value optimized out&gt;,
+    argv=0x7ffffe262a98) at fetchmail.c:743
+
+
+&gt;<i>
+</I>&gt;<i> Also, please run fetchmail under strace or truss and show the last - 
+</I>&gt;<i> let's say 100 - non-repeating lines before it gets stuck. We may be 
+</I>&gt;<i> able to see from timer related, alarm(), signal()/sigaction() and 
+</I>&gt;<i> select() calls what timeouts it sets, this isn't exactly obvious from 
+</I>&gt;<i> reading the source off-hand.
+</I>&gt;<i>
+</I>&gt;<i>
+</I>
+I've also attached an strace and fetchmail -v output showing where it 
+gets stuck.  Here's the sequence of events:
+
+    * Start the idle -&gt; &quot;IMAP&gt; A0006 IDLE&quot;
+    * The IMAP server sends &quot;* OK Still here&quot;, every 2 minutes.  (You
+      can see in the strace that fetchmail is resetting the alarm timer
+      each time down from 28 minutes)
+    * After the 3rd one of these I dropped the network connection.
+    * After the 28 minute timer expires, fetchmail sends a &quot;DONE&quot;, and
+      waits for the 300s default timer to expire.
+    * Once the 300s time expires fetchmail quits (over 30 minutes after
+      network goes down)
+
+
+Hopefully this gives you enough to go on.
+
+To improve this, we'd probably need a way to change that 28 minute 
+timeout.   In the case of this IMAP server it sends us &quot;* OK Still here&quot; 
+updates every 2 minutes ... so if we could detect we didn't see this 
+after 3 minutes we could fail.   But having a way to set that IDLE 
+timeout to something shorter would be a quick and dirty way to improve 
+this situation.
+
+Matt
+-------------- next part --------------
+An embedded and charset-unspecified text was scrubbed...
+Name: fetchmail.txt
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/fetchmail-users/attachments/20100109/48de3fc0/attachment.txt">https://lists.berlios.de/pipermail/fetchmail-users/attachments/20100109/48de3fc0/attachment.txt</A>&gt;
+-------------- next part --------------
+An embedded and charset-unspecified text was scrubbed...
+Name: strace.txt
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/fetchmail-users/attachments/20100109/48de3fc0/attachment-0001.txt">https://lists.berlios.de/pipermail/fetchmail-users/attachments/20100109/48de3fc0/attachment-0001.txt</A>&gt;
+-------------- next part --------------
+An embedded and charset-unspecified text was scrubbed...
+Name: stacktrace.txt
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/fetchmail-users/attachments/20100109/48de3fc0/attachment-0002.txt">https://lists.berlios.de/pipermail/fetchmail-users/attachments/20100109/48de3fc0/attachment-0002.txt</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002183.html">[fetchmail-users] Network time-outs when handling IMAP IDLE
+</A></li>
+	<LI>Next message: <A HREF="002195.html">[fetchmail-users] Network time-outs when handling IMAP IDLE
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2184">[ date ]</a>
+              <a href="thread.html#2184">[ thread ]</a>
+              <a href="subject.html#2184">[ subject ]</a>
+              <a href="author.html#2184">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

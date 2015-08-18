@@ -1,0 +1,100 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] [2] Exit Status of fetchmail
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2005-January/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20%5B2%5D%20Exit%20Status%20of%20fetchmail&In-Reply-To=%3C20050101123132.GL31223%40freenet.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   
+   <LINK REL="Next"  HREF="000019.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] [2] Exit Status of fetchmail</H1>
+    <B>Michelle Konzack</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20%5B2%5D%20Exit%20Status%20of%20fetchmail&In-Reply-To=%3C20050101123132.GL31223%40freenet.de%3E"
+       TITLE="[fetchmail-users] [2] Exit Status of fetchmail">linux4michelle at freenet.de
+       </A><BR>
+    <I>Sat Jan  1 13:31:32 CET 2005</I>
+    <P><UL>
+        
+        <LI>Next message: <A HREF="000019.html">[fetchmail-users] Exchange converting to quoted-printable
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#18">[ date ]</a>
+              <a href="thread.html#18">[ thread ]</a>
+              <a href="subject.html#18">[ subject ]</a>
+              <a href="author.html#18">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hello, 
+
+Unfortunatly I have not found any informations abour the Exit Status
+of fetchmail but I have encountered following:
+
+If 'fetchmail' runs from cron without a VT I get
+
+0   OK          There was minimum one Message successfuly fetched.
+1   No mail     Mailbox was empty and there was no Mail fetched.
+3   No Fetch    The Mailbox or the Password was incorrect and there was
+                no fetch =&gt; tries to fetch mail from &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">root at isp.tld</A>&gt;.
+
+The Error Status 3 is wrong because if I run fetchmail from a VT I get
+
+0   OK          There was minimum one Message successfuly fetched
+1   No mail     Mailbox was empty and there was no Mail fetched
+2   Auth fail   The Mailbox or the Password was incorrect and I was asked
+                on the VT to enter a Passord for &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">root at isp.tld</A>&gt;
+
+Which mean, In the first case I will never get any Errors in my Admin
+logfiles (I do not check the $USER logfiles because privecy) but bekome
+bombed if I use &quot;MAILTO=&lt;my_admin_email&gt;&quot; in the crontab
+
+Is there a possibility to add a switch to 'fetchmail' which avoid asing
+for a password if in a ~/.fetchmailrc ins a Server provided but without
+a &quot;user&quot; ?
+
+Greetings and happy new year
+Michelle
+
+-- 
+Linux-User #280138 with the Linux Counter, <A HREF="http://counter.li.org/">http://counter.li.org/</A> 
+Michelle Konzack   Apt. 917                  ICQ #328449886
+                   50, rue de Soultz         MSM LinuxMichi
+0033/3/88452356    67100 Strasbourg/France   IRC #Debian (irc.icq.com)
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: signature.pgp
+Type: application/pgp-signature
+Size: 189 bytes
+Desc: Digital signature
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/fetchmail-users/attachments/20050101/8b7d9f43/attachment.pgp">https://lists.berlios.de/pipermail/fetchmail-users/attachments/20050101/8b7d9f43/attachment.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	
+	<LI>Next message: <A HREF="000019.html">[fetchmail-users] Exchange converting to quoted-printable
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#18">[ date ]</a>
+              <a href="thread.html#18">[ thread ]</a>
+              <a href="subject.html#18">[ subject ]</a>
+              <a href="author.html#18">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,122 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Fetchmail, gmail, and a new computer
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2012-May/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Fetchmail%2C%20gmail%2C%20and%20a%20new%20computer&In-Reply-To=%3CCAARWLqtLLAGsrZtT_%2BUWhMop%2Bn-F6TGqW1_-RHOoZtYCmPjO-g%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003124.html">
+   <LINK REL="Next"  HREF="003126.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Fetchmail, gmail, and a new computer</H1>
+    <B>Jim J</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Fetchmail%2C%20gmail%2C%20and%20a%20new%20computer&In-Reply-To=%3CCAARWLqtLLAGsrZtT_%2BUWhMop%2Bn-F6TGqW1_-RHOoZtYCmPjO-g%40mail.gmail.com%3E"
+       TITLE="[fetchmail-users] Fetchmail, gmail, and a new computer">jahosefet at gmail.com
+       </A><BR>
+    <I>Mon May 21 23:43:57 CEST 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003124.html">[fetchmail-users] Fetchmail, gmail, and a new computer
+</A></li>
+        <LI>Next message: <A HREF="003126.html">[fetchmail-users] Fetchmail, gmail, and a new computer
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3125">[ date ]</a>
+              <a href="thread.html#3125">[ thread ]</a>
+              <a href="subject.html#3125">[ subject ]</a>
+              <a href="author.html#3125">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Sun, May 20, 2012 at 4:22 PM, Rob MacGregor &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">rob.macgregor at gmail.com</A>&gt;wrote:
+
+&gt;<i> On Sun, May 20, 2012 at 8:45 PM, Jim J &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">jahosefet at gmail.com</A>&gt; wrote:
+</I>&gt;<i>
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; /etc/fetchmailrc:
+</I>&gt;<i> &gt; set daemon 300
+</I>&gt;<i> &gt; poll pop.gmail.com port 995 with protocol pop3
+</I>&gt;<i> &gt;    user 'myusername' there with password 'mypassword' is 'mylocaluser'
+</I>&gt;<i> &gt; here
+</I>&gt;<i> &gt;    options ssl
+</I>&gt;<i> &gt;    mda 'procmail -d %T'
+</I>&gt;<i>
+</I>&gt;<i> &gt; I have no idea what the invocation line is, I'm using the built in Ubuntu
+</I>&gt;<i> &gt; init script to do the launching. Best I can guess from reading the init
+</I>&gt;<i> &gt; script it's something like: &quot;/usr/bin/fetchmail -f /etc/fetchmailrc
+</I>&gt;<i> &gt; --pidfile /var/run/fetchmail/fetchmail.pid&quot;. I also know it's being run
+</I>&gt;<i> as
+</I>&gt;<i> &gt; user 'fetchmail' which has a home directory at /var/lib/fetchmail.
+</I>&gt;<i>
+</I>&gt;<i> The first command I asked for the output of would have told you ;)
+</I>&gt;<i>
+</I>&gt;<i> &gt; I have not explicitly enabled UIDL anywhere that I know of, yet fetchmail
+</I>&gt;<i> &gt; does what I want on my old machine across reboots.
+</I>&gt;<i>
+</I>&gt;<i> That could be Google doing something then - neither their POP3 or IMAP
+</I>&gt;<i> implementations are quite standard. I suspect you'll have to enable
+</I>&gt;<i> UIDL in your configuration file and live with having to re-download
+</I>&gt;<i> lots of email.
+</I>&gt;<i>
+</I>&gt;<i> --
+</I>&gt;<i>                  Please keep list traffic on the list.
+</I>&gt;<i>
+</I>&gt;<i> Rob MacGregor
+</I>&gt;<i>       Whoever fights monsters should see to it that in the process he
+</I>&gt;<i>         doesn't become a monster.                  Friedrich Nietzsche
+</I>&gt;<i> _______________________________________________
+</I>&gt;<i> fetchmail-users mailing list
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">fetchmail-users at lists.berlios.de</A>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">https://lists.berlios.de/mailman/listinfo/fetchmail-users</A>
+</I>&gt;<i>
+</I>
+Sorry, had to stop working yesterday.
+
+ps -ef | egrep fetchmail
+110     3069        1   0  17:34 ?      00:00:00 /usr/bin/fetchmail -f
+/etc/fetchmailrc --pidfile / var/run/fetchmail/fetchmail.pid --syslog
+1000    3079  1013   0  17:35 tty1  00:00:00 egrep --color-auto fetchmail
+
+find /etc -name fetchmailrc -print
+/etc/fetchmailrc
+
+It would be really unfortunate to have to download all my email again. Are
+you telling me that Gmail can detect my particular fetchmail client through
+the NAT on my firewall in order to feed it only new mail? If I do have to
+redownload everything, do you think it would suffice to download it
+somewhere new, grab the UIDL file, and then delete the emails?
+
+Thanks for your help,
+
+Jim
+</PRE>
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003124.html">[fetchmail-users] Fetchmail, gmail, and a new computer
+</A></li>
+	<LI>Next message: <A HREF="003126.html">[fetchmail-users] Fetchmail, gmail, and a new computer
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3125">[ date ]</a>
+              <a href="thread.html#3125">[ thread ]</a>
+              <a href="subject.html#3125">[ subject ]</a>
+              <a href="author.html#3125">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

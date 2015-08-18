@@ -1,0 +1,130 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Possible fetchmail bug in 6.3.19 ?
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2011-June/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Possible%20fetchmail%20bug%20in%206.3.19%20%3F&In-Reply-To=%3C4DE6030C.8090307%40gmx.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002843.html">
+   <LINK REL="Next"  HREF="002845.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Possible fetchmail bug in 6.3.19 ?</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Possible%20fetchmail%20bug%20in%206.3.19%20%3F&In-Reply-To=%3C4DE6030C.8090307%40gmx.de%3E"
+       TITLE="[fetchmail-users] Possible fetchmail bug in 6.3.19 ?">matthias.andree at gmx.de
+       </A><BR>
+    <I>Wed Jun  1 11:14:52 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002843.html">[fetchmail-users] Possible fetchmail bug in 6.3.19 ?
+</A></li>
+        <LI>Next message: <A HREF="002845.html">[fetchmail-users] Possible fetchmail bug in 6.3.19 ?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2844">[ date ]</a>
+              <a href="thread.html#2844">[ thread ]</a>
+              <a href="subject.html#2844">[ subject ]</a>
+              <a href="author.html#2844">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Am 31.05.2011 07:57, schrieb Pandu Poluan:
+&gt;<i> Hello, I *might* have found a bug:
+</I>&gt;<i> 
+</I>&gt;<i> On fetchmail-6.3.18 on Cygwin, I have no problem logging in to my IMAP
+</I>&gt;<i> server using this password:
+</I>&gt;<i> 
+</I>&gt;<i> Lw$-HK`Tu#NQg%r2N00O
+</I>&gt;<i> 
+</I>&gt;<i> Yet, when I use fetchmail-6.3.19 on Arch Linux, using the *exact* same
+</I>&gt;<i> configuration (and same password) *always* resulted in an
+</I>&gt;<i> authentication failure.
+</I>
+Hi Pandu,
+
+thanks for taking the time to report this.
+
+I've checked this, but I can't seem to reproduce this on 6.3.19 or
+6.3.20-rc3, for POP3 or IMAP, one sample from the strace below:
+
+...
+write(3, &quot;A0002 LOGIN \&quot;test\&quot; \&quot;Lw$-HK`Tu#NQg%r2N00O\&quot;\r\n&quot;, 43) = 43
+...
+
+Looks sane. Can you:
+
+1. send your *old* configuration (feel free to change the username, too,
+but please leave the Lw$... password in place with the quoting set or
+unset as you'd used it on Cygwin),
+
+2. and possibly also change your fetchmail password back to the old one
+on Arch Linux and run this (you may need to install the strace package):
+
+strace -vs80 -o'|egrep &quot;PASS|LOGIN|AUTH&quot;' fetchmail (add your other options)
+
+If you are using SSL, then you need to disable it for the test (i. e.
+remove ssl and add sslproto &quot;&quot;) -- as the password is invalid, there is
+no risk in exposing it.
+
+Then change the password back to what's currently on the server and
+re-enable ssl or tls. so you can fetch mail again.
+
+3. Is Arch Linux applying any patches to fetchmail or using any special
+&quot;hardening&quot; for applications?
+
+Chances are that the patches or library or tools they use (or make you
+to use) to build 6.3.19 are broken.  Notable required tools are
+autoconf, automake, bison, flex, gcc or clang; notable required
+libraries are libc, openssl, libintl (although that shouldn't influence
+what gets sent)
+
+&gt;<i> After I replaced the password on the server *and* the fetchmail-6.3.19
+</I>&gt;<i> configuration, limiting the password to fulfill the regex pattern
+</I>&gt;<i> ^[a-zA-Z0-9-_]{30}$, authentication is successful again.
+</I>&gt;<i> 
+</I>&gt;<i> I think fetchmail-6.3.19 chokes on some special characters.
+</I>
+I don't think so, but let's investigate.
+
+Another possibility is that the server got a software or configuration
+upgrade around the same time as you switched from Cygwin to Arch Linux,
+which broke. There are four characters that can break improperly handled
+strings in shells, C, or possibly other programming languages: # $ % `
+
+The strace command should reveal if fetchmail is sending the right
+password.  Verbose tracing does not help because fetchmail hides the
+password.
+
+-- 
+Matthias Andree
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002843.html">[fetchmail-users] Possible fetchmail bug in 6.3.19 ?
+</A></li>
+	<LI>Next message: <A HREF="002845.html">[fetchmail-users] Possible fetchmail bug in 6.3.19 ?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2844">[ date ]</a>
+              <a href="thread.html#2844">[ thread ]</a>
+              <a href="subject.html#2844">[ subject ]</a>
+              <a href="author.html#2844">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

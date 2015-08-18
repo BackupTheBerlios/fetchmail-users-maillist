@@ -1,0 +1,114 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] fetchmail and socks5
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2007-March/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%20and%20socks5&In-Reply-To=%3Cm3r6rlmp7i.fsf%40HayekJ.Hayek-local.name%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000898.html">
+   <LINK REL="Next"  HREF="000903.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] fetchmail and socks5</H1>
+    <B>Jochen Hayek</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%20and%20socks5&In-Reply-To=%3Cm3r6rlmp7i.fsf%40HayekJ.Hayek-local.name%3E"
+       TITLE="[fetchmail-users] fetchmail and socks5">Jochen+fetchmail-users at Hayek.name
+       </A><BR>
+    <I>Mon Mar 19 12:45:37 CET 2007</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000898.html">[fetchmail-users] fetchmail and socks5
+</A></li>
+        <LI>Next message: <A HREF="000903.html">[fetchmail-users] fetchmail and socks5
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#901">[ date ]</a>
+              <a href="thread.html#901">[ thread ]</a>
+              <a href="subject.html#901">[ subject ]</a>
+              <a href="author.html#901">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>&gt;&gt;&gt;&gt;&gt;<i> Rob MacGregor writes:
+</I>
+&gt;<i> On 3/18/07, Matthias Andree &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">matthias.andree at gmx.de</A>&gt; wrote:
+</I>
+    RM&gt; if fetchmail is linked with the socks libraries
+    RM&gt; *and* the required socks config file
+    RM&gt; is in place then, by default, use socks.
+
+Pls remember: readymade distro fetchmails may come linked with the socks library,
+but its user is still quite likely not aware of it.
+
+Socksification is really not an easy peace of cake.
+
+I recently spent quite some hours (to be honest: far too many) on evaluating,
+whether and with which socks server certain applications like &quot;wget&quot; and &quot;curl&quot; work resp. don't work.
+
+Trust me (pls!), neither explicit nor implicit sockisification *usually* work out of the box,
+ie. w/o changing the code,
+so somebody (&quot;a user&quot;), who &quot;moves&quot; into an enforced socks server environment, 
+will have to try / verify socksification on every single application on its own,
+and not all at once by toggling the one and only global switch.
+
+    RM&gt; As long as there is a command line argument
+    RM&gt; to either disable socks or use an alternative socks config file
+    RM&gt; (which implicitly enables socks) 
+    RM&gt; then that should be fine.
+
+I seriously plea for: the default shall be: &quot;off&quot;.
+
+
+
+I am sorry, but I cannot spend any more time on this issue.
+The topic socksification and all that has already been far too expensive for me during the last couple of weeks.
+
+I presented all the facts I could present to you.
+Take it or leave it.
+
+
+
+Oh, just a last &quot;word&quot;:
+After all I honestly do appreciate the abilities of socks servers
+and the capabilities of explicit and implicit socksification.
+If small applications get developed (or carefully migrated) with explicit socksification in mind,
+the code doesn't even get spoilt,
+your TCP-whatever programming still looks like in the RFC, Stevens or whatever,
+and amazingly enough -- if your IT dept. socks server admin allows the connections, your application needs -- your application transparently gets through a firewall and does its job,
+just as if there even wasn't any disturbing firewall
+and just as if you were in the &quot;real nature Internet&quot;, not within an Intranet.
+
+
+
+Kind regards,
+JH
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000898.html">[fetchmail-users] fetchmail and socks5
+</A></li>
+	<LI>Next message: <A HREF="000903.html">[fetchmail-users] fetchmail and socks5
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#901">[ date ]</a>
+              <a href="thread.html#901">[ thread ]</a>
+              <a href="subject.html#901">[ subject ]</a>
+              <a href="author.html#901">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

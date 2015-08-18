@@ -1,0 +1,126 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] fetchmailrc overwritten and now errors...
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2009-May/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmailrc%20overwritten%20and%20now%20errors...&In-Reply-To=%3C20090503010328.GU25226%40tamay-dogan.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001911.html">
+   <LINK REL="Next"  HREF="001913.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] fetchmailrc overwritten and now errors...</H1>
+    <B>Michelle Konzack</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmailrc%20overwritten%20and%20now%20errors...&In-Reply-To=%3C20090503010328.GU25226%40tamay-dogan.net%3E"
+       TITLE="[fetchmail-users] fetchmailrc overwritten and now errors...">linux4michelle at tamay-dogan.net
+       </A><BR>
+    <I>Sun May  3 03:03:28 CEST 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001911.html">[fetchmail-users] Fetchmail error writing message text
+</A></li>
+        <LI>Next message: <A HREF="001913.html">[fetchmail-users] fetchmailrc overwritten and now errors...
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1912">[ date ]</a>
+              <a href="thread.html#1912">[ thread ]</a>
+              <a href="subject.html#1912">[ subject ]</a>
+              <a href="author.html#1912">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hello,
+
+I have accidently overwriten my fetchmailrc and now I have  this  config
+to download the messages from a catchall:
+
+----[ '/etc/fetchmailrc' ]----------------------------------------------
+###########################  GLOBAL OPTIONS  ###########################
+set     no bouncemail
+set     postmaster      michelle.konzack
+set     invisible
+#set    no syslog
+#set    daemon          900
+
+###########################  SERVER OPTIONS  ###########################
+poll            webmail.friendsdomain.com
+proto           imap
+timeout         60
+qvirtual        no-on-know-the-name-of-the-catchall-
+envelope        0
+#ssl
+#sslcert        /etc/fetchmal_global.cert
+#sssproto       tls1
+#sslfingerprint &quot;&quot;
+
+############################  USER OPTIONS  ############################
+user            <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">no-on-know-the-name-of-the-catchall at friendsdomain.com</A>
+pass            fooblubberblah
+is              *
+antispam        -1
+batchlimit      100
+fetchall
+expunge         10
+dropstatus
+nokeep
+------------------------------------------------------------------------
+
+and I get the error:
+
+    fetchmail:/etc/fetchmailrc:16: syntax error at user
+
+I do not see where the error is...  There must be only  a  small  thing,
+because it was working up to 2009-05-01.
+
+Thanks, Greetings and nice Day/Evening
+    Michelle Konzack
+    Systemadministrator
+    24V Electronic Engineer
+    Tamay Dogan Network
+    Debian GNU/Linux Consultant
+
+-- 
+Linux-User #280138 with the Linux Counter, <A HREF="http://counter.li.org/">http://counter.li.org/</A>
+##################### Debian GNU/Linux Consultant #####################
+&lt;<A HREF="http://www.tamay-dogan.net/">http://www.tamay-dogan.net/</A>&gt;                 Michelle Konzack
+&lt;<A HREF="http://www.can4linux.org/">http://www.can4linux.org/</A>&gt;                   Apt. 917
+&lt;<A HREF="http://www.flexray4linux.org/">http://www.flexray4linux.org/</A>&gt;               50, rue de Soultz
+Jabber <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">linux4michelle at jabber.ccc.de</A>           67100 Strasbourg/France
+IRC #Debian (irc.icq.com)                     Tel. DE: +49 177 9351947
+ICQ #328449886                                Tel. FR: +33  6  61925193
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: signature.pgp
+Type: application/pgp-signature
+Size: 189 bytes
+Desc: Digital signature
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/fetchmail-users/attachments/20090503/e028cd12/attachment.pgp">https://lists.berlios.de/pipermail/fetchmail-users/attachments/20090503/e028cd12/attachment.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001911.html">[fetchmail-users] Fetchmail error writing message text
+</A></li>
+	<LI>Next message: <A HREF="001913.html">[fetchmail-users] fetchmailrc overwritten and now errors...
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1912">[ date ]</a>
+              <a href="thread.html#1912">[ thread ]</a>
+              <a href="subject.html#1912">[ subject ]</a>
+              <a href="author.html#1912">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

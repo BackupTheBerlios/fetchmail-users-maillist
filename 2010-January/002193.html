@@ -1,0 +1,199 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] [PATCH] Re: fetchmail IMAP bug - causes some mails to not be delivered when using IDLE
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2010-January/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20%5BPATCH%5D%20Re%3A%20fetchmail%20IMAP%20bug%20-%20causes%20some%0A%20mails%20to%20not%20be%20delivered%20when%20using%20IDLE&In-Reply-To=%3C20100113111259.GA20707%40session.bombay.retortsoft.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002190.html">
+   <LINK REL="Next"  HREF="002194.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] [PATCH] Re: fetchmail IMAP bug - causes some mails to not be delivered when using IDLE</H1>
+    <B>Sunil Shetye</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20%5BPATCH%5D%20Re%3A%20fetchmail%20IMAP%20bug%20-%20causes%20some%0A%20mails%20to%20not%20be%20delivered%20when%20using%20IDLE&In-Reply-To=%3C20100113111259.GA20707%40session.bombay.retortsoft.com%3E"
+       TITLE="[fetchmail-users] [PATCH] Re: fetchmail IMAP bug - causes some mails to not be delivered when using IDLE">shetye at bombay.retortsoft.com
+       </A><BR>
+    <I>Wed Jan 13 12:13:00 CET 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002190.html">[fetchmail-users] fetchmail IMAP bug - causes some mails to not be delivered when using IDLE
+</A></li>
+        <LI>Next message: <A HREF="002194.html">[fetchmail-users] [PATCH] Re: fetchmail IMAP bug - causes some mails to not be delivered when using IDLE
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2193">[ date ]</a>
+              <a href="thread.html#2193">[ thread ]</a>
+              <a href="subject.html#2193">[ subject ]</a>
+              <a href="author.html#2193">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Quoting from Matt Doran's mail on Wed, Jan 13, 2010:
+&gt;<i> Thanks for the patch.  I tried this patch, and it did not work. :(
+</I>&gt;<i> I've attached another log showing the problem again, I added some
+</I>&gt;<i> more debug lines outputting recentcount,count,oldcount when we see
+</I>&gt;<i> EXISTS, RECENT, EXPUNGE (I thought it might help).
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> It seems this this only occurs if the EXISTS comes just at the right
+</I>&gt;<i> time ... and I think fetchmail is missing it.   In the attached file
+</I>&gt;<i> the &quot;* 2 EXISTS&quot; comes immediately after fetchmail receceives the &quot;*
+</I>&gt;<i> SEARCH 1&quot;  response to the request &quot;A0007 SEARCH UNSEEN NOT
+</I>&gt;<i> DELETED&quot;. .... and it seems that fetchmail ignores this one.
+</I>&gt;<i> Maybe something needs to be added to the do loop at imap.c:870?
+</I>
+Okay, here is a new version of that patch. It pushes SEARCH to
+imap_ok() so that EXISTS and other messages are not missed out. Also,
+it now uses 'oldcount' there as 'count' can get updated by EXISTS.
+
+-- 
+Sunil Shetye.
+-------------- next part --------------
+diff -Naur fetchmail-6.3.13.orig/imap.c fetchmail-6.3.13/imap.c
+--- fetchmail-6.3.13.orig/imap.c	2009-06-30 14:29:07.000000000 +0530
++++ fetchmail-6.3.13/imap.c	2010-01-13 16:23:32.000000000 +0530
+@@ -136,8 +136,8 @@
+ 		    /* We do expect an EXISTS response immediately
+ 		     * after this, so this updation of recentcount is
+ 		     * just a precaution! */
+-		    if (recentcount &gt; 0)
+-			recentcount--;
++		    if ((recentcount = count - oldcount) &lt; 0)
++			recentcount = 0;
+ 		    actual_deletions++;
+ 		}
+ 	    }
+@@ -145,6 +145,39 @@
+ 	    {
+ 		preauth = TRUE;
+ 	    }
++	    else if (stage == STAGE_GETRANGE &amp;&amp; (cp = strstr(buf, &quot;* SEARCH&quot;)))
++	    {
++		char	*ep;
++
++		cp += 8;	/* skip &quot;* SEARCH&quot; */
++		/* startcount is higher than count so that if there are no
++		 * unseen messages, imap_getsizes() will not need to do
++		 * anything! */
++		startcount = oldcount + 1;
++
++		while (*cp &amp;&amp; unseen &lt; oldcount)
++		{
++		    /* skip whitespace */
++		    while (*cp &amp;&amp; isspace((unsigned char)*cp))
++			cp++;
++		    if (*cp) 
++		    {
++			unsigned long um;
++
++			errno = 0;
++			um = strtoul(cp,&amp;ep,10);
++			if (errno == 0 &amp;&amp; um &lt;= UINT_MAX &amp;&amp; um &lt;= (unsigned)oldcount)
++			{
++			    unseen_messages[unseen++] = um;
++			    if (outlevel &gt;= O_DEBUG)
++				report(stdout, GT_(&quot;%lu is unseen\n&quot;), um);
++			    if (startcount &gt; um)
++				startcount = um;
++			}
++			cp = ep;
++		    }
++		}
++	    }
+ 		/*
+ 		 * The server may decide to make the mailbox read-only, 
+ 		 * which causes fetchmail to go into a endless loop
+@@ -758,7 +791,6 @@
+ /* get range of messages to be fetched */
+ {
+     int ok;
+-    char buf[MSGBUFSIZE+1], *cp;
+ 
+     /* find out how many messages are waiting */
+     *bytes = -1;
+@@ -863,49 +895,12 @@
+ 	unseen = 0;
+ 
+ 	/* don't count deleted messages, in case user enabled keep last time */
+-	gen_send(sock, &quot;SEARCH UNSEEN NOT DELETED&quot;);
+-	do {
+-	    ok = gen_recv(sock, buf, sizeof(buf));
+-	    if (ok != 0)
+-	    {
+-		report(stderr, GT_(&quot;search for unseen messages failed\n&quot;));
+-		return(PS_PROTOCOL);
+-	    }
+-	    else if ((cp = strstr(buf, &quot;* SEARCH&quot;)))
+-	    {
+-		char	*ep;
+-
+-		cp += 8;	/* skip &quot;* SEARCH&quot; */
+-		/* startcount is higher than count so that if there are no
+-		 * unseen messages, imap_getsizes() will not need to do
+-		 * anything! */
+-		startcount = count + 1;
+-
+-		while (*cp &amp;&amp; unseen &lt; count)
+-		{
+-		    /* skip whitespace */
+-		    while (*cp &amp;&amp; isspace((unsigned char)*cp))
+-			cp++;
+-		    if (*cp) 
+-		    {
+-			unsigned long um;
+-
+-			errno = 0;
+-			um = strtoul(cp,&amp;ep,10);
+-			if (errno == 0 &amp;&amp; um &lt;= UINT_MAX &amp;&amp; um &lt;= (unsigned)count)
+-			{
+-			    unseen_messages[unseen++] = um;
+-			    if (outlevel &gt;= O_DEBUG)
+-				report(stdout, GT_(&quot;%lu is unseen\n&quot;), um);
+-			    if (startcount &gt; um)
+-				startcount = um;
+-			}
+-			cp = ep;
+-		    }
+-		}
+-	    }
+-	} while
+-	    (tag[0] != '\0' &amp;&amp; strncmp(buf, tag, strlen(tag)));
++	ok = gen_transact(sock, &quot;SEARCH UNSEEN NOT DELETED&quot;);
++	if (ok != 0)
++	{
++	    report(stderr, GT_(&quot;search for unseen messages failed\n&quot;));
++	    return(ok);
++	}
+ 
+ 	if (outlevel &gt;= O_DEBUG &amp;&amp; unseen &gt; 0)
+ 	    report(stdout, GT_(&quot;%u is first unseen\n&quot;), startcount);
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002190.html">[fetchmail-users] fetchmail IMAP bug - causes some mails to not be delivered when using IDLE
+</A></li>
+	<LI>Next message: <A HREF="002194.html">[fetchmail-users] [PATCH] Re: fetchmail IMAP bug - causes some mails to not be delivered when using IDLE
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2193">[ date ]</a>
+              <a href="thread.html#2193">[ thread ]</a>
+              <a href="subject.html#2193">[ subject ]</a>
+              <a href="author.html#2193">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

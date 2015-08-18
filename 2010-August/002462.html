@@ -1,0 +1,119 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Server certificate verification error: self	signed certificate
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2010-August/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Server%20certificate%20verification%20error%3A%20self%0A%09signed%20certificate&In-Reply-To=%3C1282515952.22724.21.camel%40localhost.localdomain%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002458.html">
+   <LINK REL="Next"  HREF="002463.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Server certificate verification error: self	signed certificate</H1>
+    <B>Chris</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Server%20certificate%20verification%20error%3A%20self%0A%09signed%20certificate&In-Reply-To=%3C1282515952.22724.21.camel%40localhost.localdomain%3E"
+       TITLE="[fetchmail-users] Server certificate verification error: self	signed certificate">cpollock at embarqmail.com
+       </A><BR>
+    <I>Mon Aug 23 00:25:52 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002458.html">[fetchmail-users] how to have kept messages on MS Exchange Server as unread
+</A></li>
+        <LI>Next message: <A HREF="002463.html">[fetchmail-users] Server certificate verification error: self signed certificate
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2462">[ date ]</a>
+              <a href="thread.html#2462">[ thread ]</a>
+              <a href="subject.html#2462">[ subject ]</a>
+              <a href="author.html#2462">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>I've upgraded this morning from fetchmail 6.3.9 to 6.3.17 and noticed a
+change in the logging entries:
+
+6.3.9 - 
+fetchmail: POP3&lt; +OK Begin SSL/TLS negotiation now.
+fetchmail: Issuer Organization: Unknown
+fetchmail: Issuer CommonName: linuxsrv01.usdcservers.net
+fetchmail: Server CommonName: linuxsrv01.usdcservers.net
+fetchmail: Server CommonName mismatch: linuxsrv01.usdcservers.net !=
+toadnet.com
+fetchmail: toadnet.com key fingerprint:
+AB:FA:8A:16:81:80:F5:56:B7:0E:18:25:5B:A7:7E:29
+fetchmail: Server certificate verification error: self signed
+certificate
+
+6.3.17 - 
+fetchmail: POP3&lt; +OK Begin SSL/TLS negotiation now.
+fetchmail: Server certificate:
+fetchmail: Issuer Organization: Unknown
+fetchmail: Issuer CommonName: linuxsrv01.usdcservers.net
+fetchmail: Subject CommonName: linuxsrv01.usdcservers.net
+fetchmail: Server CommonName mismatch: linuxsrv01.usdcservers.net !=
+toadnet.com
+fetchmail: toadnet.com key fingerprint:
+AB:FA:8A:16:81:80:F5:56:B7:0E:18:25:5B:A7:7E:29
+fetchmail: Server certificate verification error: self signed
+certificate
+fetchmail: This means that the root signing certificate (issued
+for /C=US/ST=Unknown/L=Unknown/O=Unknown/OU=Unknown/CN=linuxsrv01.usdcservers.net/emailAddress=<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">ssl at linuxsrv01.usdcservers.net</A>) is not in the trusted CA certificate locations, or that c_rehash needs to be run on the certificate directory. For details, please see the documentation of --sslcertpath and --sslcertfile in the manual page.
+fetchmail: Server certificate:
+fetchmail: Issuer Organization: Unknown
+fetchmail: Issuer CommonName: linuxsrv01.usdcservers.net
+fetchmail: Subject CommonName: linuxsrv01.usdcservers.net
+fetchmail: Server CommonName mismatch: linuxsrv01.usdcservers.net !=
+toadnet.com
+fetchmail: Warning: the connection is insecure, continuing anyways.
+(Better use --sslcertck!)
+
+Though this doesn't prevent mail from being picked up is there a way I
+can get the new certificate? The domain belongs to me however is hosted
+by someone else. I've contacted the person who is hosting it for me and
+hopefully he'll reply but I'd like to have a fallback way to get the
+cert just in case. I currently do not have a certificate for toadnet.com
+in my ~/certs/.certs folder.
+
+Thanks
+Chris
+
+-- 
+Chris
+KeyID 0xE372A7DA98E6705C
+
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: signature.asc
+Type: application/pgp-signature
+Size: 197 bytes
+Desc: This is a digitally signed message part
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/fetchmail-users/attachments/20100822/b7f23e11/attachment.pgp">https://lists.berlios.de/pipermail/fetchmail-users/attachments/20100822/b7f23e11/attachment.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002458.html">[fetchmail-users] how to have kept messages on MS Exchange Server as unread
+</A></li>
+	<LI>Next message: <A HREF="002463.html">[fetchmail-users] Server certificate verification error: self signed certificate
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2462">[ date ]</a>
+              <a href="thread.html#2462">[ thread ]</a>
+              <a href="subject.html#2462">[ subject ]</a>
+              <a href="author.html#2462">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

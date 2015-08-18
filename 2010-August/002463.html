@@ -1,0 +1,89 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Server certificate verification error: self signed certificate
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2010-August/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Server%20certificate%20verification%20error%3A%20self%0A%20signed%20certificate&In-Reply-To=%3CAANLkTin_8KbTqtzR9q%2B0pJaRWBh%3DPfJPn3BSwULWacCL%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002462.html">
+   <LINK REL="Next"  HREF="002464.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Server certificate verification error: self signed certificate</H1>
+    <B>Rob MacGregor</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Server%20certificate%20verification%20error%3A%20self%0A%20signed%20certificate&In-Reply-To=%3CAANLkTin_8KbTqtzR9q%2B0pJaRWBh%3DPfJPn3BSwULWacCL%40mail.gmail.com%3E"
+       TITLE="[fetchmail-users] Server certificate verification error: self signed certificate">rob.macgregor at gmail.com
+       </A><BR>
+    <I>Mon Aug 23 08:01:17 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002462.html">[fetchmail-users] Server certificate verification error: self	signed certificate
+</A></li>
+        <LI>Next message: <A HREF="002464.html">[fetchmail-users] Server certificate verification error: self signed certificate
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2463">[ date ]</a>
+              <a href="thread.html#2463">[ thread ]</a>
+              <a href="subject.html#2463">[ subject ]</a>
+              <a href="author.html#2463">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Sun, Aug 22, 2010 at 23:25, Chris &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">cpollock at embarqmail.com</A>&gt; wrote:
+&gt;<i> I've upgraded this morning from fetchmail 6.3.9 to 6.3.17 and noticed a
+</I>&gt;<i> change in the logging entries:
+</I>&lt;---SNIP---&gt;
+&gt;<i> Though this doesn't prevent mail from being picked up is there a way I
+</I>&gt;<i> can get the new certificate? The domain belongs to me however is hosted
+</I>&gt;<i> by someone else. I've contacted the person who is hosting it for me and
+</I>&gt;<i> hopefully he'll reply but I'd like to have a fallback way to get the
+</I>&gt;<i> cert just in case. I currently do not have a certificate for toadnet.com
+</I>&gt;<i> in my ~/certs/.certs folder.
+</I>
+The FAQ lists one option
+(<A HREF="http://fetchmail.berlios.de/fetchmail-FAQ.html#K5">http://fetchmail.berlios.de/fetchmail-FAQ.html#K5</A>).  I've also used
+the following to get the certificate:
+
+openssl s_client -connect remote.server.net:993 &lt;/dev/null | sed -ne
+'/-BEGIN CERTIFICATE-/,/-END CERTIFICATE-/p'
+&gt;<i>/my/ssl/path/remote.server.net.pem &amp;&amp; c_rehash
+</I>
+You'll possibly want to use the servers correct name too
+(linuxsrv01.usdcservers.net) to avoid the warning about the mis-match.
+
+-- 
+&#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160;&#160; Please keep list traffic on the list.
+
+Rob MacGregor
+&#160; &#160; &#160; Whoever fights monsters should see to it that in the process he
+&#160; &#160; &#160; &#160; doesn't become a monster.&#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; Friedrich Nietzsche
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002462.html">[fetchmail-users] Server certificate verification error: self	signed certificate
+</A></li>
+	<LI>Next message: <A HREF="002464.html">[fetchmail-users] Server certificate verification error: self signed certificate
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2463">[ date ]</a>
+              <a href="thread.html#2463">[ thread ]</a>
+              <a href="subject.html#2463">[ subject ]</a>
+              <a href="author.html#2463">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

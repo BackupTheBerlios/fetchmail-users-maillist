@@ -1,0 +1,104 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] broken POP3 servers - future fetchmail policy (IMPORTANT)
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2006-January/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20broken%20POP3%20servers%20-%20future%20fetchmail%20policy%20%28IMPORTANT%29&In-Reply-To=%3Cm3ek3prrnj.fsf%40merlin.emma.line.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000211.html">
+   <LINK REL="Next"  HREF="000213.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] broken POP3 servers - future fetchmail policy (IMPORTANT)</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20broken%20POP3%20servers%20-%20future%20fetchmail%20policy%20%28IMPORTANT%29&In-Reply-To=%3Cm3ek3prrnj.fsf%40merlin.emma.line.org%3E"
+       TITLE="[fetchmail-users] broken POP3 servers - future fetchmail policy (IMPORTANT)">matthias.andree at gmx.de
+       </A><BR>
+    <I>Tue Jan  3 21:19:12 CET 2006</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000211.html">[fetchmail-users] broken POP3 servers - future fetchmail policy (IMPORTANT) (was: [fetchmail]comcast.net and attachments - workaround)
+</A></li>
+        <LI>Next message: <A HREF="000213.html">[fetchmail-users] broken POP3 servers - future fetchmail policy (IMPORTANT)
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#212">[ date ]</a>
+              <a href="thread.html#212">[ thread ]</a>
+              <a href="subject.html#212">[ subject ]</a>
+              <a href="author.html#212">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Rob MacGregor &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">rob.macgregor at gmail.com</A>&gt; writes:
+
+&gt;<i> On 03/01/06, Matthias Andree &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">matthias.andree at gmx.de</A>&gt; wrote:
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> fetchmail's task is to fetch all messages exactly once, nothing more,
+</I>&gt;&gt;<i> nothing less. If we must fetch a message twice because the transfer was
+</I>&gt;&gt;<i> interrupted, well, bad luck.
+</I>&gt;<i>
+</I>&gt;<i> You sure you're not ESR in disguise :-)
+</I>
+100% sure I'm not ESR. 
+
+&gt;<i> I'm happy with that statement, if by fetch you mean &quot;download and hand
+</I>&gt;<i> it on to the specified MTA&quot;.
+</I>
+That's what I was trying to say: download completely, hand on
+completely, obtain status of destination SMTP/LMTP/BSMTP/MDA, and only
+assume &quot;completed&quot; if every step succeeded. If any intermediate step
+fails, we'll retry the message next time. Although it's bad luck we've
+missed the goal of one attempt, and we'll have 1.7 downloads or so.
+
+&gt;<i> Otherwise the statement sounds like you don't care of there's a
+</I>&gt;<i> problem with the local MTA, fetchmail will have done it's bit by
+</I>&gt;<i> downloading the email, chucking it at /dev/null and deleting it from
+</I>&gt;<i> the remote server...
+</I>
+Fetchmail will continue to make as many attempts as necessary to
+retrieve the message for reliable protocols such as POP3+UIDL.
+
+This requires co-operation of the server though, like not doing stupid
+things such as deleteing the message without knowing if the client was
+able to store the message. Looking at code and FAQ, many TOP
+implementations leave things to be desired.
+
+Some minor polishing has yet to happen though, for instance, after a
+crash, fetchmail may retrieve messages it had successfully retrieved and
+delivered before the crash, causing duplicates, but better get a message
+again that you have already read than miss out on one you hadn't
+read. We could reduce the number of duplicates by checkpointing the
+.fetchids more often.
+
+-- 
+Matthias Andree
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000211.html">[fetchmail-users] broken POP3 servers - future fetchmail policy (IMPORTANT) (was: [fetchmail]comcast.net and attachments - workaround)
+</A></li>
+	<LI>Next message: <A HREF="000213.html">[fetchmail-users] broken POP3 servers - future fetchmail policy (IMPORTANT)
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#212">[ date ]</a>
+              <a href="thread.html#212">[ thread ]</a>
+              <a href="subject.html#212">[ subject ]</a>
+              <a href="author.html#212">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

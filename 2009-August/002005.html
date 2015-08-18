@@ -1,0 +1,116 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] --pidfile does not work...
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2009-August/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20--pidfile%20does%20not%20work...&In-Reply-To=%3C20090802151917.GB12485%40tamay-dogan.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   
+   <LINK REL="Next"  HREF="002004.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] --pidfile does not work...</H1>
+    <B>Michelle Konzack</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20--pidfile%20does%20not%20work...&In-Reply-To=%3C20090802151917.GB12485%40tamay-dogan.net%3E"
+       TITLE="[fetchmail-users] --pidfile does not work...">linux4michelle at tamay-dogan.net
+       </A><BR>
+    <I>Sun Aug  2 17:19:17 CEST 2009</I>
+    <P><UL>
+        
+        <LI>Next message: <A HREF="002004.html">[fetchmail-users] [SOLVED] Re: --pidfile does not work...
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2005">[ date ]</a>
+              <a href="thread.html#2005">[ thread ]</a>
+              <a href="subject.html#2005">[ subject ]</a>
+              <a href="author.html#2005">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hello,
+
+I have to run fetchmail twice from the same user and it give me
+
+fetchmail: another foreground fetchmail is running at 20458.
+
+OK, I add to the first program
+
+    fetchmail  --pidfile /var/run/tdfetchmail.pid --fetchmailrc ...
+
+and to the second one:
+
+    fetchmail  --pidfile /var/run/tdfetchmail-mx.pid --fetchmailrc ...
+
+but it does not work.  The manpage is a little bit irritation because:
+
+----[ man 'fetchmail' ]-------------------------------------------------
+fetchmail(1)           fetchmail reference manual           fetchmail(1)
+&lt;snip&gt;
+
+       --pidfile &lt;pathname&gt;
+              (Keyword:  pidfile; since fetchmail v6.3.4)  Override  the
+              default  location  of   the   PID   file.   Default:   see
+              &quot;ENVIRONMENT&quot; below.
+
+&lt;snip&gt;
+fetchmail                    fetchmail 6.3.6                fetchmail(1)
+------------------------------------------------------------------------
+
+This sounds not clear, because --pidfile mean the filename and eventualy
+with the full path, while &quot;default location&quot;  mean  only  the  directory
+where the fetchmail.pid is written to.
+
+Now what?
+
+
+Thanks, Greetings and nice Day/Evening
+    Michelle Konzack
+    Systemadministrator
+    Tamay Dogan Network
+    Debian GNU/Linux Consultant
+
+-- 
+Linux-User #280138 with the Linux Counter, <A HREF="http://counter.li.org/">http://counter.li.org/</A>
+##################### Debian GNU/Linux Consultant #####################
+&lt;<A HREF="http://www.tamay-dogan.net/">http://www.tamay-dogan.net/</A>&gt;                 Michelle Konzack
+&lt;<A HREF="http://www.can4linux.org/">http://www.can4linux.org/</A>&gt;                   c/o Vertriebsp. KabelBW
+&lt;<A HREF="http://www.flexray4linux.org/">http://www.flexray4linux.org/</A>&gt;               Blumenstrasse 2
+Jabber <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">linux4michelle at jabber.ccc.de</A>           77694 Kehl/Germany
+IRC #Debian (irc.icq.com)                     Tel. DE: +49 177 9351947
+ICQ #328449886                                Tel. FR: +33  6  61925193
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: signature.pgp
+Type: application/pgp-signature
+Size: 189 bytes
+Desc: Digital signature
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/fetchmail-users/attachments/20090802/0fc93911/attachment.pgp">https://lists.berlios.de/pipermail/fetchmail-users/attachments/20090802/0fc93911/attachment.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	
+	<LI>Next message: <A HREF="002004.html">[fetchmail-users] [SOLVED] Re: --pidfile does not work...
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2005">[ date ]</a>
+              <a href="thread.html#2005">[ thread ]</a>
+              <a href="subject.html#2005">[ subject ]</a>
+              <a href="author.html#2005">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

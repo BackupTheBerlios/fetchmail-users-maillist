@@ -1,0 +1,184 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> No subject
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2012-March/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20No%20subject&In-Reply-To=%3Cmailman.8.1331728718.318.fetchmail-users%40lists.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001257.html">
+   <LINK REL="Next"  HREF="001290.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>No subject</H1>
+    <B></B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20No%20subject&In-Reply-To=%3Cmailman.8.1331728718.318.fetchmail-users%40lists.berlios.de%3E"
+       TITLE="No subject">
+       </A><BR>
+    <I>Wed Mar 14 13:38:28 CET 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001257.html">No subject
+</A></li>
+        <LI>Next message: <A HREF="001290.html">No subject
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1284">[ date ]</a>
+              <a href="thread.html#1284">[ thread ]</a>
+              <a href="subject.html#1284">[ subject ]</a>
+              <a href="author.html#1284">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>if ((ok = gen_recv(sock, buf, sizeof(buf))))
+    return(ok);
+} while
+(!strstr(buf+4, &quot;FETCH&quot;) || sscanf(buf+2, &quot;%d&quot;, &amp;num) != 1);
+
+It appears to be looking for a &quot;FETCH&quot; in the response, but since it
+never finds one it blocks on recv() waiting.  After 300 seconds
+timeout_handled() is called (stage == SERVER_WAIT), which then jumps
+to cleanUp and reports a PS_SOCKET error.
+
+** Conjecture on how to solve the problem:
+The choices for fixing this seem to be:
+   1) Have fetchmail parse the headers, but only buffer the result
+instead of delivering it until we know there is a message body.
+
+   2) Create special-case code that would work with procmail to kill
+procmail if we realize no body exists (if you send SIGQUIT to procmail
+while it's reading, it will silently discard).  This keeps from having
+to change the header buffering model.
+
+   3) Add code to re-try message body fetches that return &quot;NO&quot;.
+
+   4) Do nothing and let MDA's deal with the problem.
+
+#1 seems like it would be a pretty invasive change, even if made
+optional.  #2 is special-purpose hackery, but I'm not sure how other
+delivery agents handle this case.  Perhaps procmail is the only agent
+that has this behavior (not sure?), so special-case code wouldn't be
+so terrible.  #3 seems like the best case, but I'm not familiar enough
+with fetchmail to suggest a patch just yet.  #4 works too, but I'd say
+it's less &quot;proper&quot;, because fetchmail is failing to fetch mail.
+Surely the server is mostly to blame, but with all the workaround and
+retry behavior built into fetchmail, it seems this case deserves a
+workaround too.
+
+Regardless of the body vs. header issue, it seems that
+imap_fetch_body()'s is failing to comply with RFC2060 section 7.1.2
+regarding the handling of &quot;NO&quot; error responses, based on my
+interpretation.
+
+
+** Workaround for procmail users:
+Add the following to the top of your .procmailrc, which sends messages
+with a body less than 3 bytes to /dev/null.
+
+----- cut here -----
+:<i>0
+</I>* B ?? &lt; 3
+/dev/null
+----- cut here -----
+
+
+** Final words:
+I have a workaround.  I'm sending this bug report for the benefit of
+fetchmail maintainers / users in case others run into this problem.  I
+may submit a patch to fetchmail at a later date, if you agree a patch
+is required (please advise).
+
+Thanks!
+
+Mike Lowell
+
+
+
+---------------------- FAQ G3 requested info ----------------------
+1. Your operating system.
+Gentoo Base System release 1.12.10.  Emerged to latest.
+
+2. Your compiler version, if you built from source; otherwise, the
+name and origin of the RPM or other binary package you installed.
+gcc (GCC) 4.1.2 (Gentoo 4.1.2)
+
+3. A copy of your POP or IMAP server's greeting line.
+OK Microsoft Exchange Server 2003 IMAP4rev1 server version 6.5.7638.1
+(mail) ready.
+
+4. The name and version of the SMTP listener or MDA you are forwarding to.
+procmail v3.22 2001/09/10 (gentoo r8)
+
+5. Any command-line options you used.
+-d 60 -f /etc/fetchmailrc
+
+6. The output of fetchmail -V called with whatever other command-line
+options you used.
+slak4:~# /usr/bin/fetchmail -d 60 -f /etc/fetchmailrc -V
+fetchmail: WARNING: Running as root is discouraged.
+This is fetchmail release 6.3.8+RPA+NTLM+SDPS+SSL+NLS.
+
+[...]
+
+Fallback MDA: (none)
+Linux slak4 2.6.21-gentoo-r3-gentoo-r3 #3 SMP Tue Jun 26 00:48:46 PDT
+2007 i686 Intel(R) Core(TM)2 Quad CPU @ 2.66GHz GenuineIntel GNU/Linux
+Taking options from command line and /etc/fetchmailrc
+Poll interval is 60 seconds
+Idfile is /root/.fetchids
+Progress messages will be logged via syslog
+Fetchmail will forward misaddressed multidrop messages to root.
+Options for retrieving from D\<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">u at mail</A>:
+  True name of server is mail.
+  Protocol is IMAP.
+  All available authentication methods will be tried.
+  Server nonresponse timeout is 300 seconds (default).
+  Default mailbox selected.
+  Only new messages will be retrieved (--all off).
+  Fetched messages will be kept on the server (--keep on).
+  Old messages will not be flushed before message retrieval (--flush off).
+  Oversized messages will not be flushed before message retrieval
+(--limitflush off).
+  Rewrite of server-local addresses is enabled (--norewrite off).
+  Carriage-return stripping is enabled (stripcr on).
+  Carriage-return forcing is disabled (forcecr off).
+  Interpretation of Content-Transfer-Encoding is enabled (pass8bits off).
+  MIME decoding is disabled (mimedecode off).
+  Idle after poll is enabled (idle on).
+  Nonempty Status lines will be kept (dropstatus off)
+  Delivered-To lines will be kept (dropdelivered off)
+  Received-message limit is 1 (--fetchlimit 1).
+  Fetch message size limit is 100 (--fetchsizelimit 100).
+  Do binary search of UIDs during 3 out of 4 polls (--fastuidl 4).
+  Messages will be delivered with &quot;/usr/bin/procmail -d %T&quot;.
+  Single-drop mode: 1 local name recognized.
+  No UIDs saved from this host.
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001257.html">No subject
+</A></li>
+	<LI>Next message: <A HREF="001290.html">No subject
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1284">[ date ]</a>
+              <a href="thread.html#1284">[ thread ]</a>
+              <a href="subject.html#1284">[ subject ]</a>
+              <a href="author.html#1284">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,87 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] fetchmail trouble with provider specifics
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2014-January/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%20trouble%20with%20provider%20specifics&In-Reply-To=%3C52E17DDE.7090302%40gmx.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003480.html">
+   <LINK REL="Next"  HREF="003482.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] fetchmail trouble with provider specifics</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%20trouble%20with%20provider%20specifics&In-Reply-To=%3C52E17DDE.7090302%40gmx.de%3E"
+       TITLE="[fetchmail-users] fetchmail trouble with provider specifics">matthias.andree at gmx.de
+       </A><BR>
+    <I>Thu Jan 23 21:38:54 CET 2014</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003480.html">[fetchmail-users] fetchmail trouble with provider specifics
+</A></li>
+        <LI>Next message: <A HREF="003482.html">[fetchmail-users] Certificate verification error
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3481">[ date ]</a>
+              <a href="thread.html#3481">[ thread ]</a>
+              <a href="subject.html#3481">[ subject ]</a>
+              <a href="author.html#3481">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Am 23.01.2014 21:17, schrieb Christoph Schmidt:
+&gt;<i> Hi,
+</I>&gt;<i> 
+</I>&gt;<i> I have some trouble using fetchmail.
+</I>&gt;<i> The server to poll is an ssl server that differs from the original.
+</I>&gt;<i> securepop.t-online.de /port 995 but the mailbox belongs to
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">user at pop.t-online.de</A>
+</I>&gt;<i> 
+</I>&gt;<i> I tested different variants in fetchmailrc - all with bad results.
+</I>&gt;<i> 
+</I>&gt;<i> Example : <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">user at t-online.de</A> --&gt; <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">user at t-online.de</A>@securepop.t-online.de
+</I>&gt;<i> or user --&gt; <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">user at securepop.t-online.de</A>
+</I>&gt;<i> 
+</I>&gt;<i> How can I poll the securepop.t-online.de with my account, belonging to
+</I>&gt;<i> t-online.de ?
+</I>
+fetchmail --keep --uidl --ssl --sslcertck -v -p pop3 \
+	-u <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">firstname.lastname at t-online.de</A> securepop.t-online.de
+
+works for me.
+
+How can anyone help you if you don't give the slightest hint of what you
+did &quot;different variants in fetchmailrc&quot; and what you got (errors)?
+
+See &lt;<A HREF="http://www.fetchmail.info/fetchmail-FAQ.html#G3">http://www.fetchmail.info/fetchmail-FAQ.html#G3</A>&gt; - be sure not to
+send passwords or outgoing digests or thereabouts, but do include logging.
+</PRE>
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003480.html">[fetchmail-users] fetchmail trouble with provider specifics
+</A></li>
+	<LI>Next message: <A HREF="003482.html">[fetchmail-users] Certificate verification error
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3481">[ date ]</a>
+              <a href="thread.html#3481">[ thread ]</a>
+              <a href="subject.html#3481">[ subject ]</a>
+              <a href="author.html#3481">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

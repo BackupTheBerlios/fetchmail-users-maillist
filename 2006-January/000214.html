@@ -1,0 +1,140 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Re: [fetchmail]comcast.net and attachments - workaround
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2006-January/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Re%3A%20%5Bfetchmail%5Dcomcast.net%20and%20attachments%20-%20workaround&In-Reply-To=%3C20060104015557.GA14636%40merlin.emma.line.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000216.html">
+   <LINK REL="Next"  HREF="000217.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Re: [fetchmail]comcast.net and attachments - workaround</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Re%3A%20%5Bfetchmail%5Dcomcast.net%20and%20attachments%20-%20workaround&In-Reply-To=%3C20060104015557.GA14636%40merlin.emma.line.org%3E"
+       TITLE="[fetchmail-users] Re: [fetchmail]comcast.net and attachments - workaround">matthias.andree at gmx.de
+       </A><BR>
+    <I>Wed Jan  4 02:55:57 CET 2006</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000216.html">[fetchmail-users] Re: broken POP3 servers - future fetchmail policy (IMPORTANT) (was: [fetchmail]comcast.net and attachments - workaround)
+</A></li>
+        <LI>Next message: <A HREF="000217.html">[fetchmail-users] SSL authentication problems with Gmail
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#214">[ date ]</a>
+              <a href="thread.html#214">[ thread ]</a>
+              <a href="subject.html#214">[ subject ]</a>
+              <a href="author.html#214">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Tue, 03 Jan 2006, Ed Wilts wrote:
+
+&gt;<i> On Tue, Jan 03, 2006 at 04:43:28PM +0100, Matthias Andree wrote:
+</I>&gt;<i> &gt; In the meanwhile, please complain to comcast.net for violating the POP3
+</I>&gt;<i> &gt; standard, which states expressis verbis that the full message is to be
+</I>&gt;<i> &gt; fetched if the number passed to TOP exceeds the actual number of lines
+</I>&gt;<i> &gt; in the message.
+</I>&gt;<i> 
+</I>&gt;<i> That would be a waste of time.  After all, it works fine with all the
+</I>&gt;<i> normal Windows clients.
+</I>
+The bug doesn't depend on the operating system.
+
+After all, comcast need not offer TOP at all if they don't plan to do it
+right. TOP is optional.
+
+Now, if Novell or Red Hat could phone comcast (rather than individual
+users) and demand the fix, that might make a difference...
+
+&gt;<i> In my opinion, we (the Linux community) need to spend more time working
+</I>&gt;<i> around broken implementations and less time standing on our podiums
+</I>&gt;<i> claiming we're right.
+</I>
+I don't plan to spend much time working around broken implementations,
+there are more important things to do in fetchmail.
+
+Standards are there for a reason, and not only Microsoft will notice
+that soon enough.
+
+In this particular example, you're lucky as the test is trivial and
+&quot;more RETR, less TOP&quot; coincides with my goals for fetchmail.
+
+Please test the attached patch (save it to a file, type &quot;patch
+&lt;workaround-Maillennium.patch&quot;), then recompile (&quot;make&quot;) and reinstall
+(&quot;make install&quot;) fetchmail and see if it solves your problem. It will
+however mark messages as downloaded on the server, so I'm not sure if
+or how I'll merge it into 6.3.2 or if it needs to wait until 6.4.0.
+
+It is untested (I have no comcast account) and should apply against 6.3.1.
+As usual, no warranties, use at your own risk.
+
+If someone else wishes to test, go ahead and let me know what you find.
+The warning message only appears if fetchmail had used TOP otherwise.
+
+&gt;<i> I know it's disgusting, but unfortunately we're
+</I>&gt;<i> propogating the attitudes that Windows works better than Linux, because
+</I>&gt;<i> in this case, it does.  My Windows clients work fine (which is how I
+</I>&gt;<i> narrowed it down to fetchmail), my Linux one doesn't (until I
+</I>&gt;<i> implemented my workaround), yet the server is unlikely to change.
+</I>
+They, too, must learn that standards conformance is a way to keep
+customers happy and money flowing in. If they truncate your messages
+because their server is buggy, why give them your best^W money?
+
+&gt;<i> I do see that fetchmail will be fixed to work better in cases like this
+</I>&gt;<i> so I'm not putting you in the same camp as some other Linux developers
+</I>&gt;<i> I've run into.
+</I>
+My motivation to add _complex_ workaround code as little as that of many
+fellow developers. You may get the workaround if it's simple and the
+problem hurts really bad.
+
+Software should work efficiently on conformant servers, and our
+installed base is large enough we can take some risks of not pleasing
+everyone.  Fetchmail is default install in many systems.
+
+I won't be adding workarounds that are disadvantages to users of intact
+servers.
+
+Kind regards,
+
+-- 
+Matthias Andree
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: workaround-Maillennium.patch
+Type: text/x-patch
+Size: 570 bytes
+Desc: not available
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/fetchmail-users/attachments/20060104/fdd9e782/attachment.bin">https://lists.berlios.de/pipermail/fetchmail-users/attachments/20060104/fdd9e782/attachment.bin</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000216.html">[fetchmail-users] Re: broken POP3 servers - future fetchmail policy (IMPORTANT) (was: [fetchmail]comcast.net and attachments - workaround)
+</A></li>
+	<LI>Next message: <A HREF="000217.html">[fetchmail-users] SSL authentication problems with Gmail
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#214">[ date ]</a>
+              <a href="thread.html#214">[ thread ]</a>
+              <a href="subject.html#214">[ subject ]</a>
+              <a href="author.html#214">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

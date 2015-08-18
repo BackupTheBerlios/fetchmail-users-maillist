@@ -1,0 +1,119 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] &quot;retained&quot; in fetchmail log
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2013-March/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20%22retained%22%20in%20fetchmail%20log&In-Reply-To=%3C5130DAF0.5000802%40gmx.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003360.html">
+   <LINK REL="Next"  HREF="003362.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] &quot;retained&quot; in fetchmail log</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20%22retained%22%20in%20fetchmail%20log&In-Reply-To=%3C5130DAF0.5000802%40gmx.de%3E"
+       TITLE="[fetchmail-users] &quot;retained&quot; in fetchmail log">matthias.andree at gmx.de
+       </A><BR>
+    <I>Fri Mar  1 17:44:32 CET 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003360.html">[fetchmail-users] &quot;retained&quot; in fetchmail log
+</A></li>
+        <LI>Next message: <A HREF="003362.html">[fetchmail-users] &quot;retained&quot; in fetchmail log
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3361">[ date ]</a>
+              <a href="thread.html#3361">[ thread ]</a>
+              <a href="subject.html#3361">[ subject ]</a>
+              <a href="author.html#3361">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Am 01.03.2013 08:23, schrieb Pierre Frenkiel:
+&gt;<i> On Thu, 28 Feb 2013, Matthias Andree wrote:
+</I>&gt;<i> 
+</I>&gt;&gt;<i> Arguably, if fetchmail knows that _all other_ messages have been
+</I>&gt;&gt;<i> deleted, it could delete this folder internal data message because there
+</I>&gt;&gt;<i> is no sensible mailbox state left.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Arguably, the server software could also hide this special message so
+</I>&gt;&gt;<i> that clients do not need to bother with server's idiosyncrasies.
+</I>&gt;&gt;<i>
+</I>&gt;<i>   Actually, when I went to the server (via webmail) I saw that
+</I>&gt;<i>   the X-IMAP message was the only one remaining. IMHO, fetchmail
+</I>&gt;<i>   should know that also.
+</I>
+Greetings,
+
+I have revisited the UWIMAP FAQ, and found items 6.14, 6.15 and 7.44 of
+interest:
+
+&lt;<A HREF="http://www.washington.edu/imap/IMAP-FAQs/index.html#6.14">http://www.washington.edu/imap/IMAP-FAQs/index.html#6.14</A>&gt;
+
+I am now considering what to do with the next somewhat-incompatible
+fetchmail release.
+
+It would appear that the whole story developed out of this qpopper &lt;-&gt;
+uwimapd incompatibility, where qpopper 2.53 and older exposed the folder
+internal data, whereas UW's ipop3d would not.
+
+qpopper 2.53 and older should have long since been phased out, qpopper
+3.0 (released in 2000, 13 years ago) was changed to fix that
+incompatibility, and the recommendation is that versions older than 3.0
+not be used;  qpopper 4.0 would also improve server-side performance (or
+so the release notes claim) by caching a mailbox/message index.
+
+
+Now, what am I to do with a future fetchmail 7.0 release?
+
+I see these alternatives:
+
+A1 - the obvious option would be to add a &quot;noretain&quot; keyword that would
+tell fetchmail to never retain messages.
+
+A2 - the less obvious option I have suggested, and that is to require
+that servers do not expose their internals to clients, and remove the
+kludge code in fetchmail for good (although it is tiny enough to not
+care about code size).
+
+A3 - I might also, instead of A1, default this code to off and add a
+&quot;kludge-retain-folder-internal-data&quot; option, which would be somewhat
+quieter than in fetchmail 6.3.X.
+
+Opinions?
+(beware: reply-to: <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">fetchmail-users at lists.berlios.de</A> set,
+you must be subscribed there if you want to reply).
+
+Best regards
+Matthias Andree
+</PRE>
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003360.html">[fetchmail-users] &quot;retained&quot; in fetchmail log
+</A></li>
+	<LI>Next message: <A HREF="003362.html">[fetchmail-users] &quot;retained&quot; in fetchmail log
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3361">[ date ]</a>
+              <a href="thread.html#3361">[ thread ]</a>
+              <a href="subject.html#3361">[ subject ]</a>
+              <a href="author.html#3361">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

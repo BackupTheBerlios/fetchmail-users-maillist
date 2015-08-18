@@ -1,0 +1,186 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Plus (+) Addressing Problem
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2011-April/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Plus%20%28%2B%29%20Addressing%20Problem&In-Reply-To=%3C20110423135609.394919e1%40scorpio%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002752.html">
+   <LINK REL="Next"  HREF="002754.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Plus (+) Addressing Problem</H1>
+    <B>Jerry</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Plus%20%28%2B%29%20Addressing%20Problem&In-Reply-To=%3C20110423135609.394919e1%40scorpio%3E"
+       TITLE="[fetchmail-users] Plus (+) Addressing Problem">fetchmail.user at seibercom.net
+       </A><BR>
+    <I>Sat Apr 23 19:56:09 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002752.html">[fetchmail-users] Plus (+) Addressing Problem
+</A></li>
+        <LI>Next message: <A HREF="002754.html">[fetchmail-users] Plus (+) Addressing Problem
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2753">[ date ]</a>
+              <a href="thread.html#2753">[ thread ]</a>
+              <a href="subject.html#2753">[ subject ]</a>
+              <a href="author.html#2753">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Sat, 23 Apr 2011 17:38:36 +0100
+Rob MacGregor &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">rob.macgregor at gmail.com</A>&gt; articulated:
+
+&gt;<i> A simple multidrop configuration should handle that. Configure
+</I>&gt;<i> fetchmail to use the &quot;Delivered-To:&quot; header for the Envelope and it
+</I>&gt;<i> should just work - certainly it has for me.
+</I>
+All mail was sent via Yahoo for &quot;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">jerry+fbsd at MyDomain.net</A>&quot;
+
+Unfortunately, it doesn't seem to be working for me. This is a snippet
+of the &quot;fetchmailrc&quot; config file. Specific email addresses have been
+obscured.
+
+poll imap.gmail.com with proto IMAP timeout 30 envelope Delivered-To
+       user '<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">jerry at MyDomain.net</A>' there with password 'SECRET' options forcecr ssl sslcertpath '/usr/local/etc/postfix/certs/'
+
+
+This is the Postfix log entry:
+
+Apr 23 13:40:02 scorpio postfix/smtpd[41114]: 3QH1Kt1fsSz2CG52: client=localhost[127.0.0.1]
+Apr 23 13:40:02 scorpio postfix/cleanup[41119]: 3QH1Kt1fsSz2CG52: message-id=&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">351352.9895.qm at web113211.mail.gq1.yahoo.com</A>&gt;
+Apr 23 13:40:02 scorpio postfix/qmgr[22802]: 3QH1Kt1fsSz2CG52: from=&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">sender at yahoo.com</A>&gt;, size=3431, nrcpt=1 (queue active)
+Apr 23 13:40:02 scorpio postfix/pipe[41120]: 3QH1Kt1fsSz2CG52: to=&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">LocalName at Mydomain.net</A>&gt;, orig_to=&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">LocalName at localhost</A>&gt;, relay=dovecot, delay=0.25, delays=0.23/0/0/0.02, dsn=2.0.0, status=sent (delivered via dovecot service)
+Apr 23 13:40:02 scorpio postfix/qmgr[22802]: 3QH1Kt1fsSz2CG52: removed
+
+
+This is the actual log entry from an attempt to fetch the mail. The
+fetch was successful; however, it was not delivered properly. Again,
+email addresses, etcetera have been obscured.
+
+
+fetchmail: 6.3.19 querying imap.gmail.com (protocol IMAP) at Sat Apr 23 13:21:23 2011: poll started
+fetchmail: Trying to connect to 74.125.65.109/993...connected.
+fetchmail: Server certificate:
+fetchmail: Issuer Organization: Google Inc
+fetchmail: Issuer CommonName: Google Internet Authority
+fetchmail: Subject CommonName: imap.gmail.com
+fetchmail: imap.gmail.com key fingerprint: 02:02:9A:F2:7C:0A:55:39:0D:67:0C:0B:D7:AB:97:47
+fetchmail: IMAP&lt; * OK Gimap ready for requests from 174.109.142.1 v9if4471776ybe.123
+fetchmail: IMAP&gt; A0001 CAPABILITY
+fetchmail: IMAP&lt; * CAPABILITY IMAP4rev1 UNSELECT IDLE NAMESPACE QUOTA XLIST CHILDREN XYZZY SASL-IR AUTH=XOAUTH
+fetchmail: IMAP&lt; A0001 OK Thats all she wrote! v9if4471776ybe.123
+fetchmail: IMAP&gt; A0002 LOGIN &quot;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">jerry at MyDomain.net</A>&quot; *
+fetchmail: IMAP&lt; * CAPABILITY IMAP4rev1 UNSELECT IDLE NAMESPACE QUOTA ID XLIST CHILDREN X-GM-EXT-1 UIDPLUS COMPRESS=DEFLATE
+fetchmail: IMAP&lt; A0002 OK <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">jerry at MyDomain.net</A> Users Name authenticated (Success)
+fetchmail: IMAP&gt; A0003 SELECT &quot;INBOX&quot;
+fetchmail: IMAP&lt; * FLAGS (\Answered \Flagged \Draft \Deleted \Seen)
+fetchmail: IMAP&lt; * OK [PERMANENTFLAGS (\Answered \Flagged \Draft \Deleted \Seen \*)]
+fetchmail: IMAP&lt; * OK [UIDVALIDITY 651743700]
+fetchmail: IMAP&lt; * 1 EXISTS
+fetchmail: IMAP&lt; * 0 RECENT
+fetchmail: IMAP&lt; * OK [UIDNEXT 45]
+fetchmail: IMAP&lt; A0003 OK [READ-WRITE] INBOX selected. (Success)
+fetchmail: IMAP&gt; A0004 EXPUNGE
+fetchmail: IMAP&lt; A0004 OK Success
+fetchmail: IMAP&gt; A0005 SEARCH UNSEEN
+fetchmail: IMAP&lt; * SEARCH 1
+fetchmail: IMAP&lt; A0005 OK SEARCH completed (Success)
+fetchmail: 1 message for <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">jerry at MyDomain.net</A> at imap.gmail.com.
+fetchmail: IMAP&gt; A0006 FETCH 1 RFC822.SIZE
+fetchmail: IMAP&lt; * 1 FETCH (RFC822.SIZE 3046)
+fetchmail: IMAP&lt; A0006 OK Success
+fetchmail: IMAP&gt; A0007 FETCH 1 RFC822.HEADER
+fetchmail: IMAP&lt; * 1 FETCH (RFC822.HEADER {3060}
+fetchmail: reading message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">jerry at MyDomain.net</A>@gmail-imap.l.google.com:1 of 1 (3060 header octets) 
+Trying to connect to 127.0.0.1/25...connected.
+fetchmail: SMTP&lt; 220 MyPC.MyDomain.net ESMTP Postfix (2.9-20110323)
+fetchmail: SMTP&gt; EHLO MyPC.MyDomain.net
+fetchmail: SMTP&lt; 250-MyPC.MyDomain.net
+fetchmail: SMTP&lt; 250-PIPELINING
+fetchmail: SMTP&lt; 250-SIZE 26214400
+fetchmail: SMTP&lt; 250-ETRN
+fetchmail: SMTP&lt; 250-STARTTLS
+fetchmail: SMTP&lt; 250-AUTH DIGEST-MD5 CRAM-MD5
+fetchmail: SMTP&lt; 250-AUTH=DIGEST-MD5 CRAM-MD5
+fetchmail: SMTP&lt; 250-XVERP
+fetchmail: SMTP&lt; 250-ENHANCEDSTATUSCODES
+fetchmail: SMTP&lt; 250-8BITMIME
+fetchmail: SMTP&lt; 250 DSN
+fetchmail: SMTP&gt; MAIL FROM:&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">sender at yahoo.com</A>&gt; SIZE=3046
+fetchmail: SMTP&lt; 250 2.1.0 Ok
+fetchmail: SMTP&gt; RCPT TO:&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">jerry at localhost</A>&gt;
+fetchmail: SMTP&lt; 250 2.1.5 Ok
+fetchmail: SMTP&gt; DATA
+fetchmail: SMTP&lt; 354 End data with &lt;CR&gt;&lt;LF&gt;.&lt;CR&gt;&lt;LF&gt;
+#
+fetchmail: IMAP&lt; )
+fetchmail: IMAP&lt; A0007 OK Success
+fetchmail: IMAP&gt; A0008 FETCH 1 BODY.PEEK[TEXT]
+fetchmail: IMAP&lt; * 1 FETCH (BODY[TEXT] {19}
+fetchmail:  (19 body octets) **
+IMAP&lt; )
+fetchmail: IMAP&lt; A0008 OK Success
+
+fetchmail: SMTP&gt;. (EOM)
+fetchmail: SMTP&lt; 250 2.0.0 Ok: queued as 3QH0wN5lHTz2CG4h
+fetchmail:  flushed
+fetchmail: IMAP&gt; A0009 STORE 1 +FLAGS (\Seen \Deleted)
+fetchmail: IMAP&lt; * 1 FETCH (FLAGS (\Seen \Deleted))
+fetchmail: IMAP&lt; A0009 OK Success
+fetchmail: IMAP&gt; A0010 EXPUNGE
+fetchmail: IMAP&lt; * 1 EXPUNGE
+fetchmail: IMAP&lt; * 0 EXISTS
+fetchmail: IMAP&lt; A0010 OK Success
+fetchmail: IMAP&gt; A0011 LOGOUT
+fetchmail: IMAP&lt; * BYE LOGOUT Requested
+fetchmail: IMAP&lt; A0011 OK 73 good day (Success)
+fetchmail: SMTP&gt; QUIT
+fetchmail: SMTP&lt; 221 2.0.0 Bye
+fetchmail: 6.3.19 querying imap.gmail.com (protocol IMAP) at Sat Apr 23 13:21:25 2011: poll completed
+fetchmail: normal termination, status 0
+Done.
+
+I am probably doing something really stupid here, but I cannot figure
+out what. Perhaps you can figure it out. Thanks for your assistance.
+
+
+-- 
+Jerry &#9996;
+<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">Fetchmail.user at seibercom.net</A>
+
+Disclaimer: off-list followups get on-list replies or get ignored.
+Please do not ignore the Reply-To header.
+__________________________________________________________________
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002752.html">[fetchmail-users] Plus (+) Addressing Problem
+</A></li>
+	<LI>Next message: <A HREF="002754.html">[fetchmail-users] Plus (+) Addressing Problem
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2753">[ date ]</a>
+              <a href="thread.html#2753">[ thread ]</a>
+              <a href="subject.html#2753">[ subject ]</a>
+              <a href="author.html#2753">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

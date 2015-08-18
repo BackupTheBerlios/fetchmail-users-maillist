@@ -1,0 +1,81 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] FAQ updated (O17): Linux logs &quot;TCP(fetchmail:...): Application bug, race in MSG_PEEK.&quot;
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2009-May/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20FAQ%20updated%20%28O17%29%3A%20Linux%20logs%0A%20%22TCP%28fetchmail%3A...%29%3A%20Application%20bug%2C%20race%20in%20MSG_PEEK.%22&In-Reply-To=%3Cop.utoeoijf1e62zd%40merlin.emma.line.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001925.html">
+   <LINK REL="Next"  HREF="001927.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] FAQ updated (O17): Linux logs &quot;TCP(fetchmail:...): Application bug, race in MSG_PEEK.&quot;</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20FAQ%20updated%20%28O17%29%3A%20Linux%20logs%0A%20%22TCP%28fetchmail%3A...%29%3A%20Application%20bug%2C%20race%20in%20MSG_PEEK.%22&In-Reply-To=%3Cop.utoeoijf1e62zd%40merlin.emma.line.org%3E"
+       TITLE="[fetchmail-users] FAQ updated (O17): Linux logs &quot;TCP(fetchmail:...): Application bug, race in MSG_PEEK.&quot;">matthias.andree at gmx.de
+       </A><BR>
+    <I>Sat May  9 20:51:44 CEST 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001925.html">[fetchmail-users] How to show the progress percent	when	downloading email?
+</A></li>
+        <LI>Next message: <A HREF="001927.html">[fetchmail-users] multiline SMTP error
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1926">[ date ]</a>
+              <a href="thread.html#1926">[ thread ]</a>
+              <a href="subject.html#1926">[ subject ]</a>
+              <a href="author.html#1926">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Greetings,
+
+a recent update to the fetchmail FAQ  
+&lt;<A HREF="http://www.fetchmail.info/fetchmail-FAQ.html#O17">http://www.fetchmail.info/fetchmail-FAQ.html#O17</A>&gt; addresses a recently  
+seen kernel bug where the kernel is erroneously pointing fingers at  
+fetchmail. The FAQ entry reads:
+
+O17. Linux logs &quot;TCP(fetchmail:...): Application bug, race in MSG_PEEK.&quot;
+
+That's in fact a bug in Linux kernels around the late 2.6.2X versions,  
+rather than fetchmail. Fetchmail has no race bugs around MSG_PEEK, as of  
+version 6.3.9. The message can safely be ignored.
+
+
+References:
+  - <A HREF="http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=513695">http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=513695</A>
+  - <A HREF="http://www.spinics.net/lists/netdev/msg96700.html">http://www.spinics.net/lists/netdev/msg96700.html</A>
+
+-- 
+Matthias Andree
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001925.html">[fetchmail-users] How to show the progress percent	when	downloading email?
+</A></li>
+	<LI>Next message: <A HREF="001927.html">[fetchmail-users] multiline SMTP error
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1926">[ date ]</a>
+              <a href="thread.html#1926">[ thread ]</a>
+              <a href="subject.html#1926">[ subject ]</a>
+              <a href="author.html#1926">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

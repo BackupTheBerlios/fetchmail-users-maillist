@@ -1,0 +1,92 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] fetchmail: Query status=2 (SOCKET) on Cygwin]
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2008-February/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%3A%20Query%20status%3D2%20%28SOCKET%29%20on%20Cygwin%5D&In-Reply-To=%3C20080201095940.GA32083%40merlin.emma.line.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001447.html">
+   <LINK REL="Next"  HREF="001449.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] fetchmail: Query status=2 (SOCKET) on Cygwin]</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%3A%20Query%20status%3D2%20%28SOCKET%29%20on%20Cygwin%5D&In-Reply-To=%3C20080201095940.GA32083%40merlin.emma.line.org%3E"
+       TITLE="[fetchmail-users] fetchmail: Query status=2 (SOCKET) on Cygwin]">matthias.andree at gmx.de
+       </A><BR>
+    <I>Fri Feb  1 10:59:40 CET 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001447.html">[fetchmail-users] fetchmail: Query status=2 (SOCKET) on Cygwin]
+</A></li>
+        <LI>Next message: <A HREF="001449.html">[fetchmail-users] pop3 error
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1448">[ date ]</a>
+              <a href="thread.html#1448">[ thread ]</a>
+              <a href="subject.html#1448">[ subject ]</a>
+              <a href="author.html#1448">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE><A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">avi at phpclub.org</A> schrieb am 2008-02-01:
+
+&gt;<i> 
+</I>&gt;<i> I give my greatest thanks to all of you who tired to help me.
+</I>&gt;<i> 
+</I>&gt;<i> Apparently the problem was that qmail-pop3d was dumping the connection while it
+</I>&gt;<i> had a memory softlimit of only 2mb.
+</I>&gt;<i> Once I increased it to 4.5Mb everything seems to work properly.
+</I>
+Well - glad you got it solved.
+
+Personally, I've switched away from qmail long ago, for those who stick
+with it, <A HREF="http://home.pages.de/~mandree/qmail-bugs.html">http://home.pages.de/~mandree/qmail-bugs.html</A> documents several
+bugs that people who are more emotional about using and advocating qmail
+will normally not mention as it defeats some of the (hence false) qmail
+advertising.
+
+&gt;<i> I accidently blamed fetchmail for doing nothing wrong and I am sorry to have
+</I>&gt;<i> bothered you all with this issue needlessly.
+</I>
+No problem here after setting the cause right, and you pointed to a
+fetchmail behaviour that is based on ugly code with system-specific
+workarounds for portability issues, that hence deserves a second thought
+and possibly cleanup anyways.
+
+The good thing is however that the issue at hand was outside fetchmail,
+which removes the need to rush for a solution that would have been
+somewhat intrusive, so I might spare the major parts of that for 6.4.
+
+Best regards
+Matthias
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001447.html">[fetchmail-users] fetchmail: Query status=2 (SOCKET) on Cygwin]
+</A></li>
+	<LI>Next message: <A HREF="001449.html">[fetchmail-users] pop3 error
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1448">[ date ]</a>
+              <a href="thread.html#1448">[ thread ]</a>
+              <a href="subject.html#1448">[ subject ]</a>
+              <a href="author.html#1448">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,92 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] IMAP problem (fetchmail 6.3.1-pre1)
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2005-December/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20IMAP%20problem%20%28fetchmail%206.3.1-pre1%29&In-Reply-To=%3Cm3bqzh9u21.fsf%40merlin.emma.line.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000174.html">
+   <LINK REL="Next"  HREF="000177.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] IMAP problem (fetchmail 6.3.1-pre1)</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20IMAP%20problem%20%28fetchmail%206.3.1-pre1%29&In-Reply-To=%3Cm3bqzh9u21.fsf%40merlin.emma.line.org%3E"
+       TITLE="[fetchmail-users] IMAP problem (fetchmail 6.3.1-pre1)">matthias.andree at gmx.de
+       </A><BR>
+    <I>Fri Dec 16 12:10:14 CET 2005</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000174.html">[fetchmail-users] IMAP problem (fetchmail 6.3.1-pre1)
+</A></li>
+        <LI>Next message: <A HREF="000177.html">[fetchmail-users] Re: IMAP problem (fetchmail 6.3.1-pre1)
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#176">[ date ]</a>
+              <a href="thread.html#176">[ thread ]</a>
+              <a href="subject.html#176">[ subject ]</a>
+              <a href="author.html#176">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Jason White &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">jasonjgw at internode.on.net</A>&gt; writes:
+
+&gt;<i> Dec 16 18:40:03 jdc fetchmail[13415]: IMAP&gt; A0006 FETCH 1 RFC822.HEADER 
+</I>&gt;<i> Dec 16 18:40:03 jdc fetchmail[13415]: IMAP&lt; * 1 FETCH (UID 16
+</I>&gt;<i> RFC822.HEADER {1360} 
+</I>
+Well, this tells fetchmail that 1360 bytes (octets) will
+follow. Since this works for me with a Dovecot upstream server, I wonder
+if it's really fetchmail's fault or perhaps SurgeMail's.
+
+Could I possibly get a test mail account on that server to find out
+which software is wrong?  If so, please send the IMAP server, mail
+address (where I would send test messages), account and password or
+other credentials off-list. The X-PGP-Key header mentions my GnuPG key
+so encrypted communication is possible (and should be used).
+
+If that is not possible, can you change your password, run ethereal,
+tethereal or tcpdump -s5000 to capture to a file (the tcpdump filter
+rule would be &quot;host mail.internode.on.net and port 143&quot;), run fetchmail
+once, then change your password again and mail me the resulting tcpdump
+or tethereal capture file? It contains the password, hence the hassle
+with changing it. Looking at the tcpdump/tethereal dump should also give
+us an idea which of the two sides miscounted the message size.
+
+&gt;<i> Dec 16 18:40:33 jdc fetchmail[13415]: timeout after 30 seconds waiting for server mail.internode.on.net. 
+</I>&gt;<i> Dec 16 18:40:33 jdc fetchmail[13415]: socket error while fetching from <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">jasonjgw at mail.internode.on.net</A> 
+</I>
+Thank you for retrying with 6.3.1-pre1 and reporting your problem.
+
+-- 
+Matthias Andree
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000174.html">[fetchmail-users] IMAP problem (fetchmail 6.3.1-pre1)
+</A></li>
+	<LI>Next message: <A HREF="000177.html">[fetchmail-users] Re: IMAP problem (fetchmail 6.3.1-pre1)
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#176">[ date ]</a>
+              <a href="thread.html#176">[ thread ]</a>
+              <a href="subject.html#176">[ subject ]</a>
+              <a href="author.html#176">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

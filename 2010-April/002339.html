@@ -1,0 +1,100 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] sperate servers
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2010-April/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20sperate%20servers&In-Reply-To=%3Cl2y43ea8d071004130132p7633fb3brb78608e12efad8c0%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002338.html">
+   <LINK REL="Next"  HREF="002342.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] sperate servers</H1>
+    <B>Rob MacGregor</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20sperate%20servers&In-Reply-To=%3Cl2y43ea8d071004130132p7633fb3brb78608e12efad8c0%40mail.gmail.com%3E"
+       TITLE="[fetchmail-users] sperate servers">rob.macgregor at gmail.com
+       </A><BR>
+    <I>Tue Apr 13 10:32:30 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002338.html">[fetchmail-users] sperate servers
+</A></li>
+        <LI>Next message: <A HREF="002342.html">[fetchmail-users] sperate servers
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2339">[ date ]</a>
+              <a href="thread.html#2339">[ thread ]</a>
+              <a href="subject.html#2339">[ subject ]</a>
+              <a href="author.html#2339">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Tue, Apr 13, 2010 at 00:49, Robert Holtzman &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">holtzm at cox.net</A>&gt; wrote:
+&gt;<i> I'm trying to set up .fetchmailrc to poll 2 mail servers but only route one
+</I>&gt;<i> to Procmail, the other going to /var/mail/&lt;username&gt;. Everything I've been
+</I>&gt;<i> able to find online says if no mda is specified the messages go to the
+</I>&gt;<i> default mailbox, which is what I want. The problem is that even though I
+</I>&gt;<i> only specify the mda for one server messages from both are routed through
+</I>&gt;<i> it.
+</I>&gt;<i>
+</I>&gt;<i> My .fetchmailrc is:
+</I>&gt;<i>
+</I>&gt;<i> poll &quot;pop.sonic.net&quot;
+</I>&gt;<i> protocol pop3 username &quot;xxxxxx&quot; password &quot;xxxxxxxx&quot;
+</I>&gt;<i> mimedecode #
+</I>
+Mail delivered to your local SMTP server, which may be using procmail
+for delivery.
+
+&gt;<i> poll &quot;pop.west.cox.net&quot;
+</I>&gt;<i> protocol pop3 username &quot;xxxxxx&quot; password &quot;xxxxxxxxxx&quot; mimedecode mda
+</I>&gt;<i> &quot;/usr/bin/procmail -f -&quot;
+</I>
+Mail delivered to procmail.
+
+&gt;<i> One solution would be to specify separate .procmailrc files but
+</I>&gt;<i> 1) that's clumsy and 2) I don't know how. After reading the Procmail man
+</I>&gt;<i> page I tried specifying separate files but couldn't make it work.
+</I>&gt;<i>
+</I>&gt;<i> Any pointers appreciated.
+</I>
+Fetchmail has no control over what happens after it hands the email to
+your local delivery mechanisms.  Check the logs for your mail server
+and procmail to identify what's happening.
+
+-- 
+                 Please keep list traffic on the list.
+
+Rob MacGregor
+      Whoever fights monsters should see to it that in the process he
+        doesn't become a monster.                  Friedrich Nietzsche
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002338.html">[fetchmail-users] sperate servers
+</A></li>
+	<LI>Next message: <A HREF="002342.html">[fetchmail-users] sperate servers
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2339">[ date ]</a>
+              <a href="thread.html#2339">[ thread ]</a>
+              <a href="subject.html#2339">[ subject ]</a>
+              <a href="author.html#2339">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

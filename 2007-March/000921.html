@@ -1,0 +1,231 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Fetchmail 6.3.7+NLS not deleting one specific	message from server
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2007-March/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Fetchmail%206.3.7%2BNLS%20not%20deleting%20one%20specific%0A%09message%20from%20server&In-Reply-To=%3C200703212159.08827.cpollock%40earthlink.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000920.html">
+   <LINK REL="Next"  HREF="000922.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Fetchmail 6.3.7+NLS not deleting one specific	message from server</H1>
+    <B>Chris</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Fetchmail%206.3.7%2BNLS%20not%20deleting%20one%20specific%0A%09message%20from%20server&In-Reply-To=%3C200703212159.08827.cpollock%40earthlink.net%3E"
+       TITLE="[fetchmail-users] Fetchmail 6.3.7+NLS not deleting one specific	message from server">cpollock at earthlink.net
+       </A><BR>
+    <I>Thu Mar 22 03:59:08 CET 2007</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000920.html">[fetchmail-users] Fetchmail 6.3.7+NLS not deleting one specific	message from server
+</A></li>
+        <LI>Next message: <A HREF="000922.html">[fetchmail-users] Fetchmail 6.3.7+NLS not deleting one specific	message from server
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#921">[ date ]</a>
+              <a href="thread.html#921">[ thread ]</a>
+              <a href="subject.html#921">[ subject ]</a>
+              <a href="author.html#921">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Wednesday 21 March 2007 2:04 am, Rob MacGregor wrote:
+&gt;<i> On 3/21/07, Chris &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">cpollock at earthlink.net</A>&gt; wrote:
+</I>&gt;<i> &gt; I reported this back on the 11th of March, since then I've upgraded to
+</I>&gt;<i> &gt; what I understand is the latest version. Looking at the required
+</I>&gt;<i> &gt; information for a problem in the FAQ I'll try to provide it:
+</I>&gt;<i>
+</I>&gt;<i> Thanks for all that.  Typically there was still one thing that the FAQ
+</I>&gt;<i> doesn't ask for that would have helped :)  Can you provide the output
+</I>&gt;<i> of &quot;fetchmail -v -v -v -m procmail&quot; for the problem email (that
+</I>&gt;<i> should, hopefully, show what's happening).
+</I>&gt;<i>
+</I>&gt;<i> You may find that enabling UIDL support helps as it moves to problem
+</I>&gt;<i> of tracking seen emails from the server to fetchmail.
+</I>&gt;<i>
+</I>&gt;<i> It may be that the problem will go away if you don't use &quot;-m procmail&quot;
+</I>&gt;<i> but deliver directly to your SMTP server, but that's just a guess.
+</I>
+Rob, it appears that enabling uidl has taken care of the problem of a message 
+being fetched multiple times and blocking others. I was looking at my 
+earthlink webmail folder and noticed a message that was still on the server 
+but was also already in my spam folder. Here is how I'm now calling 
+fetchmail:
+
+fetchmail -v -v -v --nosyslog --logfile /home/chris/fetchmaillog --uidl -m 
+procmail
+
+The output as you asked for above is:
+
+fetchmail: awakened at Wed 21 Mar 2007 08:26:50 PM CDT
+fetchmail: 6.3.7 querying pop.earthlink.net (protocol POP3) at Wed 21 Mar 2007 
+08:26:50 PM CDT: poll started
+fetchmail: Trying to connect to 209.86.93.210/110...connected.
+fetchmail: POP3&lt; +OK NGPopper vEL_0_1_24_P at earthlink.net ready 
+&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">21187.1174526811 at mp-resolute.atl.sa.earthlink.net</A>&gt;
+fetchmail: POP3&gt; CAPA
+fetchmail: POP3&lt; +OK
+fetchmail: POP3&lt; apop
+fetchmail: POP3&lt; pass
+fetchmail: POP3&lt; top
+fetchmail: POP3&lt; uidl
+fetchmail: POP3&lt; user
+fetchmail: POP3&lt; .
+fetchmail: POP3&gt; USER cpollock
+fetchmail: POP3&lt; +OK Pass required for <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">cpollock at earthlink.net</A>
+fetchmail: POP3&gt; PASS *
+fetchmail: POP3&lt; +OK cpollock has 1 messages (1377 octets).
+fetchmail: selecting or re-polling default folder
+fetchmail: POP3&gt; STAT
+fetchmail: POP3&lt; +OK 1 1377
+fetchmail: POP3&gt; UIDL
+fetchmail: POP3&lt; +OK
+fetchmail: POP3&lt; 1 1huc3u2DT3Nl36v1
+fetchmail: 1 is unseen
+fetchmail: POP3&lt; .
+fetchmail: 1 message for cpollock at pop.earthlink.net (1377 octets).
+fetchmail: POP3&gt; LIST 1
+fetchmail: POP3&lt; +OK 1 1377
+fetchmail: POP3&gt; TOP 1 99999999
+fetchmail: POP3&lt; +OK
+fetchmail: reading message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">cpollock at pop05.earthlink.net</A>:1 of 1 (1377 octets)
+fetchmail: About to rewrite Return-Path: &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">sale at viagra.com</A>&gt; 
+Rewritten version is Return-Path: &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">sale at viagra.com</A>&gt; 
+
+fetchmail: About to rewrite From: &quot;Cialis &amp; Viagra&quot; &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">sale at viagra.com</A>&gt; 
+Rewritten version is From: &quot;Cialis &amp; Viagra&quot; &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">sale at viagra.com</A>&gt; 
+
+fetchmail: About to rewrite To: <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">downisland at earthlink.com</A> 
+Rewritten version is To: <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">downisland at earthlink.com</A> 
+
+fetchmail: about to deliver with: procmail
+fetchmail:  flushed
+fetchmail: POP3&gt; DELE 1
+fetchmail: socket error while fetching from <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">cpollock at pop.earthlink.net</A>
+fetchmail: 6.3.7 querying pop.earthlink.net (protocol POP3) at Wed 21 Mar 2007 
+08:27:58 PM CDT: poll completed
+fetchmail: Merged UID list from pop.earthlink.net: 1huc153H3Nl34c1 = 3 
+1huc3u2DT3Nl36v1 = 1 &lt;empty&gt;
+fetchmail: discarding new UID list
+fetchmail: Query status=2 (SOCKET)
+fetchmail: Writing fetchids file.
+fetchmail: sleeping at Wed 21 Mar 2007 08:27:58 PM CDT for 120 seconds
+
+The next poll, a portion below, I noticed shows that the offending message was 
+already seen so the download attempt is not made:
+
+fetchmail: awakened at Wed 21 Mar 2007 08:29:58 PM CDT
+fetchmail: 6.3.7 querying pop.earthlink.net (protocol POP3) at Wed 21 Mar 2007 
+08:29:58 PM CDT: poll started
+fetchmail: Trying to connect to 209.86.93.209/110...connected.
+fetchmail: POP3&lt; +OK NGPopper vEL_6_10_7 at earthlink.net ready 
+&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">22959.1174526998 at pop-cowbird.atl.sa.earthlink.net</A>&gt;
+fetchmail: POP3&gt; CAPA
+fetchmail: POP3&lt; +OK
+fetchmail: POP3&lt; user
+fetchmail: POP3&lt; pass
+fetchmail: POP3&lt; top
+fetchmail: POP3&lt; uidl
+fetchmail: POP3&lt; sasl proxauth
+fetchmail: POP3&lt; .
+fetchmail: POP3&gt; USER cpollock
+fetchmail: POP3&lt; +OK
+fetchmail: POP3&gt; PASS *
+fetchmail: POP3&lt; +OK cpollock has 6 messages (33846 octets).
+fetchmail: selecting or re-polling default folder
+fetchmail: POP3&gt; STAT
+fetchmail: POP3&lt; +OK 6 33846
+fetchmail: POP3&gt; UIDL
+fetchmail: POP3&lt; +OK
+fetchmail: POP3&lt; 1 1huc3u2DT3Nl36v1
+fetchmail: POP3&lt; 2 1huc5A5p03Nl36K1
+fetchmail: 2 is unseen
+fetchmail: POP3&lt; 3 1huc5X5wC3Nl34e1
+fetchmail: 3 is unseen
+fetchmail: POP3&lt; 4 1huc614HL3Nl34c1
+fetchmail: 4 is unseen
+fetchmail: POP3&lt; 5 1huc766gR3Nl3491
+fetchmail: 5 is unseen
+fetchmail: POP3&lt; 6 1huc7L6Gl3Nl34i1
+fetchmail: 6 is unseen
+fetchmail: POP3&lt; .
+fetchmail: 6 messages (1 seen) for cpollock at pop.earthlink.net (33846 
+octets).
+fetchmail: skipping message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">cpollock at pop05.earthlink.net</A>:1 not flushed
+fetchmail: POP3&gt; LIST 2
+fetchmail: POP3&lt; +OK 2 7301
+fetchmail: POP3&gt; TOP 2 99999999
+fetchmail: POP3&lt; +OK
+
+Here are the message headers:
+
+Return-Path: &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">sale at viagra.com</A>&gt;
+ Received: from pop05.earthlink.net [209.86.93.206]
+&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;by localhost.localdomain with POP3 (fetchmail-6.3.7)
+&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;for &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">cpollock at localhost</A>&gt; (single-drop); Wed, 21 Mar 2007 20:26:51 
+-0500 (CDT)
+ Received: from noehlo.host ([127.0.0.1])
+&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;by mx-harris.atl.sa.earthlink.net (EarthLink SMTP Server) with SMTP id 
+1huc3u2DT3Nl36v0; Wed, 21 Mar 2007 21:25:28 -0400 (EDT)
+ Received: from 6431CCD0 ([65.87.253.128])
+&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;by mx-harris.atl.sa.earthlink.net (EarthLink SMTP Server) with SMTP id 
+1huc367073Nl36v0; Wed, 21 Mar 2007 21:25:04 -0400 (EDT)
+ Received: from smtp.x321.net (helo=smtp.cauchy.net)
+&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;by smtp2cauchy.nl with lsmtp (Exim 3.35 #2 (Debian))
+&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;id 1AGZO1-0000d1-00
+ Date: Wed, 21 Mar 2007 18:25:03 -0800
+ From: &quot;Cialis &amp; Viagra&quot; &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">sale at viagra.com</A>&gt;
+ Message-Id: &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">8701285855.ZM374728 at sgaxaf.harvard.edu</A>&gt;
+ To: <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">downisland at earthlink.com</A>
+ Subject: Order
+ In-Reply-To: &quot;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">sale at viagra.com</A>&quot; &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">sale at viagra.com</A>&gt;
+ X-ELNK-Received-Info: spv=1;
+ X-ELNK-Info: sbv=0; sbrc=.0; sbf=00; sbw=000;
+ X-SenderIP: 65.87.253.128
+ X-ASN: ASN-21804
+ X-CIDR: 65.87.224.0/19
+
+I think though that the key may be the &quot;socket error while fetching from 
+<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">cpollock at pop.earthlink.net</A>&quot;. It appears to my untrained eye that the 
+connection was dropped while fetching this particular message? I also see, I 
+think, how UIDL comes into play. Each message is assigned a unique ID. For 
+instance, the 'bad' message above has an UIDL of 1huc3u2DT3Nl36v1, and 
+looking at the .fetchids file I see <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">cpollock at pop.earthlink.net</A> 
+1huc3u2DT3Nl36v1. Once I delete that message from the server the .fetchids 
+file is removed since all messages have been downloaded. Makes sense.
+
+Chris
+
+-- 
+Chris
+KeyID 0xE372A7DA98E6705C
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000920.html">[fetchmail-users] Fetchmail 6.3.7+NLS not deleting one specific	message from server
+</A></li>
+	<LI>Next message: <A HREF="000922.html">[fetchmail-users] Fetchmail 6.3.7+NLS not deleting one specific	message from server
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#921">[ date ]</a>
+              <a href="thread.html#921">[ thread ]</a>
+              <a href="subject.html#921">[ subject ]</a>
+              <a href="author.html#921">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

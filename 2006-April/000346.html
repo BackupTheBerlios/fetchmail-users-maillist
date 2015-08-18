@@ -1,0 +1,184 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Re: [fetchmail]fetchmail 6.3.4 stable release
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2006-April/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Re%3A%20%5Bfetchmail%5Dfetchmail%206.3.4%20stable%20release&In-Reply-To=%3C44438557.8030802%40kimon.btv.ibm.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000342.html">
+   <LINK REL="Next"  HREF="000347.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Re: [fetchmail]fetchmail 6.3.4 stable release</H1>
+    <B>Dale Pontius</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Re%3A%20%5Bfetchmail%5Dfetchmail%206.3.4%20stable%20release&In-Reply-To=%3C44438557.8030802%40kimon.btv.ibm.com%3E"
+       TITLE="[fetchmail-users] Re: [fetchmail]fetchmail 6.3.4 stable release">pontius at kimon.btv.ibm.com
+       </A><BR>
+    <I>Mon Apr 17 14:08:55 CEST 2006</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000342.html">[fetchmail-users] fetchmail 6.3.4 stable release
+</A></li>
+        <LI>Next message: <A HREF="000347.html">[fetchmail-users] Re: [fetchmail]fetchmail 6.3.4 stable release
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#346">[ date ]</a>
+              <a href="thread.html#346">[ thread ]</a>
+              <a href="subject.html#346">[ subject ]</a>
+              <a href="author.html#346">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hello,
+I realize that you hate multidrop, and generally disparage and deprecate 
+the heck out of it, but for some of us, it's about the only way to make 
+our email come out halfway decent. Given the text of this announcement, 
+I need to ask some questions, and also see if I'm going to have to 
+squirrel away a &quot;last usable&quot; copy of fetchmail source at some point.
+
+Matthias Andree wrote:
+&gt;<i> -----BEGIN PGP SIGNED MESSAGE-----
+</I>&gt;<i> Hash: SHA1
+</I>&gt;<i>
+</I>&gt;<i> Greetings,
+</I>&gt;<i>
+</I>&gt;<i> I am announcing the release of fetchmail 6.3.4. This new stable version
+</I>&gt;<i> of fetchmail fixes several minor bugs, adds a --pidfile option, a
+</I>&gt;<i> Vietnamese translation and updates other translations.
+</I>&gt;<i> For details, please see below.
+</I>&gt;<i>
+</I>&gt;<i> The software is available from:
+</I>&gt;<i> &lt;<A HREF="http://developer.berlios.de/project/showfiles.php?group_id=1824&amp;release_id=9751">http://developer.berlios.de/project/showfiles.php?group_id=1824&amp;release_id=9751</A>&gt;
+</I>&gt;<i>
+</I>&gt;<i> The fetchmail home pages is:
+</I>&gt;<i> &lt;<A HREF="http://www.fetchmail.info/">http://www.fetchmail.info/</A>&gt;  or  &lt;<A HREF="http://fetchmail.berlios.de/">http://fetchmail.berlios.de/</A>&gt;
+</I>&gt;<i>
+</I>&gt;<i> These are the relevant changes in 6.3.4 since 6.3.3;
+</I>&gt;<i> unless otherwise noted, changes to this release were made by Matthias Andree:
+</I>&gt;<i>
+</I>&gt;<i> # DEPRECATED FEATURES AND MAJOR INCOMPATIBLE CHANGE ADVANCE WARNINGS
+</I>&gt;<i> * The MX and host alias DNS lookups that fetchmail performs in multidrop mode
+</I>&gt;<i>   are obsolete, deprecated and may be removed from a future fetchmail version.
+</I>&gt;<i>   They have never supported IPv6 (including IPv6-mapped IPv4) anyhow.
+</I>&gt;<i>   
+</I>Is this the 'aka' being deprecated, or is it some implicit lookup that I 
+won't have to worry about, as long as I have 'aka' properly set up?
+&gt;<i> * The monitor and interface options may be removed from a future fetchmail
+</I>&gt;<i>   version as they are not sufficiently portable.
+</I>&gt;<i> * POP2 is obsolete.
+</I>&gt;<i>   Support for POP2 may be removed from a future fetchmail version.
+</I>&gt;<i> * RPOP is obsolete, support may be removed from a future fetchmail release.
+</I>&gt;<i> * --sslcertck may become a default setting in a future fetchmail version.
+</I>&gt;<i> * The multidrop To/Cc guessing code along with the fragile duplicate suppressor
+</I>&gt;<i>   is deprecated and may be removed from a future release.
+</I>&gt;<i>   
+</I>Related to the 'aka' question, I noticed that when I upgraded to 6.3.2, 
+multidrop pretty much fell apart for me, delivering all mail to the 
+default id. I went back and RTFM, ran fetchmail with extra '-v's, added 
+some extra 'aka's, and actually got it running better than ever. Most 
+notably, we'd always lived with some duplicates that were now resolved 
+and eliminated. Given that I've already spent the effort to adapt to the 
+jump from 6.2.x to 6.3.2, am I set for the foreseeable future, or do 
+these notes presage major pain to come?
+&gt;<i> * The --enable-fallback (fall back to MDA if MTA unavailable) may be removed
+</I>&gt;<i>   from a future fetchmail release.
+</I>&gt;<i> * The &quot;protocol auto&quot; default inside fetchmail may be removed from a future
+</I>&gt;<i>   fetchmail release. Explicit configuration of the protocol is recommended.
+</I>&gt;<i>
+</I>&gt;<i> # KNOWN BUGS AND WORKAROUNDS:
+</I>&gt;<i>   (this section floats upwards through the NEWS to be on top of the list)
+</I>&gt;<i> * fetchmail does not handle messages without Message-ID header well
+</I>&gt;<i>   (See sourceforge.net bug #780933)
+</I>&gt;<i> * Sun Workshop 6 (SPARC) is known to miscompile the lexer in 64-bit mode.
+</I>&gt;<i>   Either compile 32-bit code or use GCC to compile 64-bit fetchmail.
+</I>&gt;<i>   Note that fetchmail doesn't take advantage of 64-bit code anyways,
+</I>&gt;<i>   so compiling 32-bit SPARC code should be fine.
+</I>&gt;<i> * The code still isn't 100% ISO-C compliant, some configurations attempt to
+</I>&gt;<i>   compile files that are empty after preprocessing, which can cause compiler
+</I>&gt;<i>   diagnostics and perhaps jam the compilation on strict compilers.
+</I>&gt;<i>
+</I>&gt;<i> # BUG FIXES:
+</I>&gt;<i> * configure: detect res_* functions properly with newer glibc ABIs.
+</I>&gt;<i>   Patch by Miloslav Trmac.
+</I>&gt;<i> * tracepolls: add folder information if available. Reported by Terry Brown.
+</I>&gt;<i> * lexer: add %option noyywrap to avoid link errors about missing yywrap().
+</I>&gt;<i> * a few more type fixes for report/snprintf, patch by Miloslav Trmac.
+</I>&gt;<i> * bouncing: fetchmail would still send &quot;General SMTP/ESMTP error.&quot; bounces
+</I>&gt;<i>   in spite of &quot;no bouncemail&quot; configuration.
+</I>&gt;<i> * SSL/TLS: if, for a certain server, an sslfingerprint is specified and
+</I>&gt;<i>   sslcertck is NOT set, suppress printing SSL certificate mismatch errors.
+</I>&gt;<i>   (Reported by Hannes Erven.)
+</I>&gt;<i> * SSL/TLS: always print if the sslfingerprint mismatches, even in silent
+</I>&gt;<i>   mode.  (This is for consistency with certificate verification errors.)
+</I>&gt;<i>   
+</I>I only WISH my ISP would support ssl/tls, or etrn, or odmr. I'm STUCK 
+with multidrop, unless I spring for more $$$ to use a different provider 
+for my email. I'm already paying $$$$ for a cable ISP and $$ for my 
+domain and forwarding, not to mention $$.$e$$ for kids' education, so 
+$$$ just to avoid multidrop just isn't in the cards, for now. (My ISP 
+has multiple POP boxes, but my domain forwarding doesn't have enough 
+capability, so I use multidrop.)
+
+Dale Pontius
+&gt;<i> # TRANSLATION UPDATES:
+</I>&gt;<i> * German/de (Matthias Andree), French/fr (Matthias Andree), Spanish/es (H&#233;ctor
+</I>&gt;<i>   Garc&#237;a), Polish/pl (Jakub Bogusz), Japanese/ja (Takeshi Hamasaki)
+</I>&gt;<i> * New Vietnamese/vi translation (Clytie Siddall).
+</I>&gt;<i> * Updated French descriptions for the .spec file (St&#233;phane Schildknecht,
+</I>&gt;<i>   Luc Pionchon, Matthias Andree).
+</I>&gt;<i>
+</I>&gt;<i> # CHANGES:
+</I>&gt;<i> * pidfile: there is a new command-line (--pidfile PATH) and global option for
+</I>&gt;<i>   the rcfile (set pidfile [=] &quot;/path/to/pidfile&quot;) option to allow overriding
+</I>&gt;<i>   the default location of the PID file.
+</I>&gt;<i>   Requested by H&#233;ctor Garc&#237;a, Debian maintainer.
+</I>&gt;<i> * specgen.sh: Converted to UTF-8 to support translated texts better.
+</I>&gt;<i>
+</I>&gt;<i> Regards,
+</I>&gt;<i>
+</I>&gt;<i> - -- 
+</I>&gt;<i> Matthias Andree
+</I>&gt;<i> -----BEGIN PGP SIGNATURE-----
+</I>&gt;<i> Version: GnuPG v1.4.0 (GNU/Linux)
+</I>&gt;<i>
+</I>&gt;<i> iD8DBQFEP9NcvmGDOQUufZURArqIAKC6oo1DQLVwV9Luct07Q1AiCY7SvACg0VPL
+</I>&gt;<i> fErfpBSuF828FlAI8payL+A=
+</I>&gt;<i> =uWqI
+</I>&gt;<i> -----END PGP SIGNATURE-----
+</I>&gt;<i>
+</I>&gt;<i> _______________________________________________
+</I>&gt;<i> Fetchmail-friends mailing list
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">Fetchmail-friends at lists.ccil.org</A>
+</I>&gt;<i> <A HREF="http://lists.ccil.org/cgi-bin/mailman/listinfo/fetchmail-friends">http://lists.ccil.org/cgi-bin/mailman/listinfo/fetchmail-friends</A>
+</I>&gt;<i>   
+</I>
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000342.html">[fetchmail-users] fetchmail 6.3.4 stable release
+</A></li>
+	<LI>Next message: <A HREF="000347.html">[fetchmail-users] Re: [fetchmail]fetchmail 6.3.4 stable release
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#346">[ date ]</a>
+              <a href="thread.html#346">[ thread ]</a>
+              <a href="subject.html#346">[ subject ]</a>
+              <a href="author.html#346">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

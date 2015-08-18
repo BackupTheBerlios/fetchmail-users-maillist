@@ -1,0 +1,144 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] fetchmail, fetchnews can't get thru router
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2008-August/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%2C%20fetchnews%20can%27t%20get%20thru%20router&In-Reply-To=%3C20080807211940.GC645%40krille.blacktrash.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001666.html">
+   <LINK REL="Next"  HREF="001668.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] fetchmail, fetchnews can't get thru router</H1>
+    <B>Christian Ebert</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%2C%20fetchnews%20can%27t%20get%20thru%20router&In-Reply-To=%3C20080807211940.GC645%40krille.blacktrash.org%3E"
+       TITLE="[fetchmail-users] fetchmail, fetchnews can't get thru router">blacktrash at gmx.net
+       </A><BR>
+    <I>Thu Aug  7 23:19:40 CEST 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001666.html">[fetchmail-users] fetchmail, fetchnews can't get thru router
+</A></li>
+        <LI>Next message: <A HREF="001668.html">[fetchmail-users] fetchmail, fetchnews can't get thru router
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1667">[ date ]</a>
+              <a href="thread.html#1667">[ thread ]</a>
+              <a href="subject.html#1667">[ subject ]</a>
+              <a href="author.html#1667">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>* Matthias Andree on Thursday, August 07, 2008 at 15:20:08 +0200
+&gt;<i> Christian Ebert schrieb:
+</I>&gt;&gt;<i> fetchmail.pcap is empty.
+</I>&gt;<i> 
+</I>&gt;<i> Euhm, 59 non-TCP packets - but why no TCP packets? Who is goofing up here?
+</I>
+Me! Well, sort of. Experimenting with fetchnews led me to set a
+different timeout and:
+
+~$ time fetchmail -t 600 --nodetach --nosyslog -vvvd0
+fetchmail: 6.3.9-rc2 querying imap.gmx.net (protocol IMAP) at Thu, 07 Aug 2008 22:57:45 +0200 (CEST): poll started
+Trying to connect to 213.165.64.23/993...connected.
+[ *** long hang here ***]
+fetchmail: Issuer Organization: Thawte Consulting cc
+fetchmail: Issuer CommonName: Thawte Premium Server CA
+fetchmail: Server CommonName: imap.gmx.net
+fetchmail: imap.gmx.net key fingerprint: 6E:B2:EE:36:22:4E:85:9F:DE:42:6C:25:52:16:03:6E
+fetchmail: IMAP&lt; * OK GMX IMAP4 StreamProxy ready.
+fetchmail: IMAP&gt; A0001 CAPABILITY
+fetchmail: IMAP&lt; * CAPABILITY IMAP4 IMAP4rev1 IDLE AUTH=LOGIN AUTH=CRAM-MD5
+fetchmail: IMAP&lt; A0001 OK CAPABILITY completed
+fetchmail: Protocol identified as IMAP4 rev 1
+fetchmail: IMAP&gt; A0002 LOGIN &quot;xxxxxxxxxx&quot; *
+fetchmail: IMAP&lt; A0002 OK xxxxxxxxxx logged in
+fetchmail: selecting or re-polling default folder
+fetchmail: IMAP&gt; A0003 SELECT &quot;INBOX&quot;
+fetchmail: IMAP&lt; * FLAGS (\Answered \Flagged \Draft \Deleted \Seen)
+fetchmail: IMAP&lt; * OK [PERMANENTFLAGS (\Answered \Flagged \Draft \Deleted \Seen)]
+fetchmail: IMAP&lt; * 5 EXISTS
+fetchmail: IMAP&lt; * 5 RECENT
+fetchmail: IMAP&lt; * OK [UNSEEN 1]
+fetchmail: IMAP&lt; * OK [UIDVALIDITY 1137188695]
+fetchmail: IMAP&lt; * OK [UIDNEXT 48789]
+fetchmail: IMAP&lt; A0003 OK [READ-WRITE] Completed
+fetchmail: 5 messages waiting after first poll
+About to rewrite Return-Path: &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">mercurial-bounces at selenic.com</A>&gt;
+Rewritten version is Return-Path: &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">mercurial-bounces at selenic.com</A>&gt;
+
+About to rewrite To: <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">mercurial at selenic.com</A>
+Rewritten version is To: <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">mercurial at selenic.com</A>
+
+About to rewrite From: Martin Geisler &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">mg at daimi.au.dk</A>&gt;
+Rewritten version is From: Martin Geisler &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">mg at daimi.au.dk</A>&gt;
+
+About to rewrite Sender: <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">mercurial-bounces at selenic.com</A>
+Rewritten version is Sender: <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">mercurial-bounces at selenic.com</A>
+
+fetchmail: forwarding to krille
+[ *** long hang here, than resumes at usual speed ***]
+...
+fetchmail: normal termination, status 0
+
+real    2m3.605s
+user    0m0.080s
+sys     0m0.165s
+
+It hesitates a loooong time after contacting both the remote and
+the local server, if I understand correctly. 
+
+~$ sudo tcpdump -w fetchmail.pcap -vv -i en1 tcp
+tcpdump: listening on en1, link-type EN10MB (Ethernet), capture
+size 96 bytes
+0 packets captured
+16 packets received by filter
+0 packets dropped by kernel
+~$ sudo tcpdump -w fetchmail.pcap -vv -i en1 tcp
+tcpdump: listening on en1, link-type EN10MB (Ethernet), capture
+size 96 bytes
+156 packets captured
+260 packets received by filter
+0 packets dropped by kernel
+
+How do you want the 156 lines ;) ? Plain text? Compressed?
+Personal mail?
+
+Thank you for your patience.
+
+c
+-- 
+  Was hei&#223;t hier Dogma, ich bin Underdogma!
+[ What the hell do you mean dogma, I am underdogma. ]
+
+_F R E E_  _V I D E O S_  --&gt;&gt;  <A HREF="http://www.blacktrash.org/underdogma/">http://www.blacktrash.org/underdogma/</A>
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001666.html">[fetchmail-users] fetchmail, fetchnews can't get thru router
+</A></li>
+	<LI>Next message: <A HREF="001668.html">[fetchmail-users] fetchmail, fetchnews can't get thru router
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1667">[ date ]</a>
+              <a href="thread.html#1667">[ thread ]</a>
+              <a href="subject.html#1667">[ subject ]</a>
+              <a href="author.html#1667">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

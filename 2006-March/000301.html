@@ -1,0 +1,84 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] [PATCH] Re: RETR with UIDL
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2006-March/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20%5BPATCH%5D%20Re%3A%20RETR%20with%20UIDL&In-Reply-To=%3Cm3y7zqpimd.fsf%40merlin.emma.line.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000300.html">
+   <LINK REL="Next"  HREF="000303.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] [PATCH] Re: RETR with UIDL</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20%5BPATCH%5D%20Re%3A%20RETR%20with%20UIDL&In-Reply-To=%3Cm3y7zqpimd.fsf%40merlin.emma.line.org%3E"
+       TITLE="[fetchmail-users] [PATCH] Re: RETR with UIDL">matthias.andree at gmx.de
+       </A><BR>
+    <I>Sat Mar  4 12:14:02 CET 2006</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000300.html">[fetchmail-users] [PATCH] Re: RETR with UIDL
+</A></li>
+        <LI>Next message: <A HREF="000303.html">[fetchmail-users] Re: RETR with UIDL
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#301">[ date ]</a>
+              <a href="thread.html#301">[ thread ]</a>
+              <a href="subject.html#301">[ subject ]</a>
+              <a href="author.html#301">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Sunil Shetye &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">shetye at bombay.retortsoft.com</A>&gt; writes:
+
+&gt;<i> Quoting from Matthias Andree's mail on Fri, Mar 03, 2006:
+</I>&gt;&gt;<i> &gt; The advice being given to force fetchmail to avoid using &quot;TOP&quot; with
+</I>&gt;&gt;<i> &gt; these buggy servers is to enable the &quot;fetchall&quot; option. The FAQ is
+</I>&gt;&gt;<i> &gt; littered with this advice for various servers with variety of
+</I>&gt;&gt;<i> &gt; problems. The problems with &quot;fetchall&quot; option are:
+</I>&gt;&gt;<i> &gt;
+</I>&gt;&gt;<i> &gt; - &quot;fetchall&quot; cannot be used with &quot;uidl&quot;
+</I>&gt;&gt;<i> 
+</I>&gt;&gt;<i> Well, we can fix eventual incompatibilities between these two options
+</I>&gt;&gt;<i> any time. 6.3.X is open for bug fixes.
+</I>&gt;<i>
+</I>&gt;<i> Here is a patch for this.
+</I>
+Hm - how will this avoid redownloads of messages when the line is faulty
+and the connection is torn down?
+
+It will recognize it's downloading seen messages, but download them all
+the same.
+
+-- 
+Matthias Andree
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000300.html">[fetchmail-users] [PATCH] Re: RETR with UIDL
+</A></li>
+	<LI>Next message: <A HREF="000303.html">[fetchmail-users] Re: RETR with UIDL
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#301">[ date ]</a>
+              <a href="thread.html#301">[ thread ]</a>
+              <a href="subject.html#301">[ subject ]</a>
+              <a href="author.html#301">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

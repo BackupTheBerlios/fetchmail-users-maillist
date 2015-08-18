@@ -1,0 +1,146 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] fetchmail and socks5
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2007-March/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%20and%20socks5&In-Reply-To=%3C20070318224253.56DD02004F6%40merlin.emma.line.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000896.html">
+   <LINK REL="Next"  HREF="000898.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] fetchmail and socks5</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%20and%20socks5&In-Reply-To=%3C20070318224253.56DD02004F6%40merlin.emma.line.org%3E"
+       TITLE="[fetchmail-users] fetchmail and socks5">matthias.andree at gmx.de
+       </A><BR>
+    <I>Sun Mar 18 23:42:52 CET 2007</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000896.html">[fetchmail-users] fetchmail and socks5
+</A></li>
+        <LI>Next message: <A HREF="000898.html">[fetchmail-users] fetchmail and socks5
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#897">[ date ]</a>
+              <a href="thread.html#897">[ thread ]</a>
+              <a href="subject.html#897">[ subject ]</a>
+              <a href="author.html#897">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Jochen Hayek schrieb:
+&gt;&gt;&gt;&gt;&gt;&gt;<i> &quot;MA&quot; == Matthias Andree writes:
+</I>&gt;<i> 
+</I>&gt;&gt;<i> Jochen Hayek writes:
+</I>&gt;<i> 
+</I>&gt;<i>     MA&gt; But why would fetchmail then need its own command line switch at all?
+</I>&gt;<i> 
+</I>&gt;<i> Because that feature needs to get locked out, until it gets explicitly invited.
+</I>&gt;<i> 
+</I>&gt;<i> And the fact that ready-made fetchmails in distros come with not so obvious linked-in socks support
+</I>&gt;<i> is not really a contradiction,
+</I>&gt;<i> to the fact, that people don't want that feature until they say &quot;I want it&quot;.
+</I>
+Well, this feature has been automatically enabled in fetchmail since at
+least 6.2.5, and I think we should keep breaking compatibility in this
+respect until the next minor or major release -- I'll certainly consider
+changing the default for fetchmail 6.4 or 7.0 or whatever version, and
+I'm very much inclined to choose defaults that do not surprise the user.
+
+I wonder if there is really a common expectation. Other users might
+expect that *if* they have a socks.conf, *then* socks-enabled
+applications should use it.
+
+This isn't clear to me, and it's a bet the maintainer will always lose -
+one group will be happy and quiet, and the other group will shout. :-)
+
+&gt;<i> Because a fetchmail switch &quot;--use-socks&quot; defaulting to false
+</I>&gt;<i> would have helped not costing me and others quite a couple of hours.
+</I>
+Sorry for that - it's documented now
+&lt;<A HREF="http://www.fetchmail.info/fetchmail-FAQ.html#K1">http://www.fetchmail.info/fetchmail-FAQ.html#K1</A>&gt; and will also be
+documented in the manpage of fetchmail 6.3.8. Feel free to suggest
+further changes, the FAQ is surely not cast in concrete.
+
+&gt;<i> A good example for the downsides of the bazaar approach ...
+</I>&gt;<i> (Sorry for this, but I couldn't resist.)
+</I>
+Not my essay, and I'm not enthusiastic about several of the assumptions
+fetchmail makes, and I'm still pondering whether a complete redesign is
+more of an effort than rewriting existing code...
+
+I sympathize with you on the bazaar &quot;appreciation&quot;, too.
+The &quot;many eyeballs&quot; argument that is invoked so often doesn't hold water
+IMO - those eyeballs are only looking after someone has encountered a
+*local* problem (or in the rare case some distributor pays for the audit
+or some company tries their automated code validator and shares the
+results).
+
+The accumulation of dozens of patches, with uncorrected programming
+styles, which are really just patches that have often not properly been
+integrated - this is a constant headache, and the security fixes that
+went into 6.3.6 had to be large as a result of these inconsistencies and
+ad-hoc hacking -- and the fallout caused regression fixes in 6.3.7 and
+6.3.8. This is the thing I feared most, I did several 6.3.6 release
+candidates, but still only field deployment revealed these issues. :-(
+
+Getting distracted a bit, I'd also say beta and rc versions don't work
+without contracted beta testers, since users will just wait for the
+final release out of convenience - and that's understandable, consumers
+don't want unripe garbage...
+
+&gt;<i> A couple of words in the man page and in the FAQ,
+</I>&gt;<i> that will get found by search machines,
+</I>&gt;<i> so that googling for &quot;fetchmail socks&quot;
+</I>&gt;<i> will immediately reveal the problem.
+</I>
+Search engines aren't under my control -- let me know if you want
+anything else or suggest changes to the FAQ URL I've given above.
+
+&gt;<i> But still:
+</I>&gt;<i> when *I* couldn't connect to my ISP's IMAP server any longer
+</I>&gt;<i> I was ***far*** away from googling for &quot;fetchmail socks&quot;,
+</I>&gt;<i> and it took me pretty long to find out,
+</I>&gt;<i> that I had gone through my socks server for quite a while
+</I>&gt;<i> (without being aware of it, as I never told fetchmail to do so)
+</I>&gt;<i> and that I could not connect to the IMAP server, only because my socks server was down.
+</I>
+If fetchmail were actively enabling socks, then we might just log
+additional information to the connecting... (&quot;via socks server XYZ port
+N&quot;) but this isn't the case. I haven't looked too deep into SOCKS yet
+and I'm short on time. I plan to do 6.3.8-rc2 this week and 6.3.8 this
+month, so that I can move on to actually opening the 6.4 branch.
+
+-- 
+Matthias Andree
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000896.html">[fetchmail-users] fetchmail and socks5
+</A></li>
+	<LI>Next message: <A HREF="000898.html">[fetchmail-users] fetchmail and socks5
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#897">[ date ]</a>
+              <a href="thread.html#897">[ thread ]</a>
+              <a href="subject.html#897">[ subject ]</a>
+              <a href="author.html#897">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,131 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] IDLE support broken?
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2004-July/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20IDLE%20support%20broken%3F&In-Reply-To=%3CBAY1-DAV3DgRbwri5Dp000031fd%40hotmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000010.html">
+   <LINK REL="Next"  HREF="000007.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] IDLE support broken?</H1>
+    <B>Rob</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20IDLE%20support%20broken%3F&In-Reply-To=%3CBAY1-DAV3DgRbwri5Dp000031fd%40hotmail.com%3E"
+       TITLE="[fetchmail-users] IDLE support broken?">rob_macgregor at hotmail.com
+       </A><BR>
+    <I>Sat Jul 24 10:02:51 CEST 2004</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000010.html">[fetchmail-users] IDLE support broken?
+</A></li>
+        <LI>Next message: <A HREF="000007.html">[fetchmail-users] Help with warning: Illegal address syntax (berlios)
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#12">[ date ]</a>
+              <a href="thread.html#12">[ thread ]</a>
+              <a href="subject.html#12">[ subject ]</a>
+              <a href="author.html#12">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>&gt;<i> -----Original Message-----
+</I>&gt;<i> From: <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">fetchmail-users-admin at berlios.de</A> 
+</I>&gt;<i> [mailto:<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">fetchmail-users-admin at berlios.de</A>] On Behalf Of Andreas
+</I>&gt;<i> Sent: Friday, July 23, 2004 1:29 PM
+</I>&gt;<i> 
+</I>&gt;<i> Sure:
+</I>&gt;<i> set postmaster &quot;andreas&quot;
+</I>&gt;<i> set bouncemail
+</I>&gt;<i> set properties &quot;&quot;
+</I>&gt;<i> set daemon 120
+</I>&gt;<i> 
+</I>&gt;<i> poll pop.server with proto IMAP auth password
+</I>&gt;<i>        user 'andreas' there is 'andreas' here options idle 
+</I>&gt;<i> ssl fetchall warnings 3600
+</I>&gt;<i>        mda '/usr/bin/procmail'
+</I>&gt;<i> 
+</I>&gt;<i> Or is there some syntax error?
+</I>
+If there was, fetchmail wouldn't start.
+
+What I'm seeing is:
+
+fetchmail: 6.2.5 querying imap.isp.co.uk (protocol IMAP) at Sat Jul 24
+07:57:34 2004: poll started
+fetchmail: IMAP&lt; * OK isp IMAP4rev1 server ready.
+fetchmail: IMAP&gt; A0001 CAPABILITY
+fetchmail: IMAP&lt; * CAPABILITY IMAP4 IMAP4rev1 IDLE LOGIN-REFERRALS
+MAILBOX-REFERRALS NAMESPACE LITERAL+ UIDPLUS CHILDREN
+fetchmail: IMAP&lt; A0001 OK CAPABILITY completed.
+fetchmail: Protocol identified as IMAP4 rev 1
+fetchmail: will idle after poll
+fetchmail: IMAP&gt; A0002 LOGIN &quot;user&quot; *
+fetchmail: IMAP&lt; A0002 OK LOGIN completed.
+fetchmail: selecting or re-polling default folder
+fetchmail: IMAP&gt; A0003 SELECT &quot;INBOX&quot;
+fetchmail: IMAP&lt; * 0 EXISTS
+fetchmail: IMAP&lt; * 0 RECENT
+fetchmail: IMAP&lt; * FLAGS (\Seen \Answered \Flagged \Deleted \Draft $MDNSent)
+fetchmail: IMAP&lt; * OK [PERMANENTFLAGS (\Seen \Answered \Flagged \Deleted
+\Draft $MDNSent)] Permanent flags
+fetchmail: IMAP&lt; * OK [UIDVALIDITY 350709] UIDVALIDITY value
+fetchmail: IMAP&lt; A0003 OK [READ-WRITE] SELECT completed.
+fetchmail: 0 messages waiting after first poll
+fetchmail: IMAP&gt; A0004 IDLE
+fetchmail: IMAP&lt; + IDLE accepted, awaiting DONE command.
+
+6.2.5 against whatever my ISP is running.  Relevant .fetchmailrc entries:
+
+defaults proto pop3
+        pass8bits
+        fetchall
+        no rewrite
+        set invisible
+        set no bouncemail
+        set idfile      /etc/fetchids
+poll imap.isp.co.uk
+        proto imap
+        auth password
+        username &quot;user&quot; password &quot;pass&quot; to &quot;wassit&quot; here
+        idle
+
+I'm wondering if there was something relevant in the lines you snipped (I
+doubt it, but you never know).
+
+
+PLEASE - keep list traffic on the list.  Email sent directly to me may be
+ignored utterly.
+
+-- 
+Rob | What part of &quot;no&quot; was it you didn't understand? 
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000010.html">[fetchmail-users] IDLE support broken?
+</A></li>
+	<LI>Next message: <A HREF="000007.html">[fetchmail-users] Help with warning: Illegal address syntax (berlios)
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#12">[ date ]</a>
+              <a href="thread.html#12">[ thread ]</a>
+              <a href="subject.html#12">[ subject ]</a>
+              <a href="author.html#12">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

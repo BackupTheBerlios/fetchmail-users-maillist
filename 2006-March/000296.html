@@ -1,0 +1,199 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] [PATCH] Re: Bug in imap_idle() with mail servers not supporting &quot;idle&quot;
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2006-March/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20%5BPATCH%5D%20Re%3A%20Bug%20in%20imap_idle%28%29%20with%20mail%20servers%20not%20supporting%20%22idle%22&In-Reply-To=%3C20060303085516.GA1628%40session.bombay.retortsoft.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000291.html">
+   <LINK REL="Next"  HREF="000307.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] [PATCH] Re: Bug in imap_idle() with mail servers not supporting &quot;idle&quot;</H1>
+    <B>Sunil Shetye</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20%5BPATCH%5D%20Re%3A%20Bug%20in%20imap_idle%28%29%20with%20mail%20servers%20not%20supporting%20%22idle%22&In-Reply-To=%3C20060303085516.GA1628%40session.bombay.retortsoft.com%3E"
+       TITLE="[fetchmail-users] [PATCH] Re: Bug in imap_idle() with mail servers not supporting &quot;idle&quot;">shetye at bombay.retortsoft.com
+       </A><BR>
+    <I>Fri Mar  3 09:55:16 CET 2006</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000291.html">[fetchmail-users] Bug in imap_idle() with mail servers not supporting &quot;idle&quot;
+</A></li>
+        <LI>Next message: <A HREF="000307.html">[fetchmail-users] Re: [PATCH] Re: Bug in imap_idle() with mail servers not supporting &quot;idle&quot;
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#296">[ date ]</a>
+              <a href="thread.html#296">[ thread ]</a>
+              <a href="subject.html#296">[ subject ]</a>
+              <a href="author.html#296">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Quoting from Brendan Lynch's mail on Thu, Mar 02, 2006:
+&gt;<i> However I believe the servers is behaving correctly according to the 
+</I>&gt;<i> IMAP spec: I have attached an explanation of the secondary problem I am 
+</I>&gt;<i> seeing (extra 28 s wait) that I sent to Casper; let me know if you need 
+</I>&gt;<i> more info.
+</I>
+Yes, I have now read RFC 3501 section 5.3. This behaviour is correct.
+
+&gt;<i> The key point is that the imap_idle() code when 'faking' IDLE support 
+</I>&gt;<i> calls imap_ok() (at line 637) without having issued any tagged command:
+</I>
+...
+
+&gt;<i> Since there is no tagged command outstanding the server will not (and 
+</I>&gt;<i> should not) ever send a tagged response.  If we set imap_ok to only 
+</I>&gt;<i> return after a tagged response we are guaranteeing it will always only 
+</I>&gt;<i> return after a timeout.
+</I>
+...
+
+&gt;<i> This again first does a gen_transact() which results in sending &quot;A0130 
+</I>&gt;<i> NOOP&quot; at 17:00:49.  A &quot;RECENT&quot; update is already on its way form the 
+</I>&gt;<i> server, so we receive it before the &quot;A0130 NOOP completed&quot; at 17:00:49.  
+</I>&gt;<i> In imap_ok() we first process the &quot;* 1 RECENT&quot; notification at line 117, 
+</I>&gt;<i> setting recentcount, then (since we ARE waiting a tag) loop and process 
+</I>&gt;<i> the NOOP ok.  we then return to gen_transact(), which in turn returns to 
+</I>&gt;<i> imap_idle().
+</I>&gt;<i> 
+</I>&gt;<i> Since setting &quot;recentcount&quot; does not also change the stage, we fail the 
+</I>&gt;<i> test at line 633 of imap_idle() and continue to do an extra imap_ok() 
+</I>&gt;<i> which sets a 28 second timer at 17:00:49 and does a recv() which times 
+</I>&gt;<i> out at 17:01:17.  We then return from imap_idle() to imap_getrange() 
+</I>&gt;<i> line 679.  At this point recentcount is set and we exit the &quot;while 
+</I>&gt;<i> (recentcount == 0 &amp;&amp; do_idle)&quot; loop.
+</I>&gt;<i> 
+</I>&gt;<i> The wait between 17:00:49 and 17:01:17 was unnecessary, as already had 
+</I>&gt;<i> our RECENT notification.  The second part of my fix causes imap_ok() to 
+</I>&gt;<i> change the stage to STAGE_FETCH on receipt of a RECENT notification, 
+</I>&gt;<i> just as it already did on receipt of a EXISTS notification. This causes 
+</I>&gt;<i> the if condition &quot;if (ok != 0 || stage != STAGE_IDLE)&quot; to be met at line 
+</I>&gt;<i> 633 of imap_idle() so it immediately exits and does not do the extra 
+</I>&gt;<i> unneeded imap_ok() call.
+</I>
+Yes, you have diagnosed the problem correctly and your patch is also
+correct. Based on your patch, I have prepared a new patch which does
+not modify imap_ok(), but cleans up the code in imap_idle(). Could you
+test this patch and see if this patch is acceptable to you? This patch
+is identical to the patch I had sent to Casper Gripenberg, except that
+comments relating to compliance with RFCs have been updated.
+
+-- 
+Sunil Shetye.
+-------------- next part --------------
+Index: fetchmail-6.3/imap.c
+===================================================================
+--- fetchmail-6.3/imap.c	(revision 4705)
++++ fetchmail-6.3/imap.c	(working copy)
+@@ -621,7 +621,6 @@
+ {
+     int ok;
+ 
+-    stage = STAGE_IDLE;
+     saved_timeout = mytimeout;
+ 
+     if (has_idle) {
+@@ -629,6 +628,7 @@
+ 	 * at least every 28 minutes:
+ 	 * (the server may have an inactivity timeout) */
+ 	mytimeout = 1680; /* 28 min */
++	stage = STAGE_IDLE;
+ 	/* enter IDLE mode */
+ 	ok = gen_transact(sock, &quot;IDLE&quot;);
+ 
+@@ -637,37 +637,43 @@
+ 	    SockWrite(sock, &quot;DONE\r\n&quot;, 6);
+ 	    if (outlevel &gt;= O_MONITOR)
+ 		report(stdout, &quot;IMAP&gt; DONE\n&quot;);
+-	} else
+-	    /* not idle timeout */
+-	    return ok;
++	    /* reset stage and timeout here: we are not idling any more */
++	    mytimeout = saved_timeout;
++	    stage = STAGE_FETCH;
++	    /* get OK IDLE message */
++	    ok = imap_ok(sock, NULL);
++	}
+     } else {  /* no idle support, fake it */
+-	/* when faking an idle, we can't assume the server will
+-	 * send us the new messages out of the blue (RFC2060);
+-	 * this timeout is potentially the delay before we notice
+-	 * new mail (can be small since NOOP checking is cheap) */
+-	mytimeout = 28;
++	/* Note: stage and timeout have not been changed here as NOOP
++	 * does not idle */
+ 	ok = gen_transact(sock, &quot;NOOP&quot;);
+-	/* if there's an error (not likely) or we just found mail (stage 
+-	 * has changed, timeout has also been restored), we're done */
+-	if (ok != 0 || stage != STAGE_IDLE)
+-	    return(ok);
+ 
+-	/* wait (briefly) for an unsolicited status update */
+-	ok = imap_ok(sock, NULL);
+-	/* again, this is new mail or an error */
+-	if (ok != PS_IDLETIMEOUT)
+-	    return(ok);
++	/* no error, but no new mail either */
++	if (ok == PS_SUCCESS &amp;&amp; recentcount == 0)
++	{
++	    /* There are some servers who do send new mail
++	     * notification out of the blue. This is in compliance
++	     * with RFC 2060 section 5.3. Wait for that with a low
++	     * timeout */
++	    mytimeout = 28;
++	    stage = STAGE_IDLE;
++	    /* We are waiting for notification; no tag needed */
++	    tag[0] = '\0';
++	    /* wait (briefly) for an unsolicited status update */
++	    ok = imap_ok(sock, NULL);
++	    if (ok == PS_IDLETIMEOUT) {
++		/* no notification came; ok */
++		ok = PS_SUCCESS;
++	    }
++	}
+     }
+ 
+     /* restore normal timeout value */
++    set_timeout(0);
+     mytimeout = saved_timeout;
+     stage = STAGE_FETCH;
+ 
+-    /* get OK IDLE message */
+-    if (has_idle)
+-        return imap_ok(sock, NULL);
+-
+-    return PS_SUCCESS;
++    return(ok);
+ }
+ 
+ static int imap_getrange(int sock, 
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000291.html">[fetchmail-users] Bug in imap_idle() with mail servers not supporting &quot;idle&quot;
+</A></li>
+	<LI>Next message: <A HREF="000307.html">[fetchmail-users] Re: [PATCH] Re: Bug in imap_idle() with mail servers not supporting &quot;idle&quot;
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#296">[ date ]</a>
+              <a href="thread.html#296">[ thread ]</a>
+              <a href="subject.html#296">[ subject ]</a>
+              <a href="author.html#296">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

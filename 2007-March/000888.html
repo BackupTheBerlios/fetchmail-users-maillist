@@ -1,0 +1,102 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] fetchmail and socks5
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2007-March/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%20and%20socks5&In-Reply-To=%3C20070317194054.C851E20105E%40merlin.emma.line.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000887.html">
+   <LINK REL="Next"  HREF="000896.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] fetchmail and socks5</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%20and%20socks5&In-Reply-To=%3C20070317194054.C851E20105E%40merlin.emma.line.org%3E"
+       TITLE="[fetchmail-users] fetchmail and socks5">matthias.andree at gmx.de
+       </A><BR>
+    <I>Sat Mar 17 20:40:54 CET 2007</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000887.html">[fetchmail-users] fetchmail and socks5
+</A></li>
+        <LI>Next message: <A HREF="000896.html">[fetchmail-users] fetchmail and socks5
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#888">[ date ]</a>
+              <a href="thread.html#888">[ thread ]</a>
+              <a href="subject.html#888">[ subject ]</a>
+              <a href="author.html#888">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Jochen Hayek schrieb:
+
+&gt;<i> Now that we (the fetchmail community) know this, fetchmail can also get an internal
+</I>&gt;<i> 
+</I>&gt;<i>     putenv(&quot;SOCKS_CONF=/dev/null&quot;)
+</I>&gt;<i> 
+</I>&gt;<i> somewhere around its
+</I>&gt;<i> 
+</I>&gt;<i>     SOCKSinit(&quot;fetchmail&quot;);
+</I>&gt;<i> 
+</I>&gt;<i> and than a command line switch (e.g. --socks_conf=/etc/socks.conf )
+</I>&gt;<i> in order to change it back,
+</I>&gt;<i> so that somebody, who really wants to employ socks, actually makes use of it:
+</I>&gt;<i> 
+</I>&gt;<i>     putenv(&quot;SOCKS_CONF=/etc/socks.conf&quot;)
+</I>&gt;<i> 
+</I>&gt;<i> But there are dozens of alternatives ...
+</I>
+But why would fetchmail then need its own command line switch at all?
+I mean - if the SOCKS library reads the environment, we can just
+document this. I'll do that now.
+
+I'm not going to change the default behaviour in 6.3.X releases anyways:
+incompatibilities do not belong in patchlevel update releases. So no
+putenvs without options.
+
+Adding even more code to handle yet another option however doesn't seem
+justified in this case -- this new option would just be one different
+formulation for exactly the same purpose - and we already have env(1)
+and shells to handle this. It's not the putenv, but the dozens of code
+lines in the fetchmail dump, option parser, rcfile parser, fetchmailconf
+and everywhere else I've forgotten.
+
+I hope that's acceptable.
+
+If it's not, please find some good excuses for me for duplicating the
+environment modification code that is already in env(1) - and please one
+that keeps compatibility with 6.3.7. :-)
+
+Best,
+MA
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000887.html">[fetchmail-users] fetchmail and socks5
+</A></li>
+	<LI>Next message: <A HREF="000896.html">[fetchmail-users] fetchmail and socks5
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#888">[ date ]</a>
+              <a href="thread.html#888">[ thread ]</a>
+              <a href="subject.html#888">[ subject ]</a>
+              <a href="author.html#888">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

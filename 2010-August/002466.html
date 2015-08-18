@@ -1,0 +1,174 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Server certificate verification error: self signed certificate
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2010-August/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Server%20certificate%20verification%20error%3A%20self%0A%20signed%20certificate&In-Reply-To=%3C1282697235.23670.58.camel%40localhost.localdomain%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002465.html">
+   <LINK REL="Next"  HREF="002467.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Server certificate verification error: self signed certificate</H1>
+    <B>Chris</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Server%20certificate%20verification%20error%3A%20self%0A%20signed%20certificate&In-Reply-To=%3C1282697235.23670.58.camel%40localhost.localdomain%3E"
+       TITLE="[fetchmail-users] Server certificate verification error: self signed certificate">cpollock at embarqmail.com
+       </A><BR>
+    <I>Wed Aug 25 02:47:15 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002465.html">[fetchmail-users] Server certificate verification error: self signed certificate
+</A></li>
+        <LI>Next message: <A HREF="002467.html">[fetchmail-users] Server certificate verification error: self signed certificate
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2466">[ date ]</a>
+              <a href="thread.html#2466">[ thread ]</a>
+              <a href="subject.html#2466">[ subject ]</a>
+              <a href="author.html#2466">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Tue, 2010-08-24 at 19:28 +0200, Matthias Andree wrote:
+&gt;<i> Am 23.08.2010 08:01, schrieb Rob MacGregor:
+</I>&gt;<i> &gt; On Sun, Aug 22, 2010 at 23:25, Chris &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">cpollock at embarqmail.com</A>&gt; wrote:
+</I>&gt;<i> &gt;&gt; I've upgraded this morning from fetchmail 6.3.9 to 6.3.17 and noticed a 
+</I>&gt;<i> &gt;&gt; change in the logging entries:
+</I>&gt;<i> &gt; &lt;---SNIP---&gt;
+</I>&gt;<i> &gt;&gt; Though this doesn't prevent mail from being picked up is there a way I can 
+</I>&gt;<i> &gt;&gt; get the new certificate? The domain belongs to me however is hosted by 
+</I>&gt;<i> &gt;&gt; someone else. I've contacted the person who is hosting it for me and 
+</I>&gt;<i> &gt;&gt; hopefully he'll reply but I'd like to have a fallback way to get the cert 
+</I>&gt;<i> &gt;&gt; just in case. I currently do not have a certificate for toadnet.com in my 
+</I>&gt;<i> &gt;&gt; ~/certs/.certs folder.
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; The FAQ lists one option
+</I>&gt;<i> &gt; (<A HREF="http://fetchmail.berlios.de/fetchmail-FAQ.html#K5">http://fetchmail.berlios.de/fetchmail-FAQ.html#K5</A>). I've also used the
+</I>&gt;<i> &gt; following to get the certificate:
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; openssl s_client -connect remote.server.net:993 &lt;/dev/null | sed -ne
+</I>&gt;<i> &gt; '/-BEGIN CERTIFICATE-/,/-END CERTIFICATE-/p'
+</I>&gt;<i> &gt;&gt; /my/ssl/path/remote.server.net.pem &amp;&amp; c_rehash
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; You'll possibly want to use the servers correct name too 
+</I>&gt;<i> &gt; (linuxsrv01.usdcservers.net) to avoid the warning about the mis-match.
+</I>&gt;<i> 
+</I>&gt;<i> Chris, Rob,
+</I>&gt;<i> 
+</I>&gt;<i> I'm sorry to contradict:
+</I>&gt;<i> 
+</I>&gt;<i> A. what you propose, extracting the server's certificate and marking it
+</I>&gt;<i> trusted (by dropping it into the certs/ directory), is an *insecure
+</I>&gt;<i> practice.* It is also inefficient for maintenance because server
+</I>&gt;<i> certificates usually expire quicker than the signing CAs' certificates.
+</I>&gt;<i> 
+</I>&gt;<i> It is also an *insecure practice* to look at the fingerprint in -v mode
+</I>&gt;<i> and record it, *unless* you have verified the fingerprint through a
+</I>&gt;<i> separate, secure channel.
+</I>&gt;<i> 
+</I>&gt;<i> Reason: If the download is under attack, the whole setup will be
+</I>&gt;<i> insecure for the time being and you will only know after the
+</I>&gt;<i> man-in-the-middle attack has ended.
+</I>&gt;<i> 
+</I>&gt;<i> The certificate needs to be downloaded through a secure link, or at
+</I>&gt;<i> least the fingerprints verified over a distinct channel.
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> B. the names of the .pem files in the /path-to/ssl/certs/ are irrelevant
+</I>&gt;<i> and only used for human convenience to ease maintenance of the directory.
+</I>&gt;<i>   OpenSSL uses the hash symlinks generated by c_rehash (such as
+</I>&gt;<i> 21337432.0) to look up the certificates, and uses the common name and
+</I>&gt;<i> subject alternative names from within the certificate.
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> The recent README.SSL
+</I>&gt;<i> &lt;<A HREF="http://gitorious.org/fetchmail/fetchmail/blobs/master/README.SSL">http://gitorious.org/fetchmail/fetchmail/blobs/master/README.SSL</A>&gt;
+</I>&gt;<i> explains a bit more, and the short version is:
+</I>&gt;<i> 
+</I>&gt;<i> 0. in this particular case only: have a new certificate issued with the
+</I>&gt;<i> server's DNS as its common name or subject alternative name
+</I>&gt;<i> 
+</I>&gt;<i> 1. get the CA certificate that was used to sign the server's certificate
+</I>&gt;<i> and drop it into /etc/ssl/certs (or wherever your OpenSSL keeps that),
+</I>&gt;<i> or append it (in PEM format) to /etc/ssl/cert.pem (or wherever your
+</I>&gt;<i> OpenSSL keeps that).  If you want to keep these separate, the
+</I>&gt;<i> --sslcertfile and --sslcertpath options are at your service.
+</I>&gt;<i> 
+</I>&gt;<i> 2. if it's a separate file in the certs directory, or you're using
+</I>&gt;<i> --sslcertpath, run c_rehash on the same directory (c_rehash /etc/ssl/certs)
+</I>&gt;<i> 
+</I>&gt;<i> Hope that helps.
+</I>&gt;<i> 
+</I>&gt;<i> Best regards
+</I>&gt;<i> Matthias
+</I>I believe I understand now Matthias, bottom line I can't be positively
+sure that the sslfingerprint I have or the certificate I downloaded
+actually belongs to either my domain or to the server it's being hosted
+on without verifying it with a CA. Checking for certificates at
+<A HREF="http://www.sslshopper.com/ssl-checker.html?host=toadnet.com#hostname=toadnet.com">http://www.sslshopper.com/ssl-checker.html?host=toadnet.com#hostname=toadnet.com</A>
+
+I see:
+
+	
+toadnet.com resolves to 208.78.40.140
+ 	
+Server Type: Apache/2.2.15 (Unix) mod_ssl/2.2.15
+OpenSSL/0.9.8e-fips-rhel5 mod_bwlimited/1.4 mod_perl/2.0.4 Perl/v5.8.8
+ 	
+There was an unknown error verifying the certificate:
+ 	
+This certificate has expired (14847 days ago). Renew now.
+ 	
+None of the common names in the certificate match the name that was
+entered (toadnet.com). You may receive an error when accessing this site
+in a web browser. Learn more about name mismatch errors.
+
+The same for linuxsrv01.usdcservers.net which is where it's hosted.
+Since it's now reported in the fetchmail log that it's a self-signed
+certificate I really have my doubts that the days since expiration, 40+
+years is at all correct. I've emailed the person who hosts my domain but
+in case he doesn't get back to me what options do I have?
+
+Chris
+
+
+-- 
+Chris
+KeyID 0xE372A7DA98E6705C
+
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: signature.asc
+Type: application/pgp-signature
+Size: 197 bytes
+Desc: This is a digitally signed message part
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/fetchmail-users/attachments/20100824/545256da/attachment.pgp">https://lists.berlios.de/pipermail/fetchmail-users/attachments/20100824/545256da/attachment.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002465.html">[fetchmail-users] Server certificate verification error: self signed certificate
+</A></li>
+	<LI>Next message: <A HREF="002467.html">[fetchmail-users] Server certificate verification error: self signed certificate
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2466">[ date ]</a>
+              <a href="thread.html#2466">[ thread ]</a>
+              <a href="subject.html#2466">[ subject ]</a>
+              <a href="author.html#2466">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

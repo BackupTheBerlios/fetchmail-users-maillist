@@ -1,0 +1,247 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Fetchmail and domains
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2007-March/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Fetchmail%20and%20domains&In-Reply-To=%3CB9578B61D0331F4ABBE0233877C7EA5108183FDE%40pnw2k01.pfrimmer.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000944.html">
+   <LINK REL="Next"  HREF="000945.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Fetchmail and domains</H1>
+    <B>Kramer, Barbara</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Fetchmail%20and%20domains&In-Reply-To=%3CB9578B61D0331F4ABBE0233877C7EA5108183FDE%40pnw2k01.pfrimmer.de%3E"
+       TITLE="[fetchmail-users] Fetchmail and domains">B.Kramer at nutricia.com
+       </A><BR>
+    <I>Thu Mar 29 09:26:52 CEST 2007</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000944.html">[fetchmail-users] Fetchmail and domains
+</A></li>
+        <LI>Next message: <A HREF="000945.html">[fetchmail-users] Fetchmail and domains
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#943">[ date ]</a>
+              <a href="thread.html#943">[ thread ]</a>
+              <a href="subject.html#943">[ subject ]</a>
+              <a href="author.html#943">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+Apparently the attach never gets there,
+So here it is in text:
+_______________________________________________________
+fetchmail: 6.3.6 querying pnw2k01.pfrimmer.de (protocol POP3) at Wed, 28 Mar
+2007 16:22:15 +0100 (WETDST): poll started
+fetchmail: Trying to connect to 172.18.153.120/110...connected.
+fetchmail: POP3&lt; +OK Der Microsoft Exchange POP3-Server (Version
+5.5.2658.25) ist betriebsbereit.
+fetchmail: POP3&gt; CAPA
+fetchmail: POP3&lt; -ERR Ein Protokollfehler ist aufgetreten.
+fetchmail: Ein Protokollfehler ist aufgetreten.
+fetchmail: Repoll immediately on pfrimmer\<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">NTBV-shipment at pnw2k01</A>
+fetchmail: Trying to connect to 172.18.153.120/110...connected.
+fetchmail: POP3&lt; +OK Der Microsoft Exchange POP3-Server (Version
+5.5.2658.25) ist betriebsbereit.
+fetchmail: POP3&gt; USER pfrimmer\NTBV-shipment
+fetchmail: POP3&lt; +OK
+fetchmail: POP3&gt; PASS *
+fetchmail: POP3&lt; +OK Der Benutzer wurde erfolgreich angemeldet.
+fetchmail: POP3&gt; STAT
+fetchmail: POP3&lt; +OK 1 605
+fetchmail: 1 message for pfrimmer\NTBV-shipment at pnw2k01.pfrimmer.de (605
+octets).
+fetchmail: POP3&gt; LIST 1
+fetchmail: POP3&lt; +OK 1 605
+fetchmail: POP3&gt; RETR 1
+fetchmail: POP3&lt; +OK
+fetchmail: reading message pfrimmer\<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">NTBV-shipment at pnw2k01</A>:1 of 1 (605
+octets)
+fetchmail: Trying to connect to 127.0.0.1/25...connected.
+fetchmail: SMTP&lt; 220 erlaap05.nutricia.com ESMTP Sendmail 8.9.3
+(PHNE_29774)/8.9.3; Wed, 28 Mar 2007 16:22:17 +0100 (WETDST)
+fetchmail: SMTP&gt; EHLO erlaap05
+fetchmail: SMTP&lt; 250-erlaap05.nutricia.com Hello <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">podeliv at localhost</A>
+[127.0.0.1], pleased to meet you
+fetchmail: SMTP&lt; 250-EXPN
+fetchmail: SMTP&lt; 250-VERB
+fetchmail: SMTP&lt; 250-8BITMIME
+fetchmail: SMTP&lt; 250-SIZE
+fetchmail: SMTP&lt; 250-DSN
+fetchmail: SMTP&lt; 250-ONEX
+fetchmail: SMTP&lt; 250-ETRN
+fetchmail: SMTP&lt; 250-XUSR
+fetchmail: SMTP&lt; 250 HELP
+fetchmail: SMTP&gt; MAIL FROM:&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">B.Kramer at nutricia.com</A>&gt; SIZE=605
+fetchmail: SMTP&lt; 501 Sender domain must exist
+fetchmail: SMTP error: 501 Sender domain must exist
+fetchmail: Trying to connect to 127.0.0.1/25...connected.
+fetchmail: SMTP&lt; 220 erlaap05.nutricia.com ESMTP Sendmail 8.9.3
+(PHNE_29774)/8.9.3; Wed, 28 Mar 2007 16:22:20 +0100 (WETDST)
+fetchmail: SMTP&gt; HELO erlaap05
+fetchmail: SMTP&lt; 250 erlaap05.nutricia.com Hello <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">podeliv at localhost</A>
+[127.0.0.1], pleased to meet you
+fetchmail: SMTP&gt; MAIL FROM:&lt;&gt;
+fetchmail: SMTP&lt; 250 &lt;&gt;... Sender ok
+fetchmail: SMTP&gt; RCPT TO:&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">B.Kramer at nutricia.com</A>&gt;
+fetchmail: SMTP&lt; 250 &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">B.Kramer at nutricia.com</A>&gt;... Recipient ok
+fetchmail: SMTP&gt; DATA
+fetchmail: SMTP&lt; 354 Enter mail, end with &quot;.&quot; on a line by itself
+fetchmail: SMTP: (bounce-message body)
+fetchmail: SMTP&gt;. (EOM)
+fetchmail: SMTP&lt; 250 QAA09457 Message accepted for delivery
+fetchmail: SMTP&gt; QUIT
+fetchmail: SMTP&lt; 221 erlaap05.nutricia.com closing connection
+fetchmail: SMTP&gt; RSET
+fetchmail: SMTP&lt; 250 Reset state
+fetchmail:  flushed
+fetchmail: POP3&gt; DELE 1
+fetchmail: POP3&lt; +OK
+fetchmail: POP3&gt; QUIT
+fetchmail: POP3&lt; +OK Die Verbindung mit dem Microsoft Exchange POP3-Server
+(Version 5.5.2658.25) wird getrennt.
+fetchmail: SMTP&gt; QUIT
+fetchmail: SMTP&lt; 221 erlaap05.nutricia.com closing connection
+fetchmail: 6.3.6 querying pnw2k01.pfrimmer.de (protocol POP3) at Wed, 28 Mar
+2007 16:22:23 +0100 (WETDST): poll completed
+fetchmail: normal termination, status 0
+____________________________________________________________________________
+___________________________________
+
+It looks fine to me, yet I receive a 'Mail delivery failed: returning
+message to sender' sending message:
+This message was created automatically by mail delivery software.
+
+A message that you sent could not be delivered to one or more of its
+recipients. This is a permanent error. The following address(es) failed:
+
+<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">podeliv at localhost</A>
+   SMTP error: 501 Sender domain must exist
+
+The user podeliv will not receive mail.
+
+I have not installed .forward, yet, does that make a difference?
+Thanks for filling me in
+Barbara
+
+-----Urspr&#252;ngliche Nachricht-----
+Von: <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">fetchmail-users-bounces at lists.berlios.de</A>
+[mailto:<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">fetchmail-users-bounces at lists.berlios.de</A>] Im Auftrag von Kramer,
+Barbara
+Gesendet: Donnerstag, 29. M&#228;rz 2007 09:11
+An: '<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">fetchmail-users at lists.berlios.de</A>'
+Betreff: [fetchmail-users] Fetchmail and domains
+
+
+Hi Users,
+Attached the log file. Thanks for helping out
+Barbara &lt;&lt;fetch.log&gt;&gt; 
+&gt;<i>  -----Urspr&#252;ngliche Nachricht-----
+</I>&gt;<i> Von: 	Kramer, Barbara  
+</I>&gt;<i> Gesendet:	Mittwoch, 28. M&#228;rz 2007 16:42
+</I>&gt;<i> An:	
+</I>&gt;<i> Betreff:	Fetchmail and domains
+</I>&gt;<i> 
+</I>&gt;<i> Hi,
+</I>&gt;<i> There is a mailbox on an exchange server, named NTBV-shipment. This box is
+</I>&gt;<i> receiving mail. I want to fetch the mail there and bring it to my HPUX,
+</I>&gt;<i> where the file will be read into a software. I chose to use fetchmail.
+</I>&gt;<i> 
+</I>&gt;<i> Just installed fetchmail on my hp server with hpux 11.11 on it.
+</I>&gt;<i> I have done the following:
+</I>&gt;<i> *	Created a user named podeliv
+</I>&gt;<i> *	Started a mail box for him /var/mail/podeliv
+</I>&gt;<i> *	Send mail to him through sendmail - mail podeliv - mail was received
+</I>&gt;<i> ok
+</I>&gt;<i> *	Logged on as podeliv and send a mail to my mail account - which is
+</I>&gt;<i> an exchange server - mail kam ok and sender is <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">podeliv at nutricia.com</A>
+</I>&gt;<i> *	Installed ixFetchmail A.08.00-6.3.6 for HPUX 11.11 - all went well
+</I>&gt;<i> *	Created a .fetchmailrc for user podeliv, which reads: 
+</I>&gt;<i> 
+</I>&gt;<i> set logfile /home/podeliv/fetch.log
+</I>&gt;<i> poll pnw2k01.pfrimmer.de 
+</I>&gt;<i> proto pop3 port 110 
+</I>&gt;<i> user pfrimmer\\NTBV-shipment 
+</I>&gt;<i> there has password *******
+</I>&gt;<i> no keep
+</I>&gt;<i> 
+</I>&gt;<i> *	Fetch.log is being filled with entries, when I do fetchmail -av, as
+</I>&gt;<i> user podeliv
+</I>&gt;<i> *	Now the problem: - I always read message  SMTP&lt; 501 Sender domain
+</I>&gt;<i> must exist - podeliv is always being shown as <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">podeliv at localhost</A>
+</I>&gt;<i> From my Mail Delivery System [<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">MAILER-DAEMON at erlaap05.pfrimmer.de</A>], which
+</I>&gt;<i> is root on the hpux machine:
+</I>&gt;<i>  <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">podeliv at localhost</A>
+</I>&gt;<i>    SMTP error: 501 Sender domain must exist
+</I>&gt;<i> What did I forget to do?
+</I>&gt;<i> 
+</I>&gt;<i> Attached you'll find the fetch.log, after I had send a mail to
+</I>&gt;<i> NTBV-shipment, as user podeliv I did fetchmail -av 
+</I>&gt;<i> 
+</I>&gt;<i> Can anyone help me?
+</I>&gt;<i> That would be super - already read all kinds of stuff online about hosts,
+</I>&gt;<i> hostsequiv, changed sendmail.cf, sendmail.cw, restarted sendmail numerous
+</I>&gt;<i> times, yet all did not help.
+</I>&gt;<i> Thanks in advance
+</I>&gt;<i> Barbara
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>PRIVACY: The information transmitted is intended only for the person or
+entity to which it is addressed and may contain confidential and/or
+priviliged material.
+Any review, retransmission, dissemination or other use of this information
+by persons or entities other than the intended recipient is prohibited.
+If you received this in error, please contact the sender and delete the
+material from any computer.
+Thank you.
+
+
+
+
+PRIVACY: The information transmitted is intended only for the person or
+entity to which it is addressed and may contain confidential and/or
+priviliged material.
+Any review, retransmission, dissemination or other use of this information
+by persons or entities other than the intended recipient is prohibited.
+If you received this in error, please contact the sender and delete the
+material from any computer.
+Thank you.
+
+
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000944.html">[fetchmail-users] Fetchmail and domains
+</A></li>
+	<LI>Next message: <A HREF="000945.html">[fetchmail-users] Fetchmail and domains
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#943">[ date ]</a>
+              <a href="thread.html#943">[ thread ]</a>
+              <a href="subject.html#943">[ subject ]</a>
+              <a href="author.html#943">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

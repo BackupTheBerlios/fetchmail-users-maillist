@@ -1,0 +1,71 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] strange polling errors
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2011-February/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20strange%20polling%20errors&In-Reply-To=%3C4D6B6687.2060004%40gmx.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002680.html">
+   <LINK REL="Next"  HREF="002684.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] strange polling errors</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20strange%20polling%20errors&In-Reply-To=%3C4D6B6687.2060004%40gmx.de%3E"
+       TITLE="[fetchmail-users] strange polling errors">matthias.andree at gmx.de
+       </A><BR>
+    <I>Mon Feb 28 10:10:31 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002680.html">[fetchmail-users] fetchmail msn problem solved
+</A></li>
+        <LI>Next message: <A HREF="002684.html">[fetchmail-users] strange polling errors
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2682">[ date ]</a>
+              <a href="thread.html#2682">[ thread ]</a>
+              <a href="subject.html#2682">[ subject ]</a>
+              <a href="author.html#2682">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Am 28.02.2011 10:01, schrieb Matthias Andree:
+
+&gt;<i> Please check your syslog configuration -- fetchmail logs at ERR and INFO
+</I>&gt;<i> priorities.  Chances are that your syslog provider is configured at
+</I>&gt;<i> &quot;NOTICE&quot; level, which would discard &quot;info&quot;-level logging.
+</I>
+Hm... I see in your earlier logs that you do have mail.info and
+mail.error logs.  But yours is the very first report in over half a
+dozen years that -vv were less verbose than -v, and I don't know how
+that could happen given the existing code -- try --nodetach --nosyslog.
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002680.html">[fetchmail-users] fetchmail msn problem solved
+</A></li>
+	<LI>Next message: <A HREF="002684.html">[fetchmail-users] strange polling errors
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2682">[ date ]</a>
+              <a href="thread.html#2682">[ thread ]</a>
+              <a href="subject.html#2682">[ subject ]</a>
+              <a href="author.html#2682">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

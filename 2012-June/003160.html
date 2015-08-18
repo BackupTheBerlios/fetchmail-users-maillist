@@ -1,0 +1,111 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] how to set up fetchmail for inbox.com POP3
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2012-June/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20how%20to%20set%20up%20fetchmail%20for%20inbox.com%20POP3&In-Reply-To=%3CCAD2Ti29nCYjucdCkcn%2BxFXiXQfbXcR9vJmEvZTmsuoB%3DmcUUPQ%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003182.html">
+   <LINK REL="Next"  HREF="003162.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] how to set up fetchmail for inbox.com POP3</H1>
+    <B>grarpamp</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20how%20to%20set%20up%20fetchmail%20for%20inbox.com%20POP3&In-Reply-To=%3CCAD2Ti29nCYjucdCkcn%2BxFXiXQfbXcR9vJmEvZTmsuoB%3DmcUUPQ%40mail.gmail.com%3E"
+       TITLE="[fetchmail-users] how to set up fetchmail for inbox.com POP3">grarpamp at gmail.com
+       </A><BR>
+    <I>Wed Jun 20 20:26:24 CEST 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003182.html">[fetchmail-users] how to set up fetchmail for inbox.com POP3
+</A></li>
+        <LI>Next message: <A HREF="003162.html">[fetchmail-users] MD5 --&gt; SHA1
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3160">[ date ]</a>
+              <a href="thread.html#3160">[ thread ]</a>
+              <a href="subject.html#3160">[ subject ]</a>
+              <a href="author.html#3160">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>&gt;<i> i have this fetchmailrc:
+</I>
+Yes, and if you fetchmail &lt;mailserver&gt; it will (if i recall)
+fetch all three accounts at once, which is undesired
+if you wish to keep them separate as to say which
+VPN they go over in time, etc.
+Luckily 'via' worked to override the (sortof like 'via') 'poll'
+keystring.
+It's a hack, will likely move to an rc file per account
+or fdm or something.
+
+Since it's unlikely poll will ever be turned into a simple
+fetchmailable rc account label that has no underlying
+split meaning as to 'server/hostname/tcp', and making
+via required, I guess we need such a label in the next
+release: fetchmail -A &lt;accountlabel&gt;
+In fact, keeping poll as the (sortof) grouping option
+it is today could be useful.
+But I don't like the split meaning of it.
+
+To fetchmail's credit, the behavior of poll/via is documented
+as such in the man page under:
+ Keywords Not Corresponding To Option Switches
+
+Though I would definitely remove/rewrite this part:
+ The 'via' option is for if you want to have more
+ than one configuration pointing at the same site.
+
+&gt;<i> # Accounts
+</I>&gt;<i> poll mailserver.myprovider.de with proto POP3 interval 3
+</I>&gt;<i> &#160; &#160; &#160; &#160;user &quot;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">user1 at mydomain.de</A>&quot;
+</I>&gt;<i> poll mailserver.myprovider.de with proto POP3 interval 3
+</I>&gt;<i> &#160; &#160; &#160; &#160;user &quot;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">user2 at mydomain.de</A>&quot;
+</I>&gt;<i> poll mailserver.myprovider.de with proto POP3 interval 3
+</I>&gt;<i> &#160; &#160; &#160; &#160;user &quot;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">user3 at mydomain.de</A>&quot;
+</I></PRE>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003182.html">[fetchmail-users] how to set up fetchmail for inbox.com POP3
+</A></li>
+	<LI>Next message: <A HREF="003162.html">[fetchmail-users] MD5 --&gt; SHA1
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3160">[ date ]</a>
+              <a href="thread.html#3160">[ thread ]</a>
+              <a href="subject.html#3160">[ subject ]</a>
+              <a href="author.html#3160">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

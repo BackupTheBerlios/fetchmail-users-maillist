@@ -1,0 +1,101 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] &quot;retained&quot; in fetchmail log
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2013-February/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20%22retained%22%20in%20fetchmail%20log&In-Reply-To=%3Calpine.DEB.2.02.1302281230270.16245%40pfr2.frenkiel-hure.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003355.html">
+   <LINK REL="Next"  HREF="003358.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] &quot;retained&quot; in fetchmail log</H1>
+    <B>Pierre Frenkiel</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20%22retained%22%20in%20fetchmail%20log&In-Reply-To=%3Calpine.DEB.2.02.1302281230270.16245%40pfr2.frenkiel-hure.net%3E"
+       TITLE="[fetchmail-users] &quot;retained&quot; in fetchmail log">pierre.frenkiel at gmail.com
+       </A><BR>
+    <I>Thu Feb 28 12:44:48 CET 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003355.html">[fetchmail-users] &quot;retained&quot; in fetchmail log
+</A></li>
+        <LI>Next message: <A HREF="003358.html">[fetchmail-users] &quot;retained&quot; in fetchmail log
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3357">[ date ]</a>
+              <a href="thread.html#3357">[ thread ]</a>
+              <a href="subject.html#3357">[ subject ]</a>
+              <a href="author.html#3357">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Tue, 26 Feb 2013, Matthias Andree wrote:
+
+&gt;<i> Now, if you forward the message bearing the X-IMAP header to an account
+</I>&gt;<i> with empty mailbox, so that it happens to be the first message in the
+</I>&gt;<i> mailbox there, fetchmail will retain it; so in the end, this may also be
+</I>&gt;<i> an artifact of the way you are testing.
+</I>
+   the message I forwarded didn't have the X-IMAP header, so I suppose
+   it was added by the software on the imap server.
+
+&gt;<i> then fetchmail retains the message.
+</I>
+   I still don't understand why it is not able to remove it,
+   as
+      1/ it knows it is a dummy mail
+      2/ it actually removes (as requested in my .fetchmailrc) all mails
+
+&gt;<i> The other options are:
+</I>&gt;<i>
+</I>&gt;<i> - run fetchmail in silent mode (-s command line option) to suppress the
+</I>&gt;<i> message (and logging about other messages, too, except errors)
+</I>&gt;<i> - raise the polling interval and do not run every to 20 s, but, for
+</I>&gt;<i> instance, every 300 s,
+</I>   this will anyway fill the disc, and I think that suppressing the log is not
+   an acceptable solution.
+
+&gt;<i> - make sure that such a message is not the first in your mailbox.
+</I>
+    such a message IS PERMANENTLY in my LOCAL mailbox (in /var/mail), and
+    that doesn't create any problem with any MUA.
+
+    As I replied to Bob, I fixed ths issue by removing this header on
+    the imap server with the webmail interface.
+
+best regards,
+-- 
+Pierre Frenkiel
+
+
+
+</PRE>
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003355.html">[fetchmail-users] &quot;retained&quot; in fetchmail log
+</A></li>
+	<LI>Next message: <A HREF="003358.html">[fetchmail-users] &quot;retained&quot; in fetchmail log
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3357">[ date ]</a>
+              <a href="thread.html#3357">[ thread ]</a>
+              <a href="subject.html#3357">[ subject ]</a>
+              <a href="author.html#3357">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

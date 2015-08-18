@@ -1,0 +1,100 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Lost in SSL certificate trouble
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2014-January/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Lost%20in%20SSL%20certificate%20trouble&In-Reply-To=%3CCAJCMLO_-C1g4bnJWottQZhMDBSo395f6_RHaWB7EYr1EKXFG9g%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003496.html">
+   <LINK REL="Next"  HREF="003498.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Lost in SSL certificate trouble</H1>
+    <B>Rob MacGregor</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Lost%20in%20SSL%20certificate%20trouble&In-Reply-To=%3CCAJCMLO_-C1g4bnJWottQZhMDBSo395f6_RHaWB7EYr1EKXFG9g%40mail.gmail.com%3E"
+       TITLE="[fetchmail-users] Lost in SSL certificate trouble">rob.macgregor at gmail.com
+       </A><BR>
+    <I>Wed Jan 29 16:34:35 CET 2014</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003496.html">[fetchmail-users] Lost in SSL certificate trouble
+</A></li>
+        <LI>Next message: <A HREF="003498.html">[fetchmail-users] Lost in SSL certificate trouble
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3497">[ date ]</a>
+              <a href="thread.html#3497">[ thread ]</a>
+              <a href="subject.html#3497">[ subject ]</a>
+              <a href="author.html#3497">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Wed, Jan 29, 2014 at 4:06 AM,  &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">commsoft at blaettner-net.de</A>&gt; wrote:
+&gt;<i> Hi, all,
+</I>&lt;---SNIP---&gt;
+&gt;<i>
+</I>&gt;<i> Now I'm a bit confused :-(
+</I>&gt;<i>
+</I>&gt;<i> The only change of my setup, was to insert  keyword 'ssl'
+</I>&gt;<i> into my .fetchmailrc file.  I noticed, that fetchmail now
+</I>&gt;<i> tries to poll via port 995 (the provider's docu also tells
+</I>&gt;<i> to use this port) - without ssl port 110 was polled.
+</I>
+That's normal - the SSL version of POP3 (POP3s) uses 995/TCP, just
+like IMAPs uses 993/TCP
+
+&gt;<i> I'm NOT sure whether it's a problem with their serverside
+</I>&gt;<i> software or whether I should provide any sort of local
+</I>&gt;<i> certificate - and in the latter case: how to do this..
+</I>&gt;<i>
+</I>&gt;<i> My question: What to do next ?
+</I>
+That's up to you - you can do absolutely nothing and it'll continue to
+basically &quot;just work&quot;. Alternatively you can make the necessary
+changes so that the certificates verify.
+
+&gt;&gt;<i> fetchmail: This could mean that the server did not provide the intermediate CA's certificate(s), which is nothing fetchmail could do anything about.  For details, please see the README.SSL-SERVER document that ships with fetchmail.
+</I>&gt;&gt;<i> fetchmail: This could mean that the root CA's signing certificate is not in the trusted CA certificate location, or that c_rehash needs to be run on the certificate directory. For details, please see the documentation of --sslcertpath and --sslcertfile in the manual page.
+</I>
+Did you read those? Did they not help you resolve the issue?
+
+-- 
+                 Please keep list traffic on the list.
+
+Rob MacGregor
+      Whoever fights monsters should see to it that in the process he
+        doesn't become a monster.                  Friedrich Nietzsche
+</PRE>
+
+
+
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003496.html">[fetchmail-users] Lost in SSL certificate trouble
+</A></li>
+	<LI>Next message: <A HREF="003498.html">[fetchmail-users] Lost in SSL certificate trouble
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3497">[ date ]</a>
+              <a href="thread.html#3497">[ thread ]</a>
+              <a href="subject.html#3497">[ subject ]</a>
+              <a href="author.html#3497">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

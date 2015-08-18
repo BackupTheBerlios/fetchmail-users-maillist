@@ -1,0 +1,105 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] multiline SMTP error
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2009-May/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20multiline%20SMTP%20error&In-Reply-To=%3Cop.utw9y0vy1e62zd%40balu%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001927.html">
+   <LINK REL="Next"  HREF="001929.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] multiline SMTP error</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20multiline%20SMTP%20error&In-Reply-To=%3Cop.utw9y0vy1e62zd%40balu%3E"
+       TITLE="[fetchmail-users] multiline SMTP error">matthias.andree at gmx.de
+       </A><BR>
+    <I>Thu May 14 15:48:26 CEST 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001927.html">[fetchmail-users] multiline SMTP error
+</A></li>
+        <LI>Next message: <A HREF="001929.html">[fetchmail-users] Fetchmail with Mailman
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1928">[ date ]</a>
+              <a href="thread.html#1928">[ thread ]</a>
+              <a href="subject.html#1928">[ subject ]</a>
+              <a href="author.html#1928">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Am 14.05.2009, 06:28 Uhr, schrieb &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">aki at thanku.jp</A>&gt;:
+
+&gt;<i> Hello,
+</I>&gt;<i>
+</I>&gt;<i> When fetchmail get multiline SMTP error, it sends bouncemail
+</I>&gt;<i> include only the last line of SMTP error.
+</I>&gt;<i>
+</I>&gt;<i> --- smtp response ---
+</I>&gt;<i> 550-1.0 MSGID_INVALID          not good Message-ID formats. please see
+</I>&gt;<i> 550 <A HREF="http://tools.ietf.org/html/rfc5322#section-3.6.4">http://tools.ietf.org/html/rfc5322#section-3.6.4</A>
+</I>&gt;<i> ---------------------
+</I>&gt;<i>
+</I>&gt;<i> --- bouncemail ---
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">aki at example.jp</A>
+</I>&gt;<i>    SMTP error: 550 <A HREF="http://tools.ietf.org/html/rfc5322#section-3.6.4">http://tools.ietf.org/html/rfc5322#section-3.6.4</A>
+</I>&gt;<i>
+</I>&gt;<i> [snip]
+</I>&gt;<i> Status: 5.0.0
+</I>&gt;<i> Diagnostic-Code: 550 <A HREF="http://tools.ietf.org/html/rfc5322#section-3.6.4">http://tools.ietf.org/html/rfc5322#section-3.6.4</A>
+</I>&gt;<i>
+</I>&gt;<i> ------------------
+</I>&gt;<i>
+</I>&gt;<i> I hope that it includes all lines of SMTP error.
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> My operating system:	Debian GNU/Linux 5.0 (codename lenny)
+</I>&gt;<i> package:     		fetchmail      6.3.9~rc2-4
+</I>
+Hello Akihiro,
+
+thanks for your report. I believe I've come across this bug before. I  
+believe it's a &quot;known&quot; bug, for me at least, so it's confirmed.
+
+Could you do me a favour and look through  
+<A HREF="http://bugs.debian.org/src:fetchmail">http://bugs.debian.org/src:fetchmail</A> if a similar bug is already filed?
+If there is none, can you please report it as Debian bug, so that it's in  
+a bug tracker? I am subscribed to the Debian BTS, so it will not be lost.
+
+Thank you in advance.
+
+Best regards
+
+-- 
+Matthias Andree
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001927.html">[fetchmail-users] multiline SMTP error
+</A></li>
+	<LI>Next message: <A HREF="001929.html">[fetchmail-users] Fetchmail with Mailman
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1928">[ date ]</a>
+              <a href="thread.html#1928">[ thread ]</a>
+              <a href="subject.html#1928">[ subject ]</a>
+              <a href="author.html#1928">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

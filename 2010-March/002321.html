@@ -1,0 +1,106 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] message size won't match when delivering via LMTP
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2010-March/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20message%20size%20won%27t%20match%20when%20delivering%20via%20LMTP&In-Reply-To=%3C23489291.9233.1269194725105.JavaMail.root%40kowalski.yetopen.it%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002320.html">
+   <LINK REL="Next"  HREF="002322.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] message size won't match when delivering via LMTP</H1>
+    <B>Lorenzo Milesi</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20message%20size%20won%27t%20match%20when%20delivering%20via%20LMTP&In-Reply-To=%3C23489291.9233.1269194725105.JavaMail.root%40kowalski.yetopen.it%3E"
+       TITLE="[fetchmail-users] message size won't match when delivering via LMTP">lorenzo.milesi at yetopen.it
+       </A><BR>
+    <I>Sun Mar 21 19:05:25 CET 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002320.html">[fetchmail-users] Fetch only messages marked as seen
+</A></li>
+        <LI>Next message: <A HREF="002322.html">[fetchmail-users] message size won't match when delivering via	LMTP
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2321">[ date ]</a>
+              <a href="thread.html#2321">[ thread ]</a>
+              <a href="subject.html#2321">[ subject ]</a>
+              <a href="author.html#2321">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi.
+
+I'm trying to configure Fetchmail to deliver via LMTP instead of SMTP.
+It's actually configured with SMTP and I never had any problem.
+
+On a single account, I added options
+  smtphost localhost/7025 lmtp
+
+but when fetching, I get the following error:
+
+fetchmail: forwarding to localhost/7025
+fetchmail: LMTP&gt; MAIL FROM:&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">my at address.it</A>&gt; SIZE=1182
+fetchmail: LMTP&lt; 250 2.0.0 Sender OK
+fetchmail: LMTP&gt; RCPT TO:&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">my at recipient</A>&gt;
+fetchmail: LMTP&lt; 250 2.1.5 Recipient OK
+fetchmail: LMTP&gt; DATA
+fetchmail: LMTP&lt; 354 End data with &lt;CR&gt;&lt;LF&gt;.&lt;CR&gt;&lt;LF&gt;
+#************fetchmail: message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">my at recipient</A>@pop3.server.it:51 was not the expected length (1216 actual != 1182 expected)
+fetchmail: LMTP&gt;. (EOM)
+
+
+I tried adding &quot;forcecr&quot; but no change.
+
+What could it be?
+
+thanks
+
+PS please CC as I'm not in list
+-- 
+Lorenzo Milesi - <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">lorenzo.milesi at yetopen.it</A>
+
+YetOpen S.r.l. - <A HREF="http://www.yetopen.it/">http://www.yetopen.it/</A>
+Via Previati 72 - 23900 Lecco - ITALY -
+Tel 0341 220 205 - Fax 178 6070 222
+
+GPG/PGP Key-Id: 0xE704E230 - <A HREF="http://keyserver.linux.it">http://keyserver.linux.it</A>
+
+-------- D.Lgs. 196/2003 --------
+
+Si avverte che tutte le informazioni contenute in questo messaggio sono
+riservate ed a uso esclusivo del destinatario. Nel caso in cui questo
+messaggio Le fosse pervenuto per errore, La invitiamo ad eliminarlo
+senza copiarlo, a non inoltrarlo a terzi e ad avvertirci non appena
+possibile.
+Grazie.
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002320.html">[fetchmail-users] Fetch only messages marked as seen
+</A></li>
+	<LI>Next message: <A HREF="002322.html">[fetchmail-users] message size won't match when delivering via	LMTP
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2321">[ date ]</a>
+              <a href="thread.html#2321">[ thread ]</a>
+              <a href="subject.html#2321">[ subject ]</a>
+              <a href="author.html#2321">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

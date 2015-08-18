@@ -1,0 +1,131 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] fetchmail 6.2.6-pre9 released - please test
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2005-August/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%206.2.6-pre9%20released%20-%20please%20test&In-Reply-To=%3C20050802025700.GA32159%40merlin.emma.line.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   
+   <LINK REL="Next"  HREF="000033.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] fetchmail 6.2.6-pre9 released - please test</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%206.2.6-pre9%20released%20-%20please%20test&In-Reply-To=%3C20050802025700.GA32159%40merlin.emma.line.org%3E"
+       TITLE="[fetchmail-users] fetchmail 6.2.6-pre9 released - please test">matthias.andree at gmx.de
+       </A><BR>
+    <I>Tue Aug  2 04:57:00 CEST 2005</I>
+    <P><UL>
+        
+        <LI>Next message: <A HREF="000033.html">[fetchmail-users] Want a &quot;How can I use fetchmail with Gmail's POP3 servers?&quot; FAQ?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#32">[ date ]</a>
+              <a href="thread.html#32">[ thread ]</a>
+              <a href="subject.html#32">[ subject ]</a>
+              <a href="author.html#32">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA1
+
+I have released a new fetchmail snapshot, 6.2.6-pre9, available from:
+
+&lt;<A HREF="http://developer.berlios.de/project/showfiles.php?group_id=1824&amp;release_id=6730">http://developer.berlios.de/project/showfiles.php?group_id=1824&amp;release_id=6730</A>&gt;
+
+mirror: &lt;<A HREF="http://home.pages.de/~mandree/fetchmail/">http://home.pages.de/~mandree/fetchmail/</A>&gt;
+
+Please test, particularly if you're running a multidrop setup.
+
+Also, we still need translators, we have some old translations that need
+to be updated and aren't enabled by default, but new translations will
+also be welcome. Contact me if you're interested and fetchmail doesn't
+currently ship with a translation into your favorite language.
+
+
+Notes:
+
+This release has fairly large internal cleanups - I decided to get rid
+of the obsolete inet6_apps/inner_connect/ipv6-connect code rather than
+carrying it into a new release - the &quot;--netsec&quot; and &quot;-T&quot; options are now
+gone. The INET6_ENABLE code was also simplified, everything is now a
+&quot;service&quot; internally, port is converted into service, although this
+should be transparent.
+
+There will be some more IPv6 awareness fixes, too many places still use
+the hardcoded IPv4-only gethostbyname function, so we'll have one or two
+more releases down the road before calling out for other release
+candidates.
+
+Summarized changes:
+
+    * The multidrop code was severely broken in several places:
+
+          o a fairly fundamental RFC822 parser bug was fixed that
+            stripped the last character of bare addresses
+            i. e. addresses without &lt;&gt; angle brackets (from
+            Delivered-To: headers, for instance), responsible for many
+            unrecognized domains in multidrop mode.
+
+          o The multidrop IP address matching code was broken and
+            checked only the first address of the configured servername
+            against the aliases of the domain found in the envelope.
+
+          o The multidrop MX matching code was broken and didn't resolve
+            the MX hosts into IP addresses.
+
+    * The netsec and -T options are gone, corresponding code was
+      removed. See Notes above.
+  
+    * The gettext code (intl/ directory) was removed from the fetchmail
+      package and, if NLS is desired, needs to be installed separately
+      before fetchmail is built.
+
+    * The default distribution format has been switched to bzip2.
+
+    * The Python script is now optimized, byte-compiled and installed
+      into the Python site-packages directory.
+
+    * Some internal code shuffling and cleanups.
+
+
+- -- 
+Matthias Andree
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1.4.0 (GNU/Linux)
+
+iD8DBQFC7t0hvmGDOQUufZURAkDnAJ0aWzDHscE+O+HmtA3XanZ9clumcgCff9x+
+p9HVT6Ri+Qaf0SCyNgSLFfw=
+=V4bi
+-----END PGP SIGNATURE-----
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	
+	<LI>Next message: <A HREF="000033.html">[fetchmail-users] Want a &quot;How can I use fetchmail with Gmail's POP3 servers?&quot; FAQ?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#32">[ date ]</a>
+              <a href="thread.html#32">[ thread ]</a>
+              <a href="subject.html#32">[ subject ]</a>
+              <a href="author.html#32">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

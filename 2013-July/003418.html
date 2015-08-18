@@ -1,0 +1,106 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] fetchmail-users Digest, Vol 83, Issue 4
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2013-July/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail-users%20Digest%2C%20Vol%2083%2C%20Issue%204&In-Reply-To=%3C51D21853.3030706%40gmx.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003417.html">
+   <LINK REL="Next"  HREF="003419.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] fetchmail-users Digest, Vol 83, Issue 4</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail-users%20Digest%2C%20Vol%2083%2C%20Issue%204&In-Reply-To=%3C51D21853.3030706%40gmx.de%3E"
+       TITLE="[fetchmail-users] fetchmail-users Digest, Vol 83, Issue 4">matthias.andree at gmx.de
+       </A><BR>
+    <I>Tue Jul  2 02:01:23 CEST 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003417.html">[fetchmail-users] fetchmail-users Digest, Vol 83, Issue 4
+</A></li>
+        <LI>Next message: <A HREF="003419.html">[fetchmail-users] Fetchmail going out of date?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3418">[ date ]</a>
+              <a href="thread.html#3418">[ thread ]</a>
+              <a href="subject.html#3418">[ subject ]</a>
+              <a href="author.html#3418">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Am 01.07.2013 17:10, schrieb Shane Vedvik:
+&gt;<i> Am 27.06.2013 16:58, schrieb Shane Vedvik:
+</I>&gt;&gt;&gt;<i> I use Fetchmail 6.3.25+NTLM+SSL+NLS to get email from our Exchange 2010 Server, but for some reason I keep getting an error on attempting to connect:
+</I>&gt;&gt;&gt;<i>
+</I>&gt;<i> 
+</I>&gt;&gt;<i> Please provide more logging from fetchmail running with -vvvv flags.
+</I>
+&gt;<i> fetchmail: about to deliver with: /opt/rt4/bin/rt-mailgate --url <A HREF="https://127.0.0.1/rt/">https://127.0.0.1/rt/</A> --queue support --action correspond
+</I>&gt;<i> fetchmail: message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">support at portal.markentsolutions.com</A>:1 was not the expected length (5619 actual != 2755 expected)
+</I>&gt;<i> An Error Occurred
+</I>&gt;<i> =================
+</I>&gt;<i> 
+</I>&gt;<i> 500 Can't connect to 127.0.0.1:443 (certificate
+</I>&gt;<i> verify failed)
+</I>&gt;<i> fetchmail: MDA returned nonzero status 75
+</I>&gt;<i> fetchmail:  not flushed
+</I>
+Fetchmail functions properly, and apparently it talks to Exchange properly.
+
+#1 Regarding the non-working of the mail:
+
+The material quoted above shows the issue. rt-mailgate cannot establish
+trust to the localhost's https web server and tells fetchmail to defer
+the message and retry later, which fetchmail does (&quot;not flushed&quot;).
+
+How that is all supposed to be set up eludes me, but generally speaking,
+either rt-mailgate needs to be told what CA signed the 127.0.0.1 https
+server's certificate, and to trust it,
+or the 127.0.0.1 https server certificate needs to be installed properly
+in the first place.
+
+Review the RT installation instructions regarding certificate
+management, web server setup and integration, and thereabouts, and if
+you can't get that to work, seek out RT's support channels.
+
+#2 Regarding the length mismatch warning: it's not critical, but should
+still be fixed.  For older Exchange versions, see
+&lt;<A HREF="http://www.fetchmail.info/fetchmail-FAQ.html#S2">http://www.fetchmail.info/fetchmail-FAQ.html#S2</A>&gt; regarding server-side
+registry tuning, but I am not sure if that applies to Exchange 2010,
+too.  Consult Microsoft's documentation before changing registry, and
+make sure to have an up-to-date fresh working backup.
+
+HTH
+Matthias Andree.
+
+</PRE>
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003417.html">[fetchmail-users] fetchmail-users Digest, Vol 83, Issue 4
+</A></li>
+	<LI>Next message: <A HREF="003419.html">[fetchmail-users] Fetchmail going out of date?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3418">[ date ]</a>
+              <a href="thread.html#3418">[ thread ]</a>
+              <a href="subject.html#3418">[ subject ]</a>
+              <a href="author.html#3418">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

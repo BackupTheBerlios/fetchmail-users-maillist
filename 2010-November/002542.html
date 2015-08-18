@@ -1,0 +1,86 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Handling permanent errors, softbounce
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2010-November/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Handling%20permanent%20errors%2C%20softbounce&In-Reply-To=%3C4CDEEA24.9080501%40inf.fu-berlin.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002534.html">
+   <LINK REL="Next"  HREF="002543.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Handling permanent errors, softbounce</H1>
+    <B>Leon Kuchenbecker</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Handling%20permanent%20errors%2C%20softbounce&In-Reply-To=%3C4CDEEA24.9080501%40inf.fu-berlin.de%3E"
+       TITLE="[fetchmail-users] Handling permanent errors, softbounce">lkuchenb at inf.fu-berlin.de
+       </A><BR>
+    <I>Sat Nov 13 20:42:28 CET 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002534.html">[fetchmail-users] About Fecthmail
+</A></li>
+        <LI>Next message: <A HREF="002543.html">[fetchmail-users] Handling permanent errors, softbounce
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2542">[ date ]</a>
+              <a href="thread.html#2542">[ thread ]</a>
+              <a href="subject.html#2542">[ subject ]</a>
+              <a href="author.html#2542">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+I am fetching mail from a POP server and delivering it to a local MTA
+with fetchmail (6.3.18). My understanding of the softbounce setting is
+that fetchmail will not delete the mail on the POP server if a permanent
+error 5xx is reported by the MTA before the DATA command. However, that
+is not what i observe. E.g. if the fetchmailrc contains a user to
+deliver mail to that does not exist the MTA will reject before DATA,
+fetchmail however bounces and removes the mail from the POP box. Is that
+the intended behaviour?
+
+Regards
+  Leon
+
+-- 
+You can use my PGP pubkey (0x010E29F5) to encrypt mail addressed to me
+()  ascii ribbon campaign - against html e-mail
+/\  www.asciiribbon.org   - against proprietary attachments
+
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: signature.asc
+Type: application/pgp-signature
+Size: 203 bytes
+Desc: OpenPGP digital signature
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/fetchmail-users/attachments/20101113/382cd212/attachment.pgp">https://lists.berlios.de/pipermail/fetchmail-users/attachments/20101113/382cd212/attachment.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002534.html">[fetchmail-users] About Fecthmail
+</A></li>
+	<LI>Next message: <A HREF="002543.html">[fetchmail-users] Handling permanent errors, softbounce
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2542">[ date ]</a>
+              <a href="thread.html#2542">[ thread ]</a>
+              <a href="subject.html#2542">[ subject ]</a>
+              <a href="author.html#2542">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

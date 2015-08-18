@@ -1,0 +1,100 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] how to avoid ipv6 address?
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2007-March/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20how%20to%20avoid%20ipv6%20address%3F&In-Reply-To=%3C20070326151525.GH9899%40krille.blacktrash.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000930.html">
+   <LINK REL="Next"  HREF="000931.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] how to avoid ipv6 address?</H1>
+    <B>Christian Ebert</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20how%20to%20avoid%20ipv6%20address%3F&In-Reply-To=%3C20070326151525.GH9899%40krille.blacktrash.org%3E"
+       TITLE="[fetchmail-users] how to avoid ipv6 address?">blacktrash at gmx.net
+       </A><BR>
+    <I>Mon Mar 26 17:15:25 CEST 2007</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000930.html">[fetchmail-users] how to avoid ipv6 address?
+</A></li>
+        <LI>Next message: <A HREF="000931.html">[fetchmail-users] Groupwise
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#932">[ date ]</a>
+              <a href="thread.html#932">[ thread ]</a>
+              <a href="subject.html#932">[ subject ]</a>
+              <a href="author.html#932">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>* Rob MacGregor on Monday, March 26, 2007 at 14:48:22 +0000:
+&gt;<i> On 3/26/07, Christian Ebert &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">blacktrash at gmx.org</A>&gt; wrote:
+</I>&gt;&gt;<i> When polling, fetchmail gives the following warning after the
+</I>&gt;&gt;<i> first message:
+</I>&gt;&gt;<i> 
+</I>&gt;&gt;<i> Trying to connect to ::1/25...connection failed.
+</I>&gt;&gt;<i> fetchmail: connection to localhost:smtp [::1/25] failed: Connection refused.
+</I>&gt;&gt;<i> Trying to connect to 127.0.0.1/25...connected.
+</I>&gt;<i> &lt;---SNIP---&gt;
+</I>&gt;&gt;<i> Otherwise everything is working fine, I just wanted to know
+</I>&gt;&gt;<i> whether there's an &quot;innocent&quot; way to get rid of this warning?
+</I>&gt;<i> 
+</I>&gt;<i> 1) Have your mail server listen on IPv6 loopback
+</I>&gt;<i> 2) Disable IPv6 on your host
+</I>&gt;<i> 3) Edit your /etc/hosts and comment out the IPv6 loopback
+</I>&gt;<i> 
+</I>&gt;<i> I don't believe there is any way in fetchmail to tell it not to use
+</I>&gt;<i> IPv6.  I think your only option is to either ensure that your SMTP
+</I>&gt;<i> server listens on IPv6 or disable IPv6 (or at least the lookup), with
+</I>&gt;<i> the first being the cleanest approach IMO.
+</I>
+I'd have to upgrade postfix then; might do that some day.
+
+&gt;<i> You could also simply specify the smtphost as 127.0.0.1.
+</I>
+I exprimented with that, but then, judging from the log, the
+mails were dispatched to my relayserver (by postfix?), bounced
+there due to missing envelope, and were lost (luckily only test
+mails). Might be because my postfix setup is a bit complicated as
+I am using ClamSmtpd.
+
+So I guess I'll just tolerate the warnings until I upgrade
+postfix.
+
+Thanks for answering.
+
+c
+-- 
+_B A U S T E L L E N_ lesen! ---&gt;&gt; &lt;<A HREF="http://www.blacktrash.org/baustellen.html">http://www.blacktrash.org/baustellen.html</A>&gt;
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000930.html">[fetchmail-users] how to avoid ipv6 address?
+</A></li>
+	<LI>Next message: <A HREF="000931.html">[fetchmail-users] Groupwise
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#932">[ date ]</a>
+              <a href="thread.html#932">[ thread ]</a>
+              <a href="subject.html#932">[ subject ]</a>
+              <a href="author.html#932">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

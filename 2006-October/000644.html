@@ -1,0 +1,353 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] fetchmail deletes imap messages
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2006-October/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%20deletes%20imap%20messages&In-Reply-To=%3C452E66EE.50603%40gmx.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000643.html">
+   <LINK REL="Next"  HREF="000645.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] fetchmail deletes imap messages</H1>
+    <B>longbow</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%20deletes%20imap%20messages&In-Reply-To=%3C452E66EE.50603%40gmx.de%3E"
+       TITLE="[fetchmail-users] fetchmail deletes imap messages">longbow at gmx.de
+       </A><BR>
+    <I>Thu Oct 12 18:01:50 CEST 2006</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000643.html">[fetchmail-users] fetchmail deletes imap messages
+</A></li>
+        <LI>Next message: <A HREF="000645.html">[fetchmail-users] fetchmail deletes imap messages
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#644">[ date ]</a>
+              <a href="thread.html#644">[ thread ]</a>
+              <a href="subject.html#644">[ subject ]</a>
+              <a href="author.html#644">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Rob MacGregor wrote:
+&gt;<i> On 10/12/06, longbow &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">longbow at gmx.de</A>&gt; wrote:
+</I>&gt;&gt;<i> hi all!
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> i think i have a problem with my fetchmail (config). i use it to get all
+</I>&gt;&gt;<i> the email from my various accounts. in the .fetchmailrc in my home dir i
+</I>&gt;&gt;<i> put something like this:
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> poll MAILSERVER   protocol IMAP   user &quot;MAILBOXUSERNAME&quot; password
+</I>&gt;&gt;<i> &quot;THESECRET&quot; is LOCALUSER  keep
+</I>&gt;<i> 
+</I>&gt;<i> Can we see the file (munge username and password)?  &quot;Something like&quot;
+</I>&gt;<i> isn't good enough.
+</I>
+here it is:
+poll MAILSERVER1 protocol IMAP   user &quot;MAILBOXUSER1&quot; password &quot;PWD1&quot;
+   is LOCALUSER keep
+poll MAILSERVER2 protocol POP3   user &quot;MAILBOXUSER2&quot; password &quot;PWD2&quot; ssl
+  is LOCALUSER
+&gt;<i> 
+</I>&gt;<i> The output of &quot;fetchmail --nosyslog -v -v&quot; is also necessary and
+</I>&gt;<i> &quot;fetchmail --configdump&quot; would help (remember to munge username and
+</I>&gt;<i> password).
+</I>&gt;<i> 
+</I>
+ fetchmail --nosyslog -v -v
+fetchmail: 6.3.4 querying MAILSERVER1 (protocol IMAP) at Thu Oct 12
+17:42:05 2006: poll started
+fetchmail: IMAP&lt; * OK [CAPABILITY IMAP4rev1 UIDPLUS CHILDREN NAMESPACE
+THREAD=ORDEREDSUBJECT THREAD=REFERENCES SORT QUOTA IDLE ACL ACL2=UNION]
+Courier-IMAP ready. Copyright 1998-2004 Double Precision, Inc.  See
+COPYING for distribution information.
+fetchmail: IMAP&gt; A0001 CAPABILITY
+fetchmail: IMAP&lt; * CAPABILITY IMAP4rev1 UIDPLUS CHILDREN NAMESPACE
+THREAD=ORDEREDSUBJECT THREAD=REFERENCES SORT QUOTA IDLE ACL ACL2=UNION
+fetchmail: IMAP&lt; A0001 OK CAPABILITY completed
+fetchmail: Protocol identified as IMAP4 rev 1
+fetchmail: IMAP&gt; A0002 LOGIN &quot;MAILBOXUSER1&quot; *
+fetchmail: IMAP&lt; A0002 OK LOGIN Ok.
+fetchmail: selecting or re-polling default folder
+fetchmail: IMAP&gt; A0003 SELECT &quot;INBOX&quot;
+fetchmail: IMAP&lt; * FLAGS (\Draft \Answered \Flagged \Deleted \Seen \Recent)
+fetchmail: IMAP&lt; * OK [PERMANENTFLAGS (\* \Draft \Answered \Flagged
+\Deleted \Seen)] Limited
+fetchmail: IMAP&lt; * 0 EXISTS
+fetchmail: IMAP&lt; * 0 RECENT
+fetchmail: IMAP&lt; * OK [UIDVALIDITY 1159609714] Ok
+fetchmail: IMAP&lt; * OK [MYRIGHTS &quot;acdilrsw&quot;] ACL
+fetchmail: IMAP&lt; A0003 OK [READ-WRITE] Ok
+fetchmail: 0 messages waiting after first poll
+fetchmail: No mail for MAILBOXUSER1 at MAILSERVER1
+fetchmail: IMAP&gt; A0004 LOGOUT
+fetchmail: IMAP&lt; * BYE Courier-IMAP server shutting down
+fetchmail: IMAP&lt; A0004 OK LOGOUT completed
+fetchmail: 6.3.4 querying MAILSERVER1 (protocol IMAP) at Thu Oct 12
+17:42:06 2006: poll completed
+fetchmail: not swapping UID lists, no UIDs seen this query
+fetchmail: Query status=1 (NOMAIL)
+fetchmail: 6.3.4 querying MAILSERVER2 (protocol POP3) at Thu Oct 12
+17:42:06 2006: poll started
+fetchmail: Issuer Organization: THE ORGANIZATION
+fetchmail: Issuer CommonName: Certification Authority (CA) 2005
+fetchmail: Server CommonName: MAILSERVER2
+fetchmail: MAILSERVER1 key fingerprint:
+72:72:A9:AE:DD:11:DA:01:C4:9D:29:D8:88:C7:74:39
+fetchmail: Server certificate verification error: unable to get local
+issuer certificate
+fetchmail: Server certificate verification error: certificate not trusted
+fetchmail: Server certificate verification error: unable to verify the
+first certificate
+fetchmail: POP3&lt; +OK CommuniGate Pro POP3 Server 5.0.2 ready
+&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">88610.1160667726 at MAILSERVER2</A>&gt;
+fetchmail: POP3&gt; CAPA
+fetchmail: POP3&lt; +OK capability list follows
+fetchmail: POP3&lt; SASL LOGIN PLAIN
+fetchmail: POP3&lt; LAST
+fetchmail: POP3&lt; TOP
+fetchmail: POP3&lt; USER
+fetchmail: POP3&lt; PIPELINING
+fetchmail: POP3&lt; UIDL
+fetchmail: POP3&lt; IMPLEMENTATION CommuniGatePro
+fetchmail: POP3&lt; .
+fetchmail: POP3&gt; USER MAILBOXUSER2
+fetchmail: POP3&lt; +OK please send the PASS
+fetchmail: POP3&gt; PASS *
+fetchmail: POP3&lt; +OK 0 messages (0 bytes)
+fetchmail: selecting or re-polling default folder
+fetchmail: POP3&gt; STAT
+fetchmail: POP3&lt; +OK 0 0
+fetchmail: No mail for MAILBOXUSER2 at MAILSERVER2
+fetchmail: POP3&gt; QUIT
+fetchmail: POP3&lt; +OK CommuniGate Pro POP3 Server connection closed
+fetchmail: 6.3.4 querying MAILSERVER2 (protocol POP3) at Thu Oct 12
+17:42:08 2006: poll completed
+fetchmail: not swapping UID lists, no UIDs seen this query
+fetchmail: Query status=1 (NOMAIL)
+fetchmail: Deleting fetchids file.
+fetchmail: normal termination, status 1
+fetchmail: Deleting fetchids file.
+
+
+
+
+
+fetchmail --configdump
+TRUE=1; FALSE=0
+
+os_type = 'linux'
+feature_options = ('pop3','imap','rpa','sdps','etrn','odmr','ssl',)
+# Start of configuration initializer
+fetchmailrc = {
+    'poll_interval':0,
+    &quot;logfile&quot;:None,
+    &quot;idfile&quot;:&quot;/home/LOCALUSER/.fetchids&quot;,
+    &quot;postmaster&quot;:&quot;LOCALUSER&quot;,
+    'bouncemail':TRUE,
+    'spambounce':FALSE,
+    &quot;properties&quot;:None,
+    'invisible':FALSE,
+    'showdots':TRUE,
+    'syslog':FALSE,
+    # List of server entries begins here
+    'servers': [
+        # Entry for site `MAILSERVER1' begins:
+        {
+            &quot;pollname&quot;:&quot;MAILSERVER1&quot;,
+            'active':TRUE,
+            &quot;via&quot;:None,
+            &quot;protocol&quot;:&quot;IMAP&quot;,
+            &quot;service&quot;:None,
+            'timeout':300,
+            'interval':0,
+            &quot;envelope&quot;:&quot;Received&quot;,
+            'envskip':0,
+            &quot;qvirtual&quot;:None,
+            &quot;auth&quot;:&quot;any&quot;,
+            'dns':TRUE,
+            'uidl':FALSE,
+            &quot;aka&quot;:[],
+            &quot;localdomains&quot;:[],
+            &quot;interface&quot;:None,
+            &quot;monitor&quot;:None,
+            &quot;plugin&quot;:None,
+            &quot;plugout&quot;:None,
+            &quot;principal&quot;:None,
+            'tracepolls':FALSE,
+            'users': [
+                {
+                    &quot;remote&quot;:&quot;MAILBOXUSER1&quot;,
+                    &quot;password&quot;:&quot;PWD1&quot;,
+                    'localnames':[&quot;LOCALUSER&quot;],
+                    'fetchall':FALSE,
+                    'keep':TRUE,
+                    'flush':FALSE,
+                    'limitflush':FALSE,
+                    'rewrite':TRUE,
+                    'stripcr':FALSE,
+                    'forcecr':FALSE,
+                    'pass8bits':FALSE,
+                    'dropstatus':FALSE,
+                    'dropdelivered':FALSE,
+                    'mimedecode':FALSE,
+                    'idle':FALSE,
+                    &quot;mda&quot;:None,
+                    &quot;bsmtp&quot;:None,
+                    'lmtp':FALSE,
+                    &quot;preconnect&quot;:None,
+                    &quot;postconnect&quot;:None,
+                    'limit':0,
+                    'warnings':3600,
+                    'fetchlimit':0,
+                    'fetchsizelimit':100,
+                    'fastuidl':4,
+                    'batchlimit':0,
+                    'ssl':FALSE,
+                    &quot;sslkey&quot;:None,
+                    &quot;sslcert&quot;:None,
+                    &quot;sslproto&quot;:None,
+                    'sslcertck':FALSE,
+                    &quot;sslcertpath&quot;:None,
+                    &quot;sslfingerprint&quot;:None,
+                    'expunge':0,
+                    &quot;properties&quot;:None,
+                    &quot;smtphunt&quot;:[&quot;localhost&quot;],
+                    &quot;fetchdomains&quot;:[],
+                    &quot;smtpaddress&quot;:None,
+                    &quot;smtpname&quot;:None,
+                    'antispam':'',
+                    &quot;mailboxes&quot;:[],
+                }
+                ,           ]
+        }
+        ,
+        # Entry for site `MAILSERVER2' begins:
+        {
+            &quot;pollname&quot;:&quot;MAILSERVER2&quot;,
+            'active':TRUE,
+            &quot;via&quot;:None,
+            &quot;protocol&quot;:&quot;POP3&quot;,
+            &quot;service&quot;:None,
+            'timeout':300,
+            'interval':0,
+            &quot;envelope&quot;:&quot;Received&quot;,
+            'envskip':0,
+            &quot;qvirtual&quot;:None,
+            &quot;auth&quot;:&quot;any&quot;,
+            'dns':TRUE,
+            'uidl':FALSE,
+            &quot;aka&quot;:[],
+            &quot;localdomains&quot;:[],
+            &quot;interface&quot;:None,
+            &quot;monitor&quot;:None,
+            &quot;plugin&quot;:None,
+            &quot;plugout&quot;:None,
+            &quot;principal&quot;:None,
+            'tracepolls':FALSE,
+            'users': [
+                {
+                    &quot;remote&quot;:&quot;MAILBOXUSER2&quot;,
+                    &quot;password&quot;:&quot;PWD2&quot;,
+                    'localnames':[&quot;LOCALUSER&quot;],
+                    'fetchall':FALSE,
+                    'keep':FALSE,
+                    'flush':FALSE,
+                    'limitflush':FALSE,
+                    'rewrite':TRUE,
+                    'stripcr':FALSE,
+                    'forcecr':FALSE,
+                    'pass8bits':FALSE,
+                    'dropstatus':FALSE,
+                    'dropdelivered':FALSE,
+                    'mimedecode':FALSE,
+                    'idle':FALSE,
+                    &quot;mda&quot;:None,
+                    &quot;bsmtp&quot;:None,
+                    'lmtp':FALSE,
+                    &quot;preconnect&quot;:None,
+                    &quot;postconnect&quot;:None,
+                    'limit':0,
+                    'warnings':3600,
+                    'fetchlimit':0,
+                    'fetchsizelimit':100,
+                    'fastuidl':4,
+                    'batchlimit':0,
+                    'ssl':TRUE,
+                    &quot;sslkey&quot;:None,
+                    &quot;sslcert&quot;:None,
+                    &quot;sslproto&quot;:None,
+                    'sslcertck':FALSE,
+                    &quot;sslcertpath&quot;:None,
+                    &quot;sslfingerprint&quot;:None,
+                    'expunge':0,
+                    &quot;properties&quot;:None,
+                    &quot;smtphunt&quot;:[&quot;localhost&quot;],
+                    &quot;fetchdomains&quot;:[],
+                    &quot;smtpaddress&quot;:None,
+                    &quot;smtpname&quot;:None,
+                    'antispam':'',
+                    &quot;mailboxes&quot;:[],
+                }
+                ,           ]
+        }
+    ]
+}
+# End of initializer
+
+
+
+&gt;&gt;<i> this runs perfect expect that the fetchmail daemon is deleting the
+</I>&gt;&gt;<i> messages in the remote server's inbox. i read in the manual that
+</I>&gt;&gt;<i> deleteing is the default action and adding &quot;keep&quot; should keep the
+</I>&gt;&gt;<i> messages on the remote side. i tried it and fetchmail recognizes that
+</I>&gt;&gt;<i> the config has changed by diplaying this:
+</I>&gt;<i> 
+</I>&gt;<i> This isn't normal for the config you're talking about - I poll an IMAP
+</I>&gt;<i> server with keep and it doesn't delete the messages.
+</I>&gt;<i> 
+</I>&gt;<i> The possibilities are that either you've not got a valid configuration
+</I>&gt;<i> or the remote server is doing something it shouldn't.  The information
+</I>&gt;<i> I've asked for will help identify which.
+</I>
+well i thought so too...
+
+&gt;<i> 
+</I>&gt;<i> (Oh, and I'd suggest you read the FAQ, which details what you should
+</I>&gt;<i> provide when reporting something you think is a bug).
+</I>&gt;<i> 
+</I>
+hope you can help me with this.
+
+thx
+longbow
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000643.html">[fetchmail-users] fetchmail deletes imap messages
+</A></li>
+	<LI>Next message: <A HREF="000645.html">[fetchmail-users] fetchmail deletes imap messages
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#644">[ date ]</a>
+              <a href="thread.html#644">[ thread ]</a>
+              <a href="subject.html#644">[ subject ]</a>
+              <a href="author.html#644">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

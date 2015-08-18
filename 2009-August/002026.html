@@ -1,0 +1,142 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] [fetchmail-devel] Multiple sslfingerprint	options and digests
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2009-August/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20%5Bfetchmail-devel%5D%20Multiple%20sslfingerprint%0A%09options%20and%20digests&In-Reply-To=%3Cd2e731a10908111444s1185b10p27784f16adb55972%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002025.html">
+   <LINK REL="Next"  HREF="002035.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] [fetchmail-devel] Multiple sslfingerprint	options and digests</H1>
+    <B>grarpamp</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20%5Bfetchmail-devel%5D%20Multiple%20sslfingerprint%0A%09options%20and%20digests&In-Reply-To=%3Cd2e731a10908111444s1185b10p27784f16adb55972%40mail.gmail.com%3E"
+       TITLE="[fetchmail-users] [fetchmail-devel] Multiple sslfingerprint	options and digests">grarpamp at gmail.com
+       </A><BR>
+    <I>Tue Aug 11 23:44:10 CEST 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002025.html">[fetchmail-users] [fetchmail-devel] Multiple sslfingerprint	options and digests
+</A></li>
+        <LI>Next message: <A HREF="002035.html">[fetchmail-users] BerliOS/mailing list companion web site X.509 certificates (was: Multiple sslfingerprint options and digests)
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2026">[ date ]</a>
+              <a href="thread.html#2026">[ thread ]</a>
+              <a href="subject.html#2026">[ subject ]</a>
+              <a href="author.html#2026">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi :) Folks in that ticket appear to be misunderstanding things
+about the underlying crypto and why fingerprints are a necessary
+safety check.
+
+If one simply relies on checking the cert chain and blindly trusts
+that model, as most of the world is conditioned to believe it is
+sound, you are open to attack. Namely, of the sort in the posted
+url, it is a good read, as are the referenced prior art. Both MD5
+and SHA1 are theory broken and MD5 demonstrably so, as noted in the
+literatre. So the hash part is of concern, at least in this case.
+
+A CA takes a MD5 over certain fields in the cert and signs that MD5
+digest, not the entire cert contents. CA's previously used MD5 and
+failed to change their cert practices to SHA1 until a real world
+break, oops. Anyways... So I don't have to swipe their private key.
+All I have to do to forge a server cert is copy the signature from
+any candidate real cert into my cert and manufacture the rest of
+my cert contents so that they: a) work, b) make the fields have the
+same digest as the real one. Which, as we all know by now is possible,
+given time or new art, due to the whole hash collision thing.
+
+However... if I copy a known good cert via trusted channels, and
+take both the MD5 and SHA1 fingerprints of the DER form of that
+cert, it's much closer to cryptographically impossible to manufacture
+a cert that would match evarything. I could just as easily make
+formal contact with the cert holder and get the prints that way or
+receive them as part of a high security programme. Banks do this.
+
+So there are two different fingerprints covering different areas.
+
+Checking fingerprints over the entire DER cert will foil this attack
+because it detects the contents that I manipulated to match the
+field digest that was later signed. That is why openssl, browsers,
+ssh, etc provide fingerprint calculating and verification functions...
+totally separate from signature calc/verif capabilities.
+
+So two types of checks should always be performed for maximum
+security:
+
+ A) cert chain trust = sig(hash(contents)) -&gt; pki
+  This is done with openssl verify -verbose
+  aka: sslcertck
+ B) DER fingerprint = hash(sig(hash(contents))
+  This is done with openssl x509 -in &lt;PEMcert&gt; -noout -fingerprint -&lt;sha1|md5&gt;
+   or
+  openssl x509 -in &lt;PEMcert&gt; -outform DER | &lt;sha1|md5&gt;
+  aka: sslfingerprint... with the enhancements in the prior note
+
+Enhancing fetchmail to doubly check B with both MD5 and SHa1 shouldn't
+be much extra coding or user effort. As an aside, it's fairly common
+to find places using/publishing both hashes for various purposes.
+
+Removing the check in B places all the beans on the hash function
+in A, which is not good. Private keys are not even involved in this.
+Defense in depth will save your butt :)
+
+Give the user tools, let them decide how many they wish to deploy
+and manage. I would adapt the docs to say that one should use both
+A and B, or neither, with some short reasons why. And continue to
+provide example openssl usage as is there now, to allow them to
+accomplish it.
+
+Note1: Not checking the fingerprints on self-signed certs... such
+as are commonly found in internal corporate nets, edu's, org's, and
+the many end user, developer, hacker and other low budget/tier
+sites... is asking for trouble. Not publishing your prints, signed
+by OpenPGP, is bad too.
+
+Note2: The random serial fix just helps eliminate easier forms of
+the hash collision attack, see the paper. It doesn't necessarily
+prevent other forms or completely new math attacks, and definitely
+doesn't prevent brute force.
+
+Note3: The lists.berlios.de cert is expired, and MD5, though that
+doesn't matter :) The Berlios_CA cert may be self-signed.
+
+Hey, thanks for the pointer to the bug thing! I'll try to append
+to the seemingly closed ticket. I'm out of time at the moment to
+help out with correcting what is already in there, perhaps later.
+
+And again for keeping up with all the maintenance to fetchmail :)
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002025.html">[fetchmail-users] [fetchmail-devel] Multiple sslfingerprint	options and digests
+</A></li>
+	<LI>Next message: <A HREF="002035.html">[fetchmail-users] BerliOS/mailing list companion web site X.509 certificates (was: Multiple sslfingerprint options and digests)
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2026">[ date ]</a>
+              <a href="thread.html#2026">[ thread ]</a>
+              <a href="subject.html#2026">[ subject ]</a>
+              <a href="author.html#2026">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

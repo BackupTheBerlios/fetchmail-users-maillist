@@ -1,0 +1,127 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Fetchmail --check
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2012-December/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Fetchmail%20--check&In-Reply-To=%3CCAL3jY3vrhexxQCQev2O2vCztTv3utg2c5hyAcAUdgE9aQUGm%2BQ%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003290.html">
+   <LINK REL="Next"  HREF="003292.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Fetchmail --check</H1>
+    <B>Peter Hartman</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Fetchmail%20--check&In-Reply-To=%3CCAL3jY3vrhexxQCQev2O2vCztTv3utg2c5hyAcAUdgE9aQUGm%2BQ%40mail.gmail.com%3E"
+       TITLE="[fetchmail-users] Fetchmail --check">peterjohnhartman at gmail.com
+       </A><BR>
+    <I>Fri Dec 14 16:30:20 CET 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003290.html">[fetchmail-users] Fetchmail 6.3.23 console output
+</A></li>
+        <LI>Next message: <A HREF="003292.html">[fetchmail-users] Fetchmail --check
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3291">[ date ]</a>
+              <a href="thread.html#3291">[ thread ]</a>
+              <a href="subject.html#3291">[ subject ]</a>
+              <a href="author.html#3291">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Folks:
+
+I'm trying to abuse fetchmail to be an e-mail notifier, much as
+reported here[1].  Roughly, I run fetchmail --fetch --verbose |
+myscript.sh, where myscript.sh parses the output and updates xsetroot
+-name &quot;&quot; with the number of messages.  I've been able to get it to
+play nice with EXPUNGE, such that if I access my gmail account via the
+gmail interface and archive a message out of my INBOX, fetchmail /
+myscript.sh will be aware of this.  And, of course, fetchmail /
+myscript.sh are also aware of new messages when they arrive.  However,
+there is one piece of the puzzle that is missing:
+
+If I access my gmail account and READ a new message, no notification
+is sent to fetchmail / myscript.sh.  So it will continue to think that
+there are, e.g., 13 messages (12 dj vus) pour <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">me at gmail.com</A> dans
+imap.gmail.com even though, in point of fact, there are 13 messages
+(13 dj vus).  So, is there a trick?
+
+I've pasted myscript.sh (it ain't pretty; beatification comes later):
+
+#!/bin/sh
+
+type=&quot;&quot;
+fetchmail --verbose --check 2&gt;/dev/null | while read line; do
+	echo &quot;type: $type&quot;
+	echo &quot;LINE: $line&quot;
+    case &quot;$type&quot; in
+      EXPUNGE)
+        num=`echo &quot;$line&quot; | cut -d' ' -f4`
+		xsetroot -name &quot;EXPUNGE: $num&quot;
+        type=&quot;&quot;
+      ;;
+      &quot;vus)&quot;)
+        xsetroot -name &quot;$save&quot;
+        ;;
+      *)
+      ;;
+    esac
+
+    type=`echo &quot;$line&quot; | cut -d' ' -f5`
+    save=$line
+    done
+
+
+.fetchmailrc:
+
+poll imap.gmail.com port 993 proto IMAP user &quot;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">peterjohnhartman at gmail.com</A>&quot;
+    there with password &quot;*****&quot; keep ssl idle
+
+fetchmail ---version: 6.3.22
+
+
+Thanks so much in advance for any tips you might have (even an
+alternative would be nice).  The goal is to have a simple way of being
+notified of new messages on a machine that doesn't have good battery
+life, so can't have a webbrowser open all the time, nor can it handle
+a fullbodied offlineimap installation.
+
+[1] <A HREF="http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=502381">http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=502381</A>
+
+-- 
+sic dicit magister P
+Universit&#233; du Qu&#233;bec &#224; Montr&#233;al / Loyola University Chicago
+<A HREF="http://individual.utoronto.ca/peterjh">http://individual.utoronto.ca/peterjh</A>
+gpg 1024D/ED6EF59B (7D1A 522F D08E 30F6 FA42 B269 B860 352B ED6E F59B)
+gpg --keyserver pgp.mit.edu --recv-keys ED6EF59B
+</PRE>
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003290.html">[fetchmail-users] Fetchmail 6.3.23 console output
+</A></li>
+	<LI>Next message: <A HREF="003292.html">[fetchmail-users] Fetchmail --check
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3291">[ date ]</a>
+              <a href="thread.html#3291">[ thread ]</a>
+              <a href="subject.html#3291">[ subject ]</a>
+              <a href="author.html#3291">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

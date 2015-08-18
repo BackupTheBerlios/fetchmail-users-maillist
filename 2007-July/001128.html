@@ -1,0 +1,114 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Fetchmail retrieving message body of only &quot;OK FETCH completed&quot;?
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2007-July/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Fetchmail%20retrieving%20message%20body%20of%20only%20%22OK%0A%20FETCH%20completed%22%3F&In-Reply-To=%3C46A69E82.7000807%40gmx.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001127.html">
+   <LINK REL="Next"  HREF="001129.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Fetchmail retrieving message body of only &quot;OK FETCH completed&quot;?</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Fetchmail%20retrieving%20message%20body%20of%20only%20%22OK%0A%20FETCH%20completed%22%3F&In-Reply-To=%3C46A69E82.7000807%40gmx.de%3E"
+       TITLE="[fetchmail-users] Fetchmail retrieving message body of only &quot;OK FETCH completed&quot;?">matthias.andree at gmx.de
+       </A><BR>
+    <I>Wed Jul 25 02:51:14 CEST 2007</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001127.html">[fetchmail-users] Fetchmail retrieving message body of only &quot;OK	FETCH completed&quot;?
+</A></li>
+        <LI>Next message: <A HREF="001129.html">[fetchmail-users] fetchmail - mailformat
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1128">[ date ]</a>
+              <a href="thread.html#1128">[ thread ]</a>
+              <a href="subject.html#1128">[ subject ]</a>
+              <a href="author.html#1128">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Beau James schrieb:
+&gt;<i> --&gt; &gt; In the meantime, I downloaded and installed the source package, built
+</I>&gt;<i> --&gt; &gt; it myself, and tried to run the version I had built.  I worked through
+</I>&gt;<i> --&gt; &gt; a number of issues but then ran into SSL errors:
+</I>&gt;<i> --&gt; &gt; 
+</I>&gt;<i> --&gt; &gt; fetchmail: starting fetchmail 6.3.8 daemon
+</I>&gt;<i> --&gt; &gt; 25839:error:140770FC:SSL routines:SSL23_GET_SERVER_HELLO:unknown protocol:s23_cl
+</I>&gt;<i> --&gt; &gt; nt.c:567:
+</I>&gt;<i> --&gt; &gt; fetchmail: SSL connection failed.
+</I>&gt;<i> --&gt; &gt; fetchmail: socket error while fetching from <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">bjames at email.cisco.com</A>
+</I>&gt;<i> --&gt; &gt; fetchmail: Query status=2 (SOCKET)
+</I>&gt;<i> --&gt; &gt; fetchmail: sleeping at Sun Jul 22 21:24:36 2007 for 300 seconds
+</I>&gt;<i> --&gt; 
+</I>&gt;<i> --&gt; This looks like fetchmail talking SSL to a non-SSL port. Note that TLS is
+</I>&gt;<i> --&gt; not the same as SSL; TLS starts in cleartext and negotiate SSL while there
+</I>&gt;<i> --&gt; has been some protocol chit-chat, and SSL starts with the SSL negotiation
+</I>&gt;<i> --&gt; right away. TLS and SSL also use separate ports. TLS uses the regular
+</I>&gt;<i> --&gt; 110/143 for POP3/IMAP, SSL uses 995/993 for POP3/IMAP.
+</I>&gt;<i> --&gt; 
+</I>&gt;<i> --&gt; HTH
+</I>&gt;<i> 
+</I>&gt;<i> Indeed it did.  Thanks!
+</I>&gt;<i> 
+</I>&gt;<i> Starting &quot;fetchmail --service 993&quot; worked - mail was retrieved from
+</I>&gt;<i> the Exchange server with no problem.
+</I>&gt;<i> 
+</I>&gt;<i> I did get one message in the logfile:
+</I>&gt;<i> 
+</I>&gt;<i> fetchmail: starting fetchmail 6.3.8 daemon
+</I>&gt;<i> fetchmail: Server certificate verification error: self signed certificate in cer
+</I>&gt;<i> tificate chain
+</I>&gt;<i> 
+</I>&gt;<i> This didn't seem to cause any problems.  Sorry, I'm a crypto neophyte.
+</I>&gt;<i> I know what this means, literally, but don't know what the implications
+</I>
+The deal is that fetchmail cannot detect &quot;man in the middle&quot; attacks in
+this environment and setup.
+
+To fix this, you'd need to install the certificate of the &quot;CA&quot; that signed
+the server certificate. Put the CA certificate into /etc/ssl/certs/ (adjust
+path as required), run c_rehash on that directory to create the necessary
+symlinks, and if that's insufficient you can tell fetchmail where to look
+for the certs with the --sslcertpath option.
+
+Once you got rid of the verification error, you should add the --sslcertck
+option to have fetchmail terminate the connection if the certificate can't
+be verified. That is to make sure fetchmail hands the password out only to
+the real server and not any imposters that might have tapped the wire
+(particularly easy with WLAN if unencrypted or using WEP), mounted ARP
+redirecting attacks or whatever.
+
+HTH
+Matthias
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001127.html">[fetchmail-users] Fetchmail retrieving message body of only &quot;OK	FETCH completed&quot;?
+</A></li>
+	<LI>Next message: <A HREF="001129.html">[fetchmail-users] fetchmail - mailformat
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1128">[ date ]</a>
+              <a href="thread.html#1128">[ thread ]</a>
+              <a href="subject.html#1128">[ subject ]</a>
+              <a href="author.html#1128">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

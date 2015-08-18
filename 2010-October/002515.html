@@ -1,0 +1,124 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Latest change to configure.ac makes autogen.sh bail out on MacOS 10.5.8
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2010-October/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Latest%20change%20to%20configure.ac%20makes%0A%20autogen.sh%20bail%20out%20on%20MacOS%2010.5.8&In-Reply-To=%3C20101017121958.GA5220%40krille.blacktrash.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002514.html">
+   <LINK REL="Next"  HREF="002516.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Latest change to configure.ac makes autogen.sh bail out on MacOS 10.5.8</H1>
+    <B>Christian Ebert</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Latest%20change%20to%20configure.ac%20makes%0A%20autogen.sh%20bail%20out%20on%20MacOS%2010.5.8&In-Reply-To=%3C20101017121958.GA5220%40krille.blacktrash.org%3E"
+       TITLE="[fetchmail-users] Latest change to configure.ac makes autogen.sh bail out on MacOS 10.5.8">blacktrash at gmx.net
+       </A><BR>
+    <I>Sun Oct 17 14:19:59 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002514.html">[fetchmail-users] Latest change to configure.ac makes autogen.sh bail out on MacOS 10.5.8
+</A></li>
+        <LI>Next message: <A HREF="002516.html">[fetchmail-users] fetchmail-6.3.17-1.fc12.x86_64
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2515">[ date ]</a>
+              <a href="thread.html#2515">[ thread ]</a>
+              <a href="subject.html#2515">[ subject ]</a>
+              <a href="author.html#2515">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Matthias,
+
+[ sorry for coming back late, I was traveling ]
+
+* Matthias Andree on Saturday, October 16, 2010 at 00:19:42 +0200
+&gt;<i> Am 16.10.2010 00:16, schrieb Matthias Andree:
+</I>&gt;&gt;<i> Am 15.10.2010 20:37, schrieb Christian Ebert:
+</I>&gt;&gt;&gt;<i> commit 1acd800e1caee169c964519a5c31b673f8762e54
+</I>&gt;&gt;&gt;<i> Author: Matthias Andree &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">matthias.andree at gmx.de</A>&gt;
+</I>&gt;&gt;&gt;<i> Date:   Fri Oct 15 09:24:06 2010 +0200
+</I>&gt;&gt;&gt;<i> 
+</I>&gt;&gt;&gt;<i>    Remove AM_GNU_GETTEXT_VERSION to avoid @MKINSTALLDIRS@ issues on Ubuntu 10.10.
+</I>&gt;&gt;&gt;<i> 
+</I>&gt;&gt;&gt;<i> 
+</I>&gt;&gt;&gt;<i> results in:
+</I>&gt;&gt;&gt;<i> 
+</I>&gt;&gt;&gt;<i> $ ./autogen.sh
+</I>&gt;&gt;&gt;<i> 
+</I>&gt;&gt;&gt;<i> Please stand by while generating files,
+</I>&gt;&gt;&gt;<i> this may take a minute or two...
+</I>&gt;&gt;&gt;<i> 
+</I>&gt;&gt;&gt;<i> autoreconf: Entering directory `.'
+</I>&gt;&gt;&gt;<i> autoreconf: configure.ac: not using Gettext
+</I>&gt;&gt;&gt;<i> autoreconf: running: aclocal -I m4 -I m4-local
+</I>&gt;&gt;&gt;<i> aclocal: couldn't open directory `m4': No such file or directory
+</I>&gt;&gt;&gt;<i> autoreconf: aclocal failed with exit status: 1
+</I>&gt;&gt;&gt;<i> $ sw_vers
+</I>&gt;&gt;&gt;<i> ProductName:	Mac OS X
+</I>&gt;&gt;&gt;<i> ProductVersion:	10.5.8
+</I>&gt;&gt;&gt;<i> BuildVersion:	9L30
+</I>&gt;&gt;<i> 
+</I>&gt;&gt;<i> thanks for the report.  I'm wondering about one thing: Your autoreconf
+</I>&gt;&gt;<i> is not running autopoint (from gettext, gettext-devel, or similar
+</I>&gt;&gt;<i> packages), which it should, and does for me even without the removed
+</I>&gt;&gt;<i> _VERSION macro.
+</I>&gt;&gt;<i> 
+</I>&gt;&gt;<i> Which autoconf version are you running?
+</I>
+$ autoconf --version | head -1
+autoconf (GNU Autoconf) 2.68
+
+&gt;&gt;<i> Is gettext installed, and which version?
+</I>
+$ gettext --version | head -1
+gettext (GNU gettext-runtime) 0.17
+ 
+&gt;&gt;<i> However, I'll have configure.ac request gettext 0.17 now, that should
+</I>&gt;&gt;<i> help. At least it pacifies Ubuntu 10.10's &quot;make distcheck&quot;.
+</I>&gt;<i> 
+</I>&gt;<i> OK, I found a few computers where autopoint is apparently skipped if the
+</I>&gt;<i> AM_GNU_GETTEXT_VERSION macro is missing, so forget my questions.  The
+</I>&gt;<i> solution remains the same though :-)
+</I>
+I suppose you know what you're doing, because I can conly
+contribute by complaining ;-) But, anyway, at least here
+fetchmail builds without hickups again. Thank you very much!
+
+c
+-- 
+theatre - books - texts - movies
+Black Trash Productions at home: <A HREF="http://www.blacktrash.org">http://www.blacktrash.org</A>
+Black Trash Productions on Facebook:
+<A HREF="http://www.facebook.com/blacktrashproductions">http://www.facebook.com/blacktrashproductions</A>
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002514.html">[fetchmail-users] Latest change to configure.ac makes autogen.sh bail out on MacOS 10.5.8
+</A></li>
+	<LI>Next message: <A HREF="002516.html">[fetchmail-users] fetchmail-6.3.17-1.fc12.x86_64
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2515">[ date ]</a>
+              <a href="thread.html#2515">[ thread ]</a>
+              <a href="subject.html#2515">[ subject ]</a>
+              <a href="author.html#2515">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

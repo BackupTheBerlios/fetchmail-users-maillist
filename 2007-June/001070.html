@@ -1,0 +1,91 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] antispam
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2007-June/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20antispam&In-Reply-To=%3Cbba6100b0706021255u4aba0e0bw11d5c3bc82c93175%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   
+   <LINK REL="Next"  HREF="001071.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] antispam</H1>
+    <B>Nick Smith</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20antispam&In-Reply-To=%3Cbba6100b0706021255u4aba0e0bw11d5c3bc82c93175%40mail.gmail.com%3E"
+       TITLE="[fetchmail-users] antispam">nick.smith79 at gmail.com
+       </A><BR>
+    <I>Sat Jun  2 21:55:16 CEST 2007</I>
+    <P><UL>
+        
+        <LI>Next message: <A HREF="001071.html">[fetchmail-users] antispam
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1070">[ date ]</a>
+              <a href="thread.html#1070">[ thread ]</a>
+              <a href="subject.html#1070">[ subject ]</a>
+              <a href="author.html#1070">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>I can seem to get fetchmail to flush mail marked with 450:
+
+Jun  2 15:44:03 mailfilter fetchmail[602]: reading message
+<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">myuser at mail.mydomain.com</A>:13 of 13 (17002 octets)
+Jun  2 15:44:04 mailfilter postfix/smtpd[603]: NOQUEUE: reject: RCPT
+from localhost[127.0.0.1]: 450 &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">mpalmisanoix at 163data.com.cn</A>&gt;: Sender
+address rejected: Domain not found; from=&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">mpalmisanoix at 163data.com.cn</A>&gt;
+to=&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">myuser at mydomain.local</A>&gt; proto=ESMTP
+helo=&lt;mailfilter.mydomain.local&gt;
+Jun  2 15:44:05 mailfilter fetchmail[602]: SMTP error: 450
+&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">mpalmisanoix at 163data.com.cn</A>&gt;: Sender address rejected: Domain not
+found
+Jun  2 15:44:06 mailfilter fetchmail[602]:  not flushed
+
+Im using this line in a fetchmail.sh in my rc.d directory:
+
+/usr/local/bin/fetchmail --syslog --antispam 450,451 -f
+/usr/local/etc/fetchmail.cf
+
+But nothing seems to flush the mail, ive also tried -Z 450 with out success.
+
+Is there something im doing wrong? Is there something else i could do
+to accomplish this?  Im sorry if this has been brought up before, im
+new to the list and have been battling this for over a week googling,
+tweaking, reading archives and just cant get anything to work.
+
+version info:
+This is fetchmail release 6.3.2+POP2+RPA+SDPS+SSL+OPIE+NLS.
+
+thanks for any help you can give
+
+Nick
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	
+	<LI>Next message: <A HREF="001071.html">[fetchmail-users] antispam
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1070">[ date ]</a>
+              <a href="thread.html#1070">[ thread ]</a>
+              <a href="subject.html#1070">[ subject ]</a>
+              <a href="author.html#1070">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,103 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Plus (+) Addressing Problem
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2011-April/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Plus%20%28%2B%29%20Addressing%20Problem&In-Reply-To=%3C4DB37260.3090706%40realloc.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002762.html">
+   <LINK REL="Next"  HREF="002769.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Plus (+) Addressing Problem</H1>
+    <B>Derek Simkowiak</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Plus%20%28%2B%29%20Addressing%20Problem&In-Reply-To=%3C4DB37260.3090706%40realloc.net%3E"
+       TITLE="[fetchmail-users] Plus (+) Addressing Problem">dereks at realloc.net
+       </A><BR>
+    <I>Sun Apr 24 02:44:16 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002762.html">[fetchmail-users] Plus (+) Addressing Problem
+</A></li>
+        <LI>Next message: <A HREF="002769.html">[fetchmail-users] Fetchmail using 2 envelope options
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2759">[ date ]</a>
+              <a href="thread.html#2759">[ thread ]</a>
+              <a href="subject.html#2759">[ subject ]</a>
+              <a href="author.html#2759">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>/&gt; I thought I had stated in my original post that mail sent directly to 
+this server does get handled correctly.
+/
+     My bad, I somehow missed that in your original email.
+
+/&gt; I am seriously thinking of telling my client that this is just not 
+going to work and to get rid of this Google garbage entirely./
+
+     I wouldn't give up quite yet... I've gotten some pretty hairy 
+setups to work using fetchmail and postfix.  I'd bet a dollar you could 
+get this to work.
+
+     Just keep applying the scientific method.  Works every time. :)
+
+
+--Derek
+
+On 04/23/2011 03:07 PM, Jerry wrote:
+&gt;<i> On Sat, 23 Apr 2011 14:32:59 -0700
+</I>&gt;<i> Derek Simkowiak&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">dereks at realloc.net</A>&gt;  articulated:
+</I>&gt;<i>
+</I>&gt;&gt;<i>   &gt;  This is the Postfix log entry:
+</I>&gt;&gt;<i>   &gt;
+</I>&gt;&gt;<i>   &gt;  [...snip...] client=localhost[127.0.0.1]
+</I>&gt;&gt;<i>   &gt;  [...snip...] status=sent (delivered via dovecot service)
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i>       This indicates that Fetchmail delivered to Postfix, and then
+</I>&gt;&gt;<i> Postfix delivered it to &quot;dovecot&quot;.  From what you've posted here, it
+</I>&gt;&gt;<i> looks like Fetchmail is doing its job.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i>       I think your next troubleshooting step is to take Fetchmail out
+</I>&gt;&gt;<i> of the picture.  Use the &quot;mail&quot; command to send mail to Postfix (from
+</I>&gt;&gt;<i> localhost).  Once you can prove that is working (w/filtering), you'll
+</I>&gt;&gt;<i> know that the problem is not in Postfix or Dovecot.  (And if that
+</I>&gt;&gt;<i> doesn't work, then ask the Dovecot mailing list.  Post your main.cf
+</I>&gt;&gt;<i> &quot;dovecot&quot; entry, and your dovecot.conf.)
+</I>&gt;<i> I thought I had stated in my original post that mail sent directly to
+</I>&gt;<i> this server does get handled correctly. From what I was told on the
+</I>&gt;<i> Postfix forum, Postfix is not getting the correct envelope address from
+</I>&gt;<i> Fetchmail.
+</I>&gt;<i>
+</I>
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002762.html">[fetchmail-users] Plus (+) Addressing Problem
+</A></li>
+	<LI>Next message: <A HREF="002769.html">[fetchmail-users] Fetchmail using 2 envelope options
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2759">[ date ]</a>
+              <a href="thread.html#2759">[ thread ]</a>
+              <a href="subject.html#2759">[ subject ]</a>
+              <a href="author.html#2759">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

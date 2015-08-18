@@ -1,0 +1,156 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] fetchmail 6.3.17-pre1 snapshot and request for	help
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2010-April/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%206.3.17-pre1%20snapshot%20and%20request%20for%0A%09help&In-Reply-To=%3C20100429235222.GB4262%40merlin.emma.line.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002373.html">
+   
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] fetchmail 6.3.17-pre1 snapshot and request for	help</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%206.3.17-pre1%20snapshot%20and%20request%20for%0A%09help&In-Reply-To=%3C20100429235222.GB4262%40merlin.emma.line.org%3E"
+       TITLE="[fetchmail-users] fetchmail 6.3.17-pre1 snapshot and request for	help">matthias.andree at gmx.de
+       </A><BR>
+    <I>Fri Apr 30 01:52:23 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002373.html">[fetchmail-users] POP3 auth error
+</A></li>
+        
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2374">[ date ]</a>
+              <a href="thread.html#2374">[ thread ]</a>
+              <a href="subject.html#2374">[ subject ]</a>
+              <a href="author.html#2374">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Greetings,
+
+#1 I am asking interested fetchmail users to test a preview release of
+fetchmail. Change details are below.
+
+#2 Also, if you can offer access to test servers that I can send a short
+test mail to and then log into to retrieve that test message -
+particularly Exchange 2007 is desired, but others besides Cyrus IMAP and
+Dovecot are also welcome - please let me know.
+
+#3 Finally, fetchmail needs translators for the program strings. Some
+languages (such as those shown below) are in quite good shape, but
+others are lacking a bit.
+
+Translation information at
+&lt;<A HREF="http://translationproject.org/domain/fetchmail.html">http://translationproject.org/domain/fetchmail.html</A>&gt;
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+DOWNLOAD this beta software from:
+&lt;<A HREF="http://home.pages.de/~mandree/fetchmail/">http://home.pages.de/~mandree/fetchmail/</A>&gt;
+
+The repository can be browsed at and cloned from:
+&lt;<A HREF="http://gitorious.org/fetchmail/fetchmail">http://gitorious.org/fetchmail/fetchmail</A>&gt;
+
+Git (the software used to keep the fetchmail source code version
+controlled) information is at: &lt;<A HREF="http://git-scm.com/">http://git-scm.com/</A>&gt;
+
+CHANGES since the previous formal release of fetchmail listed below.
+Unless otherwise noted, the changes were made by Matthias Andree:
+
+# SECURITY FIX
+* CVE-2010-1167: Fetchmail before release 6.3.17 did not properly sanitize
+  external input (mail headers and UID). When a multi-character locale (such as
+  UTF-8) was in use, this could cause memory exhaustion and thus a denial of
+  service, because fetchmail's report.c functions assumed that non-success of
+  [v]snprintf was due to insufficient buffer size allocation. It would then
+  repeatedly reallocate a larger buffer and fail formatting again.
+  See fetchmail-SA-2010-02.txt.
+
+# FEATURES
+* Fetchmail now supports a --sslcertfile &lt;file&gt; option to specify a &quot;CA bundle&quot;
+  file (a file that contains trusted CA certificates). Since these bundled CA
+  files do not require c_rehash to be run, they are easier to use and immune to
+  OpenSSL library updates that affect the hash function.
+* Fetchmail now supports a FETCHMAIL_INCLUDE_DEFAULT_X509_CA_CERTS
+  environment variable to force loading the default SSL CA certificate
+  locations.
+
+# REGRESSION FIX
+* Fix string handling in rcfile scanner, which caused fetchmail to misparse a
+  run control file in certain circumstances.  Fixes BerliOS bug #14257.
+  Patch by Michael Banack.  This fixes a regression introduced before 6.3.0.
+
+# BUG FIXES
+* Plug memory leak when using a &quot;defaults&quot; entry in the run control file.
+* Do not print SSL certificate mismatches unless verbose or --sslcertck is
+  enabled.
+* Do not lose &quot;set invisible&quot; in fetchmailconf. (Michael Barnack)
+
+# CHANGES
+* Usability: SSL certificate chains are fully printed in -v -v mode, and there
+  are now helpful pointers to --sslcertpath and c_rehash for &quot;unable to get
+  local issuer certificate&quot; and self-signed certificates -- these usually hint
+  to missing root signing CAs in the certs directory.
+* Several fixes for compiler (GCC, Intel C++, CLang) and autotools warnings
+* Memory allocation failures will now cause abnormal program abort (SIGABRT),
+  not exit with unspecified code.
+
+# DOCUMENTATION
+* Fix table of global option to read &quot;set softbounce&quot; where there used to be a
+  2nd copy of &quot;set spambounce&quot;.  Patch by Michael Banack, BerliOS Bug #17067.
+* In the --sslcertpath description, mention that OpenSSL upgrade (and a 0.9.X
+  to 1.0.0 upgrade in particular) may require running c_rehash.
+
+# KNOWN BUGS AND WORKAROUNDS:
+  (this section floats upwards through the NEWS file so it stays with the
+  current release information - however, it was stuck with 6.3.8 for a while)
+* fetchmail does not handle messages without Message-ID header well
+  (See sourceforge.net bug #780933)
+* BSMTP is mostly untested and errors can cause corrupt output.
+* Sun Workshop 6 (SPARC) is known to miscompile the configuration file lexer in
+  64-bit mode.  Either compile 32-bit code or use GCC to compile 64-bit
+  fetchmail.  Note that fetchmail doesn't take advantage of 64-bit code,
+  so compiling 32-bit SPARC code should not cause any difficulties.
+* fetchmail does not track pending deletes over crashes
+* the command line interface is sometimes a bit stubborn, for instance,
+  fetchmail -s doesn't work with a daemon running
+
+-- 
+Matthias Andree
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: not available
+Type: application/pgp-signature
+Size: 198 bytes
+Desc: not available
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/fetchmail-users/attachments/20100430/87a85ca4/attachment.pgp">https://lists.berlios.de/pipermail/fetchmail-users/attachments/20100430/87a85ca4/attachment.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002373.html">[fetchmail-users] POP3 auth error
+</A></li>
+	
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2374">[ date ]</a>
+              <a href="thread.html#2374">[ thread ]</a>
+              <a href="subject.html#2374">[ subject ]</a>
+              <a href="author.html#2374">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

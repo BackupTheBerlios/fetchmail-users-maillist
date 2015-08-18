@@ -1,0 +1,256 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Fetchmail is not marking mail as read.
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2010-November/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Fetchmail%20is%20not%20marking%20mail%20as%20read.&In-Reply-To=%3C574495EA611EBD40AE5A8EA98FB8F20B0310E7D2%40merkys.ras.lt%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002565.html">
+   <LINK REL="Next"  HREF="002567.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Fetchmail is not marking mail as read.</H1>
+    <B>Jegor Pogrebniak</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Fetchmail%20is%20not%20marking%20mail%20as%20read.&In-Reply-To=%3C574495EA611EBD40AE5A8EA98FB8F20B0310E7D2%40merkys.ras.lt%3E"
+       TITLE="[fetchmail-users] Fetchmail is not marking mail as read.">jegor.pogrebniak at axis.lt
+       </A><BR>
+    <I>Thu Nov 25 13:24:55 CET 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002565.html">[fetchmail-users] Which certificate to use
+</A></li>
+        <LI>Next message: <A HREF="002567.html">[fetchmail-users] Fetchmail is not marking mail as read.
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2566">[ date ]</a>
+              <a href="thread.html#2566">[ thread ]</a>
+              <a href="subject.html#2566">[ subject ]</a>
+              <a href="author.html#2566">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE> 
+
+ 
+
+Hi,  
+
+I have a problem, the fetchmail not marking mail as read after fetching.
+
+ 
+
+I'm using 6.3.18 version
+
+ 
+
+Here is the .fetchmailrc
+
+ 
+
+poll XXXXX:
+
+port 993
+
+proto IMAP
+
+user XXXXXX
+
+pass XXXXX
+
+no fetchall
+
+no keep
+
+ssl
+
+flush
+
+fetchlimit 1
+
+mda &quot;/usr/bin/procmail -m /root/.procmailrc&quot;
+
+~
+
+ 
+
+And verbose :
+
+ 
+
+fetchmail: WARNING: Running as root is discouraged.
+
+fetchmail: 6.3.18 querying mail.ras.lt (protocol IMAP) at Thu 25 Nov
+2010 02:07:29 PM EET: poll started
+
+fetchmail: Trying to connect to 192.168.0.8/993...connected.
+
+fetchmail: Server certificate:
+
+fetchmail: Issuer Organization: Equifax
+
+fetchmail: Unknown Issuer CommonName
+
+fetchmail: Subject CommonName: mail.ras.lt
+
+fetchmail: mail.ras.lt key fingerprint:
+6E:27:12:3D:93:1B:8D:EC:95:DF:DE:EA:86:04:37:73
+
+fetchmail: Server certificate verification error: unable to get local
+issuer certificate
+
+fetchmail: This means that the root signing certificate (issued for
+/serialNumber=CANAFPqbrDeZGGosm71ib6TafQqI45yi/C=LT/L=Vilnius/O=UAB
+Rubicon City Service/OU=IT/CN=mail.ras.lt) is not in the trusted CA
+certificate locations, or that c_rehash needs to be run on the
+certificate directory. For details, please see the documentation of
+--sslcertpath and --sslcertfile in the manual page.
+
+fetchmail: Server certificate:
+
+fetchmail: Issuer Organization: Equifax
+
+fetchmail: Unknown Issuer CommonName
+
+fetchmail: Subject CommonName: mail.ras.lt
+
+fetchmail: Server certificate verification error: certificate not
+trusted
+
+fetchmail: Server certificate:
+
+fetchmail: Issuer Organization: Equifax
+
+fetchmail: Unknown Issuer CommonName
+
+fetchmail: Subject CommonName: mail.ras.lt
+
+fetchmail: Server certificate verification error: unable to verify the
+first certificate
+
+fetchmail: Warning: the connection is insecure, continuing anyways.
+(Better use --sslcertck!)
+
+fetchmail: IMAP&lt; * OK Microsoft Exchange Server 2003 IMAP4rev1 server
+version 6.5.7638.1 (fe1.ras.lt) ready.
+
+fetchmail: IMAP&gt; A0001 CAPABILITY
+
+fetchmail: IMAP&lt; * CAPABILITY IMAP4 IMAP4rev1 IDLE LOGIN-REFERRALS
+MAILBOX-REFERRALS NAMESPACE LITERAL+ UIDPLUS CHILDREN
+
+fetchmail: IMAP&lt; A0001 OK CAPABILITY completed.
+
+fetchmail: IMAP&gt; A0002 LOGIN &quot;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">fax.test at ras.lt</A>&quot; *
+
+fetchmail: IMAP&lt; A0002 OK LOGIN completed.
+
+fetchmail: IMAP&gt; A0003 SELECT &quot;INBOX&quot;
+
+fetchmail: IMAP&lt; * 1 EXISTS
+
+fetchmail: IMAP&lt; * 0 RECENT
+
+fetchmail: IMAP&lt; * FLAGS (\Seen \Answered \Flagged \Deleted \Draft
+$MDNSent)
+
+fetchmail: IMAP&lt; * OK [PERMANENTFLAGS (\Seen \Answered \Flagged \Deleted
+\Draft $MDNSent)] Permanent flags
+
+fetchmail: IMAP&lt; * OK [UNSEEN 1] Is the first unseen message
+
+fetchmail: IMAP&lt; * OK [UIDVALIDITY 150592] UIDVALIDITY value
+
+fetchmail: IMAP&lt; A0003 OK [READ-WRITE] SELECT completed.
+
+fetchmail: IMAP&gt; A0004 EXPUNGE
+
+fetchmail: IMAP&lt; * 1 EXISTS
+
+fetchmail: IMAP&lt; A0004 OK EXPUNGE completed.
+
+fetchmail: IMAP&gt; A0005 SEARCH UNSEEN
+
+fetchmail: IMAP&lt; * SEARCH 1
+
+fetchmail: IMAP&lt; A0005 OK SEARCH completed.
+
+fetchmail: 1 message for <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">XXXX at XXX.XX</A> at XXX.XXX.XX.
+
+fetchmail: IMAP&gt; A0006 FETCH 1 RFC822.SIZE
+
+fetchmail: IMAP&lt; * 1 FETCH (RFC822.SIZE 9828)
+
+fetchmail: IMAP&lt; A0006 OK FETCH completed.
+
+fetchmail: IMAP&gt; A0007 FETCH 1 RFC822.HEADER
+
+fetchmail: IMAP&lt; * 1 FETCH (RFC822.HEADER {652}
+
+fetchmail: reading message <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">XXXXX at XX.XX</A>@fe1.ras.lt:1 of 1 (652 header
+octets) #
+
+IMAP&lt; )
+
+fetchmail: IMAP&lt; A0007 OK FETCH completed.
+
+fetchmail: IMAP&gt; A0008 FETCH 1 BODY.PEEK[TEXT]
+
+fetchmail: IMAP&lt; * 1 FETCH (BODY[TEXT] {9176}
+
+fetchmail:  (9176 body octets)
+************************************************.***********************
+************.*****************************.******************.**********
+********.******************.*************.*************.***************
+
+IMAP&lt; )
+
+fetchmail: IMAP&lt; A0008 OK FETCH completed.
+
+fetchmail: MDA returned nonzero status 73
+
+fetchmail:  not flushed
+
+fetchmail: IMAP&gt; A0009 LOGOUT
+
+fetchmail: IMAP&lt; * BYE Microsoft Exchange Server 2003 IMAP4rev1 server
+version 6.5.7638.1 signing off.
+
+fetchmail: IMAP&lt; A0009 OK LOGOUT completed.
+
+fetchmail: 6.3.18 querying mail.ras.lt (protocol IMAP) at Thu 25 Nov
+2010 02:07:30 PM EET: poll completed
+
+fetchmail: normal termination, status 0
+
+ 
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002565.html">[fetchmail-users] Which certificate to use
+</A></li>
+	<LI>Next message: <A HREF="002567.html">[fetchmail-users] Fetchmail is not marking mail as read.
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2566">[ date ]</a>
+              <a href="thread.html#2566">[ thread ]</a>
+              <a href="subject.html#2566">[ subject ]</a>
+              <a href="author.html#2566">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

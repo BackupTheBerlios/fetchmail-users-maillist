@@ -1,0 +1,105 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Solution (??) of: fetchmail on server unable to	connect to postfix
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2007-August/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Solution%20%28%3F%3F%29%20of%3A%20fetchmail%20on%20server%20unable%20to%0A%09connect%20to%20postfix&In-Reply-To=%3C11370.213.203.159.55.1187279196.squirrel%40nexaima.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001156.html">
+   <LINK REL="Next"  HREF="001157.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Solution (??) of: fetchmail on server unable to	connect to postfix</H1>
+    <B>M. Fioretti</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Solution%20%28%3F%3F%29%20of%3A%20fetchmail%20on%20server%20unable%20to%0A%09connect%20to%20postfix&In-Reply-To=%3C11370.213.203.159.55.1187279196.squirrel%40nexaima.net%3E"
+       TITLE="[fetchmail-users] Solution (??) of: fetchmail on server unable to	connect to postfix">mfioretti at nexaima.net
+       </A><BR>
+    <I>Thu Aug 16 17:46:36 CEST 2007</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001156.html">[fetchmail-users] fetchmail on server unable to connect to	postfix
+</A></li>
+        <LI>Next message: <A HREF="001157.html">[fetchmail-users] fetchmail on server unable to connect to postfix
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1164">[ date ]</a>
+              <a href="thread.html#1164">[ thread ]</a>
+              <a href="subject.html#1164">[ subject ]</a>
+              <a href="author.html#1164">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hello everybody.
+
+please accept my apologies for screwed threading, or if I have missed
+some of the most recent answers and you need to repeat something to me.
+
+As you may have noticed by now :-) I am moving from one email server to
+another these days and is not being painles...
+
+This is the situation now. I have found a newer rpm which installed
+without problems on Centos 4.4:
+
+rpm -q fetchmail
+fetchmail-6.3.4-1.1_6.el4.at
+
+this one works! with the /etc/hosts and fetchmailrc files shown below.
+It may be helpful for the next guy if this difference in HELO behavior is
+documented somewhere, since I happened into it by using the default
+packages provided with my chosen distro.
+
+Thanks to Rob and all the others who helped me and thanks in advance
+for any answer to this last question: is there anything in the
+setup below which is redundant or, worst, may cause any security problem?
+
+Marco
+
+#######################################################################
+etc/hosts:
+
+127.0.0.1       mybox.mynewisp.com localhost localhost.localdomain
+real.ip.address mybox.mynewisp.com mybox
+
+#######################################################################
+
+fetchmailrc:
+
+set logfile &quot;/var/log/procmail_logs/log_fetch_mail&quot;
+set nobouncemail
+set properties &quot;&quot;
+set no syslog
+
+poll pop3.oldisp.com with proto POP3 tracepolls
+   user oldaccount there with pass &quot;password&quot; is <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">mfioretti at nexaima.net</A>
+here smtphost mybox.mynewisp.com smtpaddress mybox.mynewisp.com
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001156.html">[fetchmail-users] fetchmail on server unable to connect to	postfix
+</A></li>
+	<LI>Next message: <A HREF="001157.html">[fetchmail-users] fetchmail on server unable to connect to postfix
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1164">[ date ]</a>
+              <a href="thread.html#1164">[ thread ]</a>
+              <a href="subject.html#1164">[ subject ]</a>
+              <a href="author.html#1164">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

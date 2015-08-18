@@ -1,0 +1,112 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Possible improvements in future Fetchmail versions.
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2010-April/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Possible%20improvements%20in%20future%20Fetchmail%0A%20versions.&In-Reply-To=%3C20100423151232.0dd193dd%40scorpio.seibercom.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002361.html">
+   <LINK REL="Next"  HREF="002365.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Possible improvements in future Fetchmail versions.</H1>
+    <B>Jerry</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Possible%20improvements%20in%20future%20Fetchmail%0A%20versions.&In-Reply-To=%3C20100423151232.0dd193dd%40scorpio.seibercom.net%3E"
+       TITLE="[fetchmail-users] Possible improvements in future Fetchmail versions.">fetchmail.user at seibercom.net
+       </A><BR>
+    <I>Fri Apr 23 21:12:32 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002361.html">[fetchmail-users] Possible improvements in future Fetchmail	versions.
+</A></li>
+        <LI>Next message: <A HREF="002365.html">[fetchmail-users] Possible improvements in future Fetchmail	versions.
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2363">[ date ]</a>
+              <a href="thread.html#2363">[ thread ]</a>
+              <a href="subject.html#2363">[ subject ]</a>
+              <a href="author.html#2363">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Fri, 23 Apr 2010 19:39:35 +0100
+Rob &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">rob.macgregor at gmail.com</A>&gt; articulated:
+
+&gt;<i> On Fri, Apr 23, 2010 at 19:04, Jerry &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">fetchmail.user at seibercom.net</A>&gt;
+</I>&gt;<i> wrote:
+</I>&gt;<i> &gt; I would like to suggest the following changes for upcoming versions
+</I>&gt;<i> &gt; of Fetchmail.
+</I>&gt;<i> &lt;---SNIP---&gt;
+</I>&gt;<i> &gt; 3) The ability to rotate Fetchmail's log files without shutting
+</I>&gt;<i> &gt; Fetchmail down. Virtually every daemon that I am familiar with has
+</I>&gt;<i> &gt; this feature. Whether using a standard signal or a custom one
+</I>&gt;<i> &gt; (similar to Clamav):
+</I>&gt;<i> 
+</I>&gt;<i> Fetchmail can use syslog, why not use syslog?
+</I>&gt;<i> 
+</I>&gt;<i> (That's a serious question - I'm curious why syslog won't work in your
+</I>&gt;<i> situation)
+</I>
+Well, as long as you are serious. ;)
+
+Syslog is not a dedicated log. It certainly works; however, it also
+contains a lot of information that is not Fetchmail related. Again,
+while I could create scripts to filter out non-fetchmail data, I
+believe that a simple, dedicated log file would be more convenient and
+easier to inspect.
+
+All of my other daemons like clamav, denyhosts, ipfirewall, mysql, etc
+create dedicated logs. I just think that a dedicated format is a better
+idea.
+
+All of the daemons I mentioned, and several I haven't have the ability
+to receive signals that allow their logs to be rotated without
+incidence. I would think that it is doable in Fetchmail as well. Then
+again, I have been known to be wrong on rare occasions! :-D
+
+
+-- 
+Jerry
+<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">Fetchmail.user at seibercom.net</A>
+
+Disclaimer: off-list followups get on-list replies or get ignored.
+Please do not ignore the Reply-To header.
+__________________________________________________________________
+
+Ma Bell is a mean mother!
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: signature.asc
+Type: application/pgp-signature
+Size: 196 bytes
+Desc: not available
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/fetchmail-users/attachments/20100423/fe6afdbe/attachment.pgp">https://lists.berlios.de/pipermail/fetchmail-users/attachments/20100423/fe6afdbe/attachment.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002361.html">[fetchmail-users] Possible improvements in future Fetchmail	versions.
+</A></li>
+	<LI>Next message: <A HREF="002365.html">[fetchmail-users] Possible improvements in future Fetchmail	versions.
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2363">[ date ]</a>
+              <a href="thread.html#2363">[ thread ]</a>
+              <a href="subject.html#2363">[ subject ]</a>
+              <a href="author.html#2363">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

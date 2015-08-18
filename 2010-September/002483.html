@@ -1,0 +1,118 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Fetchmail bug? re Message size rejection from	SMTP server
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2010-September/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Fetchmail%20bug%3F%20re%20Message%20size%20rejection%20from%0A%09SMTP%20server&In-Reply-To=%3C20100926101847.GA10464%40session.bombay.retortsoft.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002482.html">
+   
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Fetchmail bug? re Message size rejection from	SMTP server</H1>
+    <B>'Sunil Shetye'</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Fetchmail%20bug%3F%20re%20Message%20size%20rejection%20from%0A%09SMTP%20server&In-Reply-To=%3C20100926101847.GA10464%40session.bombay.retortsoft.com%3E"
+       TITLE="[fetchmail-users] Fetchmail bug? re Message size rejection from	SMTP server">shetye at bombay.retortsoft.com
+       </A><BR>
+    <I>Sun Sep 26 12:18:47 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002482.html">[fetchmail-users] fetchmail 6.3.18-pre2 snapshot should fix	Exchange authentication
+</A></li>
+        
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2483">[ date ]</a>
+              <a href="thread.html#2483">[ thread ]</a>
+              <a href="subject.html#2483">[ subject ]</a>
+              <a href="author.html#2483">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Darren,
+
+[Please always reply to the list address
+<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">fetchmail-users at lists.berlios.de</A> only.]
+
+Quoting from Darren Besler's mail on Sat, Sep 18, 2010:
+&gt;<i> &gt; &gt; 	fetchmail: SMTP&gt; MAIL FROM:&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">XXXXXX at XXXXXXXXXXXX</A>&gt; SIZE=3091253
+</I>&gt;<i> &gt; &gt; 	fetchmail: SMTP&lt; 452 4.3.4 Message size exceeds fixed limit
+</I>&gt;<i> &gt; &gt; 	fetchmail: SMTP error: 452 4.3.4 Message size exceeds 
+</I>&gt;<i> &gt; fixed limit
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; This means that fetchmail does not know the size limit acceptable to
+</I>&gt;<i> &gt; your SMTP server. To tell fetchmail the same, please add the 'limit'
+</I>&gt;<i> &gt; option to your fetchmailrc in this format:
+</I>&gt;<i> 
+</I>&gt;<i> BUT, the SMTP server does report it size limit, as per my log submission.
+</I>&gt;<i> 
+</I>&gt;<i> 	fetchmail: SMTP&lt; 250-SIZE 2097152
+</I>
+I understand your viewpoint. However, please note that the size used
+in the MAIL FROM: command is only an approximate size as reported by
+the POP3 server. The actual mail size may be more or less than the
+size originally reported by the POP3 server as the actual mail is
+terminated by the delimiter. There are known instances where the size
+in the LIST response is different from the size of the actual mail
+sent by the POP3 server. The actual mail size as forwarded to the SMTP
+server is further affected by options like 'stripcr', 'forcecr',
+'rewrite', 'dropstatus', 'dropdelivered', and 'mimedecode'.
+
+Due to all these issues, it is not possible for fetchmail to honour
+the SIZE limit reported by the SMTP server implicitly. Yes, there
+should be an option in fetchmail to honour the SMTP server SIZE limit.
+
+&gt;<i> I realize that not all SMTP servers may report this. In this case it does,
+</I>&gt;<i> and I prefer to limit the replication of the configuration limits. (Actually
+</I>&gt;<i> in the case the SMTP sever limit was in error 2MB vs desired 20MB)
+</I>
+Ah ha! So, fetchmail actually did the right thing by not deleting your
+3Mb mail. fetchmail never deletes undelivered mails without explicit
+instructions.
+
+&gt;<i> And what exactly is going on with this error:
+</I>&gt;<i> 
+</I>&gt;<i> 	fetchmail: SMTP error: 452 4.3.4 Message size exceeds fixed limit
+</I>&gt;<i> 
+</I>&gt;<i>       General error - due to unable to parse the SMTP server response?
+</I>&gt;<i> &lt;or&gt;  Error message reporting the recogniztion that the SMTP server can
+</I>&gt;<i> accept the message?
+</I>
+A 4XX SMTP message is a temporary failure message from your SMTP
+server. This means that your SMTP server is currently not accepting
+this message for some reason, but may accept it later when the
+circumstances are right. So, fetchmail tries sending it again during
+the next poll. An outright reject has a 5XX code like this:
+
+552 5.3.4 Message size exceeds fixed limit
+
+-- 
+Sunil Shetye.
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002482.html">[fetchmail-users] fetchmail 6.3.18-pre2 snapshot should fix	Exchange authentication
+</A></li>
+	
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2483">[ date ]</a>
+              <a href="thread.html#2483">[ thread ]</a>
+              <a href="subject.html#2483">[ subject ]</a>
+              <a href="author.html#2483">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

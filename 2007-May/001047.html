@@ -1,0 +1,153 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] SMTP connect error with fetchmail under Cygwin
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2007-May/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20SMTP%20connect%20error%20with%20fetchmail%20under%20Cygwin&In-Reply-To=%3Cdad39f670705160353t30770e3exdf929a17c66122d1%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001041.html">
+   <LINK REL="Next"  HREF="001048.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] SMTP connect error with fetchmail under Cygwin</H1>
+    <B>Kyle Contreras-Barbour</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20SMTP%20connect%20error%20with%20fetchmail%20under%20Cygwin&In-Reply-To=%3Cdad39f670705160353t30770e3exdf929a17c66122d1%40mail.gmail.com%3E"
+       TITLE="[fetchmail-users] SMTP connect error with fetchmail under Cygwin">kylebarbour at gmail.com
+       </A><BR>
+    <I>Wed May 16 12:53:26 CEST 2007</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001041.html">[fetchmail-users] SMTP connect error with fetchmail under Cygwin
+</A></li>
+        <LI>Next message: <A HREF="001048.html">[fetchmail-users] SMTP connect error with fetchmail under Cygwin
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1047">[ date ]</a>
+              <a href="thread.html#1047">[ thread ]</a>
+              <a href="subject.html#1047">[ subject ]</a>
+              <a href="author.html#1047">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On 5/14/07, Rob MacGregor &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">rob.macgregor at gmail.com</A> &gt; wrote:
+&gt;<i>
+</I>&gt;<i> That suggests a problem with the communication with the remote host
+</I>&gt;<i> (ppp.gmail.com). However, it wouldn't hurt to check some of the
+</I>&gt;<i> basics:
+</I>&gt;<i>
+</I>&gt;<i> 1) Do you have at least 14 MB of free space in /var (and possibly /tmp)?
+</I>
+2) Can you view this email via GMail?  Can another mail client (say,
+&gt;<i> Thunderbird) view this email?
+</I>&gt;<i>
+</I>
+
+&lt;snip&gt;
+&gt;<i>
+</I>&gt;<i> If you can get exim working it wouldn't hurt to remove the MDA line
+</I>&gt;<i> and get some log info.  I suspect it won't show anything useful
+</I>&gt;<i> though.
+</I>&gt;<i>
+</I>&gt;<i> If you want to avoid fetchmail trying to download this email you can
+</I>&gt;<i> use the &quot;limit&quot; directive to tell it to skip emails above a certain
+</I>&gt;<i> size.  See &quot;Resource Limit Control Options&quot; in the man page for
+</I>&gt;<i> details.
+</I>
+
+&gt;<i> &lt;snip&gt;
+</I>&gt;<i>
+</I>
+
+On 5/14/07, Jason Tishler &lt; <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">jason at tishler.net</A>&gt; wrote:
+
+&gt;<i> You can enable verbose procmail logging by adding &quot;VERBOSE=yes&quot; to the
+</I>&gt;<i> command line:
+</I>&gt;<i>
+</I>&gt;<i>     mda &quot;/usr/bin/procmail VERBOSE=yes -d %T&quot;
+</I>&gt;<i>
+</I>
+
+&lt;snip&gt;
+&gt;<i>
+</I>
+
+However, can you try this from a non-Cygwin host (e.g., Linux)
+&gt;<i> to rule out a Cygwin specific problem?
+</I>&gt;<i>
+</I>
+
+When running procmail with VERBOSE=yes, it outputs (snoutwood being my
+login):
+
+procmail: [588] Wed May 16 03:11:27 2007
+procmail: Couldn't read &quot;/home/snoutwood/-d&quot;
+procmail: Locking &quot;/var/spool/mail/snoutwood.lock&quot;
+procmail: Assigning &quot;LASTFOLDER=/var/spool/mail/snoutwood&quot;
+procmail: Opening &quot;/var/spool/mail/snoutwood&quot;
+procmail: Acquiring kernel-lock
+procmail: [588] Wed May 16 03:11:28 2007
+procmail: Unlocking &quot;/var/spool/mail/snoutwood.lock&quot;
+ Subject: Camera manuals
+  Folder: /var/spool/mail/snoutwood
+1839916
+
+When I removed the mda line and ran exim, /var/log/exim/exim_main.log looked
+like this:
+
+2007-05-16 03:28:39 exim 4.66 daemon started: pid=852, -q15m, listening for
+SMTP on port 25 (IPv4)
+2007-05-16 03:28:39 Start queue run: pid=1232
+2007-05-16 03:28:39 End queue run: pid=1232
+2007-05-16 03:40:03 SMTP connection from localhost (finnegan) [127.0.0.1]
+lost while reading message data
+
+I've got plenty of space (lots more than 14MB, anyway) in both /var and
+/tmp. I can view it in Gmail, and what of it I've downloaded is easily
+viewable in Thunderbird. It's got a few .pdf files attached to it (hence the
+size).
+
+I'll definitely use the size limit if I can't get it through somehow - seems
+like that's the best workaround if need be. It'd be nice to be able to grab
+the message with fetchmail, though.
+
+Sadly, I don't have access to a Linux box at the moment. Maybe soon - I'm
+currently having modem troubles, but hopefully they'll be fixed soon and I
+can give it a shot.
+
+If it is a problem with communication with ppp.gmail.com, is there much I
+can do about it? Also, it occurred to me that I'm using a dial-up
+connection: could that be affecting this at all (due to the length of
+download times, etc., maybe some sort of timeout issue)?
+
+Again, thanks for all the help!
+Kyle
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001041.html">[fetchmail-users] SMTP connect error with fetchmail under Cygwin
+</A></li>
+	<LI>Next message: <A HREF="001048.html">[fetchmail-users] SMTP connect error with fetchmail under Cygwin
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1047">[ date ]</a>
+              <a href="thread.html#1047">[ thread ]</a>
+              <a href="subject.html#1047">[ subject ]</a>
+              <a href="author.html#1047">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,92 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Fetchmail Socket error on a satellite	connection
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2007-April/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Fetchmail%20Socket%20error%20on%20a%20satellite%0A%09connection&In-Reply-To=%3C43ea8d070704120526p1561d3fdlc9eefcc021b155da%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000977.html">
+   <LINK REL="Next"  HREF="000986.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Fetchmail Socket error on a satellite	connection</H1>
+    <B>Rob MacGregor</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Fetchmail%20Socket%20error%20on%20a%20satellite%0A%09connection&In-Reply-To=%3C43ea8d070704120526p1561d3fdlc9eefcc021b155da%40mail.gmail.com%3E"
+       TITLE="[fetchmail-users] Fetchmail Socket error on a satellite	connection">rob.macgregor at gmail.com
+       </A><BR>
+    <I>Thu Apr 12 14:26:04 CEST 2007</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000977.html">[fetchmail-users] Fetchmail Socket error on a satellite	connection
+</A></li>
+        <LI>Next message: <A HREF="000986.html">[fetchmail-users] fetchmail: message .....:1 was not the expected length (30792 actual != 30347 expected), not flushed
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#978">[ date ]</a>
+              <a href="thread.html#978">[ thread ]</a>
+              <a href="subject.html#978">[ subject ]</a>
+              <a href="author.html#978">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On 4/12/07, Ben Jsh &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">benjsh at post.com</A>&gt; wrote:
+&gt;<i> Dear All,
+</I>&gt;<i> I am having trouble downloading mail via POP3 with the latest 6.3.8 and all versions.
+</I>&gt;<i>
+</I>&gt;<i> I tried popping the same account from a adsl line and it worked but when I do it over the satellite connection it fails.
+</I>
+Which says that you have a comms problem and that it isn't software
+related (on the assumption that you're talking about the same system
+running fetchmail).  At a rough guess it is probably due to the highly
+asymmetric nature of the link.  There isn't going to be anything you
+can do to fetchmail to fix this.
+
+You *may* be able to tune the network settings on your OS (whatever it
+is) to compensate.
+
+&lt;---SNIP---&gt;
+&gt;<i> fetchmail: Query status=2 (SOCKET)
+</I>&gt;<i> fetchmail: Deleting fetchids file.
+</I>&gt;<i> fetchmail: normal termination, status 2
+</I>&gt;<i> fetchmail: Deleting fetchids file.
+</I>
+Socket errors are almost always down to your network connection, though
+sometimes due to the remote system (see the FAQ).  I've never yet seen
+them being caused by fetchmail.
+
+-- 
+                 Please keep list traffic on the list.
+
+Rob MacGregor
+      Whoever fights monsters should see to it that in the process he
+        doesn't become a monster.                  Friedrich Nietzsche
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000977.html">[fetchmail-users] Fetchmail Socket error on a satellite	connection
+</A></li>
+	<LI>Next message: <A HREF="000986.html">[fetchmail-users] fetchmail: message .....:1 was not the expected length (30792 actual != 30347 expected), not flushed
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#978">[ date ]</a>
+              <a href="thread.html#978">[ thread ]</a>
+              <a href="subject.html#978">[ subject ]</a>
+              <a href="author.html#978">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

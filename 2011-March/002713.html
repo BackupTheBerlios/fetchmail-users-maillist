@@ -1,0 +1,126 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] SUCCESS: using fetchmail with Google Mail (gmail)	(was: step-by-step)
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2011-March/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20SUCCESS%3A%20using%20fetchmail%20with%20Google%20Mail%20%28gmail%29%0A%09%28was%3A%20step-by-step%29&In-Reply-To=%3C4D775838.8070207%40gmx.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002711.html">
+   <LINK REL="Next"  HREF="002721.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] SUCCESS: using fetchmail with Google Mail (gmail)	(was: step-by-step)</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20SUCCESS%3A%20using%20fetchmail%20with%20Google%20Mail%20%28gmail%29%0A%09%28was%3A%20step-by-step%29&In-Reply-To=%3C4D775838.8070207%40gmx.de%3E"
+       TITLE="[fetchmail-users] SUCCESS: using fetchmail with Google Mail (gmail)	(was: step-by-step)">matthias.andree at gmx.de
+       </A><BR>
+    <I>Wed Mar  9 11:36:40 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002711.html">[fetchmail-users] step-by-step
+</A></li>
+        <LI>Next message: <A HREF="002721.html">[fetchmail-users] default period to retrieve emails.
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2713">[ date ]</a>
+              <a href="thread.html#2713">[ thread ]</a>
+              <a href="subject.html#2713">[ subject ]</a>
+              <a href="author.html#2713">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Am 09.03.2011 00:40, schrieb robert:
+&gt;<i> Ok. got it! fetchmail working very nicely with gmail.
+</I>&gt;<i> 
+</I>&gt;<i> Let me recap.
+</I>&gt;<i> 
+</I>&gt;<i> 1) wget <A HREF="http://download.berlios.de/fetchmail/fetchmail-6.3.19.tar.bz2">http://download.berlios.de/fetchmail/fetchmail-6.3.19.tar.bz2</A>
+</I>&gt;<i> 2) tar xf fetchmail-6.3.19.tar.bz2
+</I>&gt;<i> 3) cd fetchmail-6.3.19
+</I>&gt;<i>     $./configure --with-ssl
+</I>&gt;<i>     *****did not work*****
+</I>&gt;<i> 4) $sudo apt-get install libssl-dev
+</I>&gt;<i> 5) $./configure --with-ssl
+</I>&gt;<i>     success
+</I>&gt;<i> 6) $make
+</I>&gt;<i> 7) $sudo make install
+</I>&gt;<i> 8) $vim ~/.fetchmailrc
+</I>&gt;<i>     set postmaster &quot;user&quot;
+</I>&gt;<i>     set daemon 600
+</I>&gt;<i>     poll pop.gmail.com with proto POP3 uidl
+</I>&gt;<i>         user '<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">myname at gmail.com</A>' there with password 'xxxx' is user here
+</I>&gt;<i>     options ssl sslcertck
+</I>&gt;<i> 9) $fetchmail -d0 -vk pop.gmail.com
+</I>&gt;<i>     fetched mail from google
+</I>&gt;<i> 
+</I>&gt;<i> all of which is simultaneously marvelous and quite strange.
+</I>&gt;<i> can't believe i went so far astray with the &quot;help&quot; at:
+</I>&gt;<i> <A HREF="http://www.axllent.org/docs/networking/gmail_pop3_with_fetchmail">http://www.axllent.org/docs/networking/gmail_pop3_with_fetchmail</A>
+</I>&gt;<i> 
+</I>&gt;<i> at any rate, thanks for this part, in particular R. MacGregor &amp; Matthias
+</I>&gt;<i> Andree ... i'll be back for more.
+</I>&gt;<i> 
+</I>&gt;<i> just one further thought in the matter of ca-certificates ... actually,
+</I>&gt;<i> very little knowledge of the matter was required to get this thing to
+</I>&gt;<i> fly. ca-certificates is installed by default in ubuntu. i literally had
+</I>&gt;<i> to perform only the steps mentioned above to make this work. while i
+</I>&gt;<i> will pursue my study of certificates and digital signatures and so
+</I>&gt;<i> forth, no special knowledge was necessary ... except contacting the
+</I>&gt;<i> fetchmail forum folks.
+</I>
+Robert,
+
+thanks for this feedback - I am quoting it in full and changing the
+subject so it gets more prominent in the fetchmail list archives.
+Sometimes users needed to add a &quot;recent:&quot; tag somewhere in the
+gmail.com-related poll entries, as I've seen fly by in the past.
+
+&gt;<i> i think i'll switch over to a fedora os and try it there.
+</I>&gt;<i> what are the chances of it being this simple?
+</I>
+Shouldn't make a practical difference, Fedora has fetchmail 6.3.17
+(except F15 which will feature fetchmail 6.3.19) already, and I used to
+test build fetchmail on F14 while I still had a Fedora installation left
+(I currently don't).
+
+Note that Fedora package naming differs from Ubuntu package naming, but
+there is a similar split between run-time library and development
+(header and static library) and sometimes documentation packages as
+there is in Debian and Ubuntu.
+
+Hope that helps.
+
+Best regards
+
+-- 
+Matthias Andree
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002711.html">[fetchmail-users] step-by-step
+</A></li>
+	<LI>Next message: <A HREF="002721.html">[fetchmail-users] default period to retrieve emails.
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2713">[ date ]</a>
+              <a href="thread.html#2713">[ thread ]</a>
+              <a href="subject.html#2713">[ subject ]</a>
+              <a href="author.html#2713">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

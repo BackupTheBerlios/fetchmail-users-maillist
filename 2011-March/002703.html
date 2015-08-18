@@ -1,0 +1,112 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] step-by-step
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2011-March/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20step-by-step&In-Reply-To=%3CAANLkTinALTHbb30-oqShY0Ag7A69Cexg6gwPSOjo%3Dg7G%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002702.html">
+   <LINK REL="Next"  HREF="002704.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] step-by-step</H1>
+    <B>Amalafrida</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20step-by-step&In-Reply-To=%3CAANLkTinALTHbb30-oqShY0Ag7A69Cexg6gwPSOjo%3Dg7G%40mail.gmail.com%3E"
+       TITLE="[fetchmail-users] step-by-step">amalafrida at gmail.com
+       </A><BR>
+    <I>Mon Mar  7 21:18:12 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002702.html">[fetchmail-users] Fetchmail on an Android Email Server
+</A></li>
+        <LI>Next message: <A HREF="002704.html">[fetchmail-users] step-by-step
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2703">[ date ]</a>
+              <a href="thread.html#2703">[ thread ]</a>
+              <a href="subject.html#2703">[ subject ]</a>
+              <a href="author.html#2703">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Rob MacGregor wrote:
+&gt;<i> You need to install the OpenSSL development libraries, not just the
+</I>&gt;<i> executable. Try:
+</I>&gt;<i>
+</I>&gt;<i>  aptitude install libssl-dev
+</I>&gt;<i>
+</I>.....
+
+ok. that worked find.
+
+now, moving forward:
+
+
+
+configured .fetchmailrc
+set postmaster &quot;user&quot;
+set daemon 600
+poll pop.gmail.com with proto POP3
+    user '<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">amalafrida at gmail.com</A>' there with password 'xxxxx' is robert here
+options ssl
+    sslcertck sslcertpath */home/robert/*.certs
+
+downloaded the gmail certificates
+$ openssl s_client -connect pop.gmail.com:995 -showcerts
+saved one certificate as gmail.pem
+one as equifax.pem
+
+rehashed
+$c_rehash ~/.certs
+generated two numbered links back to each of the *.pem files
+
+tested connection:
+$openssl s_client -connect pop.gmail.com:995 -CApath ~/.certs/
+and received good confirmation:
++OK Gpop ready for requests from xx.xxx.xxx.xxx xxxxxxxxxxxxxxxxxxybn.13
+
+then poll gmail account:
+$fetchmail -d0 -vk pop.gmail.com
+fetchmail: 6.3.19 querying pop.gmail.com (protocol POP3) at Sun 06 Mar 2011
+12:42:51 PM CST: poll started
+Trying to connect to 74.125.47.109/995...connected.
+......
+fetchmail: Server certificate verification error: unable to get local issuer
+certificate
+.....
+fetchmail: SSL connection failed.
+
+what went wrong? I've checked the fetchmail archive and not come up with a
+solution to this.
+
+robert
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002702.html">[fetchmail-users] Fetchmail on an Android Email Server
+</A></li>
+	<LI>Next message: <A HREF="002704.html">[fetchmail-users] step-by-step
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2703">[ date ]</a>
+              <a href="thread.html#2703">[ thread ]</a>
+              <a href="subject.html#2703">[ subject ]</a>
+              <a href="author.html#2703">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

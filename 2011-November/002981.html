@@ -1,0 +1,94 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Triggering an action when certain emails	are	received.
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2011-November/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Triggering%20an%20action%20when%20certain%20emails%0A%09are%09received.&In-Reply-To=%3C20111106144621.GA8765%40shellshocked.dyndns.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002980.html">
+   <LINK REL="Next"  HREF="002986.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Triggering an action when certain emails	are	received.</H1>
+    <B>Matthew Daly</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Triggering%20an%20action%20when%20certain%20emails%0A%09are%09received.&In-Reply-To=%3C20111106144621.GA8765%40shellshocked.dyndns.org%3E"
+       TITLE="[fetchmail-users] Triggering an action when certain emails	are	received.">matthewbdaly at gmail.com
+       </A><BR>
+    <I>Sun Nov  6 15:46:22 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002980.html">[fetchmail-users] Triggering an action when certain emails are	received.
+</A></li>
+        <LI>Next message: <A HREF="002986.html">[fetchmail-users] Triggering an action when certain emails	are received.
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2981">[ date ]</a>
+              <a href="thread.html#2981">[ thread ]</a>
+              <a href="subject.html#2981">[ subject ]</a>
+              <a href="author.html#2981">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Sun, Nov 06, 2011 at 10:42:30AM +0100, brian wrote:
+&gt;<i> Hi,
+</I>&gt;<i> I currently have a small home server running debian. This uses
+</I>&gt;<i> fetchmail to get my emails and
+</I>&gt;<i> stores them on the server where Dovecot is running as an imap server
+</I>&gt;<i> so I can access my emails
+</I>&gt;<i> via thunderbird. This all works pretty well.
+</I>&gt;<i> 
+</I>&gt;<i> I want to do the following though. When an email comes in I want to
+</I>&gt;<i> look at the sender and the subject
+</I>&gt;<i> and trigger a script on my server if certain conditions are met. Its
+</I>&gt;<i> going to stay pretty basic.
+</I>&gt;<i> 
+</I>&gt;<i> Up till now I couldn't find out how to do this. In fetchmail, in
+</I>&gt;<i> dovecot, maybe with a spam filter software?
+</I>&gt;<i> 
+</I>&gt;<i> I would be grateful for any tips pointing me in the right direction.
+</I>&gt;<i> 
+</I>&gt;<i> Thanks in advance Brian
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> ------------------------------
+</I>&gt;<i> 
+</I>
+It sounds like procmail is probably the best tool for that. In
+principle, something like this should be pretty easy - just write a rule
+that matches what you want to search for, and if it matches, pipe it
+into the script.
+
+-- 
+Matthew Daly
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002980.html">[fetchmail-users] Triggering an action when certain emails are	received.
+</A></li>
+	<LI>Next message: <A HREF="002986.html">[fetchmail-users] Triggering an action when certain emails	are received.
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2981">[ date ]</a>
+              <a href="thread.html#2981">[ thread ]</a>
+              <a href="subject.html#2981">[ subject ]</a>
+              <a href="author.html#2981">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

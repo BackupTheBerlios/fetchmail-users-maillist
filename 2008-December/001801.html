@@ -1,0 +1,476 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] fetchmail does not more give ExitStatus 13 if	--fetchlimit is used
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2008-December/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%20does%20not%20more%20give%20ExitStatus%2013%20if%0A%09--fetchlimit%20is%20used&In-Reply-To=%3C20081218092917.GP30290%40tamay-dogan.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001799.html">
+   <LINK REL="Next"  HREF="001804.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] fetchmail does not more give ExitStatus 13 if	--fetchlimit is used</H1>
+    <B>Michelle Konzack</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%20does%20not%20more%20give%20ExitStatus%2013%20if%0A%09--fetchlimit%20is%20used&In-Reply-To=%3C20081218092917.GP30290%40tamay-dogan.net%3E"
+       TITLE="[fetchmail-users] fetchmail does not more give ExitStatus 13 if	--fetchlimit is used">linux4michelle at tamay-dogan.net
+       </A><BR>
+    <I>Thu Dec 18 10:29:17 CET 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001799.html">[fetchmail-users] fetchmail does not more give ExitStatus 13 if	--fetchlimit is used
+</A></li>
+        <LI>Next message: <A HREF="001804.html">[fetchmail-users] fetchmail does not more give ExitStatus 13 if	--fetchlimit is used
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1801">[ date ]</a>
+              <a href="thread.html#1801">[ thread ]</a>
+              <a href="subject.html#1801">[ subject ]</a>
+              <a href="author.html#1801">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hello Matthias,
+
+Am 2008-12-14 15:37:00, schrieb Matthias Andree:
+&gt;<i> It seems however that this is due to pppd blackholing traffic (you may want
+</I>&gt;<i> to do some sort of keepalive with pppd so it goes down quick and can then
+</I>&gt;<i> deconfigure the interface); depending on firewalling (ICMP) applications
+</I>&gt;<i> may only notice the blackhole underneath pppd after hours.
+</I>&gt;<i> 
+</I>&gt;<i> for the exit status and hang debugging, I need:
+</I>&gt;<i> 
+</I>&gt;<i> - configuration
+</I>&gt;<i> - log of fetchmail -vvv --nosyslog
+</I>&gt;<i> - backtrace when it gets stuck
+</I>
+The config is:
+
+----[ STDIN ]-----------------------------------------------------------
+set no bouncemail
+set postmaster  <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">root at samba3.private.tamay-dogan.net</A>
+set invisible
+
+defaults:
+    timeout               60
+    antispam               -1
+    batchlimit             10
+    warnings              300
+    fetchall
+    expunge                10
+    mda                 &quot;/usr/bin/procmail -d %T&quot;
+    dropstatus
+
+ssl
+sslcertpath        /home/michelle.konzack/.certs/
+sslproto           tls1
+sslfingerprint     &quot;B6:12:DD:96:5B:76:4A:B1:5C:14:41:9A:00:05:4D:92&quot;
+forcecr
+
+poll server4.pinguin-hosting.de protocol imap
+    user <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">linux4michelle at tamay-dogan.net</A> pass XXXXXXXXXX is michelle.konzack here
+------------------------------------------------------------------------
+
+which has not changed,  except  the  fingerprint  and  poll-host,  since
+several years.
+
+Sorry for the German, but I  had  forgotten  to  prefix  the  poll  with
+LC_ALL=C...  However, it shows nothing special...
+
+----[ command 'fetchmail -vvv --nosyslog -f /tmp/fetchmailrc' ]---------
+fetchmail: 6.3.6 fragt server4.pinguin-hosting.de ab (Protokoll IMAP) um Thu 18 Dec 2008 10:12:01 AM CET: Abfrage gestartet
+Versuche, mit 88.198.11.108/993 zu verbinden...verbunden.
+fetchmail: Herausgeber-Organisation: Comodo CA Limited
+fetchmail: Herausgeber-CommonName: PositiveSSL CA
+fetchmail: Server-CommonName: server4.pinguin-hosting.de
+fetchmail: server4.pinguin-hosting.de-Schl&#252;ssel-Fingerabdruck: B6:12:DD:96:5B:76:4A:B1:5C:14:41:9A:00:05:4D:92
+fetchmail: server4.pinguin-hosting.de-Fingerabdr&#252;cke stimmen &#252;berein.
+fetchmail: IMAP&lt; * OK Dovecot ready.
+fetchmail: IMAP&gt; A0001 CAPABILITY
+fetchmail: IMAP&lt; * CAPABILITY IMAP4rev1 SASL-IR SORT THREAD=REFERENCES MULTIAPPEND UNSELECT LITERAL+ IDLE CHILDREN NAMESPACE LOGIN-REFERRALS QUOTA AUTH=PLAIN AUTH=LOGIN
+fetchmail: IMAP&lt; A0001 OK Capability completed.
+fetchmail: Protokoll identifiziert als IMAP4 rev 1
+fetchmail: IMAP&gt; A0002 LOGIN &quot;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">linux4michelle at tamay-dogan.net</A>&quot; *
+fetchmail: IMAP&lt; A0002 OK Logged in.
+fetchmail: Vorgabe-Ordner wird gew&#228;hlt oder erneut abgefragt
+fetchmail: IMAP&gt; A0003 SELECT &quot;INBOX&quot;
+fetchmail: IMAP&lt; * FLAGS (\Answered \Flagged \Deleted \Seen \Draft)
+fetchmail: IMAP&lt; * OK [PERMANENTFLAGS (\Answered \Flagged \Deleted \Seen \Draft \*)] Flags permitted.
+fetchmail: IMAP&lt; * 9 EXISTS
+fetchmail: IMAP&lt; * 9 RECENT
+fetchmail: IMAP&lt; * OK [UNSEEN 1] First unseen.
+fetchmail: IMAP&lt; * OK [UIDVALIDITY 1210680164] UIDs valid
+fetchmail: IMAP&lt; * OK [UIDNEXT 64449] Predicted next UID
+fetchmail: IMAP&lt; A0003 OK [READ-WRITE] Select completed.
+fetchmail: 9 Nachrichten warten nach der ersten Abfrage
+fetchmail: IMAP&gt; A0004 EXPUNGE
+fetchmail: IMAP&lt; A0004 OK Expunge completed.
+fetchmail: 9 Nachrichten warten nach dem L&#246;schen
+9 Nachrichten f&#252;r <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">linux4michelle at tamay-dogan.net</A> bei server4.pinguin-hosting.de.
+fetchmail: IMAP&gt; A0005 FETCH 1:9 RFC822.SIZE
+fetchmail: IMAP&lt; * 1 FETCH (RFC822.SIZE 3080)
+fetchmail: IMAP&lt; * 2 FETCH (RFC822.SIZE 3174)
+fetchmail: IMAP&lt; * 3 FETCH (RFC822.SIZE 6577)
+fetchmail: IMAP&lt; * 4 FETCH (RFC822.SIZE 5209)
+fetchmail: IMAP&lt; * 5 FETCH (RFC822.SIZE 2279)
+fetchmail: IMAP&lt; * 6 FETCH (RFC822.SIZE 25743)
+fetchmail: IMAP&lt; * 7 FETCH (RFC822.SIZE 2520)
+fetchmail: IMAP&lt; * 8 FETCH (RFC822.SIZE 2948)
+fetchmail: IMAP&lt; * 9 FETCH (RFC822.SIZE 2890)
+fetchmail: IMAP&lt; A0005 OK Fetch completed.
+fetchmail: IMAP&gt; A0006 FETCH 1 RFC822.HEADER
+fetchmail: IMAP&lt; * 1 FETCH (RFC822.HEADER {2580}
+Nachricht <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">linux4michelle at tamay-dogan.net</A>@server4.pinguin-hosting.de:1 von 9 wird gelesen (2580 Bytes im Nachrichtenkopf)
+Dabei, Return-Path: &lt;php-general-return-284773-linux4michelle=<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">tamay-dogan.net at lists.php.net</A>&gt;
+ umzuschreibenUmgeschriebene Version ist Return-Path: &lt;php-general-return-284773-linux4michelle=<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">tamay-dogan.net at lists.php.net</A>&gt;
+
+Dabei, From: Yeti &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">yeti at myhich.com</A>&gt;
+ umzuschreibenUmgeschriebene Version ist From: Yeti &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">yeti at myhich.com</A>&gt;
+
+Dabei, To: &quot;Adam Randall&quot; &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">randalla at gmail.com</A>&gt;,
+        &quot;PHP General Mailing List&quot; &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">php-general at lists.php.net</A>&gt;
+ umzuschreibenUmgeschriebene Version ist To: &quot;Adam Randall&quot; &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">randalla at gmail.com</A>&gt;,
+        &quot;PHP General Mailing List&quot; &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">php-general at lists.php.net</A>&gt;
+
+fetchmail: dabei, auszuliefern mit: /usr/bin/procmail -d 'michelle.konzack'
+#
+fetchmail: IMAP&lt; )
+fetchmail: IMAP&lt; A0006 OK Fetch completed.
+fetchmail: IMAP&gt; A0007 FETCH 1 BODY.PEEK[TEXT]
+fetchmail: IMAP&lt; * 1 FETCH (BODY[TEXT] {500}
+ (500 Bytes im Nachrichtenk&#246;rper)************
+fetchmail: IMAP&lt; )
+fetchmail: IMAP&lt; A0007 OK Fetch completed.
+ gel&#246;scht
+fetchmail: IMAP&gt; A0008 STORE 1 +FLAGS (\Seen \Deleted)
+fetchmail: IMAP&lt; * 1 FETCH (FLAGS (\Deleted \Seen \Recent))
+fetchmail: IMAP&lt; A0008 OK Store completed.
+fetchmail: IMAP&gt; A0009 FETCH 2 RFC822.HEADER
+fetchmail: IMAP&lt; * 2 FETCH (RFC822.HEADER {2519}
+Nachricht <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">linux4michelle at tamay-dogan.net</A>@server4.pinguin-hosting.de:2 von 9 wird gelesen (2519 Bytes im Nachrichtenkopf)
+Dabei, Return-Path: &lt;php-general-return-284774-linux4michelle=<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">tamay-dogan.net at lists.php.net</A>&gt;
+ umzuschreibenUmgeschriebene Version ist Return-Path: &lt;php-general-return-284774-linux4michelle=<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">tamay-dogan.net at lists.php.net</A>&gt;
+
+Dabei, From: clive &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">clive_lists at immigrationunit.com</A>&gt;
+ umzuschreibenUmgeschriebene Version ist From: clive &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">clive_lists at immigrationunit.com</A>&gt;
+
+Dabei, To: PHP LIST &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">php-general at lists.php.net</A>&gt;
+ umzuschreibenUmgeschriebene Version ist To: PHP LIST &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">php-general at lists.php.net</A>&gt;
+
+fetchmail: dabei, auszuliefern mit: /usr/bin/procmail -d 'michelle.konzack'
+#
+fetchmail: IMAP&lt; )
+fetchmail: IMAP&lt; A0009 OK Fetch completed.
+fetchmail: IMAP&gt; A0010 FETCH 2 BODY.PEEK[TEXT]
+fetchmail: IMAP&lt; * 2 FETCH (BODY[TEXT] {655}
+ (655 Bytes im Nachrichtenk&#246;rper)**********************
+fetchmail: IMAP&lt; )
+fetchmail: IMAP&lt; A0010 OK Fetch completed.
+ gel&#246;scht
+fetchmail: IMAP&gt; A0011 STORE 2 +FLAGS (\Seen \Deleted)
+fetchmail: IMAP&lt; * 2 FETCH (FLAGS (\Deleted \Seen \Recent))
+fetchmail: IMAP&lt; A0011 OK Store completed.
+fetchmail: IMAP&gt; A0012 FETCH 3 RFC822.HEADER
+fetchmail: IMAP&lt; * 3 FETCH (RFC822.HEADER {1229}
+Nachricht <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">linux4michelle at tamay-dogan.net</A>@server4.pinguin-hosting.de:3 von 9 wird gelesen (1229 Bytes im Nachrichtenkopf)
+Dabei, Return-Path: &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">41d.4.64837607-39962215 at NutStart.com</A>&gt;
+ umzuschreibenUmgeschriebene Version ist Return-Path: &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">41d.4.64837607-39962215 at NutStart.com</A>&gt;
+
+Dabei, Reply-To: &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">ComputerTraining at NutStart.com</A>&gt;
+ umzuschreibenUmgeschriebene Version ist Reply-To: &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">ComputerTraining at NutStart.com</A>&gt;
+
+Dabei, From: Computer Training &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">ComputerTraining at NutStart.com</A>&gt;
+ umzuschreibenUmgeschriebene Version ist From: Computer Training &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">ComputerTraining at NutStart.com</A>&gt;
+
+Dabei, To: &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">linux4michelle at tamay-dogan.net</A>&gt;
+ umzuschreibenUmgeschriebene Version ist To: &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">linux4michelle at tamay-dogan.net</A>&gt;
+
+fetchmail: dabei, auszuliefern mit: /usr/bin/procmail -d 'michelle.konzack'
+#
+fetchmail: IMAP&lt; )
+fetchmail: IMAP&lt; A0012 OK Fetch completed.
+fetchmail: IMAP&gt; A0013 FETCH 3 BODY.PEEK[TEXT]
+fetchmail: IMAP&lt; * 3 FETCH (BODY[TEXT] {5348}
+ (5348 Bytes im Nachrichtenk&#246;rper)***********************.**************.*************.*************.****************.**********
+fetchmail: IMAP&lt; )
+fetchmail: IMAP&lt; A0013 OK Fetch completed.
+ gel&#246;scht
+fetchmail: IMAP&gt; A0014 STORE 3 +FLAGS (\Seen \Deleted)
+fetchmail: IMAP&lt; * 3 FETCH (FLAGS (\Deleted \Seen \Recent))
+fetchmail: IMAP&lt; A0014 OK Store completed.
+fetchmail: IMAP&gt; A0015 FETCH 4 RFC822.HEADER
+fetchmail: IMAP&lt; * 4 FETCH (RFC822.HEADER {1174}
+Nachricht <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">linux4michelle at tamay-dogan.net</A>@server4.pinguin-hosting.de:4 von 9 wird gelesen (1174 Bytes im Nachrichtenkopf)
+Dabei, Return-Path: &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">42b.4.64838766-39962215 at noonefor.com</A>&gt;
+ umzuschreibenUmgeschriebene Version ist Return-Path: &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">42b.4.64838766-39962215 at noonefor.com</A>&gt;
+
+Dabei, Reply-To: &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">DepressionHelpCenter at noonefor.com</A>&gt;
+ umzuschreibenUmgeschriebene Version ist Reply-To: &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">DepressionHelpCenter at noonefor.com</A>&gt;
+
+Dabei, From: Depression Help Center &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">DepressionHelpCenter at noonefor.com</A>&gt;
+ umzuschreibenUmgeschriebene Version ist From: Depression Help Center &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">DepressionHelpCenter at noonefor.com</A>&gt;
+
+Dabei, To: &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">linux4michelle at tamay-dogan.net</A>&gt;
+ umzuschreibenUmgeschriebene Version ist To: &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">linux4michelle at tamay-dogan.net</A>&gt;
+
+fetchmail: dabei, auszuliefern mit: /usr/bin/procmail -d 'michelle.konzack'
+#
+fetchmail: IMAP&lt; )
+fetchmail: IMAP&lt; A0015 OK Fetch completed.
+fetchmail: IMAP&gt; A0016 FETCH 4 BODY.PEEK[TEXT]
+fetchmail: IMAP&lt; * 4 FETCH (BODY[TEXT] {4035}
+ (4035 Bytes im Nachrichtenk&#246;rper)***********************.*************.***************.********************
+fetchmail: IMAP&lt; )
+fetchmail: IMAP&lt; A0016 OK Fetch completed.
+ gel&#246;scht
+fetchmail: IMAP&gt; A0017 STORE 4 +FLAGS (\Seen \Deleted)
+fetchmail: IMAP&lt; * 4 FETCH (FLAGS (\Deleted \Seen \Recent))
+fetchmail: IMAP&lt; A0017 OK Store completed.
+fetchmail: IMAP&gt; A0018 FETCH 5 RFC822.HEADER
+fetchmail: IMAP&lt; * 5 FETCH (RFC822.HEADER {1314}
+Nachricht <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">linux4michelle at tamay-dogan.net</A>@server4.pinguin-hosting.de:5 von 9 wird gelesen (1314 Bytes im Nachrichtenkopf)
+Dabei, Return-Path: &lt;stc-return-67-34-1-8353-linux4michelle~<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">tamay-dogan.net at ackbanad.com</A>&gt;
+ umzuschreibenUmgeschriebene Version ist Return-Path: &lt;stc-return-67-34-1-8353-linux4michelle~<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">tamay-dogan.net at ackbanad.com</A>&gt;
+
+Dabei, From: &quot;Credit Check Total&quot; &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">CreditCheckTotal at ackbanad.com</A>&gt;
+ umzuschreibenUmgeschriebene Version ist From: &quot;Credit Check Total&quot; &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">CreditCheckTotal at ackbanad.com</A>&gt;
+
+Dabei, To: <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">linux4michelle at tamay-dogan.net</A>
+ umzuschreibenUmgeschriebene Version ist To: <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">linux4michelle at tamay-dogan.net</A>
+
+fetchmail: dabei, auszuliefern mit: /usr/bin/procmail -d 'michelle.konzack'
+#
+fetchmail: IMAP&lt; )
+fetchmail: IMAP&lt; A0018 OK Fetch completed.
+fetchmail: IMAP&gt; A0019 FETCH 5 BODY.PEEK[TEXT]
+fetchmail: IMAP&lt; * 5 FETCH (BODY[TEXT] {965}
+ (965 Bytes im Nachrichtenk&#246;rper)*************************
+fetchmail: IMAP&lt; )
+fetchmail: IMAP&lt; A0019 OK Fetch completed.
+ gel&#246;scht
+fetchmail: IMAP&gt; A0020 STORE 5 +FLAGS (\Seen \Deleted)
+fetchmail: IMAP&lt; * 5 FETCH (FLAGS (\Deleted \Seen \Recent))
+fetchmail: IMAP&lt; A0020 OK Store completed.
+fetchmail: IMAP&gt; A0021 FETCH 6 RFC822.HEADER
+fetchmail: IMAP&lt; * 6 FETCH (RFC822.HEADER {2422}
+Nachricht <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">linux4michelle at tamay-dogan.net</A>@server4.pinguin-hosting.de:6 von 9 wird gelesen (2422 Bytes im Nachrichtenkopf)
+Dabei, Return-Path: &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">linux-i2c-owner at vger.kernel.org</A>&gt;
+ umzuschreibenUmgeschriebene Version ist Return-Path: &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">linux-i2c-owner at vger.kernel.org</A>&gt;
+
+Dabei, From: Guennadi Liakhovetski &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">g.liakhovetski at gmx.de</A>&gt;
+ umzuschreibenUmgeschriebene Version ist From: Guennadi Liakhovetski &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">g.liakhovetski at gmx.de</A>&gt;
+
+Dabei, To: <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">video4linux-list at redhat.com</A>
+ umzuschreibenUmgeschriebene Version ist To: <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">video4linux-list at redhat.com</A>
+
+Dabei, cc: <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">linux-i2c at vger.kernel.org</A>
+ umzuschreibenUmgeschriebene Version ist cc: <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">linux-i2c at vger.kernel.org</A>
+
+Dabei, Sender: <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">linux-i2c-owner at vger.kernel.org</A>
+ umzuschreibenUmgeschriebene Version ist Sender: <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">linux-i2c-owner at vger.kernel.org</A>
+
+fetchmail: dabei, auszuliefern mit: /usr/bin/procmail -d 'michelle.konzack'
+#
+fetchmail: IMAP&lt; )
+fetchmail: IMAP&lt; A0021 OK Fetch completed.
+fetchmail: IMAP&gt; A0022 FETCH 6 BODY.PEEK[TEXT]
+fetchmail: IMAP&lt; * 6 FETCH (BODY[TEXT] {23321}
+ (23321 Bytes im Nachrichtenk&#246;rper)*********************************.**************************.******************************.*****************************.*************************************.***********************************************.*****************************************.********************************.***************************************.****************************.**************************************.******************************************.********************************************.*****************************.*************************************.*********************************.*******************************.**********************************.******************************.*****************************************.********************************.*****************************************************.***********************
+fetchmail: IMAP&lt; )
+fetchmail: IMAP&lt; A0022 OK Fetch completed.
+ gel&#246;scht
+fetchmail: IMAP&gt; A0023 STORE 6 +FLAGS (\Seen \Deleted)
+fetchmail: IMAP&lt; * 6 FETCH (FLAGS (\Deleted \Seen \Recent))
+fetchmail: IMAP&lt; A0023 OK Store completed.
+fetchmail: IMAP&gt; A0024 FETCH 7 RFC822.HEADER
+fetchmail: IMAP&lt; * 7 FETCH (RFC822.HEADER {2514}
+Nachricht <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">linux4michelle at tamay-dogan.net</A>@server4.pinguin-hosting.de:7 von 9 wird gelesen (2514 Bytes im Nachrichtenkopf)
+Dabei, Return-Path: &lt;users-return-75052-linux4michelle=<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">tamay-dogan.net at spamassassin.apache.org</A>&gt;
+ umzuschreibenUmgeschriebene Version ist Return-Path: &lt;users-return-75052-linux4michelle=<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">tamay-dogan.net at spamassassin.apache.org</A>&gt;
+
+Dabei, From: <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">kchriste at hambrosalle.dk</A>
+ umzuschreibenUmgeschriebene Version ist From: <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">kchriste at hambrosalle.dk</A>
+
+Dabei, To: <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">users at spamassassin.apache.org</A>
+ umzuschreibenUmgeschriebene Version ist To: <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">users at spamassassin.apache.org</A>
+
+fetchmail: dabei, auszuliefern mit: /usr/bin/procmail -d 'michelle.konzack'
+#
+fetchmail: IMAP&lt; )
+fetchmail: IMAP&lt; A0024 OK Fetch completed.
+fetchmail: IMAP&gt; A0025 FETCH 7 BODY.PEEK[TEXT]
+fetchmail: IMAP&lt; * 7 FETCH (BODY[TEXT] {6}
+ (6 Bytes im Nachrichtenk&#246;rper)***
+fetchmail: IMAP&lt; )
+fetchmail: IMAP&lt; A0025 OK Fetch completed.
+ gel&#246;scht
+fetchmail: IMAP&gt; A0026 STORE 7 +FLAGS (\Seen \Deleted)
+fetchmail: IMAP&lt; * 7 FETCH (FLAGS (\Deleted \Seen \Recent))
+fetchmail: IMAP&lt; A0026 OK Store completed.
+fetchmail: IMAP&gt; A0027 FETCH 8 RFC822.HEADER
+fetchmail: IMAP&lt; * 8 FETCH (RFC822.HEADER {2095}
+Nachricht <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">linux4michelle at tamay-dogan.net</A>@server4.pinguin-hosting.de:8 von 9 wird gelesen (2095 Bytes im Nachrichtenkopf)
+Dabei, Return-Path: &lt;php-general-return-284775-linux4michelle=<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">tamay-dogan.net at lists.php.net</A>&gt;
+ umzuschreibenUmgeschriebene Version ist Return-Path: &lt;php-general-return-284775-linux4michelle=<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">tamay-dogan.net at lists.php.net</A>&gt;
+
+Dabei, To: <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">php-general at lists.php.net</A>
+ umzuschreibenUmgeschriebene Version ist To: <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">php-general at lists.php.net</A>
+
+Dabei, From: Carlos Medina &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">info at simply-networks.de</A>&gt;
+ umzuschreibenUmgeschriebene Version ist From: Carlos Medina &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">info at simply-networks.de</A>&gt;
+
+Dabei, Reply-To: <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">info at simply-networks.de</A>
+ umzuschreibenUmgeschriebene Version ist Reply-To: <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">info at simply-networks.de</A>
+
+fetchmail: dabei, auszuliefern mit: /usr/bin/procmail -d 'michelle.konzack'
+#
+fetchmail: IMAP&lt; )
+fetchmail: IMAP&lt; A0027 OK Fetch completed.
+fetchmail: IMAP&gt; A0028 FETCH 8 BODY.PEEK[TEXT]
+fetchmail: IMAP&lt; * 8 FETCH (BODY[TEXT] {853}
+ (853 Bytes im Nachrichtenk&#246;rper)***************************
+fetchmail: IMAP&lt; )
+fetchmail: IMAP&lt; A0028 OK Fetch completed.
+ gel&#246;scht
+fetchmail: IMAP&gt; A0029 STORE 8 +FLAGS (\Seen \Deleted)
+fetchmail: IMAP&lt; * 8 FETCH (FLAGS (\Deleted \Seen \Recent))
+fetchmail: IMAP&lt; A0029 OK Store completed.
+fetchmail: IMAP&gt; A0030 FETCH 9 RFC822.HEADER
+fetchmail: IMAP&lt; * 9 FETCH (RFC822.HEADER {2392}
+Nachricht <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">linux4michelle at tamay-dogan.net</A>@server4.pinguin-hosting.de:9 von 9 wird gelesen (2392 Bytes im Nachrichtenkopf)
+Dabei, Return-Path: &lt;php-general-return-284776-linux4michelle=<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">tamay-dogan.net at lists.php.net</A>&gt;
+ umzuschreibenUmgeschriebene Version ist Return-Path: &lt;php-general-return-284776-linux4michelle=<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">tamay-dogan.net at lists.php.net</A>&gt;
+
+Dabei, From: Per Jessen &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">per at computer.org</A>&gt;
+ umzuschreibenUmgeschriebene Version ist From: Per Jessen &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">per at computer.org</A>&gt;
+
+Dabei, To: <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">php-general at lists.php.net</A>
+ umzuschreibenUmgeschriebene Version ist To: <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">php-general at lists.php.net</A>
+
+fetchmail: dabei, auszuliefern mit: /usr/bin/procmail -d 'michelle.konzack'
+#
+fetchmail: IMAP&lt; )
+fetchmail: IMAP&lt; A0030 OK Fetch completed.
+fetchmail: IMAP&gt; A0031 FETCH 9 BODY.PEEK[TEXT]
+fetchmail: IMAP&lt; * 9 FETCH (BODY[TEXT] {498}
+ (498 Bytes im Nachrichtenk&#246;rper)********************
+fetchmail: IMAP&lt; )
+fetchmail: IMAP&lt; A0031 OK Fetch completed.
+ gel&#246;scht
+fetchmail: IMAP&gt; A0032 STORE 9 +FLAGS (\Seen \Deleted)
+fetchmail: IMAP&lt; * 9 FETCH (FLAGS (\Deleted \Seen \Recent))
+fetchmail: IMAP&lt; A0032 OK Store completed.
+fetchmail: IMAP&gt; A0033 EXPUNGE
+fetchmail: IMAP&lt; * 9 EXPUNGE
+fetchmail: IMAP&lt; * 8 EXPUNGE
+fetchmail: IMAP&lt; * 7 EXPUNGE
+fetchmail: IMAP&lt; * 6 EXPUNGE
+fetchmail: IMAP&lt; * 5 EXPUNGE
+fetchmail: IMAP&lt; * 4 EXPUNGE
+fetchmail: IMAP&lt; * 3 EXPUNGE
+fetchmail: IMAP&lt; * 2 EXPUNGE
+fetchmail: IMAP&lt; * 1 EXPUNGE
+fetchmail: IMAP&lt; * 1 EXISTS
+fetchmail: IMAP&lt; * 1 RECENT
+fetchmail: IMAP&lt; A0033 OK Expunge completed.
+fetchmail: Vorgabe-Ordner wird gew&#228;hlt oder erneut abgefragt
+fetchmail: 1 Nachricht wartet nach erneuter Abfrage
+1 Nachricht f&#252;r <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">linux4michelle at tamay-dogan.net</A> bei server4.pinguin-hosting.de.
+fetchmail: IMAP&gt; A0034 FETCH 1 RFC822.SIZE
+fetchmail: IMAP&lt; * 1 FETCH (RFC822.SIZE 2205)
+fetchmail: IMAP&lt; A0034 OK Fetch completed.
+fetchmail: IMAP&gt; A0035 FETCH 1 RFC822.HEADER
+fetchmail: IMAP&lt; * 1 FETCH (RFC822.HEADER {1243}
+Nachricht <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">linux4michelle at tamay-dogan.net</A>@server4.pinguin-hosting.de:1 von 1 wird gelesen (1243 Bytes im Nachrichtenkopf)
+Dabei, Return-Path: &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">moneyfinder at soothingreturn.com</A>&gt;
+ umzuschreibenUmgeschriebene Version ist Return-Path: &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">moneyfinder at soothingreturn.com</A>&gt;
+
+Dabei, From: Government Money Finder&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">moneyfinder at soothingreturn.com</A>&gt;
+ umzuschreibenUmgeschriebene Version ist From: Government Money Finder&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">moneyfinder at soothingreturn.com</A>&gt;
+
+Dabei, To: <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">linux4michelle at tamay-dogan.net</A>
+ umzuschreibenUmgeschriebene Version ist To: <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">linux4michelle at tamay-dogan.net</A>
+
+fetchmail: dabei, auszuliefern mit: /usr/bin/procmail -d 'michelle.konzack'
+#
+fetchmail: IMAP&lt; )
+fetchmail: IMAP&lt; A0035 OK Fetch completed.
+fetchmail: IMAP&gt; A0036 FETCH 1 BODY.PEEK[TEXT]
+fetchmail: IMAP&lt; * 1 FETCH (BODY[TEXT] {962}
+ (962 Bytes im Nachrichtenk&#246;rper)*******************
+fetchmail: IMAP&lt; )
+fetchmail: IMAP&lt; A0036 OK Fetch completed.
+ gel&#246;scht
+fetchmail: IMAP&gt; A0037 STORE 1 +FLAGS (\Seen \Deleted)
+fetchmail: IMAP&lt; * 1 FETCH (FLAGS (\Deleted \Seen \Recent))
+fetchmail: IMAP&lt; A0037 OK Store completed.
+fetchmail: IMAP&gt; A0038 EXPUNGE
+fetchmail: IMAP&lt; * 1 EXPUNGE
+fetchmail: IMAP&lt; * 0 RECENT
+fetchmail: IMAP&lt; A0038 OK Expunge completed.
+fetchmail: Vorgabe-Ordner wird gew&#228;hlt oder erneut abgefragt
+fetchmail: 0 Nachrichten warten nach erneuter Abfrage
+fetchmail: IMAP&gt; A0039 LOGOUT
+fetchmail: IMAP&lt; * BYE Logging out
+fetchmail: IMAP&lt; A0039 OK Logout completed.
+fetchmail: 6.3.6 fragt ab server4.pinguin-hosting.de (Protokoll IMAP) um Thu 18 Dec 2008 10:13:16 AM CET: Abfrage beendet
+fetchmail: UID-Listen werden nicht ausgetauscht, in dieser Abfrage keine UIDS gesehen
+fetchmail: Datei fetchids wird gel&#246;scht.
+fetchmail: normale Beendigung, Status 0
+fetchmail: Datei fetchids wird gel&#246;scht.
+------------------------------------------------------------------------
+
+For now I have stoped fetchmail and I continue fetching in some hours to
+get results for the &quot;--fetchlimit&quot;
+
+And for the backtrace, ho to do this?  --  Anything special?
+
+Since this happen only sporadic, I can not run strace on it...
+
+I get per day over 2600 legitim messages plus a super-cargo of spams...
+A &quot;strace&quot; would leafe at least 100 kbyte per message. 
+
+Greetings and nice Day
+    Michelle
+
+-- 
+Linux-User #280138 with the Linux Counter, <A HREF="http://counter.li.org/">http://counter.li.org/</A>
+##################### Debian GNU/Linux Consultant #####################
+Michelle Konzack   Apt. 917                  ICQ #328449886
++49/177/9351947    50, rue de Soultz         MSN LinuxMichi
++33/6/61925193     67100 Strasbourg/France   IRC #Debian (irc.icq.com)
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: signature.pgp
+Type: application/pgp-signature
+Size: 189 bytes
+Desc: Digital signature
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/fetchmail-users/attachments/20081218/526d986a/attachment.pgp">https://lists.berlios.de/pipermail/fetchmail-users/attachments/20081218/526d986a/attachment.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001799.html">[fetchmail-users] fetchmail does not more give ExitStatus 13 if	--fetchlimit is used
+</A></li>
+	<LI>Next message: <A HREF="001804.html">[fetchmail-users] fetchmail does not more give ExitStatus 13 if	--fetchlimit is used
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1801">[ date ]</a>
+              <a href="thread.html#1801">[ thread ]</a>
+              <a href="subject.html#1801">[ subject ]</a>
+              <a href="author.html#1801">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,140 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] fetchmail 6.3.15 feature release
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2010-March/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%206.3.15%20feature%20release&In-Reply-To=%3C20100328161232.GB3777%40merlin.emma.line.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002327.html">
+   <LINK REL="Next"  HREF="002330.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] fetchmail 6.3.15 feature release</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%206.3.15%20feature%20release&In-Reply-To=%3C20100328161232.GB3777%40merlin.emma.line.org%3E"
+       TITLE="[fetchmail-users] fetchmail 6.3.15 feature release">matthias.andree at gmx.de
+       </A><BR>
+    <I>Sun Mar 28 18:12:32 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002327.html">[fetchmail-users] watch instead of cron
+</A></li>
+        <LI>Next message: <A HREF="002330.html">[fetchmail-users] watch instead of cron
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2329">[ date ]</a>
+              <a href="thread.html#2329">[ thread ]</a>
+              <a href="subject.html#2329">[ subject ]</a>
+              <a href="author.html#2329">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Greetings,
+
+I am announcing the release of fetchmail 6.3.15.  This new stable
+version of fetchmail adds the long-desired feature to download messages
+with malformed headers (note this is disabled by default, see below for
+details).
+
+The software is available from:
+&lt;<A HREF="http://developer.berlios.de/project/showfiles.php?group_id=1824">http://developer.berlios.de/project/showfiles.php?group_id=1824</A>&gt;
+
+The fetchmail home pages are:
+&lt;<A HREF="http://www.fetchmail.info/">http://www.fetchmail.info/</A>&gt;  or  &lt;<A HREF="http://fetchmail.berlios.de/">http://fetchmail.berlios.de/</A>&gt;
+
+These are the relevant changes since the previous release.  Unless
+otherwise noted, changes to this release were made by Matthias Andree:
+
+fetchmail-6.3.15 (released 2010-03-28, 25572 LoC):
+
+# FEATURE
+* Fetchmail now supports a bad-header command line or rcfile option that takes
+  exactly one argument, accept or reject (default).  This specifies how messages
+  with bad headers retrieved from the current server are to be treated.
+
+# BUG FIXES
+* In the rcfile, recognize &quot;local&quot; as abbreviation for &quot;localdomains&quot;, as
+  documented. The short form has not ever worked since this feature was added in
+  January 1997. Reported by Fr&#233;d&#233;ric Marchal.
+* Do not close stdout when using mda and &quot;bsmtp -&quot; at the same time.
+* Log operating system errors when BSMTP writes fail.
+* Fix verbose mode progress formatting regression from 6.3.10; SMTP trace lines
+  were no longer on a line of their own. Reported by Melchior Franz.
+* Check seteuid() return value and abort running MDA if switch fails.
+* Set global flags in a consistent manner. Make --nosoftbounce and
+  --nobounce work from command line (these used to work in rcfiles).
+  Reported and fix confirmed working by N.J. Mann. (Sunil Shetye)
+* Properly import h_errno declarations, even on systems where h_errno isn't a
+  macro. (Adds ./configure check, fixes Cygwin dllimport warnings.)
+
+# CHANGES
+* The repository has been converted and moved from the Subversion (SVN) format
+  kindly hosted by Graham Wilson over the past years to Git format hosted on
+  Gitorious.org.  My deepest thanks to Graham Wilson for this service that
+  kept us going when BerliOS's Subversion service was faulty in its early days.
+* This opportunity was used to convert BRANCH_6-2 and BRANCH_1-9-9 to
+  GnuPG-signed tags, as a sign that these are now closed.
+* The outdated SVN trunk is now called &quot;oldtrunk&quot; in Git just to save the work
+  for future reference. All development in the past few years was on BRANCH_6-3.
+* master was branched from BRANCH_6-3.  BRANCH_6-3 is now obsolete (and in fact
+  was also converted to a tag to record where the conversion from SVN to Git
+  took place).
+* &quot;make check&quot; now skips HTML validation if xmllint or XHTML DTD are missing.
+
+# DOCUMENTATION
+* Web site and documentation were adjusted to reflect the SVN-&gt;Git move.
+* The fetchmail manual page is now much clearer on the user id switching
+  (seteuid) when using --mda while running as the super user.
+
+# TRANSLATION UPDATES, by language name
+* [zh_CN] Chinese (Simplified), by Ji Zheng-Yu
+* [cs]    Czech, by Petr Pisar
+* [nl]    Dutch, by Erwin Poeze
+* [fr]    French, by Fr&#233;d&#233;ric Marchal
+* [de]    German
+* [id]    Indonesian, by Andhika Padmawan
+* [it]    Italian, by Vincenzo Campanella
+* [ja]    Japanese, by Takeshi Hamasaki
+* [pl]    Polish, by Jakub Bogusz
+* [vi]    Vietnamese, by Clytie Siddall
+
+By popular demand, diffs from the previous release have been omitted.
+
+-- 
+Matthias Andree
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: not available
+Type: application/pgp-signature
+Size: 198 bytes
+Desc: not available
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/fetchmail-users/attachments/20100328/370f17ae/attachment.pgp">https://lists.berlios.de/pipermail/fetchmail-users/attachments/20100328/370f17ae/attachment.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002327.html">[fetchmail-users] watch instead of cron
+</A></li>
+	<LI>Next message: <A HREF="002330.html">[fetchmail-users] watch instead of cron
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2329">[ date ]</a>
+              <a href="thread.html#2329">[ thread ]</a>
+              <a href="subject.html#2329">[ subject ]</a>
+              <a href="author.html#2329">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,72 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Issue with (no)fetchall and attachemnts in	outlook web access
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2009-April/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Issue%20with%20%28no%29fetchall%20and%20attachemnts%20in%0A%09outlook%20web%20access&In-Reply-To=%3C72BE2DE886FBF343BEDC5A4AC14F9C5138DEF06835%40EXCH07.ladendorfs.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   
+   <LINK REL="Next"  HREF="001883.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Issue with (no)fetchall and attachemnts in	outlook web access</H1>
+    <B>Steve Ladendorf</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Issue%20with%20%28no%29fetchall%20and%20attachemnts%20in%0A%09outlook%20web%20access&In-Reply-To=%3C72BE2DE886FBF343BEDC5A4AC14F9C5138DEF06835%40EXCH07.ladendorfs.com%3E"
+       TITLE="[fetchmail-users] Issue with (no)fetchall and attachemnts in	outlook web access">steve at ladendorfs.com
+       </A><BR>
+    <I>Wed Apr  8 18:28:16 CEST 2009</I>
+    <P><UL>
+        
+        <LI>Next message: <A HREF="001883.html">[fetchmail-users] Issue with (no)fetchall and attachemnts in outlook web access
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1882">[ date ]</a>
+              <a href="thread.html#1882">[ thread ]</a>
+              <a href="subject.html#1882">[ subject ]</a>
+              <a href="author.html#1882">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hello,
+
+I have been trying to set up fetchmail as an imap to smtp gateway to deliver voicemail messages from a cisco callmanager business edition to exchange for a customer and have run into two problems.  The first is that when I don't use the fetchall option the imap server bombs out on the search command.
+
+fetchmail: IMAP&gt; A0006 SEARCH UNSEEN NOT DELETED
+fetchmail: IMAP&lt; * BAD The command is not valid in the current state
+
+I've looked around (even read RFC3501) and can't find the reason for this error.  Using fetchall work fine but if anything changes on the imap server the users get all of their old messages delivered again.  Does anyone know why this happens?
+
+The second issue has to do with the voicemail message as an attachment.  The users can see it and play it in Outlook but not in Outlook Web Access - paperclip shows there is an attachment but it does not show up when opening the email.  This seems to be an issue with Exchange (customer has 2003 SP2).  I found a hotfix at microsoft but it only applies to the RFM edition.  I tried the pass8bits, stripcr, forcecr, etc. options but nothing worked (it's obviously an issue with the encoding of the attachments as far as I can tell).  Does anyone have a work around for this issue other than it's a microsoft &quot;feature&quot;?
+
+Thanks!
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	
+	<LI>Next message: <A HREF="001883.html">[fetchmail-users] Issue with (no)fetchall and attachemnts in outlook web access
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1882">[ date ]</a>
+              <a href="thread.html#1882">[ thread ]</a>
+              <a href="subject.html#1882">[ subject ]</a>
+              <a href="author.html#1882">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,115 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] fetchmail gotcha,	one that needs fixed I believe
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2012-August/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%20gotcha%2C%0A%09one%20that%20needs%20fixed%20I%20believe&In-Reply-To=%3C502048F3.3030601%40gmx.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003204.html">
+   <LINK REL="Next"  HREF="003205.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] fetchmail gotcha,	one that needs fixed I believe</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%20gotcha%2C%0A%09one%20that%20needs%20fixed%20I%20believe&In-Reply-To=%3C502048F3.3030601%40gmx.de%3E"
+       TITLE="[fetchmail-users] fetchmail gotcha,	one that needs fixed I believe">matthias.andree at gmx.de
+       </A><BR>
+    <I>Tue Aug  7 00:45:07 CEST 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003204.html">[fetchmail-users] fetchmail gotcha,	one that needs fixed I believe
+</A></li>
+        <LI>Next message: <A HREF="003205.html">[fetchmail-users] Spam gets left behind
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3207">[ date ]</a>
+              <a href="thread.html#3207">[ thread ]</a>
+              <a href="subject.html#3207">[ subject ]</a>
+              <a href="author.html#3207">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Gene Heskett wrote:
+
+&gt;<i> On Sunday 05 August 2012 11:54:35 Matthias Andree did opine:
+</I>&gt;<i> 
+</I>&gt;&gt;<i> Am 05.08.2012 03:01, schrieb Gene Heskett:
+</I>&gt;&gt;&gt;<i> Fact is, that to make it work, for me at least, is to gobble up any
+</I>&gt;&gt;&gt;<i> error mailfilter returns &amp; send back a zero no matter what, so
+</I>&gt;&gt;&gt;<i> fetchmail will then go ahead and blindly pull the duff msg, which
+</I>&gt;&gt;&gt;<i> doesn't bother fetchmail a bit.  My wrapper does that.  As you say,
+</I>&gt;&gt;&gt;<i> problem solved AFAIK.  If it does re-appear, I'll come back out of
+</I>&gt;&gt;&gt;<i> hiding.  Thanks.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Well, suppressing any error message is as simple as adding &quot;|| :&quot; in the
+</I>&gt;&gt;<i> script, or, more obviously &quot;|| true&quot;, each time without the quotes.
+</I>&gt;<i> 
+</I>&gt;<i> A trick no one has taught me before, thanks.  I would assume the final &quot; is 
+</I>&gt;<i> needed as that is the end of the argument list that starts with the first 
+</I>&gt;<i> &quot;.  :)  At least I assume it should be the last argument in the quoted 
+</I>&gt;<i> list?
+</I>
+Sure.  Just meaning to say that you do should not end up with two double
+quote characters next to each other :-)
+
+(Technically speaking, it's not an argument, but an OR-list, where the
+shell executes the second command, the :, if and only if the
+left-hand-side of the || has exited with a nonzero status. And : happens
+to be a shell command that eats all its own arguments end exits with
+status 0.)
+
+Well, documentation of this is often in the reference documentation of a
+shell, which is not supposed to answer &quot;what's this good for&quot; kind of
+questions.
+
+Given that fetchmail uses the &quot;system&quot; library function to execute the
+preconnect command line, it will be equivalent to your saying /bin/sh -c
+..., hence all the shell tutorials compendia referring to Bourne- and
+Korn compatible shells (like sh, ksh, pdksh, bash, ...; as opposed to
+C-shells like csh/tcsh) apply (strictly speaking only the subset of it
+that your shell supports).
+
+So you'll get something along these lines, with --options replaced:
+
+preconnect &quot;exampleprogram --options arguments || :&quot;
+
+Which indeed has a pair of double quote characters. If it's too unobvious,
+
+	... || true
+
+or
+	... || exit 0
+
+are more explicit :)
+
+Best,
+Matthias
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003204.html">[fetchmail-users] fetchmail gotcha,	one that needs fixed I believe
+</A></li>
+	<LI>Next message: <A HREF="003205.html">[fetchmail-users] Spam gets left behind
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3207">[ date ]</a>
+              <a href="thread.html#3207">[ thread ]</a>
+              <a href="subject.html#3207">[ subject ]</a>
+              <a href="author.html#3207">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

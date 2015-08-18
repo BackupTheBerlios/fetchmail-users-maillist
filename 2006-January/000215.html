@@ -1,0 +1,105 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Re: broken POP3 servers - future fetchmail policy (IMPORTANT) (was: [fetchmail]comcast.net and attachments - workaround)
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2006-January/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Re%3A%20broken%20POP3%20servers%20-%20future%20fetchmail%20policy%20%28IMPORTANT%29%0A%20%28was%3A%20%5Bfetchmail%5Dcomcast.net%20and%20attachments%20-%20workaround%29&In-Reply-To=%3C41234.127.0.0.1.1136371686.squirrel%40ymmv.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000213.html">
+   <LINK REL="Next"  HREF="000216.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Re: broken POP3 servers - future fetchmail policy (IMPORTANT) (was: [fetchmail]comcast.net and attachments - workaround)</H1>
+    <B>Jakob Hirsch</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Re%3A%20broken%20POP3%20servers%20-%20future%20fetchmail%20policy%20%28IMPORTANT%29%0A%20%28was%3A%20%5Bfetchmail%5Dcomcast.net%20and%20attachments%20-%20workaround%29&In-Reply-To=%3C41234.127.0.0.1.1136371686.squirrel%40ymmv.de%3E"
+       TITLE="[fetchmail-users] Re: broken POP3 servers - future fetchmail policy (IMPORTANT) (was: [fetchmail]comcast.net and attachments - workaround)">jh at plonk.de
+       </A><BR>
+    <I>Wed Jan  4 11:48:06 CET 2006</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000213.html">[fetchmail-users] broken POP3 servers - future fetchmail policy (IMPORTANT)
+</A></li>
+        <LI>Next message: <A HREF="000216.html">[fetchmail-users] Re: broken POP3 servers - future fetchmail policy (IMPORTANT) (was: [fetchmail]comcast.net and attachments - workaround)
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#215">[ date ]</a>
+              <a href="thread.html#215">[ thread ]</a>
+              <a href="subject.html#215">[ subject ]</a>
+              <a href="author.html#215">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Matthias Andree wrote:
+
+&gt;<i> [Cc:ing BerliOS users
+</I>
+Right, we better continue on the new list.
+
+&gt;&gt;<i> Dropping it completely would be a pity. I have one upstream server
+</I>&gt;&gt;<i> (Mercury on a Netware server...) that deletes messages after RETR
+</I>&gt;&gt;<i> automatically. That may be a nice feature for the admin, but it's
+</I>&gt;&gt;<i> annoying if you like to read mail from more than one place.
+</I>&gt;<i> It is not only &quot;annoying&quot;, but up front a critical data loss defect of
+</I>&gt;<i> the server, needless to say it is a violation of the protocol, too.
+</I>
+Well, RFC 1939 says &quot;Such message deletions are outside the scope of the
+POP3 protocol and are not considered a protocol violation.&quot; (thanks for
+pointing me to this chapter, btw)
+
+Site policies always override RFC-specified behaviour, there's not much
+you can do about that.
+
+&gt;<i> If talking to the admins doesn't resolve their bad behavior, find a
+</I>&gt;<i> different server.
+</I>
+It's my university's server...
+
+&gt;<i> Loss scenario: What happens if the client crashes between the server's
+</I>&gt;<i> shipping CRLF.CRLF and storing the message? Whoops, the server deleted
+</I>&gt;<i> the message, and the client retry.
+</I>
+Not necessarily. Consider a normal POP3 server, only that he does an
+implicit DELE after each RETR. Of course, a client could still fail to
+store the message (or to forward it somewhere, like fetchmail) without the
+server noticing. But only if the client tries to behave nicely and sends
+QUIT even after something went wrong. In this case, nice behaviour does
+not pay off.
+
+&gt;&gt;<i> What changes do you plan for the seen tracking? To do it on the client
+</I>&gt;&gt;<i> side is already possible with the UIDL option.
+</I>&gt;<i> UIDL is not an option, but a necessity.
+</I>
+For simply retrieving mail, delivering locally, retry in case of failure?
+I don't see why.
+
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000213.html">[fetchmail-users] broken POP3 servers - future fetchmail policy (IMPORTANT)
+</A></li>
+	<LI>Next message: <A HREF="000216.html">[fetchmail-users] Re: broken POP3 servers - future fetchmail policy (IMPORTANT) (was: [fetchmail]comcast.net and attachments - workaround)
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#215">[ date ]</a>
+              <a href="thread.html#215">[ thread ]</a>
+              <a href="subject.html#215">[ subject ]</a>
+              <a href="author.html#215">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

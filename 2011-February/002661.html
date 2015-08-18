@@ -1,0 +1,102 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] .fetchmailrc syntax
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2011-February/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20.fetchmailrc%20syntax&In-Reply-To=%3C20110219115943.61710%40gmx.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002660.html">
+   <LINK REL="Next"  HREF="002662.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] .fetchmailrc syntax</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20.fetchmailrc%20syntax&In-Reply-To=%3C20110219115943.61710%40gmx.net%3E"
+       TITLE="[fetchmail-users] .fetchmailrc syntax">matthias.andree at gmx.de
+       </A><BR>
+    <I>Sat Feb 19 12:59:43 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002660.html">[fetchmail-users] .fetchmailrc syntax
+</A></li>
+        <LI>Next message: <A HREF="002662.html">[fetchmail-users] .fetchmailrc syntax
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2661">[ date ]</a>
+              <a href="thread.html#2661">[ thread ]</a>
+              <a href="subject.html#2661">[ subject ]</a>
+              <a href="author.html#2661">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Jude DaShiell wrote:
+
+&gt;<i> Having read the description of the --silent option I tried using that 
+</I>&gt;<i> earlier to find out what it would do.  Another option I tried using was 
+</I>&gt;<i> the syslog option to redirect syslog errors to a fetchmail specific file. 
+</I>&gt;<i> These were found in the fetchmail man page that came with fetchmail 
+</I>&gt;<i> 2.6.3.19 and all I got back from fetchmail was syntax errors.
+</I>
+May I suggest &lt;<A HREF="http://www.fetchmail.info/fetchmail-FAQ.html#G3">http://www.fetchmail.info/fetchmail-FAQ.html#G3</A>&gt;?
+
+Note that the rcfile syntax differs from the command line format in that the latter requires &quot;--&quot; before an option and the former requires that these be omitted and also &quot;set&quot; before some global options, and a particular ordering of server-options-before-user-options (per poll).
+
+&gt;<i> It is for 
+</I>&gt;<i> that reason I wish that fetchmailconf program would also be able to run in
+</I>&gt;<i> command line environments as well as G.U.I. (we don't want to take 
+</I>&gt;<i> software away from the teddy bears on wall paper set) 
+</I>
+Feel free to maintain fetchmailconf and port it to nwcurses. 
+
+I plan to abandon it because I don't care to maintain a Tk based tool that is awkward to use, unsuitable for small screens in expert mode (think netbook) and has a user experience that was acceptable two decades ago, but not today.  However, I don't have the time to write/maintain a new tool for the foreseeable future.  The current fetchmailconf does NOT abstract the user interface from its functionality, so porting it to a command line interface would more or less amount to a rewrite.
+
+&gt;<i> because at least 
+</I>&gt;<i> that way to the extent fetchmailconf is kept current with working syntax a
+</I>&gt;<i> user could run that and sort out incorrect syntax first then if that 
+</I>&gt;<i> failed as a result of syntax outside of fetchmailconf's build capacity for
+</I>&gt;<i> .fetchmailrc files users of this email list would probably have more 
+</I>&gt;<i> intelligent questions to ask.
+</I>
+You're free to ask smart questions already, answering the three crucial points:
+
+- what did you do? (i. e. show the configuration file with made-up passwords, the exact command line)
+- what exactly did you get? (i. e. show the error messages/logging verbatim)
+- what did you expect instead (unless that's obvious)?
+
+Particular instructions in the FAQ, again, see &lt;<A HREF="http://www.fetchmail.info/fetchmail-FAQ.html#G3">http://www.fetchmail.info/fetchmail-FAQ.html#G3</A>&gt;.
+
+HTH
+Matthias
+-- 
+Matthias Andree
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002660.html">[fetchmail-users] .fetchmailrc syntax
+</A></li>
+	<LI>Next message: <A HREF="002662.html">[fetchmail-users] .fetchmailrc syntax
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2661">[ date ]</a>
+              <a href="thread.html#2661">[ thread ]</a>
+              <a href="subject.html#2661">[ subject ]</a>
+              <a href="author.html#2661">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

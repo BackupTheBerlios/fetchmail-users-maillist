@@ -1,0 +1,116 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] fetchmail on server unable to connect to postfix
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2007-August/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%20on%20server%20unable%20to%20connect%20to%0A%20postfix&In-Reply-To=%3C14587.213.203.159.55.1187268926.squirrel%40nexaima.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001164.html">
+   <LINK REL="Next"  HREF="001160.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] fetchmail on server unable to connect to postfix</H1>
+    <B>M. Fioretti</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20fetchmail%20on%20server%20unable%20to%20connect%20to%0A%20postfix&In-Reply-To=%3C14587.213.203.159.55.1187268926.squirrel%40nexaima.net%3E"
+       TITLE="[fetchmail-users] fetchmail on server unable to connect to postfix">mfioretti at nexaima.net
+       </A><BR>
+    <I>Thu Aug 16 14:55:26 CEST 2007</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001164.html">[fetchmail-users] Solution (??) of: fetchmail on server unable to	connect to postfix
+</A></li>
+        <LI>Next message: <A HREF="001160.html">[fetchmail-users] fetchmail on server unable to connect to	postfix
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1157">[ date ]</a>
+              <a href="thread.html#1157">[ thread ]</a>
+              <a href="subject.html#1157">[ subject ]</a>
+              <a href="author.html#1157">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Thu, Aug 16, 2007 13:12:41 PM +0100, Rob MacGregor
+(<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">rob.macgregor at gmail.com</A>) wrote:
+&gt;<i> On 8/16/07, M. Fioretti &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">mfioretti at nexaima.net</A>&gt; wrote:
+</I>&gt;<i> Please upgrade to 6.3.8
+</I>
+The one I reported is the default one in Centos 4.4, I'll try to
+have it upgraded asap, thanks. Not that it would make any difference wrt
+this problem, would it? Now:
+
+&gt;<i> &gt; Helo command rejected: need fully-qualified hostname
+</I>&gt;<i> So, fix your postfix configuration
+</I>
+As I mentioned in the original message, I cannot easily change (for
+reasons which are everything but technical...) the postfix configuration.
+Unless I *am* sure that it is really the only possible way to fix this, that
+is. Otherwise I would have posted straight to the postfix list.
+
+For the record, here is the complete excerpt of the postfix refusal I get
+_WITH_:
+
+   poll pop3.myprovider.com with proto POP3 tracepolls
+      user myaccount there with pass &quot;the password&quot; is root here keep
+      smtpaddress exact_output_of_hostname_command_here
+
+Aug 16 14:41:55 machinename postfix/smtpd[5641]: NOQUEUE: reject: RCPT
+from localhost[127.0.0.1]: 504 5.5.2 &lt;localhost&gt;: Helo command rejected:
+need fully-qualified hostname; from=&lt;testaddress&gt;
+to=&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">root at exact_output_of_hostname_command_here</A>&gt; proto=ESMTP
+helo=&lt;localhost&gt;
+
+I take this to mean that setting smtpaddress as above isn't enough to
+not make fetchmail send an helo different than localhost. Is this correct,
+and if yes, isn't there any other way to make fetchmail helo something
+else?
+
+With respect to this:
+&gt;<i> Having taken 2 seconds to consult the postfix documentation.. I suspect
+</I>&gt;<i> you actually want to further consult the postfix documentation
+</I>
+Generally, I have no problem at all to study man pages. The specific
+problem I have with email related docs is that it's really hard to
+figure out, unless one already knows the whole terminology and protocols
+in advance, to know what to search for.
+
+Even placing the whole error message in google, as I usually do, doesn't
+yeld much when email is concerned. I know this for a fact, that's why I
+also need a bit of pointers from mailing lists.
+
+Thanks for your patience,
+Marco
+
+-- 
+Help *everybody* love Free Standards and Software:
+<A HREF="http://digifreedom.net">http://digifreedom.net</A>
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001164.html">[fetchmail-users] Solution (??) of: fetchmail on server unable to	connect to postfix
+</A></li>
+	<LI>Next message: <A HREF="001160.html">[fetchmail-users] fetchmail on server unable to connect to	postfix
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1157">[ date ]</a>
+              <a href="thread.html#1157">[ thread ]</a>
+              <a href="subject.html#1157">[ subject ]</a>
+              <a href="author.html#1157">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,109 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Add headers in notification for	oversized	messages deletet by limitflush
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2008-November/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Add%20headers%20in%20notification%0A%20for%09oversized%09messages%20deletet%20by%20limitflush&In-Reply-To=%3C492D89BC.4060701%40gmx.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001759.html">
+   <LINK REL="Next"  HREF="001761.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Add headers in notification for	oversized	messages deletet by limitflush</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Add%20headers%20in%20notification%0A%20for%09oversized%09messages%20deletet%20by%20limitflush&In-Reply-To=%3C492D89BC.4060701%40gmx.de%3E"
+       TITLE="[fetchmail-users] Add headers in notification for	oversized	messages deletet by limitflush">matthias.andree at gmx.de
+       </A><BR>
+    <I>Wed Nov 26 18:39:08 CET 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001759.html">[fetchmail-users] Add headers in notification for	oversized	messages deletet by limitflush
+</A></li>
+        <LI>Next message: <A HREF="001761.html">[fetchmail-users] Add headers in notification for	oversized	messages deletet by limitflush
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1760">[ date ]</a>
+              <a href="thread.html#1760">[ thread ]</a>
+              <a href="subject.html#1760">[ subject ]</a>
+              <a href="author.html#1760">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>bernhard Boxhorn schrieb:
+
+&gt;&gt;&gt;<i> Is there no chance to download only the headers and the information of 
+</I>&gt;&gt;&gt;<i> the size of the mail (aren't mobile phones doing exactly this to save 
+</I>&gt;&gt;&gt;<i> bandwith), and then make up the decision, if the mail is bigger than the 
+</I>&gt;&gt;&gt;<i> --limitflush then delete the message and inform the user with the mail 
+</I>&gt;&gt;&gt;<i> headers?
+</I>&gt;&gt;&gt;<i>     
+</I>&gt;&gt;<i> Not with the current code, but with some code changes, that should be
+</I>&gt;&gt;<i> doable.
+</I>
+&gt;<i> So, this remains as feature request, when set the --limitflush option 
+</I>&gt;<i> then headers are downloaded after realizing that the mail exceeds the 
+</I>&gt;<i> limitflush size, deletes the mail and informs the recipient (btw, why 
+</I>&gt;<i> not the sender)
+</I>
+Hi Bernhard,
+
+feature request taken.
+<A HREF="https://developer.berlios.de/feature/index.php?func=detailfeature&amp;feature_id=4396&amp;group_id=1824">https://developer.berlios.de/feature/index.php?func=detailfeature&amp;feature_id=4396&amp;group_id=1824</A>
+
+Reason for &quot;why not the sender&quot; is that the recipient address (in
+singledrop) is trustworthy, whereas the sender address might be forged. If
+you'd blindly notify senders, then you might end up hitting innocent
+bystanders with such notifications. Usually we should avoid that. See
+&quot;Backscatter&quot; in the Postfix documentation (there's a dedicated README file).
+
+Bouncing after the fact is a bad idea anyhow - actually anything behind the
+MX should not be more restrictive than the MX itself, in order to let the
+MX decide and reject undesired messages (too big, wrong sender, wrong
+content) during the original SMTP session.
+
+&gt;<i> that sender <A HREF="https://lists.berlios.de/mailman/listinfo/fetchmail-users">xyz at abc.com</A> sent am mail with X MB, this was
+</I>&gt;<i> bigger than $limitflush and the mail got deleted.
+</I>&gt;<i> This would save the bandwith to download and then reject the Mail and as 
+</I>&gt;<i> well we could turn on softbounce=yes for protecting us a bit when doing 
+</I>&gt;<i> configuration errors.
+</I>
+Postfix's soft_bounce=yes configuration doesn't work well in production,
+and it can also mislead while debugging -- as you've just seen.
+
+HTH
+
+-- 
+Matthias Andree
+
+Life is what happens to you while you're busy making other plans.
+  						-- John Lennon, 1980
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001759.html">[fetchmail-users] Add headers in notification for	oversized	messages deletet by limitflush
+</A></li>
+	<LI>Next message: <A HREF="001761.html">[fetchmail-users] Add headers in notification for	oversized	messages deletet by limitflush
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1760">[ date ]</a>
+              <a href="thread.html#1760">[ thread ]</a>
+              <a href="subject.html#1760">[ subject ]</a>
+              <a href="author.html#1760">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,107 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] Incorrect header line and lost mails
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2006-February/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Incorrect%20header%20line%20and%20lost%20mails&In-Reply-To=%3C43F06B6F.6090707%40wowcompany.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   
+   <LINK REL="Next"  HREF="000273.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] Incorrect header line and lost mails</H1>
+    <B>Frederic Marchal</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20Incorrect%20header%20line%20and%20lost%20mails&In-Reply-To=%3C43F06B6F.6090707%40wowcompany.com%3E"
+       TITLE="[fetchmail-users] Incorrect header line and lost mails">frederic.marchal at wowcompany.com
+       </A><BR>
+    <I>Mon Feb 13 12:20:15 CET 2006</I>
+    <P><UL>
+        
+        <LI>Next message: <A HREF="000273.html">[fetchmail-users] Incorrect header line and lost mails
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#272">[ date ]</a>
+              <a href="thread.html#272">[ thread ]</a>
+              <a href="subject.html#272">[ subject ]</a>
+              <a href="author.html#272">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hello,
+
+I found 15 lines like this in my log this morning and 3 more earlier 
+last week:
+
+fetchmail[1226]: incorrect header line found while scanning headers
+
+
+I read the source of fetchmail to learn more about it and I found out 
+that any header containing at least one line without a colon and not 
+starting with a space is considered illegal as per rfc822 and send to 
+oblivion without any other consideration (at least none I could find).
+
+Alas, it turns out that one of the three e-mails I could recover was 
+definitely not a spam... I agree it was not fully rfc822 compliant but 
+it was a good e-mail according to *my* standards and it could have been 
+delivered since the invalid line was a very long TO header from hotmail 
+(not rfc822 compliant either) wrapped by my ISP  !
+
+I agree that the sin was in the original e-mail, but is it really the 
+purpose of fetchmail to enforce rfc822 so drastically ? With such a 
+name, I would expect it to fetch the e-mails and leave any 
+&quot;counter-measure&quot; to a program designed for such a task (or at least to 
+have an option to drop or accept invalid e-mails).
+
+Now, I'm reluctant to patch and recompile the program myself. Is it 
+possible to configure fetchmail to save a copy of every mail in a local 
+folder before it is processed ? Could that be achieved with the --plugin 
+option and how ?
+
+I'm using fetchmail 6.2.5 as provided by the stable branch of debian.
+
+Frederic
+
+
+
+
+
+
+
+WOW Company or its affiliates do not accept legal responsibility 
+for the contents of this message. The views or opinions 
+presented are solely those of the author and do not necessarily 
+represent those of WOW Company or any of its affiliates.
+
+No contract will be established with WOW Company other than 
+in writing (letter) and with the explicit authorization of the director 
+of WOW Company.
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	
+	<LI>Next message: <A HREF="000273.html">[fetchmail-users] Incorrect header line and lost mails
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#272">[ date ]</a>
+              <a href="thread.html#272">[ thread ]</a>
+              <a href="subject.html#272">[ subject ]</a>
+              <a href="author.html#272">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

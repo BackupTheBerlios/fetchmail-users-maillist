@@ -1,0 +1,125 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] WARNING: Running as root is discouraged.
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2005-November/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20WARNING%3A%20Running%20as%20root%20is%20discouraged.&In-Reply-To=%3C20051117100201.GC4097%40merlin.emma.line.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000118.html">
+   <LINK REL="Next"  HREF="000138.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] WARNING: Running as root is discouraged.</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20WARNING%3A%20Running%20as%20root%20is%20discouraged.&In-Reply-To=%3C20051117100201.GC4097%40merlin.emma.line.org%3E"
+       TITLE="[fetchmail-users] WARNING: Running as root is discouraged.">matthias.andree at gmx.de
+       </A><BR>
+    <I>Thu Nov 17 11:02:01 CET 2005</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000118.html">[fetchmail-users] WARNING: Running as root is discouraged.
+</A></li>
+        <LI>Next message: <A HREF="000138.html">[fetchmail-users] Re: WARNING: Running as root is discouraged.
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#128">[ date ]</a>
+              <a href="thread.html#128">[ thread ]</a>
+              <a href="subject.html#128">[ subject ]</a>
+              <a href="author.html#128">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Thomas Wolff schrieb am 2005-11-11:
+
+&gt;<i> There is this new warning &quot;WARNING: Running as root is discouraged.&quot; 
+</I>&gt;<i> which is somehow disturbing.
+</I>
+Yes, and that is deliberate.
+
+Networking clients should never run with root privileges, and fetchmail
+is no exception. Fetchmail does not need root privileges to forward
+mail, the only conceivable scenario where it needs root privileges is
+one where it calls an MDA for a different user.
+
+In this scenario, fetchmail should use IPC (Unix domain socket, named
+pipe or similar) to talk from one unprivileged process to another.  This
+won't happen in the near future though, unless someone else finds the
+time to do that.
+
+&gt;<i> I thought fetchmail is also intended as a system installation 
+</I>&gt;<i> for multi-user mail retrieval so it's actually a designed mode to 
+</I>&gt;<i> run fetchmail as root (and the message seems to be unconditional, 
+</I>&gt;<i> looking at the code).
+</I>
+That was how it originally worked, but the fetchmail 6.2.5 code Rob,
+Graham and I took over was utterly unsuitable to run as root, as you can
+read in &lt;<A HREF="http://fetchmail.berlios.de/fetchmail-SA-2005-01.txt">http://fetchmail.berlios.de/fetchmail-SA-2005-01.txt</A>&gt;
+(CVE-2005-2335).
+
+The 6.2.5 code was so bold as to fall back to sprintf on systems where
+snprintf was unavailable, which opened up even more buffer overrun
+possibilities. 6.3.0 uses trio_snprintf instead on such systems.
+
+There is a reason why I recommend 6.2.9-rc* to everyone, and that is
+many more bugfixes.
+
+&gt;<i> Also I don't need this message when I retrieve my personal mailbox while 
+</I>&gt;<i> regularly working as root on my home machine; this may not be 
+</I>
+I don't care if you work as root on your home machine and fetchmail
+pesters you with this warning.
+
+On some day in the future, fetchmail might have a model where it can
+give up privileges for good in the process that talk to the network and
+only retain privileges for MDA based setups where someone needs to run
+the MDA of somebody else's. This model will certainly not be the
+seteuid() swapping crap as that's not secure. Look at sendmail to learn
+some lessons about this.
+
+&gt;<i> recommended in general but it's not fetchmail to tell me that every 
+</I>&gt;<i> time I retrieve my mail.
+</I>
+Evidently, it is. Sorry for my being so boldfaced.
+
+&gt;<i> Please remove the message.
+</I>
+Refused. Please fix the way you work. This is not Windows, and sudo(1)
+works well for the few moments when you need more power than the regular
+user.  &lt;<A HREF="http://www.courtesan.com/sudo/">http://www.courtesan.com/sudo/</A>&gt;
+
+fetchmail is a tool for the end user who is usually untrained about
+systems administrations, putting up obstacles and annoyances while he
+works as root is the right thing to do.
+
+-- 
+Matthias Andree
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000118.html">[fetchmail-users] WARNING: Running as root is discouraged.
+</A></li>
+	<LI>Next message: <A HREF="000138.html">[fetchmail-users] Re: WARNING: Running as root is discouraged.
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#128">[ date ]</a>
+              <a href="thread.html#128">[ thread ]</a>
+              <a href="subject.html#128">[ subject ]</a>
+              <a href="author.html#128">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>

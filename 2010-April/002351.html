@@ -1,0 +1,124 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [fetchmail-users] User poll: how do you expect --sslcertpath to	behave?
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/fetchmail-users/2010-April/index.html" >
+   <LINK REL="made" HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20User%20poll%3A%20how%20do%20you%20expect%20--sslcertpath%20to%0A%09behave%3F&In-Reply-To=%3Cop.vbego40i1e62zd%40merlin.emma.line.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002349.html">
+   <LINK REL="Next"  HREF="002352.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[fetchmail-users] User poll: how do you expect --sslcertpath to	behave?</H1>
+    <B>Matthias Andree</B> 
+    <A HREF="mailto:fetchmail-users%40lists.berlios.de?Subject=Re%3A%20%5Bfetchmail-users%5D%20User%20poll%3A%20how%20do%20you%20expect%20--sslcertpath%20to%0A%09behave%3F&In-Reply-To=%3Cop.vbego40i1e62zd%40merlin.emma.line.org%3E"
+       TITLE="[fetchmail-users] User poll: how do you expect --sslcertpath to	behave?">matthias.andree at gmx.de
+       </A><BR>
+    <I>Mon Apr 19 10:04:06 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002349.html">[fetchmail-users] One machine will connect to server, one won't.
+</A></li>
+        <LI>Next message: <A HREF="002352.html">[fetchmail-users] User poll: how do you expect --sslcertpath to	behave?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2351">[ date ]</a>
+              <a href="thread.html#2351">[ thread ]</a>
+              <a href="subject.html#2351">[ subject ]</a>
+              <a href="author.html#2351">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>This is a short user poll. It is meant to figure out what people think how  
+a particular SSL/TLS option should behave, so I can gear the upcoming  
+6.3.17 release to create least surprises. The poll is free-form, on the  
+list, and runs until I feel I have sufficient feedback.
+
+
+Background:
+
+* for a SSL or TLS connection, the server presents its server certificate  
+(and possibly those of intermediate certification authorities in the  
+so-called &quot;certificate chain&quot; if an entire hierarchy of SSL/TLS  
+signing/trusting authorities is used) to fetchmail. Fetchmail validates  
+those certificates, and checks if finds the certificate of the &quot;root&quot;  
+certification authorities (issuer, signer) in one of the locations where  
+OpenSSL or the fetchmail user keeps trusted certificates (see below).
+
+* fetchmail versions 6.3.1 and newer have either used certificates from  
+the directory you specified with --sslcertpath, or those from the default  
+OpenSSL locations (usually /etc/ssl/certs, /usr/ssl/certs, or  
+/usr/lib/ssl/certs, and the default CAfile). 6.3.0 and older have never  
+loaded the default OpenSSL locations, which was considered a bug by users  
+and fixed.
+
+* OpenSSL actually allows adding multiple locations (in an  
+include-as-well) where it is supposed to look for the certificates. It  
+will search all of them, in a particular order. We need not decide for  
+just one.
+
+* I have committed a patch for the future version 6.3.17 that adds  
+--sslcertfile so that fetchmail can use a CA bundle file in a non-default  
+location. This is to obviate the need to run c_rehash.
+
+* OpenSSL 1.0.0 (new) uses a different hash function for the directories  
+you give to --sslcertpath MYCADIR than OpenSSL 0.9.8 (widespread in  
+distributions) and older used to use. This caused bogus bug reports that  
+fetchmail 6.3.16 broke SSL for users when they forgot to run &quot;c_rehash  
+MYCADIR&quot;.
+
+The two poll questions are:
+
+(1) Should fetchmail add the default OpenSSL certificate locations even if  
+you specify --sslcertfile or --sslcertpath? You will be able to choose the  
+other behaviour by setting an environment variable (I don't plan to add  
+yet another option). Optional: why?
+Explanation:
+  - yes means that fetchmail would look into the OpenSSL default locations  
+AND additionally into those you specify. From a usability point of view  
+this option is preferred, because Linux, *BSD and other distributions will  
+often run c_rehash on the system directories automatically, so that this  
+can mask the user's forgetting to run c_rehash.
+  - no means that fetchmail will only look into those you specify. If  
+neither of these two options are present, fetchmail will instead look into  
+the OpenSSL default places. This is preferable from a security point of  
+view, to only look into specified locations in order to be as mistrustful  
+as possible.
+
+(2) If you answered the previous one with &quot;yes&quot;, should the fetchmail or  
+the OpenSSL directories be checked first?
+
+Thank you.
+
+-- 
+Matthias Andree
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002349.html">[fetchmail-users] One machine will connect to server, one won't.
+</A></li>
+	<LI>Next message: <A HREF="002352.html">[fetchmail-users] User poll: how do you expect --sslcertpath to	behave?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2351">[ date ]</a>
+              <a href="thread.html#2351">[ thread ]</a>
+              <a href="subject.html#2351">[ subject ]</a>
+              <a href="author.html#2351">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/fetchmail-users">More information about the fetchmail-users
+mailing list</a><br>
+</body></html>
